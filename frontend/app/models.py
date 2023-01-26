@@ -46,7 +46,7 @@ class User(db.Base, UserMixin):
         """
         :return: list of user details
         """
-        username_out = filter_by(fs_uniquifier=fs_uniquifier_in).first()
+        username_out = User.query.filter_by(self.fs_uniquifier=fs_uniquifier_in).first()
         return username_out
 
 class Session(db.Base):
