@@ -1,0 +1,16 @@
+werkzeug
+requests
+gunicorn
+python-dotenv
+flask
+Flask-SQLAlchemy
+plotly
+pandas
+dash
+mariadb
+matplotlib
+ipywidgets
+openpyxl
+flask_restful
+flask-wtf
+flask-migrate

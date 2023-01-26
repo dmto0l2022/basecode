@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="title">{% block title %} All Plots {% endblock %}</h1>
+    <div class="content">
+        {% for plot in plots_in %}
+            <div class="plots">
+                <p><b>#{{ plot.id }}</b></p>
+                <b>
+                    <p class="name">{{ plot.plotid }}</p>
+                </b>
+                <p>{{ plotid.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

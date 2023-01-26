@@ -1,0 +1,12 @@
+FROM nginx:latest
+
+RUN rm /etc/nginx/conf.d/default.conf
+RUN mkdir /var/www
+RUN mkdir /var/www/html
+
+COPY conf8080.conf /etc/nginx/conf.d/conf8080.conf
+COPY index8080.html /var/www/html/index.html
+
+#COPY conf8080.conf /etc/nginx/conf.d/default.conf
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]

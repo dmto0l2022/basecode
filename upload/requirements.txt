@@ -1,0 +1,14 @@
+gunicorn
+python-dotenv
+flask
+flask_sqlalchemy
+dash
+mariadb
+xlsxwriter
+xlrd
+matplotlib
+ipywidgets
+openpyxl
+python-dotenv
+SQLAlchemy
+pymysql
