@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, session
 from app.models import UserSimple
-from app.models import UserSimple
+from app.models import User
+
 users_bp = Blueprint('users_bp', __name__)
 
 @users_bp.route('/app/users/getall')
