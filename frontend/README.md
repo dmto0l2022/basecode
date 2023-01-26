@@ -1,6 +1,10 @@
 # Flask App
 Simple Flask app for my medium article
 
+# session in wsgi file
+
+https://beaker.readthedocs.io/en/latest/configuration.html
+
 # Last resort
 
 https://github.com/RafaelMiquelino/dash-flask-login/blob/master/app.py
