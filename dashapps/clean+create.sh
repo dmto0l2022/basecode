@@ -13,7 +13,7 @@ subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
 podman build -f Dockerfile_frontendbase -t base_frontend_1 .
-podman build -f Dockerfile_frontend -t dashapps_1 .
+podman build -f Dockerfile_dashapps -t dashapps_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
