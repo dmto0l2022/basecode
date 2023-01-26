@@ -41,7 +41,13 @@ class User(db.Base, UserMixin):
     confirmed_at = Column(DateTime())
     roles = relationship('Role', secondary='roles_users',
                          backref=backref('users', lazy='dynamic'))
-
+    @staticmethod
+    def get_username(fs_uniquifier_in):
+        """
+        :return: list of user details
+        """
+        username_out = filter_by(fs_uniquifier=fs_uniquifier_in).first()
+        return username_out
 
 class Session(db.Base):
     __tablename__ = 'session'
