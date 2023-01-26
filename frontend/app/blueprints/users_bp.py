@@ -12,5 +12,5 @@ def getallusers():
 @users_bp.route('/app/users/getusername')
 def getusername():
     userid = session['_user_id']
-    username_full = User.get_username()
+    username_full = User.get_username(userid)
     return render_template_string('hello {{ what }}', what=username_full)
