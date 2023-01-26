@@ -72,6 +72,21 @@ class User(db.Base, UserMixin):
         username_out = user_out.username
         
         return username_out
+    
+    @staticmethod
+    def get_user(fs_uniquifier_in):
+        """
+        :return: list of user details
+        """
+        #username_out = User.query(User.username).filter_by(fs_uniquifier==fs_uniquifier_in).first()
+        
+        #peter = User.query.filter_by(username='peter').first()
+        #peter.id
+        #peter.email
+        
+        user_out = User.query.filter(User.fs_uniquifier==fs_uniquifier_in).first()
+               
+        return user_out
 
 class Session(db.Base):
     __tablename__ = 'session'
