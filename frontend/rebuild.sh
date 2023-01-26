@@ -7,17 +7,18 @@ subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
 
-podman stop container_flask_dash_frontend_1
-podman rm container_flask_dash_frontend_1
-podman rmi flask_dash_frontend_1
+podman stop container_frontend_1
+podman rm container_frontend_1
+podman rmi frontend_1
 
-podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
+podman build -f Dockerfile_pythonfrontend -t frontend_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name container_flask_dash_frontend_1 \
+--name container_frontend_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
+-v /opt/dmtools/code/basecode:/workdir \
 localhost/flask_dash_frontend_1:latest
 
