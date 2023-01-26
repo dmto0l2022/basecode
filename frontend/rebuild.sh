@@ -11,7 +11,7 @@ podman stop container_frontend_1
 podman rm container_frontend_1
 podman rmi frontend_1
 
-podman build -f Dockerfile_pythonfrontend -t frontend_1 .
+podman build -f Dockerfile_frontend -t frontend_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
