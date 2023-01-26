@@ -44,7 +44,11 @@ def get_email():
             {% endif %}
             <h1>Session ID : {{ session['sessionid'] }}</h1>
             
-             <h1>Session ID : {{ session }}</h1>
+            {% for key, value in session.items() %}
+              <h1>Key: {{key}}</h1>
+              <h2>Value: {{value}}</h2>
+           {% endfor %}
+            
         """)
 
 
