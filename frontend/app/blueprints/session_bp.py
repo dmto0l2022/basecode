@@ -51,6 +51,16 @@ def get_email():
             
         """)
 
+@session_bp.route('/app/session/showsession')
+def get_email():
+    return render_template_string("""
+            <h1>Session ID : {{ session['sessionid'] }}</h1>
+            <h1>Session :{{% for key, value in session.items() %}
+              <h1>Key: {key}</h1>
+              <h2>Value: {value}</h2>
+           {% endfor %}</h1>
+        """)
+
 
 @session_bp.route('/app/session/delete_email')
 def delete_email():
