@@ -33,7 +33,7 @@ class Middleware:
         url_return_parts = urlparse(request.url)
         welcome_url_parts = url_return_parts._replace(path='/app/welcome')
         url_return = urlunparse(welcome_url_parts)
-        print(session['Username'])
+        #print(session['Username'])
         print(url_return)
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
