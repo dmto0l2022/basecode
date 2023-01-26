@@ -152,5 +152,9 @@ def init_app():
          ##session_bp
          from app.blueprints.session_bp import session_bp
          app.register_blueprint(session_bp)
+          
+         ##users_bp
+         from app.blueprints.users_bp import users_bp
+         app.register_blueprint(users_bp)
 
          return app
