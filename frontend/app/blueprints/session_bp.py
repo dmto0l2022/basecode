@@ -71,9 +71,10 @@ def setsession():
 def getsession():
     if 'Username' in session:
         Username = session['Username']
+        allsession = session
         #UserID =  session['UserID']
         #SessionID = session['SessionID']
-        return f"Welcome {Username} " ## your userid is {UserID} and sessionid {SessionID}"
+        return f"Welcome {allsession} " ## your userid is {UserID} and sessionid {SessionID}"
     else:
         return "Welcome Anonymous"
  
