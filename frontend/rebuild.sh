@@ -20,5 +20,5 @@ podman run -dt \
 --pod pod_main_backend \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
-localhost/flask_dash_frontend_1:latest
+localhost/frontend_1:latest
 
