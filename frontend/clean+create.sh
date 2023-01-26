@@ -21,5 +21,5 @@ podman run -dt \
 --name container_frontend_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
--v /opt/dmtool/code/basecode/:/workdir \
+-v /opt/dmtools/code/basecode/:/workdir \
 localhost/frontend_1:latest
