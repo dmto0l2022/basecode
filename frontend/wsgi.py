@@ -6,6 +6,8 @@ from app import session
 
 from urllib.parse import urlparse, urlunparse
 
+from secure_cookie.session import SessionMiddleware
+
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 from werkzeug.wrappers import Request, Response, ResponseStream
