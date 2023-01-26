@@ -5,6 +5,8 @@ Simple Flask app for my medium article
 
 https://beaker.readthedocs.io/en/latest/configuration.html
 
+https://secure-cookie.readthedocs.io/en/latest/session/#middleware
+
 # Last resort
 
 https://github.com/RafaelMiquelino/dash-flask-login/blob/master/app.py
