@@ -42,9 +42,9 @@ def get_email():
             {% else %}
                 <h1>Welcome! Please enter your email <a href="{{ url_for('session_bp.set_email') }}">here.</a></h1>
             {% endif %}
-            <h1>Session ID : {{ session['sessionid'] }}</h1>     
-                    
-           {% for key, value in session.items() %}
+            <h1>Session ID : {{ session['sessionid'] }}</h1>
+            
+            {% for key, value in session.items() %}
               <h1>Key: {{key}}</h1>
               <h2>Value: {{value}}</h2>
            {% endfor %}
