@@ -13,4 +13,4 @@ def getallusers():
 def getusername():
     userid = session['_user_id']
     username_full = User.get_username(userid)
-    return render_template_string('hello {{ what }}', what=username_full)
+    return render_template_string('hello {{ what }}', what=userid)
