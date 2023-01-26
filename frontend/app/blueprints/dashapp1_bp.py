@@ -28,7 +28,7 @@ def check_route_access():
 def public_route(function):
     function.is_public = True
     return function
-'''
+
 
 @dashapp1_bp.route('/app/dashapp1')
 def dashapp1():
@@ -38,7 +38,7 @@ def dashapp1():
 @auth_required()
 def dashapp2():
     return redirect('http://container_dashapps_1:8006/app/wsgi_app2', code=302)
-
+'''
 @dashapp1_bp.route('/app/session_app1')
 def dashapp3():
     return redirect('/session_app', code=302)
