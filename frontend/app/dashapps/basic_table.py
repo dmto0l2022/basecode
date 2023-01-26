@@ -9,7 +9,7 @@ import requests
 import requests
 import json
 
-api_container = "container_api_backend_1:8004"
+api_container = "container_api_1:8004"
 
 class MakeApiCall():
 
