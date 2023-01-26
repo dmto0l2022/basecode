@@ -109,7 +109,7 @@ class UserSimple(db.Base):
                 'name': i.name,
                 'email': i.email,
             }
-            for i in User.query.order_by('id').all()
+            for i in UserSimple.query.order_by('id').all()
         ]
         return users
 
