@@ -1,4 +1,4 @@
-FROM base_frontend:latest
+FROM localhost/base_frontend_1:latest
 WORKDIR /workdir/
 #COPY requirements.txt /workdir/frontend/requirements.txt
 RUN /env/bin/pip3 install -r /workdir/frontend/requirements.txt
