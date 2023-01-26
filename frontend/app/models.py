@@ -64,7 +64,12 @@ class User(db.Base, UserMixin):
         """
         #username_out = User.query(User.username).filter_by(fs_uniquifier==fs_uniquifier_in).first()
         
-        username_out = User.query(User.username).filter(User.fs_uniquifier==fs_uniquifier_in).first()
+        #peter = User.query.filter_by(username='peter').first()
+        #peter.id
+        #peter.email
+        
+        user_out = User.query.filter(User.fs_uniquifier==fs_uniquifier_in).first()
+        username_out = user_out.username
         
         return username_out
 
