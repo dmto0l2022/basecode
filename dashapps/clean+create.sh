@@ -1,9 +1,9 @@
-podman stop container_frontend_1
-podman rm container_frontend_1
-podman rmi base_frontend_1
-podman rmi frontend_1
+podman stop container_dashapps_1
+podman rm container_dashapps_1
+podman rmi base_dashapps_1
+podman rmi dashapps_1
 
-cd /opt/dmtools/code/basecode/frontend
+cd /opt/dmtools/code/basecode/dashapps
 
 uid=1001
 gid=1002
@@ -13,13 +13,13 @@ subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
 podman build -f Dockerfile_frontendbase -t base_frontend_1 .
-podman build -f Dockerfile_frontend -t frontend_1 .
+podman build -f Dockerfile_frontend -t dashapps_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name container_frontend_1 \
+--name container_dashapps_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode/:/workdir \
-localhost/frontend_1:latest
+localhost/dashapps_1:latest
