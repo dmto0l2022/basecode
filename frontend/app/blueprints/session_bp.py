@@ -52,7 +52,7 @@ def get_email():
         """)
 
 @session_bp.route('/app/session/showsession')
-def get_email():
+def showsession():
     return render_template_string("""
             <h1>Session ID : {{ session['sessionid'] }}</h1>
             <h1>Session :{{% for key, value in session.items() %}
