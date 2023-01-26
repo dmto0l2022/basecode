@@ -26,7 +26,7 @@ podman pod create \
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
-cd /opt/dmtools/code/flask-mariadb-nginx/redis
+cd /opt/dmtools/code/basecode/redis
 podman stop container_redis_1
 podman rm container_redis_1
 podman rmi redis_1
@@ -35,6 +35,9 @@ podman build -f Dockerfile -t redis_1 .
 
 #podman pull docker.io/dmto0l2022/redis_1:latest
 
+### remember to create this on host
+### /opt/dmtools/redis-data
+
 podman run -dt \
 --name container_redis_1 \
 --pod pod_main_backend \
@@ -42,7 +45,7 @@ podman run -dt \
 --user $uid:$gid \
 localhost/redis_1:latest
 
-cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
+cd /opt/dmtools/code/basecode/mariadb
 podman rmi mariadb_1
 
 podman build \
@@ -59,7 +62,7 @@ podman build \
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name container_mariadb_backend \
+--name container_mariadb \
 --pod pod_main_backend \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
 --user $uid:$gid \
@@ -67,35 +70,33 @@ localhost/mariadb_1:latest
 
 #####
 
-cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
+cd /opt/dmtools/code/basecode/api
 
-podman rmi python_api_1
-podman build -f Dockerfile_pythonapi -t python_api_1 .
+podman rmi api_1
+podman build -f Dockerfile_pythonapi -t api_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name container_api_backend_1 \
+--name container_api_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
-localhost/python_api_1:latest
+localhost/api_1:latest
 
 ####
 
-cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
+cd /opt/dmtools/code/basecode/frontend
 
-podman rmi flask_dash_frontend_1:latest
-podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
+podman rmi frontend_1:latest
+podman build -f Dockerfile_pythonfrontend -t frontend_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
-## podman pull docker.io/dmto0l2022/flask_dash_frontend_1:latest
-
 podman run -dt \
---name container_flask_dash_frontend_1 \
+--name container_frontend_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
-localhost/flask_dash_frontend_1:latest
+localhost/frontend_1:latest
 
 
 
