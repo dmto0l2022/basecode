@@ -9,6 +9,14 @@ def getallusers():
     users = UserSimple.get_users()
     return render_template('users_simple.html', users=users)
 
+@users_bp.route('/app/users/setsession')
+def setsession():
+    userid = session['_user_id']
+    all_ret = User.get_user(userid)
+    email_ret = all_ret.email
+    session['useremail'] = all_ret.email
+    return render_template_string('hello {{ what }}', what=email_ret)
+
 @users_bp.route('/app/users/getusername')
 def getusername():
     userid = session['_user_id']
