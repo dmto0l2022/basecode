@@ -42,25 +42,25 @@ def get_email():
             {% else %}
                 <h1>Welcome! Please enter your email <a href="{{ url_for('session_bp.set_email') }}">here.</a></h1>
             {% endif %}
-            <h1>Session ID : {{ session['sessionid'] }}</h1>
-            
-            {% for key, value in session.items() %}
-              <h1>Key: {{key}}</h1>
-              <h2>Value: {{value}}</h2>
-           {% endfor %}
-            
+            <h1>Session ID : {{ session['sessionid'] }}</h1>            
         """)
-
+'''
 @session_bp.route('/app/session/showsession')
 def showsession():
     return render_template_string("""
-            <h1>Session ID : {{ session['sessionid'] }}</h1>
-            <h1>Session :{{% for key, value in session.items() %}
+            <h1>Session ID : { session['sessionid'] }}</h1>
+            <h1>Session :{{% for key, value in session.items() %}}
               <h1>Key: {key}</h1>
               <h2>Value: {value}</h2>
            {% endfor %}</h1>
         """)
+'''
 
+@session_bp.route('/app/session/showsession')
+def showsession():
+    return render_template_string("""
+    {% for key, value in session.items() %}Key: {{key}} Value: {{value}}\n{% endfor %}
+    """)
 
 @session_bp.route('/app/session/delete_email')
 def delete_email():
