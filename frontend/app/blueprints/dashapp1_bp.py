@@ -32,21 +32,12 @@ def public_route(function):
 
 @dashapp1_bp.route('/app/dashapp1')
 def dashapp1():
-    return redirect('/wsgi_app1', code=302)
-
-@dashapp1_bp.route('/wsgi_app1')
-def dashapp1_raw():
-    return redirect('/wsgi_app1', code=302)
-
-@dashapp1_bp.route('/wsgi_app2')
-@auth_required()
-def dashapp2_raw():
-    return redirect('/wsgi_app2', code=302)
+    return redirect('http://container_dashapps_1:8006/app/wsgi_app1', code=302)
 
 @dashapp1_bp.route('/app/dashapp2')
 @auth_required()
 def dashapp2():
-    return redirect('/wsgi_app2', code=302)
+    return redirect('http://container_dashapps_1:8006/app/wsgi_app2', code=302)
 
 @dashapp1_bp.route('/app/session_app1')
 def dashapp3():
