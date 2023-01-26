@@ -41,12 +41,28 @@ class User(db.Base, UserMixin):
     confirmed_at = Column(DateTime())
     roles = relationship('Role', secondary='roles_users',
                          backref=backref('users', lazy='dynamic'))
+    '''
+    def set_self(self, id, email, username, password, last_login_at,):
+        self.id = id
+        self.email = email
+        self.username = username
+        self.password = password
+        self.last_login_at = last_login_at
+        self.current_login_at = current_login_at
+        self.last_login_ip = last_login_ip
+        self.current_login_ip = current_login_ip 
+        self.login_count = login_count
+        self.active = active
+        self.fs_uniquifier = fs_uniquifier
+        self.confirmed_at = confirmed_at
+        self.roles = roles
+    '''
     @staticmethod
     def get_username(fs_uniquifier_in):
         """
         :return: list of user details
         """
-        username_out = User.query.filter_by(self.fs_uniquifier==fs_uniquifier_in).first()
+        username_out = User.query(User.username).filter_by(fs_uniquifier==fs_uniquifier_in).first()
         return username_out
 
 class Session(db.Base):
