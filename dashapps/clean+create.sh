@@ -1,6 +1,6 @@
 podman stop container_dashapps_1
 podman rm container_dashapps_1
-podman rmi base_dashapps_1
+podman rmi base_frontend_1
 podman rmi dashapps_1
 
 cd /opt/dmtools/code/basecode/dashapps
