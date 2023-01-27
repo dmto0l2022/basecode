@@ -83,6 +83,7 @@ podman run -dt \
 --name container_api_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
+-v /opt/dmtools/code/basecode/:/workdir \
 localhost/api_1:latest
 
 ####
@@ -99,6 +100,7 @@ podman run -dt \
 --name container_frontend_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
+-v /opt/dmtools/code/basecode/:/workdir \
 localhost/frontend_1:latest
 
 
