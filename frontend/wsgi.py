@@ -27,6 +27,9 @@ r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 all_keys = r.keys('*')
 print(all_keys)
 
+val = r.get('session')
+print(val)
+
 app = init_app()
 
 class Middleware:
