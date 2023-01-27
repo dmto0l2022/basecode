@@ -1,12 +1,12 @@
 from app import init_app
 
-from app import current_user
+##from app import current_user
 
-from app import session
+##from app import session
 
 from urllib.parse import urlparse, urlunparse
 
-from secure_cookie.session import SessionMiddleware
+##from secure_cookie.session import SessionMiddleware
 
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
@@ -40,7 +40,7 @@ class Middleware:
         print(url_return)
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
-        if 'wsgi' in request.path and current_user.is_authenticated:
+        if 'wsgi' not in request.path:
             return self.wsgi(environ, start_response)
         else:
             print('it contains wsgi')
