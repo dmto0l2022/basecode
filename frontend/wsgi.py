@@ -94,6 +94,8 @@ class Middleware:
         print(val.decode("utf-8","ignore"))
         #print('--------------------------')
         print(val)
+        print('+++++++++++++++++++++++++++')
+        print(type(val))
         print('=============================')
         
         ##print(val['email'])
