@@ -31,6 +31,7 @@ class Middleware:
         
     def __call__(self, environ, start_response):
         # not Flask request - from werkzeug.wrappers import Request
+        request = Request(environ)
         url_return_parts = urlparse(request.url)
         welcome_url_parts = url_return_parts._replace(path='/app/welcome')
         url_return = urlunparse(welcome_url_parts)
