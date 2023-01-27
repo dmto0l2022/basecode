@@ -46,7 +46,9 @@ class Middleware:
 
     def __init__(self, wsgi):
         self.wsgi = wsgi
-        self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
+        ##self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
+        self.redisserver = redis.StrictRedis(ost='container_redis_1', port=6379, charset="utf-8", decode_responses=True)
+
         
     def __call__(self, environ, start_response):
         # not Flask request - from werkzeug.wrappers import Request
@@ -79,12 +81,12 @@ class Middleware:
         current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
         val = self.redisserver.get(current_session)
         
-        dict = json.loads(self.redisserver.get(current_session))
-        print(dict)
+        #dict = json.loads(self.redisserver.get(current_session))
+        #print(dict)
         print('TTTTTTTTTTTTTTTTTTTTTTTT')
         ##dict = self.redisserver.hgetall(current_session)
-        print(val.decode("utf-8","ignore"))
-        print('--------------------------')
+        #print(val.decode("utf-8","ignore"))
+        #print('--------------------------')
         print(val)
         print('=============================')
         
