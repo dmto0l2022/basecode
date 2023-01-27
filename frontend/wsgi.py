@@ -82,7 +82,7 @@ class Middleware:
         current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
         val = self.redisserver.get(current_session)
         
-        print(ast.literal_eval(val.decode("utf-8","ignore")))
+        #print(ast.literal_eval(val.decode("utf-8","ignore")))
         
         ##session_data = self.redisserver.get(current_session)
         ##session_dict = json.loads(session_data.decode('utf-8','ignore'))
