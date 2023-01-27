@@ -117,7 +117,7 @@ class Middleware:
         for s in splt:
             s1 = s.split('Œ')
             for l1 in s1:
-                if next_value = 1:
+                if next_value == 1:
                     user_id.append(l1)
                     next_value = 0
                 if 'user' in l1:
