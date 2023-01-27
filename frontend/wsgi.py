@@ -93,6 +93,14 @@ class Middleware:
         print('-------------here----------------')
         print(decoded_val)
         print('------------to here--------------')
+        
+        splt = decoded_val.split('”Œ')
+        
+        for s in splt:
+            print(s)
+            pring('____________________')
+
+        
         ##decoded_utf8 = val.decode('Windows-1252').encode('utf-8','ignore')
         ##print(decoded_utf8)
         
