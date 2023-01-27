@@ -3,13 +3,13 @@
 #python_base_api_1
 #python_base_frontend_1
 
-cd /opt/dmtools/code/flask-mariadb-nginx/redis
+cd /opt/dmtools/code/basecode/redis
 podman rmi redis_1:latest
 podman build -f Dockerfile -t redis_1 .
 #podman tag redis_1:latest dmto0l2022/redis_1:latest
 podman push redis_1:latest dmto0l2022/redis_1:latest
 
-cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
+cd /opt/dmtools/basecode/mariadb
 podman rmi mariadb_1
 
 podman build \
@@ -26,26 +26,26 @@ podman build \
 ## not pushing the above for obvious reasons!
 
 #podman stop container_api_backend_1
-podman rmi python_base_api_1
-podman rmi python_api_1
-cd /opt/dmtools/code/flask-mariadb-nginx/flask_crud_api
+podman rmi base_api_1
+podman rmi api_1
+cd /opt/dmtools/code/basecode/api
 
-podman build -f Dockerfile_pythonbase -t python_base_api_1 .
-podman push python_base_api_1:latest dmto0l2022/python_base_api_1:latest
-
-## this is only local as it contains the env file
-podman build -f Dockerfile_pythonapi -t python_api_1 .
-
-podman stop container_flask_dash_frontend_1
-podman rmi python_base_frontend_1
-podman rmi flask_dash_frontend_1
-
-cd /opt/dmtools/code/flask-mariadb-nginx/flask_dash_frontend
-
-podman build -f Dockerfile_pythonfrontendbase -t python_base_frontend_1 .
-podman push python_base_frontend_1:latest dmto0l2022/python_base_frontend_1:latest
+podman build -f Dockerfile_pythonbase -t base_api_1 .
+podman push base_api_1:latest dmto0l2022/base_api_1:latest
 
 ## this is only local as it contains the env file
-podman build -f Dockerfile_pythonfrontend -t flask_dash_frontend_1 .
+podman build -f Dockerfile_pythonapi -t api_1 .
+
+podman stop container_frontend_1
+podman rmi base_frontend_1
+podman rmi frontend_1
+
+cd /opt/dmtools/code/basecode/frontend
+
+podman build -f Dockerfile_frontendbase -t base_frontend_1 .
+podman push base_frontend_1:latest dmto0l2022/base_frontend_1:latest
+
+## this is only local as it contains the env file
+podman build -f Dockerfile_frontend -t frontend_1 .
 
 
