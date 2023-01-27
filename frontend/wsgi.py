@@ -47,7 +47,7 @@ class Middleware:
     def __init__(self, wsgi):
         self.wsgi = wsgi
         ##self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
-        self.redisserver = redis.StrictRedis(host='container_redis_1', port=6379, charset="utf-8", decode_responses=True)
+        self.redisserver = redis.StrictRedis(host='container_redis_1', port=6379, decode_responses=True)
 
         
     def __call__(self, environ, start_response):
