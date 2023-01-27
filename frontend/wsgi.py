@@ -2,6 +2,7 @@ from app import init_app
 
 import json
 import ast
+import chardet
 
 ##from app import current_user
 
@@ -82,6 +83,13 @@ class Middleware:
         current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
         val = self.redisserver.get(current_session)
         
+        import chardet
+
+        ##data = b"\x95\xc3\x8a\xb0\x8ds\x86\x89\x94\x82\x8a\xba"
+        detected = chardet.detect(val)
+        decoded_val = data.decode(detected["encoding"])
+        print(decoded_val)
+        
         #print(ast.literal_eval(val.decode("utf-8","ignore")))
         
         ##session_data = self.redisserver.get(current_session)
@@ -91,7 +99,7 @@ class Middleware:
         ##print(session_dict)
         ##print('TTTTTTTTTTTTTTTTTTTTTTTT')
         ##dict = self.redisserver.hgetall(current_session)
-        print(val.decode("utf-8","ignore"))
+        #print(val.decode("utf-8","ignore"))
         #print('--------------------------')
         print(val)
         print('+++++++++++++++++++++++++++')
