@@ -22,6 +22,11 @@ from app.dashapps.session_app import app as app3
 
 from app.dashpages.app import app as app4
 
+import redis
+r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+all_keys = r.keys('*')
+print(all_keys)
+
 app = init_app()
 
 class Middleware:
@@ -35,6 +40,8 @@ class Middleware:
         url_return_parts = urlparse(request.url)
         welcome_url_parts = url_return_parts._replace(path='/app/welcome')
         url_return = urlunparse(welcome_url_parts)
+        #all_keys = r.keys('*')
+        #print(all_keys)
         #print(session['Username'])
         print(url_return)
         print('path: %s, url: %s' % (request.path, request.url))
@@ -44,6 +51,7 @@ class Middleware:
         else:
             print('it contains wsgi')
             print(url_return)
+            
             print('-----------')
             #url_return = urlparse(request.url)
             #url_return._replace(path='/app/welcome')
