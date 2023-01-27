@@ -110,17 +110,24 @@ class Middleware:
         print('------------to here--------------')
         
         all_values = []
+        user_id = []
         
         splt = decoded_val.split('”Œ')
         
         for s in splt:
             s1 = s.split('Œ')
             for l1 in s1:
+                if next_value = 1:
+                    user_id.append(l1)
+                    next_value = 0
+                if 'user' in l1:
+                    next_value = 1
                 all_values.append(l1)
         
-        print('____________________')
+        print('________all____________')
         print(all_values)
-
+        print('________user____________')
+        print(user_id)
         
         ##decoded_utf8 = val.decode('Windows-1252').encode('utf-8','ignore')
         ##print(decoded_utf8)
