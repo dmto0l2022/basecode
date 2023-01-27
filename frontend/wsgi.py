@@ -31,8 +31,10 @@ print(type(all_keys))
 #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
 for k in all_keys:
     val = r.get(k)
-    print(val)
+    print(k)
     print('---------------------------------------')
+    print(val)
+    print('=======================================')
 
 app = init_app()
 
