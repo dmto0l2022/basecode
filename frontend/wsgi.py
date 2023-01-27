@@ -46,8 +46,8 @@ class Middleware:
 
     def __init__(self, wsgi):
         self.wsgi = wsgi
-        ##self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
-        self.redisserver = redis.StrictRedis(host='container_redis_1', port=6379, decode_responses=True)
+        self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
+        ##self.redisserver = redis.StrictRedis(host='container_redis_1', port=6379, decode_responses=True)
 
         
     def __call__(self, environ, start_response):
@@ -80,9 +80,11 @@ class Middleware:
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
         current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
         val = self.redisserver.get(current_session)
+        session_data = self.redisserver.get(current_session)
+        session_dict = json.loads(session_data.decode('utf-8','ignore'))
         
         #dict = json.loads(self.redisserver.get(current_session))
-        #print(dict)
+        print(session_dict)
         print('TTTTTTTTTTTTTTTTTTTTTTTT')
         ##dict = self.redisserver.hgetall(current_session)
         #print(val.decode("utf-8","ignore"))
