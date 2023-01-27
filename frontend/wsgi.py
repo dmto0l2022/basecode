@@ -126,10 +126,12 @@ class Middleware:
                     next_value = 1
                 all_values.append(l1)
         
+        current_user_from_cookie = user_id[0].lstrip()
+        
         print('________all____________')
         print(all_values)
-        print('________user____________')
-        print(user_id)
+        print('________current_user_from_cookie____________')
+        print(current_user_from_cookie)
         
         ##decoded_utf8 = val.decode('Windows-1252').encode('utf-8','ignore')
         ##print(decoded_utf8)
