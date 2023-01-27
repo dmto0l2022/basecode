@@ -98,7 +98,7 @@ class Middleware:
         
         for s in splt:
             print(s)
-            pring('____________________')
+            print('____________________')
 
         
         ##decoded_utf8 = val.decode('Windows-1252').encode('utf-8','ignore')
