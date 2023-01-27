@@ -53,7 +53,23 @@ class Middleware:
         #print(type(environ_data))
         #print(environ_data)
         http_cookie = environ['HTTP_COOKIE']
-        print(http_cookie)
+        
+        import os
+
+        handler = {}
+
+        #cookies = os.environ['HTTP_COOKIE']
+        cookies = http_cookie.split('; ')
+
+        for cookie in cookies:
+            cookie = cookie.split('=')
+            handler[cookie[0]] = cookie[1]
+
+        for k in handler:
+            print k + " = " + handler[k] + "<br>
+        
+        
+        #print(http_cookie)
         print('---------------------------')
         #val = r_middle.get(http_cookie.encode('UTF-8'))
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
