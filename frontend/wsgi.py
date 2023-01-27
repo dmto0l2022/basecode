@@ -62,6 +62,8 @@ class Middleware:
         print(val.decode("utf-8","ignore"))
         print('=============================')
         
+        print(val['email'])
+        
         all_keys = self.redisserver.keys('*')
         print(all_keys)
         
