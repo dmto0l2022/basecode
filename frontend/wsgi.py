@@ -32,6 +32,7 @@ print(type(all_keys))
 for k in all_keys:
     val = r.get(k)
     print(val)
+    print('---------------------------------------')
 
 app = init_app()
 
