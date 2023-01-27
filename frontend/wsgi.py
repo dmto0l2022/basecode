@@ -87,7 +87,8 @@ class Middleware:
 
         ##data = b"\x95\xc3\x8a\xb0\x8ds\x86\x89\x94\x82\x8a\xba"
         detected = chardet.detect(val)
-        decoded_val = data.decode(detected["encoding"])
+        print(detected["encoding"])
+        decoded_val = val.decode(detected["encoding"])
         print(decoded_val)
         
         #print(ast.literal_eval(val.decode("utf-8","ignore")))
