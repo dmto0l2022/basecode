@@ -114,6 +114,8 @@ class Middleware:
         
         splt = decoded_val.split('”Œ')
         
+        next_value = 0
+        
         for s in splt:
             s1 = s.split('Œ')
             for l1 in s1:
