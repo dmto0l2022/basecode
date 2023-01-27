@@ -45,10 +45,16 @@ class Middleware:
         
     def __call__(self, environ, start_response):
         # not Flask request - from werkzeug.wrappers import Request
+        r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
         environ_data = repr(environ).encode('utf-8')
-        print(type(environ_data))
-        print(environ_data)
-        
+        #print(type(environ_data))
+        #print(environ_data)
+        http_cookie = environ['HTTP_COOKIE']
+        print(http_cookie)
+        print('---------------------------')
+        val = r_middle.get(http_cookie)
+        print(val)
+        print('=============================')
         request = Request(environ)
         url_return_parts = urlparse(request.url)
         welcome_url_parts = url_return_parts._replace(path='/app/welcome')
