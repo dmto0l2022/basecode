@@ -80,14 +80,14 @@ class Middleware:
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
         current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
         val = self.redisserver.get(current_session)
-        session_data = self.redisserver.get(current_session)
-        session_dict = json.loads(session_data.decode('utf-8','ignore'))
+        ##session_data = self.redisserver.get(current_session)
+        ##session_dict = json.loads(session_data.decode('utf-8','ignore'))
         
         #dict = json.loads(self.redisserver.get(current_session))
-        print(session_dict)
-        print('TTTTTTTTTTTTTTTTTTTTTTTT')
+        ##print(session_dict)
+        ##print('TTTTTTTTTTTTTTTTTTTTTTTT')
         ##dict = self.redisserver.hgetall(current_session)
-        #print(val.decode("utf-8","ignore"))
+        print(val.decode("utf-8","ignore"))
         #print('--------------------------')
         print(val)
         print('=============================')
