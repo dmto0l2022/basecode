@@ -1,5 +1,7 @@
 from app import init_app
 
+import json
+
 ##from app import current_user
 
 ##from app import session
@@ -76,6 +78,10 @@ class Middleware:
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
         current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
         val = self.redisserver.get(current_session)
+        
+        dict = json.loads(self.redisserver.get(current_session))
+        print(dict)
+        print('TTTTTTTTTTTTTTTTTTTTTTTT')
         ##dict = self.redisserver.hgetall(current_session)
         print(val.decode("utf-8","ignore"))
         print('--------------------------')
