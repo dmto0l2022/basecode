@@ -9,8 +9,10 @@ subgidSize=$(( $(podman info --format "{{ range \
 
 podman stop container_api_1
 podman rm container_api_1
+podman rmi base_api_1
 podman rmi api_1
 
+podman build -f Dockerfile_apibase -t base_api_1 .
 podman build -f Dockerfile_api -t api_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
