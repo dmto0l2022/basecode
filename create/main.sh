@@ -73,6 +73,8 @@ localhost/mariadb_1:latest
 cd /opt/dmtools/code/basecode/api
 
 podman rmi api_1
+podman rmi python_base_api_1
+podman build -f Dockerfile_pythonbase -t base_api_1
 podman build -f Dockerfile_pythonapi -t api_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
@@ -88,7 +90,8 @@ localhost/api_1:latest
 cd /opt/dmtools/code/basecode/frontend
 
 podman rmi frontend_1:latest
-podman build -f Dockerfile_pythonfrontend -t frontend_1 .
+podman build -f Dockerfile_frontendbase -t base_frontend_1 .
+podman build -f Dockerfile_frontend -t frontend_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
