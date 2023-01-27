@@ -89,10 +89,12 @@ class Middleware:
         detected = chardet.detect(val)
         print(detected["encoding"])
         decoded_val = val.decode(detected["encoding"])
+        print('decoded string')
+        print('-------------here----------------')
         print(decoded_val)
-        
-        decoded_utf8 = val.decode('Windows-1252').encode('utf-8','ignore')
-        print(decoded_utf8)
+        print('------------to here--------------')
+        ##decoded_utf8 = val.decode('Windows-1252').encode('utf-8','ignore')
+        ##print(decoded_utf8)
         
         #print(ast.literal_eval(val.decode("utf-8","ignore")))
         
