@@ -1,7 +1,7 @@
 #creating following docker.io repositories
 #redis_1
-#python_base_api_1
-#python_base_frontend_1
+#base_api_1
+#base_frontend_1
 
 cd /opt/dmtools/code/basecode/redis
 podman rmi redis_1:latest
