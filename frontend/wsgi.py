@@ -80,7 +80,7 @@ class Middleware:
         #val = r_middle.get(http_cookie.encode('UTF-8'))
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
         current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
-        val = self.redisserver.hget(current_session)
+        val = self.redisserver.hgetall(current_session)
         
         #print(ast.literal_eval(val.decode("utf-8","ignore")))
         
