@@ -27,7 +27,7 @@ r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 all_keys = r.keys('*')
 print(all_keys)
 
-val = r.get('session')
+val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
 print(val)
 
 app = init_app()
