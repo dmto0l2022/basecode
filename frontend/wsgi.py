@@ -66,7 +66,7 @@ class Middleware:
             handler[cookie[0]] = cookie[1]
 
         for k in handler:
-            print k + " = " + handler[k] + "<br>
+            print(k + " = " + handler[k] + "<br>)
         
         
         #print(http_cookie)
