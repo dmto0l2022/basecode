@@ -44,7 +44,7 @@ class Middleware:
 
     def __init__(self, wsgi):
         self.wsgi = wsgi
-        self.redisserver = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+        self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
         
     def __call__(self, environ, start_response):
         # not Flask request - from werkzeug.wrappers import Request
