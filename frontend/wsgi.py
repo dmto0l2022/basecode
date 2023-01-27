@@ -78,10 +78,18 @@ class Middleware:
         
         #print(http_cookie)
         print('---------------------------')
-        val = self.redisserver.get(http_cookie.encode('UTF-8'))
+        encoded_cookie = http_cookie.encode('Windows-1252')
+        print(encoded_cookie)
+        print('encoded cookie')
+        val = self.redisserver.get(encoded_cookie)
+        
+        print('current session')
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
-        #current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
+        current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
+        print(current_session)
         #val = self.redisserver.get(current_session)
+        
+        print('===================================')
         
         import chardet
 
