@@ -66,7 +66,10 @@ class Middleware:
 
         #cookies = os.environ['HTTP_COOKIE']
         cookies = http_cookie.split('; ')
-
+        current_cookie = cookies[0]
+        print('current cookie')
+        print(current_cookie)
+        
         for cookie in cookies:
             cookie = cookie.split('=')
             handler[cookie[0]] = cookie[1]
