@@ -60,6 +60,10 @@ class Middleware:
         val = self.redisserver.get(http_cookie)
         print(val)
         print('=============================')
+        
+        all_keys = self.redisserver.keys('*')
+        print(all_keys)
+        
         request = Request(environ)
         url_return_parts = urlparse(request.url)
         welcome_url_parts = url_return_parts._replace(path='/app/welcome')
