@@ -52,7 +52,9 @@ class Middleware:
         http_cookie = environ['HTTP_COOKIE']
         print(http_cookie)
         print('---------------------------')
-        val = r_middle.get(http_cookie.encode('UTF-8'))
+        #val = r_middle.get(http_cookie.encode('UTF-8'))
+        current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
+        val = r_middle.get(current_session)
         print(val)
         print('=============================')
         request = Request(environ)
