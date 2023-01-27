@@ -6,7 +6,7 @@
 cd /opt/dmtools/code/basecode/redis
 podman rmi redis_1:latest
 podman build -f Dockerfile -t redis_1 .
-#podman tag redis_1:latest dmto0l2022/redis_1:latest
+podman tag redis_1:latest dmto0l2022/redis_1:latest
 podman push redis_1:latest dmto0l2022/redis_1:latest
 
 cd /opt/dmtools/basecode/mariadb
@@ -31,7 +31,9 @@ podman rmi api_1
 cd /opt/dmtools/code/basecode/api
 
 podman build -f Dockerfile_pythonbase -t base_api_1 .
-podman push base_api_1:latest dmto0l2022/base_api_1:latest
+podman tag base_api_1:latest dmto0l2022/base_api_1:latest
+#podman push base_api_1:latest dmto0l2022/base_api_1:latest
+podman push dmto0l2022/base_api_1:latest
 
 ## this is only local as it contains the env file
 podman build -f Dockerfile_pythonapi -t api_1 .
@@ -43,7 +45,9 @@ podman rmi frontend_1
 cd /opt/dmtools/code/basecode/frontend
 
 podman build -f Dockerfile_frontendbase -t base_frontend_1 .
-podman push base_frontend_1:latest dmto0l2022/base_frontend_1:latest
+podman tag base_frontend_1:latest dmto0l2022/base_frontend_1:latest
+#podman push base_frontend_1:latest dmto0l2022/base_frontend_1:latest
+podman push dmto0l2022/base_frontend_1:latest
 
 ## this is only local as it contains the env file
 podman build -f Dockerfile_frontend -t frontend_1 .
