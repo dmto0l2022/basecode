@@ -125,8 +125,10 @@ class Middleware:
                 if 'user' in l1:
                     next_value = 1
                 all_values.append(l1)
-        
-        current_user_from_cookie = user_id[0].lstrip()
+        try:
+            current_user_from_cookie = user_id[0].lstrip()
+        except:
+            current_user_from_cookie = 'No user'
         
         print('________all____________')
         print(all_values)
