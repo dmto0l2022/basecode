@@ -1,7 +1,7 @@
 FROM localhost/base_api_1:latest
-WORKDIR /workdir/
+WORKDIR /workdir/api
 
-RUN /workdir/app/env/bin/pip3 freeze
-COPY . /workdir/.
+RUN /env/bin/pip3 freeze
+#COPY . /workdir/.
 ##RUN ls -R /workdir/
 CMD ["gunicorn"  , "--bind", "0.0.0.0:8004", "wsgi:application"]
