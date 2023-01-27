@@ -42,7 +42,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 #CMD ["python", "myapp.py"]
 
 RUN /env/bin/python3 -m pip install --upgrade pip
-RUN . /workdir/app/env/bin/activate
+RUN . /env/bin/activate
 RUN /env/bin/python3 --version
 RUN whereis python3
 RUN whereis pip3
