@@ -52,7 +52,7 @@ class Middleware:
         http_cookie = environ['HTTP_COOKIE']
         print(http_cookie)
         print('---------------------------')
-        val = r_middle.get(http_cookie)
+        val = r_middle.get(http_cookie.encode('UTF-8'))
         print(val)
         print('=============================')
         request = Request(environ)
