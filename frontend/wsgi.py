@@ -59,9 +59,9 @@ class Middleware:
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
         current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
         val = self.redisserver.get(current_session)
-        dict = self.redisserver.hgetall(current_session)
+        ##dict = self.redisserver.hgetall(current_session)
         #print(val.decode("utf-8","ignore"))
-        print(dict)
+        print(val)
         print('=============================')
         
         ##print(val['email'])
