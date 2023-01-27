@@ -67,9 +67,9 @@ class Middleware:
         #cookies = os.environ['HTTP_COOKIE']
         cookies = http_cookie.split('; ')
         current_cookie = cookies[0]
-        current_cookie.replace("=",":")
-        print('current cookie')
-        print(current_cookie)
+        colon_cookie = current_cookie.replace("=",":")
+        print('colon cookie')
+        print(colon_cookie)
         
         for cookie in cookies:
             cookie = cookie.split('=')
@@ -82,13 +82,13 @@ class Middleware:
         
         #print(http_cookie)
         print('---------------------------')
-        encoded_cookie = bytes(current_cookie, 'Windows-1252')
+        encoded_cookie = bytes(colon_cookie, 'Windows-1252')
         #str_1_encoded = bytes(str_1,'UTF-8')
         
         print('encoded cookie')
         print(encoded_cookie)
         
-        val = self.redisserver.get(current_cookie)
+        val = self.redisserver.get(encoded_cookie)
         print(val)
         print('current session')
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
