@@ -82,7 +82,7 @@ class Middleware:
         print(encoded_cookie)
         print('encoded cookie')
         val = self.redisserver.get(encoded_cookie)
-        
+        print(val)
         print('current session')
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
         current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
