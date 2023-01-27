@@ -67,6 +67,7 @@ class Middleware:
         #cookies = os.environ['HTTP_COOKIE']
         cookies = http_cookie.split('; ')
         current_cookie = cookies[0]
+        current_cookie.replace("=",":")
         print('current cookie')
         print(current_cookie)
         
