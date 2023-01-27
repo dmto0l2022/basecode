@@ -82,9 +82,12 @@ class Middleware:
         
         #print(http_cookie)
         print('---------------------------')
-        encoded_cookie = http_cookie.encode('Windows-1252')
-        print(encoded_cookie)
+        encoded_cookie = bytes(current_cookie, 'Windows-1252')
+        #str_1_encoded = bytes(str_1,'UTF-8')
+        
         print('encoded cookie')
+        print(encoded_cookie)
+        
         val = self.redisserver.get(current_cookie)
         print(val)
         print('current session')
