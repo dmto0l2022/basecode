@@ -16,7 +16,38 @@ print('BASE_DIR')
 print(BASE_DIR)
 
 ## MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
 
+MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
+                MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
+                + MARIADB_DATABASE
+
+print(MARIADB_URI)
+
+import mariadb
+
+# Module Imports
+import mariadb
+import sys
+
+# Connect to MariaDB Platform
+try:
+    conn = mariadb.connect(
+        user=MARIADB_USERNAME,
+        password=MARIADB_PASSWORD,
+        host=MARIADB_CONTAINER,
+        port=3306,
+        database=MARIADB_DATABASE
+    )
+except mariadb.Error as e:
+    print(f"Error connecting to MariaDB Platform: {e}")
+    sys.exit(1)
+
+# Get Cursor
+cur = conn.cursor()
 
 ##################################
 
@@ -39,7 +70,6 @@ from werkzeug.utils import redirect
 from app.dashapps.interactive_table import app as app1
 from app.dashapps.basic_table import app as app2
 from app.dashapps.session_app import app as app3
-
 from app.dashpages.app import app as app4
 
 import redis
@@ -66,22 +96,36 @@ class Connection(object):
         connection and cursor
         """
 
-        def __init__(self, db_path=DATABASE, commit=False, **kwargs):
+        def __init__(self, commit=False, **kwargs):
             print("INIT", db_path, commit, kwargs)
-            self.db = db_path
+            #self.db = db_path
             self.commit = commit
 
         def __enter__(self, *args, **kwargs):
             print("ENTER", args, kwargs)
-            self.conn = sqlite3.connect(self.db)
+            #self.conn = sqlite3.connect(self.db)
+            self.conn = mariadb.connect(
+                    user=MARIADB_USERNAME,
+                    password=MARIADB_PASSWORD,
+                    host=MARIADB_CONTAINER,
+                    port=3306,
+                    database=MARIADB_DATABASE
+                    )
             return self.conn, self.conn.cursor()
 
         def __exit__(self, *args, **kwargs):
-            print "EXIT", self.commit, args, kwargs
+            print("EXIT", self.commit, args, kwargs)
             if self.commit:
                 self.conn.commit()
             self.conn.close()
 
+with Connection(commit=True) as (conn, cursor):
+    ##cursor = conn.cursor()
+    cursor.execute(DROP TABLE IF EXISTS tags;)
+    cursor.execute("CREATE TABLE tags " +
+            "(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)")
+    for tag in ["foo", "bar", "baz"]:
+        cursor.execute("INSERT INTO tags VALUES (?, ?)", (None, tag))
 
 class Middleware:
 
@@ -97,13 +141,7 @@ class Middleware:
         environ_data = repr(environ).encode('utf-8')
         #print(type(environ_data))
         #print(environ_data)
-        
-        with Connection(commit=True) as (conn, cursor):
-            cursor.execute("CREATE TABLE tags " +
-                    "(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)")
-            for tag in ["foo", "bar", "baz"]:
-                cursor.execute("INSERT INTO tags VALUES (?, ?)", (None, tag))
-        
+                
         with Connection() as (conn, cursor):
             tags = cursor.execute("SELECT name FROM tags")
             for row in tags:
