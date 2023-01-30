@@ -122,8 +122,10 @@ class Connection(object):
 with Connection(commit=True) as (conn, cursor):
     ##cursor = conn.cursor()
     cursor.execute("DROP TABLE IF EXISTS tags;")
-    cursor.execute("CREATE TABLE tags " +
-            "(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)")
+    sql_script = "CREATE TABLE `tags` (`id` int(11) NOT NULL AUTO_INCREMENT,`name` varchar(25)\
+                  DEFAULT NULL,PRIMARY KEY (`id`))\
+                  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;"
+    cursor.execute(sql_script)
     for tag in ["foo", "bar", "baz"]:
         cursor.execute("INSERT INTO tags VALUES (?, ?)", (None, tag))
 
