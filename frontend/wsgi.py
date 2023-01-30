@@ -249,8 +249,10 @@ class Middleware:
             cursor.execute("SELECT id, email, username, active, confirmed_at FROM world.`user` where fs_uniquifier = %s" \
                            , (current_user_from_cookie,))
             user_details = cursor.fetchall()
+            for row in user_details:
+                current_user_email = row["email"]
             cursor.close()
-            print('current user email > ' , user_details['email'])
+            print('current user email > ' , current_user_email)
             ##decoded_utf8 = val.decode('Windows-1252').encode('utf-8','ignore')
             ##print(decoded_utf8)
 
