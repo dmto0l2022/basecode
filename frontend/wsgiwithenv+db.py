@@ -60,6 +60,29 @@ for k in all_keys:
 
 app = init_app()
 
+class Connection(object):
+        """
+        context manager to establish database connection, providing access to
+        connection and cursor
+        """
+
+        def __init__(self, db_path=DATABASE, commit=False, **kwargs):
+            print("INIT", db_path, commit, kwargs)
+            self.db = db_path
+            self.commit = commit
+
+        def __enter__(self, *args, **kwargs):
+            print("ENTER", args, kwargs)
+            self.conn = sqlite3.connect(self.db)
+            return self.conn, self.conn.cursor()
+
+        def __exit__(self, *args, **kwargs):
+            print "EXIT", self.commit, args, kwargs
+            if self.commit:
+                self.conn.commit()
+            self.conn.close()
+
+
 class Middleware:
 
     def __init__(self, wsgi):
@@ -74,6 +97,19 @@ class Middleware:
         environ_data = repr(environ).encode('utf-8')
         #print(type(environ_data))
         #print(environ_data)
+        
+        with Connection(commit=True) as (conn, cursor):
+            cursor.execute("CREATE TABLE tags " +
+                    "(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)")
+            for tag in ["foo", "bar", "baz"]:
+                cursor.execute("INSERT INTO tags VALUES (?, ?)", (None, tag))
+        
+        with Connection() as (conn, cursor):
+            tags = cursor.execute("SELECT name FROM tags")
+            for row in tags:
+                print "yielding", row
+                yield row[0].encode("utf-8")
+        
         http_cookie = environ['HTTP_COOKIE']
         
         import os
@@ -196,7 +232,11 @@ class Middleware:
             #url_return._replace(path='/app/welcome')
             start_response('301 Redirect', [('Location', url_return),])
             return []
-           
+        
+        
+
+
+
 '''
 useremail
 https://gist.github.com/devries/4a747a284e75a5d63f93
