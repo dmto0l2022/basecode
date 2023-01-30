@@ -197,7 +197,7 @@ class Middleware:
         
         val = self.redisserver.get(encoded_cookie)
         
-        if val not None:
+        if val is not None:
         
             print(val)
             ##print('current session')
