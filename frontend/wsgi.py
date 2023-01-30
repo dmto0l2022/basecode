@@ -161,41 +161,45 @@ class Middleware:
         #    print("yielding", row)
         #    yield row[0].encode("utf-8")
         
-        http_cookie = environ['HTTP_COOKIE']
+        try:
+            http_cookie = environ['HTTP_COOKIE']
+            handler = {}
+
+            #cookies = os.environ['HTTP_COOKIE']
+            cookies = http_cookie.split('; ')
+            current_cookie = cookies[0]
+            colon_cookie = current_cookie.replace("=",":")
+            print('colon cookie')
+            print(colon_cookie)
+
+            for cookie in cookies:
+                cookie = cookie.split('=')
+                handler[cookie[0]] = cookie[1]
+
+            for k in handler:
+                print(k + " = " + handler[k])
+                print('--------------')
+
+
+            #print(http_cookie)
+            print('---------------------------')
+            encoded_cookie = bytes(colon_cookie, 'Windows-1252')
+            #str_1_encoded = bytes(str_1,'UTF-8')
+
+            print('encoded cookie')
+            print(encoded_cookie)
+
+            all_keys = self.redisserver.keys('*')
+            print('all redis keys')
+            print(all_keys)
+
+            val = self.redisserver.get(encoded_cookie)
+        except:
+            http_cookie = None
         
         import os
 
-        handler = {}
-
-        #cookies = os.environ['HTTP_COOKIE']
-        cookies = http_cookie.split('; ')
-        current_cookie = cookies[0]
-        colon_cookie = current_cookie.replace("=",":")
-        print('colon cookie')
-        print(colon_cookie)
         
-        for cookie in cookies:
-            cookie = cookie.split('=')
-            handler[cookie[0]] = cookie[1]
-
-        for k in handler:
-            print(k + " = " + handler[k])
-            print('--------------')
-        
-        
-        #print(http_cookie)
-        print('---------------------------')
-        encoded_cookie = bytes(colon_cookie, 'Windows-1252')
-        #str_1_encoded = bytes(str_1,'UTF-8')
-        
-        print('encoded cookie')
-        print(encoded_cookie)
-        
-        all_keys = self.redisserver.keys('*')
-        print('all redis keys')
-        print(all_keys)
-        
-        val = self.redisserver.get(encoded_cookie)
         
         if val is not None:
         
@@ -253,6 +257,8 @@ class Middleware:
                 current_user_email = row["email"]
             cursor.close()
             print('current user email > ' , current_user_email)
+            email_domain = current_user_email.split('@')[1]
+            print('email domain > ', email_domain)
             ##decoded_utf8 = val.decode('Windows-1252').encode('utf-8','ignore')
             ##print(decoded_utf8)
 
@@ -285,7 +291,7 @@ class Middleware:
         print(url_return)
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
-        if 'wsgi' not in request.path:
+        if 'wsgi' in request.path and email_domain = 'gaitskell.com':
             return self.wsgi(environ, start_response)
         else:
             print('it contains wsgi')
