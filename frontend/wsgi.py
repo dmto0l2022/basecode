@@ -1,3 +1,6 @@
+## wsgi file with database access
+## for this to work a session needs to be created in the flask app
+
 from app import init_app
 
 import json
@@ -26,8 +29,6 @@ MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
                 + MARIADB_DATABASE
 
 print(MARIADB_URI)
-
-import mariadb
 
 # Module Imports
 import mariadb
