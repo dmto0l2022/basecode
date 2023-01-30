@@ -4,6 +4,22 @@ import json
 import ast
 import chardet
 
+##################################
+
+import os
+from os import environ, path
+from dotenv import load_dotenv
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+print('BASE_DIR')
+print(BASE_DIR)
+
+## MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+
+
+##################################
+
 ##from app import current_user
 
 ##from app import session
