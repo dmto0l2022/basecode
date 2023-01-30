@@ -150,10 +150,11 @@ class Middleware:
         #print(type(environ_data))
         #print(environ_data)
         cursor = self.connection.cursor()         
-        tags = cursor.execute("SELECT name FROM tags")
+        tags = cursor.execute("SELECT name FROM tags;")
+        print(tags)
         for row in tags:
-          print("yielding", row)
-          yield row[0].encode("utf-8")
+            print("yielding", row)
+            yield row[0].encode("utf-8")
         
         http_cookie = environ['HTTP_COOKIE']
         
