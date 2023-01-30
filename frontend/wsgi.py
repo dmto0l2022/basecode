@@ -145,7 +145,7 @@ class Middleware:
         with Connection() as (conn, cursor):
             tags = cursor.execute("SELECT name FROM tags")
             for row in tags:
-                print "yielding", row
+                print("yielding", row)
                 yield row[0].encode("utf-8")
         
         http_cookie = environ['HTTP_COOKIE']
