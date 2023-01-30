@@ -10,10 +10,10 @@ import os
 from os import environ, path
 from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
-load_dotenv(path.join(BASE_DIR, ".env"))
+load_dotenv(path.join(BASE_DIR, "/app/.env"))
 
-print('BASE_DIR')
-print(BASE_DIR)
+print('BASE_DIR + APP')
+print(path.join(BASE_DIR, "/app/"))
 
 ## MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
 MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
