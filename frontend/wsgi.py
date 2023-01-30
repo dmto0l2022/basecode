@@ -163,6 +163,7 @@ class Middleware:
         
         val = None
         email_domain = 'unknown.domain'
+        current_user_email = 'nobody@unknown.domain'
         
         try:
             http_cookie = environ['HTTP_COOKIE']
