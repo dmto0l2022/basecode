@@ -101,17 +101,18 @@ class Middleware:
         import chardet
 
         ##data = b"\x95\xc3\x8a\xb0\x8ds\x86\x89\x94\x82\x8a\xba"
-        detected = chardet.detect(val)
-        print(detected["encoding"])
-        decoded_val = val.decode(detected["encoding"])
-        print('decoded string')
-        print('-------------here----------------')
-        print(decoded_val)
-        print('------------to here--------------')
+        #detected = chardet.detect(val)
+        #print(detected["encoding"])
+        #decoded_val = val.decode(detected["encoding"])
+        #print('decoded string')
+        #print('-------------here----------------')
+        #print(decoded_val)
+        #print('------------to here--------------')
         
-        all_values = []
-        user_id = []
+        #all_values = []
+        #user_id = []
         
+        '''
         splt = decoded_val.split('”Œ')
         
         next_value = 0
@@ -130,10 +131,12 @@ class Middleware:
         except:
             current_user_from_cookie = 'No user'
         
+        
         print('________all____________')
         print(all_values)
         print('________current_user_from_cookie____________')
         print(current_user_from_cookie)
+        '''
         
         ##decoded_utf8 = val.decode('Windows-1252').encode('utf-8','ignore')
         ##print(decoded_utf8)
@@ -156,8 +159,8 @@ class Middleware:
         
         ##print(val['email'])
         
-        all_keys = self.redisserver.keys('*')
-        print(all_keys)
+        ##all_keys = self.redisserver.keys('*')
+        ##print(all_keys)
         
         request = Request(environ)
         url_return_parts = urlparse(request.url)
