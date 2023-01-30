@@ -134,7 +134,13 @@ class Middleware:
     def __init__(self, wsgi):
         self.wsgi = wsgi
         self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
-        self.connection = Connection
+        self.connection = mariadb.connect(
+                    user=MARIADB_USERNAME,
+                    password=MARIADB_PASSWORD,
+                    host=MARIADB_CONTAINER,
+                    port=3306,
+                    database=MARIADB_DATABASE
+                    )
         ##self.redisserver = redis.StrictRedis(host='container_redis_1', port=6379, decode_responses=True)
      
     def __call__(self, environ, start_response):
