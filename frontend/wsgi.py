@@ -148,7 +148,7 @@ class Middleware:
         ##r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
         environ_data = repr(environ).encode('utf-8')
         #print(type(environ_data))
-        #print(environ_data)
+        print(environ_data)
         cursor = self.connection.cursor()         
         cursor.execute("SELECT name FROM tags;")
         rows = cursor.fetchall()
