@@ -161,6 +161,8 @@ class Middleware:
         #    print("yielding", row)
         #    yield row[0].encode("utf-8")
         
+        val = None
+        
         try:
             http_cookie = environ['HTTP_COOKIE']
             handler = {}
@@ -195,11 +197,10 @@ class Middleware:
 
             val = self.redisserver.get(encoded_cookie)
         except:
+            val = None
             http_cookie = None
         
         import os
-
-        
         
         if val is not None:
         
