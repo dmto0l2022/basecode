@@ -150,9 +150,11 @@ class Middleware:
         #print(type(environ_data))
         #print(environ_data)
         cursor = self.connection.cursor()         
-        tags = cursor.execute("SELECT name FROM tags;")
-        print(tags)
-        for row in tags:
+        cursor.execute("SELECT name FROM tags;")
+        rows = cursor.fetchall()
+        cursor.close ()
+        print(rows)
+        for row in rows:
             print("yielding", row)
             yield row[0].encode("utf-8")
         
