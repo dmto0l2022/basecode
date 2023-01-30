@@ -157,9 +157,9 @@ class Middleware:
         rows = cursor.fetchall()
         cursor.close ()
         print(rows)
-        for row in rows:
-            print("yielding", row)
-            yield row[0].encode("utf-8")
+        #for row in rows:
+        #    print("yielding", row)
+        #    yield row[0].encode("utf-8")
         
         http_cookie = environ['HTTP_COOKIE']
         
