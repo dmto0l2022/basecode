@@ -274,7 +274,6 @@ class Middleware:
             return []
         
         
-class WithDB
 
 '''
 useremail
