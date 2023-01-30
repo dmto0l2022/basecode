@@ -121,7 +121,7 @@ class Connection(object):
 
 with Connection(commit=True) as (conn, cursor):
     ##cursor = conn.cursor()
-    cursor.execute(DROP TABLE IF EXISTS tags;)
+    cursor.execute("DROP TABLE IF EXISTS tags;")
     cursor.execute("CREATE TABLE tags " +
             "(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)")
     for tag in ["foo", "bar", "baz"]:
