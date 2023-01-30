@@ -97,7 +97,7 @@ class Connection(object):
         """
 
         def __init__(self, commit=False, **kwargs):
-            print("INIT", db_path, commit, kwargs)
+            print("INIT", commit, kwargs)
             #self.db = db_path
             self.commit = commit
 
