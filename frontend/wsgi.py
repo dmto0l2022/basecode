@@ -73,10 +73,11 @@ from app.dashapps.session_app import app as app3
 from app.dashpages.app import app as app4
 
 import redis
-'''
+
 r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 all_keys = r.keys('*')
-#print(all_keys)
+print('all_keys')
+print(all_keys)
 print(type(all_keys))
 #first = all_keys[0]
 #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
@@ -86,7 +87,7 @@ for k in all_keys:
     print('---------------------------------------')
     print(val)
     print('=======================================')
-'''
+
 
 app = init_app()
 
