@@ -94,33 +94,33 @@ for k in all_keys:
 app = init_app()
 
 class Connection(object):
-        """
-        context manager to establish database connection, providing access to
-        connection and cursor
-        """
+    """
+    context manager to establish database connection, providing access to
+    connection and cursor
+    """
 
-        def __init__(self, commit=False, **kwargs):
-            print("INIT", commit, kwargs)
-            #self.db = db_path
-            self.commit = commit
+    def __init__(self, commit=False, **kwargs):
+        print("INIT", commit, kwargs)
+        #self.db = db_path
+        self.commit = commit
 
-        def __enter__(self, *args, **kwargs):
-            print("ENTER", args, kwargs)
-            #self.conn = sqlite3.connect(self.db)
-            self.conn = mariadb.connect(
-                    user=MARIADB_USERNAME,
-                    password=MARIADB_PASSWORD,
-                    host=MARIADB_CONTAINER,
-                    port=3306,
-                    database=MARIADB_DATABASE
-                    )
-            return self.conn, self.conn.cursor()
+    def __enter__(self, *args, **kwargs):
+        print("ENTER", args, kwargs)
+        #self.conn = sqlite3.connect(self.db)
+        self.conn = mariadb.connect(
+                user=MARIADB_USERNAME,
+                password=MARIADB_PASSWORD,
+                host=MARIADB_CONTAINER,
+                port=3306,
+                database=MARIADB_DATABASE
+                )
+        return self.conn, self.conn.cursor()
 
-        def __exit__(self, *args, **kwargs):
-            print("EXIT", self.commit, args, kwargs)
-            if self.commit:
-                self.conn.commit()
-            self.conn.close()
+    def __exit__(self, *args, **kwargs):
+        print("EXIT", self.commit, args, kwargs)
+        if self.commit:
+            self.conn.commit()
+        self.conn.close()
 
 with Connection(commit=True) as (conn, cursor):
     ##cursor = conn.cursor()
@@ -302,13 +302,13 @@ class Middleware:
             return []
         else:
             return self.wsgi(environ, start_response)
-       ''' 
-       print('-----------')
-       #url_return = urlparse(request.url)
-       #url_return._replace(path='/app/welcome')
-       start_response('301 Redirect', [('Location', url_return),])
-       return []
-       ''' 
+        ''' 
+        print('-----------')
+        #url_return = urlparse(request.url)
+        #url_return._replace(path='/app/welcome')
+        start_response('301 Redirect', [('Location', url_return),])
+        return []
+        ''' 
         
 
 '''
