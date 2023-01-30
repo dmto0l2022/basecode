@@ -291,7 +291,7 @@ class Middleware:
         print(url_return)
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
-        if 'wsgi' in request.path and email_domain = 'gaitskell.com':
+        if 'wsgi' in request.path and (email_domain == 'gaitskell.com' or email_domain == 'brown.edu'):
             return self.wsgi(environ, start_response)
         else:
             print('it contains wsgi')
