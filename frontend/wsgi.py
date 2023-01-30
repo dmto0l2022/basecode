@@ -162,6 +162,7 @@ class Middleware:
         #    yield row[0].encode("utf-8")
         
         val = None
+        email_domain = 'unknown.domain'
         
         try:
             http_cookie = environ['HTTP_COOKIE']
