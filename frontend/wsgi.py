@@ -188,6 +188,10 @@ class Middleware:
         print('encoded cookie')
         print(encoded_cookie)
         
+        all_keys = self.redisserver.keys('*')
+        print('all redis keys')
+        print(all_keys)
+        
         val = self.redisserver.get(encoded_cookie)
         print(val)
         print('current session')
@@ -256,8 +260,6 @@ class Middleware:
         
         ##print(val['email'])
         
-        all_keys = self.redisserver.keys('*')
-        print(all_keys)
         
         request = Request(environ)
         url_return_parts = urlparse(request.url)
