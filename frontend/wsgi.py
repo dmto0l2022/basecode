@@ -295,16 +295,20 @@ class Middleware:
         # just do here everything what you need
         if 'wsgi' in request.path and (email_domain == 'gaitskell.com' or email_domain == 'brown.edu'):
             return self.wsgi(environ, start_response)
-        else:
+        elif 'wsgi' in request.path and (email_domain != 'gaitskell.com' and email_domain != 'brown.edu'):
             print('it contains wsgi')
             print(url_return)
-            
-            print('-----------')
-            #url_return = urlparse(request.url)
-            #url_return._replace(path='/app/welcome')
             start_response('301 Redirect', [('Location', url_return),])
             return []
-        
+        else:
+            return self.wsgi(environ, start_response)
+       ''' 
+       print('-----------')
+       #url_return = urlparse(request.url)
+       #url_return._replace(path='/app/welcome')
+       start_response('301 Redirect', [('Location', url_return),])
+       return []
+       ''' 
         
 
 '''
