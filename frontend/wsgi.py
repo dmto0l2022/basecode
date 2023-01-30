@@ -150,7 +150,7 @@ class Middleware:
         #print(type(environ_data))
         #print(environ_data)
                 
-        with self.connection() as (conn, cursor):
+        with self.connection as (conn, cursor):
             tags = cursor.execute("SELECT name FROM tags")
             for row in tags:
                 print("yielding", row)
