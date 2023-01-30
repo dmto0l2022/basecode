@@ -247,7 +247,7 @@ class Middleware:
             
             cursor = self.connection.cursor()
             cursor.execute("SELECT id, email, username, active, confirmed_at FROM world.`user` where fs_uniquifier = %s" \
-                           , (current_user_from_cookie))
+                           , (current_user_from_cookie,))
             user_email = cursor.fetchall()
             cursor.close()
             print('current user' , user_email)
