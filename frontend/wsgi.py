@@ -287,21 +287,23 @@ class Middleware:
         request = Request(environ)
         url_return_parts = urlparse(request.url)
         welcome_url_parts = url_return_parts._replace(path='/app/welcome')
-        url_return = urlunparse(welcome_url_parts)
+        welcome_url_return = urlunparse(welcome_url_parts)
         #all_keys = r.keys('*')
         #print(all_keys)
         #print(session['Username'])
-        print(url_return)
-        print('path: %s, url: %s' % (request.path, request.url))
+        #print(url_return)
+        #print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
         if ('wsgi' in request.path and (email_domain == 'gaitskell.com' or email_domain == 'brown.edu')):
+            print('wsgi app path protected') 
             return self.wsgi(environ, start_response)
         elif ('wsgi' in request.path and (email_domain != 'gaitskell.com' and email_domain != 'brown.edu')):
-            print('it contains wsgi')
-            print(url_return)
-            start_response('301 Redirect', [('Location', url_return),])
+            print('path contained wsgi, redirect to welcome')
+            print(welcome_url_return)
+            start_response('301 Redirect', [('Location', welcome_url_return),])
             return []
         else:
+            print('does not contain wsgi')
             return self.wsgi(environ, start_response)
         ''' 
         print('-----------')
