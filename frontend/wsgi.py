@@ -285,9 +285,10 @@ class Middleware:
         
         
         request = Request(environ)
-        url_return_parts = urlparse(request.url)
-        welcome_url_parts = url_return_parts._replace(path='/app/welcome')
-        welcome_url_return = urlunparse(welcome_url_parts)
+        ## the following modified the Request object
+        ##url_return_parts = urlparse(request.url)
+        ##welcome_url_parts = url_return_parts._replace(path='/app/welcome')
+        ##welcome_url_return = urlunparse(welcome_url_parts)
         #all_keys = r.keys('*')
         #print(all_keys)
         #print(session['Username'])
@@ -300,7 +301,7 @@ class Middleware:
         elif ('wsgi' in request.path and (email_domain != 'gaitskell.com' and email_domain != 'brown.edu')):
             print('path contained wsgi, redirect to welcome')
             print(welcome_url_return)
-            start_response('301 Redirect', [('Location', welcome_url_return),])
+            start_response('301 Redirect', [('Location','/app/welcome'),])
             return []
         else:
             print('does not contain wsgi')
