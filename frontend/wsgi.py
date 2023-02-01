@@ -83,11 +83,11 @@ class Middleware:
         print('encoded cookie')
         print(encoded_cookie)
         
-        current_session = self.redisserver.get(encoded_cookie)
-        print('current session')
+        current_session_data = self.redisserver.get(encoded_cookie)
+        print('current session data')
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
         #current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
-        print(current_session)
+        print(current_session_data)
         #val = self.redisserver.get(current_session)
         
         print('===================================')
@@ -155,7 +155,7 @@ class Middleware:
         
         ##all_keys = self.redisserver.keys('*')
         ##print(all_keys)
-        return current_session
+        return current_session_data
         
     def __call__(self, environ, start_response):
         # not Flask request - from werkzeug.wrappers import Request
@@ -163,13 +163,13 @@ class Middleware:
         environ_data = repr(environ).encode('utf-8')
         print('environ type')
         print(type(environ))
-        #try:
-        session_id = self.getcookiedata(environ)
-        print('current session id')
-        print('-------------------')
-        print(session_id)
-        #except:
-        #    print('no current session')
+        try:
+            session_data = self.getcookiedata(environ)
+            print('current session id')
+            print('-------------------')
+            print(session_data)
+        except:
+            print('no current session')
             
         request = Request(environ)
         url_return_parts = urlparse(request.url)
