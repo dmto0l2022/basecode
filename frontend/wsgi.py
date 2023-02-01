@@ -281,13 +281,13 @@ class Middleware:
             email_domain = 'unknown'
             
         request = Request(environ)
-        url_return_parts = urlparse(request.url)
-        welcome_url_parts = url_return_parts._replace(path='/app/welcome')
-        url_return = urlunparse(welcome_url_parts)
+        ##url_return_parts = urlparse(request.url)
+        ##welcome_url_parts = url_return_parts._replace(path='/app/welcome')
+        ##url_return = urlunparse(welcome_url_parts)
         #all_keys = r.keys('*')
         #print(all_keys)
         #print(session['Username'])
-        print(url_return)
+        ##print(url_return)
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
         if 'wsgi' not in request.path:
@@ -297,11 +297,11 @@ class Middleware:
         #    return self.wsgi(environ, start_response)
         else:
             print('url contains wsgi - from unknown or unauthorised email domain')
-            print(url_return)
+            ##print(url_return)
             print('-----------')
             #url_return = urlparse(request.url)
             #url_return._replace(path='/app/welcome')
-            start_response('301 Redirect', [('Location', url_return),])
+            start_response('301 Redirect', [('Location', '/app/welcome'),])
             return []
            
 '''
