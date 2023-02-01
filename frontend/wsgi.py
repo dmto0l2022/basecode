@@ -211,10 +211,27 @@ class Middleware:
         
         try:
             current_user = self.getcurrentuser(current_session_data)
+        except OSError as err:
+            print("OS error:", err)
+        except ValueError:
+            print("Could not convert data to an integer.")
+        except Exception as err:
+            print(f"Unexpected {err=}, {type(err)=}")
         except:
             current_user = 'no user'
         
-        current_user_email, email_domain = self.getcurrentemail(self,current_user)
+        try:
+            current_user_email, email_domain = self.getcurrentemail(self,current_user)
+        except OSError as err:
+            print("OS error:", err)
+        except ValueError:
+            print("Could not convert data to an integer.")
+        except Exception as err:
+            print(f"Unexpected {err=}, {type(err)=}")
+        except:
+            current_user_email = 'anon@unknowndomain.com'
+            email_domain = 'unknowndomain.com'
+            
         
         return current_session_data, current_user, current_user_email, email_domain
 
