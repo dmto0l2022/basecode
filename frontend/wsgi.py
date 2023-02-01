@@ -335,8 +335,8 @@ class Middleware:
             ##start_response('302 Found', [('Location','/app/welcome')])
             #hello_response = Response('Hello World!')
             ##return response(environ, start_response)
-            redirect('/app/welcome',code=302,Response='Hello World!')
-            return []
+            redirect_response = redirect('/app/welcome',code=302)
+            return self.wsgi(environ,redirect_response)
     '''
 useremail
 https://gist.github.com/devries/4a747a284e75a5d63f93
