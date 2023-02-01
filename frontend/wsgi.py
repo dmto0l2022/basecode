@@ -51,7 +51,8 @@ class Middleware:
         self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
         ##self.redisserver = redis.StrictRedis(host='container_redis_1', port=6379, decode_responses=True)
     
-    def getcookiedata(environ_in)
+    def getcookiedata(environ_in):
+        
         http_cookie = environ_in['HTTP_COOKIE']
         
         import os
@@ -155,7 +156,7 @@ class Middleware:
         
         ##all_keys = self.redisserver.keys('*')
         ##print(all_keys)
-        return 
+        return val
         
     def __call__(self, environ, start_response):
         # not Flask request - from werkzeug.wrappers import Request
