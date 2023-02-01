@@ -5,6 +5,27 @@ import ast
 import chardet
 import datetime
 
+import mariadb
+
+import os
+from os import environ, path
+from dotenv import load_dotenv
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, "/app/.env"))
+
+print('BASE_DIR + APP')
+print(path.join(BASE_DIR, "/app/"))
+
+## MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+
+MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
+                MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
+                + MARIADB_DATABASE
+
 ##from app import current_user
 
 ##from app import session
