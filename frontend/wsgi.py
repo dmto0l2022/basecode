@@ -7,7 +7,10 @@ from datetime import datetime
 
 import mariadb
 
+import io
+
 import os
+
 from os import environ, path
 from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
