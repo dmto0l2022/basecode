@@ -259,6 +259,10 @@ class Middleware:
             print(email_domain)
         except:
             print('no current session')
+            session_data = {}
+            current_user = 'unknown'
+            current_user_email = 'unknown'
+            email_domain = 'unknown'
             
         request = Request(environ)
         url_return_parts = urlparse(request.url)
@@ -278,7 +282,6 @@ class Middleware:
         else:
             print('url contains wsgi - from unknown or unauthorised email domain')
             print(url_return)
-            
             print('-----------')
             #url_return = urlparse(request.url)
             #url_return._replace(path='/app/welcome')
