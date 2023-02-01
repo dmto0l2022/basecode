@@ -300,7 +300,7 @@ class Middleware:
             return self.wsgi(environ, start_response)
         elif ('wsgi' in request.path and (email_domain != 'gaitskell.com' and email_domain != 'brown.edu')):
             print('path contained wsgi, redirect to welcome')
-            print(welcome_url_return)
+            #print(welcome_url_return)
             start_response('301 Redirect', [('Location','/app/welcome'),])
             return []
         else:
