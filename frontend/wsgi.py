@@ -307,7 +307,7 @@ class Middleware:
 
         if 'wsgi' not in request.path:
             print('wsgi not in path')
-            return self.app(environ,start_response)
+            return self.wsgi(environ,start_response)
 
         else:
             print('wsgi in path')
