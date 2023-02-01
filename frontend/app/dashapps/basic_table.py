@@ -63,7 +63,7 @@ def RefreshTableData():
     return updated_data_ret
     
 
-app = Dash(__name__, requests_pathname_prefix='/wsgi_app2/')
+app = Dash(__name__, requests_pathname_prefix='/app/wsgi_app2/')
 
 ##data_request = requests.get('/plots/getall')
 #url = "http://10.154.0.20:8004/plots/getall/"
