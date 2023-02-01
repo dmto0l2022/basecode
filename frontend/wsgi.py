@@ -30,7 +30,7 @@ MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
 
 ##from app import session
 
-from urllib.parse import urlparse, urlunparse
+from urllib.parse import urlparse, urlunparse, quote
 
 ##from secure_cookie.session import SessionMiddleware
 
