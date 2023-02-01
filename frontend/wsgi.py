@@ -162,13 +162,13 @@ class Middleware:
         # not Flask request - from werkzeug.wrappers import Request
         ##r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
         environ_data = repr(environ).encode('utf-8')
-        try:
-            session_id = getcookiedata(environ)
-            print('current session id')
-            print('-------------------')
-            print(session_id)
-        except:
-            print('no current session')
+        #try:
+        session_id = getcookiedata(environ)
+        print('current session id')
+        print('-------------------')
+        print(session_id)
+        #except:
+        #    print('no current session')
             
         request = Request(environ)
         url_return_parts = urlparse(request.url)
