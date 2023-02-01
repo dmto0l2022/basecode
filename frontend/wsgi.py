@@ -221,7 +221,7 @@ class Middleware:
             current_user = 'no user'
         
         try:
-            current_user_email, email_domain = self.getcurrentemail(self,current_user)
+            current_user_email, email_domain = self.getcurrentemail(current_user)
         except OSError as err:
             print("OS error:", err)
         except ValueError:
