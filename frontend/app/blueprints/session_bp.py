@@ -86,7 +86,9 @@ def getsession():
     else:
         return "Welcome Anonymous"
  
-@session_bp.route('/app/session/popsession')
+@session_bp.route('/app/session/clearsession')
 def popsession():
-    session.pop('Username',None)
+    #session.pop('Username',None)
+    session.clear()
     return "Session Deleted"
+
