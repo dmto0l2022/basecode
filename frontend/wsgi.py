@@ -3,6 +3,7 @@ from app import init_app
 import json
 import ast
 import chardet
+import datetime
 
 ##from app import current_user
 
@@ -49,7 +50,32 @@ class Middleware:
     def __init__(self, wsgi):
         self.wsgi = wsgi
         self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
-        ##self.redisserver = redis.StrictRedis(host='container_redis_1', port=6379, decode_responses=True)
+        self.connection = mariadb.connect(
+                    user=MARIADB_USERNAME,
+                    password=MARIADB_PASSWORD,
+                    host=MARIADB_CONTAINER,
+                    port=3306,
+                    database=MARIADB_DATABASE
+                    )   
+    
+    def getcurrentemail(self,current_user_in):
+        
+        print('============================================================')
+        current_date = datetime.now()
+        print(current_date.strftime('%Y-%m-%dT%H:%M:%S.%f%z'))
+        print('==================request data==============================')
+        
+        cursor = self.connection.cursor(dictionary=True)
+        cursor.execute("SELECT id, email, username, active, confirmed_at FROM world.`user` where fs_uniquifier = %s" \
+                       , (current_user_from_cookie,))
+        user_details = cursor.fetchall()
+        for row in user_details:
+            current_user_email = row["email"]
+        cursor.close()
+        print('current user email > ' , current_user_email)
+        email_domain = current_user_email.split('@')[1]
+        print('email domain > ', email_domain)
+        return current_user_email, email_domain
     
     def getcurrentuser(self,current_session_data_in):
         
@@ -166,8 +192,10 @@ class Middleware:
             current_user = self.getcurrentuser(current_session_data)
         except:
             current_user = 'no user'
-            
-        return current_session_data, current_user
+        
+        current_user_email, email_domain = self.getcurrentemail(self,current_user)
+        
+        return current_session_data, current_user, current_user_email, email_domain
 
     
         
@@ -178,10 +206,19 @@ class Middleware:
         print('environ type')
         print(type(environ))
         try:
-            session_data = self.getcookiedata(environ)
-            print('current session id')
+            session_data,current_user, current_user_email, email_domain = self.getcookiedata(environ)
+            print('current session data')
             print('-------------------')
             print(session_data)
+            print('current user')
+            print('-------------------')
+            print(current_user)
+            print('current user email')
+            print('-------------------')
+            print(current_user_email)
+            print('current email domain')
+            print('-------------------')
+            print(email_domain)
         except:
             print('no current session')
             
