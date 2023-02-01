@@ -316,13 +316,22 @@ class Middleware:
             #print(response)
             return self.wsgi(environ,start_response)
 
+        #else:
+        #    print('wsgi in path')
+        #    #environ['PATH_INFO']='/app/welcome'
+        #    response = Response('Hello World!')
+        #    print(response)
+        #    return response(environ,start_response)
         else:
+            body = environ['wsgi.input'].read()
             print('wsgi in path')
-            #environ['PATH_INFO']='/app/welcome'
-            response = Response('Hello World!')
-            return response(environ,start_response)
-        
-'''
+            print('body')
+            print(body)
+            modified_body = body
+            new_stream = io.ByteIO(modified_body)
+            environ['wsgi.input'] = new_stream
+            return self.app(environ, start_response)
+    '''
 useremail
 https://gist.github.com/devries/4a747a284e75a5d63f93
 
