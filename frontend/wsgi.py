@@ -337,10 +337,14 @@ class Middleware:
             ##return response(environ, start_response)
             ##redirect_response = redirect('/app/welcome',code=302)
             
-            headers = [('Location', '/app/welcome')]
-            r = Response("redirected", status=302, headers=headers)
-            return r(environ, start_response)
-            
+            ##headers = [('Location', '/app/welcome')]
+            ##r = Response("redirected", status=302, headers=headers)
+            ##return r(environ, start_response)
+            body = b'Hello world!\n'
+            status = '200 OK'
+            headers = [('Content-type', 'text/plain')]
+            start_response(status, headers)
+            return [body]
             ##return self.wsgi(environ,redirect_response)
     '''
 useremail
