@@ -88,7 +88,7 @@ class Middleware:
         print('current session')
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
         #current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
-        #print(current_session)
+        print(current_session)
         #val = self.redisserver.get(current_session)
         
         print('===================================')
@@ -147,22 +147,29 @@ class Middleware:
         ##dict = self.redisserver.hgetall(current_session)
         #print(val.decode("utf-8","ignore"))
         #print('--------------------------')
-        print(val)
+        #print(val)
         print('+++++++++++++++++++++++++++')
-        print(type(val))
+        #print(type(val))
         print('=============================')
         
         ##print(val['email'])
         
         ##all_keys = self.redisserver.keys('*')
         ##print(all_keys)
-        return val
+        return current_session
         
     def __call__(self, environ, start_response):
         # not Flask request - from werkzeug.wrappers import Request
         ##r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
         environ_data = repr(environ).encode('utf-8')
-                
+        try:
+            session_id = getcookiedata(environ)
+            print('current session id')
+            print('-------------------')
+            print(session_id)
+        except:
+            print('no current session')
+            
         request = Request(environ)
         url_return_parts = urlparse(request.url)
         welcome_url_parts = url_return_parts._replace(path='/app/welcome')
