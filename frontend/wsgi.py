@@ -3,7 +3,7 @@ from app import init_app
 import json
 import ast
 import chardet
-import datetime
+from datetime import datetime
 
 import mariadb
 
