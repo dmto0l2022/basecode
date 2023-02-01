@@ -6,6 +6,8 @@ from app import init_app
 import json
 import ast
 import chardet
+import datetime
+from datetime import datetime
 
 ##################################
 
@@ -149,9 +151,23 @@ class Middleware:
     def __call__(self, environ, start_response):
         # not Flask request - from werkzeug.wrappers import Request
         ##r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+        print('============================================================')
+        current_date = datetime.now()
+        print(current_date.strftime('%Y-%m-%dT%H:%M:%S.%f%z'))
+        print('==================request data==============================')
+        
+        request = Request(environ)
+        ## the following modified the Request object
+        url_return_parts = urlparse(request.url)
+        print(url_return_parts)
+        print('-------------------------environ data-------------------------------')
+        
         environ_data = repr(environ).encode('utf-8')
         #print(type(environ_data))
         print(environ_data)
+        
+        print('---------------------------------------------------------------------')
+        
         cursor = self.connection.cursor()         
         cursor.execute("SELECT name FROM tags;")
         rows = cursor.fetchall()
@@ -284,7 +300,7 @@ class Middleware:
             ##print(val['email'])
         
         
-        request = Request(environ)
+        #request = Request(environ)
         ## the following modified the Request object
         ##url_return_parts = urlparse(request.url)
         ##welcome_url_parts = url_return_parts._replace(path='/app/welcome')
