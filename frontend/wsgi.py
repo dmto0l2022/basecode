@@ -332,7 +332,7 @@ class Middleware:
             #modified_body = body
             #new_stream = io.BytesIO(modified_body)
             #environ['wsgi.input'] = new_stream
-            start_response('307 Temporary Redirect', [('Location','/app/welcome')])
+            start_response('302 Found', [('Location','/app/welcome')])
             return []
     '''
 useremail
