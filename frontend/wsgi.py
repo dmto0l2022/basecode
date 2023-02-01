@@ -311,24 +311,8 @@ class Middleware:
 
         else:
             print('wsgi in path')
-            url = 'http://'
-            if environ.get('HTTP_HOST'):
-                url += environ['HTTP_HOST']
-            else:
-                url += environ['SERVER_NAME']
-
-            url += quote(environ.get('SCRIPT_NAME', ''))
-            url += quote(environ.get('PATH_INFO', ''))
-            if environ.get('QUERY_STRING'):
-                url += '?' + environ['QUERY_STRING']
-
-            status = "301 Moved Permanently"
-            headers = [('Location',url),('Content-Length','0')]
-
-            start_response(status,headers)
-            
-            return ['']
-        
+            environ['PATH_INFO']='/app/welcome'
+            return self.wsgi(environ,start_response)
         
 '''
 useremail
