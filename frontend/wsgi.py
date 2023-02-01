@@ -81,6 +81,9 @@ class Middleware:
     
     def getcurrentemail(self,current_user_in):
         
+        current_user_email = 'unknown@unknown.com'
+        email_domain = 'unknown.com'
+        
         print('============================================================')
         current_date = datetime.now()
         print(current_date.strftime('%Y-%m-%dT%H:%M:%S.%f%z'))
@@ -89,13 +92,26 @@ class Middleware:
         cursor = self.connection.cursor(dictionary=True)
         cursor.execute("SELECT id, email, username, active, confirmed_at FROM world.`user` where fs_uniquifier = %s" \
                        , (current_user_in,)) ## , is important
-        user_details = cursor.fetchall()
-        for row in user_details:
-            current_user_email = row["email"]
-        cursor.close()
-        print('current user email > ' , current_user_email)
-        email_domain = current_user_email.split('@')[1]
-        print('email domain > ', email_domain)
+        
+        try:
+            user_details = cursor.fetchall()
+            for row in user_details:
+                current_user_email = row["email"]
+            cursor.close()
+            print('current user email > ' , current_user_email)
+            email_domain = current_user_email.split('@')[1]
+            print('email domain > ', email_domain)
+        except OSError as err:
+            print("OS error:", err)
+        except ValueError:
+            print("Could not convert data to an integer.")
+        except Exception as err:
+            print(f"Unexpected {err=}, {type(err)=}")
+        except:
+            current_user_email = 'unknown'
+            email_domain = 'unknown'
+        
+        
         return current_user_email, email_domain
     
     def getcurrentuser(self,current_session_data_in):
