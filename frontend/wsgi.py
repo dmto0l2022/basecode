@@ -292,9 +292,9 @@ class Middleware:
         # just do here everything what you need
         if 'wsgi' not in request.path:
             return self.wsgi(environ, start_response)
-        elif 'wsgi' in request.path and email_domain == 'gaitskell.com':
-            print('authorised email domain')
-            return self.wsgi(environ, start_response)
+        #elif 'wsgi' in request.path and email_domain == 'gaitskell.com':
+        #    print('authorised email domain')
+        #    return self.wsgi(environ, start_response)
         else:
             print('url contains wsgi - from unknown or unauthorised email domain')
             print(url_return)
