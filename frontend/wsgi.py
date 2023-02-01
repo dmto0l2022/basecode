@@ -177,6 +177,9 @@ class Middleware:
         #    print("yielding", row)
         #    yield row[0].encode("utf-8")
         
+        return self.wsgi(environ, start_response)
+        
+        '''
         val = None
         email_domain = 'unknown.domain'
         current_user_email = 'nobody@unknown.domain'
@@ -322,7 +325,7 @@ class Middleware:
         else:
             print('does not contain wsgi')
             return self.wsgi(environ, start_response)
-        ''' 
+        
         print('-----------')
         #url_return = urlparse(request.url)
         #url_return._replace(path='/app/welcome')
