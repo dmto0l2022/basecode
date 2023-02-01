@@ -163,7 +163,7 @@ class Middleware:
         ##r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
         environ_data = repr(environ).encode('utf-8')
         #try:
-        session_id = getcookiedata(environ)
+        session_id = self.getcookiedata(environ)
         print('current session id')
         print('-------------------')
         print(session_id)
