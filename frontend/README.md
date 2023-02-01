@@ -7,7 +7,9 @@ https://beaker.readthedocs.io/en/latest/configuration.html
 
 https://secure-cookie.readthedocs.io/en/latest/session/#middleware
 
-# Last resort
+# Last resorts!
+
+https://github.com/plotly/dash/issues/214
 
 https://github.com/RafaelMiquelino/dash-flask-login/blob/master/app.py
 
