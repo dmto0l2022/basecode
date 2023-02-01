@@ -259,6 +259,9 @@ class Middleware:
         environ_data = repr(environ).encode('utf-8')
         print('environ type')
         print(type(environ))
+        print('environ data')
+        print('---------------------')
+        print(environ_data)
         try:
             session_data,current_user, current_user_email, email_domain = self.getcookiedata(environ)
             print('current session data')
@@ -311,7 +314,7 @@ class Middleware:
 
         else:
             print('wsgi in path')
-            environ['PATH_INFO']='/app/welcome'
+            #environ['PATH_INFO']='/app/welcome'
             return self.wsgi(environ,start_response)
         
 '''
