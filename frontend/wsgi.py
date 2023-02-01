@@ -291,6 +291,7 @@ class Middleware:
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
         if 'wsgi' not in request.path:
+            print('wsgi not in path')
             return self.wsgi(environ, start_response)
         #elif 'wsgi' in request.path and email_domain == 'gaitskell.com':
         #    print('authorised email domain')
