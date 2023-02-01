@@ -290,21 +290,46 @@ class Middleware:
         ##print(url_return)
         print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
-        if 'wsgi' not in request.path:
-            print('wsgi not in path')
-            return self.wsgi(environ, start_response)
+        #if 'wsgi' not in request.path:
+        #    print('wsgi not in path')
+        #    return self.wsgi(environ, start_response)
         #elif 'wsgi' in request.path and email_domain == 'gaitskell.com':
         #    print('authorised email domain')
         #    return self.wsgi(environ, start_response)
+        #else:
+        #    print('url contains wsgi - from unknown or unauthorised email domain')
+        #    ##print(url_return)
+        #    print('-----------')
+        #    #url_return = urlparse(request.url)
+        #    #url_return._replace(path='/app/welcome')
+        #    start_response('301 Redirect', [('Location', '/app/welcome'),])
+        #    return []
+
+        if 'wsgi' not in request.path:
+            print('wsgi not in path')
+            return self.app(environ,start_response)
+
         else:
-            print('url contains wsgi - from unknown or unauthorised email domain')
-            ##print(url_return)
-            print('-----------')
-            #url_return = urlparse(request.url)
-            #url_return._replace(path='/app/welcome')
-            start_response('301 Redirect', [('Location', '/app/welcome'),])
-            return []
-           
+            print('wsgi in path')
+            url = 'http://'
+            if environ.get('HTTP_HOST'):
+                url += environ['HTTP_HOST']
+            else:
+                url += environ['SERVER_NAME']
+
+            url += quote(environ.get('SCRIPT_NAME', ''))
+            url += quote(environ.get('PATH_INFO', ''))
+            if environ.get('QUERY_STRING'):
+                url += '?' + environ['QUERY_STRING']
+
+            status = "301 Moved Permanently"
+            headers = [('Location',url),('Content-Length','0')]
+
+            start_response(status,headers)
+            
+            return ['']
+        
+        
 '''
 useremail
 https://gist.github.com/devries/4a747a284e75a5d63f93
