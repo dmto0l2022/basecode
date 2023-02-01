@@ -317,23 +317,23 @@ class Middleware:
             #response = request.get_response(self.wsgi)
             #print('------------ response ---------------')
             #print(response)
-            return self.wsgi(environ,start_response)
-
-        #else:
-        #    print('wsgi in path')
-        #    #environ['PATH_INFO']='/app/welcome'
-        #    response = Response('Hello World!')
-        #    print(response)
-        #    return response(environ,start_response)
+            return self.wsgi(environ,start_response)       
+            #else:
+            #    print('wsgi in path')
+            #    #environ['PATH_INFO']='/app/welcome'
+            #    response = Response('Hello World!')
+            #    print(response)
+            #    return response(environ,start_response)
         else:
             #body = environ['wsgi.input']
-            #print('wsgi in path')
+            print('wsgi in path')
             #print('body')
             #print(body)
             #modified_body = body
             #new_stream = io.BytesIO(modified_body)
             #environ['wsgi.input'] = new_stream
-            return self.wsgi(environ, start_response)
+            start_response('307 Temporary Redirect', [('Location','/app/welcome')])
+            return []
     '''
 useremail
 https://gist.github.com/devries/4a747a284e75a5d63f93
