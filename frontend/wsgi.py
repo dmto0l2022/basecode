@@ -88,7 +88,7 @@ class Middleware:
         
         cursor = self.connection.cursor(dictionary=True)
         cursor.execute("SELECT id, email, username, active, confirmed_at FROM world.`user` where fs_uniquifier = %s" \
-                       , (current_user_from_cookie,))
+                       , (current_user_in,)) ## , is important
         user_details = cursor.fetchall()
         for row in user_details:
             current_user_email = row["email"]
