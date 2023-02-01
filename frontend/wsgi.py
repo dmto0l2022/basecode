@@ -51,7 +51,7 @@ class Middleware:
         self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
         ##self.redisserver = redis.StrictRedis(host='container_redis_1', port=6379, decode_responses=True)
     
-    def getcookiedata(environ_in):
+    def getcookiedata(self, environ_in):
         
         http_cookie = environ_in['HTTP_COOKIE']
         
@@ -162,6 +162,8 @@ class Middleware:
         # not Flask request - from werkzeug.wrappers import Request
         ##r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
         environ_data = repr(environ).encode('utf-8')
+        print('environ type')
+        print(type(environ))
         #try:
         session_id = self.getcookiedata(environ)
         print('current session id')
