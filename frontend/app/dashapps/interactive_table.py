@@ -4,7 +4,7 @@ import plotly.express as px
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-app = Dash(__name__, external_stylesheets=external_stylesheets, requests_pathname_prefix='/wsgi_app1/')
+app = Dash(__name__, external_stylesheets=external_stylesheets, requests_pathname_prefix='/app/wsgi_app1/')
 
 df = px.data.gapminder()
 df["id"] = df.index
