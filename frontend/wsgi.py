@@ -331,7 +331,7 @@ class Middleware:
             print('body')
             print(body)
             modified_body = body
-            new_stream = io.ByteIO(modified_body)
+            new_stream = io.BytesIO(modified_body)
             environ['wsgi.input'] = new_stream
             return self.app(environ, start_response)
     '''
