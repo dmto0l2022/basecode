@@ -326,13 +326,13 @@ class Middleware:
         #    print(response)
         #    return response(environ,start_response)
         else:
-            body = environ['wsgi.input'].read()
-            print('wsgi in path')
-            print('body')
-            print(body)
-            modified_body = body
-            new_stream = io.BytesIO(modified_body)
-            environ['wsgi.input'] = new_stream
+            #body = environ['wsgi.input']
+            #print('wsgi in path')
+            #print('body')
+            #print(body)
+            #modified_body = body
+            #new_stream = io.BytesIO(modified_body)
+            #environ['wsgi.input'] = new_stream
             return self.wsgi(environ, start_response)
     '''
 useremail
