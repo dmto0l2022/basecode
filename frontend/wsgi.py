@@ -50,15 +50,9 @@ class Middleware:
         self.wsgi = wsgi
         self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
         ##self.redisserver = redis.StrictRedis(host='container_redis_1', port=6379, decode_responses=True)
-
-        
-    def __call__(self, environ, start_response):
-        # not Flask request - from werkzeug.wrappers import Request
-        ##r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-        environ_data = repr(environ).encode('utf-8')
-        #print(type(environ_data))
-        #print(environ_data)
-        http_cookie = environ['HTTP_COOKIE']
+    
+    def getcookiedata(environ_in)
+        http_cookie = environ_in['HTTP_COOKIE']
         
         import os
 
@@ -92,8 +86,8 @@ class Middleware:
         print(val)
         print('current session')
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
-        current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
-        print(current_session)
+        #current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
+        #print(current_session)
         #val = self.redisserver.get(current_session)
         
         print('===================================')
@@ -161,7 +155,13 @@ class Middleware:
         
         ##all_keys = self.redisserver.keys('*')
         ##print(all_keys)
+        return 
         
+    def __call__(self, environ, start_response):
+        # not Flask request - from werkzeug.wrappers import Request
+        ##r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+        environ_data = repr(environ).encode('utf-8')
+                
         request = Request(environ)
         url_return_parts = urlparse(request.url)
         welcome_url_parts = url_return_parts._replace(path='/app/welcome')
