@@ -50,11 +50,8 @@ RUN whereis pip3
 COPY ./requirements.txt /env/requirements.txt
 RUN /env/bin/pip3 install -r /env/requirements.txt
 
-
 ##################
-FROM python:3.9
-WORKDIR /workdir/fastapi
-COPY ./requirements.txt /workdir/fastapi/requirements.txt
+
 #RUN pip install --no-cache-dir --upgrade -r /workdir/fastapi/requirements.txt
 COPY ./ /workdir/fastapi
 #COPY ./app /workdir/fastapi/app
