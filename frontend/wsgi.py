@@ -85,6 +85,8 @@ class Middleware:
                     )   
     
         template_path = os.path.join(os.path.dirname(__file__), '/werkzeug/templates')
+        print('template path')
+        print(template_path)
         self.jinja_env = Environment(loader=FileSystemLoader(template_path),
                                  autoescape=True)
     
