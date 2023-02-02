@@ -5,7 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from sqlalchemy.orm import Session
 
-from . import crud, models, schemas
+from . import crud, models
+from schemas import usersanditems
 from .database import SessionLocal, engine
 
 
