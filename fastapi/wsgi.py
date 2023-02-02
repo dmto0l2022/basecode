@@ -1,3 +1,3 @@
-from app import init_app
+from application import init_app
 
-application = init_app()
+app = init_app()
