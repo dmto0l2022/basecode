@@ -4,3 +4,4 @@ pydantic
 gunicorn
 uvicorn
 sqlalchemy
+python-dotenv
