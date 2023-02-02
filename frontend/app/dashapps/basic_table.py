@@ -78,6 +78,8 @@ r = requests.get(url,
                  headers={'Accept': 'application/json'})
 response_data = r.json()
 data_frame = pd.DataFrame(response_data)
+print(data_frame)
+
 #data_request = requests.get(url=url)
 #text = json.dumps(data_request, sort_keys=True, indent=4)
 #print(text)
