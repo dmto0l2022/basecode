@@ -7,7 +7,8 @@ def init_app():
     with app.app_context():
         
         # Register Blueprints
-        app.register_blueprint(blueprints.todo_bp)
-
+        from app.blueprints.todo_bp import todo_bp
+        app.register_blueprint(todo_bp)
+        
         return app
 
