@@ -6,8 +6,8 @@ from os import environ, path
 
 from dotenv import load_dotenv
 
-BASE_DIR = path.abspath(path.dirname(__file__))
-load_dotenv(path.join(BASE_DIR, ".env"))
+#BASE_DIR = path.abspath(path.dirname(__file__))
+#load_dotenv(path.join(BASE_DIR, ".env"))
 
 def init_app():
     app = Flask(__name__)
