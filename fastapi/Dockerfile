@@ -8,4 +8,4 @@ RUN ls -al --recursive /workdir/
 #CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8006"]
 ## CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
 ## above used nginx
-CMD ["gunicorn"  , "--bind", "0.0.0.0:8006", "wsgi:app"]
+CMD ["gunicorn"  , "--bind", "0.0.0.0:8006", "wsgi"]
