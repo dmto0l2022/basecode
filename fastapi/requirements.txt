@@ -3,3 +3,4 @@ fastapi
 pydantic
 gunicorn
 uvicorn
+sqlalchemy
