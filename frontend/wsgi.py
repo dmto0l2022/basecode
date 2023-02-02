@@ -21,6 +21,7 @@ load_dotenv(path.join(BASE_DIR, "/app/.env"))
 print('BASE_DIR + APP')
 print(path.join(BASE_DIR, "/app/"))
 
+
 ## MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
 MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
 MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
@@ -85,8 +86,8 @@ class Middleware:
                     )   
     
         #template_path = os.path.join(os.path.dirname(__file__), '/werkzeug/templates')
-        BASE_DIR = path.abspath(path.dirname(__file__))
-        template_path = path.join(BASE_DIR, "/werkzeug/templates")
+        #BASE_DIR = path.abspath(path.dirname(__file__))
+        template_path = path.join(BASE_DIR, "/workdir/frontend/werkzeug/templates")
         print('template path')
         print(template_path)
         self.jinja_env = Environment(loader=FileSystemLoader(template_path),
