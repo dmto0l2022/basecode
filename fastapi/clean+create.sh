@@ -1,9 +1,8 @@
-podman stop container_frontend_1
-podman rm container_frontend_1
-podman rmi base_frontend_1
-podman rmi frontend_1
+podman stop container_fastapi_1
+podman rm container_fastapi_1
+podman rmi fastapi_1
 
-cd /opt/dmtools/code/basecode/frontend
+cd /opt/dmtools/code/basecode/fastapi
 
 uid=1001
 gid=1002
@@ -12,14 +11,13 @@ subuidSize=$(( $(podman info --format "{{ range \
 subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
-podman build -f Dockerfile_frontendbase -t base_frontend_1 .
-podman build -f Dockerfile_frontend -t frontend_1 .
+podman build -f Dockerfile -t fastapi_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name container_frontend_1 \
+--name container_fastapi_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode/:/workdir \
-localhost/frontend_1:latest
+localhost/fastapi_1:latest
