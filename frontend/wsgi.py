@@ -84,7 +84,9 @@ class Middleware:
                     database=MARIADB_DATABASE
                     )   
     
-        template_path = os.path.join(os.path.dirname(__file__), '/werkzeug/templates')
+        #template_path = os.path.join(os.path.dirname(__file__), '/werkzeug/templates')
+        BASE_DIR = path.abspath(path.dirname(__file__))
+        template_path = path.join(BASE_DIR, "/werkzeug/templates")
         print('template path')
         print(template_path)
         self.jinja_env = Environment(loader=FileSystemLoader(template_path),
