@@ -25,7 +25,7 @@ def CreateNewPlot():
     return r
 '''
 
-@plotids_bp.route('/plots/getall/', methods=["GET", "POST"])
+@plotids_bp.route('/app/plots/getall/', methods=["GET", "POST"])
 def getallplots():
     allplots = Plots.getall()
     return allplots
@@ -44,19 +44,19 @@ def EnterNewPlotFunc():
     )
 '''
 
-@plotids_bp.route("/plots/success", methods=["GET", "POST"])
+@plotids_bp.route("/app/plots/success", methods=["GET", "POST"])
 def success():
    return "success"
 
 
 #####
 
-@plotids_bp.route("/plots", methods=["GET", "POST"])
+@plotids_bp.route("/app/plots", methods=["GET", "POST"])
 def plots():
    return "plots"
 
 # add a new plot to the database
-@plotids_bp.route('/plots/create/', methods=['GET', 'POST'])
+@plotids_bp.route('/app/plots/create/', methods=['GET', 'POST'])
 def FuncCreatePlot():
     form1 = FormCreatePlot()
     if form1.validate_on_submit():
@@ -78,7 +78,7 @@ def FuncCreatePlot():
         return render_template('create_plot.html', form1=form1)
 
 # add a new plot to the database
-@plotids_bp.route('/plots/read/', methods=['GET', 'POST'])
+@plotids_bp.route('/app/plots/read/', methods=['GET', 'POST'])
 def FuncReadPlot():
     plotid = request.form['plotid']
     plot = Plots.read(plotid)
@@ -86,7 +86,7 @@ def FuncReadPlot():
     return render_template('read_plot.html', form1=form1)
 
 # add a new plot to the database
-@plotids_bp.route('/plots/update/', methods=['GET', 'POST'])
+@plotids_bp.route('/app/plots/update/', methods=['GET', 'POST'])
 def FuncUpdatePlot():
     plotid = request.form['plotid']
     newname = "newname"
@@ -96,7 +96,7 @@ def FuncUpdatePlot():
     return render_template('update_plot.html', form1=form1)
 
 # add a new plot to the database
-@plotids_bp.route('/plots/delete/', methods=['GET', 'POST'])
+@plotids_bp.route('/app/plots/delete/', methods=['GET', 'POST'])
 def FuncDeletePlot():
     plotid_in = request.args.get('plotid')
     howmany = Plots.delete(plotid_in)
