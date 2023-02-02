@@ -82,6 +82,14 @@ class Middleware:
                     database=MARIADB_DATABASE
                     )   
     
+        template_path = os.path.join(os.path.dirname(__file__), '/werkzeug/templates')
+        self.jinja_env = Environment(loader=FileSystemLoader(template_path),
+                                 autoescape=True)
+    
+    def render_template(self, template_name, **context):
+        t = self.jinja_env.get_template(template_name)
+        return Response(t.render(context), mimetype='text/html')
+    
     def getcurrentemail(self,current_user_in):
         
         current_user_email = 'unknown@unknown.com'
