@@ -14,11 +14,12 @@ subgidSize=$(( $(podman info --format "{{ range \
 podman build -f Dockerfile -t notebook_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
+##-v /opt/dmtools/code/basecode/:/workdir \
+
 
 podman run -dt \
 --name container_notebook_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
--v /opt/dmtools/code/basecode/:/workdir \
 localhost/notebook_1:latest
 
