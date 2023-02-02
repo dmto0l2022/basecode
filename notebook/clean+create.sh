@@ -11,7 +11,7 @@ subuidSize=$(( $(podman info --format "{{ range \
 subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
-podman build -f Dockerfile -t notebook_1 .
+podman build -f Dockerfile  --format docker -t notebook_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 ##-v /opt/dmtools/code/basecode/:/workdir \
