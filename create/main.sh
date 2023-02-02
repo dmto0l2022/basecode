@@ -21,6 +21,7 @@ podman pod create \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 8002:8002 \
 --publish 8004:8004 \
+--publish 8006:8006 \
 --publish 3306:3306 \
 --publish 6379:6379
 
@@ -85,6 +86,22 @@ podman run -dt \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/api_1:latest
+
+###
+
+cd /opt/dmtools/code/basecode/fastapi
+
+podman rmi fastapi_1
+podman build -f Dockerfile -t fastapi_1
+
+##-v /HOST-DIR:/CONTAINER-DIR
+
+podman run -dt \
+--name container_fastapi_1 \
+--pod pod_main_backend \
+--user $uid:$gid \
+-v /opt/dmtools/code/basecode:/workdir \
+localhost/fastapi_1:latest
 
 ####
 
