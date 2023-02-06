@@ -68,7 +68,7 @@ MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
 MARIADB_DATABASE = environ.get("MARIADB_TEST")
 MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
 
-MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
+MARIADB_URI = "mysql://" + MARIADB_USERNAME + ":" + \
                 MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
                 + MARIADB_DATABASE
 
