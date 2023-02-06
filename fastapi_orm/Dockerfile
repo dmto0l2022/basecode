@@ -8,7 +8,7 @@ RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
 RUN apt-get install -y libmariadb-dev
 
-WORKDIR /workdir/fastapi_orm
+WORKDIR /workdir/fastapi_orm/app
 
 ARG USERNAME=agaitske
 ARG USER_UID=1001
@@ -53,9 +53,9 @@ RUN /env/bin/pip3 install -r /env/requirements.txt
 ##################
 
 #RUN pip install --no-cache-dir --upgrade -r /workdir/fastapi/requirements.txt
-COPY ./ /workdir/fastapi_orm
+#COPY ./ /workdir/fastapi_orm
 #COPY ./app /workdir/fastapi/app
-RUN ls -al --recursive /workdir/fastapi_orm
+#RUN ls -al --recursive /workdir/fastapi_orm
 #CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8006"]
 ## CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
 ## above used nginx
