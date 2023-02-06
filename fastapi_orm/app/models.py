@@ -28,3 +28,5 @@ class Users(models.Model):
         computed = ["full_name"]
         exclude = ["password_hash"]
     
+User_Pydantic = pydantic_model_creator(Users, name="User")
+UserIn_Pydantic = pydantic_model_creator(Users, name="UserIn", exclude_readonly=True)
