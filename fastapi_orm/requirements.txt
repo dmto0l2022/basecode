@@ -1,6 +1,6 @@
 flask
 mariadb
-install tortoise-orm[asyncmy]
+tortoise-orm[asyncmy]
 fastapi
 pydantic
 uvicorn
