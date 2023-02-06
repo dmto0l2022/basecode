@@ -18,12 +18,12 @@ from typing import List
 
 from fastapi import FastAPI, HTTPException
 
-from models import Experiment_Pydantic, ExperimentIn_Pydantic, Experiment
+from models import Experiment_Pydantic, ExperimentIn_Pydantic, Experiments
 from models import Limit_Display_Pydantic, Limit_DisplayIn_Pydantic, Limit_Display
 from models import Limit_Ownership_Pydantic, Limit_OwnershipIn_Pydantic, Limit_Ownership   
 from models import Limits_Pydantic, LimitIn_Pydantic, Limits
 from models import Plot_Ownership_Pydantic, Plot_OwnershipIn_Pydantic, Plot_Ownership
-from models import Plots_Pydantic, PlotsIn_Pydantic, Plots
+from models import Plot_Pydantic, PlotIn_Pydantic, Plots
 
 from models import User_Pydantic, UserIn_Pydantic, Users
 
