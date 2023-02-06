@@ -1,26 +1,30 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
-from sqlalchemy.orm import relationship
+from tortoise import fields, models
+from tortoise.contrib.pydantic import pydantic_model_creator
 
-from .database import Base
+class Users(models.Model):
+    """
+    The User model
+    """
 
+    id = fields.IntField(pk=True)
+    #: This is a username
+    username = fields.CharField(max_length=20, unique=True)
+    name = fields.CharField(max_length=50, null=True)
+    family_name = fields.CharField(max_length=50, null=True)
+    category = fields.CharField(max_length=30, default="misc")
+    password_hash = fields.CharField(max_length=128, null=True)
+    created_at = fields.DatetimeField(auto_now_add=True)
+    modified_at = fields.DatetimeField(auto_now=True)
 
-class User(Base):
-    __tablename__ = "users"
-    id = Column(Integer, primary_key=True, index=True)
-    email = Column(String(25), unique=True, index=True)
-    hashed_password = Column(String(25))
-    is_active = Column(Boolean, default=True)
+    def full_name(self) -> str:
+        """
+        Returns the best name
+        """
+        if self.name or self.family_name:
+            return f"{self.name or ''} {self.family_name or ''}".strip()
+        return self.username
 
-    items = relationship("Item", back_populates="owner")
-
-
-class Item(Base):
-    __tablename__ = "items"
-
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String(25), index=True)
-    description = Column(String(25), index=True)
-    owner_id = Column(Integer, ForeignKey("users.id"))
-
-    owner = relationship("User", back_populates="items")
+    class PydanticMeta:
+        computed = ["full_name"]
+        exclude = ["password_hash"]
     
