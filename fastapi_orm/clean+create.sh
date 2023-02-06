@@ -2,7 +2,7 @@ podman stop container_fastapi_orm_1
 podman rm container_fastapi_orm_1
 podman rmi fastapi_orm_1
 
-cd /opt/dmtools/code/basecode/fastapi
+cd /opt/dmtools/code/basecode/fastapi_orm
 
 uid=1001
 gid=1002
