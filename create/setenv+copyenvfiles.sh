@@ -4,6 +4,7 @@
 cp ./.env ../mariadb/.env
 cp ./.env ../api/app/.env
 cp ./.env ../fastapi/app/.env
+cp ./.env ../fastapi_orm/app/.env
 cp ./.env ../frontend/app/.env
 cp ./.env ../dashapps/app/.env
 ## set the variables for the mariadb 
