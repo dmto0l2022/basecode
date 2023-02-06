@@ -41,7 +41,14 @@ class Experiments(models.Model):
     """
     id = fields.IntField(pk=True)
     name = fields.CharField(max_length=255, unique=True)
+    
+    class Meta:
+        table="experiments"
+        ##schema = ""
 
+Experiment_Pydantic = pydantic_model_creator(Experiments, name="Experiment")
+ExperimentIn_Pydantic = pydantic_model_creator(Experiments, name="ExperimentsIn", exclude_readonly=True)        
+        
 class Limit_Display(models.Model):
     
     id = fields.IntField(pk=True)
@@ -51,7 +58,14 @@ class Limit_Display(models.Model):
     style = fields.CharField(max_length=255, unique=True)
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now_add=True)
+    
+    class Meta:
+        table="limit_display"
+        ##schema = ""
 
+Limit_Display_Pydantic = pydantic_model_creator(Limit_Display, name="Limit_Display")
+Limit_DisplayIn_Pydantic = pydantic_model_creator(Limit_Display, name="Limit_DisplayIn", exclude_readonly=True)      
+        
 class Limit_Ownership(models.Model):    
     
     id = fields.IntField(pk=True)
@@ -59,7 +73,15 @@ class Limit_Ownership(models.Model):
     limit_id = fields.IntField(pk=False)
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now_add=True)
+    
+    class Meta:
+        table="limit_ownership"
+        ##schema = ""
 
+Limit_Ownership_Pydantic = pydantic_model_creator(Limit_Ownership, name="Limit_Ownership")
+Limit_OwnershipIn_Pydantic = pydantic_model_creator(Limit_Ownership, name="Limit_OwnershipIn", exclude_readonly=True)      
+         
+        
 class Limits(models.Model):  
     
     id = fields.IntField(pk=True)
@@ -91,7 +113,14 @@ class Limits(models.Model):
     date_of_run_start = fields.DateField(auto_now_add=True)
     date_of_run_end = fields.DateField(auto_now_add=True)
     year = fields.IntField(pk=False)
+    
+    class Meta:
+        table="limits"
+        ##schema = ""
 
+Limits_Pydantic = pydantic_model_creator(Limits, name="Limits")
+LimitIn_Pydantic = pydantic_model_creator(Limits, name="LimitsIn", exclude_readonly=True)      
+        
 class Plot_Ownership(models.Model):      
     
     id = fields.IntField(pk=True)
@@ -99,7 +128,13 @@ class Plot_Ownership(models.Model):
     plot_id = fields.IntField(pk=False)
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now_add=True)
+    
+    class Meta:
+        table="plot_ownership"
+        ##schema = ""
 
+Plot_Ownership_Pydantic = pydantic_model_creator(Plot_Ownership, name="Plot_Ownership")
+Plot_OwnershipIn_Pydantic = pydantic_model_creator(Plot_Ownership, name="Plot_OwnershipIn", exclude_readonly=True)   
 
 class Plots(models.Model):      
     
@@ -120,3 +155,9 @@ class Plots(models.Model):
     legend_eps = fields.TextField()
     no_id = fields.IntField(pk=False)
 
+    class Meta:
+        table="plots"
+        ##schema = ""
+
+Plots_Pydantic = pydantic_model_creator(Plots, name="Plots")
+PlotsIn_Pydantic = pydantic_model_creator(Plots, name="PlotsIn", exclude_readonly=True)   
