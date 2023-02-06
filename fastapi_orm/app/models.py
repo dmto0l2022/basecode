@@ -118,8 +118,8 @@ class Limits(models.Model):
         table="limits"
         ##schema = ""
 
-Limits_Pydantic = pydantic_model_creator(Limits, name="Limits")
-LimitIn_Pydantic = pydantic_model_creator(Limits, name="LimitsIn", exclude_readonly=True)      
+Limit_Pydantic = pydantic_model_creator(Limits, name="Limit")
+LimitIn_Pydantic = pydantic_model_creator(Limits, name="LimitIn", exclude_readonly=True)      
         
 class Plot_Ownership(models.Model):      
     
@@ -159,5 +159,5 @@ class Plots(models.Model):
         table="plots"
         ##schema = ""
 
-Plots_Pydantic = pydantic_model_creator(Plots, name="Plots")
-PlotsIn_Pydantic = pydantic_model_creator(Plots, name="PlotsIn", exclude_readonly=True)   
+Plot_Pydantic = pydantic_model_creator(Plots, name="Plot")
+PlotIn_Pydantic = pydantic_model_creator(Plots, name="PlotIn", exclude_readonly=True)   
