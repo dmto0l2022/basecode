@@ -22,6 +22,7 @@ podman pod create \
 --publish 8002:8002 \
 --publish 8004:8004 \
 --publish 8006:8006 \
+--publish 8006:8008 \
 --publish 3306:3306 \
 --publish 6379:6379
 
@@ -102,6 +103,22 @@ podman run -dt \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/fastapi_1:latest
+
+####
+
+cd /opt/dmtools/code/basecode/fastapi_orm
+
+podman rmi fastapi_orm_1
+podman build -f Dockerfile -t fastapi_orm_1
+
+##-v /HOST-DIR:/CONTAINER-DIR
+
+podman run -dt \
+--name container_fastapi_orm_1 \
+--pod pod_main_backend \
+--user $uid:$gid \
+-v /opt/dmtools/code/basecode:/workdir \
+localhost/fastapi_orm_1:latest
 
 ####
 
