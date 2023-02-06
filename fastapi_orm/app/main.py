@@ -1,4 +1,16 @@
 # pylint: disable=E0611,E0401
+from dotenv import load_dotenv
+
+import secrets
+import string
+import random
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+print('BASE_DIR')
+print(BASE_DIR)
+
 from typing import List
 
 from fastapi import FastAPI, HTTPException
@@ -48,9 +60,21 @@ async def delete_user(user_id: int):
     return Status(message=f"Deleted user {user_id}")
 
 
+MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+MARIADB_DATABASE = environ.get("MARIADB_TEST")
+MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+
+MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
+                MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
+                + MARIADB_DATABASE
+
+print(MARIADB_URI)
+
+
 register_tortoise(
     app,
-    db_url="sqlite://:memory:",
+    db_url=MARIADB_URI,
     modules={"models": ["models"]},
     generate_schemas=True,
     add_exception_handlers=True,
