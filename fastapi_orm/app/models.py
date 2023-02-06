@@ -16,6 +16,10 @@ class Users(models.Model):
     created_at = fields.DatetimeField(auto_now_add=True)
     modified_at = fields.DatetimeField(auto_now=True)
 
+    class Meta:
+        table="users_tortoise"
+        ##schema = ""
+    
     def full_name(self) -> str:
         """
         Returns the best name
