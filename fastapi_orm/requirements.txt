@@ -1,0 +1,8 @@
+flask
+mariadb
+fastapi
+pydantic
+gunicorn
+uvicorn
+sqlalchemy
+python-dotenv
