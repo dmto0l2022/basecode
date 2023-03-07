@@ -39,6 +39,106 @@ app = FastAPI(title="Tortoise ORM FastAPI example")
 class Status(BaseModel):
     message: str
 
+#### plot #####
+
+@app.get("/apiorm/plot", response_model=List[Plot_Pydantic])
+async def get_plots():
+    return await Plot_Ownership_Pydantic.from_queryset(Limit.all())
+
+@app.post("/apiorm/plot", response_model=Plot_Pydantic)
+async def create_plot(#### plot ownership #####
+
+@app.get("/apiorm/plot_ownership", response_model=List[Plot_Ownership_Pydantic])
+async def get_limits():
+    return await Plot_Ownership_Pydantic.from_queryset(Limit.all())
+
+@app.post("/apiorm/plot_ownership", response_model=Plot_Ownership_Pydantic)
+async def create_plot_ownership(limit: Plot_OwnershipIn_Pydantic):
+    plot_ownership_obj = await Limit.create(**limit.dict(exclude_unset=True))
+    return await Plot_Ownership_Pydantic.from_tortoise_orm(limit_obj)
+
+@app.get(
+    "/apiorm/plot_ownership/{plot_ownership_id}", response_model=Plot_Ownership_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+)
+async def get_plot_ownership(limit_id: int):
+    return await Plot_Ownership_Pydantic.from_queryset_single(Limit.get(id=limit_id))
+
+@app.put(
+    "/apiorm/plot_ownership/{plot_ownership_id}", response_model=Plot_Ownership_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+)
+async def update_plot_ownership(plot_ownership_id: int, plot_ownership: Plot_OwnershipIn_Pydantic):
+    await Plot_Ownership.filter(id=plot_ownership_id).update(**Plot_Ownership.dict(exclude_unset=True))
+    return await Plot_Ownership_Pydantic.from_queryset_single(Plot_Ownership.get(id=plot_ownership_id))
+
+
+@app.delete("/apiorm/plot_ownership/{plot_ownership_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
+async def delete_limit(plot_ownership_id: int):
+    deleted_count = await Plot_Ownership.filter(id=plot_ownership_id).delete()
+    if not deleted_count:
+        raise HTTPException(status_code=404, detail=f"Plot Ownership {plot_ownership_id} not found")
+    return Status(message=f"Deleted Plot Ownership {plot_ownership_id}")        
+        
+        : Plot_OwnershipIn_Pydantic):
+    plot_obj = await Limit.create(**limit.dict(exclude_unset=True))
+    return await Plot_Ownership_Pydantic.from_tortoise_orm(limit_obj)
+
+@app.get(
+    "/apiorm/plot_ownership/{plot_ownership_id}", response_model=Plot_Ownership_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+)
+async def get_plot_ownership(limit_id: int):
+    return await Plot_Ownership_Pydantic.from_queryset_single(Limit.get(id=limit_id))
+
+@app.put(
+    "/apiorm/plot_ownership/{plot_ownership_id}", response_model=Plot_Ownership_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+)
+async def update_plot_ownership(plot_ownership_id: int, plot_ownership: Plot_OwnershipIn_Pydantic):
+    await Plot_Ownership.filter(id=plot_ownership_id).update(**Plot_Ownership.dict(exclude_unset=True))
+    return await Plot_Ownership_Pydantic.from_queryset_single(Plot_Ownership.get(id=plot_ownership_id))
+
+
+@app.delete("/apiorm/plot_ownership/{plot_ownership_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
+async def delete_limit(plot_ownership_id: int):
+    deleted_count = await Plot_Ownership.filter(id=plot_ownership_id).delete()
+    if not deleted_count:
+        raise HTTPException(status_code=404, detail=f"Plot Ownership {plot_ownership_id} not found")
+    return Status(message=f"Deleted Plot Ownership {plot_ownership_id}")        
+        
+                
+        
+        
+#### plot ownership #####
+
+@app.get("/apiorm/plot_ownership", response_model=List[Plot_Ownership_Pydantic])
+async def get_limits():
+    return await Plot_Ownership_Pydantic.from_queryset(Limit.all())
+
+@app.post("/apiorm/plot_ownership", response_model=Plot_Ownership_Pydantic)
+async def create_plot_ownership(limit: Plot_OwnershipIn_Pydantic):
+    plot_ownership_obj = await Limit.create(**limit.dict(exclude_unset=True))
+    return await Plot_Ownership_Pydantic.from_tortoise_orm(limit_obj)
+
+@app.get(
+    "/apiorm/plot_ownership/{plot_ownership_id}", response_model=Plot_Ownership_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+)
+async def get_plot_ownership(limit_id: int):
+    return await Plot_Ownership_Pydantic.from_queryset_single(Limit.get(id=limit_id))
+
+@app.put(
+    "/apiorm/plot_ownership/{plot_ownership_id}", response_model=Plot_Ownership_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+)
+async def update_plot_ownership(plot_ownership_id: int, plot_ownership: Plot_OwnershipIn_Pydantic):
+    await Plot_Ownership.filter(id=plot_ownership_id).update(**Plot_Ownership.dict(exclude_unset=True))
+    return await Plot_Ownership_Pydantic.from_queryset_single(Plot_Ownership.get(id=plot_ownership_id))
+
+
+@app.delete("/apiorm/plot_ownership/{plot_ownership_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
+async def delete_limit(plot_ownership_id: int):
+    deleted_count = await Plot_Ownership.filter(id=plot_ownership_id).delete()
+    if not deleted_count:
+        raise HTTPException(status_code=404, detail=f"Plot Ownership {plot_ownership_id} not found")
+    return Status(message=f"Deleted Plot Ownership {plot_ownership_id}")        
+        
+            
         
 #### limit #####
 
@@ -69,11 +169,10 @@ async def update_limit(limit_id: int, limit: LimitIn_Pydantic):
 async def delete_limit(limit_id: int):
     deleted_count = await Limit_Ownership.filter(id=limit_id).delete()
     if not deleted_count:
-        raise HTTPException(status_code=404, detail=f"Limit Ownership {limit_id} not found")
-    return Status(message=f"Deleted experiment {limit_id}")        
+        raise HTTPException(status_code=404, detail=f"Limit {limit_id} not found")
+    return Status(message=f"Deleted Limit {limit_id}")        
         
-    
-    
+   
         
 #### limit ownership #####
 
@@ -101,11 +200,11 @@ async def update_limit_ownership(limit_ownership_id: int, limit_ownership: Limit
 
 
 @app.delete("/apiorm/limit_ownership/{limit_ownership_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
-async def delete_limit_ownerships(limit_display_id: int):
+async def delete_limit_ownership(limit_display_id: int):
     deleted_count = await Limit_Ownership.filter(id=limit_display_id).delete()
     if not deleted_count:
-        raise HTTPException(status_code=404, detail=f"Limit Ownership {limit_display_id} not found")
-    return Status(message=f"Deleted experiment {limit_display_id}")        
+        raise HTTPException(status_code=404, detail=f"Limit Ownership {limit_ownership_id} not found")
+    return Status(message=f"Deleted Limit Ownership {limit_ownership_id}")        
         
 #### limit display #####
 
