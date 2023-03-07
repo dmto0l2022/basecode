@@ -44,7 +44,7 @@ async def get_plots():
 
 @app.post("/apiorm/plot", response_model=Plot_Pydantic)
 async def create_plot(plot: PlotIn_Pydantic):
-    plot_obj = await Plot.create(**plot.dict(exclude_unset=True))
+    plot_obj = await Plots.create(**plot.dict(exclude_unset=True))
     return await Plot_Pydantic.from_tortoise_orm(plot_obj)
 
 @app.get(
@@ -57,7 +57,7 @@ async def get_plot(plot_id: int):
     "/apiorm/plot/{plot_id}", response_model=Plot_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def update_plot(plot_id: int, plot: PlotIn_Pydantic):
-    await Plot.filter(id=plot_id).update(**Plot.dict(exclude_unset=True))
+    await Plots.filter(id=plot_id).update(**Plot.dict(exclude_unset=True))
     return await Plot_Pydantic.from_queryset_single(Plot.get(id=plot_id))
 
 @app.delete("/apiorm/plot/{plot_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
@@ -110,7 +110,7 @@ async def get_limits():
 
 @app.post("/apiorm/limit", response_model=Limit_Pydantic)
 async def create_limit_ownership(limit: LimitIn_Pydantic):
-    limit_obj = await Limit.create(**limit.dict(exclude_unset=True))
+    limit_obj = await Limits.create(**limit.dict(exclude_unset=True))
     return await Limit_Pydantic.from_tortoise_orm(limit_obj)
 
 @app.get(
@@ -123,7 +123,7 @@ async def get_limit(limit_id: int):
     "/apiorm/limit/{limit_id}", response_model=Limit_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def update_limit(limit_id: int, limit: LimitIn_Pydantic):
-    await Limit.filter(id=limit_id).update(**Limit.dict(exclude_unset=True))
+    await Limits.filter(id=limit_id).update(**Limit.dict(exclude_unset=True))
     return await Limit_Pydantic.from_queryset_single(Limit.get(id=limit_id))
 
 
