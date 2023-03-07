@@ -62,7 +62,7 @@ async def update_plot(plot_id: int, plot: PlotIn_Pydantic):
 
 @app.delete("/apiorm/plot/{plot_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
 async def delete_plot(plot_id: int):
-    deleted_count = await Plot.filter(id=plot_id).delete()
+    deleted_count = await Plots.filter(id=plot_id).delete()
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Plot {plot_id} not found")
     return Status(message=f"Deleted Plot {plot_id}")                   
