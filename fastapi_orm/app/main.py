@@ -106,10 +106,10 @@ async def delete_limit(plot_ownership_id: int):
 
 @app.get("/apiorm/limit", response_model=List[Limit_Pydantic])
 async def get_limits():
-    return await Limit_Pydantic.from_queryset(Limit.all())
+    return await Limit_Pydantic.from_queryset(Limits.all())
 
 @app.post("/apiorm/limit", response_model=Limit_Pydantic)
-async def create_limit_ownership(limit: LimitIn_Pydantic):
+async def create_limit(limit: LimitIn_Pydantic):
     limit_obj = await Limits.create(**limit.dict(exclude_unset=True))
     return await Limit_Pydantic.from_tortoise_orm(limit_obj)
 
@@ -117,19 +117,19 @@ async def create_limit_ownership(limit: LimitIn_Pydantic):
     "/apiorm/limit/{limit_id}", response_model=Limit_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def get_limit(limit_id: int):
-    return await Limit_Pydantic.from_queryset_single(Limit.get(id=limit_id))
+    return await Limit_Pydantic.from_queryset_single(Limits.get(id=limit_id))
 
 @app.put(
     "/apiorm/limit/{limit_id}", response_model=Limit_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def update_limit(limit_id: int, limit: LimitIn_Pydantic):
     await Limits.filter(id=limit_id).update(**limit.dict(exclude_unset=True))
-    return await Limit_Pydantic.from_queryset_single(Limit.get(id=limit_id))
+    return await Limit_Pydantic.from_queryset_single(Limits.get(id=limit_id))
 
 
 @app.delete("/apiorm/limit/{limit_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
 async def delete_limit(limit_id: int):
-    deleted_count = await Limit_Ownership.filter(id=limit_id).delete()
+    deleted_count = await Limits.filter(id=limit_id).delete()
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Limit {limit_id} not found")
     return Status(message=f"Deleted Limit {limit_id}")        
