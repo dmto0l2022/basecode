@@ -27,9 +27,6 @@ from models import Plot_Pydantic, PlotIn_Pydantic, Plots
 
 from models import User_Pydantic, UserIn_Pydantic, Users
 
-
-
-
 from pydantic import BaseModel
 
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
@@ -48,30 +45,30 @@ async def get_plots():
 @app.post("/apiorm/plot", response_model=Plot_Pydantic)
 async def create_plot(#### plot ownership #####
 
-@app.get("/apiorm/plot_ownership", response_model=List[Plot_Ownership_Pydantic])
+@app.get("/apiorm/plot", response_model=List[Plot_Ownership_Pydantic])
 async def get_limits():
     return await Plot_Ownership_Pydantic.from_queryset(Limit.all())
 
-@app.post("/apiorm/plot_ownership", response_model=Plot_Ownership_Pydantic)
+@app.post("/apiorm/plot", response_model=Plot_Ownership_Pydantic)
 async def create_plot_ownership(limit: Plot_OwnershipIn_Pydantic):
     plot_ownership_obj = await Limit.create(**limit.dict(exclude_unset=True))
     return await Plot_Ownership_Pydantic.from_tortoise_orm(limit_obj)
 
 @app.get(
-    "/apiorm/plot_ownership/{plot_ownership_id}", response_model=Plot_Ownership_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+    "/apiorm/plot/{plot_id}", response_model=Plot_Ownership_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
-async def get_plot_ownership(limit_id: int):
-    return await Plot_Ownership_Pydantic.from_queryset_single(Limit.get(id=limit_id))
+async def get_plot(plot_id: int):
+    return await Plot_Pydantic.from_queryset_single(Limit.get(id=limit_id))
 
 @app.put(
-    "/apiorm/plot_ownership/{plot_ownership_id}", response_model=Plot_Ownership_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+    "/apiorm/plot/{plot_id}", response_model=Plot_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
-async def update_plot_ownership(plot_ownership_id: int, plot_ownership: Plot_OwnershipIn_Pydantic):
-    await Plot_Ownership.filter(id=plot_ownership_id).update(**Plot_Ownership.dict(exclude_unset=True))
+async def update_plot_ownership(plot_id: int, plot_ownership: Plot_OwnershipIn_Pydantic):
+    await Plot.filter(id=plot_ownership_id).update(**Plot_Ownership.dict(exclude_unset=True))
     return await Plot_Ownership_Pydantic.from_queryset_single(Plot_Ownership.get(id=plot_ownership_id))
 
 
-@app.delete("/apiorm/plot_ownership/{plot_ownership_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
+@app.delete("/apiorm/plot/{plot_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
 async def delete_limit(plot_ownership_id: int):
     deleted_count = await Plot_Ownership.filter(id=plot_ownership_id).delete()
     if not deleted_count:
