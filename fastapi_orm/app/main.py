@@ -162,8 +162,8 @@ async def update_limit_ownership(limit_ownership_id: int, limit_ownership: Limit
 
 
 @app.delete("/apiorm/limit_ownership/{limit_ownership_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
-async def delete_limit_ownership(limit_display_id: int):
-    deleted_count = await Limit_Ownership.filter(id=limit_display_id).delete()
+async def delete_limit_ownership(limit_ownership_id: int):
+    deleted_count = await Limit_Ownership.filter(id=limit_ownership_id).delete()
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Limit Ownership {limit_ownership_id} not found")
     return Status(message=f"Deleted Limit Ownership {limit_ownership_id}")        
