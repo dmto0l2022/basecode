@@ -51,14 +51,14 @@ async def create_plot(plot: PlotIn_Pydantic):
     "/apiorm/plot/{plot_id}", response_model=Plot_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def get_plot(plot_id: int):
-    return await Plot_Pydantic.from_queryset_single(Plot.get(id=plot_id))
+    return await Plot_Pydantic.from_queryset_single(Plots.get(id=plot_id))
 
 @app.put(
     "/apiorm/plot/{plot_id}", response_model=Plot_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def update_plot(plot_id: int, plot: PlotIn_Pydantic):
-    await Plots.filter(id=plot_id).update(**Plot.dict(exclude_unset=True))
-    return await Plot_Pydantic.from_queryset_single(Plot.get(id=plot_id))
+    await Plots.filter(id=plot_id).update(**Plots.dict(exclude_unset=True))
+    return await Plot_Pydantic.from_queryset_single(Plots.get(id=plot_id))
 
 @app.delete("/apiorm/plot/{plot_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
 async def delete_plot(plot_id: int):
