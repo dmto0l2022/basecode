@@ -40,7 +40,7 @@ class Status(BaseModel):
 
 @app.get("/apiorm/plots", response_model=List[Plot_Pydantic])
 async def get_plots():
-    return await Plot_Pydantic.from_queryset(Plot.all())
+    return await Plot_Pydantic.from_queryset(Plots.all())
 
 @app.post("/apiorm/plot", response_model=Plot_Pydantic)
 async def create_plot(plot: PlotIn_Pydantic):
