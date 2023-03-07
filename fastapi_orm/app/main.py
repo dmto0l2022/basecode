@@ -198,7 +198,7 @@ async def delete_limit_display(limit_display_id: int):
     deleted_count = await Limit_Display.filter(id=limit_display_id).delete()
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Limit Display {limit_display_id} not found")
-    return Status(message=f"Deleted experiment {limit_display_id}")        
+    return Status(message=f"Deleted Limit Display {limit_display_id}")        
         
 #### experiments #####
 
@@ -215,7 +215,7 @@ async def create_experiment(experiment: ExperimentIn_Pydantic):
     "/apiorm/experiment/{experiment_id}", response_model=Experiment_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def get_experiment(experiment_id: int):
-    return await Experiment_Pydantic.from_queryset_single(Experiment.get(id=experiment_id))
+    return await Experiment_Pydantic.from_queryset_single(Experiments.get(id=experiment_id))
 
 @app.put(
     "/apiorm/experiment/{experiment_id}", response_model=Experiment_Pydantic, responses={404: {"model": HTTPNotFoundError}}
