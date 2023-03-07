@@ -85,10 +85,10 @@ Limit_OwnershipIn_Pydantic = pydantic_model_creator(Limit_Ownership, name="Limit
 class Limits(models.Model):  
     
     id = fields.IntField(pk=True)
-    spin_dependency = fields.CharField(max_length=255, unique=True)
-    result_type = fields.CharField(max_length=255, unique=True)
-    measurement_type = fields.CharField(max_length=60, unique=True)
-    nomhash = fields.CharField(max_length=255, unique=True)
+    spin_dependency = fields.CharField(max_length=255)
+    result_type = fields.CharField(max_length=255)
+    measurement_type = fields.CharField(max_length=60)
+    nomhash = fields.CharField(max_length=255)
     x_units = fields.CharField(max_length=255)
     y_units = fields.CharField(max_length=255)
     x_rescale = fields.CharField(max_length=255)
