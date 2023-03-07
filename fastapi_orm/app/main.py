@@ -190,10 +190,10 @@ async def get_limit_display(limit_display_id: int):
 )
 async def update_limit_display(limit_display_id: int, limit_display: Limit_DisplayIn_Pydantic):
     await Limit_Display.filter(id=limit_display_id).update(**limit_display.dict(exclude_unset=True))
-    return await Limit_Display_Pydantic.from_queryset_single(Limit_Display.get(id=experiment_id))
+    return await Limit_Display_Pydantic.from_queryset_single(Limit_Display.get(id=limit_display_id))
 
 
-@app.delete("/apiorm/limit_display/{experiment_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
+@app.delete("/apiorm/limit_display/{limit_display_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
 async def delete_limit_display(limit_display_id: int):
     deleted_count = await Limit_Display.filter(id=limit_display_id).delete()
     if not deleted_count:
