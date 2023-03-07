@@ -40,6 +40,38 @@ app = FastAPI(title="Tortoise ORM FastAPI example")
 class Status(BaseModel):
     message: str
 
+#### experiments #####
+
+@app.get("/apiorm/experiments", response_model=List[Experiment_Pydantic])
+async def get_experiments():
+    return await Experiment_Pydantic.from_queryset(Experiments.all())
+
+@app.post("/apiorm/experiments", response_model=Experiment_Pydantic)
+async def create_user(experiment: ExperimentIn_Pydantic):
+    experiment_obj = await Experiments.create(**experiment.dict(exclude_unset=True))
+    return await Experiment_Pydantic.from_tortoise_orm(experiment_obj)
+
+@app.get(
+    "/apiorm/experiment/{experiment_id}", response_model=Experiment_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+)
+async def get_experiment(experiment_id: int):
+    return await Experiment_Pydantic.from_queryset_single(Experiment.get(id=experiment_id))
+
+@app.put(
+    "/apiorm/experiment/{experiment_id}", response_model=Experiment_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+)
+async def update_experiment(experiment_id: int, user: ExperimentIn_Pydantic):
+    await Experiments.filter(id=experiment_id).update(**experiment.dict(exclude_unset=True))
+    return await Experiment_Pydantic.from_queryset_single(Experiments.get(id=experiment_id))
+
+
+@app.delete("/apiorm/experiment/{experiment_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
+async def delete_experiment(experiment_id: int):
+    deleted_count = await Experiments.filter(id=experiment_id).delete()
+    if not deleted_count:
+        raise HTTPException(status_code=404, detail=f"Experiment {experiment_id} not found")
+    return Status(message=f"Deleted experiment {experiment_id}")
+
 #### users #####
 
 @app.get("/apiorm/users", response_model=List[User_Pydantic])
