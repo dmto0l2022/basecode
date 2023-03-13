@@ -31,7 +31,7 @@ def public_route(function):
 '''
 
 @dashapp1_bp.route('/app/dashapp0')
-def dashapp1():
+def dashapp0():
     return redirect('/app/wsgi_app0', code=302)
 
 @dashapp1_bp.route('/app/dashapp1')
