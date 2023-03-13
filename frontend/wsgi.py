@@ -48,6 +48,7 @@ from werkzeug.debug import DebuggedApplication
 
 from werkzeug.utils import redirect
 
+from app.dashapps.crud_table import app as app0
 from app.dashapps.interactive_table import app as app1
 from app.dashapps.basic_table import app as app2
 from app.dashapps.session_app import app as app3
@@ -408,6 +409,7 @@ class SSLRedirect(object):
 '''
 
 application = DispatcherMiddleware(app, {
+    '/app/wsgi_app0': app0.server,  
     '/app/wsgi_app1': app1.server,
     '/app/wsgi_app2': app2.server,
     '/app/session_app': app3.server,
