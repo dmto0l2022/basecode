@@ -1,7 +1,7 @@
 from dash import Dash, html, dcc
 import dash
 
-app = Dash(__name__, use_pages=True,requests_pathname_prefix='/multipage/')
+app = Dash(__name__, use_pages=True, serve_locally = False, requests_pathname_prefix='/multipage/')
 
 app.layout = html.Div([
 	html.H1('Multi-page app with Dash Pages'),
