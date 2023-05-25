@@ -1,7 +1,8 @@
 from dash import Dash, html, dcc
 import dash
 
-app = Dash(__name__, use_pages=True,requests_pathname_prefix='/app/multipage/')
+#app = Dash(__name__, use_pages=True,requests_pathname_prefix='/app/multipage/')
+app = Dash(__name__, use_pages=True,requests_pathname_prefix='/')
 
 server = app.server
 
