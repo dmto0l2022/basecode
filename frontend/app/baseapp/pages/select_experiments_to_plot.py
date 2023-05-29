@@ -24,7 +24,7 @@ from itertools import cycle
 # colors
 palette = cycle(px.colors.qualitative.Bold)
 
-from app.baseapp.libraries.dashboard_libraries import all_data_tables as adt
+from app.baseapp.dashboard_libraries import all_data_tables as adt
 
 #from dashboard_libraries import all_data_tables as adt
 dashdataandtables = adt.DashDataAndTables()
