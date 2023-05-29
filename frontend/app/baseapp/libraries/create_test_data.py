@@ -182,7 +182,7 @@ limits_metadata_empty = pd.DataFrame(data=[],
 limits_metadata_df = limits_metadata_empty.copy()
 
 # insert updated records from 'records_updated' to 'records'
-engine.execute("delete from data.limits_data;")
+# engine.execute("delete from data.limits_data;")
 engine.execute("delete from data.limits_metadata;")
 engine.execute("delete from data.meta_valuepair;")
 
