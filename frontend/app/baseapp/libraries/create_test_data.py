@@ -23,7 +23,10 @@ MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
 MARIADB_DATABASE = "data"
 MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
 
-MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" +                     MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"                    + MARIADB_DATABASE
+MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" +
+                                              MARIADB_PASSWORD + "@" + 
+                                              MARIADB_CONTAINER + ":3306/" + 
+                                              MARIADB_DATABASE
 
 #import psycopg2
 engine = create_engine(MARIADB_URI)
@@ -138,7 +141,8 @@ with engine.begin() as connection:
     dmt = lxy.DMTool()
     dmdf = dmt.dmtdf
     #dmdf.index.names = ['limit_id']
-    dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)df_data = [1,'', 'Personal', '', '', 'GeV', 'cm^2', '1', '1', 'Black', 'Line',
+    dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
+    df_data = [1,'', 'Personal', '', '', 'GeV', 'cm^2', '1', '1', 'Black', 'Line',
            '', '', '', '', '', '', '', '', 0, '', 0, 0, '', 0, '', '', '']
 
 limits_metadata_empty = pd.DataFrame(data=[],
@@ -180,6 +184,7 @@ limits_metadata_df = limits_metadata_empty.copy()
 engine.execute("delete from data.limits_data;")
 engine.execute("delete from data.limits_metadata;")
 engine.execute("delete from data.meta_valuepair;")
+
 # # Experiment dmtool
 
 dmt.MakeDMTool(1000,1)
@@ -225,6 +230,7 @@ dmdf = dmt.ddf
 dmdf['limit_id'] = 10
 dmdf['trace_id'] = 1
 dmdf['trace_name'] = 'd'
+
 #limits_metadata_df
 index_id = 3
 limits_metadata_df.loc[index_id,'limit_id'] = 1000
@@ -256,6 +262,7 @@ with engine.begin() as connection:
     dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
     limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index=False)
     meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index=False)
+
 limits_metadata_df = limits_metadata_empty.copy()
 
 
@@ -473,7 +480,8 @@ def GetLimits(meta_valuepair_in, thisdict_in):
     meta_valuepair_working = meta_valuepair_in.copy()
     for key in thisdict_in:
         print(key, '->', thisdict_in[key])
-        limits_found =                     meta_valuepair_working['limit_id']                    [(meta_valuepair_working['value']==thisdict_in[key]) &                       (meta_valuepair_working['variable']==key)]
+        limits_found = 
+        meta_valuepair_working['limit_id'][(meta_valuepair_working['value']==thisdict_in[key]) & (meta_valuepair_working['variable']==key)]
         print(list(limits_found))
         limits_found_list = list(limits_found)
         df_filter = meta_valuepair_working["limit_id"].isin(limits_found_list)
@@ -543,18 +551,5 @@ for i in trace_letters:
                          fill="toself"
                         ))
             
-#fig.show()
-
-import sys
-from io import StringIO
-
-TESTDATA = StringIO("""col1;col2;col3
-    1;4.4;99
-    2;4.5;200
-    3;4.7;65
-    4;3.2;140
-    """)
-
-#df = pd.read_csv(TESTDATA, sep=";")
 
 
