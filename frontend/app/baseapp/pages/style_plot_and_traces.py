@@ -82,7 +82,8 @@ default_styledatatable = ft.CreateFormatTable(default_traces)
 plotseries_default = CreatePlotSeries([1000])
 plotseries_default.head(5)
 
-from dashboard_libraries import createlegend as cl
+from app.baseapp.dashboard_libraries import createlegend as cl
+
 default_limit = [1000]
 default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
                                                     .isin(default_limit)].copy()
