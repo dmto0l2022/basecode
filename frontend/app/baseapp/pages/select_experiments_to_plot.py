@@ -1,8 +1,5 @@
 import dash
-from dash import html, dcc, callback, Output, Input
-import dash_bootstrap_components as dbc
 
-import dash
 from dash import dcc
 from dash import html
 from dash import callback
@@ -15,7 +12,7 @@ from plotly.subplots import make_subplots
 
 from dash import Dash, Input, Output, callback, State
 
-from jupyter_dash import JupyterDash
+#from jupyter_dash import JupyterDash
 
 import dash_bootstrap_components as dbc
 
