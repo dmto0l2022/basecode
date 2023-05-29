@@ -122,7 +122,7 @@ class DashDataAndTables():
         self.limits_df = pd.read_sql_query(limits_sql, self.engine)
         self.limits_df['rowid'] = self.limits_df.index
 
-        self.limits_table_df = self.limits_df[['rowid','id','spin_dependency',
+        self.limits_table_df = self.limits_df[['rowid','limit_id','spin_dependency',
                                      'experiment','official','greatest_hit','data_label',
                                      'result_type','data_reference','year']].copy()
 
@@ -152,10 +152,10 @@ class DashDataAndTables():
 
         #####
 
-        limits_data_sql = '''SELECT id, limit_id, trace_id, trace_name, x, y FROM `data`.limits_data;;'''
+        #limits_data_sql = '''SELECT id, limit_id, trace_id, trace_name, x, y FROM `data`.limits_data;;'''
 
-        self.limits_data_df = pd.read_sql_query(limits_data_sql, self.engine)
-        self.limits_data_df['rowid'] = self.limits_data_df.index
+        #self.limits_data_df = pd.read_sql_query(limits_data_sql, self.engine)
+        #self.limits_data_df['rowid'] = self.limits_data_df.index
 
         #####
 
