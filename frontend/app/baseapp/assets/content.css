@@ -1,0 +1,126 @@
+:root {
+  --header_height: 5vh;
+  --footer_height: 5vh;
+  --sidebar_width: 5vw;
+  --adbar_width: 5vw;
+  --content_width: 90vw;
+  --content_height: 90vh;
+}
+
+.center {
+  text-align: center;
+  color: red;
+  font-size:50px;
+}
+
+.COLUMN_DIV {
+    height:100%;
+    background-color:orange;
+    border:2px solid black;
+    color: purple}
+
+
+
+.TOP_CHART_ROW {
+    width:100%;
+    height:70%;
+    }
+
+.BOTTOM_CHART_ROW {
+    width:100%;
+    height:30%
+    }
+
+.BOTTOM_TABLE_ROW {
+    width:100%;
+    height:30%;
+}
+
+.NOPADDING_CONTENT {
+    padding: 0 !important;
+    padding-left: 0;
+    padding-right:0;
+    margin-left:0;
+    margin-right: 0;
+    border:1px solid black
+    }
+
+.GRAPH {
+    display: block;
+    height: 100%;
+    width: 100%;
+    }
+
+.TABLE_ROW {
+    width:100%;
+    height:50%;
+}
+
+.heading1 {
+  background-color: tomato;
+  color: white;
+  border: 2px solid black;
+  margin: 20px;
+  padding: 20px;
+} 
+
+
+.NOPADDING   {
+             padding: 0 !important;
+             padding-left: 0;
+             padding-right:0;
+             margin-left:0;
+             margin-right: 0;
+             ##border:1px solid black
+             }
+
+.MASTER_CONTAINER_STYLE {height:100vh;
+                          width:100vw;
+                          background-color:pink}
+
+
+.DASHBOARD_CONTAINER_STYLE   {
+                          height:90vh;
+                          width:90vw;
+                          background-color:PaleGreen;
+                          border:1px solid black;
+                          }
+
+.FULL_DIV {
+            height:100%;
+            width: 100%;
+            background-color:black;
+            border:1px solid black;
+            color: purple;
+            }
+
+.SIDE_COLUMN {width:10%;height:100%;}
+
+
+.HALF_COLUMN {width:50%;height:100%;background-color:green;}
+
+.QUARTER_COLUMN {width:25%;height:100%;background-color:green;}
+
+.FULL_HEIGHT_ROW {width:100%;height:100%;}
+
+.SIDEBAR_DIV {height:100%; background-color:black; border:1px solid black;  color: purple;}
+
+.CHART_DIV {width:100%;height:100%;
+           background-color:green; border:1px solid black;  color: purple;}
+
+
+.TABLE_DIV {height:100%;
+           background-color:green; border:2px solid green;  color: green;
+           selector: .Select-menu-outer; rule: display: block !important;}
+
+.ALL_ROW {width:100%;height:90%;}
+
+.CONTENT_ROW {width:100%;height:90%;}
+
+.HEADER_ROW {width:100%;height:5%;}
+
+.FOOTER_ROW {width:100%;height:5%;}
+
+.CHART_ROW {width:100%;height:100%;}
+.LEGEND_ROW {width:100%;height:50%;}
+.STYLE_ROW {width:100%;height:50%;}

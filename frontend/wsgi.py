@@ -53,7 +53,7 @@ from app.dashapps.interactive_table import app as app1
 from app.dashapps.basic_table import app as app2
 from app.dashapps.session_app import app as app3
 
-from app.dashpages.app import app as app4
+from app.baseapp.app import app as app4
 
 import redis
 '''
@@ -413,7 +413,7 @@ application = DispatcherMiddleware(app, {
     '/app/wsgi_app1': app1.server,
     '/app/wsgi_app2': app2.server,
     '/app/session_app': app3.server,
-    '/app/multipage': app4.server,
+    '/app/baseapp': app4.server,
 })  
 
 application = Middleware(application)
