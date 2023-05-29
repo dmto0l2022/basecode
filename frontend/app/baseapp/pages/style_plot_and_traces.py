@@ -38,7 +38,7 @@ from itertools import cycle
 from app.baseapp.dashboard_libraries import all_data_tables as adt
 dashdataandtables = adt.DashDataAndTables()
 
-from dashboard_libraries import scaling as sc
+from app.baseapp.dashboard_libraries import scaling as sc
 #sf = sc.get_scale_factor('ub')
 #sf
 
@@ -71,7 +71,7 @@ default_results = [1000]
 plotseries = CreatePlotSeries(default_results)
 #plotseries
 
-from dashboard_libraries import formattingtable as ft
+from app.baseapp.dashboard_libraries import formattingtable as ft
 
 default_limit = [1000]
 default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
@@ -91,11 +91,11 @@ default_legend_fig = cl.CreateLegendFig(default_limit,dashdataandtables.limits_t
 default_legend_out_graph = dcc.Graph(figure=default_legend_fig,id='legend_out_id',
                              style={'width': '100%', 'height': '100%'})
 
-from dashboard_libraries import updatelegend as ul
-from dashboard_libraries import getstyleandlegend as gsal
+from app.baseapp.dashboard_libraries import updatelegend as ul
+from app.baseapp.dashboard_libraries import getstyleandlegend as gsal
 default_styleandlegendcolumn = gsal.GetStyleAndLegendColumn(default_styledatatable,default_legend_out_graph)
 
-from dashboard_libraries import creategraph as cg
+from app.baseapp.dashboard_libraries import creategraph as cg
 
 rowofbuttons = html.Div([
     html.Button('Save', id='btn-nclicks-1', n_clicks=0),
@@ -108,7 +108,7 @@ default_limit = [1000]
 default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id'].isin(default_limit)].copy()
 default_graph_fig = cg.CreateGraph(default_limit,dashdataandtables.limits_traces_df,dashdataandtables.limits_data_df)
 
-from dashboard_libraries import updategraph as ug
+from app.baseapp.dashboard_libraries import updategraph as ug
 
 default_graph_out = dcc.Graph(figure=default_graph_fig,id='graph_out_id',
                             config=dict(responsive=True),
