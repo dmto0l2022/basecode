@@ -33,7 +33,9 @@ from itertools import cycle
 
 # import formlibrary as fl
 
-from dashboard_libraries import all_data_tables as adt
+#from app.baseapp.libraries import formlibrary as fl
+
+from app.baseapp.dashboard_libraries import all_data_tables as adt
 dashdataandtables = adt.DashDataAndTables()
 
 from dashboard_libraries import scaling as sc
