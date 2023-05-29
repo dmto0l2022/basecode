@@ -30,8 +30,8 @@ from app.baseapp.dashboard_libraries import all_data_tables as adt
 dashdataandtables = adt.DashDataAndTables()
 
 dashdataandtables.limits_table_df.set_index('limit_id', inplace=True, drop=False)
-dashdataandtables.limits_table_df['expid'] = dashdataandtables.limits_table_df['id'] 
-dashdataandtables.limits_table_df
+dashdataandtables.limits_table_df['expid'] = dashdataandtables.limits_table_df['limit_id'] 
+#dashdataandtables.limits_table_df
 
 #####
 
