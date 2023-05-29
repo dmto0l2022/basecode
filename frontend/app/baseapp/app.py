@@ -29,7 +29,9 @@ CONTENT_STYLES = "/assets/content.css"
 COMPONENT_STYLE = "/assets/forms.css"
 external_stylesheets=[dbc.themes.BOOTSTRAP, COMPONENT_STYLE, PAGES_STYLE, CONTENT_STYLES]
 
-import libraries.formlibrary as fl
+# import libraries.formlibrary as fl
+
+from app.baseapp.libraries import formlibrary as fl
 
 #app = JupyterDash(__name__,
 #                  ##requests_pathname_prefix= "/",
