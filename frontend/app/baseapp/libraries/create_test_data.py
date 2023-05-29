@@ -23,10 +23,7 @@ MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
 MARIADB_DATABASE = "data"
 MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
 
-MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" +
-                                              MARIADB_PASSWORD + "@" + 
-                                              MARIADB_CONTAINER + ":3306/" + 
-                                              MARIADB_DATABASE
+MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/" + MARIADB_DATABASE
 
 #import psycopg2
 engine = create_engine(MARIADB_URI)
