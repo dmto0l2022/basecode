@@ -12,7 +12,7 @@ from plotly.subplots import make_subplots
 
 #from dash import Dash, Input, Output, callback
 
-from jupyter_dash import JupyterDash
+#from jupyter_dash import JupyterDash
 
 import dash_bootstrap_components as dbc
 
@@ -66,5 +66,5 @@ app.layout = html.Div([
 ])
 
 ## locally
-if __name__ == '__main__':
-    app.run_server(debug=True)
+#if __name__ == '__main__':
+#    app.run_server(debug=True)
