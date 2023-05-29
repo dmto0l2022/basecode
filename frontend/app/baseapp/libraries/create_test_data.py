@@ -183,8 +183,8 @@ limits_metadata_df = limits_metadata_empty.copy()
 
 # insert updated records from 'records_updated' to 'records'
 # engine.execute("delete from data.limits_data;")
-engine.execute("delete from data.limits_metadata;")
-engine.execute("delete from data.meta_valuepair;")
+#engine.execute("delete from data.limits_metadata;")
+#engine.execute("delete from data.meta_valuepair;")
 
 # # Experiment dmtool
 
@@ -218,9 +218,9 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
-    dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index=False)
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index=False)
+    dmdf.to_sql('limits_data', con=connection, if_exists='replace', index=False)
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='replace', index=False)
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='replace', index=False)
 
 limits_metadata_df = limits_metadata_empty.copy()
 
