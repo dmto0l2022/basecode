@@ -126,9 +126,9 @@ for s in selected_years_list:
     append_this = pd.DataFrame(['year', s],columns=['variable','value'])
     #print(append_this)
     filter_df = pd.concat([filter_df, append_this])
-    '''
+    
 
-'''
+
 with engine.begin() as connection:
     df1 = pd.DataFrame({'name' : ['User 4', 'User 5']})
     df1.to_sql('users', con=connection, if_exists='append')
@@ -137,7 +137,7 @@ with engine.begin() as connection:
 import letterxy as lxy
 
 dmt = lxy.DMTool()
-
+'''
 with engine.begin() as connection:
     dmt = lxy.DMTool()
     dmdf = dmt.dmtdf
@@ -145,7 +145,7 @@ with engine.begin() as connection:
     dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
     df_data = [1,'', 'Personal', '', '', 'GeV', 'cm^2', '1', '1', 'Black', 'Line',
            '', '', '', '', '', '', '', '', 0, '', 0, 0, '', 0, '', '', '']
-
+'''
 limits_metadata_empty = pd.DataFrame(data=[],
                                   columns= ['limit_id',
                                             'spin_dependency',
