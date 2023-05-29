@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 load_dotenv(".env")
 
 import mariadb
+import pymysql
 
 MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
 MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
