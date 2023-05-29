@@ -128,7 +128,7 @@ class DashDataAndTables():
 
         self.limits_table_df['expid'] = self.limits_table_df['rowid']
 
-        limits_metadata_sql = '''SELECT id, spin_dependency, result_type, measurement_type,
+        limits_metadata_sql = '''SELECT limit_id, spin_dependency, result_type, measurement_type,
                                 nomhash, x_units, y_units, x_rescale, y_rescale, default_color,
                                 default_style, data_label, file_name, data_comment, data_reference,
                                 created_at, updated_at, creator_id, experiment, rating,
