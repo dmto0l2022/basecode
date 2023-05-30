@@ -44,7 +44,12 @@ df = pd.DataFrame({
 
 print(df)
 
-df.to_sql('dropdown_valuepairs', con=engine, schema='data', if_exists='replace')
+with engine.begin() as connection:
+    df.to_sql('dropdown_valuepairs', con=connection,schema='data', if_exists='append')
+
+engine.commit()
+
+#df.to_sql('dropdown_valuepairs', con=engine, schema='data', if_exists='replace')
 
 ## Years
 
