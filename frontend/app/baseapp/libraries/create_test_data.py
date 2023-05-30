@@ -445,6 +445,25 @@ with engine.begin() as connection:
 
 limits_metadata_df = limits_metadata_empty.copy()
 
+## reset all table indexes
+
+with engine.connect() as con:
+
+    con.execute('alter table data.limits_data drop id')
+    con.execute('ALTER TABLE data.limits_data MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')
+    #con.execute('alter table data.limits_data add id serial primary key') 
+    
+    con.execute('alter table data.limits_metadata drop id')
+    #con.execute('alter table data.limits_metadata add id serial primary key') 
+    con.execute('ALTER TABLE data.limits_metadata MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')
+    
+    con.execute('alter table data.meta_valuepair drop id')
+    #con.execute('alter table data.meta_valuepair add id serial primary key') 
+    con.execute('ALTER TABLE data.meta_valuepair MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')
+    
+    
+   
+
 
 
 
