@@ -45,7 +45,7 @@ df = pd.DataFrame({
 print(df)
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='replace', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='replace')
     
     
 #df.to_sql('dropdown_valuepairs', con=engine, schema='data', if_exists='replace')
@@ -61,7 +61,7 @@ for l in range_values:
 df = pd.DataFrame(data=dropdown_values, columns=['variable','label','value','data_type'])
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append')
 
 ## Result Type
 
@@ -72,7 +72,7 @@ df = pd.DataFrame({
     'data_type' : ['text', 'text','text']})
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append')
     
 ## Spin Dependence
 
@@ -84,7 +84,7 @@ df = pd.DataFrame({
 })
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append')
 
 ## Greatest Hits
 
@@ -96,7 +96,7 @@ df = pd.DataFrame({
 })
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append')
 
 ## Experiments
 
@@ -110,7 +110,7 @@ df = pd.DataFrame({
 })
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append')
 
 
 #all_dropdown_pairs = pd.read_sql('SELECT variable,label, value FROM dropdown_valuepairs', con=engine)
@@ -236,9 +236,9 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
-    dmdf.to_sql('limits_data', con=connection, if_exists='replace', index=False)
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='replace', index=False)
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='replace', index=False)
+    dmdf.to_sql('limits_data', con=connection, if_exists='replace')
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='replace')
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='replace')
 
 limits_metadata_df = limits_metadata_empty.copy()
 
@@ -278,9 +278,9 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
-    dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index=False)
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index=False)
+    dmdf.to_sql('limits_data', con=connection, if_exists='append')
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append')
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append')
 
 limits_metadata_df = limits_metadata_empty.copy()
 
@@ -319,9 +319,9 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
-    dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index=False)
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index=False)
+    dmdf.to_sql('limits_data', con=connection, if_exists='append')
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append')
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append')
 limits_metadata_df = limits_metadata_empty.copy()
 
 
@@ -360,8 +360,8 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
     dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index=False)
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index=False)
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append')
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append')
 limits_metadata_df = limits_metadata_empty.copy()
 
 # # Experiment O
@@ -399,8 +399,8 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
     dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index=False)
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index=False)
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append')
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append')
 
 limits_metadata_df = limits_metadata_empty.copy()
 
@@ -440,8 +440,8 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
     dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index=False)
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index=False)
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append')
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append')
 
 limits_metadata_df = limits_metadata_empty.copy()
 
