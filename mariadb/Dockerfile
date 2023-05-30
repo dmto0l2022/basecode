@@ -19,9 +19,11 @@ ARG USER_GROUPNAME=${ENV_GROUPNAME}
 
 # Create the user
 RUN echo groupadd --gid ${ENV_GID} ${ENV_GROUPNAME}
-RUN groupadd --gid ${ENV_GID} ${ENV_GROUPNAME}
+#RUN groupadd --gid ${ENV_GID} ${ENV_GROUPNAME}
+RUN groupadd --gid $ENV_GID $ENV_GROUPNAME
 RUN echo useradd --uid ${ENV_UID} --gid ${ENV_GID} -m ${ENV_USERNAME}
-RUN useradd --uid ${ENV_UID} --gid ${ENV_GID} -m ${ENV_USERNAME}
+#RUN useradd --uid ${ENV_UID} --gid ${ENV_GID} -m ${ENV_USERNAME}
+RUN useradd --uid $ENV_UID --gid $ENV_GID -m $ENV_USERNAME
 
    
 
