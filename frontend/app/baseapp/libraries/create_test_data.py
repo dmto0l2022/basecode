@@ -42,6 +42,8 @@ df = pd.DataFrame({
     'data_type' : ['number', 'number'],
     })
 
+print(df)
+
 df.to_sql('dropdown_valuepairs', con=engine, if_exists='replace')
 
 ## Years
