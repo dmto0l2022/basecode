@@ -2,7 +2,9 @@
 
 podman run -it --userns=keep-id registry.access.redhat.com/rhel7/rhel /bin/bash
 
-# keepy groups
+# keep groups
+
+unclear if this is needed
 
 podman run --privileged --userns=keep-id --group-add keep-groups 
 --net=host --cgroups=disabled
