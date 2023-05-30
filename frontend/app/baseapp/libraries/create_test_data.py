@@ -31,6 +31,8 @@ MARIADB_URI = "mariadb+pymysql://" + MARIADB_USERNAME + ":" + MARIADB_PASSWORD +
 #import psycopg2
 engine = create_engine(MARIADB_URI)
 
+print('##################### creating test data #####################')
+
 ## Limit Types
 
 df = pd.DataFrame({
