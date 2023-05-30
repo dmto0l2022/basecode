@@ -1,2 +1,2 @@
-podman stop container_flask_dash_frontend_1
-podman start container_flask_dash_frontend_1
+podman stop container_frontend_1
+podman start container_frontend_1
