@@ -1,8 +1,12 @@
 podman pod stop pod_main_backend
 podman pod rm pod_main_backend
 
-uid=${ENV_UID} ##1001
-gid=${ENV_GID} ##1002
+#uid=${ENV_UID} ##1001
+#gid=${ENV_GID} ##1002
+uid=1001
+gid=1002
+env_username=${ENV_USERNAME}
+env_groupname=${ENV_GROUPNAME}
 
 subuidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.UIDMap }}+{{.Size }}{{end }}" ) - 1 ))
@@ -19,6 +23,8 @@ podman pod create \
 --gidmap 0:1:$gid \
 --gidmap $gid:0:1 \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
+--uidmap=1001:$(id -u $env_username):1 \
+--gidmap=1002:$(id -g $env_groupname):1 \
 --publish 8002:8002 \
 --publish 8004:8004 \
 --publish 8006:8006 \
