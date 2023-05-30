@@ -45,7 +45,7 @@ from app.baseapp.libraries import create_test_data
 #app = Dash(__name__, use_pages=True,requests_pathname_prefix='/app/multipage/')
 app = Dash(__name__,
             use_pages=True,
-            requests_pathname_prefix='/',
+            requests_pathname_prefix='/app/baseapp/',
             external_stylesheets=external_stylesheets,
             meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}],
             suppress_callback_exceptions=True)
