@@ -175,7 +175,6 @@ style_plot_and_traces_form_form = html.Div(
     className = "NOPADDING_CONTENT CENTRE_FORM"
 )
 
-'''
 #layout = style_plot_and_traces_form_form
 
 twocolumns =  html.Div(className="row g-0 ALL_ROW NOPADDING",children=[
@@ -188,10 +187,11 @@ twocolumns =  html.Div(className="row g-0 ALL_ROW NOPADDING",children=[
 layout2 = html.Div([twocolumns],
                    className="container-fluid DASHBOARD_CONTAINER_STYLE",
                   )
-'''
 
-layout = style_plot_and_traces_form_form
-'''
+
+#layout = style_plot_and_traces_form_form
+layout = layout2
+
 @callback(
     [Output("graph_out_id","figure"),Output("legend_out_id","figure"),],
     [Input('format_table_id', 'data')],
@@ -199,10 +199,8 @@ layout = style_plot_and_traces_form_form
 def update_output(table_data, table_data_in):
     fig_out = ug.UpdateGraph(dashdataandtables, table_data_in)
     legend_out = ul.UpdateLegendFig(table_data_in)
-
     
     return fig_out, legend_out
-'''
 
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
