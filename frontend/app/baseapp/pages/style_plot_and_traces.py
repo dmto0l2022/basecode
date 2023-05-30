@@ -176,7 +176,7 @@ style_plot_and_traces_form_form = html.Div(
     className = "NOPADDING_CONTENT CENTRE_FORM"
 )
 
-
+'''
 #layout = style_plot_and_traces_form_form
 
 twocolumns =  html.Div(className="row g-0 ALL_ROW NOPADDING",children=[
@@ -189,6 +189,7 @@ twocolumns =  html.Div(className="row g-0 ALL_ROW NOPADDING",children=[
 layout2 = html.Div([twocolumns],
                    className="container-fluid DASHBOARD_CONTAINER_STYLE",
                   )
+'''
 
 layout = style_plot_and_traces_form_form
 '''
