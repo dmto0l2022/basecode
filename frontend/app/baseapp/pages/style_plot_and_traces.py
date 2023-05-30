@@ -107,6 +107,8 @@ rowofbuttons = html.Div([
 
 default_limit = [1000]
 default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id'].isin(default_limit)].copy()
+
+'''
 default_graph_fig = cg.CreateGraph(default_limit,dashdataandtables.limits_traces_df,dashdataandtables.limits_data_df)
 
 from app.baseapp.dashboard_libraries import updategraph as ug
@@ -218,3 +220,4 @@ def button_click(button1,button2):
     else:
         href_return = dash.page_registry['pages.home']['path']
         return href_return
+'''
