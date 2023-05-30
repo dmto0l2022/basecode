@@ -63,7 +63,8 @@ podman run -dt \
 --pod pod_main_backend \
 --volume /opt/dmtools/redis-data:/data \
 --user $uid:$gid \
-localhost/redis_1:latest
+#localhost/redis_1:latest
+dmtools.het.brown.edu/redis_1:latest
 
 cd /opt/dmtools/code/basecode/mariadb
 podman rmi mariadb_1
@@ -86,7 +87,8 @@ podman run -dt \
 --pod pod_main_backend \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
 --user $uid:$gid \
-localhost/mariadb_1:latest
+#localhost/mariadb_1:latest
+dmtools.het.brown.edu/mariadb_1:latest
 
 #####
 
@@ -104,7 +106,7 @@ podman run -dt \
 --pod pod_main_backend \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
-localhost/api_1:latest
+dmtools.het.brown.edu/api_1:latest
 
 ###
 
@@ -120,7 +122,7 @@ podman run -dt \
 --pod pod_main_backend \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
-localhost/fastapi_1:latest
+dmtools.het.brown.edu/fastapi_1:latest
 
 ####
 
@@ -136,7 +138,7 @@ podman run -dt \
 --pod pod_main_backend \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
-localhost/fastapi_orm_1:latest
+dmtools.het.brown.edu/fastapi_orm_1:latest
 
 ####
 
@@ -153,7 +155,7 @@ podman run -dt \
 --pod pod_main_backend \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
-localhost/frontend_1:latest
+dmtools.het.brown.edu/frontend_1:latest
 
 
 
