@@ -107,6 +107,12 @@ rowofbuttons = html.Div([
 
 default_limit = [1000]
 default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id'].isin(default_limit)].copy()
+print('default_limit')
+print(default_limit)
+print('dashdataandtables.limits_traces_df')
+print(dashdataandtables.limits_traces_df)
+print('dashdataandtables.limits_data_df')
+print(dashdataandtables.limits_data_df)
 
 '''
 default_graph_fig = cg.CreateGraph(default_limit,dashdataandtables.limits_traces_df,dashdataandtables.limits_data_df)
