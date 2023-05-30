@@ -33,4 +33,7 @@ podman run -dt \
 --name container_redis_1 \
 --pod pod_redis \
 --user $uid:$gid \
-localhost/image_redis_1:latest
+--dmtools.het.brown.edu/image_redis_1:latest
+
+#localhost/image_redis_1:latest
+
