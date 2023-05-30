@@ -47,6 +47,13 @@ print(df)
 with engine.begin() as connection:
     df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='replace', index_label='id')
     
+with engine.connect() as con:
+    
+    con.execute('alter table data.dropdown_valuepairs drop id')
+    #con.execute('alter table data.meta_valuepair add id serial primary key') 
+    con.execute('ALTER TABLE data.dropdown_valuepairs MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')
+    
+    
     
 #df.to_sql('dropdown_valuepairs', con=engine, schema='data', if_exists='replace')
 
@@ -61,7 +68,7 @@ for l in range_values:
 df = pd.DataFrame(data=dropdown_values, columns=['variable','label','value','data_type'])
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index_label='id')
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
 
 ## Result Type
 
@@ -72,7 +79,7 @@ df = pd.DataFrame({
     'data_type' : ['text', 'text','text']})
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index_label='id')
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
     
 ## Spin Dependence
 
@@ -84,7 +91,7 @@ df = pd.DataFrame({
 })
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index_label='id')
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
 
 ## Greatest Hits
 
@@ -96,7 +103,7 @@ df = pd.DataFrame({
 })
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index_label='id')
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
 
 ## Experiments
 
@@ -110,7 +117,7 @@ df = pd.DataFrame({
 })
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index_label='id')
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
 
 
 #all_dropdown_pairs = pd.read_sql('SELECT variable,label, value FROM dropdown_valuepairs', con=engine)
@@ -240,6 +247,23 @@ with engine.begin() as connection:
     limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='replace', index_label='id')
     meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='replace', index_label='id')
 
+with engine.connect() as con:
+    
+    con.execute('alter table data.limits_data drop id')
+    #con.execute('alter table data.meta_valuepair add id serial primary key') 
+    con.execute('ALTER TABLE data.limits_data MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')    
+    
+    con.execute('alter table data.limits_metadata drop id')
+    #con.execute('alter table data.meta_valuepair add id serial primary key') 
+    con.execute('ALTER TABLE data.limits_metadata MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')   
+    
+    con.execute('alter table data.meta_valuepair drop id')
+    #con.execute('alter table data.meta_valuepair add id serial primary key') 
+    con.execute('ALTER TABLE data.meta_valuepair MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;') 
+    
+    
+    
+    
 limits_metadata_df = limits_metadata_empty.copy()
 
 
@@ -278,9 +302,9 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
-    dmdf.to_sql('limits_data', con=connection, if_exists='append', index_label='id')
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append',index_label='id')
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index_label='id')
+    dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append',index=False)
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index=False)
 
 limits_metadata_df = limits_metadata_empty.copy()
 
@@ -319,9 +343,9 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
-    dmdf.to_sql('limits_data', con=connection, if_exists='append', index_label='id')
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index_label='id')
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index_label='id')
+    dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index=False)
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index=False)
 limits_metadata_df = limits_metadata_empty.copy()
 
 
@@ -359,9 +383,9 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
-    dmdf.to_sql('limits_data', con=connection, if_exists='append', index_label='id')
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index_label='id')
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index_label='id')
+    dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index=False)
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index=False)
 limits_metadata_df = limits_metadata_empty.copy()
 
 # # Experiment O
@@ -398,9 +422,9 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
-    dmdf.to_sql('limits_data', con=connection, if_exists='append', index_label='id')
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index_label='id')
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index_label='id')
+    dmdf.to_sql('limits_data', con=connection, if_exists='append', index=False)
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append', index=False)
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append', index=False)
 
 limits_metadata_df = limits_metadata_empty.copy()
 
@@ -439,27 +463,14 @@ meta_valuepair_df = pd.melt(limits_metadata_df, id_vars=['limit_id'], value_vars
 
 with engine.begin() as connection:
     #dmdf.index.names = ['limit_id']
-    dmdf.to_sql('limits_data', con=connection, if_exists='append',index_label='id')
-    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append',index_label='id')
-    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append',index_label='id')
+    dmdf.to_sql('limits_data', con=connection, if_exists='append',index=False)
+    limits_metadata_df.to_sql('limits_metadata', con=connection, if_exists='append',index=False)
+    meta_valuepair_df.to_sql('meta_valuepair', con=connection, if_exists='append',index=False)
 
 limits_metadata_df = limits_metadata_empty.copy()
 
-## reset all table indexes
 
-with engine.connect() as con:
 
-    con.execute('alter table data.limits_data drop id')
-    con.execute('ALTER TABLE data.limits_data MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')
-    #con.execute('alter table data.limits_data add id serial primary key') 
-    
-    con.execute('alter table data.limits_metadata drop id')
-    #con.execute('alter table data.limits_metadata add id serial primary key') 
-    con.execute('ALTER TABLE data.limits_metadata MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')
-    
-    con.execute('alter table data.meta_valuepair drop id')
-    #con.execute('alter table data.meta_valuepair add id serial primary key') 
-    con.execute('ALTER TABLE data.meta_valuepair MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')
     
     
    
