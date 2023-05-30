@@ -114,8 +114,7 @@ print(dashdataandtables.limits_traces_df)
 print('dashdataandtables.limits_data_df')
 print(dashdataandtables.limits_data_df)
 
-'''
-default_graph_fig = cg.CreateGraph(default_limit,dashdataandtables.limits_traces_df,dashdataandtables.limits_data_df)
+default_graph_fig = cg.CreateGraph(default_limit, dashdataandtables.limits_traces_df, dashdataandtables.limits_data_df)
 
 from app.baseapp.dashboard_libraries import updategraph as ug
 
@@ -144,7 +143,7 @@ def GetChart(chart_in):
 
 default_column_chart = GetChart(chart_in)
 
-'''
+
 dash.register_page(__name__, path='/app/style_plot_and_traces')
 
 #### style plot and traces
