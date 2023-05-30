@@ -55,7 +55,7 @@ with engine.connect() as con:
     query = 'alter table data.dropdown_valuepairs drop id;'
     con.execute(text(query))
     #con.execute('alter table data.meta_valuepair add id serial primary key')
-    query ='ALTER TABLE data.dropdown_valuepairs MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    query ='ALTER TABLE data.dropdown_valuepairs ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
     con.execute(text(query))
     
     
@@ -260,18 +260,18 @@ with engine.connect() as con:
     query='alter table data.limits_data drop id;'
     con.execute(text(query))
     #con.execute('alter table data.meta_valuepair add id serial primary key')
-    query='ALTER TABLE data.limits_data MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    query='ALTER TABLE data.limits_data ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
     con.execute(text(query))  
     
     query='alter table data.limits_metadata drop id;'
     con.execute(text(query))  
     #con.execute('alter table data.meta_valuepair add id serial primary key') 
-    query='ALTER TABLE data.limits_metadata MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    query='ALTER TABLE data.limits_metadata ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
     con.execute(text(query))    
     
     query='alter table data.meta_valuepair drop id;'
     con.execute(text(query))
-    query='ALTER TABLE data.meta_valuepair MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    query='ALTER TABLE data.meta_valuepair ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
     #con.execute('alter table data.meta_valuepair add id serial primary key') 
     con.execute(text(query))
     
