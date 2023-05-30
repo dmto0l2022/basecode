@@ -144,7 +144,7 @@ def GetChart(chart_in):
 
 default_column_chart = GetChart(chart_in)
 
-
+'''
 dash.register_page(__name__, path='/app/style_plot_and_traces')
 
 #### style plot and traces
@@ -190,8 +190,8 @@ layout2 = html.Div([twocolumns],
                    className="container-fluid DASHBOARD_CONTAINER_STYLE",
                   )
 
-layout = layout2
-
+layout = style_plot_and_traces_form_form
+'''
 @callback(
     [Output("graph_out_id","figure"),Output("legend_out_id","figure"),],
     [Input('format_table_id', 'data')],
@@ -202,6 +202,7 @@ def update_output(table_data, table_data_in):
 
     
     return fig_out, legend_out
+'''
 
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
@@ -226,4 +227,4 @@ def button_click(button1,button2):
     else:
         href_return = dash.page_registry['pages.home']['path']
         return href_return
-'''
+
