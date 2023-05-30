@@ -113,22 +113,22 @@ class DashDataAndTables():
         FROM RubyDB.limits;'''
 
         limits_sql = '''SELECT
-        limit_id, spin_dependency, result_type, measurement_type, nomhash, x_units, y_units, x_rescale,
+        index, limit_id, spin_dependency, result_type, measurement_type, nomhash, x_units, y_units, x_rescale,
         y_rescale, default_color, default_style, data_label, file_name, data_comment,
         data_reference, created_at, updated_at, creator_id, experiment, rating, date_of_announcement,
         public, official, date_official, greatest_hit, date_of_run_start, date_of_run_end, `year`
         FROM data.limits_metadata;'''
         
         self.limits_df = pd.read_sql_query(limits_sql, self.engine)
-        self.limits_df['rowid'] = self.limits_df.index
+        #self.limits_df['rowid'] = self.limits_df.index
 
-        self.limits_table_df = self.limits_df[['rowid','limit_id','spin_dependency',
+        self.limits_table_df = self.limits_df[['index','limit_id','spin_dependency',
                                      'experiment','official','greatest_hit','data_label',
                                      'result_type','data_reference','year']].copy()
 
-        self.limits_table_df['expid'] = self.limits_table_df['rowid']
+        #self.limits_table_df['expid'] = self.limits_table_df['rowid']
 
-        limits_metadata_sql = '''SELECT limit_id, spin_dependency, result_type, measurement_type,
+        limits_metadata_sql = '''SELECT index, limit_id, spin_dependency, result_type, measurement_type,
                                 nomhash, x_units, y_units, x_rescale, y_rescale, default_color,
                                 default_style, data_label, file_name, data_comment, data_reference,
                                 created_at, updated_at, creator_id, experiment, rating,
@@ -143,17 +143,17 @@ class DashDataAndTables():
 
         limits_traces_sql = '''SELECT distinct limit_id, trace_id, trace_name FROM `data`.limits_data;;'''
         self.limits_traces_df = pd.read_sql_query(limits_traces_sql, self.engine)
-        self.limits_traces_df['rowid'] = self.limits_traces_df.index
+        #self.limits_traces_df['rowid'] = self.limits_traces_df.index
         self.limits_traces_df['line_color'] = 'black'
         self.limits_traces_df['line'] = 'solid'
         self.limits_traces_df['fill_color'] = 'LightGrey'
         self.limits_traces_df['symbol'] = 'square'
         self.limits_traces_df['symbol_color'] = 'blue'
 
-        limits_data_sql = '''SELECT id, limit_id, trace_id, trace_name, x, y FROM `data`.limits_data;'''
+        limits_data_sql = '''SELECT index, limit_id, trace_id, trace_name, x, y FROM `data`.limits_data;'''
 
         self.limits_data_df = pd.read_sql_query(limits_data_sql, self.engine)
-        self.limits_data_df['rowid'] = self.limits_data_df.index
+        #self.limits_data_df['rowid'] = self.limits_data_df.index
 
         ###########################################################################
 
@@ -390,7 +390,7 @@ class DashDataAndTables():
         self.limits_table = dash_table.DataTable(
             id='limits_table_main',
             data=self.limits_table_df.to_dict('records'),
-            columns=[{'name': 'expid', 'id': 'expid'},
+            columns=[{'name': 'index', 'id': 'index'},
                      {'name': 'data_reference', 'id': 'data_reference'},
                      {'name': 'data_label', 'id': 'data_label'},
                      #{'name': 'experiment', 'id': 'experiment'},
@@ -489,14 +489,13 @@ class DashDataAndTables():
             tooltip_duration=None,
         )
         
-        self.plots_table_df = pd.DataFrame(data=None, columns=['expid','data_reference','data_label'])
-        self.plots_table_df.set_index('expid')
+        self.plots_table_df = pd.DataFrame(data=None, columns=['index','data_reference','data_label'])
+        #self.plots_table_df.set_index('expid')
 
         self.plots_table = dash_table.DataTable(
             id='plots_table',
             data=self.plots_table_df.to_dict('records'),
-            columns=[{'name': 'tablerowid', 'id': 'tablerowid'},
-                     {'name': 'expid', 'id': 'expid'},
+            columns=[{'name': 'index', 'id': 'index'},
                      {'name': 'data_reference', 'id': 'data_reference'},
                      {'name': 'data_label', 'id': 'data_label'},
                      #{'name': 'spin_dependency', 'id': 'spin_dependency'},
