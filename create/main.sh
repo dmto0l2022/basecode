@@ -36,7 +36,7 @@ podman pod create \
 --name pod_main_backend \
 --infra-name infra_main_backend \
 --network bridge \
---keep-id:uid=1001,gid=1002 \
+--userns=keep-id:uid=1001,gid=1002 \
 --publish 8002:8002 \
 --publish 8004:8004 \
 --publish 8006:8006 \
