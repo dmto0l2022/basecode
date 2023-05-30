@@ -43,6 +43,8 @@ df = pd.DataFrame({
     'data_type' : ['number', 'number'],
     })
 
+df.index.name='id'
+
 print(df)
 
 with engine.begin() as connection:
