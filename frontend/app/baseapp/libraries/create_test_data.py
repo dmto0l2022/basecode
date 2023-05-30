@@ -58,8 +58,10 @@ data_type = 'number'
 dropdown_values = []
 for l in range_values:
     dropdown_values.append([variable_type,str(l),str(l),data_type])
-df = pd.DataFrame(data=dropdown_values, columns=['variable','label','value','data_type'])  
-df.to_sql('dropdown_valuepairs', con=engine, if_exists='append')
+df = pd.DataFrame(data=dropdown_values, columns=['variable','label','value','data_type'])
+
+with engine.begin() as connection:
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
 
 ## Result Type
 
@@ -68,8 +70,10 @@ df = pd.DataFrame({
     'label' : ['Theory', 'Project', 'Experiment'],
     'value' : ['Th', 'Proj', 'Exp'],
     'data_type' : ['text', 'text','text']})
-df.to_sql('dropdown_valuepairs', con=engine, if_exists='append')
 
+with engine.begin() as connection:
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    
 ## Spin Dependence
 
 df = pd.DataFrame({
@@ -79,7 +83,8 @@ df = pd.DataFrame({
     'data_type' : ['text', 'text','text']
 })
 
-df.to_sql('dropdown_valuepairs', con=engine, if_exists='append')
+with engine.begin() as connection:
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
 
 ## Greatest Hits
 
@@ -89,7 +94,9 @@ df = pd.DataFrame({
     'value' : ['-1', '0', '1'],
     'data_type' : ['number', 'number','number']
 })
-df.to_sql('dropdown_valuepairs', con=engine, if_exists='append')
+
+with engine.begin() as connection:
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
 
 ## Experiments
 
@@ -101,10 +108,12 @@ df = pd.DataFrame({
                'Experiment M', 'Experiment T', 'Experiment O', 'Experiment L'],
     'data_type' : ['text', 'text','text','text', 'text','text','text']
 })
-df.to_sql('dropdown_valuepairs', con=engine, if_exists='append')
+
+with engine.begin() as connection:
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
 
 
-all_dropdown_pairs = pd.read_sql('SELECT variable,label, value FROM dropdown_valuepairs', con=engine)
+#all_dropdown_pairs = pd.read_sql('SELECT variable,label, value FROM dropdown_valuepairs', con=engine)
 
 #year_dropdown_pairs = all_dropdown_pairs[all_dropdown_pairs['variable']=='year']
 #year_dropdown_pairs
