@@ -2,6 +2,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import sys
 from io import StringIO
+from sqlalchemy import text
 
 
 from sqlalchemy import create_engine
@@ -46,12 +47,14 @@ print(df)
 
 with engine.begin() as connection:
     df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='replace', index_label='id')
-    
+
 with engine.connect() as con:
     
-    con.execute('alter table data.dropdown_valuepairs drop id')
-    #con.execute('alter table data.meta_valuepair add id serial primary key') 
-    con.execute('ALTER TABLE data.dropdown_valuepairs MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')
+    query = 'alter table data.dropdown_valuepairs drop id'
+    con.execute(text(query))
+    #con.execute('alter table data.meta_valuepair add id serial primary key')
+    query ='ALTER TABLE data.dropdown_valuepairs MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    con.execute(text(query))
     
     
     
@@ -249,17 +252,26 @@ with engine.begin() as connection:
 
 with engine.connect() as con:
     
-    con.execute('alter table data.limits_data drop id')
-    #con.execute('alter table data.meta_valuepair add id serial primary key') 
-    con.execute('ALTER TABLE data.limits_data MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')    
+    #query ='ALTER TABLE data.dropdown_valuepairs MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    #con.execute(text(query))
     
-    con.execute('alter table data.limits_metadata drop id')
-    #con.execute('alter table data.meta_valuepair add id serial primary key') 
-    con.execute('ALTER TABLE data.limits_metadata MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;')   
+    query='alter table data.limits_data drop id'
+    con.execute(text(query))
+    #con.execute('alter table data.meta_valuepair add id serial primary key')
+    query='ALTER TABLE data.limits_data MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    con.execute(text(query))  
     
-    con.execute('alter table data.meta_valuepair drop id')
+    query='alter table data.limits_metadata drop id''
+    con.execute(text(query))  
     #con.execute('alter table data.meta_valuepair add id serial primary key') 
-    con.execute('ALTER TABLE data.meta_valuepair MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;') 
+    query='ALTER TABLE data.limits_metadata MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    con.execute(text(query))    
+    
+    query='alter table data.meta_valuepair drop id'
+    con.execute(text(query))
+    query='ALTER TABLE data.meta_valuepair MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    #con.execute('alter table data.meta_valuepair add id serial primary key') 
+    con.execute(text(query))
     
     
     
