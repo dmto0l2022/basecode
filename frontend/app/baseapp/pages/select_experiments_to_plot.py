@@ -29,8 +29,8 @@ from app.baseapp.dashboard_libraries import all_data_tables as adt
 #from dashboard_libraries import all_data_tables as adt
 dashdataandtables = adt.DashDataAndTables()
 
-dashdataandtables.limits_table_df.set_index('limit_id', inplace=True, drop=False)
-dashdataandtables.limits_table_df['expid'] = dashdataandtables.limits_table_df['limit_id'] 
+dashdataandtables.limits_table_df.set_index('id', inplace=True, drop=False)
+#dashdataandtables.limits_table_df['expid'] = dashdataandtables.limits_table_df['limit_id'] 
 #dashdataandtables.limits_table_df
 
 #####
@@ -114,7 +114,7 @@ row3_2 = dbc.Row([dbc.Col(
                ],className ="TABLE_ROW NOPADDING")
 
 row4 = html.Div([dcc.Store(id='plot_expids')])
-
+'''
 form = dbc.Container(
     children=[dbc.Row(
     [
@@ -126,7 +126,7 @@ form = dbc.Container(
     ])],
     
 )
-
+'''
 
 #####
 
@@ -306,8 +306,8 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
 
         selected_rowid = active_cell_exp['row_id']
         selected_row = dashdataandtables.\
-                limits_table_df[dashdataandtables.limits_table_df['expid']==active_cell_exp['row_id']]
-        selected_row  = selected_row[['expid','data_reference','data_reference','data_label']]
+                limits_table_df[dashdataandtables.limits_table_df['id']==active_cell_exp['row_id']]
+        selected_row  = selected_row[['id','data_reference','data_reference','data_label']]
         #data_out=plots_todo_df.to_dict("records")
         record=selected_row.to_dict("records")[0]
         #print(type(record))
