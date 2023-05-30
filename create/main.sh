@@ -61,8 +61,8 @@ podman run -dt \
 --pod pod_main_backend \
 --volume /opt/dmtools/redis-data:/data \
 --user $uid:$gid \
-#localhost/redis_1:latest
-dmtools.het.brown.edu/redis_1:latest
+localhost/redis_1:latest
+#dmtools.het.brown.edu/redis_1:latest
 
 cd /opt/dmtools/code/basecode/mariadb
 podman rmi mariadb_1
