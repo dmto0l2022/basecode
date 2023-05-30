@@ -150,15 +150,10 @@ class DashDataAndTables():
         self.limits_traces_df['symbol'] = 'square'
         self.limits_traces_df['symbol_color'] = 'blue'
 
-        #####
+        limits_data_sql = '''SELECT id, limit_id, trace_id, trace_name, x, y FROM `data`.limits_data;'''
 
-        #limits_data_sql = '''SELECT id, limit_id, trace_id, trace_name, x, y FROM `data`.limits_data;;'''
-
-        #self.limits_data_df = pd.read_sql_query(limits_data_sql, self.engine)
-        #self.limits_data_df['rowid'] = self.limits_data_df.index
-
-        #####
-
+        self.limits_data_df = pd.read_sql_query(limits_data_sql, self.engine)
+        self.limits_data_df['rowid'] = self.limits_data_df.index
 
         ###########################################################################
 
