@@ -5,7 +5,7 @@ podman pod rm pod_mariadb_backend
 # podman rm container_mariadb_backend
 podman rmi image_mariadb_1
 
-cd /opt/dmtools/code/flask-mariadb-nginx/mariadb
+cd /opt/dmtools/code/basecode/mariadb
 
 uid=${ENV_UID} ##1001
 gid=${ENV_GID} ##1002
