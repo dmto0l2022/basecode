@@ -45,7 +45,7 @@ df = pd.DataFrame({
 print(df)
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='replace', index=False)
     
     
 #df.to_sql('dropdown_valuepairs', con=engine, schema='data', if_exists='replace')
