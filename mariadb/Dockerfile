@@ -10,22 +10,11 @@ FROM mariadb:latest
 RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
 
-ARG ENV_USERNAME=me
-ARG ENV_UID=9999
-ARG ENV_GID=9999
-ARG ENV_GROUPNAME=thegroup
-ARG ENV_MARIADB_USER=pythonuser
-ARG ENV_MARIADB_PASSWORD=pythonuser
-ARG ENV_MARIADB_ROOT_PASSWORD=pythonuser
-ARG ENV_MARIADB_DATABASE=world
-ARG ENV_LOCALHOST=localhost
-
 RUN echo ${ENV_UID}
-
 
 ARG USERNAME=${ENV_USERNAME}
 ARG USER_UID=${ENV_UID}
-ARG USER_GID=${ENV_GID} ##
+ARG USER_GID=${ENV_GID} 
 ARG USER_GROUPNAME=${ENV_GROUPNAME}
 
 # Create the user
