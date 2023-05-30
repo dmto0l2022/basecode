@@ -112,22 +112,22 @@ class DashDataAndTables():
         public, official, date_official, greatest_hit, date_of_run_start, date_of_run_end, `year`
         FROM RubyDB.limits;'''
 
-        limits_sql = '''SELECT i.`index` , limit_id, spin_dependency, result_type, measurement_type, nomhash, x_units, y_units, x_rescale,
+        limits_sql = '''SELECT id, limit_id, spin_dependency, result_type, measurement_type, nomhash, x_units, y_units, x_rescale,
         y_rescale, default_color, default_style, data_label, file_name, data_comment,
         data_reference, created_at, updated_at, creator_id, experiment, rating, date_of_announcement,
         public, official, date_official, greatest_hit, date_of_run_start, date_of_run_end, `year`
-        FROM data.limits_metadata i;'''
+        FROM data.limits_metadata;'''
         
         self.limits_df = pd.read_sql_query(limits_sql, self.engine)
         #self.limits_df['rowid'] = self.limits_df.index
 
-        self.limits_table_df = self.limits_df[['index','limit_id','spin_dependency',
+        self.limits_table_df = self.limits_df[['id','limit_id','spin_dependency',
                                      'experiment','official','greatest_hit','data_label',
                                      'result_type','data_reference','year']].copy()
 
         #self.limits_table_df['expid'] = self.limits_table_df['rowid']
 
-        limits_metadata_sql = '''SELECT index, limit_id, spin_dependency, result_type, measurement_type,
+        limits_metadata_sql = '''SELECT id, limit_id, spin_dependency, result_type, measurement_type,
                                 nomhash, x_units, y_units, x_rescale, y_rescale, default_color,
                                 default_style, data_label, file_name, data_comment, data_reference,
                                 created_at, updated_at, creator_id, experiment, rating,
@@ -149,7 +149,7 @@ class DashDataAndTables():
         self.limits_traces_df['symbol'] = 'square'
         self.limits_traces_df['symbol_color'] = 'blue'
 
-        limits_data_sql = '''SELECT index, limit_id, trace_id, trace_name, x, y FROM `data`.limits_data;'''
+        limits_data_sql = '''SELECT id, limit_id, trace_id, trace_name, x, y FROM `data`.limits_data;'''
 
         self.limits_data_df = pd.read_sql_query(limits_data_sql, self.engine)
         #self.limits_data_df['rowid'] = self.limits_data_df.index
@@ -389,7 +389,7 @@ class DashDataAndTables():
         self.limits_table = dash_table.DataTable(
             id='limits_table_main',
             data=self.limits_table_df.to_dict('records'),
-            columns=[{'name': 'index', 'id': 'index'},
+            columns=[{'name': 'id', 'id': 'id'},
                      {'name': 'data_reference', 'id': 'data_reference'},
                      {'name': 'data_label', 'id': 'data_label'},
                      #{'name': 'experiment', 'id': 'experiment'},
@@ -417,7 +417,7 @@ class DashDataAndTables():
             }],
             style_table={'height': '25vh',},
             style_cell_conditional=[
-                {'if': {'column_id': 'expid'},
+                {'if': {'column_id': 'id'},
                  'width': '5%'},
                 {'if': {'column_id': 'data_reference'},
                  'width': '20%'},
@@ -494,7 +494,7 @@ class DashDataAndTables():
         self.plots_table = dash_table.DataTable(
             id='plots_table',
             data=self.plots_table_df.to_dict('records'),
-            columns=[{'name': 'index', 'id': 'index'},
+            columns=[{'name': 'id', 'id': 'id'},
                      {'name': 'data_reference', 'id': 'data_reference'},
                      {'name': 'data_label', 'id': 'data_label'},
                      #{'name': 'spin_dependency', 'id': 'spin_dependency'},
@@ -526,7 +526,7 @@ class DashDataAndTables():
             #selected_rows=[],
             style_table={'height': '25vh',},
             style_cell_conditional=[
-                {'if': {'column_id': 'expid'},
+                {'if': {'column_id': 'id'},
                  'width': '5%'},
                 {'if': {'column_id': 'tablerowid'},
                  'width': '5%'},
