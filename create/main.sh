@@ -75,10 +75,8 @@ podman run -dt \
 --name container_redis_1 \
 --pod pod_main_backend \
 --volume /opt/dmtools/redis-data:/data \
-#--user $uid:$gid \
 --userns=keep-id \
 localhost/redis_1:latest
-#dmtools.het.brown.edu/redis_1:latest
 
 cd /opt/dmtools/code/basecode/mariadb
 podman rmi mariadb_1
