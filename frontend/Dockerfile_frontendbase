@@ -9,20 +9,21 @@ RUN apt-get install -y libmariadb-dev
 WORKDIR /workdir
 
 ARG USERNAME=agaitske
-ARG USER_UID=1001
-ARG USER_GID=1002 ## dm group
+#ARG USER_UID=1001
+#ARG USER_GID=1002 ## dm group
 
 # Create the user
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+#RUN groupadd --gid $USER_GID $USERNAME \
+#    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
-RUN chown $USER_UID:$USER_GID /workdir
+#RUN chown $USER_UID:$USER_GID /workdir
+RUN chown $USERNAME:$USERNAME /workdir
 
 RUN mkdir /workdir/uploads
-RUN chown $USER_UID:$USER_GID /workdir/uploads
+RUN chown $USERNAME:$USERNAME /workdir/uploads
 
 RUN mkdir /env
-RUN chown $USER_UID:$USER_GID /env
+RUN chown $USERNAME:$USERNAME /env
 
 USER $USERNAME
 
