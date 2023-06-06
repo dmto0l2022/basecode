@@ -10,7 +10,7 @@ RUN apt-get install -y libmariadb-dev
 
 WORKDIR /workdir/fastapi_orm/app
 
-ARG USERNAME=agaitske
+#ARG USERNAME=agaitske
 #ARG USER_UID=1001
 #ARG USER_GID=1002 ## dm group
 
@@ -30,8 +30,8 @@ ARG USERNAME=agaitske
 #RUN chown $USER_UID:$USER_GID /env
 #chown $USER:$USER
 RUN mkdir /env
-RUN chown $USERNAME:$USERNAME /env
-USER $USERNAME
+#RUN chown $USERNAME:$USERNAME /env
+#USER $USERNAME
 
 
 ## https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
