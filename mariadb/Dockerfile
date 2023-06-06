@@ -10,28 +10,28 @@ FROM mariadb:latest
 RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
 
-RUN echo ${ENV_UID}
+#RUN echo ${ENV_UID}
 
-ARG USERNAME=${ENV_USERNAME}
-ARG USER_UID=${ENV_UID}
-ARG USER_GID=${ENV_GID} 
-ARG USER_GROUPNAME=${ENV_GROUPNAME}
+#ARG USERNAME=${ENV_USERNAME}
+#ARG USER_UID=${ENV_UID}
+#ARG USER_GID=${ENV_GID} 
+#ARG USER_GROUPNAME=${ENV_GROUPNAME}
 
 # Create the user
-RUN echo groupadd --gid $USER_UID $USER_GROUPNAME
+#RUN echo groupadd --gid $USER_UID $USER_GROUPNAME
 #RUN groupadd --gid $USER_GID ${ENV_GROUPNAME}
-RUN groupadd --gid $USER_GID $USER_GROUPNAME
-RUN echo useradd --uid $USER_UID --gid ${ENV_GID} -m ${ENV_USERNAME}
+#RUN groupadd --gid $USER_GID $USER_GROUPNAME
+#RUN echo useradd --uid $USER_UID --gid ${ENV_GID} -m ${ENV_USERNAME}
 #RUN useradd --uid ${ENV_UID} --gid ${ENV_GID} -m ${ENV_USERNAME}
-RUN useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+#RUN useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
    
 
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
-RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
-RUN chown $USER_UID:$USER_GID /var/lib/mysql
+#RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
+#RUN chown $USER_UID:$USER_GID /var/lib/mysql
 
-USER $USERNAME
+#USER $USERNAME
 #ADD sql/ /docker-entrypoint-initdb.d
 
 #ENV MYSQL_ROOT_PASSWORD test123
