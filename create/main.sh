@@ -75,7 +75,6 @@ podman run -dt \
 --name container_redis_1 \
 --pod pod_main_backend \
 --volume /opt/dmtools/redis-data:/data \
---userns=keep-id \
 localhost/redis_1:latest
 
 cd /opt/dmtools/code/basecode/mariadb
@@ -105,8 +104,6 @@ podman run -dt \
 --name container_mariadb \
 --pod pod_main_backend \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
-#--user $uid:$gid \
---userns=keep-id \
 localhost/mariadb_1:latest
 
 #####
@@ -123,8 +120,6 @@ podman build -f Dockerfile_api -t api_1 .
 podman run -dt \
 --name container_api_1 \
 --pod pod_main_backend \
-#--user $uid:$gid \
---userns=keep-id \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/api_1:latest
 
@@ -140,8 +135,6 @@ podman build -f Dockerfile -t fastapi_1
 podman run -dt \
 --name container_fastapi_1 \
 --pod pod_main_backend \
-#--user $uid:$gid \
---userns=keep-id \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/fastapi_1:latest
 
@@ -157,8 +150,6 @@ podman build -f Dockerfile -t fastapi_orm_1
 podman run -dt \
 --name container_fastapi_orm_1 \
 --pod pod_main_backend \
-#--user $uid:$gid \
---userns=keep-id \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/fastapi_orm_1:latest
 
@@ -175,8 +166,6 @@ podman build -f Dockerfile_frontend -t frontend_1 .
 podman run -dt \
 --name container_frontend_1 \
 --pod pod_main_backend \
-#--user $uid:$gid \
---userns=keep-id \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/frontend_1:latest
 
