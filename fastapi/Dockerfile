@@ -11,23 +11,23 @@ RUN apt-get install -y libmariadb-dev
 WORKDIR /workdir/fastapi
 
 ARG USERNAME=agaitske
-ARG USER_UID=1001
-ARG USER_GID=1002 ## dm group
+#ARG USER_UID=1001
+#ARG USER_GID=1002 ## dm group
 
 # Create the user
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+#RUN groupadd --gid $USER_GID $USERNAME \
+#    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
 #RUN mkdir /docker-entrypoint-initdb.d ## already exists
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
 #RUN chown $USER_UID:$USER_GID /var/lib/mysql
-RUN chown $USER_UID:$USER_GID /workdir
+#RUN chown $USER_UID:$USER_GID /workdir
 
 #RUN mkdir /workdir/uploads
 #RUN chown $USER_UID:$USER_GID /workdir/uploads
 
 RUN mkdir /env
-RUN chown $USER_UID:$USER_GID /env
+#RUN chown $USER_UID:$USER_GID /env
 
 USER $USERNAME
 
