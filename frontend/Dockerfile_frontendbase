@@ -8,7 +8,7 @@ RUN apt-get install -y libmariadb-dev
 
 WORKDIR /workdir
 
-ARG USERNAME=agaitske
+#ARG USERNAME=agaitske
 #ARG USER_UID=1001
 #ARG USER_GID=1002 ## dm group
 
@@ -17,15 +17,15 @@ ARG USERNAME=agaitske
 #    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
 #RUN chown $USER_UID:$USER_GID /workdir
-RUN chown $USERNAME:$USERNAME /workdir
+#RUN chown $USERNAME:$USERNAME /workdir
 
 RUN mkdir /workdir/uploads
-RUN chown $USERNAME:$USERNAME /workdir/uploads
+#RUN chown $USERNAME:$USERNAME /workdir/uploads
 
 RUN mkdir /env
-RUN chown $USERNAME:$USERNAME /env
+#RUN chown $USERNAME:$USERNAME /env
 
-USER $USERNAME
+#USER $USERNAME
 
 ## https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
 
