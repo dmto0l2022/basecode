@@ -8,3 +8,6 @@ https://www.redhat.com/sysadmin/sensitive-data-containers
 
 https://github.com/containers/podman/issues/4878
 
+# rootless
+
+https://www.redhat.com/sysadmin/rootless-podman-user-namespace-modes
