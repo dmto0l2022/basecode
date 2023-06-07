@@ -13,7 +13,7 @@ podman build -f Dockerfile -t highuid_image .
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name container_frontend_1 \
+--name highuid_container \
 --uidmap=0:0:10000 \
 --uidmap=65534:10000:1 \
 --uidmap=1007:1007:1 \
