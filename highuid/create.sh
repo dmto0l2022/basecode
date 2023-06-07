@@ -16,6 +16,8 @@ podman run -dt \
 --name container_frontend_1 \
 --uidmap=0:0:10000 \
 --uidmap=65534:10000:1 \
---uidmap=7200720:10001:1 \
+--uidmap=1007:1007:1 \
 -v /opt/dmtools/code/basecode/:/workdir \
 localhost/highuid_image:latest
+
+#--uidmap=7200720:10001:1 \
