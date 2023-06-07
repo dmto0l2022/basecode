@@ -1,8 +1,9 @@
 #FROM python:3.10.9-slim-bullseye
 ##3.10.9-slim-bullseye, 3.10-slim-bullseye, 3.10.9-slim, 3.10-slim
-FROM python:3
+FROM python:3.10.9-slim-bullseye
 RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
+RUN apt-get -y install curl
 
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
