@@ -86,8 +86,12 @@ podman build -f Dockerfile -t redis_1 .
 podman run -dt \
 --name container_redis_1 \
 --pod pod_main_backend \
---volume /opt/dmtools/redis-data:/data \
+--volume redis-data:/data \
 localhost/redis_1:latest
+
+
+
+##--volume /opt/dmtools/redis-data:/data \
 
 cd /opt/dmtools/code/basecode/mariadb
 podman rmi mariadb_1
