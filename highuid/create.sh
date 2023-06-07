@@ -16,7 +16,6 @@ podman run -dt \
 --name highuid_container \
 --uidmap=0:0:10000 \
 --uidmap=65534:10000:1 \
---uidmap=1007:1007:1 \
 -v /opt/dmtools/code/basecode/:/workdir \
 localhost/highuid_image:latest
 
