@@ -83,13 +83,15 @@ podman build -f Dockerfile -t redis_1 .
 ### remember to create this on host
 ### /opt/dmtools/redis-data
 
+podman volume rm redis-data
+
+podman volume create redis-data
+
 podman run -dt \
 --name container_redis_1 \
 --pod pod_main_backend \
 --volume redis-data:/data \
 localhost/redis_1:latest
-
-
 
 ##--volume /opt/dmtools/redis-data:/data \
 
