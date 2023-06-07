@@ -15,18 +15,30 @@ podman pod rm pod_main_backend
 #subgidSize=$(( $(podman info --format "{{ range \
 #   .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
+# as root inside
 
 podman pod create \
 --name pod_main_backend \
 --infra-name infra_main_backend \
 --network bridge \
---userns=keep-id \
 --publish 8002:8002 \
 --publish 8004:8004 \
 --publish 8006:8006 \
 --publish 8008:8008 \
 --publish 3306:3306 \
 --publish 6379:6379
+
+#podman pod create \
+#--name pod_main_backend \
+#--infra-name infra_main_backend \
+#--network bridge \
+#--userns=keep-id \ ## does not work due to uid being too high for userspace
+#--publish 8002:8002 \
+#--publish 8004:8004 \
+#--publish 8006:8006 \
+#--publish 8008:8008 \
+#--publish 3306:3306 \
+#--publish 6379:6379
 
 #podman pod create \
 #--name pod_main_backend \
@@ -88,7 +100,6 @@ podman rmi mariadb_1
 #-t mariadb_1 .
 
 podman build -t mariadb_1 .
-
 
 #podman build \
 #--build-arg=ENV_UID=${ENV_UID} \
