@@ -126,6 +126,7 @@ podman run -dt \
 --name container_mariadb \
 --pod pod_main_backend \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
+-e MARIADB_ROOT_PASSWORD=${ENV_MARIADB_PASSWORD} \
 localhost/mariadb_1:latest
 
 #####
