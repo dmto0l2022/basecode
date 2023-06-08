@@ -16,7 +16,7 @@
 #--build-arg=BUILD_ENV_MARIADB_DATABASE=${ENV_MARIADB_DATABASE} \
 #-t mariadb_1 .
 
-FROM mariadb:latest
+FROM mariadb:10.4
 
 #ARG name
 #ENV env_name $name
