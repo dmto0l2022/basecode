@@ -127,6 +127,7 @@ podman build \
 podman run -dt \
 --name container_mariadb \
 --pod pod_main_backend \
+--user uid:gid \
 --volume mariadb_data:/var/lib/mysql \
 localhost/mariadb_1:latest
 
