@@ -57,11 +57,14 @@ RUN groupadd --gid ${ENV_USER_GID} ${ENV_USER_GROUPNAME}
 RUN echo useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 RUN useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 
-# RUN mkdir /docker-entrypoint-initdb.d ## already exists
+RUN rm -rf /docker-entrypoint-initdb.d ## already exists
 RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
 RUN chown $USER_UID:$USER_GID /var/lib/mysql
 
-USER $ENV_USERNAME
+run echo ${ENV_USERNAME}
+USER ${ENV_USERNAME}
+
+RUN mkdir /docker-entrypoint-initdb.d
 
 #ADD sql/ /docker-entrypoint-initdb.d
 
