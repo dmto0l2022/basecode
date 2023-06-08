@@ -57,14 +57,8 @@ RUN groupadd --gid ${ENV_USER_GID} ${ENV_USER_GROUPNAME}
 RUN echo useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 RUN useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 
-RUN rm -rf /docker-entrypoint-initdb.d ## already exists
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
 RUN chown $USER_UID:$USER_GID /var/lib/mysql
-
-run echo ${ENV_USERNAME}
-USER ${ENV_USERNAME}
-
-RUN mkdir /docker-entrypoint-initdb.d
 
 #ADD sql/ /docker-entrypoint-initdb.d
 
@@ -90,6 +84,11 @@ RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
 #RUN rm /var/www/html/world-db.zip
 
 COPY init.sql /docker-entrypoint-initdb.d/init.sql
+
+RUN chown -R $USER_UID:$USER_GID /docker-entrypoint-initdb.d/
+
+run echo ${ENV_USERNAME}
+USER ${ENV_USERNAME}
 
 EXPOSE 3306
 
