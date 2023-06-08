@@ -58,7 +58,7 @@ RUN echo useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 RUN useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 
 RUN rm -rf /docker-entrypoint-initdb.d ## already exists
-RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
+#RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
 RUN chown $USER_UID:$USER_GID /var/lib/mysql
 
 run echo ${ENV_USERNAME}
