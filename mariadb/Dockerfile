@@ -18,12 +18,12 @@ RUN apt-get -y install unzip
 #ARG USER_GROUPNAME=${ENV_GROUPNAME}
 
 # Create the user
-#RUN echo groupadd --gid $USER_UID $USER_GROUPNAME
-#RUN groupadd --gid $USER_GID ${ENV_GROUPNAME}
-#RUN groupadd --gid $USER_GID $USER_GROUPNAME
-#RUN echo useradd --uid $USER_UID --gid ${ENV_GID} -m ${ENV_USERNAME}
-#RUN useradd --uid ${ENV_UID} --gid ${ENV_GID} -m ${ENV_USERNAME}
-#RUN useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+RUN echo groupadd --gid $USER_UID $USER_GROUPNAME
+RUN groupadd --gid $USER_GID ${ENV_GROUPNAME}
+RUN groupadd --gid $USER_GID $USER_GROUPNAME
+RUN echo useradd --uid $USER_UID --gid ${ENV_GID} -m ${ENV_USERNAME}
+RUN useradd --uid ${ENV_UID} --gid ${ENV_GID} -m ${ENV_USERNAME}
+RUN useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
    
 
