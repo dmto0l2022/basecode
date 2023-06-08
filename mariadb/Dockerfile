@@ -58,7 +58,7 @@ RUN echo useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 RUN useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
-RUN chown $USER_UID:$USER_GID /var/lib/mysql
+RUN chown ${ENV_USER_UID}:${ENV_USER_GID}  /var/lib/mysql
 
 #ADD sql/ /docker-entrypoint-initdb.d
 
@@ -66,15 +66,6 @@ RUN chown $USER_UID:$USER_GID /var/lib/mysql
 #ENV MYSQL_DATABASE testDB
 #ENV MYSQL_USER toto
 #ENV MYSQL_PASSWORD test123
-
-RUN chown -R $USER_UID:$USER_GID /docker-entrypoint-initdb.d/
-
-USER ${ENV_USERNAME}
-
-env MARIADB_USER=${ENV_MARIADB_USER}
-env MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD}
-env MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD}
-env MARIADB_DATABASE=${ENV_MARIADB_DATABASE}
 
 COPY world-db.zip /var/www/html/world-db.zip
 RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
@@ -91,6 +82,14 @@ COPY init.sql /docker-entrypoint-initdb.d/init.sql
 
 run echo ${ENV_USERNAME}
 
+RUN chown -R ${ENV_USER_UID}:${ENV_USER_GID} /docker-entrypoint-initdb.d/
+
+USER ${ENV_USERNAME}
+
+env MARIADB_USER=${ENV_MARIADB_USER}
+env MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD}
+env MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD}
+env MARIADB_DATABASE=${ENV_MARIADB_DATABASE}
 
 EXPOSE 3306
 
