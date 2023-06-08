@@ -122,7 +122,7 @@ podman build \
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
---env MARIADB_USER=example-user --env MARIADB_PASSWORD=my_cool_secret --env MARIADB_ROOT_PASSWORD=my-secret-pw 
+## --env MARIADB_USER=example-user --env MARIADB_PASSWORD=my_cool_secret --env MARIADB_ROOT_PASSWORD=my-secret-pw 
 
 podman run -dt \
 --name container_mariadb \
