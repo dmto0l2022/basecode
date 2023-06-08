@@ -5,8 +5,8 @@ podman pod rm pod_main_backend
 
 uid=${ENV_UID} ##1001
 gid=${ENV_GID} ##1002
-#uid=1001
-#gid=1002
+uid=1001
+gid=1002
 #env_username=${ENV_USERNAME}
 #env_groupname=${ENV_GROUPNAME}
 
@@ -127,7 +127,7 @@ podman build \
 podman run -dt \
 --name container_mariadb \
 --pod pod_main_backend \
---user uid:gid \
+--user 1001:1002 \
 --volume mariadb_data:/var/lib/mysql \
 localhost/mariadb_1:latest
 
