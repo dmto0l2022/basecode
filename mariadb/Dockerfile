@@ -58,7 +58,7 @@ RUN echo useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 RUN useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 
 #RUN chown $USER_UID:$USER_GID /docker-entrypoint-initdb.d
-RUN chown ${ENV_USER_UID}:${ENV_USER_GID}  /var/lib/mysql
+RUN chown -R ${ENV_USER_UID}:${ENV_USER_GID} /var/lib/mysql
 
 #ADD sql/ /docker-entrypoint-initdb.d
 
