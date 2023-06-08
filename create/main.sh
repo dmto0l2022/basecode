@@ -99,10 +99,10 @@ cd /opt/dmtools/code/basecode/mariadb
 podman rmi mariadb_1
 
 #podman build \
-#--build-arg=ENV_MARIADB_USER=${ENV_MARIADB_USER} \
-#--build-arg=ENV_MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD} \
-#--build-arg=ENV_MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD} \
-#--build-arg=ENV_MARIADB_DATABASE=${ENV_MARIADB_DATABASE} \
+#--build-arg=BUILD_ENV_MARIADB_USER=${ENV_MARIADB_USER} \
+#--build-arg=BUILD_ENV_MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD} \
+#--build-arg=BUILD_ENV_MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD} \
+#--build-arg=BUILD_ENV_MARIADB_DATABASE=${ENV_MARIADB_DATABASE} \
 #-t mariadb_1 .
 
 #podman build -t mariadb_1 .
@@ -110,14 +110,14 @@ podman rmi mariadb_1
 # https://www.baeldung.com/ops/dockerfile-env-variable
 
 podman build \
---build-arg=ENV_UID=${ENV_UID} \
---build-arg=ENV_USERNAME=${ENV_USERNAME} \
---build-arg=ENV_GID=${ENV_GID} \
---build-arg=ENV_GROUPNAME=${ENV_GROUPNAME} \
---build-arg=ENV_MARIADB_USER=${ENV_MARIADB_USER} \
---build-arg=ENV_MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD} \
---build-arg=ENV_MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD} \
---build-arg=ENV_MARIADB_DATABASE=${ENV_MARIADB_DATABASE} \
+--build-arg=BUILD_ENV_UID=${ENV_UID} \
+--build-arg=BUILD_ENV_USERNAME=${ENV_USERNAME} \
+--build-arg=BUILD_ENV_GID=${ENV_GID} \
+--build-arg=BUILD_ENV_GROUPNAME=${ENV_GROUPNAME} \
+--build-arg=BUILD_ENV_MARIADB_USER=${ENV_MARIADB_USER} \
+--build-arg=BUILD_ENV_MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD} \
+--build-arg=BUILD_ENV_MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD} \
+--build-arg=BUILD_ENV_MARIADB_DATABASE=${ENV_MARIADB_DATABASE} \
 -t mariadb_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
