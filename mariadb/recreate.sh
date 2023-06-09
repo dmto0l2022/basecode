@@ -2,7 +2,11 @@ id=${ENV_UID} ##1001
 gid=${ENV_GID} ##1002
 
 cd /opt/dmtools/code/basecode/mariadb
+
+podman stop container_mariadb
+podman rm container_mariadb
 podman rmi mariadb_1
+
 
 #podman build \
 #--build-arg=BUILD_ENV_MARIADB_USER=${ENV_MARIADB_USER} \
