@@ -59,9 +59,7 @@ print(MARIADB_CONTAINER)
 #FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## from file
 FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## generated
 
-MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
-                MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
-                + MARIADB_DATABASE
+MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/" + MARIADB_DATABASE
 
 print(MARIADB_URI)
 
