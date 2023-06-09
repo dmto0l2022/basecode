@@ -1,3 +1,5 @@
+id=${ENV_UID} ##1001
+gid=${ENV_GID} ##1002
 
 cd /opt/dmtools/code/basecode/mariadb
 podman rmi mariadb_1
