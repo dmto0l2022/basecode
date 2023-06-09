@@ -50,6 +50,12 @@ MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
 MARIADB_DATABASE = environ.get("MARIADB_TEST")
 MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
 
+
+print("user name and container")
+print(MARIADB_USERNAME)
+print(MARIADB_CONTAINER)
+
+
 #FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## from file
 FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## generated
 
