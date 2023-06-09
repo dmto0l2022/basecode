@@ -270,7 +270,7 @@ async def delete_user(user_id: int):
 
 MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
 MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
-MARIADB_DATABASE = environ.get("MARIADB_TEST")
+MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
 MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
 
 MARIADB_URI = "mysql://" + MARIADB_USERNAME + ":" + \
