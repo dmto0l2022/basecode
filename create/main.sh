@@ -139,18 +139,19 @@ localhost/mariadb_1:latest
 
 #cd /opt/dmtools/code/basecode/api
 
-#podman rmi api_1
-#podman rmi base_api_1
-#podman build -f Dockerfile_apibase -t base_api_1
-#podman build -f Dockerfile_api -t api_1 .
+podman rmi api_1
+podman rmi base_api_1
+podman build -f Dockerfile_apibase -t base_api_1
+podman build -f Dockerfile_api -t api_1 .
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
-#podman run -dt \
-#--name container_api_1 \
-#--pod pod_main_backend \
-#-v /opt/dmtools/code/basecode:/workdir \
-#localhost/api_1:latest
+podman run -dt \
+--name container_api_1 \
+--pod pod_main_backend \
+--user $uid:$gid \
+-v /opt/dmtools/code/basecode:/workdir \
+localhost/api_1:latest
 
 ###
 
