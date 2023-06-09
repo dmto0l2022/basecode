@@ -137,7 +137,7 @@ localhost/mariadb_1:latest
 
 ##### --env MARIADB_USER=${ENV_MARIADB_USER} --env MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD} --env MARIADB_ROOT_PASSWORD=${ENV_MARIADB_PASSWORD} \
 
-#cd /opt/dmtools/code/basecode/api
+cd /opt/dmtools/code/basecode/api
 
 podman rmi api_1
 podman rmi base_api_1
