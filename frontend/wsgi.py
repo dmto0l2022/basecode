@@ -409,7 +409,7 @@ class SSLRedirect(object):
 '''
 
 application = DispatcherMiddleware(app, {
-    '/app/wsgi_app0': app0.server,  
+    #'/app/wsgi_app0': app0.server,  
     '/app/wsgi_app1': app1.server,
     '/app/wsgi_app2': app2.server,
     '/app/session_app': app3.server,
