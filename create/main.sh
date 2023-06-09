@@ -5,8 +5,8 @@ podman pod rm pod_main_backend
 
 uid=${ENV_UID} ##1001
 gid=${ENV_GID} ##1002
-uid=1001
-gid=1002
+#uid=1001
+#gid=1002
 #env_username=${ENV_USERNAME}
 #env_groupname=${ENV_GROUPNAME}
 
@@ -90,6 +90,7 @@ podman volume create redis-data
 podman run -dt \
 --name container_redis_1 \
 --pod pod_main_backend \
+--user $uid:$gid \
 --volume redis-data:/data \
 localhost/redis_1:latest
 
@@ -127,7 +128,7 @@ podman build \
 podman run -dt \
 --name container_mariadb \
 --pod pod_main_backend \
---user 1001:1002 \
+--user $uid:$gid \
 --volume /opt/dmtools/mysql:/var/lib/mysql:z \
 localhost/mariadb_1:latest
 
@@ -163,6 +164,7 @@ podman build -f Dockerfile -t fastapi_1
 podman run -dt \
 --name container_fastapi_1 \
 --pod pod_main_backend \
+--user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/fastapi_1:latest
 
@@ -178,6 +180,7 @@ podman build -f Dockerfile -t fastapi_orm_1
 podman run -dt \
 --name container_fastapi_orm_1 \
 --pod pod_main_backend \
+--user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/fastapi_orm_1:latest
 
@@ -194,6 +197,7 @@ podman build -f Dockerfile_frontend -t frontend_1 .
 podman run -dt \
 --name container_frontend_1 \
 --pod pod_main_backend \
+--user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/frontend_1:latest
 
