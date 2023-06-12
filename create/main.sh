@@ -40,6 +40,23 @@ subgidSize=$(( $(podman info --format "{{ range \
 #--publish 3306:3306 \
 #--publish 6379:6379
 
+#podman pod create \
+#--name pod_main_backend \
+#--infra-name infra_main_backend \
+#--network bridge \
+#--uidmap 0:1:$uid \
+#--uidmap $uid:0:1 \
+#--uidmap $(($uid+1)):$(($uid+1)):$(($subuidSize-$uid)) \
+#--gidmap 0:1:$gid \
+#--gidmap $gid:0:1 \
+#--gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
+#--publish 8002:8002 \
+#--publish 8004:8004 \
+#--publish 8006:8006 \
+#--publish 8008:8008 \
+#--publish 3306:3306 \
+#--publish 6379:6379
+
 podman pod create \
 --name pod_main_backend \
 --infra-name infra_main_backend \
@@ -50,12 +67,12 @@ podman pod create \
 --gidmap 0:1:$gid \
 --gidmap $gid:0:1 \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
---publish 8002:8002 \
+--publish 8002 \
 --publish 8004:8004 \
---publish 8006:8006 \
---publish 8008:8008 \
---publish 3306:3306 \
---publish 6379:6379
+--publish 8006 \
+--publish 8008 \
+--publish 3306 \
+--publish 6379
 
 #podman pod create \
 #--name pod_main_backend \
