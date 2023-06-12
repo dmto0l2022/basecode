@@ -68,7 +68,7 @@ podman pod create \
 --gidmap $gid:0:1 \
 --gidmap $(($gid+1)):$(($gid+1)):$(($subgidSize-$gid)) \
 --publish 8002 \
---publish 8004:8004 \
+--publish 8004 \
 --publish 8006 \
 --publish 8008 \
 --publish 3306 \
