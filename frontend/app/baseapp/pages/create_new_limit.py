@@ -279,7 +279,7 @@ def button_click(button1,button2):
         href_return = '/app/baseapp/homepage'
         return href_return
     '''
-@app.callback(Output('container', 'children'),
+@callback(Output('container', 'children'),
               [Input('9876_new_limit_save_button_id', 'n_clicks_timestamp'),
                Input('9876_new_limit_cancel_button_id', 'n_clicks_timestamp')])
 def display(btn1, btn2):
