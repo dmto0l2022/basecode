@@ -65,12 +65,12 @@ class Limit_class:
     def f(self):
         return 'hello world'
 
-#save_button =  html.Div(dbc.Button("Save",  id="create_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-save_button =  html.Div(dbc.Button("Save",  id="9876_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+save_button =  html.Div(dbc.Button("Save",  id="create_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+#save_button =  html.Div(dbc.Button("Save",  id="9876_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
 
-#cancel_button =  html.Div(dbc.Button("Cancel",  id="create_new_limit_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-cancel_button =  html.Div(dbc.Button("Cancel",  id="9876_new_limit_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+cancel_button =  html.Div(dbc.Button("Cancel",  id="create_new_limit_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+#cancel_button =  html.Div(dbc.Button("Cancel",  id="9876_new_limit_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
 #### create new Limit form
 
@@ -280,8 +280,8 @@ def button_click(button1,button2):
         return href_return
     '''
 @callback(Output('container', 'children'),
-              [Input('9876_new_limit_save_button_id', 'n_clicks_timestamp'),
-               Input('9876_new_limit_cancel_button_id', 'n_clicks_timestamp')])
+              [Input('create_new_limit_save_button_id', 'n_clicks_timestamp'),
+               Input('create_new_limit_cancel_button_id', 'n_clicks_timestamp')])
 def display(btn1, btn2):
     if int(btn1) > int(btn2):
         msg = 'Save was most recently clicked'
