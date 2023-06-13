@@ -286,9 +286,9 @@ def button_click(button1,button2):
                Input('create_new_limit_cancel_button_id', 'n_clicks_timestamp')])
 def display(btn1, btn2):
     if btn1 == None:
-        btn1 == 0
+        btn1 = 0
     if btn2 == None:
-        btn1 == 0
+        btn2 = 0
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     if int(btn1) > int(btn2):
         msg = 'Save was most recently clicked  > ' + prop_id
