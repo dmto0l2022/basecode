@@ -208,7 +208,7 @@ def button_click(button1,button2):
     #msg = prop_id
     if "create_new_limit_save_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
-        href_return = dash.page_registry['pages.list_all_limits']['path']
+        #href_return = dash.page_registry['pages.list_all_limits']['path']
         
         new_limit_txt = {
           "spin_dependency": "string",
@@ -250,6 +250,8 @@ def button_click(button1,button2):
         #x = requests.post(url, json = new_limit_txt)
 
         #print(x.text)
+        
+        href_return = '/list_all_limits'
         
         return href_return
     
