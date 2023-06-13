@@ -172,7 +172,11 @@ def update_output(contents_in):
     #    children = [
     #        parse_contents(c, n, d) for c, n, d in
     #        zip(list_of_contents, list_of_names, list_of_dates)]
-    DMToolLimit = parse_contents(contents_in)
+    try:
+        DMToolLimit = parse_contents(contents_in)
+    except:
+        DMToolLimit = Limit_class ## empty
+        
     return  [
             DMToolLimit.data_values,
             DMToolLimit.data_comment,
