@@ -53,12 +53,15 @@ def button_click(button1,button2):
     #msg = prop_id
     if "next_button_select_limits_to_plot" == prop_id :
         #msg = "Button 1 was most recently clicked"
-        href_return = dash.page_registry['pages.style_plot_and_traces']['path']
+        #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
+        href_return = '/app/baseapp/style_plot_and_traces'
         return href_return
     elif "cancel_button_select_limits_to_plot" == prop_id:
         #msg = "Button 2 was most recently clicked"
-        href_return = dash.page_registry['pages.home']['path']
+        #href_return = dash.page_registry['pages.home']['path']
+        href_return = '/app/baseapp/homepage'
         return href_return
     else:
-        href_return = dash.page_registry['pages.home']['path']
+        #href_return = dash.page_registry['pages.home']['path']
+        href_return = '/app/baseapp/homepage'
         return href_return
