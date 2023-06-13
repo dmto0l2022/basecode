@@ -2,7 +2,7 @@ import flask
 import dash
 from dash import Dash, dcc, html, Input, Output, State, callback
 
-dash.register_page(__name__, path='/app/showbutton')
+dash.register_page(__name__, path='/showbutton')
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
