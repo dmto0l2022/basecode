@@ -243,8 +243,8 @@ def button_click(button1,button2):
         
         
         #url = 'https://www.w3schools.com/python/demopage.php'
-        #url = 'http://35.214.16.124:8008/apiorm/limit'
-        url = 'http://container_fastapi_orm_1:8008/apiorm/limit'
+        url = 'http://35.214.16.124:8008/apiorm/limit'
+        #url = 'http://container_fastapi_orm_1:8008/apiorm/limit'
         #myobj = {'somekey': 'somevalue'}
 
         x = requests.post(url, json = new_limit_txt)
