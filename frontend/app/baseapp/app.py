@@ -50,7 +50,7 @@ app = Dash(__name__,
             meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}],
             suppress_callback_exceptions=True)
 
-server = app.server
+server = app.server(debug=True)
 
 app.layout = html.Div([
 	html.H1('Multi-page app with Dash Pages'),
