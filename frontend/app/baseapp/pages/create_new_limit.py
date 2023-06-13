@@ -13,7 +13,7 @@ from app.baseapp.libraries import formlibrary as fl
 
 import xml.etree.ElementTree as ET
 
-dash.register_page(__name__, path='/app/create_new_limit')
+dash.register_page(__name__)
 
 #### New Limit Class
 
