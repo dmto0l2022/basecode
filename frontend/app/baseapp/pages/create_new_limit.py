@@ -2,6 +2,8 @@ import dash
 from dash import html, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
 
+import json
+
 import base64
 
 import pandas as pd
@@ -206,6 +208,38 @@ def button_click(button1,button2):
     if "create_new_limit_save_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
         href_return = dash.page_registry['pages.list_all_limits']['path']
+        
+        new_limit_txt = {
+          "spin_dependency": "string",
+          "result_type": "string",
+          "measurement_type": "string",
+          "nomhash": "string",
+          "x_units": "string",
+          "y_units": "string",
+          "x_rescale": "string",
+          "y_rescale": "string",
+          "default_color": "string",
+          "default_style": "string",
+          "data_values": "string",
+          "data_label": "string",
+          "file_name": "string",
+          "data_comment": "string",
+          "data_reference": "string",
+          "creator_id": 2147483647,
+          "experiment": "string",
+          "rating": 2147483647,
+          "date_of_announcement": "2023-06-13",
+          "public": 2147483647,
+          "official": 2147483647,
+          "date_official": "2023-06-13",
+          "greatest_hit": 2147483647,
+          "date_of_run_start": "2023-06-13",
+          "date_of_run_end": "2023-06-13",
+          "year": 2147483647
+        }
+        
+        new_limit_json = json.dumps(new_limit_txt)
+        
         return href_return
     elif "create_new_limit_cancel_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
