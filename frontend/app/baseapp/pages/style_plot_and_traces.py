@@ -144,7 +144,7 @@ def GetChart(chart_in):
 default_column_chart = GetChart(chart_in)
 
 
-dash.register_page(__name__, path='/app/style_plot_and_traces')
+dash.register_page(__name__, path='/style_plot_and_traces')
 
 #### style plot and traces
 
