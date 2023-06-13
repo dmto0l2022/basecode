@@ -208,10 +208,12 @@ def update_output(contents_in):
 )
 def button_click(button1,button2):
     #msg = "None of the buttons have been clicked yet"
+    
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     #msg = prop_id
     if "create_new_limit_save_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
+        print("save button pressed")
         #href_return = dash.page_registry['pages.list_all_limits']['path']
         
         new_limit_txt = {
