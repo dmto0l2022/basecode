@@ -3,7 +3,7 @@ from dash import html, dcc, callback, Output, Input
 
 from app.baseapp.libraries import formlibrary as fl
 
-dash.register_page(__name__, path='/app/applogin')
+dash.register_page(__name__, path='/app_login')
 
 login_row = fl.login_form
 
