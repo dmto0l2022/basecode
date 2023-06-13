@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 
 from app.baseapp.libraries import formlibrary as fl
 
-dash.register_page(__name__, path='/app/edit_existing_limit')
+dash.register_page(__name__, path='/edit_existing_limit')
 
 #### edit existing limit form
 
