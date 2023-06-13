@@ -204,7 +204,7 @@ def update_output(contents_in):
     Input("create_new_limit_save_button_id", "n_clicks"),
     Input("create_new_limit_cancel_button_id", "n_clicks")
         ],
-        ##prevent_initial_call=True
+        prevent_initial_call=True
 )
 def button_click(button1,button2):
     #msg = "None of the buttons have been clicked yet"
