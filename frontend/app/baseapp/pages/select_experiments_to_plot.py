@@ -132,7 +132,7 @@ form = dbc.Container(
 
 #import formlibrary as fl
 
-dash.register_page(__name__, path='/app/select_experiments_to_plot')
+dash.register_page(__name__, path='/select_experiments_to_plot')
 
 #### select experiments to plot
 
