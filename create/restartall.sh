@@ -1,0 +1,14 @@
+podman stop container_frontend_1
+podman stop container_api_1
+podman stop container_fastapi_1
+podman stop container_fastapi_orm_1
+podman stop container_mariadb
+podman stop container_redis_1
+
+podman start container_mariadb
+podman start container_redis_1
+podman start container_fastapi_orm_1
+podman start container_fastapi_1
+podman start container_api_1
+podman start container_frontend_1
+
