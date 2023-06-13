@@ -65,10 +65,12 @@ class Limit_class:
     def f(self):
         return 'hello world'
 
-save_button =  html.Div(dbc.Button("Save",  id="create_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+#save_button =  html.Div(dbc.Button("Save",  id="create_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+save_button =  html.Div(dbc.Button("Save",  id="9876_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
-cancel_button =  html.Div(dbc.Button("Cancel",  id="create_new_limit_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
+#cancel_button =  html.Div(dbc.Button("Cancel",  id="create_new_limit_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+cancel_button =  html.Div(dbc.Button("Cancel",  id="9876_new_limit_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
 #### create new Limit form
 
@@ -201,8 +203,8 @@ def update_output(contents_in):
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
-    Input("create_new_limit_save_button_id", "n_clicks"),
-    Input("create_new_limit_cancel_button_id", "n_clicks")
+    Input("9876_new_limit_save_button_id", "n_clicks"),
+    Input("9876_new_limit_cancel_button_id", "n_clicks")
         ],
         prevent_initial_call=True
 )
@@ -215,7 +217,7 @@ def button_click(button1,button2):
     print(prop_id)
     
     #msg = prop_id
-    if "create_new_limit_save_button_id" == prop_id :
+    if "9876_new_limit_save_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
         print("save button pressed")
         #href_return = dash.page_registry['pages.list_all_limits']['path']
@@ -266,7 +268,7 @@ def button_click(button1,button2):
         
         return href_return
     
-    elif "create_new_limit_cancel_button_id" == prop_id:
+    elif "9876_new_limit_cancel_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/app/baseapp/homepage'
