@@ -166,7 +166,7 @@ layout = load_limit_file_form
             #State('upload-data', 'last_modified')
              )
 def update_output(contents_in):
-    print('hello')
+    print('hello during form update')
     #print(contents_in)
     #if list_of_contents is not None:
     #    children = [
