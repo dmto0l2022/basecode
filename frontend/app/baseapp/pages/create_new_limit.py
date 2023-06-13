@@ -285,9 +285,9 @@ def button_click(button1,button2):
 def display(btn1, btn2):
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     if int(btn1) > int(btn2):
-        msg = 'Save was most recently clicked' + prop_id
+        msg = 'Save was most recently clicked  > ' + prop_id
     elif int(btn2) > int(btn1):
-        msg = 'Cancel was most recently clicked' + prop_id
+        msg = 'Cancel was most recently clicked  > ' + prop_id
     else:
         msg = 'None of the buttons have been clicked yet'
     return html.Div([
