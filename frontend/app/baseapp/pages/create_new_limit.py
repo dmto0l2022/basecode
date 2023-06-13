@@ -247,9 +247,9 @@ def button_click(button1,button2):
         #url = 'http://container_fastapi_orm_1:8008/apiorm/limit'
         #myobj = {'somekey': 'somevalue'}
 
-        x = requests.post(url, json = new_limit_txt)
+        #x = requests.post(url, json = new_limit_txt)
 
-        print(x.text)
+        #print(x.text)
         
         return href_return
     
