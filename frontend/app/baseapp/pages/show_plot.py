@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 
 # import formlibrary as fl
 
-dash.register_page(__name__, path='/app/show_plot')
+dash.register_page(__name__, path='/show_plot')
 
 #### show plot
 
