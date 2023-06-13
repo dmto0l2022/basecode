@@ -219,7 +219,7 @@ def button_click(button1,button2):
         #msg = "Button 1 was most recently clicked"
         print("save button pressed")
         #href_return = dash.page_registry['pages.list_all_limits']['path']
-        
+        '''
         new_limit_txt = {
           "spin_dependency": "string",
           "result_type": "string",
@@ -260,6 +260,7 @@ def button_click(button1,button2):
         #x = requests.post(url, json = new_limit_txt)
 
         #print(x.text)
+        '''
         
         href_return = '/app/baseapp/list_all_limits'
         
