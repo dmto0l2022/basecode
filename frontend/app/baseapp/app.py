@@ -48,7 +48,8 @@ app = Dash(__name__,
             requests_pathname_prefix='/app/baseapp/',
             external_stylesheets=external_stylesheets,
             meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}],
-            suppress_callback_exceptions=True)
+            ##suppress_callback_exceptions=True,
+	  )
 
 server = app.server
 
