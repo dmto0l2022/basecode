@@ -58,21 +58,21 @@ def button_click(button1,button2,button3,button4):
     #msg = prop_id
     if "create_new_plot_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
-        href_return = '/app/baseapp/app/create_new_plot'
+        href_return = '/app/baseapp/create_new_plot'
         return href_return
     elif "edit_existing_plot_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.edit_existing_plot']['path']
-        href_return = '/app/baseapp/app/edit_existing_plot'
+        href_return = '/app/baseapp/edit_existing_plot'
         return href_return
     elif "create_new_limit_button" == prop_id:
         #msg = "Button 2 was most recently clicked"
-        href_return = '/app/baseapp/app/create_new_limit'
+        href_return = '/app/baseapp/create_new_limit'
         return href_return
     elif "edit_existing_limit_button" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.edit_existing_limit']['path']
-        href_return = '/app/baseapp/app/edit_existing_limit'
+        href_return = '/app/baseapp/edit_existing_limit'
         return href_return
     else:
         href_return = '/baseapp/homepage'
