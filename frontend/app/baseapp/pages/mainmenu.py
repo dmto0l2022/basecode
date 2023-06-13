@@ -5,7 +5,7 @@ import dash
 #import libraries.formlibrary as fl
 from app.baseapp.libraries import formlibrary as fl
 
-dash.register_page(__name__, path='/app/mainmenu')
+dash.register_page(__name__, path='/mainmenu')
 
 items = [
     dbc.DropdownMenuItem("Item 1"),
