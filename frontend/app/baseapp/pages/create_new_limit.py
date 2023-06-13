@@ -210,6 +210,10 @@ def button_click(button1,button2):
     #msg = "None of the buttons have been clicked yet"
     
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+    print('-------------- prop id ---------------------')
+    
+    print(prop_id)
+    
     #msg = prop_id
     if "create_new_limit_save_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
