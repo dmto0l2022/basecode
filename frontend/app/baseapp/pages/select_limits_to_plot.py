@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 
 #import formlibrary as fl
 
-dash.register_page(__name__, path='/app/select_limits_to_plot')
+dash.register_page(__name__, path='/select_limits_to_plot')
 
 #### select limits to plot
 
