@@ -251,14 +251,16 @@ def button_click(button1,button2):
 
         #print(x.text)
         
-        href_return = '/list_all_limits'
+        href_return = '/app/baseapp/list_all_limits'
         
         return href_return
     
     elif "create_new_limit_cancel_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
-        href_return = dash.page_registry['pages.home']['path']
+        #href_return = dash.page_registry['pages.home']['path']
+        href_return = '/app/baseapp/homepage'
         return href_return
     else:
-        href_return = dash.page_registry['pages.home']['path']
+        #href_return = dash.page_registry['pages.home']['path']
+        href_return = '/app/baseapp/homepage'
         return href_return
