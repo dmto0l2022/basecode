@@ -65,11 +65,13 @@ class Limit_class:
     def f(self):
         return 'hello world'
 
-save_button =  html.Div(dbc.Button("Save",  id="create_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN", n_clicks_timestamp='0')
+save_button =  html.Div(dbc.Button("Save",  id="create_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN",
+                        n_clicks_timestamp=0)
 #save_button =  html.Div(dbc.Button("Save",  id="9876_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
 
-cancel_button =  html.Div(dbc.Button("Cancel",  id="create_new_limit_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN", n_clicks_timestamp='0')
+cancel_button =  html.Div(dbc.Button("Cancel",  id="create_new_limit_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN",
+                          n_clicks_timestamp=0)
 #cancel_button =  html.Div(dbc.Button("Cancel",  id="9876_new_limit_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
 #### create new Limit form
