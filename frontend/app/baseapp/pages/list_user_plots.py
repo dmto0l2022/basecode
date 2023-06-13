@@ -65,7 +65,7 @@ def RefreshTableData():
     updated_data_ret = updated_data_frame.to_dict('records')
     return updated_data_ret
 
-dash.register_page(__name__, path='/app/list_user_plots')
+dash.register_page(__name__, path='/list_user_plots')
 
 #### list user plots
 
