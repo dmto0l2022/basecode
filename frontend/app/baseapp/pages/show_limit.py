@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 
 #import formlibrary as fl
 
-dash.register_page(__name__, path='/app/show_limit')
+dash.register_page(__name__, path='/show_limit')
 
 
 #### show limit
