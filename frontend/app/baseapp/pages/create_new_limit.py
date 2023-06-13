@@ -99,7 +99,8 @@ load_limit_file_form = html.Div(
         fl.yunit_input_row,
         fl.year_input_row,
         save_button,
-        cancel_button
+        cancel_button,
+        html.Div(id='container')
     ])
 
 def parse_contents(contents):
@@ -199,7 +200,7 @@ def update_output(contents_in):
             DMToolLimit.y_units,
             DMToolLimit.year
         ]
-
+'''
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
@@ -221,7 +222,7 @@ def button_click(button1,button2):
         #msg = "Button 1 was most recently clicked"
         print("save button pressed")
         #href_return = dash.page_registry['pages.list_all_limits']['path']
-        '''
+        
         new_limit_txt = {
           "spin_dependency": "string",
           "result_type": "string",
@@ -262,7 +263,7 @@ def button_click(button1,button2):
         #x = requests.post(url, json = new_limit_txt)
 
         #print(x.text)
-        '''
+        
         
         href_return = '/app/baseapp/list_all_limits'
         
@@ -277,3 +278,20 @@ def button_click(button1,button2):
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/app/baseapp/homepage'
         return href_return
+    '''
+@app.callback(Output('container', 'children'),
+              [Input('9876_new_limit_save_button_id', 'n_clicks_timestamp'),
+               Input('9876_new_limit_cancel_button_id', 'n_clicks_timestamp')])
+def display(btn1, btn2):
+    if int(btn1) > int(btn2):
+        msg = 'Save was most recently clicked'
+    elif int(btn2) > int(btn1):
+        msg = 'Cancel was most recently clicked'
+    else:
+        msg = 'None of the buttons have been clicked yet'
+    return html.Div([
+        html.Div('btn1: {}'.format(btn1)),
+        html.Div('btn2: {}'.format(btn2)),
+        html.Div(msg)
+    ])
+
