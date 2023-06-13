@@ -300,7 +300,7 @@ def display(btn1, btn2):
     Input("create_new_limit_save_button_id", "n_clicks"),
     Input("create_new_limit_cancel_button_id", "n_clicks")
         ],
-        prevent_initial_call=True])
+        prevent_initial_call=True)
 def display(btn1, btn2):
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     if int(btn1) > int(btn2):
