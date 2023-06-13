@@ -175,7 +175,7 @@ def update_output(contents_in):
     try:
         DMToolLimit = parse_contents(contents_in)
     except:
-        DMToolLimit = Limit_class ## empty
+        DMToolLimit = Limit_class() ## empty
         
     return  [
             DMToolLimit.data_values,
