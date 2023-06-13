@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 #import libraries.formlibrary as fl
 from app.baseapp.libraries import formlibrary as fl
 
-dash.register_page(__name__, path='/app/list_all_limits')
+dash.register_page(__name__, path='/list_all_limits')
 
 
 #### list all limits
