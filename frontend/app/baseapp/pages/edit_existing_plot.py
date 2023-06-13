@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 
 #import formlibrary as fl
 
-dash.register_page(__name__, path='/app/edit_existing_plot')
+dash.register_page(__name__, path='/edit_existing_plot')
 
 
 #### edit existing plot form
