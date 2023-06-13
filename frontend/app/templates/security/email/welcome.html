@@ -5,7 +5,7 @@
   user - the entire user model object
   security - the Flask-Security configuration
 #}
-<p>{{ _fsdomain('Welcome %(email)s!', email=user.email) }}</p>
+<p>{{ _fsdomain('Welcome User Email %(email)s!', email=user.email) }}</p>
 
 {% if security.confirmable %}
 <p>{{ _fsdomain('You can confirm your email through the link below:') }}</p>
