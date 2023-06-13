@@ -3,6 +3,7 @@ from dash import html, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
 
 import json
+import requests
 
 import base64
 
@@ -240,7 +241,17 @@ def button_click(button1,button2):
         
         new_limit_json = json.dumps(new_limit_txt)
         
+        
+        #url = 'https://www.w3schools.com/python/demopage.php'
+        url = 'http://35.214.16.124:8008/apiorm/limit'
+        #myobj = {'somekey': 'somevalue'}
+
+        x = requests.post(url, json = new_limit_txt)
+
+        print(x.text)
+        
         return href_return
+    
     elif "create_new_limit_cancel_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         href_return = dash.page_registry['pages.home']['path']
