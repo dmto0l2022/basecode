@@ -78,10 +78,37 @@ class Limit_class:
         self.y_rescale = ''
         self.y_units = ''
         self.year = ''
-        self.json_put = ''
+        ##self.json_put = ''
+    
     def find_xml_text(self,root_in,tag_in):
         dv_find = root_in.findall(tag_in)
         return dv_find[0].text
+    
+    def set_values(self,root_in):
+        self.data_values = self.find_xml_text(root_in,'data-values')
+        self.data_comment = self.find_xml_text(root_in,'data-comment')
+        self.data_label = self.find_xml_text(root_in,'data-label')
+        self.data_reference = self.find_xml_text(root_in,'data-reference')
+        self.date_of_announcement = self.find_xml_text(root_in,'date-of-announcement')
+        self.date_of_run_end = self.find_xml_text(root_in,'date-of-run-end')
+        self.date_of_run_start = self.find_xml_text(root_in,'date-of-run-start')
+        self.default_color = self.find_xml_text(root_in,'default-color')
+        self.default_style = self.find_xml_text(root_in,'default-style')
+        self.experiment = self.find_xml_text(root_in,'experiment')
+        self.public = self.find_xml_text(root_in,'public')
+        self.result_type = self.find_xml_text(root_in,'result-type')
+        self.spin_dependency = self.find_xml_text(root_in,'spin-dependency')
+        self.x_rescale = self.find_xml_text(root_in,'x-rescale')
+        self.x_units = self.find_xml_text(root_in,'x-units')
+        self.y_rescale = self.find_xml_text(root_in,'y-rescale')
+        self.y_units = self.find_xml_text(root_in,'y-units')
+        self.year = self.find_xml_text(root_in,'year')
+        #self.json_put = self.create_json()
+    
+    def f(self):
+        return 'hello world'
+    
+    '''
     def create_json(self):
         json_str = {
           "spin_dependency": self.spin_dependency,
@@ -112,31 +139,9 @@ class Limit_class:
           "year": self.year
         }
         return json_str
-    def set_values(self,root_in):
-        self.data_values = self.find_xml_text(root_in,'data-values')
-        self.data_comment = self.find_xml_text(root_in,'data-comment')
-        self.data_label = self.find_xml_text(root_in,'data-label')
-        self.data_reference = self.find_xml_text(root_in,'data-reference')
-        self.date_of_announcement = self.find_xml_text(root_in,'date-of-announcement')
-        self.date_of_run_end = self.find_xml_text(root_in,'date-of-run-end')
-        self.date_of_run_start = self.find_xml_text(root_in,'date-of-run-start')
-        self.default_color = self.find_xml_text(root_in,'default-color')
-        self.default_style = self.find_xml_text(root_in,'default-style')
-        self.experiment = self.find_xml_text(root_in,'experiment')
-        self.public = self.find_xml_text(root_in,'public')
-        self.result_type = self.find_xml_text(root_in,'result-type')
-        self.spin_dependency = self.find_xml_text(root_in,'spin-dependency')
-        self.x_rescale = self.find_xml_text(root_in,'x-rescale')
-        self.x_units = self.find_xml_text(root_in,'x-units')
-        self.y_rescale = self.find_xml_text(root_in,'y-rescale')
-        self.y_units = self.find_xml_text(root_in,'y-units')
-        self.year = self.find_xml_text(root_in,'year')
-        self.json_put = self.create_json()
-        
+        '''
     
-    
-    def f(self):
-        return 'hello world'
+      
 
 save_button =  html.Div(dbc.Button("Save",  id="create_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN",
                         n_clicks_timestamp=0)
@@ -187,9 +192,9 @@ def parse_contents(contents):
     DMToolLimit = Limit_class()
     DMToolLimit.set_values(stringToXML)
     data_reference_out = DMToolLimit.data_reference
-    #print(stringToXML)
+    print(stringToXML)
     #data_reference_out = find_xml_text(stringToXML,'data-reference')
-    print(DMToolLimit)
+    print(data_reference_out)
     return DMToolLimit
 
 '''
