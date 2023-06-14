@@ -31,8 +31,8 @@ date_of_announcement_form_field_id
 date_of_run_start_form_field_id
 date_of_run_end_form_field_id
 year_form_field_id
-rescale_x_form_field_id
-rescale_y_form_field_id
+x_rescale_form_field_id
+y_rescale_form_field_id
 y_unit_form_field_id
 x_unit_form_field_id
 data_values_form_field_id
@@ -1010,18 +1010,18 @@ year_input_row = html.Div(
 
 # X Rescale - Exponential
 
-rescale_x_input_row = html.Div(
+x_rescale_input_row = html.Div(
     [
         dbc.Row(
             [
                 dbc.Col(
-                    html.Label('Rescale X :',className='FORM_COLUMN_LABEL'),
+                    html.Label('X Rescale :',className='FORM_COLUMN_LABEL'),
                     className='FORM_LABEL_COLUMN',
                     width = label_column_width
                 ),
                 dbc.Col(
                     dcc.Input(
-                        id="rescale_x_form_field_id",
+                        id="x_rescale_form_field_id",
                         debounce=True,
                         placeholder="1e1",
                         type="text",
@@ -1033,7 +1033,7 @@ rescale_x_input_row = html.Div(
                     className='FORM_DATA_COLUMN',
                     width = data_column_width
                 ),
-                dbc.Col(dcc.Input(id='rescale_x_example_field_id',
+                dbc.Col(dcc.Input(id='x_rescale_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -1043,10 +1043,10 @@ rescale_x_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter rescale x'),
-                    target="rescale_x_form_field_id",trigger="hover"),
+                    target="x_rescale_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('example rescale'),
-                    target="rescale_x_example_field_id",trigger="click"), 
+                    target="x_rescale_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1055,18 +1055,18 @@ rescale_x_input_row = html.Div(
 
 # Y Rescale - Exponential
 
-rescale_y_input_row = html.Div(
+y_rescale_input_row = html.Div(
     [
         dbc.Row(
             [
                 dbc.Col(
-                    html.Label('Rescale Y :',className='FORM_COLUMN_LABEL'),
+                    html.Label('Y Rescale :',className='FORM_COLUMN_LABEL'),
                     className='FORM_LABEL_COLUMN',
                     width = label_column_width
                 ),
                 dbc.Col(
                     dcc.Input(
-                        id="rescale_y_form_field_id",
+                        id="y_rescale_form_field_id",
                         debounce=True,
                         placeholder="1e1",
                         type="text",
@@ -1079,7 +1079,7 @@ rescale_y_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='rescale_y_example_field_id',
+                dbc.Col(dcc.Input(id='y_rescale_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -1088,11 +1088,11 @@ rescale_y_input_row = html.Div(
                     width=1),
                 
                 dbc.Popover(
-                    dbc.PopoverBody('enter rescale y'),
-                    target="rescale_y_form_field_id",trigger="hover"),
+                    dbc.PopoverBody('enter y rescale'),
+                    target="y_rescale_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('rescale y example'),
-                    target="rescale_y_example_field_id",trigger="click"), 
+                    target="y_rescale_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1780,9 +1780,9 @@ load_limit_file_form = html.Div(
         public_limit_input_row,
         result_type_input_row,
         spin_dependency_input_row,
-        rescale_x_input_row,
+        x_rescale_input_row,
         x_unit_input_row,
-        rescale_y_input_row,
+        y_rescale_input_row,
         y_unit_input_row,
         year_input_row
     ])
@@ -1802,8 +1802,8 @@ edit_limit_form = html.Div(
         experiment_input_row,
         date_of_announcement_input_row,
         year_input_row,
-        rescale_y_input_row,
-        rescale_x_input_row])
+        y_rescale_input_row,
+        x_rescale_input_row])
 
 
 ############################################
@@ -1811,7 +1811,7 @@ edit_limit_form = html.Div(
 ############################################
 
 edit_existing_limit_form = html.Div(
-        [rescale_x_input_row,
+        [x_rescale_input_row,
         data_values_input_row,
         result_type_input_row,
         spin_dependency_input_row,
