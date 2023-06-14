@@ -1897,7 +1897,7 @@ cancel_button =  html.Div(dbc.Button("Cancel",  id="cancel_button1", color="seco
 login_form = html.Div(
     #[newplot_title,newplot_input3],
     [dcc.Location(id="url", refresh=True),
-     email_form_title, enter_emailandpassword,
+     email_form_title, enter_email_and_password,
      submit_button, cancel_button],
     className = "NOPADDING_CONTENT CENTRE_FORM"
 )
