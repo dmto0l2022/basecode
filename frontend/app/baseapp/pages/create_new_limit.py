@@ -282,7 +282,6 @@ def button_click(button1,button2):
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/app/baseapp/homepage'
         return href_return
-'''
 #### this works from here ####
 @callback(Output('container', 'children'),
               [Input('create_new_limit_save_button_id', 'n_clicks_timestamp'),
@@ -329,4 +328,4 @@ def display(btn1, btn2):
         msg = 'None of the buttons have been clicked yet'
         href_return = '/app/baseapp/create_new_limit'
     return href_return
-'''
+
