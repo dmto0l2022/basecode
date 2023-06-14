@@ -60,7 +60,7 @@ data_column_width = 2
 
 # Plot Name - Text
 
-plotname_input_row = html.Div(
+plot_name_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -99,7 +99,7 @@ plotname_input_row = html.Div(
 
 # X Range: Lower Bound - Text
 
-xrangelower_input_row = html.Div(
+x_range_lower_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -141,7 +141,7 @@ xrangelower_input_row = html.Div(
 
 # Upper Bound - Text
 
-xrangeupper_input_row = html.Div(
+x_range_upper_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -239,7 +239,7 @@ scale_input_row = html.Div(
 
 # Trace Trace ID - Integer
 
-traceid_input_row = html.Div(
+trace_id_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -277,7 +277,7 @@ traceid_input_row = html.Div(
 
 # Trace Name - Text
 
-tracename_input_row = html.Div(
+trace_name_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -319,7 +319,7 @@ tracename_input_row = html.Div(
 
 # Trace Color - Dropdown Trace
 
-tracecolor_input_row = html.Div(
+trace_color_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -451,7 +451,7 @@ linestyledd = dcc.Dropdown(
     )
 
 
-linestyle_input_row = html.Div(
+line_style_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -490,7 +490,7 @@ linestyle_input_row = html.Div(
 
 # Trace Fill Color - Dropdown
 
-tracefillcolor_input_row = html.Div(
+trace_fill_color_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -534,7 +534,7 @@ tracefillcolor_input_row = html.Div(
 
 # Remove Site Address Check Box
 
-removesiteaddress_input_row = html.Div(
+remove_site_address_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -584,7 +584,7 @@ removesiteaddress_input_row = html.Div(
 
 # Upload XML File - Select File
 
-uploadxmlfile_input_row = html.Div(
+upload_xml_file_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -631,7 +631,7 @@ uploadxmlfile_input_row = html.Div(
 
 # Data Label - Text - < 60 chars
 
-datalabel_input_row = html.Div(
+data_label_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -671,7 +671,7 @@ datalabel_input_row = html.Div(
 
 # Data Reference - Big Text
 
-datareference_input_row = html.Div(
+data_reference_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -713,7 +713,7 @@ datareference_input_row = html.Div(
 
 # Data Comment - Big Text
 
-datacomment_input_row = html.Div(
+data_comment_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -813,7 +813,7 @@ experiment_input_row = html.Div(
 
 # Date of Announcement - Date
 
-dateofannouncement_input_row = html.Div(
+date_of_announcement_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -859,7 +859,7 @@ dateofannouncement_input_row = html.Div(
 
 # Date of Run Start - Date
 
-dateofrunstart_input_row = html.Div(
+date_of_run_start_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -905,7 +905,7 @@ dateofrunstart_input_row = html.Div(
 
 # Date of Run End - Date
 
-dateofrunend_input_row = html.Div(
+date_of_run_end_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1010,7 +1010,7 @@ year_input_row = html.Div(
 
 # X Rescale - Exponential
 
-rescalex_input_row = html.Div(
+rescale_x_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1055,7 +1055,7 @@ rescalex_input_row = html.Div(
 
 # Y Rescale - Exponential
 
-rescaley_input_row = html.Div(
+rescale_y_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1101,7 +1101,7 @@ rescaley_input_row = html.Div(
 
 # X Unit
 
-xunit_input_row = html.Div(
+x_unit_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1147,7 +1147,7 @@ xunit_input_row = html.Div(
 
 # Y Unit
 
-yunit_input_row = html.Div(
+y_unit_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1194,7 +1194,7 @@ yunit_input_row = html.Div(
 
 # Data Values - big text field
 
-datavalues_input_row = html.Div(
+data_values_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1242,7 +1242,7 @@ resulttype_lol = [['Theory','Th'],['Project','Proj'],['Experiment','Exp']]
 resulttype_lol
 resulttypeDict = {item[0]: item[1] for item in resulttype_lol}
 
-resulttype_input_row = html.Div(
+result_type_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1292,7 +1292,7 @@ limit_type_lol = [['All',-1],['Official','1']]
 #limit_type,Official,"1"
 limit_typeDict = {item[0]: item[1] for item in limit_type_lol}
 
-limittype_input_row = html.Div(
+limit_type_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1338,7 +1338,7 @@ limittype_input_row = html.Div(
 spin_lol = [['All','All'],['spin-dependent','SD'],['spin-independent','SI']]
 spinDict = {item[0]: item[1] for item in spin_lol}
 
-spindependency_input_row = html.Div(
+spin_dependency_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1384,7 +1384,7 @@ spindependency_input_row = html.Div(
 measurementtype_lol = [['All','All'],['Direct','Dir']]
 measurementtypeDict = {item[0]: item[1] for item in measurementtype_lol}
 
-measurementtype_input_row = html.Div(
+measurement_type_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1428,7 +1428,7 @@ measurementtype_input_row = html.Div(
 
 # Public Limit - Checkbox
 
-publiclimit_input_row = html.Div(
+public_limit_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1467,7 +1467,7 @@ publiclimit_input_row = html.Div(
 
 # Other Users - CSV of Users
 
-otherusers_input_row = html.Div(
+other_users_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1559,7 +1559,7 @@ official_input_row = html.Div(
 
 # Greatest Hits - Dropdown
 
-greatesthits_input_row = html.Div(
+greatest_hits_input_row = html.Div(
     [
         dbc.Row(
             [
@@ -1660,7 +1660,7 @@ button_input_row = html.Div(
 ################################################
 
 
-newplot_form = html.Div([
+new_plot_form = html.Div([
                 plotname_input_row,
                 button_input_row])
 
@@ -1766,24 +1766,24 @@ year_form_field_id
 '''            
 
 load_limit_file_form = html.Div(
-        [uploadxmlfile_input_row,
-        datavalues_input_row,
-        datacomment_input_row,
-        datalabel_input_row,
-        datareference_input_row,
-        dateofannouncement_input_row,
-        dateofrunstart_input_row,
-        dateofrunend_input_row,
-        tracecolor_input_row,
-        linestyle_input_row,
+        [upload_xml_file_input_row,
+        data_values_input_row,
+        data_comment_input_row,
+        data_label_input_row,
+        data_reference_input_row,
+        date_of_announcement_input_row,
+        date_of_runstart_input_row,
+        date_of_runend_input_row,
+        trace_color_input_row,
+        line_style_input_row,
         experiment_input_row,
-        publiclimit_input_row,
-        resulttype_input_row,
-        spindependency_input_row,
-        rescalex_input_row,
-        xunit_input_row,
-        rescaley_input_row,
-        yunit_input_row,
+        public_limit_input_row,
+        result_type_input_row,
+        spin_dependency_input_row,
+        rescale_x_input_row,
+        x_unit_input_row,
+        rescale_y_input_row,
+        y_unit_input_row,
         year_input_row
     ])
 
@@ -1794,30 +1794,30 @@ load_limit_file_form = html.Div(
 ############################################
 
 edit_limit_form = html.Div(
-        [uploadxmlfile_input_row,
-        datalabel_input_row,
-        datareference_input_row,
-        datacomment_input_row,
-        datavalues_input_row,
+        [upload_xml_file_input_row,
+        data_label_input_row,
+        data_reference_input_row,
+        data_comment_input_row,
+        data_values_input_row,
         experiment_input_row,
-        dateofannouncement_input_row,
+        date_of_announcement_input_row,
         year_input_row,
-        rescaley_input_row,
-        rescalex_input_row])
+        rescale_y_input_row,
+        rescale_x_input_row])
 
 
 ############################################
 ## EDIT EXISTING LIMIT FORM
 ############################################
 
-edit_existinglimit_form = html.Div(
-        [rescalex_input_row,
-        datavalues_input_row,
-        resulttype_input_row,
-        spindependency_input_row,
-        measurementtype_input_row,
-        publiclimit_input_row,
-        otherusers_input_row
+edit_existing_limit_form = html.Div(
+        [rescale_x_input_row,
+        data_values_input_row,
+        result_type_input_row,
+        spin_dependency_input_row,
+        measurement_type_input_row,
+        public_limit_input_row,
+        other_users_input_row
         ])
 
 
@@ -1853,10 +1853,10 @@ password_input = html.Div(
 
 #### email & password form
 
-emailform_title = html.Div(html.P(children='Please Login', className = "NOPADDING_CONTENT FORM_TITLE"))
+email_form_title = html.Div(html.P(children='Please Login', className = "NOPADDING_CONTENT FORM_TITLE"))
 
 
-enter_emailandpassword  = dbc.Row(
+enter_email_and_password  = dbc.Row(
     [
         dbc.Col(
             [
@@ -1897,7 +1897,7 @@ cancel_button =  html.Div(dbc.Button("Cancel",  id="cancel_button1", color="seco
 login_form = html.Div(
     #[newplot_title,newplot_input3],
     [dcc.Location(id="url", refresh=True),
-     emailform_title, enter_emailandpassword,
+     email_form_title, enter_emailandpassword,
      submit_button, cancel_button],
     className = "NOPADDING_CONTENT CENTRE_FORM"
 )
