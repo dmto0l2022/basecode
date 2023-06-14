@@ -82,7 +82,7 @@ Limit = Limit_class
 
 load_limit_file_form = html.Div(
         [
-        dcc.Location(id='url', refresh=True),
+        dcc.Location(id='url', refresh=True), ## very important for url output of callback
         fl.uploadxmlfile_input_row,
         fl.datavalues_input_row,
         fl.datacomment_input_row,
@@ -204,12 +204,12 @@ def update_output(contents_in):
             DMToolLimit.y_units,
             DMToolLimit.year
         ]
-'''
+
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
-    Input("9876_new_limit_save_button_id", "n_clicks"),
-    Input("9876_new_limit_cancel_button_id", "n_clicks")
+    Input("create_new_limit_save_button_id", "n_clicks"),
+    Input("create_new_limit_cancel_button_id", "n_clicks")
         ],
         prevent_initial_call=True
 )
@@ -222,7 +222,7 @@ def button_click(button1,button2):
     print(prop_id)
     
     #msg = prop_id
-    if "9876_new_limit_save_button_id" == prop_id :
+    if "create_new_limit_save_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
         print("save button pressed")
         #href_return = dash.page_registry['pages.list_all_limits']['path']
@@ -273,7 +273,7 @@ def button_click(button1,button2):
         
         return href_return
     
-    elif "9876_new_limit_cancel_button_id" == prop_id:
+    elif "create_new_limit_cancel_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/app/baseapp/homepage'
@@ -282,6 +282,7 @@ def button_click(button1,button2):
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/app/baseapp/homepage'
         return href_return
+'''
 #### this works from here ####
 @callback(Output('container', 'children'),
               [Input('create_new_limit_save_button_id', 'n_clicks_timestamp'),
@@ -304,7 +305,9 @@ def display(btn1, btn2):
         html.Div(msg)
     ]) 
 ### to here ######
-'''
+
+### also now works having add Location to form #####
+
 @callback(Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
     Input("create_new_limit_save_button_id", "n_clicks_timestamp"),
@@ -329,3 +332,4 @@ def display(btn1, btn2):
         href_return = '/app/baseapp/create_new_limit'
     return href_return
 
+'''
