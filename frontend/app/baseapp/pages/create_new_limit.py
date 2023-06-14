@@ -341,7 +341,7 @@ def button_click(
         new_limit_txt = {
           "spin_dependency": spin_dependency_in,
           "result_type": result_type_in,
-          "measurement_type": measurement_type,
+          "measurement_type": "measurement_type",
           "nomhash": "string",
           "x_units": x_units_in,
           "y_units": y_units_in,
