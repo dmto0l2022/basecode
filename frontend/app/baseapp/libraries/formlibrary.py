@@ -86,10 +86,10 @@ plotname_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter plot unique name'),
-                    target="plot_name_id",trigger="hover"),
+                    target="plot_name_example_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('Plot of Experiment M'),
-                    target="example_plotname",trigger="click"), 
+                    target="plot_name_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -128,10 +128,10 @@ xrangelower_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter lower bound X'),
-                    target="textinput",trigger="hover"),
+                    target="x_range_lower_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('12345'),
-                    target="example_textinput",trigger="click"), 
+                    target="x_range_lower_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -167,7 +167,7 @@ xrangeupper_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter upper bound X'),
-                    target="xrangeupperid",trigger="hover"),
+                    target="x_range_upper_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('12345'),
                     target="x_range_upper_example_field_id",trigger="click"), 
@@ -228,9 +228,9 @@ scale_input_row = html.Div(
                     width=1),
                 dbc.Popover(
                     dbc.PopoverBody('enter scale'),
-                    target="scaleid",trigger="hover"),
+                    target="scale_form_field_id",trigger="hover"),
                 dbc.Popover(dbc.PopoverBody('4'),
-                    target="example_scale",trigger="click"), 
+                    target="scale_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -266,9 +266,9 @@ traceid_input_row = html.Div(
                     width=1),
                 dbc.Popover(
                     dbc.PopoverBody('enter traceid'),
-                    target="traceidid",trigger="hover"),
+                    target="trace_id_form_field_id",trigger="hover"),
                 dbc.Popover(dbc.PopoverBody('4'),
-                    target="example_traceid",trigger="click"), 
+                    target="trace_id_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -306,10 +306,10 @@ tracename_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter trace name'),
-                    target="tracenameid",trigger="hover"),
+                    target="trace_name_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('Plot of Experiment M'),
-                    target="example_tracename",trigger="click"), 
+                    target="trace_name_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -351,10 +351,10 @@ tracecolor_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter color'),
-                    target="tracecolorid",trigger="hover"),
+                    target="trace_color_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('red'),
-                    target="example_tracecolor",trigger="click"), 
+                    target="trace_color_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -417,10 +417,10 @@ symbol_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter number'),
-                    target="symbolid",trigger="hover"),
+                    target="symbol_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('4'),
-                    target="example_symbolinput",trigger="click"), 
+                    target="symbol_input_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -478,10 +478,10 @@ linestyle_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter number'),
-                    target="linestyleid",trigger="hover"),
+                    target="line_style_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('4'),
-                    target="example_linestyleinput",trigger="click"), 
+                    target="line_style_input_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -522,10 +522,10 @@ tracefillcolor_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter color'),
-                    target="tracefillcolorid",trigger="hover"),
+                    target="trace_fill_color_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('red'),
-                    target="example_tracefillcolor",trigger="click"), 
+                    target="trace_fill_color_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -572,10 +572,10 @@ removesiteaddress_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('toggle checkbox'),
-                    target="removesiteaddressid",trigger="hover"),
+                    target="remove_site_address_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('4'),
-                    target="example_removesiteaddress",trigger="click"), 
+                    target="remove_site_address_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -615,10 +615,10 @@ uploadxmlfile_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('upload xml file'),
-                    target="uploadxmlfileid",trigger="hover"),
+                    target="upload_xml_file_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('Drag or Drop File here'),
-                    target="example_uploadinput",trigger="click"), 
+                    target="upload_xml_file_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -658,10 +658,10 @@ datalabel_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter data label'),
-                    target="datalabelid",trigger="hover"),
+                    target="data_label_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('example_datalabel'),
-                    target="example_datalabel",trigger="click"), 
+                    target="data_label_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -701,10 +701,10 @@ datareference_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter multiple lined text'),
-                    target="datareferenceid",trigger="hover"),
+                    target="data_reference_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('Textarea example content\nwith multiple lines of text'),
-                    target="example_datareferenceinput",trigger="click"), 
+                    target="data_reference_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -743,10 +743,10 @@ datacomment_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter multiple lined text'),
-                    target="datacommentid",trigger="hover"),
+                    target="data_comment_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('Textarea example content\nwith multiple lines of text'),
-                    target="example_datacommentinput",trigger="click"), 
+                    target="data_comment_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -801,10 +801,10 @@ experiment_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter experiment'),
-                    target="experimentid",trigger="hover"),
+                    target="experiment_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('example experiment'),
-                    target="example_experimentinput",trigger="click"), 
+                    target="experiment_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -847,10 +847,10 @@ dateofannouncement_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter date of announcement'),
-                    target="dateofannouncementid",trigger="hover"),
+                    target="date_of_announcement_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('4'),
-                    target="example_dateofannouncement",trigger="click"), 
+                    target="date_of_announcement_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -893,10 +893,10 @@ dateofrunstart_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter date of run start'),
-                    target="dateofrunstartid",trigger="hover"),
+                    target="date_of_run_start_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('4'),
-                    target="example_dateofrunstart",trigger="click"), 
+                    target="date_of_run_start_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -939,10 +939,10 @@ dateofrunend_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter date of run end'),
-                    target="dateofrunendid",trigger="hover"),
+                    target="date_of_run_end_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('4'),
-                    target="example_dateofrunend",trigger="click"), 
+                    target="date_of_run_end_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -998,10 +998,10 @@ year_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('select year'),
-                    target="yearid",trigger="hover"),
+                    target="year_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('2023'),
-                    target="example_yearinput",trigger="click"), 
+                    target="year_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1043,10 +1043,10 @@ rescalex_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter rescale x'),
-                    target="rescalexid",trigger="hover"),
+                    target="rescale_x_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('example rescale'),
-                    target="example_rescalexinput",trigger="click"), 
+                    target="rescale_x_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1089,10 +1089,10 @@ rescaley_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter rescale y'),
-                    target="rescaleyid",trigger="hover"),
+                    target="rescale_y_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('rescale y example'),
-                    target="example_rescaleyinput",trigger="click"), 
+                    target="rescale_y_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1135,10 +1135,10 @@ xunit_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter x unit'),
-                    target="yunitid",trigger="hover"),
+                    target="x_unit_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('x unit example'),
-                    target="example_xunitinput",trigger="click"), 
+                    target="x_unit_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1181,10 +1181,10 @@ yunit_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter y unit'),
-                    target="yunitid",trigger="hover"),
+                    target="y_unit_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('y unit example'),
-                    target="example_yunitinput",trigger="click"), 
+                    target="y_unit_input_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1224,10 +1224,10 @@ datavalues_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter multiple lined text'),
-                    target="datavaluesid",trigger="hover"),
+                    target="data_values_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('Textarea example content\nwith multiple lines of text'),
-                    target="example_datavaluesinput",trigger="click"), 
+                    target="data_values_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1274,10 +1274,10 @@ resulttype_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter result type'),
-                    target="resulttypeid",trigger="hover"),
+                    target="result_type_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('result type example'),
-                    target="example_resulttypeinput",trigger="click"), 
+                    target="result_type_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1323,10 +1323,10 @@ limittype_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter number'),
-                    target="limittypeid",trigger="hover"),
+                    target="limit_type_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('4'),
-                    target="example_limittypeinput",trigger="click"), 
+                    target="limit_type_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1369,10 +1369,10 @@ spindependency_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter number'),
-                    target="spindependencyid",trigger="hover"),
+                    target="spin_dependency_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('4'),
-                    target="example_spindependency",trigger="click"), 
+                    target="spin_dependency_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1415,10 +1415,10 @@ measurementtype_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter number'),
-                    target="measurementtypeid",trigger="hover"),
+                    target="measurement_type_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('4'),
-                    target="example_measurementtype",trigger="click"), 
+                    target="measurement_type_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1455,10 +1455,10 @@ publiclimit_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('toggle check box'),
-                    target="publiclimitid",trigger="hover"),
+                    target="public_limit_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('Yes'),
-                    target="example_publiclimit",trigger="click"), 
+                    target="public_limit_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1497,10 +1497,10 @@ otherusers_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter list of users'),
-                    target="otherusersid",trigger="hover"),
+                    target="other_users_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('user1, user2, user3'),
-                    target="example_otherusersinput",trigger="click"), 
+                    target="other_users_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1545,10 +1545,10 @@ official_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('toggle checkbox'),
-                    target="officialid",trigger="hover"),
+                    target="official_form_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('Yes'),
-                    target="example_officiallimit",trigger="click"), 
+                    target="official_limit_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -1593,10 +1593,10 @@ greatesthits_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('toggle checkbox'),
-                    target="greatesthitid",trigger="hover"),
+                    target="greatest_hit_example_field_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('Yes'),
-                    target="example_greatesthit",trigger="click"), 
+                    target="greatest_hit_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
