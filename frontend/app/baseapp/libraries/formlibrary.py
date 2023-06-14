@@ -1349,7 +1349,7 @@ spindependency_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Dropdown(
-                    id='spindependencyid',
+                    id='spin_dependency_form_field_id',
                     options=[{'label': k, 'value': v} for k, v in spinDict.items()],
                         #className='FORM_COLUMN_SPIN'
                         className='FORM_COLUMN_DATA'
@@ -1392,7 +1392,7 @@ measurementtype_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Dropdown(
-                    id='measurementtypeid',
+                    id='measurement_type_form_field_id',
                     options=[{'label': k, 'value': v} for k, v in measurementtypeDict.items()],
                         #className='FORM_COLUMN_SPIN'
                         className='FORM_COLUMN_DATA'
@@ -1432,7 +1432,7 @@ publiclimit_input_row = html.Div(
                     width= label_column_width
                 ),
                 dbc.Col(
-                    daq.BooleanSwitch(id='publiclimitid',
+                    daq.BooleanSwitch(id='public_limit_form_field_id',
                                       on=False,
                                       className='FORM_COLUMN_DATA'
                                         ),
@@ -1472,7 +1472,7 @@ otherusers_input_row = html.Div(
                 
                 dbc.Col(
                     dcc.Textarea(
-                            id='otherusersid',
+                            id='other_users_form_field_id',
                             value='Textarea content',
                             rows=1,
                             #className='FORM_COLUMN_TEXTAREAINPUT'
@@ -1514,7 +1514,7 @@ official_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Checklist(
-                            id='officialid',
+                            id='official_form_field_id',
                             options=[
                                    ##{'label': 'New York City', 'value': 'New York City'},
                                    {'label': 'Yes', 'value': 'Yes'}
@@ -1562,7 +1562,7 @@ greatesthits_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Checklist(
-                            id='greatesthitid',
+                            id='greatest_hit_form_field_id',
                             options=[
                                    ##{'label': 'New York City', 'value': 'New York City'},
                                    {'label': 'Yes', 'value': 'Yes'}
@@ -1737,24 +1737,24 @@ style={"height": "50%"},
 ############################################
 
 '''
-datavaluesid
-datacommentid
-datalabelid
-datareferenceid
-dateofannouncementid
-dateofrunstartid
-dateofrunendid
-tracecolorid
-linestyleid
-experimentid
-publiclimitid
-resulttypeid
-spindependencyid
-rescalexid
-xunitid
-rescaleyid
-yunitid
-yearid
+data_values_form_field_id
+data_comment_form_field_id
+data_label_form_field_id
+data_reference_form_field_id
+date_of_announcement_form_field_id
+date_of_runstart_form_field_id
+date_of_runend_form_field_id
+trace_color_form_field_id
+line_style_form_field_id
+experiment_form_field_id
+public_limit_form_field_id
+result_type_form_field_id
+spin_dependency_form_field_id
+rescale_x_form_field_id
+x_unit_form_field_id
+rescale_y_form_field_id
+y_unit_form_field_id
+year_form_field_id
 '''            
 
 load_limit_file_form = html.Div(
