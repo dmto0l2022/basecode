@@ -306,8 +306,8 @@ def display(btn1, btn2):
 '''
 @callback(Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
-    Input("create_new_limit_save_button_id", "n_clicks"),
-    Input("create_new_limit_cancel_button_id", "n_clicks")
+    Input("create_new_limit_save_button_id", "n_clicks_timestamp"),
+    Input("create_new_limit_cancel_button_id", "n_clicks_timestamp")
         ],
         prevent_initial_call=True)
 def display(btn1, btn2):
