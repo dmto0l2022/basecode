@@ -39,7 +39,7 @@ class Limit_class:
         self.y_rescale = ''
         self.y_units = ''
         self.year = ''
-        self.json_put == ''
+        self.json_put = ''
     def find_xml_text(self,root_in,tag_in):
         dv_find = root_in.findall(tag_in)
         return dv_find[0].text
