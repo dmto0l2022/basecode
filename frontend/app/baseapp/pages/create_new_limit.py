@@ -326,7 +326,7 @@ def button_click(
     public_in,
     result_type_in,
     spin_dependency_in,
-    y_rescale_in,
+    x_rescale_in,
     x_units_in,
     y_rescale_in,
     y_units_in,
