@@ -81,7 +81,9 @@ create_new_limit_form_title = html.Div(html.P(children='Create New Limit', class
 Limit = Limit_class
 
 load_limit_file_form = html.Div(
-        [fl.uploadxmlfile_input_row,
+        [
+        dcc.Location(id='url', refresh=True),
+        fl.uploadxmlfile_input_row,
         fl.datavalues_input_row,
         fl.datacomment_input_row,
         fl.datalabel_input_row,
