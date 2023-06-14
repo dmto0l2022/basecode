@@ -38,8 +38,8 @@ date_of_announcement_form_field_id
 date_of_run_start_form_field_id
 date_of_run_end_form_field_id
 year_form_field_id
-rescale_x_form_field_id
-rescale_y_form_field_id
+x_rescale_form_field_id
+y_rescale_form_field_id
 y_unit_form_field_id
 x_unit_form_field_id
 data_values_form_field_id
@@ -175,9 +175,9 @@ load_limit_file_form = html.Div(
         fl.public_limit_input_row,
         fl.result_type_input_row,
         fl.spin_dependency_input_row,
-        fl.rescale_x_input_row,
+        fl.x_rescale_input_row,
         fl.x_unit_input_row,
-        fl.rescale_y_input_row,
+        fl.y_rescale_input_row,
         fl.y_unit_input_row,
         fl.year_input_row,
         save_button,
@@ -242,9 +242,9 @@ layout = load_limit_file_form
             Output('public_limit_form_field_id', 'on'),
             Output('result_type_form_field_id', 'value'),
             Output('spin_dependency_form_field_id', 'value'),
-            Output('rescale_x_form_field_id', 'value'),
+            Output('x_rescale_form_field_id', 'value'),
             Output('x_unit_form_field_id', 'value'),
-            Output('rescale_y_form_field_id', 'value'),
+            Output('y_rescale_form_field_id', 'value'),
             Output('y_unit_form_field_id', 'value'),
             Output('year_form_field_id', 'value')],
             Input('upload_xml_file_form_field_id', 'contents')
@@ -302,9 +302,9 @@ def update_output(contents_in):
     Input('public_limit_form_field_id', 'on'),
     Input('result_type_form_field_id', 'value'),
     Input('spin_dependency_form_field_id', 'value'),
-    Input('rescale_x_form_field_id', 'value'),
+    Input('x_rescale_form_field_id', 'value'),
     Input('x_unit_form_field_id', 'value'),
-    Input('rescale_y_form_field_id', 'value'),
+    Input('y_rescale_form_field_id', 'value'),
     Input('y_unit_form_field_id', 'value'),
     Input('year_form_field_id', 'value'),
     Input("create_new_limit_save_button_id", "n_clicks"),
@@ -326,9 +326,9 @@ def button_click(
     public_in,
     result_type_in,
     spin_dependency_in,
-    rescale_x_in,
+    y_rescale_in,
     x_units_in,
-    rescale_y_in,
+    y_rescale_in,
     y_units_in,
     year_in,
     button1,
