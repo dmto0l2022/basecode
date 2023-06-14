@@ -258,7 +258,8 @@ def update_output(contents_in):
         DMToolLimit = parse_contents(contents_in)
     except:
         DMToolLimit = Limit_class() ## empty
-        
+
+    print("Data Comment > " , DMToolLimit.data_comment)
     return  [
             DMToolLimit.data_values,
             DMToolLimit.data_comment,
