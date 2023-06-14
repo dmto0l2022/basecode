@@ -70,7 +70,7 @@ plotname_input_row = html.Div(
                     width = label_column_width
                 ),
                 dbc.Col(
-                    dcc.Input(id='plotnameid',
+                    dcc.Input(id='plot_name_form_field_id',
                               type='text',maxLength=40,
                               className='FORM_COLUMN_TEXTINPUT'),
                     className='FORM_TEXTINPUT_COLUMN',
@@ -86,7 +86,7 @@ plotname_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('enter plot unique name'),
-                    target="plotnameid",trigger="hover"),
+                    target="plot_name_id",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('Plot of Experiment M'),
                     target="example_plotname",trigger="click"), 
@@ -110,7 +110,7 @@ xrangelower_input_row = html.Div(
                     width= label_column_width
                 ),
                 dbc.Col(
-                    dcc.Input(id='xrangelowerid',
+                    dcc.Input(id='x_range_lower_form_field_id',
                               type='text',
                               maxLength=10,
                               className='FORM_COLUMN_TEXTINPUT'),
@@ -152,7 +152,7 @@ xrangeupper_input_row = html.Div(
                     width= label_column_width
                 ),
                 dbc.Col(
-                    dcc.Input(id='xrangeupperid',
+                    dcc.Input(id='x_range_upper_form_field_id',
                               type='text',
                               maxLength=10,
                               className='FORM_COLUMN_TEXTINPUT'),
@@ -210,7 +210,7 @@ scale_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Dropdown(
-                        id='scaleid',
+                        id='scale_form_field_id',
                         options=[{'label': k, 'value': v} for k, v in scaleDict.items()],
                         ##className='FORM_COLUMN_SCALE',
                         className='FORM_COLUMN_DATA'
@@ -249,7 +249,7 @@ traceid_input_row = html.Div(
                     width= label_column_width
                 ),
                 dbc.Col(
-                    dcc.Input(id='traceidid', type='number',
+                    dcc.Input(id='trace_id_form_field_id', type='number',
                                   #className='FORM_COLUMN_TRACEID',
                                   className='FORM_COLUMN_DATA',
                                   ),
@@ -287,7 +287,7 @@ tracename_input_row = html.Div(
                     width= label_column_width
                 ),
                 dbc.Col(
-                    dcc.Input(id='tracenameid', type='text',maxLength=10,
+                    dcc.Input(id='trace_name_form_field_id', type='text',maxLength=10,
                                   #className='FORM_COLUMN_TEXTINPUT',
                                   className='FORM_COLUMN_DATA',
                                   ),
@@ -331,7 +331,7 @@ tracecolor_input_row = html.Div(
                 dbc.Col(
                      dbc.Input(
                         type="color",
-                        id="tracecolorid",
+                        id="trace_color_form_field_id",
                         value="#000000",
                      #className='FORM_COLUMN_COLOR',
                      className='FORM_COLUMN_DATA'
@@ -384,7 +384,7 @@ for p in (range(0,5)):
 itemDict = {item[0]: item[1] for item in lol}
 
 symboldd = dcc.Dropdown(
-        id='symbolid',
+        id='symbol_form_field_id',
         options=[{'label': k, 'value': v} for k, v in itemDict.items()]
     )
 
@@ -446,7 +446,7 @@ for p in (range(0,4)):
 itemDict = {item[0]: item[1] for item in lol}
 
 linestyledd = dcc.Dropdown(
-        id='linestyleid',
+        id='line_style_form_field_id',
         options=[{'label': k, 'value': v} for k, v in itemDict.items()]
     )
 
@@ -502,7 +502,7 @@ tracefillcolor_input_row = html.Div(
                 dbc.Col(
                      dbc.Input(
                         type="color",
-                        id="tracefillcolorid",
+                        id="trace_fill_color_form_field_id",
                         value="#000000",
                      #className='FORM_COLUMN_COLOR',
                      className='FORM_COLUMN_DATA'
@@ -546,7 +546,7 @@ removesiteaddress_input_row = html.Div(
                 
                 dbc.Col(
                     dcc.Checklist(
-                            id='removesiteaddressid',
+                            id='remove_site_address_form_field_id',
                             options=[
                                    ##{'label': 'New York City', 'value': 'New York City'},
                                    {'label': 'Remove', 'value': 'Remove'}
@@ -595,7 +595,7 @@ uploadxmlfile_input_row = html.Div(
                 ),
                 dbc.Col(
                       dcc.Upload(
-                          id = 'uploadxmlfileid',
+                          id = 'upload_xml_file_form_field_id',
                           children= [
                                     'Drag and Drop or ',
                                     html.A('Select a File',className='FORM_SELECTFILE')
@@ -641,7 +641,7 @@ datalabel_input_row = html.Div(
                     width= label_column_width
                 ),
                 dbc.Col(
-                    dcc.Input(id='datalabelid',
+                    dcc.Input(id='data_label_form_field_id',
                               type='text',
                               maxLength=60,
                               #className='FORM_COLUMN_TEXTINPUT'),
@@ -683,7 +683,7 @@ datareference_input_row = html.Div(
                 
                 dbc.Col(
                     dcc.Textarea(
-                            id='datareferenceid',
+                            id='data_reference_form_field_id',
                             value='Data Reference',
                             rows=1,
                             #className='FORM_COLUMN_TEXTAREAINPUT'
@@ -725,7 +725,7 @@ datacomment_input_row = html.Div(
                 
                 dbc.Col(
                     dcc.Textarea(
-                            id='datacommentid',
+                            id='data_comment_form_field_id',
                             value='Data Comment',
                             rows=1,
                             #className='FORM_COLUMN_TEXTAREAINPUT'
@@ -782,7 +782,7 @@ experiment_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Dropdown(
-                            id='experimentid',
+                            id='experiment_form_field_id',
                             options=[
                                 {'label':i, 'value':i} for i in experiments_df['c'].unique()
                             ],
@@ -824,7 +824,7 @@ dateofannouncement_input_row = html.Div(
                 ),
                 dbc.Col(
                      dcc.DatePickerSingle(
-                        id='dateofannouncementid',
+                        id='date_of_announcement_form_field_id',
                         min_date_allowed=date(2000, 1, 1),
                         max_date_allowed=date(2023, 5, 7),
                         initial_visible_month=date(2023, 1, 1),
@@ -837,7 +837,7 @@ dateofannouncement_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_dateofannouncement',
+                dbc.Col(dcc.Input(id='date_of_announcement_example_form_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -870,7 +870,7 @@ dateofrunstart_input_row = html.Div(
                 ),
                 dbc.Col(
                      dcc.DatePickerSingle(
-                        id='dateofrunstartid',
+                        id='date_of_run_start_form_field_id',
                         min_date_allowed=date(2000, 1, 1),
                         max_date_allowed=date(2023, 5, 7),
                         initial_visible_month=date(2023, 1, 1),
@@ -916,7 +916,7 @@ dateofrunend_input_row = html.Div(
                 ),
                 dbc.Col(
                      dcc.DatePickerSingle(
-                        id='dateofrunendid',
+                        id='date_of_run_end_form_field_id',
                         min_date_allowed=date(2000, 1, 1),
                         max_date_allowed=date(2023, 5, 7),
                         initial_visible_month=date(2023, 1, 1),
@@ -977,7 +977,7 @@ year_input_row = html.Div(
                 ),
                 dbc.Col(
                      dcc.Dropdown(
-                        id='yearid',
+                        id='year_form_field_id',
                         options=[
                             {'label':i, 'value':i} for i in years_df['c'].unique()
                         ],
@@ -1021,7 +1021,7 @@ rescalex_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Input(
-                        id="rescalexid",
+                        id="rescale_x_form_field_id",
                         debounce=True,
                         placeholder="1e1",
                         type="text",
@@ -1066,7 +1066,7 @@ rescaley_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Input(
-                        id="rescaleyid",
+                        id="rescale_y_form_field_id",
                         debounce=True,
                         placeholder="1e1",
                         type="text",
@@ -1112,7 +1112,7 @@ xunit_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Input(
-                        id="xunitid",
+                        id="x_unit_form_field_id",
                         debounce=True,
                         placeholder="1e1",
                         type="text",
@@ -1158,7 +1158,7 @@ yunit_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Input(
-                        id="yunitid",
+                        id="y_unit_form_field_id",
                         debounce=True,
                         placeholder="1e1",
                         type="text",
@@ -1205,7 +1205,7 @@ datavalues_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Textarea(
-                            id='datavaluesid',
+                            id='data_values_form_field_id',
                             value='Data Values',
                             rows=1,
                             className='FORM_COLUMN_DATA'
@@ -1254,7 +1254,7 @@ resulttype_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Dropdown(
-                    id='resulttypeid',
+                    id='result_type_form_field_id',
                     options=[{'label': k, 'value': v} for k, v in resulttypeDict.items()],
                         #className='FORM_COLUMN_RESULTTYPE'
                         className='FORM_COLUMN_DATA'
@@ -1303,7 +1303,7 @@ limittype_input_row = html.Div(
                 ),
                 dbc.Col(
                     dcc.Dropdown(
-                        id='limittypeid',
+                        id='limit_type_form_field_id',
                         options=[{'label': k, 'value': v} for k, v in limit_typeDict.items()],
                         #className='FORM_COLUMN_LIMITTYPE'
                         className='FORM_COLUMN_DATA'
