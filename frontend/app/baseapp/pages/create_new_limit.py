@@ -15,6 +15,45 @@ import xml.etree.ElementTree as ET
 
 dash.register_page(__name__, path='/create_new_limit')
 
+'''
+ID List
+========
+plot_name_form_field_id
+x_range_lower_form_field_id
+x_range_upper_form_field_id
+scale_form_field_id
+trace_id_form_field_id
+trace_name_form_field_id
+trace_color_form_field_id
+symbol_form_field_id
+line_style_form_field_id
+trace_fill_color_form_field_id
+remove_site_address_form_field_id
+upload_xml_file_form_field_id
+data_label_form_field_id
+data_reference_form_field_id
+data_comment_form_field_id
+experiment_form_field_id
+date_of_announcement_form_field_id
+date_of_run_start_form_field_id
+date_of_run_end_form_field_id
+year_form_field_id
+rescale_x_form_field_id
+rescale_y_form_field_id
+y_unit_form_field_id
+x_unit_form_field_id
+data_values_form_field_id
+result_type_form_field_id
+limit_type_form_field_id
+spin_dependency_form_field_id
+measurement_type_form_field_id
+public_limit_form_field_id
+other_users_form_field_id
+official_form_field_id
+greatest_hit_form_field_id
+upload_xml_file_form_field_id
+'''
+
 #### New Limit Class
 
 class Limit_class:
@@ -152,6 +191,7 @@ def parse_contents(contents):
     #data_reference_out = find_xml_text(stringToXML,'data-reference')
     print(DMToolLimit)
     return DMToolLimit
+
 '''
 create_new_limit_form_content  = dbc.Row(
     [
@@ -183,45 +223,6 @@ layout = create_new_limit_form
 
 layout = load_limit_file_form
 
-'''
-ID List
-========
-plot_name_form_field_id
-x_range_lower_form_field_id
-x_range_upper_form_field_id
-scale_form_field_id
-trace_id_form_field_id
-trace_name_form_field_id
-trace_color_form_field_id
-symbol_form_field_id
-line_style_form_field_id
-trace_fill_color_form_field_id
-remove_site_address_form_field_id
-upload_xml_file_form_field_id
-data_label_form_field_id
-data_reference_form_field_id
-data_comment_form_field_id
-experiment_form_field_id
-date_of_announcement_form_field_id
-date_of_run_start_form_field_id
-date_of_run_end_form_field_id
-year_form_field_id
-rescale_x_form_field_id
-rescale_y_form_field_id
-y_unit_form_field_id
-x_unit_form_field_id
-data_values_form_field_id
-result_type_form_field_id
-limit_type_form_field_id
-spin_dependency_form_field_id
-measurement_type_form_field_id
-public_limit_form_field_id
-other_users_form_field_id
-official_form_field_id
-greatest_hit_form_field_id
-upload_xml_file_form_field_id
-'''
-
 @callback(
             [Output('data_values_form_field_id', 'value'),
             Output('data_comment_form_field_id', 'value'),
@@ -245,6 +246,7 @@ upload_xml_file_form_field_id
             #State('upload-data', 'filename'),
             #State('upload-data', 'last_modified')
              )
+
 def update_output(contents_in):
     print('hello during form update')
     #print(contents_in)
