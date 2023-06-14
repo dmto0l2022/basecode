@@ -62,6 +62,36 @@ class Limit_class:
         self.y_units = self.find_xml_text(root_in,'y-units')
         self.year = self.find_xml_text(root_in,'year')
         
+    def create_json():
+        self.json_put = {
+          "spin_dependency": self.spin_dependency,
+          "result_type": self.result_type,
+          "measurement_type": "string",
+          "nomhash": "string",
+          "x_units":  self.x_units,
+          "y_units": self.y_units,
+          "x_rescale": self.x_rescale,
+          "y_rescale": self.y_rescale,
+          "default_color": self.default_color,
+          "default_style": self.default_style,
+          "data_values": self.data_values,
+          "data_label": self.data_label,
+          "file_name": "string",
+          "data_comment":self.data_comment,
+          "data_reference": self.data_reference,
+          "creator_id": 2147483647,
+          "experiment": self.experiment,
+          "rating": 2147483647,
+          "date_of_announcement":  self.date_of_announcement ,
+          "public": self.public,
+          "official":  self.official,
+          "date_official": self.date_official,
+          "greatest_hit": self.greatest_hit,
+          "date_of_run_start": self.date_of_run_start,
+          "date_of_run_end": self.date_of_run_end,
+          "year": self.year
+        }
+    
     def f(self):
         return 'hello world'
 
