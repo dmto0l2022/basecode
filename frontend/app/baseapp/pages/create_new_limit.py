@@ -280,7 +280,8 @@ def button_click(button1,button2):
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/app/baseapp/homepage'
         return href_return
-'''
+
+#### this works from here ####
 @callback(Output('container', 'children'),
               [Input('create_new_limit_save_button_id', 'n_clicks_timestamp'),
                Input('create_new_limit_cancel_button_id', 'n_clicks_timestamp')])
@@ -301,7 +302,7 @@ def display(btn1, btn2):
         html.Div('btn2: {}'.format(btn2)),
         html.Div(msg)
     ]) 
-
+### to here ######
 '''
 @callback(Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
@@ -310,6 +311,10 @@ def display(btn1, btn2):
         ],
         prevent_initial_call=True)
 def display(btn1, btn2):
+    if btn1 == None:
+        btn1 = 0
+    if btn2 == None:
+        btn2 = 0
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     if int(btn1) > int(btn2):
         msg = 'Save was most recently clicked' + prop_id
@@ -322,4 +327,4 @@ def display(btn1, btn2):
         msg = 'None of the buttons have been clicked yet'
         href_return = '/app/baseapp/create_new_limit'
     return href_return
-'''
+
