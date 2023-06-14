@@ -242,6 +242,24 @@ def update_output(contents_in):
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
+    Input('datavaluesid', 'value'),
+    Input('datacommentid', 'value'),
+    Input('datalabelid', 'value'),
+    Input('datareferenceid', 'value'),
+    Input('dateofannouncementid', 'initial_visible_month'),
+    Input('dateofrunstartid', 'initial_visible_month'),
+    Input('dateofrunendid', 'initial_visible_month'),
+    Input('tracecolorid', 'value'),
+    Input('linestyleid', 'value'),
+    Input('experimentid', 'value'),
+    Input('publiclimitid', 'on'),
+    Input('resulttypeid', 'value'),
+    Input('spindependencyid', 'value'),
+    Input('rescalexid', 'value'),
+    Input('xunitid', 'value'),
+    Input('rescaleyid', 'value'),
+    Input('yunitid', 'value'),
+    Input('yearid', 'value'),
     Input("create_new_limit_save_button_id", "n_clicks"),
     Input("create_new_limit_cancel_button_id", "n_clicks")
         ],
