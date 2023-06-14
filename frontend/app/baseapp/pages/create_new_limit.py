@@ -183,26 +183,65 @@ layout = create_new_limit_form
 
 layout = load_limit_file_form
 
+'''
+ID List
+========
+plot_name_form_field_id
+x_range_lower_form_field_id
+x_range_upper_form_field_id
+scale_form_field_id
+trace_id_form_field_id
+trace_name_form_field_id
+trace_color_form_field_id
+symbol_form_field_id
+line_style_form_field_id
+trace_fill_color_form_field_id
+remove_site_address_form_field_id
+upload_xml_file_form_field_id
+data_label_form_field_id
+data_reference_form_field_id
+data_comment_form_field_id
+experiment_form_field_id
+date_of_announcement_form_field_id
+date_of_run_start_form_field_id
+date_of_run_end_form_field_id
+year_form_field_id
+rescale_x_form_field_id
+rescale_y_form_field_id
+y_unit_form_field_id
+x_unit_form_field_id
+data_values_form_field_id
+result_type_form_field_id
+limit_type_form_field_id
+spin_dependency_form_field_id
+measurement_type_form_field_id
+public_limit_form_field_id
+other_users_form_field_id
+official_form_field_id
+greatest_hit_form_field_id
+upload_xml_file_form_field_id
+'''
+
 @callback(
-            Output('datavaluesid', 'value'),
-            Output('datacommentid', 'value'),
-            Output('datalabelid', 'value'),
-            Output('datareferenceid', 'value'),
-            Output('dateofannouncementid', 'initial_visible_month'),
-            Output('dateofrunstartid', 'initial_visible_month'),
-            Output('dateofrunendid', 'initial_visible_month'),
-            Output('tracecolorid', 'value'),
-            Output('linestyleid', 'value'),
-            Output('experimentid', 'value'),
-            Output('publiclimitid', 'on'),
-            Output('resulttypeid', 'value'),
-            Output('spindependencyid', 'value'),
-            Output('rescalexid', 'value'),
-            Output('xunitid', 'value'),
-            Output('rescaleyid', 'value'),
-            Output('yunitid', 'value'),
-            Output('yearid', 'value'),
-            Input('uploadxmlfileid', 'contents')
+            Output('data_values_form_field_id', 'value'),
+            Output('data_comment_form_field_id', 'value'),
+            Output('data_label_form_field_id', 'value'),
+            Output('data_reference_form_field_id', 'value'),
+            Output('date_of_announcement_form_field_id', 'initial_visible_month'),
+            Output('date_of_run_start_form_field_id', 'initial_visible_month'),
+            Output('date_of_run_end_form_field_id', 'initial_visible_month'),
+            Output('trace_color_form_field_id', 'value'),
+            Output('line_style_form_field_id', 'value'),
+            Output('experiment_form_field_id', 'value'),
+            Output('public_limit_form_field_id', 'on'),
+            Output('result_type_form_field_id', 'value'),
+            Output('spin_dependency_form_field_id', 'value'),
+            Output('rescale_x_form_field_id', 'value'),
+            Output('x_unit_form_field_id', 'value'),
+            Output('rescale_y_form_field_id', 'value'),
+            Output('y_unit_form_field_id', 'value'),
+            Output('year_form_field_id', 'value'),
+            Input('upload_xml_file_form_field_id', 'contents')
             #State('upload-data', 'filename'),
             #State('upload-data', 'last_modified')
              )
@@ -242,30 +281,50 @@ def update_output(contents_in):
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
-    Input('datavaluesid', 'value'),
-    Input('datacommentid', 'value'),
-    Input('datalabelid', 'value'),
-    Input('datareferenceid', 'value'),
-    Input('dateofannouncementid', 'initial_visible_month'),
-    Input('dateofrunstartid', 'initial_visible_month'),
-    Input('dateofrunendid', 'initial_visible_month'),
-    Input('tracecolorid', 'value'),
-    Input('linestyleid', 'value'),
-    Input('experimentid', 'value'),
-    Input('publiclimitid', 'on'),
-    Input('resulttypeid', 'value'),
-    Input('spindependencyid', 'value'),
-    Input('rescalexid', 'value'),
-    Input('xunitid', 'value'),
-    Input('rescaleyid', 'value'),
-    Input('yunitid', 'value'),
-    Input('yearid', 'value'),
+    Input('data_values_form_field_id', 'value'),
+    Input('data_comment_form_field_id', 'value'),
+    Input('data_label_form_field_id', 'value'),
+    Input('data_reference_form_field_id', 'value'),
+    Input('date_of_announcement_form_field_id', 'initial_visible_month'),
+    Input('date_of_run_start_form_field_id', 'initial_visible_month'),
+    Input('date_of_run_end_form_field_id', 'initial_visible_month'),
+    Input('trace_color_form_field_id', 'value'),
+    Input('line_style_form_field_id', 'value'),
+    Input('experiment_form_field_id', 'value'),
+    Input('public_limit_form_field_id', 'on'),
+    Input('result_type_form_field_id', 'value'),
+    Input('spin_dependency_form_field_id', 'value'),
+    Input('rescale_x_form_field_id', 'value'),
+    Input('x_unit_form_field_id', 'value'),
+    Input('rescale_y_form_field_id', 'value'),
+    Input('y_unit_form_field_id', 'value'),
+    Input('year_form_field_id', 'value'),
     Input("create_new_limit_save_button_id", "n_clicks"),
     Input("create_new_limit_cancel_button_id", "n_clicks")
         ],
         prevent_initial_call=True
 )
-def button_click(button1,button2):
+def button_click(
+    data_values_in,
+    data_comment_in,
+    data_label_in,
+    data_reference_in
+    date_of_announcement_in,
+    date_of_run_start_in,
+    date_of_run_end_in,
+    trace_color_in,
+    line_style_in,
+    experiment_in,
+    public_limit_in,
+    result_type_in,
+    spin_dependency_in,
+    rescale_x_in,
+    x_unit_in,
+    rescale_y_in,
+    y_unit_in,
+    year_in,
+    button1,
+    button2):
     #msg = "None of the buttons have been clicked yet"
     
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
@@ -280,32 +339,32 @@ def button_click(button1,button2):
         #href_return = dash.page_registry['pages.list_all_limits']['path']
         
         new_limit_txt = {
-          "spin_dependency": "string",
-          "result_type": "string",
-          "measurement_type": "string",
+          "spin_dependency": spin_dependency_in,
+          "result_type": result_type_in,
+          "measurement_type": measurement_type,
           "nomhash": "string",
-          "x_units": "string",
-          "y_units": "string",
-          "x_rescale": "string",
-          "y_rescale": "string",
-          "default_color": "string",
-          "default_style": "string",
-          "data_values": "string",
-          "data_label": "string",
+          "x_units": x_units_in,
+          "y_units": y_units_in,
+          "x_rescale": x_rescale_in,
+          "y_rescale": y_rescale_in,
+          "default_color": trace_color_in,
+          "default_style": line_style_in,
+          "data_values": data_values_in,
+          "data_label": data_label_in,
           "file_name": "string",
-          "data_comment": "string",
-          "data_reference": "string",
+          "data_comment": data_comment_in,
+          "data_reference": data_reference_in,
           "creator_id": 2147483647,
-          "experiment": "string",
+          "experiment": experiment_in,
           "rating": 2147483647,
-          "date_of_announcement": "2023-06-13",
-          "public": 2147483647,
-          "official": 2147483647,
-          "date_official": "2023-06-13",
-          "greatest_hit": 2147483647,
-          "date_of_run_start": "2023-06-13",
-          "date_of_run_end": "2023-06-13",
-          "year": 2147483647
+          "date_of_announcement": date_of_announcement_in,
+          "public": public_in,
+          "official": official_in,
+          "date_official": date_official_in,
+          "greatest_hit": greatest_hit_in,
+          "date_of_run_start": date_of_run_start_in,
+          "date_of_run_end": date_of_run_end_in,
+          "year": year_in
         }
         
         new_limit_json = json.dumps(new_limit_txt)
