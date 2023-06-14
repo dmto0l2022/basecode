@@ -1661,7 +1661,7 @@ button_input_row = html.Div(
 
 
 new_plot_form = html.Div([
-                plotname_input_row,
+                plot_name_input_row,
                 button_input_row])
 
 '''
