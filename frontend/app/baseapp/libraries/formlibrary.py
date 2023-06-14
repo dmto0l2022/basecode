@@ -28,7 +28,7 @@ data_reference_form_field_id
 data_comment_form_field_id
 experiment_form_field_id
 date_of_announcement_form_field_id
-date_of_runstart_form_field_id
+date_of_run_start_form_field_id
 date_of_run_end_form_field_id
 year_form_field_id
 rescale_x_form_field_id
