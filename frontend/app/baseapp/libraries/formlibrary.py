@@ -76,7 +76,7 @@ plotname_input_row = html.Div(
                     className='FORM_TEXTINPUT_COLUMN',
                     width = data_column_width
                 ),
-                dbc.Col(dcc.Input(id='example_plotname',
+                dbc.Col(dcc.Input(id='plot_name_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -118,7 +118,7 @@ xrangelower_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_textinput',
+                dbc.Col(dcc.Input(id='x_range_lower_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -160,7 +160,7 @@ xrangeupper_input_row = html.Div(
                     width = data_column_width
                 ),
 
-                dbc.Col(dcc.Input(id='example_xrangeupper', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='x_range_upper_example_field_id', type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
@@ -170,7 +170,7 @@ xrangeupper_input_row = html.Div(
                     target="xrangeupperid",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('12345'),
-                    target="example_xrangeupper",trigger="click"), 
+                    target="x_range_upper_example_field_id",trigger="click"), 
                 
             ],
         className='g-0'),
@@ -219,7 +219,7 @@ scale_input_row = html.Div(
                     className='FORM_DATA_COLUMN',
                     width = data_column_width
                 ),
-                dbc.Col(dcc.Input(id='example_scale',
+                dbc.Col(dcc.Input(id='scale_example_field_id',
                                   type='text', 
                                   value='scale example',
                                   readOnly=True,
@@ -257,7 +257,7 @@ traceid_input_row = html.Div(
                     className='FORM_DATA_COLUMN',
                     width = data_column_width
                 ),
-                dbc.Col(dcc.Input(id='example_traceid',
+                dbc.Col(dcc.Input(id='trace_id_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -295,7 +295,7 @@ tracename_input_row = html.Div(
                     className='FORM_DATA_COLUMN',
                     width = data_column_width
                 ),
-                dbc.Col(dcc.Input(id='example_tracename',
+                dbc.Col(dcc.Input(id='trace_name_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -341,7 +341,7 @@ tracecolor_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_tracecolor',
+                dbc.Col(dcc.Input(id='trace_color_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -407,7 +407,7 @@ symbol_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_symbolinput',
+                dbc.Col(dcc.Input(id='symbol_input_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -468,7 +468,7 @@ linestyle_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_linestyleinput',
+                dbc.Col(dcc.Input(id='line_style_input_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -512,7 +512,7 @@ tracefillcolor_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_tracefillcolor',
+                dbc.Col(dcc.Input(id='trace_fill_color_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -562,7 +562,7 @@ removesiteaddress_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_removesiteaddress',
+                dbc.Col(dcc.Input(id='remove_site_address_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -608,7 +608,7 @@ uploadxmlfile_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_uploadinput', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='upload_xml_file_example_field_id', type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
@@ -651,7 +651,7 @@ datalabel_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_datalabel', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='data_label_example_field_id', type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
@@ -694,7 +694,7 @@ datareference_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_datareferenceinput', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='data_reference_example_field_id', type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
@@ -736,7 +736,7 @@ datacomment_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_datacommentinput', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='data_comment_example_field_id', type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
@@ -794,7 +794,7 @@ experiment_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_experimentinput', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='experiment_example_field_id', type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
@@ -837,7 +837,7 @@ dateofannouncement_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='date_of_announcement_example_form_field_id',
+                dbc.Col(dcc.Input(id='date_of_announcement_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -883,7 +883,7 @@ dateofrunstart_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_dateofrunstart',
+                dbc.Col(dcc.Input(id='date_of_run_start_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -929,7 +929,7 @@ dateofrunend_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_dateofrunend',
+                dbc.Col(dcc.Input(id='date_of_run_end_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -988,7 +988,7 @@ year_input_row = html.Div(
                     className='FORM_DATA_COLUMN',
                     width = data_column_width
                 ),
-                dbc.Col(dcc.Input(id='example_yearinput',
+                dbc.Col(dcc.Input(id='year_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -1033,7 +1033,7 @@ rescalex_input_row = html.Div(
                     className='FORM_DATA_COLUMN',
                     width = data_column_width
                 ),
-                dbc.Col(dcc.Input(id='example_rescalexinput',
+                dbc.Col(dcc.Input(id='rescale_x_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -1079,7 +1079,7 @@ rescaley_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_rescaleyinput',
+                dbc.Col(dcc.Input(id='rescale_y_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -1125,7 +1125,7 @@ xunit_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_xunitinput',
+                dbc.Col(dcc.Input(id='x_unit_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -1171,7 +1171,7 @@ yunit_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_yunitinput',
+                dbc.Col(dcc.Input(id='y_unit_input_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -1214,7 +1214,7 @@ datavalues_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_datavaluesinput',
+                dbc.Col(dcc.Input(id='data_values_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -1264,7 +1264,7 @@ resulttype_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_resulttypeinput',
+                dbc.Col(dcc.Input(id='result_type_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -1313,7 +1313,7 @@ limittype_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_limittypeinput',
+                dbc.Col(dcc.Input(id='limit_type_example_field_id',
                                   type='text',
                                   value='example',
                                   readOnly=True,
@@ -1359,7 +1359,10 @@ spindependency_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_spindependency', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='spin_dependency_example_field_id',
+                                  type='text',
+                                  value='example',
+                                  readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
@@ -1402,7 +1405,10 @@ measurementtype_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_measurementtype', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='measurement_type_example_field_id',
+                                  type='text',
+                                  value='example',
+                                  readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
@@ -1441,7 +1447,8 @@ publiclimit_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_publiclimit', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='public_limit_example_field_id',
+                                  type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
@@ -1483,7 +1490,7 @@ otherusers_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_otherusersinput', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='other_users_example_field_id', type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
@@ -1530,7 +1537,8 @@ official_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_officiallimit', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='official_limit_example_field_id',
+                                  type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
@@ -1578,7 +1586,7 @@ greatesthits_input_row = html.Div(
                     width = data_column_width
                 ),
                 
-                dbc.Col(dcc.Input(id='example_greatesthit', type='text', value='example', readOnly=True,
+                dbc.Col(dcc.Input(id='greatest_hit_example_field_id', type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
                     width=1),
