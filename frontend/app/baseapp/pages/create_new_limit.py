@@ -223,7 +223,7 @@ upload_xml_file_form_field_id
 '''
 
 @callback(
-            Output('data_values_form_field_id', 'value'),
+            [Output('data_values_form_field_id', 'value'),
             Output('data_comment_form_field_id', 'value'),
             Output('data_label_form_field_id', 'value'),
             Output('data_reference_form_field_id', 'value'),
@@ -240,7 +240,7 @@ upload_xml_file_form_field_id
             Output('x_unit_form_field_id', 'value'),
             Output('rescale_y_form_field_id', 'value'),
             Output('y_unit_form_field_id', 'value'),
-            Output('year_form_field_id', 'value'),
+            Output('year_form_field_id', 'value')],
             Input('upload_xml_file_form_field_id', 'contents')
             #State('upload-data', 'filename'),
             #State('upload-data', 'last_modified')
