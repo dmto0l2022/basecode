@@ -416,7 +416,7 @@ def button_click(
 
         if public_in == "true":
             public_out = True
-        else public_out False
+        else public_out = False
         
         new_limit_txt = {
           "spin_dependency": spin_dependency_in,
