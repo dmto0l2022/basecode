@@ -430,7 +430,7 @@ def button_click(
           "y_rescale": y_rescale_in,
           "default_color": trace_color_in,
           "default_style": line_style_in,
-          ##"data_values": data_values_in,
+          "data_values": data_values_in,
           "data_label": data_label_in,
           "file_name": "string",
           "data_comment": data_comment_in,
@@ -438,13 +438,13 @@ def button_click(
           "creator_id": 2147483647,
           "experiment": experiment_in,
           "rating": 2147483647,
-          #"date_of_announcement": date_of_announcement_in,
+          "date_of_announcement": date_of_announcement_in,
           "public": public_out,
           "official": False,
-          #"date_official": "2023-01-01",
+          "date_official": "2023-01-01",
           "greatest_hit": False,
-          #"date_of_run_start": date_of_run_start_in,
-          #"date_of_run_end": date_of_run_end_in,
+          "date_of_run_start": date_of_run_start_in,
+          "date_of_run_end": date_of_run_end_in,
           "year": year_in
         }
         
