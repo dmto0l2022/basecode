@@ -289,7 +289,7 @@ def update_output(contents_in):
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
-    Input('data_values_form_field_id', 'value'),
+    ##Input('data_values_form_field_id', 'value'),
     Input('data_comment_form_field_id', 'value'),
     Input('data_label_form_field_id', 'value'),
     Input('data_reference_form_field_id', 'value'),
@@ -313,7 +313,7 @@ def update_output(contents_in):
         prevent_initial_call=True
 )
 def button_click(
-    data_values_in,
+    ##data_values_in,
     data_comment_in,
     data_label_in,
     data_reference_in,
@@ -388,7 +388,7 @@ def button_click(
           "default_color": trace_color_in,
           "default_style": line_style_in,
           "data_values": data_values_in,
-          "data_label": data_label_in,
+          ##"data_label": data_label_in,
           "file_name": "string",
           "data_comment": data_comment_in,
           "data_reference": data_reference_in,
@@ -413,7 +413,8 @@ def button_click(
         #url = 'http://container_fastapi_orm_1:8008/apiorm/limit'
         #myobj = {'somekey': 'somevalue'}
 
-        x = requests.post(url, json = post_data)
+        #x = requests.post(url, json = post_data)
+        x = requests.post(url, json = new_limit_txt)
 
         print(x.text)
         
