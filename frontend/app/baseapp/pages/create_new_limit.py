@@ -395,13 +395,13 @@ def button_click(
           "creator_id": 2147483647,
           "experiment": experiment_in,
           "rating": 2147483647,
-          "date_of_announcement": date_of_announcement_in,
+          #"date_of_announcement": date_of_announcement_in,
           "public": public_in,
           "official": "0",
-          "date_official": "2023-01-01",
+          #"date_official": "2023-01-01",
           "greatest_hit": "0",
-          "date_of_run_start": date_of_run_start_in,
-          "date_of_run_end": date_of_run_end_in,
+          #"date_of_run_start": date_of_run_start_in,
+          #"date_of_run_end": date_of_run_end_in,
           "year": year_in
         }
         
