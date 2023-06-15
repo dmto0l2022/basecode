@@ -413,6 +413,10 @@ def button_click(
                   "date_of_run_end": "2023-06-15",
                   "year": 2147483647
             }
+
+        if public_in == "true":
+            public_out = True
+        else public_out False
         
         new_limit_txt = {
           "spin_dependency": spin_dependency_in,
@@ -434,7 +438,7 @@ def button_click(
           "experiment": experiment_in,
           "rating": 2147483647,
           #"date_of_announcement": date_of_announcement_in,
-          "public": if public_in == "true" then True else False,
+          "public": public_out,
           "official": False,
           #"date_official": "2023-01-01",
           "greatest_hit": False,
