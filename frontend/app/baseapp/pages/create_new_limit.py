@@ -340,7 +340,7 @@ def button_click(
     
     print(prop_id)
 
-    print('data_values_in  >>',data_values_in)
+    ##print('data_values_in  >>',data_values_in)
     print('data_comment_in  >>',data_comment_in)
     print('data_label_in  >>',data_label_in)
     print('data_reference_in  >>',data_reference_in)
