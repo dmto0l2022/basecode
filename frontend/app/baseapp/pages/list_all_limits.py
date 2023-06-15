@@ -94,12 +94,13 @@ def RefreshTableData():
 #url = "http://10.154.0.20:8004/todo/list/1"
 ##10.154.0.20
 
-#url = "http://" + api_container + "/plots/getall/"
 url = fastapi_orm_url_api + "/limit/"
 r = requests.get(url)
 response_data = r.json()
-data_frame = pd.DataFrame(response_data)
-print(data_frame)
+response_data_frame = pd.DataFrame(response_data)
+lst = ['id','experiment','data_comment']
+table_dataframe = response_data_frame[response_data_frame.columns.intersection(lst)]
+print(table_dataframe)
 
 #data_request = requests.get(url=url)
 #text = json.dumps(data_request, sort_keys=True, indent=4)
@@ -110,7 +111,7 @@ print(data_frame)
 #data_frame = pd.read_json(response_data, orient='records')
 #data_frame = pd.DataFrame(response_data)
 ##print(data_frame)
-dff = data_frame.copy()
+dff = table_dataframe.copy()
 ##df = px.data.gapminder()
 ##df["id"] = df.index
 dff["id"] = dff.index
