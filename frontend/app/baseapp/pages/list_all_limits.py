@@ -189,6 +189,10 @@ def cell_clicked(active_cell):
     print("---------------------")
     
     cell_value = dff.iat[active_cell['row'], active_cell['column']]
+
+    print("cell_value > ", cell_value)
+
+    print("---------------------")
     
     if cell_value == 'delete':
         DeleteRow(id)
