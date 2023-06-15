@@ -359,7 +359,25 @@ def button_click(
     print('y_units_in  >>',y_units_in)
     print('year_in  >>',year_in)
 
-    
+    '''
+    data_comment_in  >> A descriptive comment
+    data_label_in  >> What my data shows up under
+    data_reference_in  >> where someone else can find the data 
+    date_of_announcement_in  >> yyyy-mm-dd
+    date_of_run_start_in  >> yyyy-mm-dd
+    date_of_run_end_in  >> None
+    trace_color_in  >> DkB
+    line_style_in  >> Fill
+    experiment_in  >> Your experiment's name as it shows up on the list or Theory
+    public_in,  >> true
+    result_type_in  >> Th or Exp
+    spin_dependency_in  >> SI
+    x_rescale_in  >> 1
+    x_units_in  >> GeV
+    y_rescale_in  >> 1e-36
+    y_units_in  >> cm^2
+    year_in  >> 2008
+    '''
     #msg = prop_id
     if "create_new_limit_save_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
