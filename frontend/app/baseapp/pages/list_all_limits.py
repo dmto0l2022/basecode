@@ -193,6 +193,14 @@ def cell_clicked(active_cell):
     print("cell_value > ", cell_value)
 
     print("---------------------")
+
+    print("table data frame")
+    print("---------------------")
+
+    print(dff)
+
+    print("---------------------")
+
     
     if cell_value == 'delete':
         DeleteRow(id)
