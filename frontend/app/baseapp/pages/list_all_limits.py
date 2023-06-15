@@ -78,6 +78,7 @@ def RefreshTableData():
     response_data_frame = pd.DataFrame(response_data)
     lst = ['id','experiment','data_comment']
     updated_data_frame = response_data_frame[response_data_frame.columns.intersection(lst)]
+    updated_data_frame = updated_data_frame[lst]
     updated_data_frame['create'] = "create"
     updated_data_frame['read'] = "read"
     updated_data_frame['update'] = "update"
@@ -100,6 +101,8 @@ response_data = r.json()
 response_data_frame = pd.DataFrame(response_data)
 lst = ['id','experiment','data_comment']
 table_dataframe = response_data_frame[response_data_frame.columns.intersection(lst)]
+table_dataframe = table_dataframe[lst]
+
 print(table_dataframe)
 
 #data_request = requests.get(url=url)
