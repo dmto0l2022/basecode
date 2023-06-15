@@ -408,7 +408,7 @@ def button_click(
                   "public": True,
                   "official": True,
                   "date_official": "2023-06-15",
-                  "greatest_hit": true,
+                  "greatest_hit": True,
                   "date_of_run_start": "2023-06-15",
                   "date_of_run_end": "2023-06-15",
                   "year": 2147483647
