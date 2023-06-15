@@ -339,6 +339,26 @@ def button_click(
     print('-------------- prop id ---------------------')
     
     print(prop_id)
+
+    print('data_values_in  >>',data_values_in)
+    print('data_comment_in  >>',data_comment_in)
+    print('data_label_in  >>',data_label_in)
+    print('data_reference_in  >>',data_reference_in)
+    print('date_of_announcement_in  >>',date_of_announcement_in)
+    print('date_of_run_start_in  >>',date_of_run_start_in)
+    print('date_of_run_end_in  >>',date_of_run_end_in)
+    print('trace_color_in  >>',trace_color_in)
+    print('line_style_in  >>',line_style_in)
+    print('experiment_in  >>',experiment_in)
+    print('public_in,  >>',public_in,)
+    print('result_type_in  >>',result_type_in)
+    print('spin_dependency_in  >>',spin_dependency_in)
+    print('x_rescale_in  >>',x_rescale_in)
+    print('x_units_in  >>',x_units_in)
+    print('y_rescale_in  >>',y_rescale_in)
+    print('y_units_in  >>',y_units_in)
+    print('year_in  >>',year_in)
+
     
     #msg = prop_id
     if "create_new_limit_save_button_id" == prop_id :
