@@ -45,6 +45,7 @@ cancel_button =  html.Div(dbc.Button("Cancel",  id="list_all_limits_cancel_butto
 
 ##########################################################
 
+'''
 class MakeApiCall():
 
     def get_data(self, api):
@@ -59,6 +60,7 @@ class MakeApiCall():
     def formatted_print(self, obj):
         text = json.dumps(obj, sort_keys=True, indent=4)
         print(text)
+'''
 ###
 
 def DeleteRow(limit_in):
@@ -165,8 +167,8 @@ def cell_clicked(active_cell):
 
     #country = df.at[row, "country"]
     #print(country)
-    plotid = dff.at[row, "plotid"]
-    print(plotid)
+    id = dff.at[row, "id"]
+    print(id)
 
     column = active_cell["column"]
     print(f"column: {column}")
@@ -175,11 +177,11 @@ def cell_clicked(active_cell):
     cell_value = dff.iat[active_cell['row'], active_cell['column']]
     
     if cell_value == 'delete':
-        DeleteRow(plotid)
+        DeleteRow(id)
         updated_data = RefreshTableData()
             
     ##http://127.0.0.1:5000/query-example?plotid=Python
-    return_data = row, " ", column, " ",cell_value, " ", plotid
+    return_data = row, " ", column, " ",cell_value, " ", id
     return return_data, updated_data ##country
 
 ##json.dumps(list(active_cell))
