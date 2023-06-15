@@ -345,6 +345,36 @@ def button_click(
         #msg = "Button 1 was most recently clicked"
         print("save button pressed")
         #href_return = dash.page_registry['pages.list_all_limits']['path']
+
+
+        post_data = {
+                  "spin_dependency": "string",
+                  "result_type": "string",
+                  "measurement_type": "string",
+                  "nomhash": "string",
+                  "x_units": "string",
+                  "y_units": "string",
+                  "x_rescale": "string",
+                  "y_rescale": "string",
+                  "default_color": "string",
+                  "default_style": "string",
+                  "data_values": "string",
+                  "data_label": "string",
+                  "file_name": "string",
+                  "data_comment": "string",
+                  "data_reference": "string",
+                  "creator_id": 2147483647,
+                  "experiment": "string",
+                  "rating": 2147483647,
+                  "date_of_announcement": "2023-06-15",
+                  "public": 2147483647,
+                  "official": 2147483647,
+                  "date_official": "2023-06-15",
+                  "greatest_hit": 2147483647,
+                  "date_of_run_start": "2023-06-15",
+                  "date_of_run_end": "2023-06-15",
+                  "year": 2147483647
+                }
         
         new_limit_txt = {
           "spin_dependency": spin_dependency_in,
@@ -383,7 +413,7 @@ def button_click(
         #url = 'http://container_fastapi_orm_1:8008/apiorm/limit'
         #myobj = {'somekey': 'somevalue'}
 
-        x = requests.post(url, json = new_limit_txt)
+        x = requests.post(url, json = post_data)
 
         print(x.text)
         
