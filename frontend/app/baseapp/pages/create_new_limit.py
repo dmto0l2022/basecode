@@ -405,14 +405,14 @@ def button_click(
                   "experiment": "string",
                   "rating": 2147483647,
                   "date_of_announcement": "2023-06-15",
-                  "public": 2147483647,
-                  "official": 2147483647,
+                  "public": true,
+                  "official": true,
                   "date_official": "2023-06-15",
-                  "greatest_hit": 2147483647,
+                  "greatest_hit": true,
                   "date_of_run_start": "2023-06-15",
                   "date_of_run_end": "2023-06-15",
                   "year": 2147483647
-                }
+            }
         
         new_limit_txt = {
           "spin_dependency": spin_dependency_in,
