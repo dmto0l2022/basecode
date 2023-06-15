@@ -433,8 +433,8 @@ def button_click(
         #url = 'http://container_fastapi_orm_1:8008/apiorm/limit'
         #myobj = {'somekey': 'somevalue'}
 
-        #x = requests.post(url, json = post_data)
-        x = requests.post(url, json = new_limit_txt)
+        x = requests.post(url, json = post_data)
+        #x = requests.post(url, json = new_limit_txt)
 
         print(x.text)
         
