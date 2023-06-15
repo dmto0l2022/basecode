@@ -289,7 +289,7 @@ def update_output(contents_in):
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
-    ##Input('data_values_form_field_id', 'value'),
+    Input('data_values_form_field_id', 'value'),
     Input('data_comment_form_field_id', 'value'),
     Input('data_label_form_field_id', 'value'),
     Input('data_reference_form_field_id', 'value'),
@@ -313,7 +313,7 @@ def update_output(contents_in):
         prevent_initial_call=True
 )
 def button_click(
-    ##data_values_in,
+    data_values_in,
     data_comment_in,
     data_label_in,
     data_reference_in,
@@ -340,7 +340,7 @@ def button_click(
     
     print(prop_id)
 
-    ##print('data_values_in  >>',data_values_in)
+    print('data_values_in  >>',data_values_in)
     print('data_comment_in  >>',data_comment_in)
     print('data_label_in  >>',data_label_in)
     print('data_reference_in  >>',data_reference_in)
@@ -434,10 +434,10 @@ def button_click(
           "experiment": experiment_in,
           "rating": 2147483647,
           #"date_of_announcement": date_of_announcement_in,
-          "public": public_in,
-          "official": "0",
+          "public": if public_in == "true" then True else False,
+          "official": False,
           #"date_official": "2023-01-01",
-          "greatest_hit": "0",
+          "greatest_hit": False,
           #"date_of_run_start": date_of_run_start_in,
           #"date_of_run_end": date_of_run_end_in,
           "year": year_in
@@ -451,8 +451,8 @@ def button_click(
         #url = 'http://container_fastapi_orm_1:8008/apiorm/limit'
         #myobj = {'somekey': 'somevalue'}
 
-        x = requests.post(url, json = post_data)
-        #x = requests.post(url, json = new_limit_txt)
+        #x = requests.post(url, json = post_data)
+        x = requests.post(url, json = new_limit_txt)
 
         print(x.text)
         
