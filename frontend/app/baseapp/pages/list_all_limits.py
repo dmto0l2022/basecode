@@ -89,7 +89,7 @@ def RefreshTableData():
 #url = "http://10.154.0.20:8004/todo/list/1"
 ##10.154.0.20
 
-url = "http://" + api_container + "/plots/getall/"
+#url = "http://" + api_container + "/plots/getall/"
 url = fastapi_orm_url_api + "/limit/"
 r = requests.get(url)
 response_data = r.json()
