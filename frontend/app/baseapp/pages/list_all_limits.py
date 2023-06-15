@@ -68,7 +68,8 @@ class MakeApiCall():
 
 def DeleteRow(limit_in):
     url = fastapi_orm_url_api + "/limit/"
-    requests.delete(url, limit_id=limit_in)
+    delete_url = fastapi_orm_url_api + "/limit/" + limit_in
+    requests.delete(delete_url)
 
 def RefreshTableData():
     url = fastapi_orm_url_api + "/limit/"
