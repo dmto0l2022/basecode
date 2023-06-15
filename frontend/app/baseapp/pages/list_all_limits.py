@@ -122,7 +122,19 @@ columns = ["id", "experiment ", "data_comment", "create", "read", "update", "del
 #initial_active_cell = {"row": 0, "column": 0, "column_id": "country", "row_id": 0}
 initial_active_cell = {"row": 0, "column": 0, "column_id": "plotid", "row_id": 0}
 
-app.layout = html.Div(
+###########################################################
+
+list_all_limits_form = html.Div(
+    #[newplot_title,newplot_input3],
+    [dcc.Location(id="url", refresh=True),
+     list_all_limits_form_title,
+     list_all_limits_form_content,
+     edit_button, cancel_button],
+    className = "NOPADDING_CONTENT CENTRE_FORM"
+)
+
+
+table_layout = html.Div(
     [
         html.Div(
             [
@@ -143,8 +155,9 @@ app.layout = html.Div(
     className="row"
 )
 
+layout = table_layout
 
-@app.callback(
+@callback(
     [Output("output-div", "children"), Output('table','data')], Input("table", "active_cell"),
 )
 def cell_clicked(active_cell):
@@ -186,24 +199,7 @@ def cell_clicked(active_cell):
 
 ##json.dumps(list(active_cell))
 
-
-
-###########################################################
-
-
-
-
-list_all_limits_form = html.Div(
-    #[newplot_title,newplot_input3],
-    [dcc.Location(id="url", refresh=True),
-     list_all_limits_form_title,
-     list_all_limits_form_content,
-     edit_button, cancel_button],
-    className = "NOPADDING_CONTENT CENTRE_FORM"
-)
-
-layout = list_all_limits_form
-
+'''
 
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
@@ -228,3 +224,4 @@ def button_click(button1,button2):
     else:
         href_return = dash.page_registry['pages.home']['path']
         return href_return
+'''
