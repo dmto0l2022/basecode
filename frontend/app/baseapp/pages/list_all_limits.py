@@ -75,7 +75,9 @@ def RefreshTableData():
     url = fastapi_orm_url_api + "/limit/"
     r = requests.get(url)
     response_data = r.json()
-    updated_data_frame = pd.DataFrame(response_data)
+    response_data_frame = pd.DataFrame(response_data)
+    lst = ['id','experiment','data_comment']
+    updated_data_frame = response_data_frame[response_data_frame.columns.intersection(lst)]
     updated_data_frame['create'] = "create"
     updated_data_frame['read'] = "read"
     updated_data_frame['update'] = "update"
