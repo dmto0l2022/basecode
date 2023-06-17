@@ -103,7 +103,7 @@ def RefreshTableData():
 ##10.154.0.20
 
 table_data_dict_initial, table_data_frame_initial, column_names = RefreshTableData()
-
+initial_active_cell = [0,0]
 
 ###########################################################
 
