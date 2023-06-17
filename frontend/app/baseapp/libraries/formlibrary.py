@@ -832,7 +832,7 @@ date_of_announcement_input_row = html.Div(
                         display_format="Y-MMMM-DD",
                         value=datetime.now().date(),
                         style={"width": 10},
-                        #date=date(2023, 1, 1),
+                        date=date(2023, 1, 1),
                         #className='FORM_COLUMN_SINGLEDATE',
                         className='FORM_COLUMN_DATA',
                                         ),
