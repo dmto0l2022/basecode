@@ -79,7 +79,7 @@ def RefreshTableData():
     response_data_frame = pd.DataFrame(response_data)
     lst = ['id','experiment','data_comment']
     updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
-    updated_data_frame_ret = updated_data_frame[lst]
+    updated_data_frame_ret = updated_data_frame_ret[lst]
     updated_data_frame_ret['create'] = "create"
     updated_data_frame_ret['read'] = "read"
     updated_data_frame_ret['update'] = "update"
