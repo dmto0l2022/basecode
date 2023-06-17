@@ -77,14 +77,19 @@ def RefreshTableData():
     response_data = r.json()
     print(response_data)
     response_data_frame = pd.DataFrame(response_data)
-    lst = ['id','experiment','data_comment']
-    updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
-    updated_data_frame_ret = updated_data_frame_ret[lst]
-    updated_data_frame_ret['create'] = "create"
-    updated_data_frame_ret['read'] = "read"
-    updated_data_frame_ret['update'] = "update"
-    updated_data_frame_ret['delete'] = "delete"
-    updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
+    if response_data_frame.empty:
+        empty_data = ['id','experiment','data_comment','create', 'read', 'update', 'delete']
+        updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=['id','experiment','data_comment','create', 'read', 'update', 'delete'])
+        updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
+    else:
+        lst = ['id','experiment','data_comment']
+        updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
+        updated_data_frame_ret = updated_data_frame_ret[lst]
+        updated_data_frame_ret['create'] = "create"
+        updated_data_frame_ret['read'] = "read"
+        updated_data_frame_ret['update'] = "update"
+        updated_data_frame_ret['delete'] = "delete"
+        updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     return updated_data_dict_ret, updated_data_frame_ret
 
 
