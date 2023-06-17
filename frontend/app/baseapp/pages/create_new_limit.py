@@ -233,7 +233,7 @@ layout = load_limit_file_form
             Output('data_comment_form_field_id', 'value'),
             Output('data_label_form_field_id', 'value'),
             Output('data_reference_form_field_id', 'value'),
-            Output('date_of_announcement_form_field_id', 'initial_visible_month'),
+            Output('date_of_announcement_form_field_id', 'date'),
             Output('date_of_run_start_form_field_id', 'initial_visible_month'),
             Output('date_of_run_end_form_field_id', 'initial_visible_month'),
             Output('trace_color_form_field_id', 'value'),
