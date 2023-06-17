@@ -189,7 +189,7 @@ def cell_clicked(active_cell):
     #country = df.at[row, "country"]
     #print(country)
     id = dff.at[row, "id"]
-    print(id)
+    print("id >> ", id)
 
     column = active_cell["column"]
     print(f"column: {column}")
