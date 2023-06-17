@@ -826,7 +826,7 @@ date_of_announcement_input_row = html.Div(
                     width = label_column_width
                 ),
                 dbc.Col(
-                    dbc.Input(id='date_of_announcement_form_field_id', placeholder=datetime.now(), type="date"),
+                    dbc.Input(id='date_of_announcement_form_field_id', placeholder=datetime.now(), type="date",className='FORM_COLUMN_DATA'),
                     #className='FORM_SINGLEDATE_COLUMN',
                     className='FORM_DATA_COLUMN',
                     width = data_column_width
@@ -904,16 +904,7 @@ date_of_run_end_input_row = html.Div(
                     width = label_column_width
                 ),
                 dbc.Col(
-                     dcc.DatePickerSingle(
-                        id='date_of_run_end_form_field_id',
-                        min_date_allowed=date(2000, 1, 1),
-                        max_date_allowed=date(2024, 5, 7),
-                        initial_visible_month=date(2023, 1, 1),
-                        date=date(2023, 1, 1),
-                        display_format="Y-MMMM-DD",
-                        #className='FORM_COLUMN_SINGLEDATE',
-                        className='FORM_COLUMN_DATA',
-                                        ),
+                    dbc.Input(id='date_of_run_end_form_field_id', placeholder=datetime.now(), type="date",className='FORM_COLUMN_DATA'),
                     #className='FORM_SINGLEDATE_COLUMN',
                     className='FORM_DATA_COLUMN',
                     width = data_column_width
