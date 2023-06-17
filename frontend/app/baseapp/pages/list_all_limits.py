@@ -118,7 +118,7 @@ print(table_dataframe)
 dff = table_dataframe.copy()
 ##df = px.data.gapminder()
 ##df["id"] = df.index
-dff["id"] = dff.index
+#dff["id"] = dff.index
 # print(df.head(15))
 ##dff = df[df.year == 2007].copy()
 dff['create'] = "create"
