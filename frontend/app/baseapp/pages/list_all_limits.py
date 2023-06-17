@@ -188,14 +188,14 @@ def cell_clicked(active_cell):
 
     #country = df.at[row, "country"]
     #print(country)
-    id = dff.at[row, "id"]
+    id = updated_data.at[row, "id"]
     print("id >> ", id)
 
     column = active_cell["column"]
     print(f"column: {column}")
     print("---------------------")
     
-    cell_value = dff.iat[active_cell['row'], active_cell['column']]
+    cell_value = updated_data.iat[active_cell['row'], active_cell['column']]
 
     print("cell_value > ", cell_value)
 
@@ -204,7 +204,7 @@ def cell_clicked(active_cell):
     print("table data frame")
     print("---------------------")
 
-    print(dff)
+    print(updated_data)
 
     print("---------------------")
 
