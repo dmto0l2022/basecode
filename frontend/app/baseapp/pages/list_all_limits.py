@@ -78,14 +78,14 @@ def RefreshTableData():
     print(response_data)
     response_data_frame = pd.DataFrame(response_data)
     lst = ['id','experiment','data_comment']
-    updated_data_frame = response_data_frame[response_data_frame.columns.intersection(lst)]
-    updated_data_frame = updated_data_frame[lst]
-    updated_data_frame['create'] = "create"
-    updated_data_frame['read'] = "read"
-    updated_data_frame['update'] = "update"
-    updated_data_frame['delete'] = "delete"
-    updated_data_ret = updated_data_frame.to_dict('records')
-    return updated_data_ret
+    updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
+    updated_data_frame_ret = updated_data_frame[lst]
+    updated_data_frame_ret['create'] = "create"
+    updated_data_frame_ret['read'] = "read"
+    updated_data_frame_ret['update'] = "update"
+    updated_data_frame_ret['delete'] = "delete"
+    updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
+    return updated_data_dict_ret, updated_data_frame_ret
 
 
 ##data_request = requests.get('/plots/getall')
@@ -170,7 +170,7 @@ layout = table_layout
 )
 def cell_clicked(active_cell):
     
-    updated_data = RefreshTableData()
+    updated_data_dict, updated_data_frame = RefreshTableData()
     
     if active_cell is None:
         return no_update
@@ -188,14 +188,14 @@ def cell_clicked(active_cell):
 
     #country = df.at[row, "country"]
     #print(country)
-    id = updated_data.at[row, "id"]
+    id = updated_data_frame.at[row, "id"]
     print("id >> ", id)
 
     column = active_cell["column"]
     print(f"column: {column}")
     print("---------------------")
     
-    cell_value = updated_data.iat[active_cell['row'], active_cell['column']]
+    cell_value = updated_data_frame.iat[active_cell['row'], active_cell['column']]
 
     print("cell_value > ", cell_value)
 
@@ -204,18 +204,18 @@ def cell_clicked(active_cell):
     print("table data frame")
     print("---------------------")
 
-    print(updated_data)
+    print(updated_data_frame)
 
     print("---------------------")
 
     
     if cell_value == 'delete':
         DeleteRow(id)
-        updated_data = RefreshTableData()
+        updated_data_dict, updated_data_frame = RefreshTableData()
             
     ##http://127.0.0.1:5000/query-example?plotid=Python
     return_data = row, " ", column, " ",cell_value, " ", id
-    return return_data, updated_data ##country
+    return return_data, updated_data_dict ##country
 
 ##json.dumps(list(active_cell))
 
