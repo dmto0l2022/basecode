@@ -145,7 +145,7 @@ layout = table_layout
 )
 def cell_clicked(active_cell):
     
-    updated_data_dict, updated_data_frame = RefreshTableData()
+    updated_data_dict, updated_data_frame, column_names = RefreshTableData()
     
     if active_cell is None:
         return no_update
@@ -186,11 +186,11 @@ def cell_clicked(active_cell):
     
     if cell_value == 'delete':
         DeleteRow(id)
-        updated_data_dict, updated_data_frame = RefreshTableData()
+        updated_data_dict, updated_data_frame, column_names = RefreshTableData()
             
     ##http://127.0.0.1:5000/query-example?plotid=Python
     return_data = row, " ", column, " ",cell_value, " ", id
-    return return_data, updated_data_dict ##country
+    return return_data, updated_data_dict
 
 ##json.dumps(list(active_cell))
 
