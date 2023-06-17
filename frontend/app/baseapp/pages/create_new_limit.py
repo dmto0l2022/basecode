@@ -268,6 +268,9 @@ def update_output(contents_in):
         DMToolLimit = Limit_class() ## empty
 
     print("Data Comment > " , DMToolLimit.data_comment)
+
+    print("Month of Announcement > ", DMToolLimit.date_of_announcement[0:7] + "01")
+    
     return  [
             DMToolLimit.data_values,
             DMToolLimit.data_comment,
