@@ -79,7 +79,7 @@ def RefreshTableData():
     response_data_frame = pd.DataFrame(response_data)
     column_names=['id','experiment','data_comment','create', 'read', 'update', 'delete']
     if response_data_frame.empty:
-        empty_data = ['id','experiment','data_comment','create', 'read', 'update', 'delete']
+        empty_data = [['id','experiment','data_comment','create', 'read', 'update', 'delete']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
