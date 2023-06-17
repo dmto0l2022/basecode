@@ -826,7 +826,7 @@ date_of_announcement_input_row = html.Div(
                      dcc.DatePickerSingle(
                         id='date_of_announcement_form_field_id',
                         min_date_allowed=date(2000, 1, 1),
-                        max_date_allowed=date(2023, 5, 7),
+                        max_date_allowed=date(2024, 5, 7),
                         initial_visible_month=date(2023, 1, 1),
                         display_format="Y-MMMM-DD",
                         date=date(2023, 1, 1),
@@ -873,7 +873,7 @@ date_of_run_start_input_row = html.Div(
                      dcc.DatePickerSingle(
                         id='date_of_run_start_form_field_id',
                         min_date_allowed=date(2000, 1, 1),
-                        max_date_allowed=date(2023, 5, 7),
+                        max_date_allowed=date(2024, 5, 7),
                         initial_visible_month=date(2023, 1, 1),
                         display_format="Y-MMMM-DD",
                         date=date(2023, 1, 1),
@@ -920,7 +920,7 @@ date_of_run_end_input_row = html.Div(
                      dcc.DatePickerSingle(
                         id='date_of_run_end_form_field_id',
                         min_date_allowed=date(2000, 1, 1),
-                        max_date_allowed=date(2023, 5, 7),
+                        max_date_allowed=date(2024, 5, 7),
                         initial_visible_month=date(2023, 1, 1),
                         date=date(2023, 1, 1),
                         display_format="Y-MMMM-DD",
