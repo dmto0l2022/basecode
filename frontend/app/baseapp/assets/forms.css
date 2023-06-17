@@ -599,18 +599,14 @@
     height:50%;
 }
 
-.DateInput, .DateInput_1 {
-    border-radius: 4px 0 0 4px !important;
-}
-
 .DateInput_input, .DateInput_input_1 {
     height: 34px !important;
-    width: 100% !important;
+    Width: 100% !important;
     border-radius: inherit;
 }
 
 .SingleDatePickerInput__withBorder {
     border-radius: 4px 0 0 4px;
     border: 1px solid #ccc !important;
-    width: 100% !important;
+    Width: 100% !important;
 }
