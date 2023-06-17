@@ -826,7 +826,7 @@ date_of_announcement_input_row = html.Div(
                     width = label_column_width
                 ),
                 dbc.Col(
-                    dbc.Input(id='date_of_announcement_form_field_id', placeholder=datetime.now(), type="date"),,
+                    dbc.Input(id='date_of_announcement_form_field_id', placeholder=datetime.now(), type="date"),
                     #className='FORM_SINGLEDATE_COLUMN',
                     className='FORM_DATA_COLUMN',
                     width = data_column_width
