@@ -832,16 +832,6 @@ date_of_announcement_input_row = html.Div(
                         date=date(2023, 1, 1),
                         #className='FORM_COLUMN_SINGLEDATE',
                         className='FORM_COLUMN_DATA',
-                        style = {
-                        'font-size': '3px',
-                        'display': 'inline-block', 
-                        'border-radius' : '0.2px', 
-                        'border' : '1px solid #ccc',
-                        'color': '#333', 
-                        'border-spacing' : '0', 
-                        'border-collapse' :'separate',
-                        'width':'100%',
-                        } 
                                         ),
                     #className='FORM_SINGLEDATE_COLUMN',
                     className='FORM_DATA_COLUMN',
