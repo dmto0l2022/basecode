@@ -233,12 +233,9 @@ layout = load_limit_file_form
             Output('data_comment_form_field_id', 'value'),
             Output('data_label_form_field_id', 'value'),
             Output('data_reference_form_field_id', 'value'),
-            Output('date_of_announcement_form_field_id', 'initial_visible_month'),
-            Output('date_of_announcement_form_field_id', 'date'),
-            Output('date_of_run_start_form_field_id', 'initial_visible_month'),
-            Output('date_of_run_start_form_field_id', 'date'),
-            Output('date_of_run_end_form_field_id', 'initial_visible_month'),
-            Output('date_of_run_end_form_field_id', 'date'),
+            Output('date_of_announcement_form_field_id', 'value'),
+            Output('date_of_run_start_form_field_id', 'value'),
+            Output('date_of_run_end_form_field_id', 'value'),
             Output('trace_color_form_field_id', 'value'),
             Output('line_style_form_field_id', 'value'),
             Output('experiment_form_field_id', 'value'),
@@ -269,18 +266,15 @@ def update_output(contents_in):
 
     print("Data Comment > " , DMToolLimit.data_comment)
 
-    print("Month of Announcement > ", DMToolLimit.date_of_announcement[0:7] + "01")
+    #print("Month of Announcement > ", DMToolLimit.date_of_announcement[0:7] + "01")
     
     return  [
             DMToolLimit.data_values,
             DMToolLimit.data_comment,
             DMToolLimit.data_label,
             DMToolLimit.data_reference,
-            DMToolLimit.date_of_announcement[0:7] + "01",
             DMToolLimit.date_of_announcement,
-            DMToolLimit.date_of_run_end[0:7] + "01",
             DMToolLimit.date_of_run_end,
-            DMToolLimit.date_of_run_start[0:7] + "01",
             DMToolLimit.date_of_run_start,
             DMToolLimit.default_color,
             DMToolLimit.default_style,
@@ -302,9 +296,9 @@ def update_output(contents_in):
     Input('data_comment_form_field_id', 'value'),
     Input('data_label_form_field_id', 'value'),
     Input('data_reference_form_field_id', 'value'),
-    Input('date_of_announcement_form_field_id', 'date'),
-    Input('date_of_run_start_form_field_id', 'date'),
-    Input('date_of_run_end_form_field_id', 'date'),
+    Input('date_of_announcement_form_field_id', 'value'),
+    Input('date_of_run_start_form_field_id', 'value'),
+    Input('date_of_run_end_form_field_id', 'value'),
     Input('trace_color_form_field_id', 'value'),
     Input('line_style_form_field_id', 'value'),
     Input('experiment_form_field_id', 'value'),
