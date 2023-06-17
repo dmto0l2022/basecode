@@ -814,7 +814,46 @@ experiment_input_row = html.Div(
 
 # Date of Announcement - Date
 
+#dbc.Input(id="input", placeholder="Type something...", type="text"),
+
 date_of_announcement_input_row = html.Div(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    html.Label('Announcement Date :',className='FORM_COLUMN_LABEL'),
+                    className='FORM_LABEL_COLUMN',
+                    width = label_column_width
+                ),
+                dbc.Col(
+                    dbc.Input(id='date_of_announcement_form_field_id', placeholder=datetime.now(), type="date"),,
+                    #className='FORM_SINGLEDATE_COLUMN',
+                    className='FORM_DATA_COLUMN',
+                    width = data_column_width
+                ),
+                
+                dbc.Col(dcc.Input(id='date_of_announcement_example_field_id',
+                                  type='text',
+                                  value='example',
+                                  readOnly=True,
+                                  className='FORM_COLUMN_EXAMPLE'),
+                    className='FORM_EXAMPLE_COLUMN',
+                    width=1),
+                
+                dbc.Popover(
+                    dbc.PopoverBody('enter date of announcement'),
+                    target="date_of_announcement_form_field_id",trigger="hover"),
+                
+                dbc.Popover(dbc.PopoverBody('4'),
+                    target="date_of_announcement_example_field_id",trigger="click"), 
+                
+            ],
+        className='g-0'),
+    ]
+)
+
+
+date_of_announcement_input_row_old = html.Div(
     [
         dbc.Row(
             [
