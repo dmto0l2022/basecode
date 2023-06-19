@@ -109,10 +109,15 @@ def GetLimits():
     url = fastapi_orm_url_api + "/limit/"
     r = requests.get(url)
     response_data = r.json()
-    print(response_data)
+    #print(response_data)
     response_data_frame = pd.DataFrame(response_data)
     experiment_list_df, series_list_df, experiment_data_df = parse_series_and_values(response_data_frame)
     column_names=['id','data_label','data_comment','data_values']
+
+    print('experiment_list_df >>', experiment_list_df)
+    print('series_list_df >>', series_list_df)
+    print('experiment_data_df >>',experiment_data_df)
+
     
     if response_data_frame.empty:
         experiment_columns = ['id','data_label']
