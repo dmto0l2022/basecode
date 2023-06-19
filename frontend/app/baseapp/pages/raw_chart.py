@@ -34,6 +34,7 @@ def parse_values(data_values_in):
     return masses, cross_sections
 
 def parse_series_and_values(limits_dataframe_in):
+    lol = []
     for index, row in limits_dataframe_in.iterrows():
         #print(row['id'], row['data_values'])
         data_label = row[['data_label']].iloc[0]
