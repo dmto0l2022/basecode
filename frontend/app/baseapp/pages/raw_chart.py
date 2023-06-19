@@ -128,7 +128,7 @@ LIMIT_COLUMNS = [
 LIMIT_TABLE_PAGE_SIZE = 100
 column_width = f"{100/len(LIMIT_COLUMNS)}%"
 
-limits_data_dict, limits_data_frame, column_names = GetLimits()
+limits_data_dict, limits_data_frame, column_names, experiment_data = GetLimits()
 
 # The css is needed to maintain a fixed column width after filtering
 limits_table = dash_table.DataTable(
