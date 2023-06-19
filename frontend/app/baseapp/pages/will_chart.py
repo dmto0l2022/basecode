@@ -54,7 +54,7 @@ def GetLimit(limit_id_in):
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     return updated_data_dict_ret, updated_data_frame_ret, column_names
 
-def RefreshTableData():
+def GetLimits():
     url = fastapi_orm_url_api + "/limit/"
     r = requests.get(url)
     response_data = r.json()
@@ -86,7 +86,7 @@ LIMIT_COLUMNS = [
 LIMIT_TABLE_PAGE_SIZE = 100
 column_width = f"{100/len(LIMIT_COLUMNS)}%"
 
-limits_data_dict, limits_data_frame, column_names = RefreshTableData()
+limits_data_dict, limits_data_frame, column_names = GetLimits()
 
 # The css is needed to maintain a fixed column width after filtering
 limits_table = dash_table.DataTable(
@@ -180,9 +180,11 @@ def add_limits(n_clicks, selected_rows):
         fig = go.Figure()
 
         results = []
+
+        limits_data_dict, limits_data_frame, column_names = GetLimits()
     
         for row in selected_rows:
-            limit_id = limits.iloc[row]["id"]
+            limit_id = limits_data_frame.iloc[row]["id"]
             updated_data_dict, updated_data_frame, column_names = GetLimit(limit_id)
 
             mass, cross_section = parse_values(updated_data_frame['data_values'])
