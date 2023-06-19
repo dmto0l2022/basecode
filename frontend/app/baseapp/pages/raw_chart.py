@@ -237,12 +237,14 @@ def add_limits(n_clicks, selected_rows):
             
             for result in experiment_df:
                 trace_id = trace_id + 1
-                series_name = result['data_label'] + '_' + result['series'].astype(str)
+        
+                result['series_name'] = result['data_label'] + '_' + result['series'].astype(str)
+                series_name = result['series_name'][0]
                 fig.add_trace(
                     go.Scatter(
                         x=result['masses'],
                         y=result['cross_sections'],
-                        name=result['data_label'] + '_' + result['series'].astype(str),
+                        name=series_name,
                         color=result['series_color'],
                         mode='lines',
                     )
