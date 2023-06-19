@@ -242,7 +242,7 @@ def add_limits(n_clicks, selected_rows):
                     go.Scatter(
                         x=result['masses'],
                         y=result['cross_sections'],
-                        name=result['data_label'] + '_' + result['series']
+                        name=result['data_label'] + '_' + result['series'],
                         color=result['series_color'],
                         mode='lines',
                     )
