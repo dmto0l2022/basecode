@@ -144,12 +144,12 @@ LIMIT_COLUMNS = [
 LIMIT_TABLE_PAGE_SIZE = 100
 column_width = f"{100/len(LIMIT_COLUMNS)}%"
 
-limits_data_dict, limits_data_frame, column_names, experiment_data = GetLimits()
+experiment_list_df, series_list_df, experiment_data_df, experiment_list_dict = GetLimits()
 
 # The css is needed to maintain a fixed column width after filtering
 limits_table = dash_table.DataTable(
     id='limits-table',
-    data=limits_data_dict,
+    data=experiment_list_dict,
     columns=LIMIT_COLUMNS,
     row_selectable="multi",
     cell_selectable=False,
@@ -243,7 +243,7 @@ def add_limits(n_clicks, selected_rows):
 
         results = []
 
-        experiment_all_df, series_all_df, experiment_data_all_df = GetLimits()
+        experiment_all_df, series_all_df, experiment_data_all_df, experiment_all_dict = GetLimits()
     
         for row in selected_rows:
             limit_id = experiment_list_df.iloc[row]["id"]
