@@ -234,13 +234,13 @@ def add_limits(n_clicks, selected_rows):
             updated_data_dict, updated_data_frame, column_names, experiment_df = GetLimit(limit_id)
             
             trace_id = 0
-            
-            for result in experiment_df:
+
+            for index, row in experiment_df.iterrows():
                 trace_id = trace_id + 1
         
-                result['series_name'] = result['data_label'] + '_' + result['series'].astype(str)
-                series_name = result['series_name'][0]
-                series_color = result['series_color'][0]
+                row['series_name'] = row['data_label'] + '_' + row['series'].astype(str)
+                series_name = row['series_name'][0]
+                series_color = row['series_color'][0]
                 fig.add_trace(
                     go.Scatter(
                         x=result['masses'],
