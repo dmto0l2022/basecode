@@ -174,11 +174,13 @@ def add_limits(n_clicks, selected_rows):
         fig = go.Figure(data=[go.Scatter(x=[], y=[])])
         fig.update_xaxes(
             title_text=x_title_text,
-            type="log"
+            #type="log"
+            type="linear"
         )
         fig.update_yaxes(
             title_text=y_title_text,
-            type="log"
+            #type="log"
+            type="linear"
         )
     # Populate the graph
     else:
