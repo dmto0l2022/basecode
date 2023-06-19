@@ -211,7 +211,7 @@ def add_limits(n_clicks, selected_rows):
                         x=masses,
                         y=cross_sections,
                         mode='lines',
-                        name=result["label"][0] & "_" & str(trace_id)
+                        name=result["label"][0] + "_" + str(trace_id)
                     )
                 )
 
