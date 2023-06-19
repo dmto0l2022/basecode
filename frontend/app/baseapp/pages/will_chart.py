@@ -11,7 +11,7 @@ from sqlalchemy import text
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objs as go
-from dash import Dash, dash_table,
+from dash import Dash, dash_table
 from dash import dcc, callback, html
 from dash import Input, Output, State
 
