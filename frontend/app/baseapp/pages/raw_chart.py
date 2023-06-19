@@ -163,7 +163,7 @@ limits_table = dash_table.DataTable(
     page_size=12,
     css=[{"selector": "table", "rule": "table-layout: fixed"}],
     style_table={
-        "height": "300px",
+        "height": "600px",
         "overflowY": "auto",
     },
     style_header={
