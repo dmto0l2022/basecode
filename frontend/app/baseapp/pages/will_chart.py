@@ -188,8 +188,8 @@ def add_limits(n_clicks, selected_rows):
             mass, cross_section = parse_values(updated_data_frame['data_values'])
             results.append(
                 {
-                    "mass": mass,
-                    "cross_section": cross_section,
+                    "mass": updated_data_frame['mass'] ,
+                    "cross_section": updated_data_frame['cross_section'] ,
                     "label": updated_data_frame['data_label']
                 }
             )
