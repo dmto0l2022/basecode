@@ -229,24 +229,19 @@ def add_limits(n_clicks, selected_rows):
     
         for row in selected_rows:
             limit_id = limits_data_frame.iloc[row]["id"]
-            updated_data_dict, updated_data_frame, column_names, masses, cross_sections = GetLimit(limit_id)
-            results.append(
-                {
-                    "mass": masses ,
-                    "cross_section": cross_sections ,
-                    "label": updated_data_frame['data_label'].astype('string')
-                }
-            )
+            updated_data_dict, updated_data_frame, column_names, experiment_df = GetLimit(limit_id)
+            
             trace_id = 0
             
-            for result in results:
+            for result in experiment_df:
                 trace_id = trace_id + 1
                 fig.add_trace(
                     go.Scatter(
-                        x=masses,
-                        y=cross_sections,
+                        result,
+                        x='masses',
+                        y='cross_sections',
+                        color='series',
                         mode='lines',
-                        name=result["label"][0] + "_" + str(trace_id)
                     )
                 )
 
