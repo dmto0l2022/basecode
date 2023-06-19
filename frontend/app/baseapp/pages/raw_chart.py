@@ -253,9 +253,8 @@ def add_limits(n_clicks, selected_rows):
             trace_id = 0
 
             for index, row in series_selected_df.iterrows():
-                series_data = 
-                    experiment_data_selected_df[experiment_data_selected_df
-                                                [experiment_data_selected_df['id']==row['id']
+                series_data = experiment_data_selected_df[experiment_data_selected_df \
+                                                [experiment_data_selected_df['id']==row['id'] \
                                                 & experiment_data_selected_df['series']==row['series']]
                 series_name = row['data_label'][0] + '_' + row['series'][0]
                 series_color = row['series_color'][0]
