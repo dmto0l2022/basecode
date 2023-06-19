@@ -215,11 +215,13 @@ def add_limits(n_clicks, selected_rows):
 
         fig.update_xaxes(
             title_text=x_title_text,
-            type="log"
+            #type="log"
+            type="linear"
         )
         fig.update_yaxes(
             title_text=y_title_text,
-            type="log"
+            #type="log"
+            type="linear"
         )
         fig.update_layout(showlegend=True)
 
