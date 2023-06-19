@@ -240,12 +240,13 @@ def add_limits(n_clicks, selected_rows):
         
                 result['series_name'] = result['data_label'] + '_' + result['series'].astype(str)
                 series_name = result['series_name'][0]
+                series_color = result{'series_color'][0]
                 fig.add_trace(
                     go.Scatter(
                         x=result['masses'],
                         y=result['cross_sections'],
                         name=series_name,
-                        line=dict(color=result['series_color']),
+                        line=dict(color=series_color),
                         mode='lines',
                     )
                 )
