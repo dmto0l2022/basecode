@@ -48,7 +48,8 @@ with engine.connect() as connection:
 fastapi_orm_url = "http://35.214.16.124:8008"
 fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
 
-url = fastapi_orm_url_api + "/limit/"
+def GetLimit(limit_id_in):
+    url = fastapi_orm_url_api + "/limit/" + str(limit_id_in)
     r = requests.get(url)
     response_data = r.json()
     print(response_data)
@@ -59,7 +60,29 @@ url = fastapi_orm_url_api + "/limit/"
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
-        lst = ['id','experiment','data_comment']
+        lst = ['id','experiment','data_label','data_comment']
+        updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
+        updated_data_frame_ret = updated_data_frame_ret[lst]
+        updated_data_frame_ret['create'] = "create"
+        updated_data_frame_ret['read'] = "read"
+        updated_data_frame_ret['update'] = "update"
+        updated_data_frame_ret['delete'] = "delete"
+        updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
+    return updated_data_dict_ret, updated_data_frame_ret, column_names
+
+def RefreshTableData():
+    url = fastapi_orm_url_api + "/limit/"
+    r = requests.get(url)
+    response_data = r.json()
+    print(response_data)
+    response_data_frame = pd.DataFrame(response_data)
+    column_names=['id','experiment','data_comment','create', 'read', 'update', 'delete']
+    if response_data_frame.empty:
+        empty_data = [['id','experiment','data_comment','create', 'read', 'update', 'delete']]
+        updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
+        updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
+    else:
+        lst = ['id','experiment','data_label','data_comment']
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
         updated_data_frame_ret['create'] = "create"
@@ -70,16 +93,21 @@ url = fastapi_orm_url_api + "/limit/"
     return updated_data_dict_ret, updated_data_frame_ret, column_names
 
 LIMIT_COLUMNS = [
+    {"id": "id", "name": "ID"},
+    {"id": "experiment", "name": "Experiment"},
     {"id": "data_label", "name": "Label"},
     {"id": "data_reference", "name": "Reference"}
 ]
+
 LIMIT_TABLE_PAGE_SIZE = 100
 column_width = f"{100/len(LIMIT_COLUMNS)}%"
+
+limits_data_dict, limits_data_frame, column_names = RefreshTableData():
 
 # The css is needed to maintain a fixed column width after filtering
 limits_table = dash_table.DataTable(
     id='limits-table',
-    data=limits.to_dict('records'),
+    data=limits_data_dict,
     columns=LIMIT_COLUMNS,
     row_selectable="multi",
     cell_selectable=False,
