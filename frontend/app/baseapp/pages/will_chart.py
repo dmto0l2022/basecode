@@ -2,31 +2,6 @@
 # visit http://127.0.0.1:8050/ in your web browser.
 
 import dash
-from dash import html, dcc, callback, Input, Output
-
-dash.register_page(__name__, path='/')
-
-layout = html.Div(children=[
-    html.H1(children='This is our Analytics page'),
-	html.Div([
-        "Select a city: ",
-        dcc.RadioItems(['New York City', 'Montreal','San Francisco'],
-        'Montreal',
-        id='analytics-input')
-    ]),
-	html.Br(),
-    html.Div(id='analytics-output'),
-])
-
-
-@callback(
-    Output(component_id='analytics-output', component_property='children'),
-    Input(component_id='analytics-input', component_property='value')
-)
-def update_city_selected(input_value):
-    return f'You selected: {input_value}'
-
-
 import json
 import pathlib
 import sqlalchemy
@@ -34,9 +9,11 @@ from sqlalchemy import text
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objs as go
-from dash import Dash, dash_table, dcc, html, Input, Output, State
+from dash import Dash, dash_table,
+from dash import dcc, callback, html
+from dash import Input, Output, State
 
-app = Dash(__name__)
+dash.register_page(__name__, path='/will_chart')
 
 def parse_values(limit_query_result):
     data = limit_query_result.data_values.replace("{[", "").replace("]}", "")
@@ -115,7 +92,16 @@ add_limits_div = html.Div(
 
 plot_container_div = html.Div(id="limit-plot-container")
 
-@app.callback(
+layout = html.Div(
+    [
+        limits_table,
+        add_limits_div,
+        plot_container_div,
+    ]
+)
+
+
+@callback(
     Output(component_id="limit-plot-container", component_property="children"),
     Input(component_id="add-button", component_property="n_clicks"),
     State(component_id="limits-table", component_property="selected_rows"),
@@ -199,14 +185,3 @@ def add_limits(n_clicks, selected_rows):
         mathjax=True,
     )
     return graph
-
-app.layout = html.Div(
-    [
-        limits_table,
-        add_limits_div,
-        plot_container_div,
-    ]
-)
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
