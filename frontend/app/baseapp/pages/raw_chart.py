@@ -34,7 +34,7 @@ def parse_values(data_values_in):
     return masses, cross_sections
 
 def parse_series_and_values(limits_dataframe_in):
-    lol = []
+    experiment_data = []
     for index, row in limits_dataframe_in.iterrows():
         #print(row['id'], row['data_values'])
         data_label = row[['data_label']].iloc[0]
@@ -55,16 +55,21 @@ def parse_series_and_values(limits_dataframe_in):
                     appendthis = [row['id'],data_label,l,new_x,z[1],next_colour]
                 except:
                     appendthis = [row['id'],'data_label',l,0,0]
-                lol.append(appendthis)
+                experiment_data.append(appendthis)
         #lol
-        df_experiment = pd.DataFrame(data=lol,columns=['id','data_label','series','raw_x','raw_y','series_color'])
+        experiment_data_df = pd.DataFrame(data=experiment_data,columns=['id','data_label','series','raw_x','raw_y','series_color'])
         
-        df_experiment['masses'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
-        df_experiment['cross_sections'] = df_experiment['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
+        experiment_data_df['masses'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
+        experiment_data_df['cross_sections'] = df_experiment['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
 
         columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
+
+        experiment_list_df = experiment_data_df[[['id','data_label']].copy()
+        experiment_list_df = experiment_list_df.drop_duplicates(inplace=True)
+        series_list_df = ['id','data_label','series','series_color']
+        series_list_df = series_list_df.drop_duplicates(inplace=True)
         
-        return df_experiment, columns
+        return experiment_list_df, series_list_df, experiment_data_df, columns
        
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
