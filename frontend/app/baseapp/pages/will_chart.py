@@ -18,7 +18,7 @@ from dash import Input, Output, State
 dash.register_page(__name__, path='/will_chart')
 
 def parse_values(data_values_in):
-    data = data_values_in.replace("{[", "").replace("]}", "")
+    data = data_values_in[0].replace("{[", "").replace("]}", "")
     values = data.split(";")
     masses = [value.split()[0] for value in values]
     cross_sections = [value.split()[1] for value in values]
