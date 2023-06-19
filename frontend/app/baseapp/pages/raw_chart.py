@@ -36,7 +36,7 @@ def parse_values(data_values_in):
 def parse_series_and_values(limits_dataframe_in):
     for index, row in limits_dataframe_in.iterrows():
         #print(row['id'], row['data_values'])
-    
+        data_label = row[['data_label']].iloc[0]
         data_string = row[['data_values']].iloc[0]
         data_string = data_string.replace("{[", "")
         data_string = data_string.replace("]}", "")
@@ -51,17 +51,19 @@ def parse_series_and_values(limits_dataframe_in):
                 z = i.split(" ");
                 new_x = z[0].replace(",[", "")
                 try:
-                    appendthis = [row['id'],l,new_x,z[1],next_colour]
+                    appendthis = [row['id'],data_label,l,new_x,z[1],next_colour]
                 except:
-                    appendthis = [row['id'],l,0,0]
+                    appendthis = [row['id'],'data_label',l,0,0]
                 lol.append(appendthis)
         #lol
-        df_experiment = pd.DataFrame(data=lol,columns=['experiment','series','raw_x','raw_y','series_color'])
+        df_experiment = pd.DataFrame(data=lol,columns=['id','data_label','series','raw_x','raw_y','series_color'])
         
         df_experiment['mass'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
         df_experiment['cross_sections'] = df_experiment['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
+
+        columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
         
-        return df_experiment
+        return df_experiment, columns
        
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -84,7 +86,7 @@ def GetLimit(limit_id_in):
     #response_data_frame['cross_section'] = cross_section
     column_names=['id','data_label','data_values']
     if response_data_frame.empty:
-        empty_data = [['id','data_values']]
+        empty_data = [['id','data_label','data_values']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
         experiment_data_ret = pd.DataFrame(data=empty_data, columns=column_names)
