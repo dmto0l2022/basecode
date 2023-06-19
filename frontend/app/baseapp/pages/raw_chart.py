@@ -113,12 +113,6 @@ def GetLimits():
     response_data_frame = pd.DataFrame(response_data)
     experiment_list_df, series_list_df, experiment_data_df = parse_series_and_values(response_data_frame)
     column_names=['id','data_label','data_comment','data_values']
-
-    columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
-
-    experiment_list_df = experiment_data_df[[['id','data_label']].copy()
-    experiment_list_df = experiment_list_df.drop_duplicates(inplace=True)
-    series_list_df = ['id','data_label','series','series_color']
     
     if response_data_frame.empty:
         experiment_columns = ['id','data_label']
@@ -127,14 +121,12 @@ def GetLimits():
         series_empty_data = [['id','data_label','series','series_color']]
         experiment_data_columns = ['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
         experiment_data_empty_data = [['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']]
-        experiment_list_df = pd.DataFrame(data=experiment_empty_data, columns=experiment_columns)
-        series_list_df = pd.DataFrame(data=series_empty_data, columns=series_columns)
-        experiment_data_df = pd.DataFrame(data=experiment_data_empty_data, columns=experiment_data_columns)
+        experiment_list_df_ret = pd.DataFrame(data=experiment_empty_data, columns=experiment_columns)
+        series_list_df_ret = pd.DataFrame(data=series_empty_data, columns=series_columns)
+        experiment_data_df_ret = pd.DataFrame(data=experiment_data_empty_data, columns=experiment_data_columns)
         
-        updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
-        experiment_data_ret = pd.DataFrame(data=empty_data, columns=column_names)
+        experiment_list_dict_ret = experiment_list_df.to_dict('records')
     else:
-        lst = ['id','data_label','data_comment','data_values']
         experiment_list_df_ret = experiment_list_df
         series_list_df_ret = series_list_df
         experiment_data_df_ret = experiment_data_df
