@@ -59,7 +59,7 @@ def parse_series_and_values(limits_dataframe_in):
         #lol
         df_experiment = pd.DataFrame(data=lol,columns=['id','data_label','series','raw_x','raw_y','series_color'])
         
-        df_experiment['mass'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
+        df_experiment['masses'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
         df_experiment['cross_sections'] = df_experiment['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
 
         columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
