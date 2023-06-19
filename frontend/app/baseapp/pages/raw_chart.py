@@ -251,24 +251,26 @@ def add_limits(n_clicks, selected_rows):
 
         results = []
 
-        experiment_list_df, series_list_df, experiment_data_df, columns = GetLimits()
+        experiment_all_df, series_all_df, experiment_data_all_df = GetLimits()
     
         for row in selected_rows:
             limit_id = experiment_list_df.iloc[row]["id"]
-            updated_data_dict, updated_data_frame, column_names, experiment_df = GetLimit(limit_id)
-            
+            experiment_selected_df = experiment_all_df[experiment_all_df['id']==limit_id]
+            series_selected_df = series_all_df[series_all_df['id']==limit_id]
+            experiment_data_selected_df = experiment_data_all_df[experiment_data_all_df['id']==limit_id]
             trace_id = 0
 
-            for index, row in experiment_df.iterrows():
-                trace_id = trace_id + 1
-        
-                row['series_name'] = row['data_label'] + '_' + row['series'].astype(str)
-                series_name = row['series_name'][0]
+            for index, row in series_selected_df.iterrows():
+                series_data = 
+                    experiment_data_selected_df[experiment_data_selected_df
+                                                [experiment_data_selected_df['id']==row['id]
+                                                & experiment_data_selected_df['series']==row['series']]
+                series_name = row['data_label'][0] + row['series'][0]
                 series_color = row['series_color'][0]
                 fig.add_trace(
                     go.Scatter(
-                        x=result['masses'],
-                        y=result['cross_sections'],
+                        x=series_data['masses'],
+                        y=series_data['cross_sections'],
                         name=series_name,
                         line=dict(color=series_color),
                         mode='lines',
