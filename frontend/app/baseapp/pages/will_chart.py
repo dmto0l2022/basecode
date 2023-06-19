@@ -47,13 +47,13 @@ def GetLimit(limit_id_in):
     masses, cross_sections = parse_values(response_data_frame['data_values'])
     #response_data_frame['mass'] = mass
     #response_data_frame['cross_section'] = cross_section
-    column_names=['id','data_values']
+    column_names=['id','data_label','data_values']
     if response_data_frame.empty:
         empty_data = [['id','data_values']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
-        lst = ['id','data_values']
+        lst = ['id','data_label','data_values']
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
