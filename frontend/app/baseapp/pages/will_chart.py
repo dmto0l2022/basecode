@@ -202,16 +202,18 @@ def add_limits(n_clicks, selected_rows):
                     "label": updated_data_frame['data_label'].astype('string')
                 }
             )
-
-        for result in results:
-            fig.add_trace(
-                go.Scatter(
-                    x=masses,
-                    y=cross_sections,
-                    mode='lines',
-                    name=result["label"][0]
+            trace_id = 0
+            
+            for result in results:
+                trace_id = trace_id + 1
+                fig.add_trace(
+                    go.Scatter(
+                        x=masses,
+                        y=cross_sections,
+                        mode='lines',
+                        name=result["label"][0] & "_" & str(trace_id)
+                    )
                 )
-            )
 
         fig.update_xaxes(
             title_text=x_title_text,
