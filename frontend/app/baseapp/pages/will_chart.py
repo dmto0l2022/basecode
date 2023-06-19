@@ -44,9 +44,9 @@ def GetLimit(limit_id_in):
     print('get limit response data')
     print(response_data)
     response_data_frame = pd.DataFrame(response_data, index=[0])
-    mass, cross_section = parse_values(response_data_frame['data_values'])
-    response_data_frame['mass'] = mass
-    response_data_frame['cross_section'] = cross_section
+    masses, cross_sections = parse_values(response_data_frame['data_values'])
+    #response_data_frame['mass'] = mass
+    #response_data_frame['cross_section'] = cross_section
     column_names=['id','data_values','mass','cross_section']
     if response_data_frame.empty:
         empty_data = [['id','data_values','mass','cross_section']]
@@ -57,7 +57,7 @@ def GetLimit(limit_id_in):
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
-    return updated_data_dict_ret, updated_data_frame_ret, column_names
+    return updated_data_dict_ret, updated_data_frame_ret, column_names, masses, cross_sections
 
 def GetLimits():
     url = fastapi_orm_url_api + "/limit/"
@@ -190,13 +190,11 @@ def add_limits(n_clicks, selected_rows):
     
         for row in selected_rows:
             limit_id = limits_data_frame.iloc[row]["id"]
-            updated_data_dict, updated_data_frame, column_names = GetLimit(limit_id)
-
-            mass, cross_section = parse_values(updated_data_frame['data_values'])
+            updated_data_dict, updated_data_frame, column_names, masses, cross_sections = GetLimit(limit_id)
             results.append(
                 {
-                    "mass": updated_data_frame['mass'] ,
-                    "cross_section": updated_data_frame['cross_section'] ,
+                    "mass": masses ,
+                    "cross_section": cross_sections ,
                     "label": updated_data_frame['data_label']
                 }
             )
@@ -204,8 +202,8 @@ def add_limits(n_clicks, selected_rows):
         for result in results:
             fig.add_trace(
                 go.Scatter(
-                    x=updated_data_frame["mass"],
-                    y=updated_data_frame["cross_section"],
+                    x=masses,
+                    y=cross_sections,
                     mode='lines',
                     name=updated_data_frame["label"],
                 )
