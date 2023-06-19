@@ -1,6 +1,5 @@
 # Run this app with `python app.py` and
 # visit http://127.0.0.1:8050/ in your web browser.
-# https://github.com/BrownParticleAstro/dmtools/blob/develop-dash/dash/app.py
 
 import dash
 import json
@@ -14,6 +13,11 @@ import plotly.graph_objs as go
 from dash import Dash, dash_table
 from dash import dcc, callback, html
 from dash import Input, Output, State
+
+from itertools import cycle
+
+# colors
+palette = cycle(px.colors.qualitative.Bold)
 
 dash.register_page(__name__, path='/will_chart')
 
@@ -54,8 +58,8 @@ def parse_series_and_values(limits_dataframe_in):
         #lol
         df_experiment = pd.DataFrame(data=lol,columns=['experiment','series','raw_x','raw_y','series_color'])
         
-        df_experiment['x'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
-        df_experiment['y'] = df_experiment['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
+        df_experiment['mass'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
+        df_experiment['cross_sections'] = df_experiment['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
         
         return df_experiment
        
@@ -83,12 +87,14 @@ def GetLimit(limit_id_in):
         empty_data = [['id','data_values']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
+        experiment_data_ret = pd.DataFrame(data=empty_data, columns=column_names)
     else:
         lst = ['id','data_label','data_values']
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
-    return updated_data_dict_ret, updated_data_frame_ret, column_names, masses, cross_sections
+        experiment_data_ret = parse_series_and_values(updated_data_frame_ret)
+    return updated_data_dict_ret, updated_data_frame_ret, column_names, experiment_data_ret
 
 def GetLimits():
     url = fastapi_orm_url_api + "/limit/"
@@ -98,15 +104,17 @@ def GetLimits():
     response_data_frame = pd.DataFrame(response_data)
     column_names=['id','experiment','data_comment']
     if response_data_frame.empty:
-        empty_data = [['id','experiment','data_comment']]
+        empty_data = [['id','experiment','data_comment','data_values']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
+        experiment_data_ret = pd.DataFrame(data=empty_data, columns=column_names)
     else:
-        lst = ['id','experiment','data_label','data_comment']
+        lst = ['id','experiment','data_label','data_comment','data_value']
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
-    return updated_data_dict_ret, updated_data_frame_ret, column_names
+        experiment_data_ret = parse_series_and_values(updated_data_frame_ret)
+    return updated_data_dict_ret, updated_data_frame_ret, column_names, experiment_data_ret
 
 LIMIT_COLUMNS = [
     {"id": "id", "name": "ID"},
@@ -217,7 +225,7 @@ def add_limits(n_clicks, selected_rows):
 
         results = []
 
-        limits_data_dict, limits_data_frame, column_names = GetLimits()
+        limits_data_dict, limits_data_frame, column_names, experiment_df = GetLimits()
     
         for row in selected_rows:
             limit_id = limits_data_frame.iloc[row]["id"]
