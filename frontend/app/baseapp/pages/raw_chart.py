@@ -110,10 +110,16 @@ def GetLimits():
     response_data = r.json()
     print(response_data)
     response_data_frame = pd.DataFrame(response_data)
+    experiment_list_df, series_list_df, experiment_data_df, columns = parse_series_and_values(response_data_frame)
     column_names=['id','data_label','data_comment','data_values']
     if response_data_frame.empty:
-        empty_data = [['id','data_label','data_comment','data_values']]
-        updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
+        experiment_empty_data = [['id','data_label','data_comment','data_values']]
+        series_empty_data = [['id','data_label','data_comment','data_values']]
+        experiment_data_empty_data = [['id','data_label','data_comment','data_values']]
+        experiment_list_df = pd.DataFrame(data=experiment_empty_data, columns=column_names)
+        series_list_df = pd.DataFrame(data=series_empty_data, columns=column_names)
+        experiment_data_df = pd.DataFrame(data=experiment_data_empty_data, columns=column_names)
+        
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
         experiment_data_ret = pd.DataFrame(data=empty_data, columns=column_names)
     else:
@@ -232,10 +238,10 @@ def add_limits(n_clicks, selected_rows):
 
         results = []
 
-        limits_data_dict, limits_data_frame, column_names, experiment_df = GetLimits()
+        experiment_list_df, series_list_df, experiment_data_df, columns = GetLimits()
     
         for row in selected_rows:
-            limit_id = limits_data_frame.iloc[row]["id"]
+            limit_id = experiment_list_df.iloc[row]["id"]
             updated_data_dict, updated_data_frame, column_names, experiment_df = GetLimit(limit_id)
             
             trace_id = 0
