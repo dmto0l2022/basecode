@@ -37,8 +37,9 @@ def GetLimit(limit_id_in):
     url = fastapi_orm_url_api + "/limit/" + str(limit_id_in)
     r = requests.get(url)
     response_data = r.json()
+    print('get limit response data')
     print(response_data)
-    response_data_frame = pd.DataFrame(response_data)
+    response_data_frame = pd.DataFrame(response_data, index=[0])
     mass, cross_section = parse_values(response_data_frame['data_values'])
     response_data_frame['mass'] = mass
     response_data_frame['cross_section'] = cross_section
