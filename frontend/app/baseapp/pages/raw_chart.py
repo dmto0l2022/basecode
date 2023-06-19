@@ -245,7 +245,7 @@ def add_limits(n_clicks, selected_rows):
                         x=result['masses'],
                         y=result['cross_sections'],
                         name=series_name,
-                        color=result['series_color'],
+                        line=dict(color=result['series_color']),
                         mode='lines',
                     )
                 )
