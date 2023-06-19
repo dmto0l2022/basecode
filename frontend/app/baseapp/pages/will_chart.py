@@ -29,6 +29,37 @@ def parse_values(data_values_in):
 
     return masses, cross_sections
 
+def parse_series_and_values(limits_dataframe_in):
+    for index, row in limits_dataframe_in.iterrows():
+        #print(row['id'], row['data_values'])
+    
+        data_string = row[['data_values']].iloc[0]
+        data_string = data_string.replace("{[", "")
+        data_string = data_string.replace("]}", "")
+        #print(data_string)
+        data_series = data_string.split("]")
+        #print(len(data_series))
+        for l in range(0,len(data_series)):
+            next_colour = next(palette)
+            single_set = data_series[l]
+            set_list = single_set.split(";")
+            for i in set_list:
+                z = i.split(" ");
+                new_x = z[0].replace(",[", "")
+                try:
+                    appendthis = [row['id'],l,new_x,z[1],next_colour]
+                except:
+                    appendthis = [row['id'],l,0,0]
+                lol.append(appendthis)
+        #lol
+        df_experiment = pd.DataFrame(data=lol,columns=['experiment','series','raw_x','raw_y','series_color'])
+        
+        df_experiment['x'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
+        df_experiment['y'] = df_experiment['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
+        
+        return df_experiment
+       
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
