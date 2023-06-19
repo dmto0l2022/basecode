@@ -57,19 +57,19 @@ def parse_series_and_values(limits_dataframe_in):
                     appendthis = [row['id'],'data_label',l,0,0]
                 experiment_data.append(appendthis)
         #lol
-        experiment_data_df = pd.DataFrame(data=experiment_data,columns=['id','data_label','series','raw_x','raw_y','series_color'])
-        
-        experiment_data_df['masses'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
-        experiment_data_df['cross_sections'] = df_experiment['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
+    experiment_data_df = pd.DataFrame(data=experiment_data,columns=['id','data_label','series','raw_x','raw_y','series_color'])
+    
+    experiment_data_df['masses'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
+    experiment_data_df['cross_sections'] = df_experiment['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
 
-        columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
+    columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
 
-        experiment_list_df = experiment_data_df[[['id','data_label']].copy()
-        experiment_list_df = experiment_list_df.drop_duplicates(inplace=True)
-        series_list_df = ['id','data_label','series','series_color']
-        series_list_df = series_list_df.drop_duplicates(inplace=True)
+    experiment_list_df = experiment_data_df[[['id','data_label']].copy()
+    experiment_list_df = experiment_list_df.drop_duplicates(inplace=True)
+    series_list_df = ['id','data_label','series','series_color']
+    series_list_df = series_list_df.drop_duplicates(inplace=True)
         
-        return experiment_list_df, series_list_df, experiment_data_df, columns
+    return experiment_list_df, series_list_df, experiment_data_df, columns
        
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
