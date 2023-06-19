@@ -17,8 +17,8 @@ from dash import Input, Output, State
 
 dash.register_page(__name__, path='/will_chart')
 
-def parse_values(limit_query_result):
-    data = limit_query_result.data_values.replace("{[", "").replace("]}", "")
+def parse_values(data_values_in):
+    data = data_values_in.replace("{[", "").replace("]}", "")
     values = data.split(";")
     masses = [value.split()[0] for value in values]
     cross_sections = [value.split()[1] for value in values]
@@ -26,22 +26,7 @@ def parse_values(limit_query_result):
     return masses, cross_sections
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
-
-with open(BASE_DIR / "secrets.json") as s:
-    secrets = json.load(s)
-db_info = secrets["DATABASES"]["default"]
-
-engine = sqlalchemy.create_engine(
-    f"mariadb+mariadbconnector://"
-    f"{db_info['USER']}:{db_info['PASSWORD']}@"
-    f"{db_info['HOST']}:{db_info['PORT']}/"
-    f"{db_info['NAME']}"
-)
-
-with engine.connect() as connection:
-    limits = pd.read_sql("SELECT id, data_label, data_reference from limits",
-                         connection)
+#BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
 
 #api_container = "container_api_1:8004"
@@ -54,19 +39,18 @@ def GetLimit(limit_id_in):
     response_data = r.json()
     print(response_data)
     response_data_frame = pd.DataFrame(response_data)
-    column_names=['id','experiment','data_comment','create', 'read', 'update', 'delete']
+    mass, cross_section = parse_values(response_data_frame['data_values'])
+    response_data_frame['mass'] = mass
+    response_data_frame['cross_section'] = cross_section
+    column_names=['id','data_values','mass','cross_section']
     if response_data_frame.empty:
-        empty_data = [['id','experiment','data_comment','create', 'read', 'update', 'delete']]
+        empty_data = [['id','data_values','mass','cross_section']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
-        lst = ['id','experiment','data_label','data_comment']
+        lst = ['id','data_values','mass','cross_section']
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
-        updated_data_frame_ret['create'] = "create"
-        updated_data_frame_ret['read'] = "read"
-        updated_data_frame_ret['update'] = "update"
-        updated_data_frame_ret['delete'] = "delete"
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     return updated_data_dict_ret, updated_data_frame_ret, column_names
 
@@ -196,30 +180,29 @@ def add_limits(n_clicks, selected_rows):
         fig = go.Figure()
 
         results = []
-        with engine.connect() as connection:
-            for row in selected_rows:
-                limit_id = limits.iloc[row]["id"]
-                query = text(f"SELECT * FROM limits WHERE id={limit_id}")
-                result = connection.execute(query).fetchone()
+    
+        for row in selected_rows:
+            limit_id = limits.iloc[row]["id"]
+            updated_data_dict, updated_data_frame, column_names = GetLimit(limit_id)
 
-                mass, cross_section = parse_values(result)
-                results.append(
-                    {
-                        "mass": mass,
-                        "cross_section": cross_section,
-                        "label": result.data_label
-                    }
-                )
+            mass, cross_section = parse_values(updated_data_frame['data_values'])
+            results.append(
+                {
+                    "mass": mass,
+                    "cross_section": cross_section,
+                    "label": updated_data_frame['data_label']
+                }
+            )
 
-            for result in results:
-                fig.add_trace(
-                    go.Scatter(
-                        x=result["mass"],
-                        y=result["cross_section"],
-                        mode='lines',
-                        name=result["label"],
-                    )
+        for result in results:
+            fig.add_trace(
+                go.Scatter(
+                    x=updated_data_frame["mass"],
+                    y=updated_data_frame["cross_section"],
+                    mode='lines',
+                    name=updated_data_frame["label"],
                 )
+            )
 
         fig.update_xaxes(
             title_text=x_title_text,
