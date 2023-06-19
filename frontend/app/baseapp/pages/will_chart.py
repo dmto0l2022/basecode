@@ -205,7 +205,7 @@ def add_limits(n_clicks, selected_rows):
                     x=masses,
                     y=cross_sections,
                     mode='lines',
-                    name=updated_data_frame["data_label"].astype('string')
+                    name=result["label"].astype('string')
                 )
             )
 
