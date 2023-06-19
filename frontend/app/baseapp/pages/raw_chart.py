@@ -69,7 +69,7 @@ def parse_series_and_values(limits_dataframe_in):
     series_list_df = ['id','data_label','series','series_color']
     series_list_df = series_list_df.drop_duplicates(inplace=True)
         
-    return experiment_list_df, series_list_df, experiment_data_df, columns
+    return experiment_list_df, series_list_df, experiment_data_df
        
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -79,7 +79,7 @@ def parse_series_and_values(limits_dataframe_in):
 #api_container = "container_api_1:8004"
 fastapi_orm_url = "http://35.214.16.124:8008"
 fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
-
+'''
 def GetLimit(limit_id_in):
     url = fastapi_orm_url_api + "/limit/" + str(limit_id_in)
     r = requests.get(url)
@@ -103,6 +103,7 @@ def GetLimit(limit_id_in):
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
         experiment_data_ret = parse_series_and_values(updated_data_frame_ret)
     return updated_data_dict_ret, updated_data_frame_ret, column_names, experiment_data_ret
+'''
 
 def GetLimits():
     url = fastapi_orm_url_api + "/limit/"
@@ -110,25 +111,37 @@ def GetLimits():
     response_data = r.json()
     print(response_data)
     response_data_frame = pd.DataFrame(response_data)
-    experiment_list_df, series_list_df, experiment_data_df, columns = parse_series_and_values(response_data_frame)
+    experiment_list_df, series_list_df, experiment_data_df = parse_series_and_values(response_data_frame)
     column_names=['id','data_label','data_comment','data_values']
+
+    columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
+
+    experiment_list_df = experiment_data_df[[['id','data_label']].copy()
+    experiment_list_df = experiment_list_df.drop_duplicates(inplace=True)
+    series_list_df = ['id','data_label','series','series_color']
+    
     if response_data_frame.empty:
-        experiment_empty_data = [['id','data_label','data_comment','data_values']]
-        series_empty_data = [['id','data_label','data_comment','data_values']]
-        experiment_data_empty_data = [['id','data_label','data_comment','data_values']]
-        experiment_list_df = pd.DataFrame(data=experiment_empty_data, columns=column_names)
-        series_list_df = pd.DataFrame(data=series_empty_data, columns=column_names)
-        experiment_data_df = pd.DataFrame(data=experiment_data_empty_data, columns=column_names)
+        experiment_columns = ['id','data_label']
+        experiment_empty_data = [['id','data_label']]
+        series_columns = ['id','data_label','series','series_color']
+        series_empty_data = [['id','data_label','series','series_color']]
+        experiment_data_columns = ['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
+        experiment_data_empty_data = [['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']]
+        experiment_list_df = pd.DataFrame(data=experiment_empty_data, columns=experiment_columns)
+        series_list_df = pd.DataFrame(data=series_empty_data, columns=series_columns)
+        experiment_data_df = pd.DataFrame(data=experiment_data_empty_data, columns=experiment_data_columns)
         
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
         experiment_data_ret = pd.DataFrame(data=empty_data, columns=column_names)
     else:
         lst = ['id','data_label','data_comment','data_values']
-        updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
-        updated_data_frame_ret = updated_data_frame_ret[lst]
-        updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
-        experiment_data_ret = parse_series_and_values(updated_data_frame_ret)
-    return updated_data_dict_ret, updated_data_frame_ret, column_names, experiment_data_ret
+        experiment_list_df_ret = experiment_list_df
+        series_list_df_ret = series_list_df
+        experiment_data_df_ret = experiment_data_df
+        experiment_list_dict_ret = experiment_list_df_ret.to_dict('records')
+
+    return experiment_list_df_ret, series_list_df_ret, experiment_data_df_ret, experiment_list_dict_ret
+
 
 LIMIT_COLUMNS = [
     {"id": "id", "name": "ID"},
