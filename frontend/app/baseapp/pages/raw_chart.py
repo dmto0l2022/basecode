@@ -159,7 +159,8 @@ limits_table = dash_table.DataTable(
     row_selectable="multi",
     cell_selectable=False,
     filter_action="native",
-    page_size=LIMIT_TABLE_PAGE_SIZE,
+    #page_size=LIMIT_TABLE_PAGE_SIZE,
+    page_size=12,
     css=[{"selector": "table", "rule": "table-layout: fixed"}],
     style_table={
         "height": "300px",
