@@ -65,9 +65,9 @@ def parse_series_and_values(limits_dataframe_in):
     #columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
 
     experiment_list_df = experiment_data_df[['id','data_label']].copy()
-    experiment_list_df = experiment_list_df.drop_duplicates(inplace=True)
+    #experiment_list_df = experiment_list_df.drop_duplicates(inplace=True)
     series_list_df = experiment_data_df[['id','data_label','series','series_color']]
-    series_list_df = series_list_df.drop_duplicates(inplace=True)
+    #series_list_df = series_list_df.drop_duplicates(inplace=True)
         
     return experiment_list_df, series_list_df, experiment_data_df
        
