@@ -195,7 +195,7 @@ def add_limits(n_clicks, selected_rows):
                 {
                     "mass": masses ,
                     "cross_section": cross_sections ,
-                    "label": updated_data_frame['data_label']
+                    "label": updated_data_frame['data_label'][0]
                 }
             )
 
