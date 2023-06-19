@@ -19,7 +19,7 @@ from itertools import cycle
 # colors
 palette = cycle(px.colors.qualitative.Bold)
 
-dash.register_page(__name__, path='/will_chart')
+dash.register_page(__name__, path='/raw_chart')
 
 def parse_values(data_values_in):
     data = data_values_in[0].replace("{[", "").replace("]}", "")
