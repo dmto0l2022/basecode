@@ -104,14 +104,14 @@ def GetLimits():
     response_data = r.json()
     print(response_data)
     response_data_frame = pd.DataFrame(response_data)
-    column_names=['id','data_label','data_comment']
+    column_names=['id','data_label','data_comment','data_values']
     if response_data_frame.empty:
         empty_data = [['id','data_label','data_comment','data_values']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
         experiment_data_ret = pd.DataFrame(data=empty_data, columns=column_names)
     else:
-        lst = ['id','data_label','data_comment','data_value']
+        lst = ['id','data_label','data_comment','data_values']
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
