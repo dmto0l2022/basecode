@@ -21,7 +21,7 @@ def parse_values(data_values_in):
     data = data_values_in[0].replace("{[", "").replace("]}", "")
     print('parse data before split')
     print(data)
-    values = data[0].split(";")
+    values = data.split(";")
     print('split values')
     print(values)
     masses = [value.split(" ")[0] for value in values]
