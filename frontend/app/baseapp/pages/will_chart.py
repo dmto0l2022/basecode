@@ -22,6 +22,8 @@ def parse_values(data_values_in):
     print('parse data before split')
     print(data)
     values = data[0].split(";")
+    print('split values')
+    print(values)
     masses = [value.split(" ")[0] for value in values]
     cross_sections = [value.split(" ")[1] for value in values]
 
