@@ -18,7 +18,7 @@ from itertools import cycle
 # colors
 palette = cycle(px.colors.qualitative.Bold)
 
-dash.register_page(__name__, path='/raw_chart')
+dash.register_page(__name__, path='/chart_all_in_one')
 
 ## takes the full limits table and
 ## splits all the data including the data_values field into 3 dataframes
