@@ -28,7 +28,7 @@ def CreateGraph(limits_in,limits_traces_df_in,limits_data_df_in):
         #trace_name = str(row['id']) + str(row['series'])
         trace_name = str(row['trace_name'])
         
-        fig3.add_trace(go.Scatter(x=trace2add['x'], y=trace2add['y'], ## scaled needs to be updated
+        fig3.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'], ## scaled needs to be updated
                             mode='lines+markers', # 'lines' or 'markers'
                             line=dict(width=4,dash=row['line'],color=row['line_color']),
                             #showscale=False,
