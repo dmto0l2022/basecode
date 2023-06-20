@@ -116,7 +116,7 @@ def GetLimits():
     response_data = r.json()
     #print(response_data)
     response_data_frame = pd.DataFrame(response_data)
-    limit_list_df, trace_list_df, trace_data_df = parse_series_and_values(response_data_frame)
+    limit_list_df, trace_list_df, limit_data_df = parse_series_and_values(response_data_frame)
     column_names=['id','data_label','data_comment','data_values']
 
     print('limit_list_df >>', limit_list_df)
