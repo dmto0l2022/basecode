@@ -2,7 +2,7 @@ from dash import Dash, dash_table, dcc, html, Input, Output, callback
 import dash
 import pandas as pd
 
-dash.register_page(__name__, path='/raw_chart')
+dash.register_page(__name__, path='/chart_example')
 
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder2007.csv')
 # add an id column and set it as the index
