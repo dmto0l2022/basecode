@@ -61,7 +61,7 @@ def parse_series_and_values(limits_dataframe_in):
     
     experiment_data_df['masses'] = experiment_data_df['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
     experiment_data_df['cross_sections'] = experiment_data_df['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
-    experiment_data_df.rename(columns={"id": "limit_id" })
+    experiment_data_df = experiment_data_df.rename(columns={"id": "limit_id" })
     experiment_data_df = experiment_data_df.reset_index()
     experiment_data_df['id'] = experiment_data_df.index
     experiment_data_df.set_index('id', inplace=True, drop=False)
