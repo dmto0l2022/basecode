@@ -297,7 +297,7 @@ def add_limits(n_clicks, selected_rows):
             # df[(df.year == 2013) & (df.country.isin(['US', 'FR', 'ES']))]
             for index, row in trace_selected_df.iterrows():
                 trace_data = limit_data_selected_df[(limit_data_selected_df['limit_id']==row['limit_id']) \
-                                                & (limit_data_selected_df['trace']==row['trace'])]
+                                                & (limit_data_selected_df['trace_id']==row['trace_id'])]
                 print("trace_data >>>>" , trace_data)
                 trace_name = row['data_label'] + '_' + str(row['trace_id'])
                 trace_color = row['trace_color_default']
