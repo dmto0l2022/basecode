@@ -267,7 +267,7 @@ def add_limits(n_clicks, selected_rows):
     
         for row in selected_rows:
             limit_id = limit_list_df.iloc[row]["limit_id"]
-            limit_selected_df = limit_all_df[experiment_all_df['limit_id']==limit_id]
+            limit_selected_df = limit_all_df[limit_all_df['limit_id']==limit_id]
             trace_selected_df = trace_all_df[trace_all_df['limit_id']==limit_id]
             limit_data_selected_df = limit_data_all_df[limit_data_all_df['limit_id']==limit_id]
             trace_id = 0
