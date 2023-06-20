@@ -300,7 +300,7 @@ def add_limits(n_clicks, selected_rows):
         limit_all_df, trace_all_df, limit_data_all_df, limit_all_dict = GetLimits()
     
         for row in selected_rows:
-            limit_id = limit_list_df.iloc[row]["limit_id"]
+            limit_id = limit_all_df.iloc[row]["limit_id"]
             print('selected limit >>', limit_id)
             limit_selected_df = limit_all_df[limit_all_df['limit_id']==limit_id]
             trace_selected_df = trace_all_df[trace_all_df['limit_id']==limit_id]
