@@ -196,14 +196,17 @@ add_limits_div = html.Div(
 
 plot_container_div = html.Div(id="limit-plot-container")
 
-layout = html.Div(
-    [
-        limits_table,
-        add_limits_div,
-        plot_container_div,
-    ]
-)
+def serve_layout():
+    layout_out = html.Div(
+        [
+            limits_table,
+            add_limits_div,
+            plot_container_div,
+        ]
+    )
+    return layout_out
 
+layout = serve_layout
 
 @callback(
     Output(component_id="limit-plot-container", component_property="children"),
