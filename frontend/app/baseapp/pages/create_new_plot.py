@@ -13,7 +13,7 @@ dash.register_page(__name__, path='/create_new_plot')
 create_new_plot_form_title = html.Div(html.P(children='Create New Plot', className = "NOPADDING_CONTENT FORM_TITLE"))
 
 
-create_new_plot_form_content  = dbc.Row(
+create_new_plot_form_content_old  = dbc.Row(
     [
         dbc.Col(
             [
@@ -25,15 +25,15 @@ create_new_plot_form_content  = dbc.Row(
     className="g-3",
 )
 
+create_new_plot_form_content = plot_name_input_row
 
-next_button =  html.Div(dbc.Button("Next",  id="next_buttonid", color="secondary"), className = "FORM_CANCEL_BUTN")
+next_button =  html.Div(dbc.Button("Next",  id="create_new_plot_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
-cancel_button =  html.Div(dbc.Button("Cancel",  id="cancel_buttonid", color="secondary"), className = "FORM_CANCEL_BUTN")
+cancel_button =  html.Div(dbc.Button("Cancel",  id="create_new_plot_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
 #cancel_button =  dbc.Col(dbc.Button("Cancel", color="secondary"), width="auto")
 
 create_new_plot_form = html.Div(
-    #[newplot_title,newplot_input3],
     [dcc.Location(id="url", refresh=True),
      create_new_plot_form_title,
      create_new_plot_form_content,
