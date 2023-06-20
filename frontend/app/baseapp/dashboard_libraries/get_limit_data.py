@@ -1,3 +1,6 @@
+import requests
+import json
+import pandas as pd
 
 def parse_series_and_values(limits_dataframe_in):
     limit_data = []
@@ -52,14 +55,13 @@ def parse_series_and_values(limits_dataframe_in):
     trace_list_df_out.set_index('id', inplace=True, drop=False)
         
     return limit_list_df_out, trace_list_df_out, limit_data_df_out
-       
 
 
-#api_container = "container_api_1:8004"
-fastapi_orm_url = "http://35.214.16.124:8008"
-fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
 
 def GetLimit(limit_id_in):
+    #api_container = "container_fastapi_orm_1:8008"
+    fastapi_orm_url = "http://35.214.16.124:8008"
+    fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
     url = fastapi_orm_url_api + "/limit/" + str(limit_id_in)
     r = requests.get(url)
     response_data = r.json()
@@ -97,6 +99,9 @@ def GetLimit(limit_id_in):
     return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
 
 def GetLimits():
+    #api_container = "container_fastapi_orm_1:8008"
+    fastapi_orm_url = "http://35.214.16.124:8008"
+    fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
     url = fastapi_orm_url_api + "/limit/"
     r = requests.get(url)
     response_data = r.json()
@@ -141,10 +146,6 @@ LIMIT_COLUMNS = [
     {"id": "data_reference", "name": "Reference"}
 ]
 
-LIMIT_TABLE_PAGE_SIZE = 100
-column_width = f"{100/len(LIMIT_COLUMNS)}%"
-
-#limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
 
 def GetLimitDict():
     limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
