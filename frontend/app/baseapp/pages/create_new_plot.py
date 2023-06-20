@@ -2,7 +2,7 @@ import dash
 from dash import html, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
 
-import formlibrary as fl
+from app.baseapp.libraries import formlibrary as fl
 
 dash.register_page(__name__, path='/create_new_plot')
 
