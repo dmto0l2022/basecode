@@ -119,9 +119,9 @@ def GetLimits():
     limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
     column_names=['id','data_label','data_comment','data_values']
 
-    print('limit_list_df >>', limit_list_df)
-    print('trace_list_df >>', trace_list_df)
-    print('limit_data_df >>', limit_data_df)
+    print('limit_list_df >>', limit_list_df_resp)
+    print('trace_list_df >>', trace_list_df_resp)
+    print('limit_data_df >>', limit_data_df_resp)
 
     
     if response_data_frame.empty:
