@@ -81,7 +81,7 @@ default_limit = [1000]
 #default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
 #                                                    .isin(default_limit)].copy()
 
-default_traces = all_trace_list_df[all_trace_list_df[['limit_id'].isin(default_limit)].copy()
+default_traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(default_limit)].copy()
 
 default_styledatatable = ft.CreateFormatTable(default_traces)
 
