@@ -55,29 +55,29 @@ def parse_series_and_values(limits_dataframe_in):
     ## the id of the limit table was renamed to limit_id
     ## a new column was created called id
     
-    limit_data_df = pd.DataFrame(data=limit_data,columns=['id','data_label','trace','raw_x','raw_y','trace_color'])
-    limit_data_df['masses'] = limit_data_df['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
-    limit_data_df['cross_sections'] = limit_data_df['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
-    limit_data_df = limit_data_df.rename(columns={"id": "limit_id" })
-    limit_data_df = limit_data_df.reset_index()
-    limit_data_df['id'] = limit_data_df.index
-    limit_data_df.set_index('id', inplace=True, drop=False)
+    limit_data_df_out = pd.DataFrame(data=limit_data,columns=['id','data_label','trace','raw_x','raw_y','trace_color'])
+    limit_data_df_out['masses'] = limit_data_df_out['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
+    limit_data_df_out['cross_sections'] = limit_data_df_out['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
+    limit_data_df_out = limit_data_df_out.rename(columns={"id": "limit_id" })
+    limit_data_df_out = limit_data_df_out.reset_index()
+    limit_data_df_out['id'] = limit_data_df_out.index
+    limit_data_df_out.set_index('id', inplace=True, drop=False)
     
     #columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
 
-    limit_list_df = limit_data_df[['limit_id','data_label']].copy()
-    limit_list_df.drop_duplicates(inplace=True)
-    limit_list_df = limit_list_df.reset_index()
-    limit_list_df['id'] = limit_list_df.index
-    limit_list_df.set_index('id', inplace=True, drop=False)
+    limit_list_df_out = limit_data_df_out[['limit_id','data_label']].copy()
+    limit_list_df_out.drop_duplicates(inplace=True)
+    limit_list_df_out = limit_list_df_out.reset_index()
+    limit_list_df_out['id'] = limit_list_df_out.index
+    limit_list_df_out.set_index('id', inplace=True, drop=False)
     
-    trace_list_df = limit_data_df[['limit_id','data_label','trace','trace_color']]
-    trace_list_df.drop_duplicates(inplace=True)
-    trace_list_df = trace_list_df.reset_index()
-    trace_list_df['id'] = trace_list_df.index
-    trace_list_df.set_index('id', inplace=True, drop=False)
+    trace_list_df_out = limit_data_df_out[['limit_id','data_label','trace','trace_color']]
+    trace_list_df_out.drop_duplicates(inplace=True)
+    trace_list_df_out = trace_list_df_out.reset_index()
+    trace_list_df_out['id'] = trace_list_df_out.index
+    trace_list_df_out.set_index('id', inplace=True, drop=False)
         
-    return limit_list_df, trace_list_df, limit_data_df
+    return limit_list_df_out, trace_list_df_out, trace_list_df_out
        
 
 
@@ -116,7 +116,7 @@ def GetLimits():
     response_data = r.json()
     #print(response_data)
     response_data_frame = pd.DataFrame(response_data)
-    limit_list_df, trace_list_df, limit_data_df = parse_series_and_values(response_data_frame)
+    limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
     column_names=['id','data_label','data_comment','data_values']
 
     print('limit_list_df >>', limit_list_df)
@@ -140,9 +140,9 @@ def GetLimits():
         
         limit_list_dict_ret = limit_list_df.to_dict('records')
     else:
-        limit_list_df_ret = limit_list_df
-        trace_list_df_ret = trace_list_df
-        limit_data_df_ret = limit_data_df
+        limit_list_df_ret = limit_list_df_resp
+        trace_list_df_ret = trace_list_df_resp
+        limit_data_df_ret = limit_data_df_resp
         limit_list_dict_ret = limit_list_df_ret.to_dict('records')
 
     return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
@@ -158,14 +158,14 @@ LIMIT_COLUMNS = [
 LIMIT_TABLE_PAGE_SIZE = 100
 column_width = f"{100/len(LIMIT_COLUMNS)}%"
 
-limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
+#limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
 
 def GetLimitDict():
     limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
     return limit_list_dict
 
 # The css is needed to maintain a fixed column width after filtering
-'''
+
 limits_table = dash_table.DataTable(
     id='limits-table',
     data=GetLimitDict(),
@@ -192,7 +192,7 @@ limits_table = dash_table.DataTable(
         "textOverflow": "ellipsis",
     },
 )
-'''
+
 
 add_limits_div = html.Div(
     [
@@ -214,32 +214,7 @@ plot_container_div = html.Div(id="limit-plot-container")
 def serve_layout():
     layout_out = html.Div(
         [
-        dash_table.DataTable(
-            id='limits-table',
-            data=GetLimitDict(),
-            columns=[{"name": i, "id": i} for i in limit_list_df.columns],
-            row_selectable="multi",
-            cell_selectable=False,
-            filter_action="native",
-            #page_size=LIMIT_TABLE_PAGE_SIZE,
-            page_size=12,
-            css=[{"selector": "table", "rule": "table-layout: fixed"}],
-            style_table={
-                "height": "600px",
-                "overflowY": "auto",
-            },
-            style_header={
-                "fontWeight": "bold",
-                "textAlign": "left"
-            },
-            style_cell={
-                "width": f"{column_width}",
-                "maxWidth": f"{column_width}",
-                "overflow": "hidden",
-                "textAlign": "left",
-                "textOverflow": "ellipsis",
-            },
-            ),
+            limits_table,
             add_limits_div,
             plot_container_div,
         ]
