@@ -71,13 +71,13 @@ def CreatePlotSeries(all_limits_list_in, limits_in):
     
     return plotseries_df
 
-default_results = [1000]
+default_results = [43]
 plotseries = CreatePlotSeries(all_limit_list_df, default_results)
 #plotseries
 
 from app.baseapp.dashboard_libraries import formattingtable as ft
 
-default_limit = [1000]
+default_limit = [43]
 #default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
 #                                                    .isin(default_limit)].copy()
 
@@ -91,7 +91,7 @@ plotseries_default = CreatePlotSeries(all_limit_list_df, [1000])
 
 from app.baseapp.dashboard_libraries import createlegend as cl
 
-default_limit = [1000]
+default_limit = [43]
 
 #default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
 #                                                    .isin(default_limit)].copy()
@@ -117,7 +117,7 @@ rowofbuttons = html.Div([
     html.Div(id='container-button-timestamp')
 ])
 
-default_limit = [1000]
+default_limit = [43]
 #default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id'].isin(default_limit)].copy()
 default_traces = all_limit_data_df[all_limit_data_df['limit_id'].isin(default_limit)].copy()
 print('default_limit')
