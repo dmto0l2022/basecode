@@ -145,8 +145,8 @@ cancel_button =  html.Div(dbc.Button("Cancel",  id="cancel_button_select_experim
 select_limits_to_plot_form = html.Div(
     #[newplot_title,newplot_input3],
     [dcc.Location(id="url", refresh=True),
-     select_experiments_to_plot_form_title,
-     select_experiments_to_plot_form_content,
+     select_limits_to_plot_form_title,
+     select_limits_to_plot_form_content,
      next_button, cancel_button],
     className = "NOPADDING_CONTENT CENTRE_FORM"
 )
