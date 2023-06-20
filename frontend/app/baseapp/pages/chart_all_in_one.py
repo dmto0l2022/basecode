@@ -275,7 +275,7 @@ def add_limits(n_clicks, selected_rows):
             for index, row in trace_selected_df.iterrows():
                 trace_data = limit_data_selected_df[(limit_data_selected_df['limit_id']==row['limit_id']) \
                                                 & (limit_data_selected_df['trace']==row['trace'])]
-                trace_name = row['data_label'] + '_' + str(row['series'])
+                trace_name = row['data_label'] + '_' + str(row['trace'])
                 trace_color = row['trace_color']
                 fig.add_trace(
                     go.Scatter(
