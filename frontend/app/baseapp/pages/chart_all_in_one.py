@@ -77,7 +77,7 @@ def parse_series_and_values(limits_dataframe_in):
     trace_list_df_out['id'] = trace_list_df_out.index
     trace_list_df_out.set_index('id', inplace=True, drop=False)
         
-    return limit_list_df_out, trace_list_df_out, trace_list_df_out
+    return limit_list_df_out, trace_list_df_out, limit_data_df_out
        
 
 
