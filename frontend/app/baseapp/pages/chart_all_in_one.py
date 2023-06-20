@@ -169,7 +169,7 @@ def GetLimitDict():
 limits_table = dash_table.DataTable(
     id='limits-table',
     data=GetLimitDict(),
-    columns=[{"name": i, "id": i} for i in limit_list_df.columns],
+    columns=LIMIT_COLUMNS,
     row_selectable="multi",
     cell_selectable=False,
     filter_action="native",
