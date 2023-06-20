@@ -85,31 +85,6 @@ def parse_series_and_values(limits_dataframe_in):
 #api_container = "container_api_1:8004"
 fastapi_orm_url = "http://35.214.16.124:8008"
 fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
-'''
-def GetLimit(limit_id_in):
-    url = fastapi_orm_url_api + "/limit/" + str(limit_id_in)
-    r = requests.get(url)
-    response_data = r.json()
-    print('get limit response data')
-    print(response_data)
-    response_data_frame = pd.DataFrame(response_data, index=[0])
-    masses, cross_sections = parse_values(response_data_frame['data_values'])
-    #response_data_frame['mass'] = mass
-    #response_data_frame['cross_section'] = cross_section
-    column_names=['id','data_label','data_values']
-    if response_data_frame.empty:
-        empty_data = [['id','data_label','data_values']]
-        updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
-        updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
-        experiment_data_ret = pd.DataFrame(data=empty_data, columns=column_names)
-    else:
-        lst = ['id','data_label','data_values']
-        updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
-        updated_data_frame_ret = updated_data_frame_ret[lst]
-        updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
-        experiment_data_ret = parse_series_and_values(updated_data_frame_ret)
-    return updated_data_dict_ret, updated_data_frame_ret, column_names, experiment_data_ret
-'''
 
 def GetLimit(limit_id_in):
     url = fastapi_orm_url_api + "/limit/" + str(limit_id_in)
@@ -147,8 +122,6 @@ def GetLimit(limit_id_in):
         limit_list_dict_ret = limit_list_df_ret.to_dict('records')
 
     return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
-
-
 
 def GetLimits():
     url = fastapi_orm_url_api + "/limit/"
