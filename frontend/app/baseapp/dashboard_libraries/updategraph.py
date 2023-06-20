@@ -27,7 +27,7 @@ def UpdateGraph(plotseries_table_in):
                                         & (all_limit_data_df['trace_id']==row['trace_id'])]
 
     
-        trace2add = trace_data
+        trace2add = trace_data.sort_index()
 
         trace_name = str(row['trace_name'])
         
