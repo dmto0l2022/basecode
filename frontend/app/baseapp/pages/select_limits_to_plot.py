@@ -137,9 +137,9 @@ select_limits_to_plot_form_content  = dbc.Row(
     className="g-3",
 )
 
-next_button =  html.Div(dbc.Button("Next",  id="next_button_select_experiments_to_plot_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+next_button =  html.Div(dbc.Button("Next",  id="next_button_select_limits_to_plot_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
-cancel_button =  html.Div(dbc.Button("Cancel",  id="cancel_button_select_experiments_to_plot_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+cancel_button =  html.Div(dbc.Button("Cancel",  id="cancel_button_select_limits_to_plot_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
 
 select_limits_to_plot_form = html.Div(
@@ -153,7 +153,6 @@ select_limits_to_plot_form = html.Div(
 
 maincolumn = dbc.Col(
             [
-                dcc.Location(id="url", refresh=True),
                 row1,
                 row3_1,
                 #row3_1_debug,
@@ -165,7 +164,8 @@ maincolumn = dbc.Col(
 
 maindiv =  html.Div(className="row ALL_ROW NOPADDING",children=[maincolumn])
 
-layout4 = html.Div([maindiv],
+layout4 = html.Div([dcc.Location(id="url", refresh=True),
+                        maindiv],
                    className="container-fluid MASTER_CONTAINER_STYLE",
                   )
 
@@ -305,6 +305,7 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
         print(data_in)
     
     return data_in
+
 
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
