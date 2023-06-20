@@ -2,6 +2,11 @@ import requests
 import json
 import pandas as pd
 
+import plotly.express as px
+
+# colors
+palette = cycle(px.colors.qualitative.Bold)
+
 def parse_series_and_values(limits_dataframe_in):
     limit_data = []
     for index, row in limits_dataframe_in.iterrows():
