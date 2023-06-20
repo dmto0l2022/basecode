@@ -227,7 +227,33 @@ plot_container_div = html.Div(id="limit-plot-container")
 def serve_layout():
     layout_out = html.Div(
         [
-            limits_table,
+            #limits_table,
+            limits_table = dash_table.DataTable(
+                id='limits-table',
+                data=GetLimitDict(),
+                columns=LIMIT_COLUMNS,
+                row_selectable="multi",
+                cell_selectable=False,
+                filter_action="native",
+                #page_size=LIMIT_TABLE_PAGE_SIZE,
+                page_size=12,
+                css=[{"selector": "table", "rule": "table-layout: fixed"}],
+                style_table={
+                    "height": "600px",
+                    "overflowY": "auto",
+                },
+                style_header={
+                    "fontWeight": "bold",
+                    "textAlign": "left"
+                },
+                style_cell={
+                	"width": f"{column_width}",
+                    "maxWidth": f"{column_width}",
+                    "overflow": "hidden",
+                    "textAlign": "left",
+                    "textOverflow": "ellipsis",
+                },
+            ),
             add_limits_div,
             plot_container_div,
         ]
