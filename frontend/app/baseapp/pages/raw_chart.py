@@ -63,7 +63,7 @@ def parse_series_and_values(limits_dataframe_in):
     experiment_data_df['cross_sections'] = experiment_data_df['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
     experiment_data_df.rename(columns={"id": "limit_id" })
     experiment_data_df = experiment_data_df.reset_index()
-    experiment_data_df['id'] = df.index
+    experiment_data_df['id'] = experiment_data_df.index
     experiment_data_df.set_index('id', inplace=True, drop=False)
     
     #columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
@@ -73,14 +73,14 @@ def parse_series_and_values(limits_dataframe_in):
     #experiment_list_df['limit_id'] = experiment_list_df['limit_id']
     experiment_list_df.drop_duplicates(inplace=True)
     experiment_list_df = experiment_list_df.reset_index()
-    experiment_list_df['id'] = df.index
+    experiment_list_df['id'] = experiment_list_df.index
     experiment_list_df.set_index('id', inplace=True, drop=False)
     
     series_list_df = experiment_data_df[['limit_id','data_label','series','series_color']]
     #series_list_df.rename(columns={"id": "limit_id" })
     series_list_df.drop_duplicates(inplace=True)
     series_list_df = series_list_df.reset_index()
-    series_list_df['id'] = df.index
+    series_list_df['id'] = series_list_df.index
     series_list_df.set_index('id', inplace=True, drop=False)
         
     return experiment_list_df, series_list_df, experiment_data_df
