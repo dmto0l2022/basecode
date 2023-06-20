@@ -157,10 +157,14 @@ column_width = f"{100/len(LIMIT_COLUMNS)}%"
 
 limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
 
+def GetLimitDict():
+    limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
+    return limit_list_dict
+
 # The css is needed to maintain a fixed column width after filtering
 limits_table = dash_table.DataTable(
     id='limits-table',
-    data=limit_list_dict,
+    data=GetLimitDict(),
     columns=[{"name": i, "id": i} for i in limit_list_df.columns],
     row_selectable="multi",
     cell_selectable=False,
@@ -203,9 +207,35 @@ add_limits_div = html.Div(
 plot_container_div = html.Div(id="limit-plot-container")
 
 def serve_layout():
-    layout_out = html.Div(
-        [
-            limits_table,
+                layout_out = html.Div(
+                    [
+                    dash_table.DataTable(
+                        id='limits-table',
+                        data=GetLimitDict(),
+                        columns=[{"name": i, "id": i} for i in limit_list_df.columns],
+                        row_selectable="multi",
+                        cell_selectable=False,
+                        filter_action="native",
+                        #page_size=LIMIT_TABLE_PAGE_SIZE,
+                        page_size=12,
+                        css=[{"selector": "table", "rule": "table-layout: fixed"}],
+                        style_table={
+                            "height": "600px",
+                            "overflowY": "auto",
+                        },
+                        style_header={
+                            "fontWeight": "bold",
+                            "textAlign": "left"
+                        },
+                        style_cell={
+                            "width": f"{column_width}",
+                            "maxWidth": f"{column_width}",
+                            "overflow": "hidden",
+                            "textAlign": "left",
+                            "textOverflow": "ellipsis",
+                        },
+                )
+            ,
             add_limits_div,
             plot_container_div,
         ]
