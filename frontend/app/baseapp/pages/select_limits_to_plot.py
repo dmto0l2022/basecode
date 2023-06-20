@@ -1,5 +1,5 @@
 import dash
-from dash import html, dcc, callback, Output, Input
+from dash import Dash
 import dash_bootstrap_components as dbc
 
 #import formlibrary as fl
@@ -8,21 +8,15 @@ dash.register_page(__name__, path='/select_limits_to_plot')
 
 #### select limits to plot
 
-import dash
-
 from dash import dcc
 from dash import html
 from dash import callback
-from dash import Output, Input
+from dash import Output, Input, State
 from dash import callback_context
 from dash import dash_table
 
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-
-from dash import Dash, Input, Output, callback, State
-
-#from jupyter_dash import JupyterDash
 
 import dash_bootstrap_components as dbc
 
@@ -35,6 +29,8 @@ from itertools import cycle
 palette = cycle(px.colors.qualitative.Bold)
 
 from app.baseapp.dashboard_libraries import all_data_tables as adt
+
+dash.register_page(__name__, path='/select_limits_to_plot')
 
 #from dashboard_libraries import all_data_tables as adt
 dashdataandtables = adt.DashDataAndTables()
@@ -124,35 +120,16 @@ row3_2 = dbc.Row([dbc.Col(
                ],className ="TABLE_ROW NOPADDING")
 
 row4 = html.Div([dcc.Store(id='plot_expids')])
-'''
-form = dbc.Container(
-    children=[dbc.Row(
-    [
-        row1,
-        row2,
-        #row2_debug,
-        row3_1,
-        row4
-    ])],
-    
-)
-'''
 
 #####
 
-#import formlibrary as fl
+select_limits_to_plot_form_title = html.Div(html.P(children='Select Experiments to Plot', className = "NOPADDING_CONTENT FORM_TITLE"))
 
-dash.register_page(__name__, path='/select_experiments_to_plot')
-
-#### select experiments to plot
-
-select_experiments_to_plot_form_title = html.Div(html.P(children='Select Experiments to Plot', className = "NOPADDING_CONTENT FORM_TITLE"))
-
-select_experiments_to_plot_form_content  = dbc.Row(
+select_limits_to_plot_form_content  = dbc.Row(
     [
         dbc.Col(
             [
-                html.P(children='Select Experiments to Plot', className = "NOPADDING_CONTENT FORM_TITLE")
+                html.P(children='Select Limits to Plot', className = "NOPADDING_CONTENT FORM_TITLE")
             ],
             width=6,
         )
@@ -176,6 +153,7 @@ select_limits_to_plot_form = html.Div(
 
 maincolumn = dbc.Col(
             [
+                dcc.Location(id="url", refresh=True),
                 row1,
                 row3_1,
                 #row3_1_debug,
@@ -192,30 +170,6 @@ layout4 = html.Div([maindiv],
                   )
 
 layout = layout4
-
-@callback(
-    Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
-    [
-    Input("next_button_select_experiments_to_plot_id", "n_clicks"),
-    Input("cancel_button_select_experiments_to_plot_id", "n_clicks")
-        ],
-        prevent_initial_call=True
-)
-def button_click(button1,button2):
-    #msg = "None of the buttons have been clicked yet"
-    prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
-    #msg = prop_id
-    if "next_button_select_experiments_to_plot_id" == prop_id :
-        #msg = "Button 1 was most recently clicked"
-        href_return = dash.page_registry['pages.style_plot_and_traces']['path']
-        return href_return
-    elif "cancel_button_select_experiments_to_plot_id" == prop_id:
-        #msg = "Button 2 was most recently clicked"
-        href_return = dash.page_registry['pages.home']['path']
-        return href_return
-    else:
-        href_return = dash.page_registry['pages.home']['path']
-        return href_return
 
 @callback(
     Output('limits_table_main', 'data'),
@@ -352,9 +306,32 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     
     return data_in
 
-
+@callback(
+    Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    [
+    Input("next_button_select_limits_to_plot_id", "n_clicks"),
+    Input("cancel_button_select_limits_to_plot_id", "n_clicks")
+        ],
+        prevent_initial_call=True
+)
+def button_click(button1,button2):
+    #msg = "None of the buttons have been clicked yet"
+    prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+    #msg = prop_id
+    if "next_button_select_experiments_to_plot_id" == prop_id :
+        #msg = "Button 1 was most recently clicked"
+        href_return = dash.page_registry['pages.style_plot_and_traces']['path']
+        return href_return
+    elif "cancel_button_select_experiments_to_plot_id" == prop_id:
+        #msg = "Button 2 was most recently clicked"
+        href_return = dash.page_registry['pages.home']['path']
+        return href_return
+    else:
+        href_return = dash.page_registry['pages.home']['path']
+        return href_return
 
 #############################
+'''
 select_limits_to_plot_form_title = html.Div(html.P(children='Select Limits to Plot', className = "NOPADDING_CONTENT FORM_TITLE"))
 
 select_limits_to_plot_form_content  = dbc.Row(
@@ -412,3 +389,4 @@ def button_click(button1,button2):
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/app/baseapp/homepage'
         return href_return
+'''
