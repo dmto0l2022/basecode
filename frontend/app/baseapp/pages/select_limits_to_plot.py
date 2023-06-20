@@ -170,7 +170,7 @@ layout4 = html.Div([maindiv],
                   )
 
 layout = layout4
-
+'''
 @callback(
     Output('limits_table_main', 'data'),
     #Output('debug_dropdown_table', 'data'),
@@ -329,7 +329,7 @@ def button_click(button1,button2):
     else:
         href_return = dash.page_registry['pages.home']['path']
         return href_return
-
+'''
 #############################
 '''
 select_limits_to_plot_form_title = html.Div(html.P(children='Select Limits to Plot', className = "NOPADDING_CONTENT FORM_TITLE"))
