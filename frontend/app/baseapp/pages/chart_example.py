@@ -1,17 +1,18 @@
 from dash import Dash, dash_table, dcc, html, Input, Output, callback
 import pandas as pd
 
+dash.register_page(__name__, path='/raw_chart')
+
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder2007.csv')
 # add an id column and set it as the index
 # in this case the unique ID is just the country name, so we could have just
 # renamed 'country' to 'id' (but given it the display name 'country'), but
 # here it's duplicated just to show the more general pattern.
+
 df['id'] = df['country']
 df.set_index('id', inplace=True, drop=False)
 
-app = Dash(__name__)
-
-app.layout = html.Div([
+layout = html.Div([
     dash_table.DataTable(
         id='datatable-row-ids',
         columns=[
