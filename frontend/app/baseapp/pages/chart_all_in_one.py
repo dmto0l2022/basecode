@@ -27,7 +27,7 @@ dash.register_page(__name__, path='/raw_chart')
 ## 3. series data
 
 def parse_series_and_values(limits_dataframe_in):
-    experiment_data = []
+    limit_data = []
     for index, row in limits_dataframe_in.iterrows():
         #print(row['id'], row['data_values'])
         data_label = row[['data_label']].iloc[0]
@@ -48,39 +48,36 @@ def parse_series_and_values(limits_dataframe_in):
                     appendthis = [row['id'],data_label,l,new_x,z[1],next_colour]
                 except:
                     appendthis = [row['id'],'data_label',l,0,0]
-                experiment_data.append(appendthis)
+                limit_data.append(appendthis)
         #lol
     
     ## the datatable needed a unique id
     ## the id of the limit table was renamed to limit_id
     ## a new column was created called id
     
-    experiment_data_df = pd.DataFrame(data=experiment_data,columns=['id','data_label','series','raw_x','raw_y','series_color'])
-    experiment_data_df['masses'] = experiment_data_df['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
-    experiment_data_df['cross_sections'] = experiment_data_df['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
-    experiment_data_df = experiment_data_df.rename(columns={"id": "limit_id" })
-    experiment_data_df = experiment_data_df.reset_index()
-    experiment_data_df['id'] = experiment_data_df.index
-    experiment_data_df.set_index('id', inplace=True, drop=False)
+    limit_data_df = pd.DataFrame(data=limit_data,columns=['id','data_label','series','raw_x','raw_y','series_color'])
+    limit_data_df['masses'] = limit_data_df['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
+    limit_data_df['cross_sections'] = limit_data_df['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
+    limit_data_df = limit_data_df.rename(columns={"id": "limit_id" })
+    limit_data_df = limit_data_df.reset_index()
+    limit_data_df['id'] = limit_data_df.index
+    limit_data_df.set_index('id', inplace=True, drop=False)
     
     #columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
 
-    experiment_list_df = experiment_data_df[['limit_id','data_label']].copy()
-    #experiment_list_df.rename(columns={"id": "limit_id" })
-    #experiment_list_df['limit_id'] = experiment_list_df['limit_id']
-    experiment_list_df.drop_duplicates(inplace=True)
-    experiment_list_df = experiment_list_df.reset_index()
-    experiment_list_df['id'] = experiment_list_df.index
-    experiment_list_df.set_index('id', inplace=True, drop=False)
+    limit_list_df = limit_data_df[['limit_id','data_label']].copy()
+    limit_list_df.drop_duplicates(inplace=True)
+    limit_list_df = limit_list_df.reset_index()
+    limit_list_df['id'] = limit_list_df.index
+    limit_list_df.set_index('id', inplace=True, drop=False)
     
-    series_list_df = experiment_data_df[['limit_id','data_label','series','series_color']]
-    #series_list_df.rename(columns={"id": "limit_id" })
-    series_list_df.drop_duplicates(inplace=True)
-    series_list_df = series_list_df.reset_index()
-    series_list_df['id'] = series_list_df.index
-    series_list_df.set_index('id', inplace=True, drop=False)
+    trace_list_df = limit_list_df[['limit_id','data_label','series','series_color']]
+    trace_list_df.drop_duplicates(inplace=True)
+    trace_list_df = trace_list_df.reset_index()
+    trace_list_df['id'] = trace_list_df.index
+    trace_list_df.set_index('id', inplace=True, drop=False)
         
-    return experiment_list_df, series_list_df, experiment_data_df
+    return limit_list_df, trace_list_df, limit_data_df
        
 
 
@@ -119,33 +116,33 @@ def GetLimits():
     response_data = r.json()
     #print(response_data)
     response_data_frame = pd.DataFrame(response_data)
-    experiment_list_df, series_list_df, experiment_data_df = parse_series_and_values(response_data_frame)
+    limit_list_df, trace_list_df, trace_data_df = parse_series_and_values(response_data_frame)
     column_names=['id','data_label','data_comment','data_values']
 
-    print('experiment_list_df >>', experiment_list_df)
-    print('series_list_df >>', series_list_df)
-    print('experiment_data_df >>',experiment_data_df)
+    print('limit_list_df >>', limit_list_df)
+    print('trace_list_df >>', trace_list_df)
+    print('limit_data_df >>', limit_data_df)
 
     
     if response_data_frame.empty:
-        experiment_columns = ['id','limit_id','data_label']
-        experiment_empty_data = [['id','limit_id','data_label']]
-        series_columns = ['id','limit_id','data_label','series','series_color']
-        series_empty_data = [['id','limit_id','data_label','series','series_color']]
-        experiment_data_columns = ['id','limit_id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
-        experiment_data_empty_data = [['id','limit_id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']]
-        experiment_list_df_ret = pd.DataFrame(data=experiment_empty_data, columns=experiment_columns)
-        series_list_df_ret = pd.DataFrame(data=series_empty_data, columns=series_columns)
-        experiment_data_df_ret = pd.DataFrame(data=experiment_data_empty_data, columns=experiment_data_columns)
+        limit_columns = ['id','limit_id','data_label']
+        limit_empty_data = [['id','limit_id','data_label']]
+        trace_columns = ['id','limit_id','data_label','series','series_color']
+        trace_empty_data = [['id','limit_id','data_label','series','series_color']]
+        limit_data_columns = ['id','limit_id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
+        limit_data_empty_data = [['id','limit_id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']]
+        limit_list_df_ret = pd.DataFrame(data=limit_empty_data, columns=limit_columns)
+        trace_list_df_ret = pd.DataFrame(data=trace_empty_data, columns=trace_columns)
+        limit_data_df_ret = pd.DataFrame(data=limit_data_empty_data, columns=limit_data_columns)
         
-        experiment_list_dict_ret = experiment_list_df.to_dict('records')
+        limit_list_dict_ret = limit_list_df.to_dict('records')
     else:
-        experiment_list_df_ret = experiment_list_df
-        series_list_df_ret = series_list_df
-        experiment_data_df_ret = experiment_data_df
-        experiment_list_dict_ret = experiment_list_df_ret.to_dict('records')
+        limit_list_df_ret = limit_list_df
+        trace_list_df_ret = trace_list_df
+        limit_data_df_ret = limit_data_df
+        limit_list_dict_ret = limit_list_df_ret.to_dict('records')
 
-    return experiment_list_df_ret, series_list_df_ret, experiment_data_df_ret, experiment_list_dict_ret
+    return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
 
 
 LIMIT_COLUMNS = [
@@ -158,12 +155,12 @@ LIMIT_COLUMNS = [
 LIMIT_TABLE_PAGE_SIZE = 100
 column_width = f"{100/len(LIMIT_COLUMNS)}%"
 
-experiment_list_df, series_list_df, experiment_data_df, experiment_list_dict = GetLimits()
+limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
 
 # The css is needed to maintain a fixed column width after filtering
 limits_table = dash_table.DataTable(
     id='limits-table',
-    data=experiment_list_dict,
+    data=limit_list_dict,
     columns=[{"name": i, "id": i} for i in experiment_list_df.columns],
     row_selectable="multi",
     cell_selectable=False,
@@ -266,26 +263,26 @@ def add_limits(n_clicks, selected_rows):
 
         results = []
 
-        experiment_all_df, series_all_df, experiment_data_all_df, experiment_all_dict = GetLimits()
+        limit_all_df, trace_all_df, limit_data_all_df, limit_all_dict = GetLimits()
     
         for row in selected_rows:
-            limit_id = experiment_list_df.iloc[row]["limit_id"]
-            experiment_selected_df = experiment_all_df[experiment_all_df['limit_id']==limit_id]
-            series_selected_df = series_all_df[series_all_df['limit_id']==limit_id]
-            experiment_data_selected_df = experiment_data_all_df[experiment_data_all_df['limit_id']==limit_id]
+            limit_id = limit_list_df.iloc[row]["limit_id"]
+            limit_selected_df = limit_all_df[experiment_all_df['limit_id']==limit_id]
+            trace_selected_df = trace_all_df[trace_all_df['limit_id']==limit_id]
+            limit_data_selected_df = limit_data_all_df[limit_data_all_df['limit_id']==limit_id]
             trace_id = 0
             # df[(df.year == 2013) & (df.country.isin(['US', 'FR', 'ES']))]
-            for index, row in series_selected_df.iterrows():
-                series_data = experiment_data_selected_df[(experiment_data_selected_df['limit_id']==row['limit_id']) \
-                                                & (experiment_data_selected_df['series']==row['series'])]
-                series_name = row['data_label'] + '_' + str(row['series'])
-                series_color = row['series_color']
+            for index, row in trace_selected_df.iterrows():
+                trace_data = limit_data_selected_df[(limit_data_selected_df['limit_id']==row['limit_id']) \
+                                                & (limit_data_selected_df['series']==row['series'])]
+                trace_name = row['data_label'] + '_' + str(row['series'])
+                trace_color = row['series_color']
                 fig.add_trace(
                     go.Scatter(
                         x=series_data['masses'],
                         y=series_data['cross_sections'],
-                        name=series_name,
-                        line=dict(color=series_color),
+                        name=trace_name,
+                        line=dict(color=trace_color),
                         mode='lines',
                     )
                 )
