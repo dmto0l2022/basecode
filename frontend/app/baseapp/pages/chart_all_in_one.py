@@ -111,6 +111,45 @@ def GetLimit(limit_id_in):
     return updated_data_dict_ret, updated_data_frame_ret, column_names, experiment_data_ret
 '''
 
+def GetLimit(limit_id_in):
+    url = fastapi_orm_url_api + "/limit/" + str(limit_id_in)
+    r = requests.get(url)
+    response_data = r.json()
+    #print(response_data)
+    response_data_frame = pd.DataFrame(response_data)
+    limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
+    column_names=['id','data_label','data_comment','data_values']
+
+    print('limit_list_df >>', limit_list_df_resp)
+    print('trace_list_df >>', trace_list_df_resp)
+    print('limit_data_df >>', limit_data_df_resp)
+
+    
+    if response_data_frame.empty:
+        limit_columns = ['id','limit_id','data_label']
+        limit_empty_data = [['id','limit_id','data_label']]
+        trace_columns = ['id','limit_id','data_label','trace','trace_color']
+        trace_empty_data = [['id','limit_id','data_label','trace','trace_color']]
+        limit_data_columns = ['id','limit_id','data_label','trace','raw_x','raw_y','trace_color','masses','cross_sections']
+        limit_data_empty_data = [['id','limit_id','data_label','trace','raw_x','raw_y','trace_color','masses','cross_sections']]
+        #limit_list_df_ret = pd.DataFrame(data=limit_empty_data, columns=limit_columns)
+        #trace_list_df_ret = pd.DataFrame(data=trace_empty_data, columns=trace_columns)
+        #limit_data_df_ret = pd.DataFrame(data=limit_data_empty_data, columns=limit_data_columns)
+        limit_list_df_ret = pd.DataFrame(columns=limit_columns)
+        trace_list_df_ret = pd.DataFrame(columns=trace_columns)
+        limit_data_df_ret = pd.DataFrame(columns=limit_data_columns)
+        
+        limit_list_dict_ret = limit_list_df.to_dict('records')
+    else:
+        limit_list_df_ret = limit_list_df_resp
+        trace_list_df_ret = trace_list_df_resp
+        limit_data_df_ret = limit_data_df_resp
+        limit_list_dict_ret = limit_list_df_ret.to_dict('records')
+
+    return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
+
+
+
 def GetLimits():
     url = fastapi_orm_url_api + "/limit/"
     r = requests.get(url)
