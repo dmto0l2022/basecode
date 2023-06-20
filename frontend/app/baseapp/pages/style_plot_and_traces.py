@@ -36,7 +36,7 @@ from itertools import cycle
 #from app.baseapp.libraries import formlibrary as fl
 
 from app.baseapp.dashboard_libraries import all_data_tables as adt
-dashdataandtables = adt.DashDataAndTables()
+#dashdataandtables = adt.DashDataAndTables()
 
 from app.baseapp.dashboard_libraries import scaling as sc
 #sf = sc.get_scale_factor('ub')
@@ -213,7 +213,7 @@ layout = layout2
     [Input('format_table_id', 'data')],
     [State("format_table_id", "data")])
 def update_output(table_data, table_data_in):
-    fig_out = ug.UpdateGraph(dashdataandtables, table_data_in)
+    fig_out = ug.UpdateGraph(table_data_in)
     legend_out = ul.UpdateLegendFig(table_data_in)
     
     return fig_out, legend_out
