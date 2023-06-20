@@ -85,8 +85,9 @@ default_traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(default_li
 
 default_styledatatable = ft.CreateFormatTable(default_traces)
 
-plotseries_default = CreatePlotSeries([1000])
-plotseries_default.head(5)
+plotseries_default = CreatePlotSeries(all_limit_list_df, [1000])
+
+#plotseries_default.head(5)
 
 from app.baseapp.dashboard_libraries import createlegend as cl
 
