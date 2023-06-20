@@ -228,7 +228,7 @@ def serve_layout():
     layout_out = html.Div(
         [
             #limits_table,
-            limits_table = dash_table.DataTable(
+            dash_table.DataTable(
                 id='limits-table',
                 data=GetLimitDict(),
                 columns=LIMIT_COLUMNS,
