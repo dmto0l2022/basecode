@@ -300,7 +300,7 @@ def add_limits(n_clicks, selected_rows):
                                                 & (limit_data_selected_df['trace_id']==row['trace_id'])]
                 print("trace_data >>>>" , trace_data)
                 trace_name = row['data_label'] + '_' + str(row['trace_id'])
-                trace_color = row['trace_color_default']
+                trace_color_default = row['trace_color_default']
                 fig.add_trace(
                     go.Scatter(
                         x=trace_data['masses'],
