@@ -1,4 +1,5 @@
 from dash import Dash, dash_table, dcc, html, Input, Output, callback
+import dash
 import pandas as pd
 
 dash.register_page(__name__, path='/raw_chart')
