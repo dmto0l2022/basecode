@@ -170,7 +170,7 @@ layout4 = html.Div([maindiv],
                   )
 
 layout = layout4
-'''
+
 @callback(
     Output('limits_table_main', 'data'),
     #Output('debug_dropdown_table', 'data'),
@@ -257,7 +257,7 @@ def update_graphs(
     #list_output = str(selectedcontinent_list) if selectedcontinent_list else "Click the table"
     return data2 #, list_output
 
-
+'''
 @callback(
     Output('plots_table', 'data'),
     [Input('limits_table_main', 'active_cell'),Input('plots_table', 'active_cell')],
