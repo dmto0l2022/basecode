@@ -274,9 +274,9 @@ def add_limits(n_clicks, selected_rows):
             # df[(df.year == 2013) & (df.country.isin(['US', 'FR', 'ES']))]
             for index, row in trace_selected_df.iterrows():
                 trace_data = limit_data_selected_df[(limit_data_selected_df['limit_id']==row['limit_id']) \
-                                                & (limit_data_selected_df['series']==row['series'])]
+                                                & (limit_data_selected_df['trace']==row['trace'])]
                 trace_name = row['data_label'] + '_' + str(row['series'])
-                trace_color = row['series_color']
+                trace_color = row['trace_color']
                 fig.add_trace(
                     go.Scatter(
                         x=series_data['masses'],
