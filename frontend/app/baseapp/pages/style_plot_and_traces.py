@@ -44,6 +44,7 @@ from app.baseapp.dashboard_libraries import scaling as sc
 
 ####################################
 
+from app.baseapp.dashboard_libraries import get_limit_data as gld
 
 def get_plotid():
     plotid_datetime = datetime.now()
@@ -60,22 +61,27 @@ palette = cycle(px.colors.qualitative.Bold)
 
 ## create plot series
 
-def CreatePlotSeries(limits_in):
-    plotseries_df = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id'].isin(limits_in)].copy()
-    plotseries_df = plotseries_df.drop_duplicates()
-    plotseries_df = plotseries_df.reset_index(drop=True)
+all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
+
+def CreatePlotSeries(all_limits_list_in, limits_in):
+    plotseries_df = all_limit_list_df[all_limit_list_df['limit_id'].isin(limits_in)].copy()
+    #plotseries_df = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id'].isin(limits_in)].copy()
+    #plotseries_df = plotseries_df.drop_duplicates()
+    #plotseries_df = plotseries_df.reset_index(drop=True)
     
     return plotseries_df
 
 default_results = [1000]
-plotseries = CreatePlotSeries(default_results)
+plotseries = CreatePlotSeries(all_limit_list_df, default_results)
 #plotseries
 
 from app.baseapp.dashboard_libraries import formattingtable as ft
 
 default_limit = [1000]
-default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
-                                                    .isin(default_limit)].copy()
+#default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
+#                                                    .isin(default_limit)].copy()
+
+default_traces = all_trace_list_df[all_trace_list_df[['limit_id'].isin(default_limit)].copy()
 
 default_styledatatable = ft.CreateFormatTable(default_traces)
 
@@ -85,8 +91,12 @@ plotseries_default.head(5)
 from app.baseapp.dashboard_libraries import createlegend as cl
 
 default_limit = [1000]
-default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
-                                                    .isin(default_limit)].copy()
+
+#default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
+#                                                    .isin(default_limit)].copy()
+
+default_traces = all_trace_list_df[all_trace_list_df[['limit_id'].isin(default_limit)].copy()
+
 default_legend_fig = cl.CreateLegendFig(default_limit,dashdataandtables.limits_traces_df)
 
 default_legend_out_graph = dcc.Graph(figure=default_legend_fig,id='legend_out_id',
