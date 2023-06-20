@@ -3,6 +3,7 @@ import json
 import pandas as pd
 
 import plotly.express as px
+from itertools import cycle
 
 # colors
 palette = cycle(px.colors.qualitative.Bold)
