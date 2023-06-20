@@ -31,7 +31,7 @@ def UpdateGraph(plotseries_table_in):
 
         trace_name = str(row['trace_name'])
         
-        fig3.add_trace(go.Scatter(x=trace2add['x'], y=trace2add['y'],
+        fig3.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'],
                             mode='lines+markers', # 'lines' or 'markers'
                             line=dict(width=4,dash=row['line'],color=row['line_color']),
                             #showscale=False,
