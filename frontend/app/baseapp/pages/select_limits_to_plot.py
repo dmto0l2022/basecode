@@ -257,7 +257,7 @@ def update_graphs(
     #list_output = str(selectedcontinent_list) if selectedcontinent_list else "Click the table"
     return data2 #, list_output
 
-'''
+
 @callback(
     Output('plots_table', 'data'),
     [Input('limits_table_main', 'active_cell'),Input('plots_table', 'active_cell')],
@@ -320,16 +320,18 @@ def button_click(button1,button2):
     #msg = prop_id
     if "next_button_select_experiments_to_plot_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
-        href_return = dash.page_registry['pages.style_plot_and_traces']['path']
+        #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
+        href_return = '/app/baseapp/style_plot_and_traces'
         return href_return
     elif "cancel_button_select_experiments_to_plot_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
-        href_return = dash.page_registry['pages.home']['path']
+        #href_return = dash.page_registry['pages.home']['path']
+        href_return = '/app/baseapp/homepage'
         return href_return
     else:
-        href_return = dash.page_registry['pages.home']['path']
+        href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
-'''
+
 #############################
 '''
 select_limits_to_plot_form_title = html.Div(html.P(children='Select Limits to Plot', className = "NOPADDING_CONTENT FORM_TITLE"))
