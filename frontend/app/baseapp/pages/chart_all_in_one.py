@@ -1,4 +1,4 @@
-    ## a version of the DMTOOLS chart with everything in one file
+## a version of the DMTOOLS chart with everything in one file
 
 import dash
 import json
@@ -23,8 +23,8 @@ dash.register_page(__name__, path='/chart_all_in_one')
 ## takes the full limits table and
 ## splits all the data including the data_values field into 3 dataframes
 ## 1. simple list of limits
-## 2. list of series within the limits
-## 3. series data
+## 2. list of traces within the limits
+## 3. trace data
 
 def parse_series_and_values(limits_dataframe_in):
     limit_data = []
@@ -51,6 +51,7 @@ def parse_series_and_values(limits_dataframe_in):
                 limit_data.append(appendthis)
         #lol
     print('parsed limit data >>>>',limit_data) 
+    
     ## the datatable needed a unique id
     ## the id of the limit table was renamed to limit_id
     ## a new column was created called id
