@@ -131,9 +131,12 @@ def GetLimits():
         trace_empty_data = [['id','limit_id','data_label','trace','trace_color']]
         limit_data_columns = ['id','limit_id','data_label','trace','raw_x','raw_y','trace_color','masses','cross_sections']
         limit_data_empty_data = [['id','limit_id','data_label','trace','raw_x','raw_y','trace_color','masses','cross_sections']]
-        limit_list_df_ret = pd.DataFrame(data=limit_empty_data, columns=limit_columns)
-        trace_list_df_ret = pd.DataFrame(data=trace_empty_data, columns=trace_columns)
-        limit_data_df_ret = pd.DataFrame(data=limit_data_empty_data, columns=limit_data_columns)
+        #limit_list_df_ret = pd.DataFrame(data=limit_empty_data, columns=limit_columns)
+        #trace_list_df_ret = pd.DataFrame(data=trace_empty_data, columns=trace_columns)
+        #limit_data_df_ret = pd.DataFrame(data=limit_data_empty_data, columns=limit_data_columns)
+        limit_list_df_ret = pd.DataFrame(columns=limit_columns)
+        trace_list_df_ret = pd.DataFrame(columns=trace_columns)
+        limit_data_df_ret = pd.DataFrame(columns=limit_data_columns)
         
         limit_list_dict_ret = limit_list_df.to_dict('records')
     else:
