@@ -2,7 +2,7 @@ import dash
 from dash import html, dcc, callback, Output, Input
 import dash_bootstrap_components as dbc
 
-#import formlibrary as fl
+import formlibrary as fl
 
 dash.register_page(__name__, path='/create_new_plot')
 
@@ -25,7 +25,7 @@ create_new_plot_form_content_old  = dbc.Row(
     className="g-3",
 )
 
-create_new_plot_form_content = plot_name_input_row
+create_new_plot_form_content = fl.plot_name_input_row
 
 next_button =  html.Div(dbc.Button("Next",  id="create_new_plot_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
