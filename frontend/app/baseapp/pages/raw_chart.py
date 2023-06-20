@@ -223,6 +223,11 @@ def serve_layout():
 
 layout = serve_layout
 
+#Output('datatable-row-ids-container', 'children'),
+#Input('datatable-row-ids', 'derived_virtual_row_ids'),
+#Input('datatable-row-ids', 'selected_row_ids'),
+#Input('datatable-row-ids', 'active_cell'))
+
 @callback(
     Output(component_id="limit-plot-container", component_property="children"),
     Input(component_id="add-button", component_property="n_clicks"),
