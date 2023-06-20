@@ -279,8 +279,8 @@ def add_limits(n_clicks, selected_rows):
                 trace_color = row['trace_color']
                 fig.add_trace(
                     go.Scatter(
-                        x=series_data['masses'],
-                        y=series_data['cross_sections'],
+                        x=trace_data['masses'],
+                        y=trace_data['cross_sections'],
                         name=trace_name,
                         line=dict(color=trace_color),
                         mode='lines',
