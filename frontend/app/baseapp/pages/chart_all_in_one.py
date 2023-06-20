@@ -71,7 +71,7 @@ def parse_series_and_values(limits_dataframe_in):
     limit_list_df['id'] = limit_list_df.index
     limit_list_df.set_index('id', inplace=True, drop=False)
     
-    trace_list_df = limit_list_df[['limit_id','data_label','trace','trace_color']]
+    trace_list_df = limit_data_df[['limit_id','data_label','trace','trace_color']]
     trace_list_df.drop_duplicates(inplace=True)
     trace_list_df = trace_list_df.reset_index()
     trace_list_df['id'] = trace_list_df.index
