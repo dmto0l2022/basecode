@@ -56,7 +56,7 @@ def parse_series_and_values(limits_dataframe_in):
     ## the id of the limit table was renamed to limit_id
     ## a new column was created called id
     
-    limit_data_df_out = pd.DataFrame(data=limit_data,columns=['id','data_label','trace','raw_x','raw_y','trace_color'])
+    limit_data_df_out = pd.DataFrame(data=limit_data,columns=['id','data_label','trace_id','raw_x','raw_y','trace_color_default'])
     limit_data_df_out['masses'] = limit_data_df_out['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
     limit_data_df_out['cross_sections'] = limit_data_df_out['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
     limit_data_df_out = limit_data_df_out.rename(columns={"id": "limit_id" })
@@ -72,7 +72,7 @@ def parse_series_and_values(limits_dataframe_in):
     limit_list_df_out['id'] = limit_list_df_out.index
     limit_list_df_out.set_index('id', inplace=True, drop=False)
     
-    trace_list_df_out = limit_data_df_out[['limit_id','data_label','trace','trace_color']]
+    trace_list_df_out = limit_data_df_out[['limit_id','data_label','trace_id','trace_color_default']]
     trace_list_df_out.drop_duplicates(inplace=True)
     trace_list_df_out = trace_list_df_out.reset_index()
     trace_list_df_out['id'] = trace_list_df_out.index
@@ -103,10 +103,10 @@ def GetLimit(limit_id_in):
     if response_data_frame.empty:
         limit_columns = ['id','limit_id','data_label']
         limit_empty_data = [['id','limit_id','data_label']]
-        trace_columns = ['id','limit_id','data_label','trace','trace_color']
-        trace_empty_data = [['id','limit_id','data_label','trace','trace_color']]
-        limit_data_columns = ['id','limit_id','data_label','trace','raw_x','raw_y','trace_color','masses','cross_sections']
-        limit_data_empty_data = [['id','limit_id','data_label','trace','raw_x','raw_y','trace_color','masses','cross_sections']]
+        trace_columns = ['id','limit_id','data_label','trace_id','trace_color_default']
+        trace_empty_data = [['id','limit_id','data_label','trace_id','trace_color']]
+        limit_data_columns = ['id','limit_id','data_label','trace_id','raw_x','raw_y','trace_color_default','masses','cross_sections']
+        limit_data_empty_data = [['id','limit_id','data_label','trace_id','raw_x','raw_y','trace_color_default','masses','cross_sections']]
         #limit_list_df_ret = pd.DataFrame(data=limit_empty_data, columns=limit_columns)
         #trace_list_df_ret = pd.DataFrame(data=trace_empty_data, columns=trace_columns)
         #limit_data_df_ret = pd.DataFrame(data=limit_data_empty_data, columns=limit_data_columns)
@@ -140,10 +140,10 @@ def GetLimits():
     if response_data_frame.empty:
         limit_columns = ['id','limit_id','data_label']
         limit_empty_data = [['id','limit_id','data_label']]
-        trace_columns = ['id','limit_id','data_label','trace','trace_color']
-        trace_empty_data = [['id','limit_id','data_label','trace','trace_color']]
-        limit_data_columns = ['id','limit_id','data_label','trace','raw_x','raw_y','trace_color','masses','cross_sections']
-        limit_data_empty_data = [['id','limit_id','data_label','trace','raw_x','raw_y','trace_color','masses','cross_sections']]
+        trace_columns = ['id','limit_id','data_label','trace_id','trace_color_default']
+        trace_empty_data = [['id','limit_id','data_label','trace_id','trace_color_default']]
+        limit_data_columns = ['id','limit_id','data_label','trace_id','raw_x','raw_y','trace_color','masses','cross_sections']
+        limit_data_empty_data = [['id','limit_id','data_label','trace_id','raw_x','raw_y','trace_color','masses','cross_sections']]
         #limit_list_df_ret = pd.DataFrame(data=limit_empty_data, columns=limit_columns)
         #trace_list_df_ret = pd.DataFrame(data=trace_empty_data, columns=trace_columns)
         #limit_data_df_ret = pd.DataFrame(data=limit_data_empty_data, columns=limit_data_columns)
@@ -299,14 +299,14 @@ def add_limits(n_clicks, selected_rows):
                 trace_data = limit_data_selected_df[(limit_data_selected_df['limit_id']==row['limit_id']) \
                                                 & (limit_data_selected_df['trace']==row['trace'])]
                 print("trace_data >>>>" , trace_data)
-                trace_name = row['data_label'] + '_' + str(row['trace'])
-                trace_color = row['trace_color']
+                trace_name = row['data_label'] + '_' + str(row['trace_id'])
+                trace_color = row['trace_color_default']
                 fig.add_trace(
                     go.Scatter(
                         x=trace_data['masses'],
                         y=trace_data['cross_sections'],
                         name=trace_name,
-                        line=dict(color=trace_color),
+                        line=dict(color=trace_color_default),
                         mode='lines',
                     )
                 )
