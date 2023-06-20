@@ -1,5 +1,4 @@
-# Run this app with `python app.py` and
-# visit http://127.0.0.1:8050/ in your web browser.
+## a version of the DMTOOLS chart with everything in one file
 
 import dash
 import json
@@ -21,17 +20,11 @@ palette = cycle(px.colors.qualitative.Bold)
 
 dash.register_page(__name__, path='/raw_chart')
 
-def parse_values(data_values_in):
-    data = data_values_in[0].replace("{[", "").replace("]}", "")
-    print('parse data before split')
-    print(data)
-    values = data.split(";")
-    print('split values')
-    print(values)
-    masses = [value.split(" ")[0] for value in values]
-    cross_sections = [value.split(" ")[1] for value in values]
-
-    return masses, cross_sections
+## takes the full limits table and
+## splits all the data including the data_values field into 3 dataframes
+## 1. simple list of limits
+## 2. list of series within the limits
+## 3. series data
 
 def parse_series_and_values(limits_dataframe_in):
     experiment_data = []
@@ -57,8 +50,12 @@ def parse_series_and_values(limits_dataframe_in):
                     appendthis = [row['id'],'data_label',l,0,0]
                 experiment_data.append(appendthis)
         #lol
-    experiment_data_df = pd.DataFrame(data=experiment_data,columns=['id','data_label','series','raw_x','raw_y','series_color'])
     
+    ## the datatable needed a unique id
+    ## the id of the limit table was renamed to limit_id
+    ## a new column was created called id
+    
+    experiment_data_df = pd.DataFrame(data=experiment_data,columns=['id','data_label','series','raw_x','raw_y','series_color'])
     experiment_data_df['masses'] = experiment_data_df['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
     experiment_data_df['cross_sections'] = experiment_data_df['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
     experiment_data_df = experiment_data_df.rename(columns={"id": "limit_id" })
@@ -85,9 +82,6 @@ def parse_series_and_values(limits_dataframe_in):
         
     return experiment_list_df, series_list_df, experiment_data_df
        
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-#BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
 
 
 #api_container = "container_api_1:8004"
