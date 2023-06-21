@@ -13,6 +13,8 @@ def parse_series_and_values(limits_dataframe_in):
     for index, row in limits_dataframe_in.iterrows():
         #print(row['id'], row['data_values'])
         data_label = row[['data_label']].iloc[0]
+        data_reference= row[['data_reference']].iloc[0]
+        data_comment = row[['data_comment']].iloc[0]
         year = row[['year']].iloc[0]
         experiment = row[['experiment']].iloc[0]
         spin_dependency = row[['spin_dependency']].iloc[0]
@@ -35,6 +37,8 @@ def parse_series_and_values(limits_dataframe_in):
                 try:
                     appendthis = [row['id'],
                                   data_label,
+                                  data_reference,
+                                  data_comment,
                                   l,
                                   data_label + '_' + str(l),
                                   year,
@@ -61,7 +65,7 @@ def parse_series_and_values(limits_dataframe_in):
     ## a new column was created called id
     
     limit_data_df_out = pd.DataFrame(
-        data=limit_data,columns=['id','data_label','trace_id','trace_name', 'year','experiment',
+        data=limit_data,columns=['id','data_label','data_reference', 'data_comment', 'trace_id','trace_name', 'year','experiment',
                                   'spin_dependency','result_type','official','greatest_hit',
                                   'raw_x','raw_y','line_color','symbol_color',
                                   'fill_color','line', 'symbol'])
@@ -74,7 +78,7 @@ def parse_series_and_values(limits_dataframe_in):
     
     #columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
 
-    limit_list_df_out = limit_data_df_out[['limit_id','data_label','year','experiment','spin_dependency','result_type','official',
+    limit_list_df_out = limit_data_df_out[['limit_id','data_label','data_reference', 'data_comment','year','experiment','spin_dependency','result_type','official',
                                            'greatest_hit']].copy()
     limit_list_df_out.drop_duplicates(inplace=True)
     limit_list_df_out = limit_list_df_out.reset_index()
@@ -111,8 +115,8 @@ def GetLimit(limit_id_in):
 
     
     if response_data_frame.empty:
-        limit_columns = ['id','limit_id','data_label','year','experiment','spin_dependency','result_type','official','greatest_hit']
-        limit_empty_data = [['id','limit_id','data_label','year','experiment','spin_dependency','result_type','official','greatest_hit']]
+        limit_columns = ['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']
+        limit_empty_data = [['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']]
         trace_columns = ['id','limit_id','data_label','trace_id','trace_name',
                          'line_color','symbol_color','fill_color','line','symbol']
         trace_empty_data = [['id','limit_id','data_label','trace_id','trace_name','color']]
@@ -154,8 +158,8 @@ def GetLimits():
 
     
     if response_data_frame.empty:
-        limit_columns = ['id','limit_id','data_label']
-        limit_empty_data = [['id','limit_id','data_label']]
+        limit_columns = ['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']
+        limit_empty_data = [['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']]
         trace_columns = ['id','limit_id','data_label','trace_id','trace_name',
                          'line_color','symbol_color','fill_color','line','symbol']
         trace_empty_data = [['id','limit_id','data_label','trace_id','trace_name',
@@ -183,9 +187,10 @@ def GetLimits():
 
 LIMIT_COLUMNS = [
     {"id": "id", "name": "id"},
-    {"id": "limit_id", "name": "id"},
-    {"id": "data_label", "name": "Label"},
-    {"id": "data_reference", "name": "Reference"}
+    {"id": "limit_id", "name": "limit_id"},
+    {"id": "data_label", "name": "data_label"},
+    {"id": "data_comment", "name": "data_comment"},
+    {"id": "data_reference", "name": "data_refererence"}
 ]
 
 
