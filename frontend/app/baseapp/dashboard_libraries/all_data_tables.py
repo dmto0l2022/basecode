@@ -97,7 +97,7 @@ class DashDataAndTables():
         self.official_df = \
             self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='official'].copy()
         
-        self.limit_types_df.reset_index(drop=True, inplace=True)
+        self.official_df.reset_index(drop=True, inplace=True)
         
         self.years_df = \
             self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='year'].copy()
