@@ -46,6 +46,8 @@ from app.baseapp.dashboard_libraries import scaling as sc
 
 from app.baseapp.dashboard_libraries import get_limit_data as gld
 
+default_limits = [45]
+
 def get_plotid():
     plotid_datetime = datetime.now()
     plotid = plotid_datetime.strftime('%Y%m%d%H%M%S%f%z')
@@ -71,41 +73,40 @@ def CreatePlotSeries(all_limits_list_in, limits_in):
     
     return plotseries_df
 
-default_results = [45]
-plotseries = CreatePlotSeries(all_limit_list_df, default_results)
+
+plotseries = CreatePlotSeries(all_limit_list_df, default_limits)
 #plotseries
 
 from app.baseapp.dashboard_libraries import formattingtable as ft
 
-default_limit = [45]
+
 #default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
 #                                                    .isin(default_limit)].copy()
 
-default_traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(default_limit)].copy()
+default_traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(default_limits)].copy()
 
-default_styledatatable = ft.CreateFormatTable(default_traces)
+default_styledatatable = ft.CreateFormatTable(default_limits)
 
-plotseries_default = CreatePlotSeries(all_limit_list_df, [1000])
+plotseries_default = CreatePlotSeries(all_limit_list_df,default_limits)
 
 #plotseries_default.head(5)
 
 from app.baseapp.dashboard_libraries import createlegend as cl
 
-default_limit = [45]
-
 #default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
-#                                                    .isin(default_limit)].copy()
+#                                                    .isin(default_limits)].copy()
 
-default_traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(default_limit)].copy()
+default_traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(default_limits)].copy()
 
 #default_legend_fig = cl.CreateLegendFig(default_limit,dashdataandtables.limits_traces_df)
-default_legend_fig = cl.CreateLegendFig(default_limit,all_trace_list_df)
+default_legend_fig = cl.CreateLegendFig(default_limits,all_trace_list_df)
 
 default_legend_out_graph = dcc.Graph(figure=default_legend_fig,id='legend_out_id',
                              style={'width': '100%', 'height': '100%'})
 
 from app.baseapp.dashboard_libraries import updatelegend as ul
 from app.baseapp.dashboard_libraries import getstyleandlegend as gsal
+
 default_styleandlegendcolumn = gsal.GetStyleAndLegendColumn(default_styledatatable,default_legend_out_graph)
 
 from app.baseapp.dashboard_libraries import creategraph as cg
@@ -117,11 +118,11 @@ rowofbuttons = html.Div([
     html.Div(id='container-button-timestamp')
 ])
 
-default_limit = [45]
+
 #default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id'].isin(default_limit)].copy()
-default_traces = all_limit_data_df[all_limit_data_df['limit_id'].isin(default_limit)].copy()
-print('default_limit')
-print(default_limit)
+default_traces = all_limit_data_df[all_limit_data_df['limit_id'].isin(default_limits)].copy()
+print('default_limits')
+print(default_limits)
 #print('dashdataandtables.limits_traces_df')
 #print(dashdataandtables.limits_traces_df)
 #print('dashdataandtables.limits_data_df')
@@ -130,7 +131,7 @@ print(default_limit)
 ## all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict
 
 #default_graph_fig = cg.CreateGraph(default_limit, dashdataandtables.limits_traces_df, dashdataandtables.limits_data_df)
-default_graph_fig = cg.CreateGraph(default_limit, all_trace_list_df, all_limit_data_df)
+default_graph_fig = cg.CreateGraph(default_limits, all_trace_list_df, all_limit_data_df)
 
 from app.baseapp.dashboard_libraries import updategraph as ug
 
