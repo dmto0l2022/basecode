@@ -288,10 +288,10 @@ layout4 = html.Div([dcc.Location(id="url", refresh=True),
                    className="container-fluid MASTER_CONTAINER_STYLE",
                   )
 
-#layout = layout4
-layout = row3_1
+layout = layout4
+#layout = row3_1
 
-'''
+
 @callback(
     Output('limits_table_main', 'data'),
     #Output('debug_dropdown_table', 'data'),
@@ -352,7 +352,7 @@ def update_graphs(
     
     # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
     
-    unfiltered_df = dashdataandtables.limits_table_df.copy()
+    unfiltered_df = all_limit_list_df.copy()
     #df.drop(df.index , inplace=True)
     
     filtered_df = unfiltered_df.drop(unfiltered_df.index)
@@ -453,7 +453,7 @@ def button_click(button1,button2):
     else:
         href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
-'''
+
 
 #############################
 '''
