@@ -164,7 +164,7 @@ class DashDataAndTables():
         self.years_table = dash_table.DataTable(
             id='years_table',
             columns=[
-                {'name': 'Year', 'id': 'label', 'type': 'text'},
+                {'name': 'year', 'id': 'label', 'type': 'text'},
             ],
             data=self.years_df.to_dict('records'),
             filter_action='none',
@@ -202,7 +202,7 @@ class DashDataAndTables():
         self.official_table = dash_table.DataTable(
             id='official_table',
             columns=[
-                {'name': 'Official', 'id': 'label', 'type': 'boolean'},
+                {'name': 'official', 'id': 'label', 'type': 'boolean'},
             ],
             data=self.official_df.to_dict('records'),
             filter_action='none',
@@ -240,7 +240,7 @@ class DashDataAndTables():
         self.experiments_table = dash_table.DataTable(
             id='experiments_table',
             columns=[
-                {'name': 'Experiment', 'id': 'label', 'type': 'text'},
+                {'name': 'experiment', 'id': 'label', 'type': 'text'},
             ],
             data=self.experiments_df.to_dict('records'),
            filter_action='none',
@@ -276,7 +276,7 @@ class DashDataAndTables():
         self.result_types_table = dash_table.DataTable(
             id='result_types_table',
             columns=[
-                {'name': 'ResultType', 'id': 'label', 'type': 'text'},
+                {'name': 'result_type', 'id': 'label', 'type': 'text'},
             ],
             data=self.result_types_df.to_dict('records'),
             filter_action='none',
@@ -314,7 +314,7 @@ class DashDataAndTables():
         self.spin_dependency_table = dash_table.DataTable(
             id='spin_dependency_table',
             columns=[
-                {'name': 'SpinDependency', 'id': 'label', 'type': 'text'},
+                {'name': 'spin_dependency', 'id': 'label', 'type': 'text'},
             ],
             data=self.spin_dependence_df.to_dict('records'),
             filter_action='none',
@@ -352,7 +352,7 @@ class DashDataAndTables():
         self.greatest_hit_table = dash_table.DataTable(
             id='greatest_hit_table',
             columns=[
-                {'name': 'GreatestHit', 'id': 'label', 'type': 'text'},
+                {'name': 'greatest_hit', 'id': 'label', 'type': 'text'},
             ],
             data=self.greatest_hit_df.to_dict('records'),
             #page_size=5,
