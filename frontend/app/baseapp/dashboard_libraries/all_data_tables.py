@@ -90,7 +90,7 @@ class DashDataAndTables():
         self.spin_dependence_df.reset_index(drop=True, inplace=True)
         
         self.greatest_hit_df = \
-            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='greatest_hits'].copy()
+            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='greatest_hit'].copy()
         
         self.greatest_hit_df.reset_index(drop=True, inplace=True)
         
