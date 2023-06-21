@@ -37,7 +37,7 @@ print('##################### creating test data #####################')
 ## Limit Types
 
 df = pd.DataFrame({
-    'variable' : ['limit_type','limit_type'],
+    'variable' : ['official','official'],
     'label' : ['All','Official'],
     'value' : ['0', '1'],
     'data_type' : ['boolean', 'boolean'],
