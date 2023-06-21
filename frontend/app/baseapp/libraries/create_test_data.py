@@ -39,8 +39,8 @@ print('##################### creating test data #####################')
 df = pd.DataFrame({
     'variable' : ['limit_type','limit_type'],
     'label' : ['All','Official'],
-    'value' : ['-1', '1'],
-    'data_type' : ['number', 'number'],
+    'value' : ['0', '1'],
+    'data_type' : ['boolean', 'boolean'],
     })
 
 df.index.name='id'
