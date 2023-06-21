@@ -237,7 +237,7 @@ def display_page(pathname,search,href):
         html.Div(children=pathname, id='pathname'),
         html.Div(children=search, id='search'),
         html.Div(children=href, id='href'),
-        html.Div(children=qs, id='params')
+        html.Div(children=o.query, id='params')
     ])
 
 
