@@ -85,7 +85,7 @@ from app.baseapp.dashboard_libraries import formattingtable as ft
 
 default_traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(default_limits)].copy()
 
-default_styledatatable = ft.CreateFormatTable(default_limits)
+default_styledatatable = ft.CreateFormatTable(default_traces)
 
 plotseries_default = CreatePlotSeries(all_limit_list_df,default_limits)
 
