@@ -44,7 +44,7 @@ table_heights = 120
 
 style_header_var={ 'backgroundColor': 'black','color': 'white'}
 
-limits_table = dash_table.DataTable(
+new_limits_table = dash_table.DataTable(
             id='limits_table_main',
             data=all_limit_list_dict,
             columns=[{'name': 'id', 'id': 'id'},
@@ -201,7 +201,7 @@ row1 =  dbc.Row([
 
 row2 = dbc.Row([dbc.Col(
             [
-                limits_table
+                new_limits_table
             ],
             width=12,),
                ])
@@ -217,7 +217,7 @@ row2_debug = dbc.Row([dbc.Col(
 
 row3_1 = dbc.Row([dbc.Col(
             [
-                limits_table
+                new_limits_table
             ],
             width=10,),
                ], className ="TABLE_ROW NOPADDING")
