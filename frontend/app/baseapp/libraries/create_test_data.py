@@ -89,7 +89,7 @@ with engine.begin() as connection:
 ## Spin Dependence
 
 df = pd.DataFrame({
-    'variable' : ['spin_dependence','spin_dependence','spin_dependence'],
+    'variable' : ['spin_dependency','spin_dependency','spin_dependency'],
     'label' : ['All', 'spin-dependent', 'spin-independent'],
     'value' : ['All', 'SD', 'SI'],
     'data_type' : ['text', 'text','text']
