@@ -94,6 +94,8 @@ limits_table = dash_table.DataTable(
 
 limits_to_plot_df = pd.DataFrame(data=None, columns=['id','plot_id','limit_id','data_reference','data_label'])
 
+style_header_var={ 'backgroundColor': 'black','color': 'white'}
+
 limits_to_plot_table = dash_table.DataTable(
     id='limits_to_plot_table',
     data=limits_to_plot_df.to_dict('records'),
