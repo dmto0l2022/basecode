@@ -121,9 +121,9 @@ style_header_var={ 'backgroundColor': 'black','color': 'white'}
 limits_to_plot_table = dash_table.DataTable(
     id='limits_to_plot_table',
     data=limits_to_plot_df.to_dict('records'),
-    columns=[{'name': 'id', 'id': 'id'},
-             {'name': 'plot_id', 'id': 'plot_id'},
+    columns=[{'name': 'id', 'id': 'id'}
              {'name': 'limit_id', 'id': 'limit_id'},
+             {'name': 'plot_id', 'id': 'plot_id'},
              {'name': 'data_reference', 'id': 'data_reference'},
              {'name': 'data_label', 'id': 'data_label'}
              ],
@@ -153,10 +153,10 @@ limits_to_plot_table = dash_table.DataTable(
     style_table={'height': '25vh',},
     style_cell_conditional=[
         {'if': {'column_id': 'id'},
+         'width': '5%'}
+        {'if': {'column_id': 'limit_id'},
          'width': '5%'},
         {'if': {'column_id': 'plot_id'},
-         'width': '5%'},
-        {'if': {'column_id': 'limit_id'},
          'width': '5%'},
         {'if': {'column_id': 'data_reference'},
          'width': '20%'},
@@ -413,7 +413,7 @@ def update_graphs(
 @callback(
     Output('limits_to_plot_table', 'data'),
     [Input('limits_table_main', 'active_cell'),Input('limits_to_plot_table', 'active_cell')],
-    [State('limits_table_main', 'data')])
+    [State('limits_to_plot_table', 'data')])
 def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     ctx = dash.callback_context
     triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
