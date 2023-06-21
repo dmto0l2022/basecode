@@ -104,7 +104,7 @@ df = pd.DataFrame({
     'variable' : ['greatest_hits','greatest_hits','greatest_hits'],
     'label' : ['All', 'No', 'Yes'],
     'value' : ['-1', '0', '1'],
-    'data_type' : ['number', 'number','number']
+    'data_type' : ['boolean', 'boolean','boolean']
 })
 
 with engine.begin() as connection:
