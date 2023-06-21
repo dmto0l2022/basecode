@@ -215,11 +215,12 @@ layout = html.Div([
     html.Div(id='content')
 ])
 
-@callback(Output('content', 'children'), Input('url', 'pathname'))
-def display_page(pathname):
+@callback(Output('content', 'children'), [Input('url', 'pathname'),Input(‘url’, ‘search’) ])
+def display_page(pathname,search):
     return html.Div([
         dcc.Input(id='input', value='hello world'),
-        html.Div(children=pathname, id='output')
+        html.Div(children=pathname, id='pathname'),
+        html.Div(children=search, id='search')
     ])
 
 
