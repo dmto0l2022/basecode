@@ -219,20 +219,6 @@ def _content(href: str):
     return html.H1(children=param1: {param1} param2: {param2}' )
 '''
 
-'''
-def layout(limit_id_parameter=None, **other_unknown_query_strings):
-    return html.Div(
-	children=[
-	    html.H1(children='This is our Archive page'),
-
-	    html.Div(children=f'''
-	        This is limit id: {limit_id_parameter}.
-	    '''),
-
-	])
-'''
-
-
 layout = html.Div([
     dcc.Location(id='url'),
     html.Div(id='layout-div'),
