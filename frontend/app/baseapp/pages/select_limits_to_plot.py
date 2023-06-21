@@ -34,7 +34,7 @@ from app.baseapp.dashboard_libraries import get_limit_data as gld
 
 dash.register_page(__name__, path='/select_limits_to_plot')
 
-from dashboard_libraries import all_data_tables as adt
+
 dashdataandtables = adt.DashDataAndTables()
 
 all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
