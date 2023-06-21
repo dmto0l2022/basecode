@@ -278,6 +278,8 @@ next_button =  html.Div(dbc.Button("Next",  id="next_button_select_limits_to_plo
 
 cancel_button =  html.Div(dbc.Button("Cancel",  id="cancel_button_select_limits_to_plot_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
+list_button =  html.Div(dbc.Button("List",  id="list_button_select_limits_to_plot_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+
 
 select_limits_to_plot_form = html.Div(
     #[newplot_title,newplot_input3],
@@ -296,6 +298,7 @@ maincolumn = dbc.Col(
                 row3_2,
                 next_button,
                 cancel_button,
+                list_button,
                 row5
             ],
             width=10,)
@@ -463,14 +466,16 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
 
 
 @callback(
-    Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    [Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+     Output('limit_list','children')],
     [
     Input("next_button_select_limits_to_plot_id", "n_clicks"),
-    Input("cancel_button_select_limits_to_plot_id", "n_clicks")
+    Input("cancel_button_select_limits_to_plot_id", "n_clicks"),
+    Input("list_button_select_limits_to_plot_id","n_clicks"),
         ],
         prevent_initial_call=True
 )
-def button_click(button1,button2):
+def button_click(button1,button2,button3):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     #msg = prop_id
@@ -478,12 +483,17 @@ def button_click(button1,button2):
         #msg = "Button 1 was most recently clicked"
         #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
         href_return = '/app/baseapp/style_plot_and_traces'
-        return href_return
+        return [href_return,'']
     elif "cancel_button_select_limits_to_plot_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/app/baseapp/homepage'
-        return href_return
+        return  [href_return,'']
+    elif "list_button_select_limits_to_plot_id" == prop_id:
+        #msg = "Button 3 was most recently clicked"
+        #href_return = dash.page_registry['pages.home']['path']
+        href_return = '/app/baseapp/select_limits_to_plot'
+        return ['1,2',href_return]
     else:
         href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
