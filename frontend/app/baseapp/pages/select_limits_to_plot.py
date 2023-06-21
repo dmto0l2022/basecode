@@ -153,7 +153,7 @@ limits_to_plot_table = dash_table.DataTable(
     style_table={'height': '25vh',},
     style_cell_conditional=[
         {'if': {'column_id': 'id'},
-         'width': '5%'}
+         'width': '5%'},
         {'if': {'column_id': 'limit_id'},
          'width': '5%'},
         {'if': {'column_id': 'plot_id'},
