@@ -42,6 +42,7 @@ def parse_series_and_values(limits_dataframe_in):
                                   spin_dependency,
                                   result_type,
                                   official,
+                                  greatest_hit,
                                   new_x,
                                   z[1],
                                   next_colour,
