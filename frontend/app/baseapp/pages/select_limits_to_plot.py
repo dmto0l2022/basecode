@@ -382,7 +382,7 @@ def update_graphs(
 @callback(
     Output('limits_to_plot_table', 'data'),
     [Input('limits_table_main', 'active_cell'),Input('limits_to_plot_table', 'active_cell')],
-    [State('limits_to_plot_table', 'data')])
+    [State('limits_table_main', 'data')])
 def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     ctx = dash.callback_context
     triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
@@ -418,7 +418,7 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
         #data_out=plots_todo_df.to_dict("records")
         #data_out=selected_row.to_dict("records")
 
-    elif triggered_id == 'plots_table':
+    elif triggered_id == 'limits_to_plot_table':
         #selected_rowid = active_cell_plot['row']
         #print(data_in[selected_rowid])
         print(active_cell_plot)
