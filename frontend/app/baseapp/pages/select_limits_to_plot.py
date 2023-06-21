@@ -493,7 +493,7 @@ def button_click(button1,button2,button3):
         #msg = "Button 3 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/app/baseapp/select_limits_to_plot'
-        return ['1,2',href_return]
+        return [href_return,'?limit_id=[1,2]']
     else:
         href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
