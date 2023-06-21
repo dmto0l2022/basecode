@@ -256,6 +256,8 @@ row3_2 = dbc.Row([dbc.Col(
 
 row4 = html.Div([dcc.Store(id='plot_expids')])
 
+row5 = dbc.Row([html.P(children='List of limits appear here',id='limit_list')])
+
 #####
 
 select_limits_to_plot_form_title = html.Div(html.P(children='Select Experiments to Plot', className = "NOPADDING_CONTENT FORM_TITLE"))
@@ -293,7 +295,8 @@ maincolumn = dbc.Col(
                 #row3_1_debug,
                 row3_2,
                 next_button,
-                cancel_button
+                cancel_button,
+                row5
             ],
             width=10,)
 
