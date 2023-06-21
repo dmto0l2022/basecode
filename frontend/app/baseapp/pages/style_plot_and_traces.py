@@ -1,5 +1,6 @@
 import os
 import requests
+from urllib.parse import urlparse
 
 cwd = os.getcwd()
 
@@ -229,11 +230,13 @@ layout = html.Div([
 def display_page(pathname,search,href):
     original_search_string = search
     just_list = original_search_string.split('=')
+    o = urlparse(href)
     return html.Div([
         dcc.Input(id='input', value='hello world'),
         html.Div(children=pathname, id='pathname'),
         html.Div(children=search, id='search'),
-        html.Div(children=href, id='href')
+        html.Div(children=href, id='href'),
+        html.Div(children=o.params, id='params')
     ])
 
 
