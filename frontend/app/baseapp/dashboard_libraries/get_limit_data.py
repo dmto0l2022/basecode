@@ -13,6 +13,11 @@ def parse_series_and_values(limits_dataframe_in):
     for index, row in limits_dataframe_in.iterrows():
         #print(row['id'], row['data_values'])
         data_label = row[['data_label']].iloc[0]
+        year = row[['year']].iloc[0]
+        experiment = row[['experiment']].iloc[0]
+        spin_dependency = row[['spin_dependency']].iloc[0]
+        result_type = row[['result_type']].iloc[0]
+        official = row[['official']].iloc[0]
         data_string = row[['data_values']].iloc[0]
         data_string = data_string.replace("{[", "")
         data_string = data_string.replace("]}", "")
@@ -27,7 +32,22 @@ def parse_series_and_values(limits_dataframe_in):
                 z = i.split(" ");
                 new_x = z[0].replace(",[", "")
                 try:
-                    appendthis = [row['id'],data_label,l,data_label + '_' + str(l),new_x,z[1],next_colour,next_colour,next_colour,'solid','circle']
+                    appendthis = [row['id'],
+                                  data_label,
+                                  l,
+                                  data_label + '_' + str(l),
+                                  year,
+                                  experiment,
+                                  spin_dependency,
+                                  result_type,
+                                  official,
+                                  new_x,
+                                  z[1],
+                                  next_colour,
+                                  next_colour,
+                                  next_colour,
+                                  'solid',
+                                  'circle']
                 except:
                     appendthis = [row['id'],'data_label',l,0,0,'','']
                 limit_data.append(appendthis)
@@ -39,9 +59,10 @@ def parse_series_and_values(limits_dataframe_in):
     ## a new column was created called id
     
     limit_data_df_out = pd.DataFrame(
-        data=limit_data,columns=['id','data_label','trace_id','trace_name',
-                                 'raw_x','raw_y','line_color','symbol_color',
-                                 'fill_color','line', 'symbol'])
+        data=limit_data,columns=['id','data_label','trace_id','trace_name', 'year','experiment',
+                                  'spin_dependency','result_type','official',
+                                  'raw_x','raw_y','line_color','symbol_color',
+                                  'fill_color','line', 'symbol'])
     limit_data_df_out['masses'] = limit_data_df_out['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
     limit_data_df_out['cross_sections'] = limit_data_df_out['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
     limit_data_df_out = limit_data_df_out.rename(columns={"id": "limit_id" })
@@ -51,7 +72,7 @@ def parse_series_and_values(limits_dataframe_in):
     
     #columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
 
-    limit_list_df_out = limit_data_df_out[['limit_id','data_label']].copy()
+    limit_list_df_out = limit_data_df_out[['limit_id','data_label','year','experiment','spin_dependency','result_type','official']].copy()
     limit_list_df_out.drop_duplicates(inplace=True)
     limit_list_df_out = limit_list_df_out.reset_index()
     limit_list_df_out['id'] = limit_list_df_out.index
