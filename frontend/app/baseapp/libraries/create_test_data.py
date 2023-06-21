@@ -101,7 +101,7 @@ with engine.begin() as connection:
 ## Greatest Hits
 
 df = pd.DataFrame({
-    'variable' : ['greatest_hits','greatest_hits','greatest_hits'],
+    'variable' : ['greatest_hit','greatest_hit','greatest_hit'],
     'label' : ['All', 'No', 'Yes'],
     'value' : ['-1', '0', '1'],
     'data_type' : ['boolean', 'boolean','boolean']
