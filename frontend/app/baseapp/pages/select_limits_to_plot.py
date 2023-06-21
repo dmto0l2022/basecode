@@ -364,6 +364,7 @@ def update_graphs(
     except:
         all_filters_df = pd.DataFrame()
 
+    print('sltp : all filters >>>>> ', all_filters_df)
     ## boolean filters
     #   dashdataandtables.official_df.loc[derived_virtual_selected_rows_official]
     #   dashdataandtables.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit]
