@@ -84,10 +84,10 @@ class DashDataAndTables():
         
         self.result_types_df.reset_index(drop=True, inplace=True)
         
-        self.spin_dependence_df  = \
+        self.spin_dependency_df  = \
             self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='spin_dependence'].copy()
         
-        self.spin_dependence_df.reset_index(drop=True, inplace=True)
+        self.spin_dependency_df.reset_index(drop=True, inplace=True)
         
         self.greatest_hit_df = \
             self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='greatest_hit'].copy()
