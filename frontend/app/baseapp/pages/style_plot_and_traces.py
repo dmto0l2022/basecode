@@ -231,13 +231,15 @@ def display_page(pathname,search,href):
     original_search_string = search
     just_list = original_search_string.split('=')
     o = urlparse(href)
-    qs = parse_qs(o.query)
+    just_list = o.query.split('=')[1]
+    list_of_limits = just_list.split('|')
     return html.Div([
         dcc.Input(id='input', value='hello world'),
         html.Div(children=pathname, id='pathname'),
         html.Div(children=search, id='search'),
         html.Div(children=href, id='href'),
-        html.Div(children=o.query, id='params')
+        html.Div(children=o.query, id='params'),
+        html.Div(children=list_of_limits, id='lol'),
     ])
 
 
