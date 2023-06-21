@@ -64,7 +64,7 @@ with engine.connect() as con:
 
 ## Years
 
-range_values = list(range(2000,2024))
+range_values = list(range(2000,2030))
 variable_type = 'year'
 data_type = 'number'
 dropdown_values = []
