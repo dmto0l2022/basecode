@@ -53,7 +53,7 @@ new_limits_table = dash_table.DataTable(
                      {'name': 'data_reference', 'id': 'data_reference'},
                      {'name': 'data_label', 'id': 'data_label'},
                      {'name': 'experiment', 'id': 'experiment'},
-                     {'name': 'spin_dependency', 'id': 'spin_dependency'},
+                     {'name': 'spin_dependence', 'id': 'spin_dependence'},
                      {'name': 'result_type', 'id': 'result_type'},
                      {'name': 'year', 'id': 'year'},
                      {'name': 'greatest_hit', 'id': 'greatest_hit'},
@@ -89,7 +89,7 @@ new_limits_table = dash_table.DataTable(
                         'width': '35%'},
                         {'if': {'column_id': 'experiment'},
                              'width': '5%'},
-                        {'if': {'column_id': 'spin_dependency'},
+                        {'if': {'column_id': 'spin_dependence'},
                              'width': '5%'},
                         {'if': {'column_id': 'result_type'},
                              'width': '5%'},
@@ -197,7 +197,7 @@ row1 =  dbc.Row([
             ),
         dbc.Col(
             [
-                dashdataandtables.spin_dependency_table
+                dashdataandtables.spin_dependence_table
             ],
             width=2,
             ),
@@ -325,8 +325,8 @@ layout = layout4
     Input('result_types_table', 'active_cell'),
     Input('result_types_table', 'derived_virtual_selected_rows'),
     #
-    Input('spin_dependency_table', 'active_cell'),
-    Input('spin_dependency_table', 'derived_virtual_selected_rows'),
+    Input('spin_dependence_table', 'active_cell'),
+    Input('spin_dependence_table', 'derived_virtual_selected_rows'),
     #
     Input('greatest_hit_table', 'active_cell'),
     Input('greatest_hit_table', 'derived_virtual_selected_rows'),
@@ -344,7 +344,7 @@ def update_graphs(
     active_cell_resulttypes,
     derived_virtual_selected_rows_result_types,
     #
-    active_cell_spin_dependency,
+    active_cell_spin_dependence,
     derived_virtual_selected_rows_spin_dependence,
     #
     active_cell_greatest_hit,
