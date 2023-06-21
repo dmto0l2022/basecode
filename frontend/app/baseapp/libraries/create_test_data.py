@@ -111,7 +111,7 @@ with engine.begin() as connection:
     df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
 
 ## Experiments
-
+'''
 df = pd.DataFrame({
     'variable' : ['experiment','experiment', 'experiment', 'experiment', 'experiment','experiment','experiment'],
     'label' : ['All', 'Experiment DMTOOL', 'Experiment D',\
@@ -120,6 +120,32 @@ df = pd.DataFrame({
                'Experiment M', 'Experiment T', 'Experiment O', 'Experiment L'],
     'data_type' : ['text', 'text','text','text', 'text','text','text']
 })
+'''
+
+experiments_list = [
+"CDMS I (SUF)","CDMS II (Soudan)","SuperCDMS","LUX","XENON10",
+"XENON100","XENON1T","ZEPLIN I","ZEPLIN II","ZEPLIN III","ZEPLIN IV",
+"COSME","CUORICINO","DAMA","KIMS DMRC","ELEGANT V","Edelweiss",
+"GEDEON","Genius","Genino","Heidelberg","IGEX","KIMS","MIBETA",
+"Modane NaI","NAIAD","PICASSO","ROSEBUD","SIMPLE","Saclay",
+"SuperK","TOKYO","UKDMC","WARP","Theory","Heidelberg-Moscow",
+"Cuore","DAMA Xe","TEXONO","XMASS","IceCube","DMTPC","DEAP CLEAN",
+"DAMA/LIBRA","CoGeNT","COUPP","LUX-ZEPLIN","Fermi","DarkSide","DAMIC",
+"EURECA","DEAP-3600","PICO","PandaX","LHC","DRIFT","GAMBIT",
+"CDEX-10","NEWS-G","XENONnT","CRESST"
+]
+
+experiment_list_length = len(experiments_list)
+variable_list = ['experiment'] * experiment_list_length
+data_type_list = ['text'] * experiment_list_length
+
+df = pd.DataFrame({
+    'variable' : variable_list,
+    'label' : experiments_list,
+    'value' : experiments_list,
+    'data_type' : data_type_list
+})
+
 
 with engine.begin() as connection:
     df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
