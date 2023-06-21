@@ -18,6 +18,7 @@ def parse_series_and_values(limits_dataframe_in):
         spin_dependency = row[['spin_dependency']].iloc[0]
         result_type = row[['result_type']].iloc[0]
         official = row[['official']].iloc[0]
+        greatest_hit = row[['greatest_hit']].iloc[0]
         data_string = row[['data_values']].iloc[0]
         data_string = data_string.replace("{[", "")
         data_string = data_string.replace("]}", "")
@@ -60,7 +61,7 @@ def parse_series_and_values(limits_dataframe_in):
     
     limit_data_df_out = pd.DataFrame(
         data=limit_data,columns=['id','data_label','trace_id','trace_name', 'year','experiment',
-                                  'spin_dependency','result_type','official',
+                                  'spin_dependency','result_type','official','greatest_hit',
                                   'raw_x','raw_y','line_color','symbol_color',
                                   'fill_color','line', 'symbol'])
     limit_data_df_out['masses'] = limit_data_df_out['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
@@ -72,7 +73,7 @@ def parse_series_and_values(limits_dataframe_in):
     
     #columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
 
-    limit_list_df_out = limit_data_df_out[['limit_id','data_label','year','experiment','spin_dependency','result_type','official']].copy()
+    limit_list_df_out = limit_data_df_out[['limit_id','data_label','year','experiment','spin_dependency','result_type','official','greatest_hit']].copy()
     limit_list_df_out.drop_duplicates(inplace=True)
     limit_list_df_out = limit_list_df_out.reset_index()
     limit_list_df_out['id'] = limit_list_df_out.index
@@ -108,8 +109,8 @@ def GetLimit(limit_id_in):
 
     
     if response_data_frame.empty:
-        limit_columns = ['id','limit_id','data_label']
-        limit_empty_data = [['id','limit_id','data_label']]
+        limit_columns = ['id','limit_id','data_label','year','experiment','spin_dependency','result_type','official','greatest_hit']
+        limit_empty_data = [['id','limit_id','data_label','year','experiment','spin_dependency','result_type','official','greatest_hit']]
         trace_columns = ['id','limit_id','data_label','trace_id','trace_name',
                          'line_color','symbol_color','fill_color','line','symbol']
         trace_empty_data = [['id','limit_id','data_label','trace_id','trace_name','color']]
