@@ -85,7 +85,7 @@ class DashDataAndTables():
         self.result_types_df.reset_index(drop=True, inplace=True)
         
         self.spin_dependency_df  = \
-            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='spin_dependence'].copy()
+            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='spin_dependency'].copy()
         
         self.spin_dependency_df.reset_index(drop=True, inplace=True)
         
