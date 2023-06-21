@@ -492,7 +492,7 @@ def button_click(button1,button2,button3):
     elif "list_button_select_limits_to_plot_id" == prop_id:
         #msg = "Button 3 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
-        href_return = '/app/baseapp/select_limits_to_plot'
+        #href_return = '/app/baseapp/select_limits_to_plot'
         href_return = '/app/baseapp/style_plot_and_traces?limit_id=[1,2]'
         return [href_return,'?limit_id=[1,2]']
     else:
