@@ -39,6 +39,7 @@ dashdataandtables = adt.DashDataAndTables()
 
 all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
 
+print('all_limit_list_dict >>>>>>>>> ' , all_limit_list_dict)
 
 table_heights = 120
 
