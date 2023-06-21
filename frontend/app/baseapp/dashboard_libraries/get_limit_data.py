@@ -32,7 +32,7 @@ def parse_series_and_values(limits_dataframe_in):
                     appendthis = [row['id'],'data_label',l,0,0,'','']
                 limit_data.append(appendthis)
         #lol
-    print('parsed limit data >>>>',limit_data) 
+    #print('parsed limit data >>>>',limit_data) 
     
     ## the datatable needed a unique id
     ## the id of the limit table was renamed to limit_id
