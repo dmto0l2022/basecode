@@ -209,6 +209,15 @@ layout2 = html.Div([twocolumns],
 #layout = style_plot_and_traces_form_form
 layout = layout2
 
+@callback(Output('page-content', 'children'),
+             [Input('url', 'pathname')])
+def display_page(pathname):
+    if pathname == 'app/baseapp/pages/style_plot_and_traces':
+         return dbc.Row([html.P(children='List of limits appear here',id='limit_list')])
+    else:
+        return '404'
+
+
 @callback(
     [Output("graph_out_id","figure"),Output("legend_out_id","figure"),],
     [Input('format_table_id', 'data')],
