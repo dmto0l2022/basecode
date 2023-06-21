@@ -355,7 +355,6 @@ def update_graphs(
     try:
         dfs = [
             dashdataandtables.years_df.loc[derived_virtual_selected_rows_years],
-            dashdataandtables.limit_types_df.loc[derived_virtual_selected_rows_official],
             dashdataandtables.experiments_df.loc[derived_virtual_selected_rows_experiments],
             dashdataandtables.result_types_df.loc[derived_virtual_selected_rows_result_types],
             dashdataandtables.spin_dependence_df.loc[derived_virtual_selected_rows_spin_dependence]
@@ -366,8 +365,7 @@ def update_graphs(
         all_filters_df = pd.DataFrame()
 
     ## boolean filters
-    #
-    #   dashdataandtables.official_df.loc[derived_virtual_selected_rows_greatest_hit]
+    #   dashdataandtables.official_df.loc[derived_virtual_selected_rows_official]
     #   dashdataandtables.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit]
             
     # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
