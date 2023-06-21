@@ -249,7 +249,7 @@ row3_1_debug = dbc.Row([dbc.Col(
 
 row3_2 = dbc.Row([dbc.Col(
             [
-                dashdataandtables.plots_table
+                 limits_to_plot_table
             ],
             width=10,),
                ],className ="TABLE_ROW NOPADDING")
