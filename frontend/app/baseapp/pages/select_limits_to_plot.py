@@ -39,6 +39,11 @@ dash.register_page(__name__, path='/select_limits_to_plot')
 
 all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
 
+
+table_heights = 120
+
+style_header_var={ 'backgroundColor': 'black','color': 'white'}
+
 limits_table = dash_table.DataTable(
             id='limits_table_main',
             data=all_limit_list_dict,
