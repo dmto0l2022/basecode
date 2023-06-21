@@ -208,6 +208,18 @@ layout2 = html.Div([twocolumns],
 
 #layout = style_plot_and_traces_form_form
 #layout = layout2
+'''
+@app.callback(Output('content', 'children'),
+              [Input('url', 'href')])
+def _content(href: str):
+    f = furl(href)
+    param1= f.args['param1']
+    param2= f.args['param2']
+
+    return html.H1(children=param1: {param1} param2: {param2}' )
+'''
+
+'''
 def layout(limit_id_parameter=None, **other_unknown_query_strings):
     return html.Div(
 	children=[
@@ -218,27 +230,27 @@ def layout(limit_id_parameter=None, **other_unknown_query_strings):
 	    '''),
 
 	])
-
-
 '''
+
+
 layout = html.Div([
     dcc.Location(id='url'),
     html.Div(id='layout-div'),
     html.Div(id='content')
 ])
 
-@callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'searchdata')])
-def display_page(pathname,search,searchdata):
+@callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'href')])
+def display_page(pathname,search,href):
     original_search_string = search
     just_list = original_search_string.split('=')
     return html.Div([
         dcc.Input(id='input', value='hello world'),
         html.Div(children=pathname, id='pathname'),
         html.Div(children=search, id='search'),
-        html.Div(children=searchdata, id='searchdata')
+        html.Div(children=searchdata, id='href')
     ])
 
-'''
+
 
 '''
 
