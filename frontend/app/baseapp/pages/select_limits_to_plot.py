@@ -30,12 +30,123 @@ palette = cycle(px.colors.qualitative.Bold)
 
 from app.baseapp.dashboard_libraries import all_data_tables as adt
 
+from app.baseapp.dashboard_libraries import get_limit_data as gld
+
 dash.register_page(__name__, path='/select_limits_to_plot')
 
 #from dashboard_libraries import all_data_tables as adt
-dashdataandtables = adt.DashDataAndTables()
+## dashdataandtables = adt.DashDataAndTables()
 
-dashdataandtables.limits_table_df.set_index('id', inplace=True, drop=False)
+all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
+
+limits_table = dash_table.DataTable(
+            id='limits_table_main',
+            data=all_limit_list_dict,
+            columns=[{'name': 'id', 'id': 'id'},
+                     {'name': 'limit_id', 'id': 'limit_id'},
+                     {'name': 'data_reference', 'id': 'data_reference'},
+                     {'name': 'data_label', 'id': 'data_label'},
+                     #{'name': 'experiment', 'id': 'experiment'},
+                     #{'name': 'spin_dependency', 'id': 'spin_dependency'},
+                     #{'name': 'result_type', 'id': 'result_type'},
+                     #{'name': 'year', 'id': 'year'},
+                     ],
+            #fixed_rows={'headers': True},
+            page_size=5,
+            filter_action='none',
+            #row_selectable='multi',
+            #selected_rows=[],
+            style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
+                    'overflow': 'hidden',
+                    'textOverflow': 'ellipsis',
+                },
+            css=[{
+                'selector': '.dash-spreadsheet td div',
+                'rule': '''
+                    line-height: 15px;
+                    max-height: 45px; min-height:30px; height: 30px;
+                    display: block;
+                    overflow-y: hidden;
+                '''
+            }],
+            style_table={'height': '25vh',},
+            style_cell_conditional=[
+                {'if': {'column_id': 'id'},
+                 'width': '5%'},
+                {'if': {'column_id': 'data_reference'},
+                 'width': '20%'},
+                {'if': {'column_id': 'data_label'},
+                 'width': '35%'},
+            ],
+            style_data={
+                'whiteSpace': 'normal',
+                'height': 'auto',
+            },
+            style_header=style_header_var,
+            #tooltip_data=[
+            #    {
+            #        column: {'value': str(value), 'type': 'markdown'}
+            #        for column, value in row.items()
+            #    } for row in data
+            #],
+            tooltip_duration=None,
+        )
+
+limits_to_plot_df = pd.DataFrame(data=None, columns=['id','plot_id','limit_id','data_reference','data_label'])
+
+limits_to_plot_table = dash_table.DataTable(
+    id='limits_to_plot_table',
+    data=limits_to_plot_df.to_dict('records'),
+    columns=[{'name': 'id', 'id': 'id'},
+             {'name': 'plot_id', 'id': 'plot_id'},
+             {'name': 'limit_id', 'id': 'limit_id'},
+             {'name': 'data_reference', 'id': 'data_reference'},
+             {'name': 'data_label', 'id': 'data_label'}
+             ],
+    #fixed_rows={'headers': True},
+    page_size=4,
+    style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
+            'overflow': 'hidden',
+            'textOverflow': 'ellipsis',
+        },
+    css=[{
+        'selector': '.dash-spreadsheet td div',
+        'rule': '''
+            line-height: 15px;
+            max-height: 45px; min-height:30px; height: 30px;
+            display: block;
+            overflow-y: hidden;
+        '''
+    }],
+    #sort_action='native',
+    #sort_mode='multi',
+    #sort_as_null=['', 'No'],
+    #sort_by=[{'column_id': 'expid', 'direction': 'desc'}],
+    filter_action='none',
+    row_deletable=True,
+    #row_selectable='multi',
+    #selected_rows=[],
+    style_table={'height': '25vh',},
+    style_cell_conditional=[
+        {'if': {'column_id': 'id'},
+         'width': '5%'},
+        {'if': {'column_id': 'plot_id'},
+         'width': '5%'},
+        {'if': {'column_id': 'limit_id'},
+         'width': '5%'},
+        {'if': {'column_id': 'data_reference'},
+         'width': '20%'},
+        {'if': {'column_id': 'data_label'},
+         'width': '35%'},
+    ],
+    style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+    },
+    style_header=style_header_var,
+)
+
+#dashdataandtables.limits_table_df.set_index('id', inplace=True, drop=False)
 #dashdataandtables.limits_table_df['expid'] = dashdataandtables.limits_table_df['limit_id'] 
 #dashdataandtables.limits_table_df
 
@@ -83,7 +194,7 @@ row1 =  dbc.Row([
 
 row2 = dbc.Row([dbc.Col(
             [
-                dashdataandtables.limits_table
+                limits_table
             ],
             width=12,),
                ])
@@ -99,7 +210,7 @@ row2_debug = dbc.Row([dbc.Col(
 
 row3_1 = dbc.Row([dbc.Col(
             [
-                dashdataandtables.limits_table
+                limits_table
             ],
             width=10,),
                ], className ="TABLE_ROW NOPADDING")
@@ -259,9 +370,9 @@ def update_graphs(
 
 
 @callback(
-    Output('plots_table', 'data'),
-    [Input('limits_table_main', 'active_cell'),Input('plots_table', 'active_cell')],
-    [State('plots_table', 'data')])
+    Output('limits_to_plot_table', 'data'),
+    [Input('limits_table_main', 'active_cell'),Input('limits_to_plot_table', 'active_cell')],
+    [State('limits_to_plot_table', 'data')])
 def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     ctx = dash.callback_context
     triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
@@ -269,9 +380,9 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     if triggered_id == 'limits_table_main':
 
         selected_rowid = active_cell_exp['row_id']
-        selected_row = dashdataandtables.\
-                limits_table_df[dashdataandtables.limits_table_df['id']==active_cell_exp['row_id']]
-        selected_row  = selected_row[['id','data_reference','data_reference','data_label']]
+        selected_row = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
+        selected_row  = selected_row[['id','limit_id','data_reference','data_label']]
+        selected_row['plot_id'] = 'plot_id here'
         #data_out=plots_todo_df.to_dict("records")
         record=selected_row.to_dict("records")[0]
         #print(type(record))
