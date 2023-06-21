@@ -199,13 +199,13 @@ class DashDataAndTables():
             #}
         )
 
-        self.lofficial_table = dash_table.DataTable(
-            id='limit_types_table',
+        self.official_table = dash_table.DataTable(
+            id='official_table',
             columns=[
                 {'name': 'Official', 'id': 'label', 'type': 'boolean'},
             ],
             data=self.official_df.to_dict('records'),
-           filter_action='none',
+            filter_action='none',
             row_selectable='multi',
             #page_size=5,
             style_cell_conditional=[
