@@ -233,7 +233,7 @@ def display_page(pathname,search,href):
         dcc.Input(id='input', value='hello world'),
         html.Div(children=pathname, id='pathname'),
         html.Div(children=search, id='search'),
-        html.Div(children=searchdata, id='href')
+        html.Div(children=href, id='href')
     ])
 
 
