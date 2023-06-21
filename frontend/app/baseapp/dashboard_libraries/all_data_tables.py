@@ -43,11 +43,11 @@ class DashDataAndTables():
         self.limits_metadata_df = None
         self.limits_traces_df = None
         self.limits_data_df = None
-        self.limit_types_df = None
+        self.official_df = None
         self.years_df = None
         
         self.years_table = None
-        self.limit_types_table = None
+        self.official_table = None
         self.experiments_table = None
         self.result_types_table = None
         self.spin_dependency_table = None
@@ -94,8 +94,8 @@ class DashDataAndTables():
         
         self.greatest_hit_df.reset_index(drop=True, inplace=True)
         
-        self.limit_types_df = \
-            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='limit_type'].copy()
+        self.official_df = \
+            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='official'].copy()
         
         self.limit_types_df.reset_index(drop=True, inplace=True)
         
@@ -199,12 +199,12 @@ class DashDataAndTables():
             #}
         )
 
-        self.limit_types_table = dash_table.DataTable(
+        self.lofficial_table = dash_table.DataTable(
             id='limit_types_table',
             columns=[
-                {'name': 'Limit Type', 'id': 'label', 'type': 'text'},
+                {'name': 'Official', 'id': 'label', 'type': 'boolean'},
             ],
-            data=self.limit_types_df.to_dict('records'),
+            data=self.official_df.to_dict('records'),
            filter_action='none',
             row_selectable='multi',
             #page_size=5,
