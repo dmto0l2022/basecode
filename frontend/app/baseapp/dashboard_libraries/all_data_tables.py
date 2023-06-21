@@ -247,7 +247,7 @@ class DashDataAndTables():
             row_selectable='multi',
             #page_size=5,
             style_cell_conditional=[
-                {'if': {'column_id': 'Experiment'},
+                {'if': {'column_id': 'label'},
                  'width': '90%'},
             ],
             fixed_rows={'headers': True},
@@ -283,7 +283,7 @@ class DashDataAndTables():
             row_selectable='multi',
             #page_size=5,
             style_cell_conditional=[
-                {'if': {'column_id': 'ResultType'},
+                {'if': {'column_id': 'label'},
                  'width': '90%'},
             ],
             style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
@@ -316,12 +316,12 @@ class DashDataAndTables():
             columns=[
                 {'name': 'spin_dependency', 'id': 'label', 'type': 'text'},
             ],
-            data=self.spin_dependence_df.to_dict('records'),
+            data=self.spin_dependency_df.to_dict('records'),
             filter_action='none',
             row_selectable='multi',
             #page_size=5,
             style_cell_conditional=[
-                {'if': {'column_id': 'SpinDependency'},
+                {'if': {'column_id': 'label'},
                  'width': '90%'},
             ],
             style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
@@ -361,7 +361,7 @@ class DashDataAndTables():
             row_selectable='multi',
             selected_rows=[],
             style_cell_conditional=[
-                {'if': {'column_id': 'GreatestHit'},
+                {'if': {'column_id': 'label'},
                  'width': '90%'},
             ],
             style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
