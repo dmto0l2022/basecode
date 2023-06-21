@@ -121,7 +121,7 @@ style_header_var={ 'backgroundColor': 'black','color': 'white'}
 limits_to_plot_table = dash_table.DataTable(
     id='limits_to_plot_table',
     data=limits_to_plot_df.to_dict('records'),
-    columns=[{'name': 'id', 'id': 'id'}
+    columns=[{'name': 'id', 'id': 'id'},
              {'name': 'limit_id', 'id': 'limit_id'},
              {'name': 'plot_id', 'id': 'plot_id'},
              {'name': 'data_reference', 'id': 'data_reference'},
