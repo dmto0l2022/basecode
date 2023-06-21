@@ -358,14 +358,18 @@ def update_graphs(
             dashdataandtables.limit_types_df.loc[derived_virtual_selected_rows_official],
             dashdataandtables.experiments_df.loc[derived_virtual_selected_rows_experiments],
             dashdataandtables.result_types_df.loc[derived_virtual_selected_rows_result_types],
-            dashdataandtables.spin_dependence_df.loc[derived_virtual_selected_rows_spin_dependence],
-            dashdataandtables.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit]
+            dashdataandtables.spin_dependence_df.loc[derived_virtual_selected_rows_spin_dependence]
         ]
         non_empty_dfs = [df for df in dfs if not df.empty]
         all_filters_df = pd.concat(non_empty_dfs)
     except:
         all_filters_df = pd.DataFrame()
-    
+
+    ## boolean filters
+    #
+    #   dashdataandtables.official_df.loc[derived_virtual_selected_rows_greatest_hit]
+    #   dashdataandtables.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit]
+            
     # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
     
     unfiltered_df = all_limit_list_df.copy()
