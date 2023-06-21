@@ -208,7 +208,19 @@ layout2 = html.Div([twocolumns],
 
 #layout = style_plot_and_traces_form_form
 #layout = layout2
+def layout(limit_id_parameter=None, **other_unknown_query_strings):
+    return html.Div(
+	children=[
+	    html.H1(children='This is our Archive page'),
 
+	    html.Div(children=f'''
+	        This is limit id: {limit_id_parameter}.
+	    '''),
+
+	])
+
+
+'''
 layout = html.Div([
     dcc.Location(id='url'),
     html.Div(id='layout-div'),
@@ -226,7 +238,9 @@ def display_page(pathname,search,searchdata):
         html.Div(children=searchdata, id='searchdata')
     ])
 
+'''
 
+'''
 
 @callback(
     [Output("graph_out_id","figure"),Output("legend_out_id","figure"),],
@@ -262,3 +276,4 @@ def button_click(button1,button2):
         href_return = dash.page_registry['pages.home']['path']
         return href_return
 
+'''
