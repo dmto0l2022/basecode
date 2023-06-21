@@ -386,11 +386,11 @@ def update_graphs(
         for index, row in all_filters_df.iterrows():
             #print(row['variable'], row['value'])
             matching_records = unfiltered_df[unfiltered_df['experiment'] == 'empty']
-            if row['variable'] == 'number':
+            if row['data_type'] == 'number':
                 matching_records = unfiltered_df[unfiltered_df[row['variable']] == int(row['value'])]
-            elif row['variable'] == 'text':
+            elif row['data_type'] == 'text':
                 matching_records = unfiltered_df[unfiltered_df[row['variable']] == row['value']]
-            elif row['variable'] == 'boolean':
+            elif row['data_type'] == 'boolean':
                 if row['value'] == 1:
                     matching_records = unfiltered_df[unfiltered_df[row['variable']] == True]
             else:
