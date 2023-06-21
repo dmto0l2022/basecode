@@ -288,8 +288,10 @@ layout4 = html.Div([dcc.Location(id="url", refresh=True),
                    className="container-fluid MASTER_CONTAINER_STYLE",
                   )
 
-layout = layout4
+#layout = layout4
+layout = row3_1
 
+'''
 @callback(
     Output('limits_table_main', 'data'),
     #Output('debug_dropdown_table', 'data'),
@@ -451,6 +453,7 @@ def button_click(button1,button2):
     else:
         href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
+'''
 
 #############################
 '''
