@@ -207,15 +207,21 @@ layout2 = html.Div([twocolumns],
 
 
 #layout = style_plot_and_traces_form_form
-layout = layout2
+#layout = layout2
 
-@callback(Output('page-content', 'children'),
-             [Input('url', 'pathname')])
+layout = html.Div([
+    dcc.Location(id='url'),
+    html.Div(id='layout-div'),
+    html.Div(id='content')
+])
+
+@callback(Output('content', 'children'), Input('url', 'pathname'))
 def display_page(pathname):
-    if pathname == 'app/baseapp/pages/style_plot_and_traces':
-         return dbc.Row([html.P(children='List of limits appear here',id='limit_list')])
-    else:
-        return '404'
+    return html.Div([
+        dcc.Input(id='input', value='hello world'),
+        html.Div(children=pathname, id='output')
+    ])
+
 
 
 @callback(
