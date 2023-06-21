@@ -79,6 +79,8 @@ new_limits_table = dash_table.DataTable(
             style_cell_conditional=[
                 {'if': {'column_id': 'id'},
                  'width': '5%'},
+                {'if': {'column_id': 'limit_id'},
+                 'width': '5%'},
                 {'if': {'column_id': 'data_reference'},
                  'width': '20%'},
                 {'if': {'column_id': 'data_label'},
