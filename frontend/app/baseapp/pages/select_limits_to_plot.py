@@ -57,6 +57,7 @@ new_limits_table = dash_table.DataTable(
                      {'name': 'result_type', 'id': 'result_type'},
                      {'name': 'year', 'id': 'year'},
                      {'name': 'greatest_hit', 'id': 'greatest_hit'},
+                     {'name': 'official', 'id': 'official'},
                      ],
             #fixed_rows={'headers': True},
             page_size=5,
@@ -95,6 +96,8 @@ new_limits_table = dash_table.DataTable(
                         {'if': {'column_id': 'year'},
                              'width': '5%'},
                         {'if': {'column_id': 'greatest_hit'},
+                             'width': '5%'},
+                        {'if': {'column_id': 'official'},
                              'width': '5%'},
             ],
             style_data={
@@ -176,7 +179,7 @@ limits_to_plot_table = dash_table.DataTable(
 row1 =  dbc.Row([
         dbc.Col(
             [
-                dashdataandtables.limit_types_table
+                dashdataandtables.official_table
             ],
             width=2,
             ),
@@ -313,8 +316,8 @@ layout = layout4
     Input('years_table', 'active_cell'),
     Input('years_table', 'derived_virtual_selected_rows'),
     #
-    Input('limit_types_table', 'active_cell'),
-    Input('limit_types_table', 'derived_virtual_selected_rows'),
+    Input('official_table', 'active_cell'),
+    Input('official_table', 'derived_virtual_selected_rows'),
     #
     Input('experiments_table', 'active_cell'),
     Input('experiments_table', 'derived_virtual_selected_rows'),
@@ -332,8 +335,8 @@ def update_graphs(
     active_cell_years,
     derived_virtual_selected_rows_years,
     #
-    active_cell_limit_types,
-    derived_virtual_selected_rows_limit_types,
+    active_cell_official,
+    derived_virtual_selected_rows_official,
     #
     active_cell_experiments,
     derived_virtual_selected_rows_experiments,
@@ -352,7 +355,7 @@ def update_graphs(
     try:
         dfs = [
             dashdataandtables.years_df.loc[derived_virtual_selected_rows_years],
-            dashdataandtables.limit_types_df.loc[derived_virtual_selected_rows_limit_types],
+            dashdataandtables.limit_types_df.loc[derived_virtual_selected_rows_official],
             dashdataandtables.experiments_df.loc[derived_virtual_selected_rows_experiments],
             dashdataandtables.result_types_df.loc[derived_virtual_selected_rows_result_types],
             dashdataandtables.spin_dependence_df.loc[derived_virtual_selected_rows_spin_dependence],
