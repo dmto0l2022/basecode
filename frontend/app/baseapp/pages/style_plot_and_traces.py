@@ -203,9 +203,11 @@ def display_page(pathname,search,href):
     original_search_string = search
     just_list = original_search_string.split('=')
     o = urlparse(href)
+    print("query>>>>" ,o.query)
     
     try:
         just_list = o.query.split('=')[1]
+        print("just_list >>>>>>",just_list)
         list_of_limits_str = just_list.split('|')
         list_of_limits_int = []
         for l in list_of_limits_str:
