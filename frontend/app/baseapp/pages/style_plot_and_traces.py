@@ -137,7 +137,7 @@ def create_layout(limits_in):
     
     two_columns =  html.Div(className="row g-0 ALL_ROW NOPADDING",
                            children=[
-                                    dcc.Location(id='url'),
+                                    dcc.Location(id='url',refresh=False),
                                     column_chart,
                                     style_and_legend_column,
                                     row_of_buttons,
