@@ -1,5 +1,7 @@
 from dash import Dash, html, Input, Output, ctx, callback
 
+import dash
+
 dash.register_page(__name__, path='/which_button')
 
 layout = html.Div([
