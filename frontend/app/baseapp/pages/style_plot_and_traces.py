@@ -146,19 +146,13 @@ row_of_buttons = html.Div([
         html.Button('Cancel', id='btn-nclicks-3_1', n_clicks=0),
         html.Div(id='container-button-timestamp_1')
     ])
-
-next_button =  html.Div(dbc.Button('Next',  id='unique_next_button_id',n_clicks=0, color='secondary'), className = 'FORM_CANCEL_BUTN')
-    
-cancel_button =  html.Div(dbc.Button('Cancel',  id='unique_cancel_button_id',n_clicks=0, color='secondary'), className = 'FORM_CANCEL_BUTN')
-   
+  
 
 layout = html.Div([
     dcc.Location(id='url',refresh=True),
     html.Div(id='layout-div'),
     html.Div(id='content',children=create_layout(default_limits)),
     row_of_buttons,
-    next_button,
-    cancel_button,
     html.Div(id='button_presses',children='button here')
 ])
 
