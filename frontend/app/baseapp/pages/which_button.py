@@ -17,10 +17,11 @@ layout = html.Div([
 )
 def displayClick(btn1, btn2, btn3):
     msg = "None of the buttons have been clicked yet"
-    if "btn-nclicks-1" == ctx.triggered_id:
+    prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
+    if "btn-nclicks-1" == prop_id:
         msg = "Button 1 was most recently clicked"
-    elif "btn-nclicks-2" == ctx.triggered_id:
+    elif "btn-nclicks-2" == prop_id:
         msg = "Button 2 was most recently clicked"
-    elif "btn-nclicks-3" == ctx.triggered_id:
+    elif "btn-nclicks-3" == prop_id:
         msg = "Button 3 was most recently clicked"
     return html.Div(msg)
