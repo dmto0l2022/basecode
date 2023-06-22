@@ -238,13 +238,13 @@ def update_output(table_data, table_data_in):
     [
     Input("style_plot_and_traces_next_button_id", "n_clicks"),
     Input("style_plot_and_traces_cancel_button_id", "n_clicks"),
-        Input('url', 'href')
         ],
         prevent_initial_call=True
 )
-def button_click(button1,button2,href_in):
+def button_click(button1,button2):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+    print('button click callback>>>>>>>>>>',prop_id)
     #msg = prop_id
     if "style_plot_and_traces_next_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
@@ -254,8 +254,6 @@ def button_click(button1,button2,href_in):
         #msg = "Button 2 was most recently clicked"
         href_return = '/app/baseapp/homepage'
         return href_return
-    else:
-        return href_in
 
 
 '''
