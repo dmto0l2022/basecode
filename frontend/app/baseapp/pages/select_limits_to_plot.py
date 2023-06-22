@@ -483,11 +483,11 @@ def button_click(button1,button2,button3,plot_table_in):
     plots_to_do_df = pd.DataFrame.from_dict(plot_table_in)
     plots_to_do_df['all'] = 'all'
     limits_to_plot = plots_to_do_df[['limit_id','all']]
-    
-    
-    limits_to_plot['text'] = limits_to_plot[['all']].groupby(['all'])['limit_id'].transform(lambda x: ','.join(x))
-            
     print('limits_to_plot >>>>>>', limits_to_plot)
+    
+    #limits_to_plot['text'] = limits_to_plot[['all']].groupby(['all'])['limit_id'].transform(lambda x: ','.join(x))
+            
+    
             
     #msg = prop_id
     if "next_button_select_limits_to_plot_id" == prop_id :
