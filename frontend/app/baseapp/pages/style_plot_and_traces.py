@@ -44,72 +44,14 @@ from app.baseapp.dashboard_libraries import scaling as sc
 #sf
 
 ####################################
-
-from app.baseapp.dashboard_libraries import get_limit_data as gld
-
-default_limits = [45]
-
-def get_plotid():
-    plotid_datetime = datetime.now()
-    plotid = plotid_datetime.strftime('%Y%m%d%H%M%S%f%z')
-    return plotid
-
-####################################
-
-# colors
-palette = cycle(px.colors.qualitative.Bold)
-#palette = cycle(['black', 'grey', 'red', 'blue'])
-
-#####################################
-
-## create plot series
-
-all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
-
 from app.baseapp.dashboard_libraries import formattingtable as ft
-
-default_traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(default_limits)].copy()
-
-default_styledatatable = ft.CreateFormatTable(default_traces)
-
-#limits_to_plot = all_limit_list_df[all_limit_list_df['limit_id'].isin(default_limits)].copy()
-
 from app.baseapp.dashboard_libraries import createlegend as cl
-
-default_legend_fig = cl.CreateLegendFig(default_limits,all_trace_list_df)
-
-default_legend_out_graph = dcc.Graph(figure=default_legend_fig,id='legend_out_id',
-                             style={'width': '100%', 'height': '100%'})
-
 from app.baseapp.dashboard_libraries import updatelegend as ul
 from app.baseapp.dashboard_libraries import getstyleandlegend as gsal
-
-default_styleandlegendcolumn = gsal.GetStyleAndLegendColumn(default_styledatatable,default_legend_out_graph)
-
 from app.baseapp.dashboard_libraries import creategraph as cg
-
-rowofbuttons = html.Div([
-    html.Button('Save', id='btn-nclicks-1', n_clicks=0),
-    html.Button('Revert', id='btn-nclicks-2', n_clicks=0),
-    html.Button('Cancel', id='btn-nclicks-3', n_clicks=0),
-    html.Div(id='container-button-timestamp')
-])
-
-
-
-## all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict
-
-default_graph_fig = cg.CreateGraph(default_limits, all_trace_list_df, all_limit_data_df)
-
 from app.baseapp.dashboard_libraries import updategraph as ug
 
-default_graph_out = dcc.Graph(figure=default_graph_fig,id='graph_out_id',
-                            config=dict(responsive=True),
-                            className='h-100'
-                            #style={'width': '100%', 'height': '100%'}
-                           )
-
-chart_in = default_graph_out
+####################################
 
 def GetChart(chart_in):
 
@@ -126,56 +68,92 @@ def GetChart(chart_in):
             )
     return column_chart_out
 
-default_column_chart = GetChart(chart_in)
+###########
+from app.baseapp.dashboard_libraries import get_limit_data as gld
 
+##############################################
+def get_plotid():
+    plotid_datetime = datetime.now()
+    plotid = plotid_datetime.strftime('%Y%m%d%H%M%S%f%z')
+    return plotid
+
+############
+default_limits = [45]
+
+####################################
+
+# colors
+palette = cycle(px.colors.qualitative.Bold)
+#palette = cycle(['black', 'grey', 'red', 'blue'])
+
+#####################################
 
 dash.register_page(__name__, path='/style_plot_and_traces')
 
-#### style plot and traces
+## create plot series
 
-style_plot_and_traces_form_title = html.Div(html.P(children='Style Plot and Traces', className = "NOPADDING_CONTENT FORM_TITLE"))
+def create_layout(limits_in):
 
-style_plot_and_traces_form_content  = dbc.Row(
-    [
-        dbc.Col(
-            [
-                html.P(children='Style Plot and Traces', className = "NOPADDING_CONTENT FORM_TITLE")
-            ],
-            width=6,
-        )
-    ],
-    className="g-3",
-)
+    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
+    
+    traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(limits_in)].copy()
+    
+    styling_data_table = ft.CreateFormatTable(traces)
+    
+    legend_fig = cl.CreateLegendFig(limits_in,all_trace_list_df)
+    
+    legend_graph = dcc.Graph(figure=legend_fig,
+                             id='legend_out_id',
+                             style={'width': '100%', 'height': '100%'})
+    
+    style_and_legend_column = gsal.GetStyleAndLegendColumn(styling_data_table,legend_graph)
+    
+    rowofbuttons = html.Div([
+        html.Button('Save', id='btn-nclicks-1', n_clicks=0),
+        html.Button('Revert', id='btn-nclicks-2', n_clicks=0),
+        html.Button('Cancel', id='btn-nclicks-3', n_clicks=0),
+        html.Div(id='container-button-timestamp')
+    ])
 
-next_button =  html.Div(dbc.Button("Next",  id="style_plot_and_traces_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+    next_button =  html.Div(dbc.Button("Next",  id="style_plot_and_traces_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+    
+    cancel_button =  html.Div(dbc.Button("Cancel",  id="style_plot_and_traces_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+   
+    
+    ## all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict
+    
+    graph_fig = cg.CreateGraph(limits_in, all_trace_list_df, all_limit_data_df)
+    
+    graph_out = dcc.Graph(figure=graph_fig,
+                                  id='graph_out_id',
+                                  config=dict(responsive=True),
+                                  className='h-100'
+                                  #style={'width': '100%', 'height': '100%'}
+                                  )
+    
+    chart_in = graph_out
+    
+    column_chart = GetChart(chart_in)
+    
+    twocolumns =  html.Div(className="row g-0 ALL_ROW NOPADDING",
+                           children=[
+                                    default_column_chart,
+                                    default_styleandlegendcolumn,
+                                    rowofbuttons,
+                                    next_button,
+                               cancel_button
+                                    ],)
+    
+    layout_out = html.Div([twocolumns],
+                       className="container-fluid DASHBOARD_CONTAINER_STYLE",
+                      )
+    return layout_out
 
-cancel_button =  html.Div(dbc.Button("Cancel",  id="style_plot_and_traces_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-
-style_plot_and_traces_form_form = html.Div(
-    #[newplot_title,newplot_input3],
-    [dcc.Location(id="url", refresh=True),
-     style_plot_and_traces_form_title,
-     style_plot_and_traces_form_content,
-     next_button, cancel_button],
-    className = "NOPADDING_CONTENT CENTRE_FORM"
-)
 
 #layout = style_plot_and_traces_form_form
 
-twocolumns =  html.Div(className="row g-0 ALL_ROW NOPADDING",children=[
-                                                                    default_column_chart,
-                                                                    default_styleandlegendcolumn,
-                                                                    rowofbuttons,
-                                                                    next_button, cancel_button
-                                                                      ],)
+layout = create_layout(default_limits)
 
-layout2 = html.Div([twocolumns],
-                   className="container-fluid DASHBOARD_CONTAINER_STYLE",
-                  )
-
-
-#layout = style_plot_and_traces_form_form
-#layout = layout2
 '''
 @app.callback(Output('content', 'children'),
               [Input('url', 'href')])
@@ -186,6 +164,9 @@ def _content(href: str):
 
     return html.H1(children=param1: {param1} param2: {param2}' )
 '''
+
+'''
+## woking
 
 layout = html.Div([
     dcc.Location(id='url'),
@@ -208,9 +189,6 @@ def display_page(pathname,search,href):
         html.Div(children=o.query, id='params'),
         html.Div(children=list_of_limits, id='lol'),
     ])
-
-
-
 '''
 
 @callback(
@@ -247,4 +225,29 @@ def button_click(button1,button2):
         href_return = dash.page_registry['pages.home']['path']
         return href_return
 
+
+'''
+#### style plot and traces
+    
+    style_plot_and_traces_form_title = html.Div(html.P(children='Style Plot and Traces', className = "NOPADDING_CONTENT FORM_TITLE"))
+    
+    style_plot_and_traces_form_content  = dbc.Row(
+        [
+            dbc.Col(
+                [
+                    html.P(children='Style Plot and Traces', className = "NOPADDING_CONTENT FORM_TITLE")
+                ],
+                width=6,
+            )
+        ],
+        className="g-3",
+    )
+style_plot_and_traces_form_form = html.Div(
+        #[newplot_title,newplot_input3],
+        [dcc.Location(id="url", refresh=True),
+         style_plot_and_traces_form_title,
+         style_plot_and_traces_form_content,
+         next_button, cancel_button],
+        className = "NOPADDING_CONTENT CENTRE_FORM"
+    )
 '''
