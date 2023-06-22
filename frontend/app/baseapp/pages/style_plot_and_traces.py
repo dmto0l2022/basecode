@@ -147,9 +147,9 @@ row_of_buttons = html.Div([
         html.Div(id='container-button-timestamp')
     ])
 
-next_button =  html.Div(dbc.Button('Next',  id='unique_next_button_id', color='secondary'), className = 'FORM_CANCEL_BUTN')
+next_button =  html.Div(dbc.Button('Next',  id='unique_next_button_id',n_clicks=0, color='secondary'), className = 'FORM_CANCEL_BUTN')
     
-cancel_button =  html.Div(dbc.Button('Cancel',  id='unique_cancel_button_id', color='secondary'), className = 'FORM_CANCEL_BUTN')
+cancel_button =  html.Div(dbc.Button('Cancel',  id='unique_cancel_button_id',n_clicks=0, color='secondary'), className = 'FORM_CANCEL_BUTN')
    
 
 layout = html.Div([
