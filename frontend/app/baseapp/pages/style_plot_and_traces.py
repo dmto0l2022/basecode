@@ -258,7 +258,6 @@ def button_click(button1,button2):
         return prop_id
     else:
         return msg
-'''
 
 '''
 #### style plot and traces
