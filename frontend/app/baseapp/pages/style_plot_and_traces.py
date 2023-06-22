@@ -108,7 +108,7 @@ def create_layout(limits_in):
     
     style_and_legend_column = gsal.GetStyleAndLegendColumn(styling_data_table,legend_graph)
     
-    rowofbuttons = html.Div([
+    row_of_buttons = html.Div([
         html.Button('Save', id='btn-nclicks-1', n_clicks=0),
         html.Button('Revert', id='btn-nclicks-2', n_clicks=0),
         html.Button('Cancel', id='btn-nclicks-3', n_clicks=0),
@@ -135,16 +135,16 @@ def create_layout(limits_in):
     
     column_chart = GetChart(chart_in)
     
-    twocolumns =  html.Div(className="row g-0 ALL_ROW NOPADDING",
+    two_columns =  html.Div(className="row g-0 ALL_ROW NOPADDING",
                            children=[
-                                    default_column_chart,
-                                    default_styleandlegendcolumn,
-                                    rowofbuttons,
+                                    column_chart,
+                                    style_and_legend_column,
+                                    row_of_buttons,
                                     next_button,
-                               cancel_button
+                                    cancel_button
                                     ],)
     
-    layout_out = html.Div([twocolumns],
+    layout_out = html.Div([two_columns],
                        className="container-fluid DASHBOARD_CONTAINER_STYLE",
                       )
     return layout_out
