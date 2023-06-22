@@ -490,6 +490,8 @@ def button_click(button1,button2,button3,plot_table_in):
     #print(limit_ids)  
     new_df = limits_to_plot.groupby(['all'])['limit_id'].apply('|'.join).reset_index()
     print('new_df >>>>>>>>' ,new_df)
+    limit_ids = new_df['limit_id'].values[0]
+    print('limit_ids >>>>>>>>' ,limit_ids)
             
     #msg = prop_id
     if "next_button_select_limits_to_plot_id" == prop_id :
@@ -506,8 +508,8 @@ def button_click(button1,button2,button3,plot_table_in):
         #msg = "Button 3 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         #href_return = '/app/baseapp/select_limits_to_plot'
-        href_return = '/app/baseapp/style_plot_and_traces?limit_id=34|33'
-        return [href_return,'34|33']
+        href_return = '/app/baseapp/style_plot_and_traces?limit_id=' + limit_ids
+        return [href_return,limit_ids]
     else:
         href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
