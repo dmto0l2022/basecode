@@ -207,8 +207,9 @@ def display_page(pathname,search,href):
     just_list = o.query.split('=')[1]
     list_of_limits = just_list.split('|')
     print('spat : list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits)
-    if len(list_of_limits) == 0:
-        list_of_limits = [45]
+    #if len(list_of_limits) == 0:
+    #    list_of_limits = [45]
+    list_of_limits = [33]
     layout_return = create_layout(list_of_limits)
     return layout_return
 
