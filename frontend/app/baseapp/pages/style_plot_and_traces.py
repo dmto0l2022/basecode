@@ -141,10 +141,10 @@ def create_layout(limits_in):
 #layout = style_plot_and_traces_form_form
 
 row_of_buttons = html.Div([
-        html.Button('Save', id='btn-nclicks-1', n_clicks=0),
-        html.Button('Revert', id='btn-nclicks-2', n_clicks=0),
-        html.Button('Cancel', id='btn-nclicks-3', n_clicks=0),
-        html.Div(id='container-button-timestamp')
+        html.Button('Save', id='btn-nclicks-1_1', n_clicks=0),
+        html.Button('Revert', id='btn-nclicks-2_1', n_clicks=0),
+        html.Button('Cancel', id='btn-nclicks-3_1', n_clicks=0),
+        html.Div(id='container-button-timestamp_1')
     ])
 
 next_button =  html.Div(dbc.Button('Next',  id='unique_next_button_id',n_clicks=0, color='secondary'), className = 'FORM_CANCEL_BUTN')
@@ -163,14 +163,21 @@ layout = html.Div([
 ])
 
 @callback(
-    Output('children', 'button_presses'),
-    Input('unique_next_button_id','n_clicks'),
-    Input('unique_cancel_button_id','n_clicks'))
-def unique_button_click(button1,button2):
-    msg = 'None of the buttons have been clicked yet'
+    Output('container-button-timestamp_1', 'children'),
+    Input('btn-nclicks-1_1', 'n_clicks'),
+    Input('btn-nclicks-2_1', 'n_clicks'),
+    Input('btn-nclicks-3_1', 'n_clicks')
+)
+def displayClick1_1(btn1, btn2, btn3):
+    msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
-    print('button click callback>>>>>>>>>>',prop_id)
-    return prop_id
+    if "btn-nclicks-1_1" == prop_id:
+        msg = "Button 1 was most recently clicked"
+    elif "btn-nclicks-2_1" == prop_id:
+        msg = "Button 2 was most recently clicked"
+    elif "btn-nclicks-3_1" == prop_id:
+        msg = "Button 3 was most recently clicked"
+    return html.Div(msg)
 
 
 @callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'href')])
