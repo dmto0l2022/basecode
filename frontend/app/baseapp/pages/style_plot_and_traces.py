@@ -108,17 +108,6 @@ def create_layout(limits_in):
     
     style_and_legend_column = gsal.GetStyleAndLegendColumn(styling_data_table,legend_graph)
     
-    row_of_buttons = html.Div([
-        html.Button('Save', id='btn-nclicks-1', n_clicks=0),
-        html.Button('Revert', id='btn-nclicks-2', n_clicks=0),
-        html.Button('Cancel', id='btn-nclicks-3', n_clicks=0),
-        html.Div(id='container-button-timestamp')
-    ])
-
-    next_button =  html.Div(dbc.Button("Next",  id="unique_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-    
-    cancel_button =  html.Div(dbc.Button("Cancel",  id="unique_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-   
     
     ## all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict
     
@@ -139,10 +128,6 @@ def create_layout(limits_in):
                            children=[
                                     column_chart,
                                     style_and_legend_column,
-                                    row_of_buttons,
-                                    next_button,
-                                    cancel_button,
-                                    html.Div(id='button_presses',children='button here')
                                     ],)
     
     layout_out = html.Div(
@@ -155,10 +140,26 @@ def create_layout(limits_in):
 
 #layout = style_plot_and_traces_form_form
 
+row_of_buttons = html.Div([
+        html.Button('Save', id='btn-nclicks-1', n_clicks=0),
+        html.Button('Revert', id='btn-nclicks-2', n_clicks=0),
+        html.Button('Cancel', id='btn-nclicks-3', n_clicks=0),
+        html.Div(id='container-button-timestamp')
+    ])
+
+next_button =  html.Div(dbc.Button("Next",  id="unique_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+    
+cancel_button =  html.Div(dbc.Button("Cancel",  id="unique_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+   
+
 layout = html.Div([
     dcc.Location(id='url',refresh=True),
     html.Div(id='layout-div'),
     html.Div(id='content',children=create_layout(default_limits))
+    row_of_buttons,
+    next_button,
+    cancel_button,
+    html.Div(id='button_presses',children='button here')
 ])
 
 @callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'href')])
