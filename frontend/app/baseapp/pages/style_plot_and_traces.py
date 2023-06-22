@@ -236,7 +236,7 @@ def update_output(table_data, table_data_in):
 
 
 @callback(
-    Output('children', 'button_presses'),
+    [Output('children', 'button_presses')],
     [
     Input("style_plot_and_traces_next_button_id", "n_clicks"),
     Input("style_plot_and_traces_cancel_button_id", "n_clicks"),
