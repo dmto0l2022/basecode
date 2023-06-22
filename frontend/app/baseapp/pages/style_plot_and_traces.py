@@ -155,7 +155,7 @@ cancel_button =  html.Div(dbc.Button("Cancel",  id="unique_cancel_button_id", co
 layout = html.Div([
     dcc.Location(id='url',refresh=True),
     html.Div(id='layout-div'),
-    html.Div(id='content',children=create_layout(default_limits))
+    html.Div(id='content',children=create_layout(default_limits)),
     row_of_buttons,
     next_button,
     cancel_button,
