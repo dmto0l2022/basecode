@@ -137,7 +137,6 @@ def create_layout(limits_in):
     
     two_columns =  html.Div(className="row g-0 ALL_ROW NOPADDING",
                            children=[
-                                    dcc.Location(id='url',refresh=False),
                                     column_chart,
                                     style_and_legend_column,
                                     row_of_buttons,
@@ -156,7 +155,7 @@ def create_layout(limits_in):
 #layout = style_plot_and_traces_form_form
 
 layout = html.Div([
-    dcc.Location(id='url',refresh=True),
+    dcc.Location(id='url',refresh=False),
     html.Div(id='layout-div'),
     html.Div(id='content',children=create_layout(default_limits))
 ])
