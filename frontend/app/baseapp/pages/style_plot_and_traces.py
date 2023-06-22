@@ -115,9 +115,9 @@ def create_layout(limits_in):
         html.Div(id='container-button-timestamp')
     ])
 
-    next_button =  html.Div(dbc.Button("Next",  id="style_plot_and_traces_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+    next_button =  html.Div(dbc.Button("Next",  id="unique_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
     
-    cancel_button =  html.Div(dbc.Button("Cancel",  id="style_plot_and_traces_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+    cancel_button =  html.Div(dbc.Button("Cancel",  id="unique_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
    
     
     ## all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict
@@ -238,19 +238,19 @@ def update_output(table_data, table_data_in):
 @callback(
     [Output('children', 'button_presses')],
     [
-    Input("style_plot_and_traces_next_button_id", "n_clicks"),
-    Input("style_plot_and_traces_cancel_button_id", "n_clicks"),
+    Input('unique_next_button_id', 'n_clicks'),
+    Input('unique_cancel_button_id', 'n_clicks),
         ])
 def button_click(button1,button2):
-    msg = "None of the buttons have been clicked yet"
+    msg = 'None of the buttons have been clicked yet'
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     print('button click callback>>>>>>>>>>',prop_id)
     #msg = prop_id
-    if "style_plot_and_traces_next_button_id" == prop_id :
+    if 'unique_next_button_id' == prop_id :
         #msg = "Button 1 was most recently clicked"
         href_return = '/app/baseapp/show_user_plot'
         return prop_id
-    elif "style_plot_and_traces_cancel_button_id" == prop_id:
+    elif 'unique_cancel_button_id' == prop_id:
         #msg = "Button 2 was most recently clicked"
         href_return = '/app/baseapp/homepage'
         return prop_id
