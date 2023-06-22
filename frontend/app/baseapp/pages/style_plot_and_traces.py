@@ -200,7 +200,7 @@ def display_page(pathname,search,href):
     o = urlparse(href)
     just_list = o.query.split('=')[1]
     list_of_limits = just_list.split('|')
-    if len(list_of_limits) = 0:
+    if len(list_of_limits) == 0:
         list_of_limits = [45]
     layout_return = create_layout(list_of_limits)
     return layout_return
