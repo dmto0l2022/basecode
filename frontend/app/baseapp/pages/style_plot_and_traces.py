@@ -198,10 +198,8 @@ def update_output(table_data, table_data_in):
 
 @callback(
     Output('children', 'button_presses'),
-    [
     Input('unique_next_button_id','n_clicks'),
-    Input('unique_cancel_button_id','n_clicks'),
-        ])
+    Input('unique_cancel_button_id','n_clicks'))
 def button_click(button1,button2):
     msg = 'None of the buttons have been clicked yet'
     prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
