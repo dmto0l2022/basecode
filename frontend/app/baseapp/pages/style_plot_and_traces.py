@@ -161,44 +161,6 @@ layout = html.Div([
     html.Div(id='content',children=create_layout(default_limits))
 ])
 
-'''
-@app.callback(Output('content', 'children'),
-              [Input('url', 'href')])
-def _content(href: str):
-    f = furl(href)
-    param1= f.args['param1']
-    param2= f.args['param2']
-
-    return html.H1(children=param1: {param1} param2: {param2}' )
-'''
-
-'''
-## woking
-
-layout = html.Div([
-    dcc.Location(id='url'),
-    html.Div(id='layout-div'),
-    html.Div(id='content')
-])
-
-@callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'href')])
-def display_page(pathname,search,href):
-    original_search_string = search
-    just_list = original_search_string.split('=')
-    o = urlparse(href)
-    just_list = o.query.split('=')[1]
-    list_of_limits = just_list.split('|')
-    return html.Div([
-        dcc.Input(id='input', value='hello world'),
-        html.Div(children=pathname, id='pathname'),
-        html.Div(children=search, id='search'),
-        html.Div(children=href, id='href'),
-        html.Div(children=o.query, id='params'),
-        html.Div(children=list_of_limits, id='lol'),
-    ])
-'''
-
-
 @callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'href')])
 def display_page(pathname,search,href):
     original_search_string = search
@@ -222,7 +184,6 @@ def display_page(pathname,search,href):
     layout_return = create_layout(list_of_limits_int)
     return layout_return
 
-
 @callback(
     [Output('graph_out_id','figure'),Output('legend_out_id','figure'),],
     [Input('format_table_id', 'data')],
@@ -234,9 +195,8 @@ def update_output(table_data, table_data_in):
     
     return fig_out, legend_out
 
-
 @callback(
-    [Output('children', 'button_presses')],
+    Output('children', 'button_presses'),
     [
     Input('unique_next_button_id','n_clicks'),
     Input('unique_cancel_button_id','n_clicks'),
@@ -245,40 +205,4 @@ def button_click(button1,button2):
     msg = 'None of the buttons have been clicked yet'
     prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
     print('button click callback>>>>>>>>>>',prop_id)
-    #msg = prop_id
-    if 'unique_next_button_id' == prop_id :
-        #msg = "Button 1 was most recently clicked"
-        href_return = '/app/baseapp/show_user_plot'
-        return prop_id
-    elif 'unique_cancel_button_id' == prop_id:
-        #msg = "Button 2 was most recently clicked"
-        href_return = '/app/baseapp/homepage'
-        return prop_id
-    else:
-        return msg
-
-'''
-#### style plot and traces
-    
-    style_plot_and_traces_form_title = html.Div(html.P(children='Style Plot and Traces', className = "NOPADDING_CONTENT FORM_TITLE"))
-    
-    style_plot_and_traces_form_content  = dbc.Row(
-        [
-            dbc.Col(
-                [
-                    html.P(children='Style Plot and Traces', className = "NOPADDING_CONTENT FORM_TITLE")
-                ],
-                width=6,
-            )
-        ],
-        className="g-3",
-    )
-style_plot_and_traces_form_form = html.Div(
-        #[newplot_title,newplot_input3],
-        [dcc.Location(id="url", refresh=True),
-         style_plot_and_traces_form_title,
-         style_plot_and_traces_form_content,
-         next_button, cancel_button],
-        className = "NOPADDING_CONTENT CENTRE_FORM"
-    )
-'''
+    return prop_id
