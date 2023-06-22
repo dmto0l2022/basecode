@@ -484,14 +484,14 @@ def button_click(button1,button2,button3,plot_table_in):
     plots_to_do_df['all'] = 'all'
     plots_to_do_df['limit_id'] = plots_to_do_df['limit_id'].astype(str)
     limits_to_plot = plots_to_do_df[['limit_id','all']]
-    print('limits_to_plot >>>>>>', limits_to_plot)
+    #print('limits_to_plot >>>>>>', limits_to_plot)
     
     #limits_to_plot['limit_ids'] = limits_to_plot[['all']].groupby(['all'])['limit_id'].transform(lambda x: ','.join(x))
     #print(limit_ids)  
     new_df = limits_to_plot.groupby(['all'])['limit_id'].apply('|'.join).reset_index()
-    print('new_df >>>>>>>>' ,new_df)
+    #print('new_df >>>>>>>>' ,new_df)
     limit_ids = new_df['limit_id'].values[0]
-    print('limit_ids >>>>>>>>' ,limit_ids)
+    #print('limit_ids >>>>>>>>' ,limit_ids)
             
     #msg = prop_id
     if "next_button_select_limits_to_plot_id" == prop_id :
