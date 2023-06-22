@@ -157,7 +157,8 @@ def create_layout(limits_in):
 layout = html.Div([
     dcc.Location(id='url',refresh=True),
     html.Div(id='layout-div'),
-    html.Div(id='content',children=create_layout(default_limits))
+    html.Div(id='content',children=create_layout(default_limits)),
+    html.Div(id='button_presses',children='button here')
 ])
 
 '''
@@ -233,9 +234,9 @@ def update_output(table_data, table_data_in):
     
     return fig_out, legend_out
 
-'''
+
 @callback(
-    Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    Output('children', 'button_presses'),
     [
     Input("style_plot_and_traces_next_button_id", "n_clicks"),
     Input("style_plot_and_traces_cancel_button_id", "n_clicks"),
@@ -243,18 +244,20 @@ def update_output(table_data, table_data_in):
         prevent_initial_call=True
 )
 def button_click(button1,button2):
-    #msg = "None of the buttons have been clicked yet"
+    msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     print('button click callback>>>>>>>>>>',prop_id)
     #msg = prop_id
     if "style_plot_and_traces_next_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
         href_return = '/app/baseapp/show_user_plot'
-        return href_return
+        return prop_id
     elif "style_plot_and_traces_cancel_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         href_return = '/app/baseapp/homepage'
-        return href_return
+        return prop_id
+    else:
+        return msg
 '''
 
 '''
