@@ -66,40 +66,19 @@ palette = cycle(px.colors.qualitative.Bold)
 
 all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
 
-def CreatePlotSeries(all_limits_list_in, limits_in):
-    plotseries_df = all_limit_list_df[all_limit_list_df['limit_id'].isin(limits_in)].copy()
-    #plotseries_df = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id'].isin(limits_in)].copy()
-    #plotseries_df = plotseries_df.drop_duplicates()
-    #plotseries_df = plotseries_df.reset_index(drop=True)
-    
-    return plotseries_df
 
 
-plotseries = CreatePlotSeries(all_limit_list_df, default_limits)
-#plotseries
 
 from app.baseapp.dashboard_libraries import formattingtable as ft
-
-
-#default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
-#                                                    .isin(default_limit)].copy()
 
 default_traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(default_limits)].copy()
 
 default_styledatatable = ft.CreateFormatTable(default_traces)
 
-plotseries_default = CreatePlotSeries(all_limit_list_df,default_limits)
-
-#plotseries_default.head(5)
+limits_to_plot = all_limit_list_df[all_limit_list_df['limit_id'].isin(limits_in)].copy()
 
 from app.baseapp.dashboard_libraries import createlegend as cl
 
-#default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id']\
-#                                                    .isin(default_limits)].copy()
-
-default_traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(default_limits)].copy()
-
-#default_legend_fig = cl.CreateLegendFig(default_limit,dashdataandtables.limits_traces_df)
 default_legend_fig = cl.CreateLegendFig(default_limits,all_trace_list_df)
 
 default_legend_out_graph = dcc.Graph(figure=default_legend_fig,id='legend_out_id',
@@ -120,18 +99,9 @@ rowofbuttons = html.Div([
 ])
 
 
-#default_traces = dashdataandtables.limits_traces_df[dashdataandtables.limits_traces_df['limit_id'].isin(default_limit)].copy()
-default_traces = all_limit_data_df[all_limit_data_df['limit_id'].isin(default_limits)].copy()
-print('default_limits')
-print(default_limits)
-#print('dashdataandtables.limits_traces_df')
-#print(dashdataandtables.limits_traces_df)
-#print('dashdataandtables.limits_data_df')
-#print(dashdataandtables.limits_data_df)
 
 ## all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict
 
-#default_graph_fig = cg.CreateGraph(default_limit, dashdataandtables.limits_traces_df, dashdataandtables.limits_data_df)
 default_graph_fig = cg.CreateGraph(default_limits, all_trace_list_df, all_limit_data_df)
 
 from app.baseapp.dashboard_libraries import updategraph as ug
