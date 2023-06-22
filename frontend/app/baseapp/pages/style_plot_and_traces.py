@@ -66,16 +66,13 @@ palette = cycle(px.colors.qualitative.Bold)
 
 all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
 
-
-
-
 from app.baseapp.dashboard_libraries import formattingtable as ft
 
 default_traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(default_limits)].copy()
 
 default_styledatatable = ft.CreateFormatTable(default_traces)
 
-limits_to_plot = all_limit_list_df[all_limit_list_df['limit_id'].isin(limits_in)].copy()
+#limits_to_plot = all_limit_list_df[all_limit_list_df['limit_id'].isin(default_limits)].copy()
 
 from app.baseapp.dashboard_libraries import createlegend as cl
 
