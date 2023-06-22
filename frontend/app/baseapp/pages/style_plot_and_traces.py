@@ -240,9 +240,7 @@ def update_output(table_data, table_data_in):
     [
     Input("style_plot_and_traces_next_button_id", "n_clicks"),
     Input("style_plot_and_traces_cancel_button_id", "n_clicks"),
-        ],
-        prevent_initial_call=True
-)
+        ])
 def button_click(button1,button2):
     msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
