@@ -204,7 +204,7 @@ def display_page(pathname,search,href):
     original_search_string = search
     just_list = original_search_string.split('=')
     o = urlparse(href)
-    print("query>>>>" ,o.query)
+    print('query>>>>' ,o.query)
     
     try:
         just_list = o.query.split('=')[1]
@@ -239,11 +239,11 @@ def update_output(table_data, table_data_in):
     [Output('children', 'button_presses')],
     [
     Input('unique_next_button_id','n_clicks'),
-    Input('unique_cancel_button_id','n_clicks),
+    Input('unique_cancel_button_id','n_clicks'),
         ])
 def button_click(button1,button2):
     msg = 'None of the buttons have been clicked yet'
-    prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+    prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
     print('button click callback>>>>>>>>>>',prop_id)
     #msg = prop_id
     if 'unique_next_button_id' == prop_id :
