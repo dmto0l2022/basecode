@@ -482,6 +482,7 @@ def button_click(button1,button2,button3,plot_table_in):
     #plots_to_do_df = pd.DataFrame(plot_table_in)
     plots_to_do_df = pd.DataFrame.from_dict(plot_table_in)
     plots_to_do_df['all'] = 'all'
+    plots_to_do_df['limit_id'] = plots_to_do_df['limit_id'].astype(str)
     limits_to_plot = plots_to_do_df[['limit_id','all']]
     print('limits_to_plot >>>>>>', limits_to_plot)
     
