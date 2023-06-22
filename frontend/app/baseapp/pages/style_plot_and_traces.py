@@ -217,6 +217,7 @@ def display_page(pathname,search,href):
     [Input('format_table_id', 'data')],
     [State("format_table_id", "data")])
 def update_output(table_data, table_data_in):
+    print('spat : table_data_in >>>>>>>>>>',table_data_in)
     fig_out = ug.UpdateGraph(table_data_in)
     legend_out = ul.UpdateLegendFig(table_data_in)
     
