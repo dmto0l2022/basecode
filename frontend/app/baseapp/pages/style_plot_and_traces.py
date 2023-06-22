@@ -137,6 +137,7 @@ def create_layout(limits_in):
     
     two_columns =  html.Div(className="row g-0 ALL_ROW NOPADDING",
                            children=[
+                                    dcc.Location(id='url'),
                                     column_chart,
                                     style_and_legend_column,
                                     row_of_buttons,
@@ -145,10 +146,10 @@ def create_layout(limits_in):
                                     ],)
     
     layout_out = html.Div(
-                       dcc.Location(id='url'),
                        [two_columns],
                        className="container-fluid DASHBOARD_CONTAINER_STYLE",
                       )
+    
     return layout_out
 
 
