@@ -198,7 +198,7 @@ def display_page(pathname,search,href):
     ])
 '''
 
-'''
+
 @callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'href')])
 def display_page(pathname,search,href):
     original_search_string = search
@@ -211,7 +211,7 @@ def display_page(pathname,search,href):
         list_of_limits = [45]
     layout_return = create_layout(list_of_limits)
     return layout_return
-'''
+
 
 @callback(
     [Output("graph_out_id","figure"),Output("legend_out_id","figure"),],
