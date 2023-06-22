@@ -472,7 +472,7 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     Input("next_button_select_limits_to_plot_id", "n_clicks"),
     Input("cancel_button_select_limits_to_plot_id", "n_clicks"),
     Input("list_button_select_limits_to_plot_id","n_clicks"),
-        ],State('limits_to_plot_table', 'data'),
+        ],[State('limits_to_plot_table', 'data')],
         prevent_initial_call=True
 )
 def button_click(button1,button2,button3,plot_table_in):
