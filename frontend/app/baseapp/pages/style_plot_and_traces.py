@@ -209,7 +209,7 @@ def display_page(pathname,search,href):
         list_of_limits_str = just_list.split('|')
         list_of_limits_int = []
         for l in list_of_limits_str:
-            list_of_limits_int.append(l)
+            list_of_limits_int.append(int(l))
         
     except:
         list_of_limits_int = [45]
