@@ -478,7 +478,8 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
 def button_click(button1,button2,button3,plot_table_in):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
-    plots_to_do_df = pd.DataFrame(data=plot_table_in)
+    print('plot_table_in >>>>>>>>>>>>>>>>' ,plot_table_in)
+    plots_to_do_df = pd.DataFrame(plot_table_in)
     limits_to_plot = plots_to_do_df['limit_id']
     limits_to_plot['all'] = 'all'
     limits_to_plot['text'] = limits_to_plot[['all']].groupby(['all'])['limit_id'].transform(lambda x: ','.join(x))
