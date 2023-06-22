@@ -144,7 +144,9 @@ def create_layout(limits_in):
                                     cancel_button
                                     ],)
     
-    layout_out = html.Div([two_columns],
+    layout_out = html.Div(
+                       dcc.Location(id='url'),
+                       [two_columns],
                        className="container-fluid DASHBOARD_CONTAINER_STYLE",
                       )
     return layout_out
@@ -190,6 +192,19 @@ def display_page(pathname,search,href):
         html.Div(children=list_of_limits, id='lol'),
     ])
 '''
+
+@callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'href')])
+def display_page(pathname,search,href):
+    original_search_string = search
+    just_list = original_search_string.split('=')
+    o = urlparse(href)
+    just_list = o.query.split('=')[1]
+    list_of_limits = just_list.split('|')
+    if len(list_of_limits) = 0:
+        list_of_limits = [45]
+    layout_return = create_layout(list_of_limits)
+    return layout_return
+
 
 @callback(
     [Output("graph_out_id","figure"),Output("legend_out_id","figure"),],
