@@ -237,11 +237,12 @@ def update_output(table_data, table_data_in):
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
     Input("style_plot_and_traces_next_button_id", "n_clicks"),
-    Input("style_plot_and_traces_cancel_button_id", "n_clicks")
+    Input("style_plot_and_traces_cancel_button_id", "n_clicks"),
+        Input('url', 'href')
         ],
         prevent_initial_call=True
 )
-def button_click(button1,button2):
+def button_click(button1,button2,href_in):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     #msg = prop_id
@@ -253,6 +254,8 @@ def button_click(button1,button2):
         #msg = "Button 2 was most recently clicked"
         href_return = '/app/baseapp/homepage'
         return href_return
+    else:
+        return href_in
 
 
 '''
