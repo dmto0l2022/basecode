@@ -141,7 +141,8 @@ def create_layout(limits_in):
                                     style_and_legend_column,
                                     row_of_buttons,
                                     next_button,
-                                    cancel_button
+                                    cancel_button,
+                                    html.Div(id='button_presses',children='button here')
                                     ],)
     
     layout_out = html.Div(
@@ -157,8 +158,7 @@ def create_layout(limits_in):
 layout = html.Div([
     dcc.Location(id='url',refresh=True),
     html.Div(id='layout-div'),
-    html.Div(id='content',children=create_layout(default_limits)),
-    html.Div(id='button_presses',children='button here')
+    html.Div(id='content',children=create_layout(default_limits))
 ])
 
 '''
