@@ -494,7 +494,7 @@ def button_click(button1,button2,button3):
         #href_return = dash.page_registry['pages.home']['path']
         #href_return = '/app/baseapp/select_limits_to_plot'
         href_return = '/app/baseapp/style_plot_and_traces?limit_id=34|33'
-        return [href_return,'?limit_id=[1,2]']
+        return [href_return,'34|33']
     else:
         href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
