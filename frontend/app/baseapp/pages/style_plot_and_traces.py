@@ -211,7 +211,7 @@ def display_page(pathname,search,href):
         for l in list_of_limits_str:
             list_of_limits_int.append(l)
         
-    else:
+    except:
         list_of_limits_int = [45]
     
     print('spat : list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits_int)
