@@ -144,7 +144,7 @@ row_of_buttons = html.Div([
         html.Button('Save', id='btn-nclicks-1_1', n_clicks=0),
         html.Button('Revert', id='btn-nclicks-2_1', n_clicks=0),
         html.Button('Cancel', id='btn-nclicks-3_1', n_clicks=0),
-        html.Div(id='container-button-timestamp_1')
+        html.Div(id='container-button-output')
     ])
   
 
@@ -156,7 +156,7 @@ layout = html.Div([
     html.Div(id='button_presses',children='button here')
 ])
 
-
+'''
 @callback(Output('container-button-timestamp_1', 'children'),
     Input('btn-nclicks-1_1', 'n_clicks_timestamp'),
     Input('btn-nclicks-2_1', 'n_clicks_timestamp'))
@@ -178,8 +178,9 @@ def display(btn1, btn2):
         html.Div(msg)
     ]) 
 '''
+
 @callback(
-    Output('container-button-timestamp_1', 'children'),
+    Output('container-button-output', 'children'),
     Input('btn-nclicks-1_1', 'n_clicks'),
     Input('btn-nclicks-2_1', 'n_clicks'),
     Input('btn-nclicks-3_1', 'n_clicks')
@@ -194,7 +195,7 @@ def displayClick1_1(btn1, btn2, btn3):
     elif "btn-nclicks-3_1" == prop_id:
         msg = "Button 3 was most recently clicked"
     return html.Div(msg)
-'''
+
 
 @callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'href')])
 def display_page(pathname,search,href):
