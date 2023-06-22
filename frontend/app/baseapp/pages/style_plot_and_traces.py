@@ -156,6 +156,28 @@ layout = html.Div([
     html.Div(id='button_presses',children='button here')
 ])
 
+
+@callback(Output('container-button-timestamp_1', 'children'),
+    Input('btn-nclicks-1_1', 'n_clicks_timestamp'),
+    Input('btn-nclicks-2_1', 'n_clicks_timestamp'))
+def display(btn1, btn2):
+    if btn1 == None:
+        btn1 = 0
+    if btn2 == None:
+        btn2 = 0
+    prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+    if int(btn1) > int(btn2):
+        msg = 'Save was most recently clicked  > ' + prop_id
+    elif int(btn2) > int(btn1):
+        msg = 'Cancel was most recently clicked  > ' + prop_id
+    else:
+        msg = 'None of the buttons have been clicked yet'
+    return html.Div([
+        html.Div('btn1: {}'.format(btn1)),
+        html.Div('btn2: {}'.format(btn2)),
+        html.Div(msg)
+    ]) 
+'''
 @callback(
     Output('container-button-timestamp_1', 'children'),
     Input('btn-nclicks-1_1', 'n_clicks'),
@@ -172,7 +194,7 @@ def displayClick1_1(btn1, btn2, btn3):
     elif "btn-nclicks-3_1" == prop_id:
         msg = "Button 3 was most recently clicked"
     return html.Div(msg)
-
+'''
 
 @callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'href')])
 def display_page(pathname,search,href):
