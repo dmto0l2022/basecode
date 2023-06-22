@@ -224,9 +224,9 @@ def display_page(pathname,search,href):
 
 
 @callback(
-    [Output("graph_out_id","figure"),Output("legend_out_id","figure"),],
+    [Output('graph_out_id','figure'),Output('legend_out_id','figure'),],
     [Input('format_table_id', 'data')],
-    [State("format_table_id", "data")])
+    [State('format_table_id', 'data')])
 def update_output(table_data, table_data_in):
     print('spat : table_data_in >>>>>>>>>>',table_data_in)
     fig_out = ug.UpdateGraph(table_data_in)
@@ -238,8 +238,8 @@ def update_output(table_data, table_data_in):
 @callback(
     [Output('children', 'button_presses')],
     [
-    Input('unique_next_button_id', 'n_clicks'),
-    Input('unique_cancel_button_id', 'n_clicks),
+    Input('unique_next_button_id','n_clicks'),
+    Input('unique_cancel_button_id','n_clicks),
         ])
 def button_click(button1,button2):
     msg = 'None of the buttons have been clicked yet'
