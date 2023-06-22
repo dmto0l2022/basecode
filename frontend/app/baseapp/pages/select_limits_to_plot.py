@@ -485,8 +485,8 @@ def button_click(button1,button2,button3,plot_table_in):
     limits_to_plot = plots_to_do_df[['limit_id','all']]
     print('limits_to_plot >>>>>>', limits_to_plot)
     
-    #limits_to_plot['text'] = limits_to_plot[['all']].groupby(['all'])['limit_id'].transform(lambda x: ','.join(x))
-            
+    limits_to_plot['limit_ids'] = limits_to_plot[['all']].groupby(['all'])['limit_id'].transform(lambda x: ','.join(x))
+    #print(limit_ids)       
     
             
     #msg = prop_id
