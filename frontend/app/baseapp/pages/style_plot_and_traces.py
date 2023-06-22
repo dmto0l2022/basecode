@@ -155,7 +155,11 @@ def create_layout(limits_in):
 
 #layout = style_plot_and_traces_form_form
 
-layout = create_layout(default_limits)
+layout = html.Div([
+    dcc.Location(id='url'),
+    html.Div(id='layout-div'),
+    html.Div(id='content')
+])
 
 '''
 @app.callback(Output('content', 'children'),
