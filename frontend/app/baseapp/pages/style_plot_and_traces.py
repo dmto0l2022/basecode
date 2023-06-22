@@ -162,6 +162,17 @@ layout = html.Div([
     html.Div(id='button_presses',children='button here')
 ])
 
+@callback(
+    Output('children', 'button_presses'),
+    Input('unique_next_button_id','n_clicks'),
+    Input('unique_cancel_button_id','n_clicks'))
+def unique_button_click(button1,button2):
+    msg = 'None of the buttons have been clicked yet'
+    prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
+    print('button click callback>>>>>>>>>>',prop_id)
+    return prop_id
+
+
 @callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'href')])
 def display_page(pathname,search,href):
     original_search_string = search
@@ -196,12 +207,3 @@ def update_output(table_data, table_data_in):
     
     return fig_out, legend_out
 
-@callback(
-    Output('children', 'button_presses'),
-    Input('unique_next_button_id','n_clicks'),
-    Input('unique_cancel_button_id','n_clicks'))
-def unique_button_click(button1,button2):
-    msg = 'None of the buttons have been clicked yet'
-    prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
-    print('button click callback>>>>>>>>>>',prop_id)
-    return prop_id
