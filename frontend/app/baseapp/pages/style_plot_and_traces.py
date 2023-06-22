@@ -233,7 +233,6 @@ def update_output(table_data, table_data_in):
     
     return fig_out, legend_out
 
-'''
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
@@ -248,16 +247,13 @@ def button_click(button1,button2):
     #msg = prop_id
     if "style_plot_and_traces_next_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
-        href_return = dash.page_registry['pages.show_plot']['path']
+        href_return = '/app/baseapp/show_user_plot'
         return href_return
     elif "style_plot_and_traces_cancel_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
-        href_return = dash.page_registry['pages.home']['path']
+        href_return = '/app/baseapp/homepage'
         return href_return
-    else:
-        href_return = dash.page_registry['pages.home']['path']
-        return href_return
-'''
+
 
 '''
 #### style plot and traces
