@@ -233,6 +233,7 @@ def update_output(table_data, table_data_in):
     
     return fig_out, legend_out
 
+'''
 @callback(
     Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
@@ -254,7 +255,7 @@ def button_click(button1,button2):
         #msg = "Button 2 was most recently clicked"
         href_return = '/app/baseapp/homepage'
         return href_return
-
+'''
 
 '''
 #### style plot and traces
