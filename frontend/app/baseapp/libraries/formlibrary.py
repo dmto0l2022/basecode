@@ -750,7 +750,7 @@ data_comment_input_row = html.Div(
                     target="data_comment_example_field_id",trigger="click"), 
                 
             ],
-        className='g-0'),
+        className='g-0 FORM_ROW'),
     ]
 )
 
