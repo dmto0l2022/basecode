@@ -145,15 +145,6 @@
   color: red;
 }
 
-.PAGE_NOPADDING {
-    padding: 0 !important;
-    padding-left: 0;
-    padding-right:0;
-    margin-left:0;
-    margin-right: 0;
-    border:1px black;
-    border-style: solid;
-}
 
 .PAGE_HEADER {
     position: fixed;
