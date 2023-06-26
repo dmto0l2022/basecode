@@ -53,23 +53,72 @@ app = Dash(__name__,
 
 server = app.server
 
-app.layout = html.Div([
+headertext = 'Dark Matter Tool'
+footertext = 'ACG'
+
+def GetHeaderAndFooter(headertext, footertext):
+
+
+    hdivs = html.P(headertext)
+    header1 = html.Div([hdivs], style={**FULL_DIV,**NOPADDING},)
+
+    fdivs = [html.P(footertext)]
+    
+    footer1 = html.Div(fdivs, style={**FULL_DIV,**NOPADDING},)
+
+    headerrow_out =  html.Div(className="row",children=[header1],
+                           style={**HEADER_ROW,**NOPADDING})
+
+    footerrow_out =  html.Div(className="row",children=[footer1],
+                           style={**FOOTER_ROW,**NOPADDING})
+    
+    return headerrow_out, footerrow_out
+
+headerrow, footerrow = GetHeaderAndFooter(headertext, footertext)
+
+l_sidebar_in = 'L sidebar'
+r_sidebar_in = 'R sidebar'
+
+def GetSideBars(l_sidebar_in, r_sidebar_in):
+
+    l_sidebar_col_out =  html.Div(children='L sidebar',
+                                  className="col col-lg-1",
+                                  style={**NOPADDING, **SIDEBAR_DIV})
+    
+    r_sidebar_col_out =  html.Div(children='R sidebar',
+                                  className="col col-lg-1",
+                                  style={**NOPADDING, **SIDEBAR_DIV})
+    
+    
+    return l_sidebar_col_out, r_sidebar_col_out
+
+
+l_sidebar_col, r_sidebar_col = GetSideBars(l_sidebar_in, r_sidebar_in) 
+
+pages_container = html.Div([
 	html.H1('Multi-page app with Dash Pages'),
+	    html.Div(
+	        [
+	            html.Div(
+	                dcc.Link(
+	                    f"{page['name']} - {page['path']}", href=page["relative_path"]
+	                )
+	            )
+	            for page in dash.page_registry.values()
+	        ]
+	    ),
+		dash.page_container
+	])
 
-    html.Div(
-        [
-            html.Div(
-                dcc.Link(
-                    f"{page['name']} - {page['path']}", href=page["relative_path"]
-                )
-            )
-            for page in dash.page_registry.values()
-        ]
-    ),
 
-	dash.page_container
-])
+layout4 = html.Div([headerrow,pages_container,footerrow],
+                   className="container-fluid",
+                   style=MASTER_CONTAINER_STYLE,
+                  )
 
+app.layout = layout4
+
+	
 ## locally
 #if __name__ == '__main__':
 #    app.run_server(debug=True)
