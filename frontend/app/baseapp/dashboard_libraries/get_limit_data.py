@@ -176,7 +176,7 @@ def GetLimits():
         trace_list_df_ret = pd.DataFrame(columns=trace_columns)
         limit_data_df_ret = pd.DataFrame(columns=limit_data_columns)
         
-        limit_list_dict_ret = limit_list_df.to_dict('records')
+        limit_list_dict_ret = limit_list_df_ret.to_dict('records')
     else:
         limit_list_df_ret = limit_list_df_resp
         trace_list_df_ret = trace_list_df_resp
