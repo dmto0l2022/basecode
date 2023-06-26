@@ -88,6 +88,13 @@
     text-align:center;
 }
 
+.SIDEBAR_COLUMN {
+    height: 100%;
+    background-color: black;
+    padding:0px;
+    margin:0px;
+    text-align:center;
+}
 
 .PAGE_SIDE_RIGHT {
     position: fixed;
