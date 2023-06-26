@@ -89,6 +89,24 @@ page_header_2 = dbc.Row(
             className="PAGE_HEADER_2",
         )
 
+
+side_bar_left = dbc.Row(
+            [
+                    html.P("Sidebar L", className="FOOTER_TEXT"),
+                  
+            ],
+            className="PAGE_SIDE_LEFT",
+        )
+
+side_bar_right = dbc.Row(
+            [
+                    html.P("Sidebar R", className="FOOTER_TEXT"),
+                  
+            ],
+            className="PAGE_SIDE_RIGHT",
+        )
+
+
 #header2 = html.Div(
 page_footer_1 = dbc.Row(
             [
