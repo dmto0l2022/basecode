@@ -76,7 +76,7 @@ pages_container = html.Div([
 	], className='PAGE_CONTENT')
 
 
-pages_container_box = html.Div(children[dash.page_container],className='PAGE_CONTENT')
+pages_container_box = html.Div(children=[dash.page_container],className='PAGE_CONTENT')
 
 layout4 = html.Div([pc.page_header_0,
 		    pc.page_header_1,
