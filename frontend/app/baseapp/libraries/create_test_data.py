@@ -45,7 +45,7 @@ df = pd.DataFrame({
 
 df.index.name='id'
 
-print(df)
+#print(df)
 
 with engine.begin() as connection:
     df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='replace', index_label='id')
