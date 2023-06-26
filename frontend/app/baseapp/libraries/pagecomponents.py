@@ -72,13 +72,13 @@ page_header_2 = dbc.Row(
             [
                 dbc.Col(
                     #html.P("Plots", className="HEADER_TEXT"),
-                    dcc.Link('limit', id='limit_link_1', href='/app/baseapp/list_all_limits'),
+                    dcc.Link('limit', id='limit_link_1', href='/app/baseapp/list_all_limits',className="HEADER_TEXT"),
                     width=3,
                     className = "HEADER_COLUMN",
                 ),
                 dbc.Col(
-                    html.P("Data",  className="HEADER_TEXT"),
-                    #dcc.Link(id='home_page_link_1',children=["home page"], href='/app/baseapp/homepage',className="HEADER_TEXT"),
+                    #html.P("Data",  className="HEADER_TEXT"),
+                    dcc.Link('home',id='home_pahe_link_1, href='/app/baseapp/homepage',className="HEADER_TEXT"),
                     width=3,
                     className = "HEADER_COLUMN",
                 ),
