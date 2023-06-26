@@ -33,6 +33,7 @@
     background-color: Gray;
     }
 
+
 .PAGE_HEADER_0 {
     position: fixed;
     top: 0;
@@ -145,15 +146,6 @@
   color: red;
 }
 
-
-.PAGE_HEADER {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--header_height);
-    background-color: lightblue;
-    }
 
 .PAGE_SIDE_RIGHT {
     position: fixed;
