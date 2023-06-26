@@ -479,7 +479,7 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
 def button_click(button1,button2,button3,plot_table_in):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
-    print('plot_table_in >>>>>>>>>>>>>>>>' ,plot_table_in)
+    #print('plot_table_in >>>>>>>>>>>>>>>>' ,plot_table_in)
     #plots_to_do_df = pd.DataFrame(plot_table_in)
     plots_to_do_df = pd.DataFrame.from_dict(plot_table_in)
     plots_to_do_df['all'] = 'all'
