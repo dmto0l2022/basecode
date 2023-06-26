@@ -142,7 +142,8 @@ def GetLimit(limit_id_in):
 
 def GetLimits():
     #api_container = "container_fastapi_orm_1:8008"
-    fastapi_orm_url = "http://35.214.16.124:8008"
+    fastapi_orm_url = "http://container_fastapi_orm_1:8008"
+    #fastapi_orm_url = "http://35.214.16.124:8008"
     fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
     url = fastapi_orm_url_api + "/limit/"
     r = requests.get(url)
