@@ -50,7 +50,7 @@ def parse_series_and_values(limits_dataframe_in):
                     appendthis = [row['id'],'data_label',l,0,0]
                 limit_data.append(appendthis)
         #lol
-    print('parsed limit data >>>>',limit_data) 
+    #print('parsed limit data >>>>',limit_data) 
     
     ## the datatable needed a unique id
     ## the id of the limit table was renamed to limit_id
@@ -81,9 +81,8 @@ def parse_series_and_values(limits_dataframe_in):
     return limit_list_df_out, trace_list_df_out, limit_data_df_out
        
 
-
-#api_container = "container_api_1:8004"
-fastapi_orm_url = "http://35.214.16.124:8008"
+fastapi_orm_url = "http://container_fastapi_orm_1:8008"
+#fastapi_orm_url = "http://35.214.16.124:8008"
 fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
 
 def GetLimit(limit_id_in):
@@ -95,9 +94,9 @@ def GetLimit(limit_id_in):
     limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
     column_names=['id','data_label','data_comment','data_values']
 
-    print('limit_list_df >>', limit_list_df_resp)
-    print('trace_list_df >>', trace_list_df_resp)
-    print('limit_data_df >>', limit_data_df_resp)
+    #print('limit_list_df >>', limit_list_df_resp)
+    #print('trace_list_df >>', trace_list_df_resp)
+    #print('limit_data_df >>', limit_data_df_resp)
 
     
     if response_data_frame.empty:
@@ -132,9 +131,9 @@ def GetLimits():
     limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
     column_names=['id','data_label','data_comment','data_values']
 
-    print('limit_list_df >>', limit_list_df_resp)
-    print('trace_list_df >>', trace_list_df_resp)
-    print('limit_data_df >>', limit_data_df_resp)
+    #print('limit_list_df >>', limit_list_df_resp)
+    #print('trace_list_df >>', trace_list_df_resp)
+    #print('limit_data_df >>', limit_data_df_resp)
 
     
     if response_data_frame.empty:
