@@ -27,11 +27,11 @@ page_header_0 =  dbc.Row(
 
 page_header_0 = dbc.Row(
             [
-                dbc.Col(html.Div("One of three columns",className="HEADER_TEXT"), width=4),
+                dbc.Col(html.Div("One of three columns",className="HEADER_TEXT"), width=4,className = "HEADER_COLUMN"),
                 dbc.Col(
-                    html.Div("DM Tools Plotter", className="HEADER_TEXT"), width=4
+                    html.Div("DM Tools Plotter", className="HEADER_TEXT"), width=4, className = "HEADER_COLUMN"
                         ),
-                dbc.Col(html.Div("One of three columns",className="HEADER_TEXT"), width=4),
+                dbc.Col(html.Div("One of three columns",className="HEADER_TEXT"), width=4, className = "HEADER_COLUMN"),
             ],
     className="PAGE_HEADER_0",
         )
