@@ -71,17 +71,20 @@ page_header_1 =  dbc.Row(
 page_header_2 = dbc.Row(
             [
                 dbc.Col(
-                    html.P("Plots", className="HEADER_TEXT"),
+                    #html.P("Plots", className="HEADER_TEXT"),
+                    dcc.Link('Limits', href='/app/baseapp/list_all_limits',className="HEADER_TEXT"),
                     width=3,
                     className = "HEADER_COLUMN",
                 ),
                 dbc.Col(
                     html.P("Data",  className="HEADER_TEXT"),
+                    dcc.Link('Home Page', href='/app/baseapp/homepage',className="HEADER_TEXT"),
                     width=3,
                     className = "HEADER_COLUMN",
                 ),
                  dbc.Col(
-                    html.P("Logged in as pauser (log out)", className="HEADER_TEXT"),
+                    #html.P("Logged in as pauser (log out)", className="HEADER_TEXT"),
+                    dcc.Link('Login', href='/app/login',className="HEADER_TEXT"),
                     width=6,
                     className = "HEADER_COLUMN",
                  ),
