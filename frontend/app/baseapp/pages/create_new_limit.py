@@ -264,7 +264,7 @@ def update_output(contents_in):
     except:
         DMToolLimit = Limit_class() ## empty
 
-    print("Data Comment > " , DMToolLimit.data_comment)
+    #print("Data Comment > " , DMToolLimit.data_comment)
 
     #print("Month of Announcement > ", DMToolLimit.date_of_announcement[0:7] + "01")
     
@@ -339,6 +339,7 @@ def button_click(
     #msg = "None of the buttons have been clicked yet"
     
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+    '''
     print('-------------- prop id ---------------------')
     
     print(prop_id)
@@ -361,7 +362,8 @@ def button_click(
     print('y_rescale_in  >>',y_rescale_in)
     print('y_units_in  >>',y_units_in)
     print('year_in  >>',year_in)
-
+    '''
+        
     '''
     data_comment_in  >> A descriptive comment
     data_label_in  >> What my data shows up under
@@ -455,14 +457,15 @@ def button_click(
         
         
         #url = 'https://www.w3schools.com/python/demopage.php'
-        url = 'http://35.214.16.124:8008/apiorm/limit'
+        #url = 'http://35.214.16.124:8008/apiorm/limit'
+        fastapi_orm_url_api = "http://container_fastapi_orm_1:8008/apiorm/limit"
         #url = 'http://container_fastapi_orm_1:8008/apiorm/limit'
         #myobj = {'somekey': 'somevalue'}
 
         #x = requests.post(url, json = post_data)
-        x = requests.post(url, json = new_limit_txt)
+        x = requests.post(fastapi_orm_url_api, json = new_limit_txt)
 
-        print(x.text)
+        #print(x.text)
         
         
         href_return = '/app/baseapp/list_all_limits'
