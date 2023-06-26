@@ -96,8 +96,7 @@ side_bar_left = dbc.Row(
                     html.P("Side Bar L", className="PAGE_TEXT"),
                     width=12,
                     className = "SIDEBAR_COLUMN",
-                ),,
-                  
+                    ),                
             ],
             className="PAGE_SIDE_LEFT",
         )
@@ -108,8 +107,7 @@ side_bar_right = dbc.Row(
                     html.P("Side Bar R", className="PAGE_TEXT"),
                     width=12,
                     className = "SIDEBAR_COLUMN",
-                ),,
-                  
+                ),                  
             ],
             className="PAGE_SIDE_RIGHT",
         )
