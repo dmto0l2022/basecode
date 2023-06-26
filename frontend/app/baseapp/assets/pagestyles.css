@@ -1,5 +1,5 @@
 :root {
-  --header_height: 5vh;
+  --header_height: 10vh;
   --footer_height: 5vh;
   --sidebar_width: 5vw;
   --adbar_width: 5vw;
@@ -8,16 +8,6 @@
   --form_width: 40vw;
   --form_height: 40vh;
 }
-
-:root {
-  --header_height: 10vh;
-  --footer_height: 5vh;
-  --sidebar_width: 5vw;
-  --adbar_width: 5vw;
-  --content_width: 90vw;
-  --content_height: 85vh;
-}
-
 
 .center {
   text-align: center;
