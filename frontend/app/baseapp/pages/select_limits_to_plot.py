@@ -39,7 +39,7 @@ dashdataandtables = adt.DashDataAndTables()
 
 all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
 
-print('all_limit_list_dict >>>>>>>>> ' , all_limit_list_dict)
+# print('all_limit_list_dict >>>>>>>>> ' , all_limit_list_dict)
 
 table_heights = 120
 
@@ -372,7 +372,7 @@ def update_graphs(
     except:
         all_filters_df = pd.DataFrame()
 
-    print('sltp : all filters >>>>> ', all_filters_df)
+    # print('sltp : all filters >>>>> ', all_filters_df)
     ## boolean filters
     #   dashdataandtables.official_df.loc[derived_virtual_selected_rows_official]
     #   dashdataandtables.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit]
@@ -380,7 +380,7 @@ def update_graphs(
     # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
     
     unfiltered_df = all_limit_list_df.copy()
-    print('sltp : unfiltered_df >>>', unfiltered_df) 
+    # print('sltp : unfiltered_df >>>', unfiltered_df) 
     #df.drop(df.index , inplace=True)
     
     filtered_df = unfiltered_df.drop(unfiltered_df.index)
@@ -410,7 +410,7 @@ def update_graphs(
    
     data1 = all_filters_df.to_dict("records")
     data2 = filtered_df.to_dict("records")
-    print(data1)
+    #print(data1)
     #data1=dff2.to_dict("records")
     #list_output = str(selectedcontinent_list) if selectedcontinent_list else "Click the table"
     return data2 #, list_output
@@ -423,7 +423,7 @@ def update_graphs(
 def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     ctx = dash.callback_context
     triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
-    print(triggered_id)
+    #print(triggered_id)
     if triggered_id == 'limits_table_main':
 
         selected_rowid = active_cell_exp['row_id']
@@ -458,9 +458,10 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     elif triggered_id == 'limits_to_plot_table':
         #selected_rowid = active_cell_plot['row']
         #print(data_in[selected_rowid])
-        print(active_cell_plot)
+        #print(active_cell_plot)
         #data_in = data_in.pop(active_cell_plot['row'])
-        print(data_in)
+        #print(data_in)
+        a = 1
     
     return data_in
 
