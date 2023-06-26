@@ -30,31 +30,7 @@ page_header_0 = dbc.Row(
 
 
 
-page_header_1 =  dbc.Row(
-            [
-                dbc.Col(
-                    html.P("Need Help", className="HEADER_TEXT"),
-                    width=3,
-                    className = "HEADER_COLUMN",
-                ),
-                dbc.Col(
-                    html.P("FAQ",className="HEADER_TEXT"),
-                    width=3,
-                    className = "HEADER_COLUMN",
-                ),
-                dbc.Col(
-                    html.P("Found A Bug", className="HEADER_TEXT"),
-                    width=3,
-                    className = "HEADER_COLUMN",
-                ),
-                dbc.Col(
-                    html.P("What's New", className="HEADER_TEXT"),
-                    width=3,
-                    className = "HEADER_COLUMN",
-                ),
-            ],
-            className="PAGE_HEADER_1",
-        )
+
 
 ##header1 = html.Div(
 page_header_1 =  dbc.Row(
