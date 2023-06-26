@@ -15,8 +15,8 @@ from app.baseapp.libraries import formlibrary as fl
 import requests
 import json
 
-#api_container = "container_api_1:8004"
-fastapi_orm_url = "http://35.214.16.124:8008"
+fastapi_orm_url = "container_fastapi_orm_1:8004"
+#fastapi_orm_url = "http://35.214.16.124:8008"
 fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
 
 dash.register_page(__name__, path='/list_all_limits')
@@ -75,7 +75,7 @@ def RefreshTableData():
     url = fastapi_orm_url_api + "/limit/"
     r = requests.get(url)
     response_data = r.json()
-    print(response_data)
+    #print(response_data)
     response_data_frame = pd.DataFrame(response_data)
     column_names=['id','experiment','data_comment','create', 'read', 'update', 'delete']
     if response_data_frame.empty:
@@ -152,36 +152,36 @@ def cell_clicked(active_cell):
 
     #row = active_cell["row_id"]
     row_id = active_cell["row_id"]
-    print(f"row_id: {row_id}")
+    #print(f"row_id: {row_id}")
     
     #row = active_cell["row_id"]
     column_id = active_cell["column_id"]
-    print(f"column_id: {column_id}")
+    #print(f"column_id: {column_id}")
     
     row = active_cell["row"]
-    print(f"row: {row}")
+    #print(f"row: {row}")
 
     #country = df.at[row, "country"]
     #print(country)
     id = updated_data_frame.at[row, "id"]
-    print("id >> ", id)
+    #print("id >> ", id)
 
     column = active_cell["column"]
-    print(f"column: {column}")
-    print("---------------------")
+    #print(f"column: {column}")
+    #print("---------------------")
     
     cell_value = updated_data_frame.iat[active_cell['row'], active_cell['column']]
 
-    print("cell_value > ", cell_value)
+    #print("cell_value > ", cell_value)
 
-    print("---------------------")
+    #print("---------------------")
 
-    print("table data frame")
-    print("---------------------")
+    #print("table data frame")
+    #print("---------------------")
 
-    print(updated_data_frame)
+    #print(updated_data_frame)
 
-    print("---------------------")
+    #print("---------------------")
 
     
     if cell_value == 'delete':
