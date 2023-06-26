@@ -665,7 +665,7 @@ data_label_input_row = html.Div(
                     target="data_label_example_field_id",trigger="click"), 
                 
             ],
-        className='g-0'),
+        className='g-0 FORM_ROW'),
     ]
 )
 
