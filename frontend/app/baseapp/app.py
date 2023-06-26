@@ -33,6 +33,8 @@ external_stylesheets=[dbc.themes.BOOTSTRAP, COMPONENT_STYLE, PAGES_STYLE, CONTEN
 
 from app.baseapp.libraries import formlibrary as fl
 
+from app.baseapp.libraries import pagecomponents as pc
+
 from app.baseapp.libraries import create_test_data
 
 #app = JupyterDash(__name__,
@@ -56,44 +58,7 @@ server = app.server
 headertext = 'Dark Matter Tool'
 footertext = 'ACG'
 
-def GetHeaderAndFooter(headertext, footertext):
 
-
-    hdivs = html.P(headertext)
-    header1 = html.Div([hdivs], style={**FULL_DIV,**NOPADDING},)
-
-    fdivs = [html.P(footertext)]
-    
-    footer1 = html.Div(fdivs, style={**FULL_DIV,**NOPADDING},)
-
-    headerrow_out =  html.Div(className="row",children=[header1],
-                           style={**HEADER_ROW,**NOPADDING})
-
-    footerrow_out =  html.Div(className="row",children=[footer1],
-                           style={**FOOTER_ROW,**NOPADDING})
-    
-    return headerrow_out, footerrow_out
-
-headerrow, footerrow = GetHeaderAndFooter(headertext, footertext)
-
-l_sidebar_in = 'L sidebar'
-r_sidebar_in = 'R sidebar'
-
-def GetSideBars(l_sidebar_in, r_sidebar_in):
-
-    l_sidebar_col_out =  html.Div(children='L sidebar',
-                                  className="col col-lg-1",
-                                  style={**NOPADDING, **SIDEBAR_DIV})
-    
-    r_sidebar_col_out =  html.Div(children='R sidebar',
-                                  className="col col-lg-1",
-                                  style={**NOPADDING, **SIDEBAR_DIV})
-    
-    
-    return l_sidebar_col_out, r_sidebar_col_out
-
-
-l_sidebar_col, r_sidebar_col = GetSideBars(l_sidebar_in, r_sidebar_in) 
 
 pages_container = html.Div([
 	html.H1('Multi-page app with Dash Pages'),
@@ -111,7 +76,7 @@ pages_container = html.Div([
 	])
 
 
-layout4 = html.Div([headerrow,pages_container,footerrow],
+layout4 = html.Div([pc.page_header_0,pc.page_header_1,pc.page_header_2,pages_container],
                    className="container-fluid",
                    style=MASTER_CONTAINER_STYLE,
                   )
