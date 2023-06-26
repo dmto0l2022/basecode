@@ -18,8 +18,8 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, "/app/.env"))
 
-print('BASE_DIR + APP')
-print(path.join(BASE_DIR, "/app/"))
+#print('BASE_DIR + APP')
+#print(path.join(BASE_DIR, "/app/"))
 
 
 ## MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
@@ -89,8 +89,8 @@ class Middleware:
         #template_path = os.path.join(os.path.dirname(__file__), '/werkzeug/templates')
         #BASE_DIR = path.abspath(path.dirname(__file__))
         template_path = path.join(BASE_DIR, "/workdir/frontend/werkzeug/templates")
-        print('template path')
-        print(template_path)
+        #print('template path')
+        #print(template_path)
         self.jinja_env = Environment(loader=FileSystemLoader(template_path),
                                  autoescape=True)
     
@@ -139,10 +139,10 @@ class Middleware:
         detected = chardet.detect(current_session_data_in)
         #print(detected["encoding"])
         decoded_current_session_data = current_session_data_in.decode(detected["encoding"])
-        print('decoded_current_session_data string')
-        print('-------------here----------------')
-        print(decoded_current_session_data)
-        print('------------to here--------------')
+        #print('decoded_current_session_data string')
+        #print('-------------here----------------')
+        #print(decoded_current_session_data)
+        #print('------------to here--------------')
         
         all_values = []
         user_id = []
@@ -166,10 +166,10 @@ class Middleware:
             current_user_from_cookie = 'No user'
         
         
-        print('________all____________')
-        print(all_values)
-        print('________current_user_from_cookie____________')
-        print(current_user_from_cookie)
+        #print('________all____________')
+        #print(all_values)
+        #print('________current_user_from_cookie____________')
+        #print(current_user_from_cookie)
         
         return current_user_from_cookie
         '''
@@ -213,34 +213,34 @@ class Middleware:
         cookies = http_cookie.split('; ')
         current_cookie = cookies[0]
         colon_cookie = current_cookie.replace("=",":")
-        print('colon cookie')
-        print(colon_cookie)
+        #print('colon cookie')
+        #print(colon_cookie)
         
         for cookie in cookies:
             cookie = cookie.split('=')
             handler[cookie[0]] = cookie[1]
 
-        for k in handler:
-            print(k + " = " + handler[k])
-            print('--------------')
+        #for k in handler:
+        #    print(k + " = " + handler[k])
+        #    print('--------------')
         
         
         #print(http_cookie)
-        print('---------------------------')
+        #print('---------------------------')
         encoded_cookie = bytes(colon_cookie, 'Windows-1252')
         #str_1_encoded = bytes(str_1,'UTF-8')
         
-        print('encoded cookie')
-        print(encoded_cookie)
+        #print('encoded cookie')
+        #print(encoded_cookie)
         
         current_session_data = self.redisserver.get(encoded_cookie)
-        print('current session data')
+        #print('current session data')
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
         #current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
-        print(current_session_data)
+        #print(current_session_data)
         #val = self.redisserver.get(current_session)
         
-        print('===================================')
+        #print('===================================')
         
         import chardet
         
@@ -276,25 +276,25 @@ class Middleware:
         # not Flask request - from werkzeug.wrappers import Request
         ##r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
         environ_data = repr(environ).encode('utf-8')
-        print('environ type')
-        print(type(environ))
-        print('environ data')
-        print('---------------------')
-        print(environ_data)
+        #print('environ type')
+        #print(type(environ))
+        #print('environ data')
+        #print('---------------------')
+        #print(environ_data)
         try:
             session_data,current_user, current_user_email, email_domain = self.getcookiedata(environ)
-            print('current session data')
-            print('-------------------')
-            print(session_data)
-            print('current user')
-            print('-------------------')
-            print(current_user)
-            print('current user email')
-            print('-------------------')
-            print(current_user_email)
-            print('current email domain')
-            print('-------------------')
-            print(email_domain)
+            #print('current session data')
+            #print('-------------------')
+            #print(session_data)
+            #print('current user')
+            #print('-------------------')
+            #print(current_user)
+            #print('current user email')
+            #print('-------------------')
+            #print(current_user_email)
+            #print('current email domain')
+            #print('-------------------')
+            #print(email_domain)
         except:
             print('no current session')
             session_data = {}
@@ -310,7 +310,7 @@ class Middleware:
         #print(all_keys)
         #print(session['Username'])
         ##print(url_return)
-        print('path: %s, url: %s' % (request.path, request.url))
+        #print('path: %s, url: %s' % (request.path, request.url))
         # just do here everything what you need
         #if 'wsgi' not in request.path:
         #    print('wsgi not in path')
