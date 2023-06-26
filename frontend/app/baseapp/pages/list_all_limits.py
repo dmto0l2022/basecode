@@ -15,7 +15,7 @@ from app.baseapp.libraries import formlibrary as fl
 import requests
 import json
 
-fastapi_orm_url = "container_fastapi_orm_1:8004"
+fastapi_orm_url = "http://container_fastapi_orm_1:8004"
 #fastapi_orm_url = "http://35.214.16.124:8008"
 fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
 
