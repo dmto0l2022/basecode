@@ -73,7 +73,7 @@ pages_container = html.Div([
 	        ]
 	    ),
 		dash.page_container
-	])
+	], className='PAGE_CONTENT')
 
 
 layout4 = html.Div([pc.page_header_0,
