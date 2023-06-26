@@ -67,6 +67,11 @@
     background-color: Black;
     }
 
+.PAGE_TEXT {
+    color: #a569bd;
+    background-color: Black;
+    }
+
 .HEADER_COLUMN {
     height: 100%;
     background-color: black;
@@ -81,7 +86,9 @@
     right: 0;
     bottom: var(--footer_height);
     width: var(--sidebar_width);
-    background-color: lightgreen;
+    /*background-color: lightgreen;*/
+    color: #a569bd;
+    background-color: Black;
     }
 
 .PAGE_SIDE_LEFT {
