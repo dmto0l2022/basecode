@@ -27,11 +27,11 @@ page_header_0 =  dbc.Row(
 
 page_header_0 = dbc.Row(
             [
-                dbc.Col(html.Div("One of three columns"), width=4),
+                dbc.Col(html.Div("One of three columns",className="HEADER_TEXT"), width=4),
                 dbc.Col(
                     html.Div("DM Tools Plotter", className="HEADER_TEXT"), width=4
                         ),
-                dbc.Col(html.Div("One of three columns"), width=4),
+                dbc.Col(html.Div("One of three columns",className="HEADER_TEXT"), width=4),
             ],
     className="PAGE_HEADER_0",
         )
@@ -88,3 +88,26 @@ page_header_2 = dbc.Row(
             ],
             className="PAGE_HEADER_2",
         )
+
+#header2 = html.Div(
+page_footer_1 = dbc.Row(
+            [
+                dbc.Col(
+                    html.P("ACG", className="FOOTER_TEXT"),
+                    width=4,
+                    className = "FOOTER_COLUMN",
+                ),
+                dbc.Col(
+                    html.P("Brown",  className="FOOTER_TEXT"),
+                    width=4,
+                    className = "FOOTER_COLUMN",
+                ),
+                 dbc.Col(
+                    html.P("Version 0", className="FOOTER_TEXT"),
+                    width=4,
+                    className = "FOOTER_COLUMN",
+                 ),
+            ],
+            className="PAGE_FOOTER",
+        )
+
