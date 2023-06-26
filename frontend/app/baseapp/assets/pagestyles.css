@@ -46,7 +46,7 @@
 
 .PAGE_HEADER_1 {
     position: fixed;
-    top: 3vh;
+    top: 2vh;
     left: 0;
     right: 0;
     height: 2vh;
@@ -55,7 +55,7 @@
 
 .PAGE_HEADER_2 {
     position: fixed;
-    top: 5vh;
+    top: 4vh;
     left: 0;
     right: 0;
     height: 2vh;
