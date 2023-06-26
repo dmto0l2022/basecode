@@ -76,7 +76,7 @@ pages_container = html.Div([
 	])
 
 
-layout4 = html.Div([pc.page_header_0,pc.page_header_1,pc.page_header_2,pages_container],
+layout4 = html.Div([pc.page_header_0,pc.page_header_1,pc.page_header_2,pages_container,pc.page_footer_1],
                    className="container-fluid PAGE_PARENT_CONTAINER",
                   )
 
