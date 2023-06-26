@@ -76,12 +76,14 @@ pages_container = html.Div([
 	], className='PAGE_CONTENT')
 
 
+pages_container_box = html.Div(children[dash.page_container],className='PAGE_CONTENT')
+
 layout4 = html.Div([pc.page_header_0,
 		    pc.page_header_1,
 		    pc.page_header_2,
 		    pc.side_bar_left,
 		    pc.side_bar_right,
-		    pages_container,
+		    pages_container_box,
 		    pc.page_footer_1],
                    className="container-fluid PAGE_PARENT_CONTAINER",
                   )
