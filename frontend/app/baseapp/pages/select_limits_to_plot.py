@@ -74,7 +74,6 @@ new_limits_table = dash_table.DataTable(
                 'rule': '''
                     line-height: 12px;
                     display: block;
-                    overflow-y: hidden;
                 '''
             }],
             style_table={'height': '30vh',},
