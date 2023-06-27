@@ -4,7 +4,7 @@ from dash import html, dcc, callback, Output, Input
 #import libraries.formlibrary as fl
 from app.baseapp.libraries import formlibrary as fl
 
-dash.register_page(__name__, path='/plot_menu')
+dash.register_page(__name__, path='/create_new_plot')
 page_name = 'plot_menu'
 
 
