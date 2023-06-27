@@ -88,7 +88,7 @@ new_limits_table = dash_table.DataTable(
                         {'if': {'column_id': 'data_label'},
                         'width': '35%'},
                         {'if': {'column_id': 'experiment'},
-                             'width': '5%'},
+                             'width': '10%'},
                         {'if': {'column_id': 'spin_dependency'},
                              'width': '5%'},
                         {'if': {'column_id': 'result_type'},
