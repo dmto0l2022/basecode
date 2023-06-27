@@ -59,11 +59,11 @@ def CreateFormatTable(limits_traces_in):
             id='format_table_id',
             #row_deletable=True,
             # Add this line
-            fixed_rows={'headers': True},
+            #fixed_rows={'headers': True},
             style_table=style_table,  # defaults to 500
             #style_cell={'fontSize':10,'height':11} ,
-            style_cell=style_cell,
-            fill_width=True,
+            #style_cell=style_cell,
+            #fill_width=True,
             #style_table={'overflowY': 'auto'},
             #virtualization=True
             data=default_plotseries_df.to_dict('records'),
@@ -79,7 +79,7 @@ def CreateFormatTable(limits_traces_in):
                 {'id': 'symbol_color', 'name': 'symbol_color', 'presentation': 'dropdown'},
             ],
 
-            editable=True,
+            #editable=True,
             css=[
                 {"selector": ".Select-menu-outer", "rule": "display: block !important"},
                 {"selector": ".dash-table-container .dropdown", "rule" : "position: static"}, # fixes  when the table dropdown doesnt drop down
