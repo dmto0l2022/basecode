@@ -98,6 +98,7 @@ new_limits_table = dash_table.DataTable(
                              'width': '5%'},
                         {'if': {'column_id': 'official'},
                              'width': '5%'},
+                        {'else': 'width' : '5%'}
             ],
             style_data={
                 'whiteSpace': 'normal',
