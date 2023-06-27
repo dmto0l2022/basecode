@@ -11,5 +11,5 @@ from dash import Input, Output
 
 login_frame = html.Iframe(src="/app/login",style={"height": "100%", "width": "100%"})
 
-layout = html.Div(children=[login_frame])
+layout = html.Div(children=[login_frame],style={"height": "100%", "width": "100%"})
 
