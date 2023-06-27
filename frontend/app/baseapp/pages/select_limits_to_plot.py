@@ -295,11 +295,11 @@ maincolumn = dbc.Col(
                 row1,
                 row3_1,
                 #row3_1_debug,
-                row3_2,
-                next_button,
-                cancel_button,
-                list_button,
-                row5
+                row3_2#,
+                #next_button,
+                #cancel_button,
+                #list_button,
+                #row5
             ],
             width=10,)
 
