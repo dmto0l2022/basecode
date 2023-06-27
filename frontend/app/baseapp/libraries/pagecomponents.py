@@ -27,11 +27,11 @@ page_header_0 =  dbc.Row(
 
 page_header_0 = dbc.Row(
             [
-                dbc.Col(html.Div("One of three columns",className="HEADER_TEXT"), width=4,className = "HEADER_COLUMN"),
+                dbc.Col(html.Div("",className="HEADER_TEXT"), width=4,className = "HEADER_COLUMN"),
                 dbc.Col(
                     html.Div("DM Tools Plotter", className="HEADER_TEXT"), width=4, className = "HEADER_COLUMN"
                         ),
-                dbc.Col(html.Div("One of three columns",className="HEADER_TEXT"), width=4, className = "HEADER_COLUMN"),
+                dbc.Col(html.Div("", className="HEADER_TEXT"), width=4, className = "HEADER_COLUMN"),
             ],
     className="PAGE_HEADER_0",
         )
@@ -44,22 +44,26 @@ page_header_0 = dbc.Row(
 page_header_1 =  dbc.Row(
             [
                 dbc.Col(
-                    html.P("Need Help", className="HEADER_TEXT"),
+                    #html.P("Need Help", className="HEADER_TEXT"),
+                    dcc.Link('Help', id='limit_link_1', href='/app/baseapp/help',className="HEADER_TEXT"),
                     width=3,
                     className = "HEADER_COLUMN",
                 ),
                 dbc.Col(
-                    html.P("FAQ",className="HEADER_TEXT"),
+                    #html.P("FAQ",className="HEADER_TEXT"),
+                    dcc.Link('FAQ', id='limit_link_1', href='/app/baseapp/faq',className="HEADER_TEXT"),
                     width=3,
                     className = "HEADER_COLUMN",
                 ),
                 dbc.Col(
-                    html.P("Found A Bug", className="HEADER_TEXT"),
+                    #html.P("Found A Bug", className="HEADER_TEXT"),
+                    dcc.Link('Found A Bug', id='limit_link_1', href='/app/baseapp/bug',className="HEADER_TEXT"),
                     width=3,
                     className = "HEADER_COLUMN",
                 ),
                 dbc.Col(
-                    html.P("What's New", className="HEADER_TEXT"),
+                    #html.P("What's New", className="HEADER_TEXT"),
+                    dcc.Link("What's New", id='limit_link_1', href='/app/baseapp/new',className="HEADER_TEXT"),
                     width=3,
                     className = "HEADER_COLUMN",
                 ),
@@ -72,20 +76,20 @@ page_header_2 = dbc.Row(
             [
                 dbc.Col(
                     #html.P("Plots", className="HEADER_TEXT"),
-                    dcc.Link('limit', id='limit_link_1', href='/app/baseapp/list_all_limits',className="HEADER_TEXT"),
-                    width=3,
+                    dcc.Link('Plots', id='limit_link_1', href='/app/baseapp/list_user_plots',className="HEADER_TEXT"),
+                    width=4,
                     className = "HEADER_COLUMN",
                 ),
                 dbc.Col(
                     #html.P("Data",  className="HEADER_TEXT"),
-                    dcc.Link('home',id='home_page_link_1', href='/app/baseapp/homepage',className="HEADER_TEXT"),
-                    width=3,
+                    dcc.Link('home',id='home_page_link_1', href='/app/baseapp/list_all_limits',className="HEADER_TEXT"),
+                    width=4,
                     className = "HEADER_COLUMN",
                 ),
                  dbc.Col(
-                    html.P("Logged in as pauser (log out)", className="HEADER_TEXT"),
-                    #dcc.Link(id='login page',children=["login"], href='/app/login',className="HEADER_TEXT"),
-                    width=6,
+                    #html.P("Logged in as pauser (log out)", className="HEADER_TEXT"),
+                    dcc.Link('Login',id='home_page_link_1', href='/app/login',className="HEADER_TEXT"),
+                    width=4,
                     className = "HEADER_COLUMN",
                  ),
             ],
