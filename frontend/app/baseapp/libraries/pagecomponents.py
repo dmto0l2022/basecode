@@ -63,7 +63,7 @@ page_header_1 =  dbc.Row(
                 ),
                 dbc.Col(
                     #html.P("What's New", className="HEADER_TEXT"),
-                    dcc.Link("What's New", id='whatsnew_link_1', href='/app/baseapp/new',className="HEADER_TEXT"),
+                    dcc.Link("What's New", id='whatsnew_link_1', href='/app/baseapp/whatsnew',className="HEADER_TEXT"),
                     width=3,
                     className = "HEADER_COLUMN",
                 ),
