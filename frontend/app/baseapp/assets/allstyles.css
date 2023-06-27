@@ -305,5 +305,8 @@
     background-color: lightgray;
     }
 
+.dash-table-container .dropdown.dropdown { position: static; }
+
+.dropdown.dropup { position: static; }
 
 
