@@ -3,7 +3,8 @@ import dash_bootstrap_components as dbc
 from dash import Input, Output, callback
 from dash import html, dcc
 
-dash.register_page(__name__)
+## NB dash.register_page(__name__) ends up with page name /limit-menu
+dash.register_page(__name__, path='/limit_menu')
 page_name = 'limit_menu'
 
 import dash_bootstrap_components as dbc
