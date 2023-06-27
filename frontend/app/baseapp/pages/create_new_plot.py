@@ -12,8 +12,8 @@ layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
     dcc.Location(id="url", refresh=True), ## important to allow redirects
     html.Div("Create New Plot"),
-    html.Button('Create', id=page_name + '_create_new_' + 'button_id', n_clicks=0),
-    html.Button('Cancel', id=page_name + '_edit_existing_' + 'button_id', n_clicks=0),
+    html.Button('Create', id=page_name + '_create_' + 'button_id', n_clicks=0),
+    html.Button('Cancel',  id=page_name + '_cancel_' + 'button_id', n_clicks=0),
     html.Div('No Button Pressed', id="whatbutton")
     ])
 
