@@ -230,46 +230,6 @@
     background-color: Black;
     }
 
-.PAGE_SIDE_RIGHT {
-    position: fixed;
-    top: var(--header_height);
-    right: 0;
-    bottom: var(--footer_height);
-    width: var(--sidebar_width);
-    /*background-color: lightgreen;*/
-    color: #a569bd;
-    background-color: Black;
-    }
-
-.PAGE_SIDE_LEFT {
-    position: fixed;
-    top: var(--header_height);
-    left: 0;
-    bottom: var(--footer_height);
-    width: var(--sidebar_width);
-    background-color: lightgreen;
-    }
-
-.PAGE_ADBAR {
-    position: fixed;
-    top: var(--header_height);
-    right: 0;
-    bottom: var(--footer_height);
-    width: var(--adbar_width);
-    background-color: lightgreen;
-    }
-
-.PAGE_FOOTER {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: var(--footer_height);
-    background-color: gray;
-    }
-
-
-
 .PAGE_PARENT_CONTAINER {
     height:100vh;
     width: 100vw;
@@ -302,7 +262,9 @@
     right: 0;
     bottom: var(--footer_height);
     width: var(--sidebar_width);
-    background-color: lightgreen;
+    /*background-color: lightgreen;*/
+    color: #a569bd;
+    background-color: Black;
     }
 
 .PAGE_SIDE_LEFT {
@@ -313,6 +275,7 @@
     width: var(--sidebar_width);
     background-color: lightgreen;
     }
+
 
 .PAGE_ADBAR {
     position: fixed;
