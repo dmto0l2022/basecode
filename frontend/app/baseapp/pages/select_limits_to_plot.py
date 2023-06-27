@@ -291,9 +291,9 @@ maincolumn = dbc.Col(
                 row3_1,
                 #row3_1_debug,
                 row3_2#,
-                #next_button,
-                #cancel_button,
-                #list_button,
+                next_button,
+                cancel_button,
+                list_button,
                 #row5
             ],
             width=10,)
@@ -474,13 +474,13 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
 def button_click(button1,button2,button3,plot_table_in):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
-    #print('plot_table_in >>>>>>>>>>>>>>>>' ,plot_table_in)
+    print('plot_table_in >>>>>>>>>>>>>>>>' ,plot_table_in)
     #plots_to_do_df = pd.DataFrame(plot_table_in)
     plots_to_do_df = pd.DataFrame.from_dict(plot_table_in)
     plots_to_do_df['all'] = 'all'
     plots_to_do_df['limit_id'] = plots_to_do_df['limit_id'].astype(str)
     limits_to_plot = plots_to_do_df[['limit_id','all']]
-    #print('limits_to_plot >>>>>>', limits_to_plot)
+    print('limits_to_plot >>>>>>', limits_to_plot)
     
     #limits_to_plot['limit_ids'] = limits_to_plot[['all']].groupby(['all'])['limit_id'].transform(lambda x: ','.join(x))
     #print(limit_ids)  
