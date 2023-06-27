@@ -60,7 +60,7 @@ new_limits_table = dash_table.DataTable(
                      {'name': 'officl', 'id': 'official'},
                      ],
             #fixed_rows={'headers': True},
-            page_size=5,
+            page_size=7,
             filter_action='none',
             #row_selectable='multi',
             #selected_rows=[],
