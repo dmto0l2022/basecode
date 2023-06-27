@@ -5,7 +5,7 @@ from dash import html, dcc, callback, Output, Input
 from app.baseapp.libraries import formlibrary as fl
 
 dash.register_page(__name__, path='/create_new_plot')
-page_name = 'plot_menu'
+page_name = 'create_new_plot'
 
 
 layout = html.Div([
@@ -29,6 +29,7 @@ layout = html.Div([
 def button_click(button1,button2):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+    print("create new plot >> prop id >>  " ,prop_id)
     #msg = prop_id
     if page_name + '_create_' + 'button_id' == prop_id :
         #msg = "Button 1 was most recently clicked"
