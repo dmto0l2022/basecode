@@ -276,14 +276,6 @@
     background-color: gray;
     }
 
-.PAGE_CONTENT {
-    position: fixed;
-    top: var(--header_height);
-    height: var(--content_height);
-    width : var(--content_width);
-    left: var(--sidebar_width);
-    background-color: lightgray;
-    }
 
 
 .PAGE_PARENT_CONTAINER {
@@ -348,13 +340,14 @@
     background-color: gray;
     }
 
+
 .PAGE_CONTENT {
     position: fixed;
     top: var(--header_height);
     height: var(--content_height);
     width : var(--content_width);
     left: var(--sidebar_width);
-    background-color: blue;
+    background-color: lightgray;
     }
 
 
