@@ -296,7 +296,7 @@ maincolumn = dbc.Col(
                 next_button,
                 cancel_button,
                 list_button,
-                #row5
+                row5
             ],
             width=10,)
 
