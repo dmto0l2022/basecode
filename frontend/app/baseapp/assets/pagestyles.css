@@ -140,7 +140,7 @@
     height: var(--content_height);
     width : var(--content_width);
     left: var(--sidebar_width);
-    background-color: LightGray;
+    background-color: lightgray;
     }
 
 
