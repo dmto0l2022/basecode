@@ -122,7 +122,6 @@ limits_to_plot_table = dash_table.DataTable(
     data=limits_to_plot_df.to_dict('records'),
     columns=[{'name': 'id', 'id': 'id'},
              {'name': 'limit_id', 'id': 'limit_id'},
-             {'name': 'plot_id', 'id': 'plot_id'},
              {'name': 'data_reference', 'id': 'data_reference'},
              {'name': 'data_label', 'id': 'data_label'}
              ],
@@ -135,8 +134,7 @@ limits_to_plot_table = dash_table.DataTable(
     css=[{
         'selector': '.dash-spreadsheet td div',
         'rule': '''
-            line-height: 15px;
-            max-height: 45px; min-height:30px; height: 30px;
+            line-height: 12px
             display: block;
             overflow-y: hidden;
         '''
@@ -154,8 +152,6 @@ limits_to_plot_table = dash_table.DataTable(
         {'if': {'column_id': 'id'},
          'width': '5%'},
         {'if': {'column_id': 'limit_id'},
-         'width': '5%'},
-        {'if': {'column_id': 'plot_id'},
          'width': '5%'},
         {'if': {'column_id': 'data_reference'},
          'width': '20%'},
