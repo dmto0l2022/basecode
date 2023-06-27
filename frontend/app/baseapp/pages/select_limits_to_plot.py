@@ -126,7 +126,7 @@ limits_to_plot_table = dash_table.DataTable(
              {'name': 'data_label', 'id': 'data_label'}
              ],
     #fixed_rows={'headers': True},
-    page_size=4,
+    page_size=7,
     style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
             'overflow': 'hidden',
             'textOverflow': 'ellipsis',
