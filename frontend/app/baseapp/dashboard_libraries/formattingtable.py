@@ -62,8 +62,8 @@ def CreateFormatTable(limits_traces_in):
             #fixed_rows={'headers': True},
             style_table=style_table,  # defaults to 500
             #style_cell={'fontSize':10,'height':11} ,
-            #style_cell=style_cell,
-            #fill_width=True,
+            style_cell=style_cell,
+            fill_width=True,
             #style_table={'overflowY': 'auto'},
             #virtualization=True
             data=default_plotseries_df.to_dict('records'),
