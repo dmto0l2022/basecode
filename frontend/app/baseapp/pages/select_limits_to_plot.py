@@ -76,7 +76,7 @@ new_limits_table = dash_table.DataTable(
                     overflow-y: hidden;
                 '''
             }],
-            style_table={'height': '40vh',},
+            style_table={'height': '30vh',},
             style_cell_conditional=[
                         {'if': {'column_id': 'id'},
                         'width': '5%'},
