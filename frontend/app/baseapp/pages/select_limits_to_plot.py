@@ -5,6 +5,7 @@ import dash_bootstrap_components as dbc
 #import formlibrary as fl
 
 dash.register_page(__name__, path='/select_limits_to_plot')
+page_name = 'select_limits_to_plot'
 
 #### select limits to plot
 
@@ -269,11 +270,11 @@ select_limits_to_plot_form_content  = dbc.Row(
     className="g-3",
 )
 
-next_button =  html.Div(dbc.Button("Next",  id="next_button_select_limits_to_plot_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+next_button =  html.Div(dbc.Button("Next",  id=page_name + "_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
-cancel_button =  html.Div(dbc.Button("Cancel",  id="cancel_button_select_limits_to_plot_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+cancel_button =  html.Div(dbc.Button("Cancel",  id=page_name + "_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
-list_button =  html.Div(dbc.Button("List",  id="list_button_select_limits_to_plot_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
 
 select_limits_to_plot_form = html.Div(
@@ -465,9 +466,9 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     [Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
      Output('limit_list','children')],
     [
-    Input("next_button_select_limits_to_plot_id", "n_clicks"),
-    Input("cancel_button_select_limits_to_plot_id", "n_clicks"),
-    Input("list_button_select_limits_to_plot_id","n_clicks"),
+    Input(page_name + "_next_button_id", "n_clicks"),
+    Input(page_name + "_cancel_button_id", "n_clicks"),
+    Input(page_name + "_list_button_id","n_clicks"),
         ],[State('limits_to_plot_table', 'data')],
         prevent_initial_call=True
 )
@@ -490,17 +491,17 @@ def button_click(button1,button2,button3,plot_table_in):
     #print('limit_ids >>>>>>>>' ,limit_ids)
             
     #msg = prop_id
-    if "next_button_select_limits_to_plot_id" == prop_id :
+    if page_name + "_next_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
         #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
         href_return = '/app/baseapp/style_plot_and_traces'
         return [href_return,'']
-    elif "cancel_button_select_limits_to_plot_id" == prop_id:
+    elif page_name + "_cancel_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/app/baseapp/homepage'
         return  [href_return,'']
-    elif "list_button_select_limits_to_plot_id" == prop_id:
+    elif page_name + "_list_button_id" == prop_id:
         #msg = "Button 3 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         #href_return = '/app/baseapp/select_limits_to_plot'
@@ -511,63 +512,3 @@ def button_click(button1,button2,button3,plot_table_in):
         return href_return
 
 
-#############################
-'''
-select_limits_to_plot_form_title = html.Div(html.P(children='Select Limits to Plot', className = "NOPADDING_CONTENT FORM_TITLE"))
-
-select_limits_to_plot_form_content  = dbc.Row(
-    [
-        dbc.Col(
-            [
-                html.P(children='Select Limits to Plot', className = "NOPADDING_CONTENT FORM_TITLE")
-            ],
-            width=6,
-        )
-    ],
-    className="g-3",
-)
-
-next_button =  html.Div(dbc.Button("Next",  id="next_button_select_limits_to_plot", color="secondary"), className = "FORM_CANCEL_BUTN")
-
-cancel_button =  html.Div(dbc.Button("Cancel",  id="cancel_button_select_limits_to_plot", color="secondary"), className = "FORM_CANCEL_BUTN")
-
-
-select_limits_to_plot_form = html.Div(
-    #[newplot_title,newplot_input3],
-    [dcc.Location(id="url", refresh=True),
-     select_limits_to_plot_form_title,
-     select_limits_to_plot_form_content,
-     next_button, cancel_button],
-    className = "NOPADDING_CONTENT CENTRE_FORM"
-)
-
-
-layout = select_limits_to_plot_form
-
-@callback(
-    Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
-    [
-    Input("next_button_select_limits_to_plot", "n_clicks"),
-    Input("cancel_button_select_limits_to_plot", "n_clicks")
-        ],
-        prevent_initial_call=True
-)
-def button_click(button1,button2):
-    #msg = "None of the buttons have been clicked yet"
-    prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
-    #msg = prop_id
-    if "next_button_select_limits_to_plot" == prop_id :
-        #msg = "Button 1 was most recently clicked"
-        #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
-        href_return = '/app/baseapp/style_plot_and_traces'
-        return href_return
-    elif "cancel_button_select_limits_to_plot" == prop_id:
-        #msg = "Button 2 was most recently clicked"
-        #href_return = dash.page_registry['pages.home']['path']
-        href_return = '/app/baseapp/homepage'
-        return href_return
-    else:
-        #href_return = dash.page_registry['pages.home']['path']
-        href_return = '/app/baseapp/homepage'
-        return href_return
-'''
