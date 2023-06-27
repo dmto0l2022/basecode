@@ -71,13 +71,13 @@ new_limits_table = dash_table.DataTable(
             css=[{
                 'selector': '.dash-spreadsheet td div',
                 'rule': '''
-                    line-height: 15px;
+                    line-height: 12px;
                     max-height: 45px; min-height:30px; height: 30px;
                     display: block;
                     overflow-y: hidden;
                 '''
             }],
-            style_table={'height': '25vh',},
+            style_table={'height': '40vh',},
             style_cell_conditional=[
                         {'if': {'column_id': 'id'},
                         'width': '5%'},
