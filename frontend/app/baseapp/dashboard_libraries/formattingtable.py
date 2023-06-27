@@ -2,6 +2,7 @@ from dash import dash_table
 
 style_table={
                 #'maxHeight': '50ex',
+                'minHeight': '40vh',
                 ##'height': '44vh', ## does not know any detail about parent container
                 ##'overflowY': 'scroll', # 'auto'
                 ##'overflowX': 'scroll',
