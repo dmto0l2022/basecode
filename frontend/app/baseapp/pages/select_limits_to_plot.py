@@ -307,7 +307,7 @@ maindiv =  html.Div(className="row ALL_ROW NOPADDING",children=[maincolumn])
 
 layout4 = html.Div([dcc.Location(id="url", refresh=True),
                         maindiv],
-                   className="container-fluid PAGE_CONTAINER_STYLE",
+                   className="PAGE_CONTAINER_STYLE",
                   )
 
 layout = layout4
