@@ -81,9 +81,8 @@ def CreateFormatTable(limits_traces_in):
 
             editable=True,
             css=[
-                {"selector": ".Select-menu-outer", "rule": "display: block !important"}
-                /* fixes  when the table dropdown doesn't drop down */
-                {"selector": ".dash-table-container .dropdown", "rule" : "position: static"},
+                {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                {"selector": ".dash-table-container .dropdown", "rule" : "position: static"}, # fixes  when the table dropdown doesnt drop down
                 #{"selector": ".dash-spreadsheet tr th", "rule": "height: 5px;"},  # set height of header
                 #{"selector": ".dash-spreadsheet tr td", "rule": "height: 5px;"}  # set height of body rows
                 ],
