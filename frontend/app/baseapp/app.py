@@ -83,7 +83,7 @@ layout4 = html.Div([pc.page_header_0,
 		    pc.page_header_2,
 		    pc.side_bar_left,
 		    pc.side_bar_right,
-		    pages_container_box,
+		    pages_container,
 		    pc.page_footer_1],
                    className="container-fluid PAGE_PARENT_CONTAINER",
                   )
