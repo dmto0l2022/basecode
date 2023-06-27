@@ -23,11 +23,12 @@ import pandas as pd
 
 PAGES_STYLE = "/assets/pagesstyles.css"
 CONTENT_STYLES = "/assets/content.css"
+ALL_STYLES = "/assets/allstyles.css"
 #external_stylesheets=[dbc.themes.BOOTSTRAP, PAGES_STYLE, CONTENT_STYLES]
 
 
 COMPONENT_STYLE = "/assets/forms.css"
-external_stylesheets=[dbc.themes.BOOTSTRAP, COMPONENT_STYLE, PAGES_STYLE, CONTENT_STYLES]
+external_stylesheets=[dbc.themes.BOOTSTRAP, ALL_STYLES, COMPONENT_STYLE]
 
 # import libraries.formlibrary as fl
 
