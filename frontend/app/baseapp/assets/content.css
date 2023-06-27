@@ -78,6 +78,9 @@
                           width:100vw;
                           background-color:pink}
 
+.PAGE_CONTAINER_STYLE {height:100%;
+                          width:100%;
+                          background-color:light-green}
 
 .DASHBOARD_CONTAINER_STYLE   {
                           height:90vh;
