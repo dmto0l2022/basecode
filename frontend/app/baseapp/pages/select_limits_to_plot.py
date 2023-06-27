@@ -288,6 +288,7 @@ select_limits_to_plot_form = html.Div(
 
 maincolumn = dbc.Col(
             [
+                dcc.Location(id="url", refresh=True),
                 row1,
                 row3_1,
                 #row3_1_debug,
@@ -301,8 +302,7 @@ maincolumn = dbc.Col(
 
 maindiv =  html.Div(className="ALL_ROW NOPADDING",children=[maincolumn])
 
-layout4 = html.Div([dcc.Location(id="url", refresh=True),
-                        maindiv],
+layout4 = html.Div([maindiv],
                    className="PAGE_CONTENT",
                   )
 
