@@ -72,6 +72,7 @@ new_limits_table = dash_table.DataTable(
                 'selector': '.dash-spreadsheet td div',
                 'rule': '''
                     line-height: 12px;
+                    overflow-y: hidden;
                     display: block;
                 '''
             }],
