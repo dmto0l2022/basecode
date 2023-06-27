@@ -16,7 +16,9 @@ input_group = dbc.InputGroup(
     ]
 )
 
-layout = html.Div(children=[input_group])
+faq_text = html.Div(children=["FAQ will appear here!"])
+
+layout = html.Div(children=[input_group,faq_text])
 
 @callback(
     Output(page_name + "-button-input", "value"),
