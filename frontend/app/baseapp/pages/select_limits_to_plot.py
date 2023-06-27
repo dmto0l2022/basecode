@@ -97,8 +97,7 @@ new_limits_table = dash_table.DataTable(
                         {'if': {'column_id': 'greatest_hit'},
                              'width': '5%'},
                         {'if': {'column_id': 'official'},
-                             'width': '5%'},
-                        {'width' : '5%'}
+                             'width': '5%'}
             ],
             style_data={
                 'whiteSpace': 'normal',
@@ -153,11 +152,11 @@ limits_to_plot_table = dash_table.DataTable(
         {'if': {'column_id': 'id'},
          'width': '5%'},
         {'if': {'column_id': 'limit_id'},
-         'width': '5%'},
+         'width': '10%'},
         {'if': {'column_id': 'data_reference'},
-         'width': '20%'},
+         'width': '25%'},
         {'if': {'column_id': 'data_label'},
-         'width': '35%'},
+         'width': '55%'},
     ],
     style_data={
         'whiteSpace': 'normal',
