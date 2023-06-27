@@ -179,3 +179,9 @@
     border: 1px solid #ccc !important;
     Width: 100% !important;
 }
+
+.COLUMN_DIV {
+    height:100%;
+    background-color:orange;
+    border:2px solid black;
+    color: purple}
