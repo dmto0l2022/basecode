@@ -303,7 +303,7 @@ maincolumn = dbc.Col(
             ],
             width=10,)
 
-maindiv =  html.Div(className="row ALL_ROW NOPADDING",children=[maincolumn])
+maindiv =  html.Div(className="ALL_ROW NOPADDING",children=[maincolumn])
 
 layout4 = html.Div([dcc.Location(id="url", refresh=True),
                         maindiv],
