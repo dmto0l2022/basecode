@@ -1,4 +1,13 @@
-
+:root {
+  --header_height: 6vh;
+  --footer_height: 5vh;
+  --sidebar_width: 5vw;
+  --adbar_width: 5vw;
+  --content_width: 90vw;
+  --content_height: 89vh;
+  --form_width: 40vw;
+  --form_height: 40vh;
+}
 
 .CENTRE_FORM_CONTAINER {
     height: 600px;
