@@ -79,7 +79,7 @@ def CreateFormatTable(limits_traces_in):
                 {'id': 'symbol_color', 'name': 'symbol_color', 'presentation': 'dropdown'},
             ],
 
-            #editable=True,
+            editable=True,
             css=[
                 {"selector": ".Select-menu-outer", "rule": "display: block !important"},
                 {"selector": ".dash-table-container .dropdown", "rule" : "position: static"}, # fixes  when the table dropdown doesnt drop down
