@@ -21,7 +21,8 @@ def GetStyleAndLegendColumn(styledatatable_in, legendgraph_in):
     styleandlegendcolumn_out = html.Div(
                 [stylerow, legendrow],
                 #[row1],
-                className="HALF_CONTENT_COLUMN",
+                #className="HALF_CONTENT_COLUMN",
+                className="col col-lg-6",
                 #style={**CONTENT_ROW,**NOPADDING}
             )
     return  styleandlegendcolumn_out
