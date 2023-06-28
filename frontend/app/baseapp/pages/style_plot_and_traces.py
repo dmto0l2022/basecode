@@ -157,7 +157,7 @@ layout = html.Div([
     html.Div(id='content',children=create_layout(default_limits)),
     row_of_buttons,
     html.Div(id='button_presses',children='button here')
-])
+],className="PAGE_CONTENT")
 
 '''
 @callback(Output('container-button-timestamp_1', 'children'),
