@@ -33,7 +33,7 @@ style_cell={
 def CreateFormatTable(limits_traces_in):
 
     #limits_traces_copy = limits_traces_in.copy()
-
+    print("format table : limits_traces_in.columns >> " , limits_traces_in.columns)
     palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
     cycle_colors = itertools.cycle(palette_list)
 
