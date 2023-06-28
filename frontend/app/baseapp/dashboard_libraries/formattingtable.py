@@ -37,8 +37,8 @@ def CreateFormatTable(limits_traces_in):
     palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
     cycle_colors = itertools.cycle(palette_list)
 
-    colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
-  
+    #colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
+    colored_limits_list =[]
     for index, row in limits_traces_in.iterrows():
         #print(row['c1'], row['c2'])
         copy_row = row.copy()
@@ -46,7 +46,13 @@ def CreateFormatTable(limits_traces_in):
         copy_row['line_color'] = color
         copy_row['symbol_color'] = color
         copy_row['fill_color'] = color
-        colored_limits = pd.concat([colored_limits,copy_row])
+        append_this = [copy_row['limit_id'],copy_row['trace_id'],copy_row['trace_name'],
+                       copy_row['line_color'],copy_row['line'],copy_row['fill_color'],
+                       copy_row['symbol'],copy_row['symbol_color']]
+        colored_limits_list = colored_limits_list.append(append_this)
+
+    colored_limits = pd.DataFrame(data=colored_limits_list, columns=limits_traces_in.columns, index=limits_traces_in.index)
+    
   
     print("formatting table >>>> colored_limits >>>", colored_limits)
   
