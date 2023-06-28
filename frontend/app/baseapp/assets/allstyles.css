@@ -109,7 +109,7 @@
 /*height: var(--header_height);*/
 
 .HALF_CONTENT_COLUMN {width:var(--half_content_width);
-              height:var(--content_height);
+              height:var(--half_content_height);
               background-color:blue;}
 
 .QUARTER_COLUMN {width:25%;height:100%;background-color:green;}
