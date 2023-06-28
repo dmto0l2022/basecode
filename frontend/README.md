@@ -41,3 +41,7 @@ https://stackoverflow.com/questions/67312219/problem-with-combining-fastapi-with
 
 https://stackoverflow.com/questions/28337246/redirect-a-user-to-url-with-wsgi-no-framework
 
+# Email Verification Path
+
+https://stackoverflow.com/questions/63581599/email-verification-with-flask-mail
+
