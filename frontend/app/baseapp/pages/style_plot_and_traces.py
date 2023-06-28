@@ -64,7 +64,7 @@ def GetChart(chart_in):
 
     column_chart_out = html.Div(
                 [chart_row]  ,
-                className="col col-lg-6"
+                className="col col-lg-6 PAGE_GRAPH_COLUMN_CONTENT_LEFT",
             )
     return column_chart_out
 
