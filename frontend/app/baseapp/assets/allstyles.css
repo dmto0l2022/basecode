@@ -7,6 +7,8 @@
   --half_content_width: 45vw;
   --half_content_height: 44vw;
   --content_height: 89vh;
+  --graph_content_height:80vh
+  --graph_content_width:90vh;
   --graph_width: 45vw;
   --graph_height: 80vh;
   --form_width: 40vw;
@@ -312,6 +314,15 @@
     top: var(--header_height);
     height: var(--content_height);
     width : var(--content_width);
+    left: var(--sidebar_width);
+    background-color: lightgray;
+    }
+
+.PAGE_GRAPH_CONTENT {
+    position: fixed;
+    top: var(--header_height);
+    height: var(--graph_content_height);
+    width : var(--graph_content_width);
     left: var(--sidebar_width);
     background-color: lightgray;
     }
