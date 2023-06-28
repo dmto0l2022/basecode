@@ -316,6 +316,15 @@
     background-color: lightgray;
     }
 
+.PAGE_GRAPH_COLUMN_CONTENT {
+    position: fixed;
+    top: var(--header_height);
+    height: var(--graph_height);
+    width : var(--graph_width);
+    background-color: lightgray;
+    }
+
+
 .dash-table-container .dropdown.dropdown { position: static; }
 
 .dropdown.dropup { position: static; }
