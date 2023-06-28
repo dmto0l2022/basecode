@@ -31,16 +31,15 @@ style_cell={
 def CreateFormatTable(limits_traces_in):
 
     default_plotseries_df = limits_traces_in
+
+    palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
+  
+    line_color_list = palette_list
     
-    line_color_list = ['black','red','orange','yellow','lime green', 'green', 'cyan',
-              'sky blue', 'blue', 'purple', 'magenta', 'pink']
+    fill_color_list = palette_list
     
-    fill_color_list = ['LightGrey','black','red','orange','yellow','lime green', 'green', 'cyan',
-              'sky blue', 'blue', 'purple', 'magenta', 'pink']
-    
-    symbol_color_list = ['LightGrey','black','red','orange','yellow','lime green', 'green', 'cyan',
-              'sky blue', 'blue', 'purple', 'magenta', 'pink']
-    
+    symbol_color_list = palette_list 
+  
     line_color_options=[{'label': i, 'value': i} for i in line_color_list]
     
     fill_color_options=[{'label': i, 'value': i} for i in fill_color_list]
