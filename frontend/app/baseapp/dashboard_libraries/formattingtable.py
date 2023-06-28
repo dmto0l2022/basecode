@@ -1,4 +1,6 @@
 from dash import dash_table
+import itertools
+import pandas as pd
 
 style_table={
                 #'maxHeight': '50ex',
@@ -30,9 +32,21 @@ style_cell={
 
 def CreateFormatTable(limits_traces_in):
 
-    default_plotseries_df = limits_traces_in
+    #limits_traces_copy = limits_traces_in.copy()
 
     palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
+    cycle_colors = itertools.cycle(palette_list)
+
+    colored_limits = pd.DataFrame()
+    colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
+  
+    for index, row in limits_traces.iterrows():
+        #print(row['c1'], row['c2'])
+        color = next(cycle_colors)
+        row['line_color'] = color
+        row['symbol_color'] = color
+        row['fill_color'] = color
+        colored_limits = pd.concat([colored_limits,row])
   
     line_color_list = palette_list
     
@@ -65,7 +79,7 @@ def CreateFormatTable(limits_traces_in):
             fill_width=True,
             #style_table={'overflowY': 'auto'},
             #virtualization=True
-            data=default_plotseries_df.to_dict('records'),
+            data=limits_traces_copy.to_dict('records'),
             columns=[
                 {'id': 'limit_id', 'name': 'limit_id'},
                 ##{'id': 'data_label', 'name': 'data_label'},
