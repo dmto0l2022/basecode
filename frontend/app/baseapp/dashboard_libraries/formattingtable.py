@@ -48,8 +48,8 @@ def CreateFormatTable(limits_traces_in):
         copy_row['fill_color'] = color
         append_this = [copy_row['id'], copy_row['limit_id'], copy_row['data_label'],
                        copy_row['trace_id'],copy_row['trace_name'],
-                       copy_row['line_color'],copy_row['line'],copy_row['fill_color'],
-                       copy_row['symbol'],copy_row['symbol_color']]
+                       copy_row['line_color'],copy_row['symbol_color'],copy_row['fill_color'],
+                       copy_row['line'],copy_row['symbol']]
         print(append_this)
         colored_limits_list.append(append_this)
 
