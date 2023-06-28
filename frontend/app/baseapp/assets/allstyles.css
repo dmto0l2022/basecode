@@ -349,7 +349,14 @@
     position: fixed;
     bottom: var(--footer_height);
     left: var(--sidebar_width);
-    background-color: lightgray;
+    background-color: red;
+    }
+
+.DIV_ON_PAGE_RIGHT {
+    position: fixed;
+    bottom: var(--footer_height);
+    right: var(--sidebar_width);
+    background-color: pink;
     }
 
 .dash-table-container .dropdown.dropdown { position: static; }
