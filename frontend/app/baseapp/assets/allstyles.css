@@ -316,7 +316,7 @@
     background-color: lightgray;
     }
 
-.PAGE_GRAPH_COLUMN_CONTENT {
+.PAGE_GRAPH_COLUMN_CONTENT_RIGHT {
     position: fixed;
     top: var(--header_height);
     height: var(--graph_height);
@@ -325,6 +325,14 @@
     background-color: lightgray;
     }
 
+.PAGE_GRAPH_COLUMN_CONTENT_LEFT {
+    position: fixed;
+    top: var(--header_height);
+    height: var(--graph_height);
+    width : var(--graph_width);
+    left: var(--sidebar_width);
+    background-color: lightgray;
+    }
 
 .dash-table-container .dropdown.dropdown { position: static; }
 
