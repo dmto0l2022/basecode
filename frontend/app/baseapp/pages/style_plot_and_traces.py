@@ -133,11 +133,11 @@ def create_layout(limits_in):
                                     style_and_legend_column,
                                     ],)
     
-    layout_out = html.Div(
-                       [two_columns],
-                       className="container-fluid DASHBOARD_CONTAINER_STYLE",
-                      )
-    
+    #layout_out = html.Div(
+    #                   [two_columns],
+    #                   className="container-fluid DASHBOARD_CONTAINER_STYLE",
+    #                  )
+    layout_out = two_columns
     return layout_out
 
 
