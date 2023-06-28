@@ -340,7 +340,7 @@ class Middleware:
             #    response = Response('Hello World!')
             #    print(response)
             #    return response(environ,start_response)
-        elif 'wsgi' in request.path and (email_domain == 'gaitskell.com' or email_domain == 'brown.edu') :
+        elif ('wsgi' in request.path or 'baseapp' in request.path) and (email_domain == 'gaitskell.com' or email_domain == 'brown.edu') :
             return self.wsgi(environ,start_response)
           
         else:
