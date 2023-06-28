@@ -41,11 +41,15 @@ def CreateFormatTable(limits_traces_in):
   
     for index, row in limits_traces_in.iterrows():
         #print(row['c1'], row['c2'])
+        copy_row = row.copy()
         color = next(cycle_colors)
-        row['line_color'] = color
-        row['symbol_color'] = color
-        row['fill_color'] = color
-        colored_limits = pd.concat([colored_limits,row])
+        copy_row['line_color'] = color
+        copy_row['symbol_color'] = color
+        copy_row['fill_color'] = color
+        colored_limits = pd.concat([colored_limits,copy_row])
+  
+    print("formatting table >>>> colored_limits >>>", colored_limits)
+  
   
     line_color_list = palette_list
     
