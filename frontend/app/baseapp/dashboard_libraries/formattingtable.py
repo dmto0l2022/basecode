@@ -78,7 +78,7 @@ def CreateFormatTable(limits_traces_in):
             fill_width=True,
             #style_table={'overflowY': 'auto'},
             #virtualization=True
-            data=limits_traces_copy.to_dict('records'),
+            data=colored_limits.to_dict('records'),
             columns=[
                 {'id': 'limit_id', 'name': 'limit_id'},
                 ##{'id': 'data_label', 'name': 'data_label'},
