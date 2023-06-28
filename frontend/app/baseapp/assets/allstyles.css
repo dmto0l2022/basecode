@@ -321,6 +321,7 @@
     top: var(--header_height);
     height: var(--graph_height);
     width : var(--graph_width);
+    right: var(--sidebar_width);
     background-color: lightgray;
     }
 
