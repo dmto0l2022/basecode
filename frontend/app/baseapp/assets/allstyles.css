@@ -345,6 +345,13 @@
     background-color: lightgray;
     }
 
+.BUTTONS_ON_PAGE_LEFT {
+    position: fixed;
+    bottom: var(--footer_height);
+    left: var(--sidebar_width);
+    background-color: lightgray;
+    }
+
 .dash-table-container .dropdown.dropdown { position: static; }
 
 .dropdown.dropup { position: static; }
