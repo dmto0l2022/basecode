@@ -4,6 +4,7 @@
   --sidebar_width: 5vw;
   --adbar_width: 5vw;
   --content_width: 90vw;
+  --half_content_width: 45vw;
   --content_height: 89vh;
   --graph_width: 45vw;
   --graph_height: 80vh;
@@ -104,8 +105,12 @@
 
 .SIDE_COLUMN {width:10%;height:100%;}
 
+half_content_width
+/*height: var(--header_height);*/
 
-.HALF_COLUMN {width:50%;height:100%;background-color:green;}
+.HALF_CONTENT_COLUMN {width:var(--half_content_width);
+              height:var(--content_height);
+              background-color:green;}
 
 .QUARTER_COLUMN {width:25%;height:100%;background-color:green;}
 
