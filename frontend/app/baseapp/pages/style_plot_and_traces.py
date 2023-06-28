@@ -4,6 +4,8 @@ from urllib.parse import urlparse, parse_qs
 
 cwd = os.getcwd()
 
+page_name = 'style_plot_and_traces'
+
 from datetime import datetime
 
 import dash
@@ -144,10 +146,10 @@ def create_layout(limits_in):
 #layout = style_plot_and_traces_form_form
 
 row_of_buttons = html.Div([
-        html.Button('Save', id='btn-nclicks-1_1', n_clicks=0),
-        html.Button('Revert', id='btn-nclicks-2_1', n_clicks=0),
-        html.Button('Cancel', id='btn-nclicks-3_1', n_clicks=0),
-        html.Div(id='container-button-output')
+        html.Button('Save', id=page_name+'btn-nclicks-1_1', n_clicks=0),
+        html.Button('Revert', id=page_name+'btn-nclicks-2_1', n_clicks=0),
+        html.Button('Cancel', id=page_name+'btn-nclicks-3_1', n_clicks=0),
+        html.Div(id=page_name+'container-button-output')
     ])
   
 
@@ -156,7 +158,7 @@ layout = html.Div([
     html.Div(id='layout-div'),
     html.Div(id='content',children=create_layout(default_limits)),
     row_of_buttons,
-    html.Div(id='button_presses',children='button here')
+    html.Div(id=page_name+'button_presses',children='button here')
 ],className="PAGE_CONTENT")
 
 '''
@@ -183,19 +185,19 @@ def display(btn1, btn2):
 '''
 
 @callback(
-    Output('container-button-output', 'children'),
-    Input('btn-nclicks-1_1', 'n_clicks'),
-    Input('btn-nclicks-2_1', 'n_clicks'),
-    Input('btn-nclicks-3_1', 'n_clicks')
+    Output(page_name+'container-button-output', 'children'),
+    Input(page_name+'btn-nclicks-1_1', 'n_clicks'),
+    Input(page_name+'btn-nclicks-2_1', 'n_clicks'),
+    Input(page_name+'btn-nclicks-3_1', 'n_clicks')
 )
 def displayClick1_1(btn1, btn2, btn3):
     msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
-    if "btn-nclicks-1_1" == prop_id:
+    if page_name+"btn-nclicks-1_1" == prop_id:
         msg = "Button 1 was most recently clicked"
-    elif "btn-nclicks-2_1" == prop_id:
+    elif page_name+"btn-nclicks-2_1" == prop_id:
         msg = "Button 2 was most recently clicked"
-    elif "btn-nclicks-3_1" == prop_id:
+    elif page_name+"btn-nclicks-3_1" == prop_id:
         msg = "Button 3 was most recently clicked"
     return html.Div(msg)
 
