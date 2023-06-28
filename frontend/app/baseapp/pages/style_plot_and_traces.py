@@ -86,6 +86,8 @@ default_limits = [45]
 palette = cycle(px.colors.qualitative.Bold)
 #palette = cycle(['black', 'grey', 'red', 'blue'])
 
+palette_list = 
+
 #####################################
 
 dash.register_page(__name__, path='/style_plot_and_traces')
