@@ -37,10 +37,9 @@ def CreateFormatTable(limits_traces_in):
     palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
     cycle_colors = itertools.cycle(palette_list)
 
-    colored_limits = pd.DataFrame()
     colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
   
-    for index, row in limits_traces.iterrows():
+    for index, row in limits_traces_in.iterrows():
         #print(row['c1'], row['c2'])
         color = next(cycle_colors)
         row['line_color'] = color
