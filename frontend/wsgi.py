@@ -327,8 +327,8 @@ class Middleware:
         #    start_response('301 Redirect', [('Location', '/app/welcome'),])
         #    return []
 
-        if 'wsgi' not in request.path:
-            print('wsgi not in path')
+        if ('wsgi' not in request.path and 'baseapp' not in request.path) :
+            print('wsgi and baseapp not in path')
             #response = Response('Hello World!')
             #response = request.get_response(self.wsgi)
             #print('------------ response ---------------')
@@ -345,7 +345,7 @@ class Middleware:
           
         else:
             #body = environ['wsgi.input']
-            print('wsgi in path')
+            print('wsgi or baseapp in path')
             #print('body')
             #print(body)
             #modified_body = body
