@@ -49,7 +49,8 @@ def CreateFormatTable(limits_traces_in):
         append_this = [copy_row['limit_id'],copy_row['trace_id'],copy_row['trace_name'],
                        copy_row['line_color'],copy_row['line'],copy_row['fill_color'],
                        copy_row['symbol'],copy_row['symbol_color']]
-        colored_limits_list = colored_limits_list.append(append_this)
+        print(append_this)
+        ##colored_limits_list = colored_limits_list.append(append_this)
 
     colored_limits = pd.DataFrame(data=colored_limits_list, columns=limits_traces_in.columns, index=limits_traces_in.index)
     
