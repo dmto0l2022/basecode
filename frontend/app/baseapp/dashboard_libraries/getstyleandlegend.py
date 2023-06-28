@@ -22,7 +22,7 @@ def GetStyleAndLegendColumn(styledatatable_in, legendgraph_in):
                 [stylerow, legendrow],
                 #[row1],
                 #className="HALF_CONTENT_COLUMN",
-                className="col col-lg-6 HALF_CONTENT_COLUMN",
+                className="col col-lg-6",
                 #style={**CONTENT_ROW,**NOPADDING}
             )
     return  styleandlegendcolumn_out
