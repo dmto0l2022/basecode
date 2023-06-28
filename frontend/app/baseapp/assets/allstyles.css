@@ -5,6 +5,8 @@
   --adbar_width: 5vw;
   --content_width: 90vw;
   --content_height: 89vh;
+  --graph_width: 45vw;
+  --graph_height: 80vh;
   --form_width: 40vw;
   --form_height: 40vh;
 }
@@ -46,10 +48,12 @@
     border:1px solid black;
     }
 
+/*height: var(--header_height);*/
+
 .GRAPH {
     display: block;
-    height: 100%;
-    width: 100%;
+    height: var(--graph_height);;
+    width: var(--graph_width);;
     }
 
 .TABLE_ROW {
