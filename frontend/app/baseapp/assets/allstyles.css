@@ -106,12 +106,11 @@
 
 .SIDE_COLUMN {width:10%;height:100%;}
 
-half_content_width
 /*height: var(--header_height);*/
 
 .HALF_CONTENT_COLUMN {width:var(--half_content_width);
               height:var(--content_height);
-              background-color:green;}
+              background-color:blue;}
 
 .QUARTER_COLUMN {width:25%;height:100%;background-color:green;}
 
