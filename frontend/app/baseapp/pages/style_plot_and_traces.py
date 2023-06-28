@@ -83,10 +83,11 @@ default_limits = [45]
 ####################################
 
 # colors
-palette = cycle(px.colors.qualitative.Bold)
+#palette = cycle(px.colors.qualitative.Bold)
 #palette = cycle(['black', 'grey', 'red', 'blue'])
 
-palette_list = 
+palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
+palette = cycle(palette_list)
 
 #####################################
 
