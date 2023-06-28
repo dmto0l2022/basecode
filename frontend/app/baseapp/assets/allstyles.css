@@ -135,9 +135,9 @@
 
 .CHART_ROW {width:100%;height:100%;}
 
-.LEGEND_ROW {width:100%;height: var(--half_content_height);}
+.LEGEND_ROW {width:100%;height:50%;}
 
-.STYLE_ROW {width:100%;height: var(--half_content_height);}
+.STYLE_ROW {width:100%;height:50%;}
 
 .ALL_ROW {
     width:100%;
