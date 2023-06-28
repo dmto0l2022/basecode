@@ -156,7 +156,7 @@ row_of_buttons = html.Div([
 layout = html.Div([
     dcc.Location(id='url',refresh=True),
     html.Div(id='layout-div'),
-    html.Div(id='content',children=create_layout(default_limits)),
+    html.Div(id='content',children=create_layout(default_limits),className="PAGE_GRAPH_CONTENT"),
     row_of_buttons,
     html.Div(id=page_name+'button_presses',children='button here')
 ],className="PAGE_CONTENT")
