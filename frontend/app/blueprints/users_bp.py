@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template, session, render_template_string
 from app.models import UserSimple
-from app.models import User
+from app.models import User, Role
 
 from app import db
 
 from flask_security import Security, SQLAlchemyUserDatastore, auth_required, hash_password, login_required
+
+user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 
 from flask_security.models import fsqla_v3 as fsqla
 
@@ -35,7 +37,7 @@ def getusername():
 @login_required
 def remove():
     userid = session['_user_id']
-    SQLAlchemyUserDatastore.delete_user(user=userid)
+    user_datastore.delete_user(user=userid)
     #db.session.commit()
     flash('You are no longer exist')
     return redirect(url_for('home'))
