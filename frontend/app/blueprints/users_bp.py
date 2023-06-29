@@ -40,6 +40,5 @@ def remove():
     delete_user = User.query.filter_by(fs_uniquifier=userid).first()
     db.session.delete(delete_user)
     db.session.commit()
-    flash('You are no longer exist')
     return redirect(url_for('home'))
     
