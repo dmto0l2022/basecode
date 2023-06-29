@@ -104,18 +104,18 @@ def init_app():
      
          db.init_app(app)
 
-         user_datastore = SQLAlchemySessionUserDatastore(db.session, md.User, md.Role)
-         app.security = Security(app, user_datastore)
+         #user_datastore = SQLAlchemySessionUserDatastore(db.session, md.User, md.Role)
+         #app.security = Security(app, user_datastore)
 
          # This processor is added to all templates
-         @app.security.context_processor
-         def security_context_processor():
-             return dict(hello="world")
+         #@app.security.context_processor
+         #def security_context_processor():
+         #    return dict(hello="world")
          
          # This processor is added to only the confirmation view
-         @app.security.send_confirmation_context_processor
-         def send_confirmation_context_processor():
-             return dict(confirmation_link="https://dmtools.het.brown.edu/app/confirm")
+         #@app.security.send_confirmation_context_processor
+         #def send_confirmation_context_processor():
+         #    return dict(confirmation_link="https://dmtools.het.brown.edu/app/confirm")
          
          mail = Mail(app)
 
