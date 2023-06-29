@@ -106,6 +106,11 @@ def init_app():
 
          user_datastore = SQLAlchemySessionUserDatastore(db.session, md.User, md.Role)
          app.security = Security(app, user_datastore)
+
+         # This processor is added to only the confirmation view
+         @security.send_confirmation_context_processor
+         def send_confirmation_context_processor():
+             return dict(confirmation_link="https://dmtools.het.brown.edu/app/confirm")
          
          mail = Mail(app)
 
