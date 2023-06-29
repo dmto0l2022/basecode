@@ -108,12 +108,12 @@ def init_app():
          app.security = Security(app, user_datastore)
 
          # This processor is added to all templates
-         @security.context_processor
+         @app.security.context_processor
          def security_context_processor():
              return dict(hello="world")
          
          # This processor is added to only the confirmation view
-         @security.send_confirmation_context_processor
+         @app.security.send_confirmation_context_processor
          def send_confirmation_context_processor():
              return dict(confirmation_link="https://dmtools.het.brown.edu/app/confirm")
          
