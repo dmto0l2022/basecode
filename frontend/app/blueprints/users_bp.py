@@ -4,7 +4,7 @@ from app.models import User
 
 from app import db
 
-from flask_security import Security, SQLAlchemyUserDatastore, auth_required, hash_password
+from flask_security import Security, SQLAlchemyUserDatastore, auth_required, hash_password, login_required
 
 from flask_security.models import fsqla_v3 as fsqla
 
