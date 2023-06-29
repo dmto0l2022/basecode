@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
-security_confirm_url = environ.get('SECURITY_CONFIRM_URL')
+#security_confirm_url = environ.get('SECURITY_CONFIRM_URL')
 
 ##https://stackoverflow.com/questions/14793098/how-to-use-flask-security-register-view
 current_app.config['SECURITY_REGISTERABLE'] = True
@@ -29,5 +29,7 @@ current_app.config['SECURITY_CONFIRMABLE'] = True
 current_app.config['SECURITY_RECOVERABLE'] = True
 current_app.config['SECURITY_TRACKABLE='] = True
 current_app.config['SECURITY_CHANGEABLE'] = True
+current_app.config["SECURITY_CONFIRMABLE"] = False ## cannot get confirm link to be external
 
-current_app.config['SECURITY_CONFIRM_URL'] = security_confirm_url
+
+#current_app.config['SECURITY_CONFIRM_URL'] = security_confirm_url
