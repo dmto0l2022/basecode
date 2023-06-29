@@ -2,6 +2,9 @@ from flask import current_app
 from flask_security import Security, current_user, auth_required, hash_password, \
      SQLAlchemySessionUserDatastore
 
+from os import environ, path
+from dotenv import load_dotenv
+
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
