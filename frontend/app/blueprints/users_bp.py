@@ -22,3 +22,12 @@ def getusername():
     userid = session['_user_id']
     username_full = User.get_username(userid)
     return render_template_string('hello {{ what }}', what=userid)
+
+@users_bp.route('/app/user/removeself', methods=['GET', 'POST'])
+@login_required
+def remove():
+    current_user.remove()
+    db.session.commit()
+    flash('You are no longer exist')
+    return redirect(url_for('.index'))
+    
