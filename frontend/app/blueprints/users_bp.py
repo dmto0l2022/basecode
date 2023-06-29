@@ -35,7 +35,7 @@ def getusername():
 @login_required
 def remove():
     userid = session['_user_id']
-    SQLAlchemyUserDatastore.delete_user(userid)
+    SQLAlchemyUserDatastore.delete_user(user=userid)
     #db.session.commit()
     flash('You are no longer exist')
     return redirect(url_for('home'))
