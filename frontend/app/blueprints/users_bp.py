@@ -37,8 +37,9 @@ def getusername():
 @login_required
 def remove():
     userid = session['_user_id']
-    user_datastore.delete_user(user=userid)
-    #db.session.commit()
+    delete_user = User.query.filter_by(fs_uniquifier=userid).first()
+    db.session.delete(delete_user)
+    db.session.commit()
     flash('You are no longer exist')
     return redirect(url_for('home'))
     
