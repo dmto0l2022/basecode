@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, session, render_template_string
 from app.models import UserSimple
 from app.models import User
 
+from app import db
+
 from flask_security import Security, SQLAlchemyUserDatastore, auth_required, hash_password
 
 from flask_security.models import fsqla_v3 as fsqla
@@ -35,5 +37,5 @@ def remove():
     current_user.remove()
     db.session.commit()
     flash('You are no longer exist')
-    return redirect(url_for('.index'))
+    return redirect(url_for('home'))
     
