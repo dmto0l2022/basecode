@@ -22,3 +22,4 @@ current_app.config['SECURITY_RECOVERABLE'] = True
 current_app.config['SECURITY_TRACKABLE='] = True
 current_app.config['SECURITY_CHANGEABLE'] = True
 
+current_app.config['SECURITY_CONFIRM_URL'] = security_confirm_url
