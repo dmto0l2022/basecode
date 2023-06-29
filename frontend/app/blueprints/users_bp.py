@@ -34,7 +34,7 @@ def getusername():
 @users_bp.route('/app/user/removeself', methods=['GET', 'POST'])
 @login_required
 def remove():
-    current_user.delete()
+    SQLAlchemyUserDatastore.delete_user(current_user)
     db.session.commit()
     flash('You are no longer exist')
     return redirect(url_for('home'))
