@@ -24,8 +24,6 @@ current_app.config['MAIL_USE_SSL'] = True
 current_app.config['MAIL_USERNAME'] = mail_username
 current_app.config['MAIL_PASSWORD'] = mail_password
 
-current_app.config['SECURITY_CONFIRM_URL'] = security_confirm_url
-
 ## https://stackoverflow.com/questions/65997108/flask-mail-ssl-wrong-version-number-wrong-version-number-ssl-c1123
 current_app.config['MAIL_USE_TLS'] = True
 current_app.config['MAIL_USE_SSL'] = False
