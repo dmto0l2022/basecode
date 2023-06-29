@@ -15,7 +15,7 @@ mail_username = environ.get('MAIL_USERNAME')
 mail_password = environ.get('MAIL_PASSWORD')
 sender_email = environ.get('MAIL_SENDEREMAIL')
 receiver_email = environ.get('MAIL_RECEIVEREMAIL')
-security_confirm_url = environ.get('SECURITY_CONFIRM_URL')
+
 
 # After 'Create app'
 current_app.config['MAIL_SERVER'] = mail_server
