@@ -277,11 +277,10 @@ maincolumn = dbc.Col(
                 cancel_button,
                 list_button
             ],
-            width=10,)
+            width=12,)
 
-maindiv =  html.Div(className="ALL_ROW NOPADDING",children=[maincolumn])
     
-layout4 = html.Div(id='content',children=[maindiv],className="PAGE_GRAPH_CONTENT")
+layout4 = html.Div(id='content',children=[maincolumn],className="PAGE_GRAPH_CONTENT")
         
 ##className="PAGE_CONTENT",)
 
