@@ -101,7 +101,7 @@
     text-align:right;
     padding:0 !important;
     margin: 0 !important;
-    border-style: solid;
+    border-style: none;
     width: 100%;
 }
 
@@ -109,7 +109,7 @@
 .FORM_LABEL_COLUMN {
     padding:0 !important;
     margin: 0 !important;
-    border-style: solid;
+    border-style: none;
     width: 1;
 }
 
@@ -156,7 +156,7 @@
 .FORM_TEXTINPUT_COLUMN {
     padding:0 !important;
     margin: 0 !important;
-    border-style: solid;
+    border-style: none;
 }
 
 .FORM_COLUMN_NUMBERINPUT {
@@ -169,7 +169,7 @@
 .FORM_NUMBERINPUT_COLUMN {
   padding:0 !important;
   margin: 0 !important;
-  border-style: solid;
+  border-style: none;
 }
 
 .FORM_COLUMN_DROPDOWNINPUT {
