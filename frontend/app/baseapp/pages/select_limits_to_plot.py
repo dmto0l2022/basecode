@@ -393,7 +393,7 @@ def update_graphs(
 
 @callback(
     Output(page_name+'limits_to_plot_table', 'data'),
-    [Input(page_name+'limits_table_main', 'active_cell'),Input('limits_to_plot_table', 'active_cell')],
+    [Input(page_name+'limits_table_main', 'active_cell'),Input(page_name+'limits_to_plot_table', 'active_cell')],
     [State(page_name+'limits_to_plot_table', 'data')])
 def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     ctx = dash.callback_context
