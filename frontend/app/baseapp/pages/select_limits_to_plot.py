@@ -266,7 +266,7 @@ list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", co
     
 maincolumn = dbc.Col(
             [
-                #dcc.Location(id='url',refresh=False),
+                dcc.Location(id='url',refresh=True),
                 filter_row_1,
                 dbc.Row([dbc.Col(
                     [get_limits_table()],
