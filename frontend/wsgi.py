@@ -139,10 +139,10 @@ class Middleware:
         detected = chardet.detect(current_session_data_in)
         #print(detected["encoding"])
         decoded_current_session_data = current_session_data_in.decode(detected["encoding"])
-        #print('decoded_current_session_data string')
-        #print('-------------here----------------')
-        #print(decoded_current_session_data)
-        #print('------------to here--------------')
+        print('decoded_current_session_data string')
+        print('-------------here----------------')
+        print(decoded_current_session_data)
+        print('------------to here--------------')
         
         all_values = []
         user_id = []
@@ -167,9 +167,9 @@ class Middleware:
         
         
         #print('________all____________')
-        #print(all_values)
+        print(all_values)
         #print('________current_user_from_cookie____________')
-        #print(current_user_from_cookie)
+        print(current_user_from_cookie)
         
         return current_user_from_cookie
         '''
@@ -213,8 +213,8 @@ class Middleware:
         cookies = http_cookie.split('; ')
         current_cookie = cookies[0]
         colon_cookie = current_cookie.replace("=",":")
-        #print('colon cookie')
-        #print(colon_cookie)
+        print('colon cookie')
+        print(colon_cookie)
         
         for cookie in cookies:
             cookie = cookie.split('=')
@@ -230,14 +230,14 @@ class Middleware:
         encoded_cookie = bytes(colon_cookie, 'Windows-1252')
         #str_1_encoded = bytes(str_1,'UTF-8')
         
-        #print('encoded cookie')
-        #print(encoded_cookie)
+        print('encoded cookie')
+        print(encoded_cookie)
         
         current_session_data = self.redisserver.get(encoded_cookie)
-        #print('current session data')
+        print('current session data')
         ##current_session = 'session=3d6eaeb7-c227-4444-ac90-208da7732203'
         #current_session = b'session:3d6eaeb7-c227-4444-ac90-208da7732203'
-        #print(current_session_data)
+        print(current_session_data)
         #val = self.redisserver.get(current_session)
         
         #print('===================================')
@@ -278,23 +278,23 @@ class Middleware:
         environ_data = repr(environ).encode('utf-8')
         #print('environ type')
         #print(type(environ))
-        #print('environ data')
-        #print('---------------------')
-        #print(environ_data)
+        print('environ data')
+        print('---------------------')
+        print(environ_data)
         try:
             session_data,current_user, current_user_email, email_domain = self.getcookiedata(environ)
-            #print('current session data')
-            #print('-------------------')
-            #print(session_data)
-            #print('current user')
-            #print('-------------------')
-            #print(current_user)
-            #print('current user email')
-            #print('-------------------')
-            #print(current_user_email)
-            #print('current email domain')
-            #print('-------------------')
-            #print(email_domain)
+            print('current session data')
+            print('-------------------')
+            print(session_data)
+            print('current user')
+            print('-------------------')
+            print(current_user)
+            print('current user email')
+            print('-------------------')
+            print(current_user_email)
+            print('current email domain')
+            print('-------------------')
+            print(email_domain)
         except:
             print('no current session')
             session_data = {}
