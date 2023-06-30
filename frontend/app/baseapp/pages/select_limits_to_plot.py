@@ -264,33 +264,28 @@ next_button =  html.Div(dbc.Button("Next",  id=page_name + "_next_button_id", co
 cancel_button =  html.Div(dbc.Button("Cancel",  id=page_name + "_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
     
-    
-def get_layout():
+maincolumn = dbc.Col(
+            [
+                dcc.Location(id='url',refresh=False),
+                filter_row_1,
+                dbc.Row([dbc.Col(
+                    [get_limits_table()],
+                    width=10,)],
+                    className ="TABLE_ROW NOPADDING"),
+                limits_to_plot_row,
+                next_button,
+                cancel_button,
+                list_button
+            ],
+            width=10,)
 
-    maincolumn = dbc.Col(
-                [
-                    dcc.Location(id='url',refresh=True),
-                    filter_row_1,
-                    dbc.Row([dbc.Col(
-                        [get_limits_table()],
-                        width=10,)],
-                        className ="TABLE_ROW NOPADDING"),
-                    limits_to_plot_row,
-                    next_button,
-                    cancel_button,
-                    list_button
-                ],
-                width=10,)
+maindiv =  html.Div(className="ALL_ROW NOPADDING",children=[maincolumn])
     
-    maindiv =  html.Div(className="ALL_ROW NOPADDING",children=[maincolumn])
+layout4 = html.Div(id='content',children=[maindiv],className="PAGE_GRAPH_CONTENT")
         
-    layout4 = html.Div(id='content',children=[maindiv],className="PAGE_GRAPH_CONTENT")
-            
-    ##className="PAGE_CONTENT",)
-    
-    return layout4
+##className="PAGE_CONTENT",)
 
-layout = get_layout()
+layout = layout4
 
 @callback(
     Output('limits_table_main', 'data'),
