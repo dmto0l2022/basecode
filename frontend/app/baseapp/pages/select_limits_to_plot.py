@@ -27,7 +27,7 @@ import plotly.express as px
 from itertools import cycle
 
 # colors
-palette = cycle(px.colors.qualitative.Bold)
+# palette = cycle(px.colors.qualitative.Bold)
 
 from app.baseapp.dashboard_libraries import all_data_tables as adt
 
@@ -40,7 +40,7 @@ dashdataandtables = adt.DashDataAndTables()
 
 all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
 
-# print('all_limit_list_dict >>>>>>>>> ' , all_limit_list_dict)
+print('sltp >> all_limit_list_dict >>>>>>>>> ' , all_limit_list_dict)
 
 table_heights = 120
 
@@ -375,7 +375,7 @@ def update_graphs(
     # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
     
     unfiltered_df = all_limit_list_df.copy()
-    # print('sltp : unfiltered_df >>>', unfiltered_df) 
+    print('sltp : unfiltered_df >>>', unfiltered_df) 
     #df.drop(df.index , inplace=True)
     
     filtered_df = unfiltered_df.drop(unfiltered_df.index)
