@@ -40,11 +40,7 @@ dashdataandtables = adt.DashDataAndTables()
 
 def getlayout():
 
-    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
-
-    def get_list_dict():
-        all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
-        return all_limit_list_dict            
+    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()           
 
     print('sltp >> all_limit_list_dict >>>>>>>>> ' , all_limit_list_dict)
     
@@ -54,7 +50,7 @@ def getlayout():
     
     new_limits_table = dash_table.DataTable(
                 id='limits_table_main',
-                data=get_list_dict(),
+                data=all_limit_list_dict,
                 columns=[{'name': 'id', 'id': 'id'},
                          {'name': 'limit_id', 'id': 'limit_id'},
                          {'name': 'data_reference', 'id': 'data_reference'},
