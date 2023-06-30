@@ -350,6 +350,8 @@ def update_graphs(
     #   dashdataandtables.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit]
             
     # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
+
+    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits() 
     
     unfiltered_df = all_limit_list_df.copy()
     print('sltp : unfiltered_df >>>', unfiltered_df) 
