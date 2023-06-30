@@ -104,8 +104,8 @@ def init_app():
      
          db.init_app(app)
 
-         #user_datastore = SQLAlchemySessionUserDatastore(db.session, md.User, md.Role)
-         #app.security = Security(app, user_datastore)
+         user_datastore = SQLAlchemySessionUserDatastore(db.session, md.User, md.Role)
+         app.security = Security(app, user_datastore)
 
          # This processor is added to all templates
          #@app.security.context_processor
