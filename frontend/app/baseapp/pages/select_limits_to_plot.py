@@ -278,8 +278,7 @@ def get_layout():
                     limits_to_plot_row,
                     next_button,
                     cancel_button,
-                    list_button,
-                    row5
+                    list_button
                 ],
                 width=10,)
     
