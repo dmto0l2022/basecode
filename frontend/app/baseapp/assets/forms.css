@@ -397,7 +397,7 @@
 .FORM_EXAMPLE_COLUMN {
     padding:0 !important;
     margin: 0 !important;
-    border-style: solid;
+    border-style: none;
 }
 
 .FORM_SELECTFILE{
