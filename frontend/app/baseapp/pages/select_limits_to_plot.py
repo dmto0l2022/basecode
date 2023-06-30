@@ -398,7 +398,7 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
     #print(triggered_id)
     if triggered_id == 'limits_table_main':
-
+        all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()  
         selected_rowid = active_cell_exp['row_id']
         selected_row = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
         selected_row  = selected_row[['id','limit_id','data_reference','data_label']]
