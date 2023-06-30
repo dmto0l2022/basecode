@@ -38,7 +38,7 @@ dash.register_page(__name__, path='/select_limits_to_plot')
 
 dashdataandtables = adt.DashDataAndTables()
 
-def getlayout():
+def get_limits_table():
 
     all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()           
 
@@ -48,208 +48,200 @@ def getlayout():
     
     style_header_var={ 'backgroundColor': 'black','color': 'white'}
     
-    new_limits_table = dash_table.DataTable(
-                id='limits_table_main',
-                data=all_limit_list_dict,
-                columns=[{'name': 'id', 'id': 'id'},
-                         {'name': 'limit_id', 'id': 'limit_id'},
-                         {'name': 'data_reference', 'id': 'data_reference'},
-                         {'name': 'data_label', 'id': 'data_label'},
-                         {'name': 'experiment', 'id': 'experiment'},
-                         {'name': 'spin_dep', 'id': 'spin_dependency'},
-                         {'name': 'result_type', 'id': 'result_type'},
-                         {'name': 'year', 'id': 'year'},
-                         {'name': 'grt_hit', 'id': 'greatest_hit'},
-                         {'name': 'officl', 'id': 'official'},
-                         ],
-                #fixed_rows={'headers': True},
-                page_size=7,
-                filter_action='none',
-                #row_selectable='multi',
-                #selected_rows=[],
-                style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-                        'textOverflow': 'ellipsis',
-                    },
-                css=[{
-                    'selector': '.dash-spreadsheet td div',
-                    'rule': '''
-                        line-height: 12px;
-                        overflow-y: hidden;
-                        display: block;
-                    '''
-                }],
-                style_table={'height': '30vh',},
-                style_cell_conditional=[
-                            {'if': {'column_id': 'id'},
-                            'width': '5%'},
-                            {'if': {'column_id': 'limit_id'},
-                            'width': '5%'},
-                            {'if': {'column_id': 'data_reference'},
-                            'width': '20%'},
-                            {'if': {'column_id': 'data_label'},
-                            'width': '30%'},
-                            {'if': {'column_id': 'experiment'},
-                                 'width': '15%'},
-                            {'if': {'column_id': 'spin_dependency'},
-                                 'width': '5%'},
-                            {'if': {'column_id': 'result_type'},
-                                 'width': '5%'},
-                            {'if': {'column_id': 'year'},
-                                 'width': '5%'},
-                            {'if': {'column_id': 'greatest_hit'},
-                                 'width': '5%'},
-                            {'if': {'column_id': 'official'},
-                                 'width': '5%'}
-                ],
-                style_data={
-                    'whiteSpace': 'normal',
-                    'height': 'auto',
-                },
-                style_header=style_header_var,
-                #tooltip_data=[
-                #    {
-                #        column: {'value': str(value), 'type': 'markdown'}
-                #        for column, value in row.items()
-                #    } for row in data
-                #],
-                tooltip_duration=None,
-            )
-    
-    limits_to_plot_df = pd.DataFrame(data=None, columns=['id','plot_id','limit_id','data_reference','data_label'])
-    
-    style_header_var={ 'backgroundColor': 'black','color': 'white'}
-    
-    limits_to_plot_table = dash_table.DataTable(
-        id='limits_to_plot_table',
-        data=limits_to_plot_df.to_dict('records'),
+    limits_table_ret = dash_table.DataTable(
+        id='limits_table_main',
+        data=all_limit_list_dict,
         columns=[{'name': 'id', 'id': 'id'},
                  {'name': 'limit_id', 'id': 'limit_id'},
                  {'name': 'data_reference', 'id': 'data_reference'},
-                 {'name': 'data_label', 'id': 'data_label'}
+                 {'name': 'data_label', 'id': 'data_label'},
+                 {'name': 'experiment', 'id': 'experiment'},
+                 {'name': 'spin_dep', 'id': 'spin_dependency'},
+                 {'name': 'result_type', 'id': 'result_type'},
+                 {'name': 'year', 'id': 'year'},
+                 {'name': 'grt_hit', 'id': 'greatest_hit'},
+                 {'name': 'officl', 'id': 'official'},
                  ],
         #fixed_rows={'headers': True},
         page_size=7,
+        filter_action='none',
+        #row_selectable='multi',
+        #selected_rows=[],
         style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-                'overflow': 'hidden',
                 'textOverflow': 'ellipsis',
             },
         css=[{
             'selector': '.dash-spreadsheet td div',
             'rule': '''
-                line-height: 12px
-                display: block;
+                line-height: 12px;
                 overflow-y: hidden;
+                display: block;
             '''
         }],
-        #sort_action='native',
-        #sort_mode='multi',
-        #sort_as_null=['', 'No'],
-        #sort_by=[{'column_id': 'expid', 'direction': 'desc'}],
-        filter_action='none',
-        row_deletable=True,
-        #row_selectable='multi',
-        #selected_rows=[],
-        style_table={'height': '25vh',},
+        style_table={'height': '30vh',},
         style_cell_conditional=[
-            {'if': {'column_id': 'id'},
-             'width': '5%'},
-            {'if': {'column_id': 'limit_id'},
-             'width': '10%'},
-            {'if': {'column_id': 'data_reference'},
-             'width': '25%'},
-            {'if': {'column_id': 'data_label'},
-             'width': '55%'},
+                    {'if': {'column_id': 'id'},
+                    'width': '5%'},
+                    {'if': {'column_id': 'limit_id'},
+                    'width': '5%'},
+                    {'if': {'column_id': 'data_reference'},
+                    'width': '20%'},
+                    {'if': {'column_id': 'data_label'},
+                    'width': '30%'},
+                    {'if': {'column_id': 'experiment'},
+                         'width': '15%'},
+                    {'if': {'column_id': 'spin_dependency'},
+                         'width': '5%'},
+                    {'if': {'column_id': 'result_type'},
+                         'width': '5%'},
+                    {'if': {'column_id': 'year'},
+                         'width': '5%'},
+                    {'if': {'column_id': 'greatest_hit'},
+                         'width': '5%'},
+                    {'if': {'column_id': 'official'},
+                         'width': '5%'}
         ],
         style_data={
             'whiteSpace': 'normal',
             'height': 'auto',
         },
         style_header=style_header_var,
+        #tooltip_data=[
+        #    {
+        #        column: {'value': str(value), 'type': 'markdown'}
+        #        for column, value in row.items()
+        #    } for row in data
+        #],
+        tooltip_duration=None,
     )
+    return limits_table_ret
+
+## limits to plot table
+
+limits_to_plot_df = pd.DataFrame(data=None, columns=['id','plot_id','limit_id','data_reference','data_label'])
+
+style_header_var={ 'backgroundColor': 'black','color': 'white'}
+
+limits_to_plot_table = dash_table.DataTable(
+    id='limits_to_plot_table',
+    data=limits_to_plot_df.to_dict('records'),
+    columns=[{'name': 'id', 'id': 'id'},
+             {'name': 'limit_id', 'id': 'limit_id'},
+             {'name': 'data_reference', 'id': 'data_reference'},
+             {'name': 'data_label', 'id': 'data_label'}
+             ],
+    #fixed_rows={'headers': True},
+    page_size=7,
+    style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
+            'overflow': 'hidden',
+            'textOverflow': 'ellipsis',
+        },
+    css=[{
+        'selector': '.dash-spreadsheet td div',
+        'rule': '''
+            line-height: 12px
+            display: block;
+            overflow-y: hidden;
+        '''
+    }],
+    #sort_action='native',
+    #sort_mode='multi',
+    #sort_as_null=['', 'No'],
+    #sort_by=[{'column_id': 'expid', 'direction': 'desc'}],
+    filter_action='none',
+    row_deletable=True,
+    #row_selectable='multi',
+    #selected_rows=[],
+    style_table={'height': '25vh',},
+    style_cell_conditional=[
+        {'if': {'column_id': 'id'},
+         'width': '5%'},
+        {'if': {'column_id': 'limit_id'},
+         'width': '10%'},
+        {'if': {'column_id': 'data_reference'},
+         'width': '25%'},
+        {'if': {'column_id': 'data_label'},
+         'width': '55%'},
+    ],
+    style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+    },
+    style_header=style_header_var,
+) 
+
+filter_row_1 =  dbc.Row([
+        dbc.Col(
+            [
+                dashdataandtables.official_table
+            ],
+            width=2,
+            ),
+        dbc.Col(
+            [
+                dashdataandtables.experiments_table
+            ],
+            width=2,
+            ),
+        dbc.Col(
+            [
+                dashdataandtables.result_types_table
+            ],
+            width=2,
+            ),
+        dbc.Col(
+            [
+                dashdataandtables.spin_dependency_table
+            ],
+            width=2,
+            ),
+       dbc.Col(
+            [
+                dashdataandtables.years_table
+            ],
+            width=2,
+            ),
+       dbc.Col(
+            [
+                dashdataandtables.greatest_hit_table
+            ],
+            width=2,
+            ),
+])
     
-    #dashdataandtables.limits_table_df.set_index('id', inplace=True, drop=False)
-    #dashdataandtables.limits_table_df['expid'] = dashdataandtables.limits_table_df['limit_id'] 
-    #dashdataandtables.limits_table_df
-    
-    #####
-    
-    row1 =  dbc.Row([
-            dbc.Col(
-                [
-                    dashdataandtables.official_table
-                ],
-                width=2,
-                ),
-            dbc.Col(
-                [
-                    dashdataandtables.experiments_table
-                ],
-                width=2,
-                ),
-            dbc.Col(
-                [
-                    dashdataandtables.result_types_table
-                ],
-                width=2,
-                ),
-            dbc.Col(
-                [
-                    dashdataandtables.spin_dependency_table
-                ],
-                width=2,
-                ),
-           dbc.Col(
-                [
-                    dashdataandtables.years_table
-                ],
-                width=2,
-                ),
-           dbc.Col(
-                [
-                    dashdataandtables.greatest_hit_table
-                ],
-                width=2,
-                ),
-    ])
-        
-    
-    row2 = dbc.Row([dbc.Col(
-                [
-                    new_limits_table
-                ],
-                width=12,),
-                   ])
-    
-    row2_debug = dbc.Row([dbc.Col(
+def get_debug_table():
+    row2_debug_ret = dbc.Row([dbc.Col(
                 [
                     dashdataandtables.debug_dropdown_table
                 ],
                 width=12,),
                    ])
+
+    row3_1_debug_ret = dbc.Row([dbc.Col(
+                [
+                    dashdataandtables.debug_dropdown_table
+                ],
+                width=10,),
+                   ], className ="TABLE_ROW NOPADDING")
     
     #row3 = dbc.Row([dbc.Col(html.Div('List Here',id='tbl_out'),width=12,),])
+    return row2_debug_ret, row3_1_debug_ret
+
+ 
+limits_row = dbc.Row([dbc.Col(
+                [new_limits_table],
+                width=10,)],
+                    className ="TABLE_ROW NOPADDING")
     
-    row3_1 = dbc.Row([dbc.Col(
-                [
-                    new_limits_table
-                ],
-                width=10,),
-                   ], className ="TABLE_ROW NOPADDING")
-    
-    
-    row3_1_debug = dbc.Row([dbc.Col(
-                [
-                    dashdataandtables.debug_dropdown_table
-                ],
-                width=10,),
-                   ], className ="TABLE_ROW NOPADDING")
-    
-    row3_2 = dbc.Row([dbc.Col(
+limits_to_plot_row = dbc.Row([dbc.Col(
                 [
                      limits_to_plot_table
                 ],
-                width=10,),
-                   ],className ="TABLE_ROW NOPADDING")
+                width=10,)],
+                    className ="TABLE_ROW NOPADDING")
+    
+'''
+def old_form_stuff():
     
     row4 = html.Div([dcc.Store(id='plot_expids')])
     
@@ -270,29 +262,25 @@ def getlayout():
         ],
         className="g-3",
     )
+
+'''
+
+next_button =  html.Div(dbc.Button("Next",  id=page_name + "_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+cancel_button =  html.Div(dbc.Button("Cancel",  id=page_name + "_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
     
-    next_button =  html.Div(dbc.Button("Next",  id=page_name + "_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
     
-    cancel_button =  html.Div(dbc.Button("Cancel",  id=page_name + "_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-    
-    list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-    
-    
-    select_limits_to_plot_form = html.Div(
-        #[newplot_title,newplot_input3],
-        [dcc.Location(id="url", refresh=True),
-         select_limits_to_plot_form_title,
-         select_limits_to_plot_form_content,
-         next_button, cancel_button],
-        className = "NOPADDING_CONTENT CENTRE_FORM"
-    )
-    
+def get_layout():
+
     maincolumn = dbc.Col(
                 [
-                    row1,
-                    row3_1,
-                    #row3_1_debug,
-                    row3_2,
+                    dcc.Location(id='url',refresh=True),
+                    filter_row_1,
+                    dbc.Row([dbc.Col(
+                        [get_limits_table()],
+                        width=10,)],
+                        className ="TABLE_ROW NOPADDING")
+                    limits_to_plot_row,
                     next_button,
                     cancel_button,
                     list_button,
@@ -300,21 +288,15 @@ def getlayout():
                 ],
                 width=10,)
     
-    maindiv =  html.Div(className="ALL_ROW NOPADDING",children=[maincolumn])
+        maindiv =  html.Div(className="ALL_ROW NOPADDING",children=[maincolumn])
+        
+        layout4 = html.Div([html.Div(id='content',children=[maindiv],className="PAGE_GRAPH_CONTENT")
+            className="PAGE_CONTENT",
+            )
     
-    layout4 = html.Div([maindiv],
-        className="PAGE_CONTENT",
-        )
+        return layout4
 
-    return layout4
-
-layout = html.Div([
-    dcc.Location(id='url',refresh=False),
-    html.Div(id='layout-div'),
-    html.Div(id='content',children=getlayout(),className="PAGE_GRAPH_CONTENT")
-],className="PAGE_CONTENT")
-
-#layout = row3_1
+layout = get_layout
 
 @callback(
     Output('limits_table_main', 'data'),
