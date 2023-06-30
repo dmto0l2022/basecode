@@ -309,7 +309,7 @@ def getlayout():
     return layout4
 
 layout = html.Div([
-    dcc.Location(id='url',refresh=True),
+    dcc.Location(id='url',refresh=False),
     html.Div(id='layout-div'),
     html.Div(id='content',children=getlayout(),className="PAGE_GRAPH_CONTENT")
 ],className="PAGE_CONTENT")
