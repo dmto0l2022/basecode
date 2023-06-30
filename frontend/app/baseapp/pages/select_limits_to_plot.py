@@ -301,11 +301,13 @@ maincolumn = dbc.Col(
 
 maindiv =  html.Div(className="ALL_ROW NOPADDING",children=[maincolumn])
 
-layout4 = html.Div([maindiv],
-                   className="PAGE_CONTENT",
-                  )
+def getlayout():
+    layout4 = html.Div([maindiv],
+    className="PAGE_CONTENT",
+    )
 
-layout = layout4
+layout = getlayout
+
 #layout = row3_1
 
 
