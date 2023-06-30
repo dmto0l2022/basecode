@@ -288,13 +288,13 @@ def get_layout():
                 ],
                 width=10,)
     
-        maindiv =  html.Div(className="ALL_ROW NOPADDING",children=[maincolumn])
+    maindiv =  html.Div(className="ALL_ROW NOPADDING",children=[maincolumn])
         
-        layout4 = html.Div(id='content',children=[maindiv],className="PAGE_GRAPH_CONTENT")
+    layout4 = html.Div(id='content',children=[maindiv],className="PAGE_GRAPH_CONTENT")
             
-        ##className="PAGE_CONTENT",)
+    ##className="PAGE_CONTENT",)
     
-        return layout4
+    return layout4
 
 layout = get_layout
 
