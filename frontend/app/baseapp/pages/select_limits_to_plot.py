@@ -289,7 +289,6 @@ def getlayout():
     
     maincolumn = dbc.Col(
                 [
-                    dcc.Location(id="url", refresh=True),
                     row1,
                     row3_1,
                     #row3_1_debug,
