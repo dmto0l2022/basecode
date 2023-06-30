@@ -49,7 +49,7 @@ def get_limits_table():
     style_header_var={ 'backgroundColor': 'black','color': 'white'}
     
     limits_table_ret = dash_table.DataTable(
-        id='limits_table_main',
+        id=page_name+'limits_table_main',
         data=all_limit_list_dict,
         columns=[{'name': 'id', 'id': 'id'},
                  {'name': 'limit_id', 'id': 'limit_id'},
@@ -123,7 +123,7 @@ limits_to_plot_df = pd.DataFrame(data=None, columns=['id','plot_id','limit_id','
 style_header_var={ 'backgroundColor': 'black','color': 'white'}
 
 limits_to_plot_table = dash_table.DataTable(
-    id='limits_to_plot_table',
+    id=page_name+'limits_to_plot_table',
     data=limits_to_plot_df.to_dict('records'),
     columns=[{'name': 'id', 'id': 'id'},
              {'name': 'limit_id', 'id': 'limit_id'},
@@ -275,19 +275,20 @@ maincolumn = dbc.Col(
                 limits_to_plot_row,
                 next_button,
                 cancel_button,
-                list_button
+                list_button,
+                dbc.Row([html.P(children='List of limits appear here',id=page_name+'limit_list')]),
             ],
             width=12,)
 
     
-layout4 = html.Div(id='content',children=[maincolumn],className="PAGE_GRAPH_CONTENT")
+layout4 = html.Div(id=page_name+'content',children=[maincolumn],className="PAGE_GRAPH_CONTENT")
         
 ##className="PAGE_CONTENT",)
 
 layout = layout4
 
 @callback(
-    Output('limits_table_main', 'data'),
+    Output(page_name+'limits_table_main', 'data'),
     #Output('debug_dropdown_table', 'data'),
     #Output(component_id='tbl_out', component_property='children'),
     #
@@ -391,14 +392,14 @@ def update_graphs(
 
 
 @callback(
-    Output('limits_to_plot_table', 'data'),
-    [Input('limits_table_main', 'active_cell'),Input('limits_to_plot_table', 'active_cell')],
-    [State('limits_to_plot_table', 'data')])
+    Output(page_name+'limits_to_plot_table', 'data'),
+    [Input(page_name+'limits_table_main', 'active_cell'),Input('limits_to_plot_table', 'active_cell')],
+    [State(page_name+'limits_to_plot_table', 'data')])
 def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     ctx = dash.callback_context
     triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
     #print(triggered_id)
-    if triggered_id == 'limits_table_main':
+    if triggered_id == page_name+'limits_table_main':
         all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()  
         selected_rowid = active_cell_exp['row_id']
         selected_row = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
@@ -429,7 +430,7 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
         #data_out=plots_todo_df.to_dict("records")
         #data_out=selected_row.to_dict("records")
 
-    elif triggered_id == 'limits_to_plot_table':
+    elif triggered_id == page_name+'limits_to_plot_table':
         #selected_rowid = active_cell_plot['row']
         #print(data_in[selected_rowid])
         #print(active_cell_plot)
@@ -442,12 +443,12 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
 
 @callback(
     [Output(page_name+'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
-     Output('limit_list','children')],
+     Output(page_name+'limit_list','children')],
     [
     Input(page_name + "_next_button_id", "n_clicks"),
     Input(page_name + "_cancel_button_id", "n_clicks"),
     Input(page_name + "_list_button_id","n_clicks"),
-        ],[State('limits_to_plot_table', 'data')],
+        ],[State(page_name +'limits_to_plot_table', 'data')],
         prevent_initial_call=True
 )
 def button_click(button1,button2,button3,plot_table_in):
