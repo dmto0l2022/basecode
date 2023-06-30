@@ -282,7 +282,7 @@ class Middleware:
         #print('---------------------')
         #print(environ_data)
         try:
-            #session_data,current_user, current_user_email, email_domain = self.getcookiedata(environ)
+            session_data,current_user, current_user_email, email_domain = self.getcookiedata(environ)
             #print('current session data')
             #print('-------------------')
             #print(session_data)
