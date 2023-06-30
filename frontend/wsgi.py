@@ -225,7 +225,7 @@ class Middleware:
         #    print('--------------')
         
         
-        #print(http_cookie)
+        #print(http_cookie)container_frontend_1
         #print('---------------------------')
         encoded_cookie = bytes(colon_cookie, 'Windows-1252')
         #str_1_encoded = bytes(str_1,'UTF-8')
@@ -345,7 +345,9 @@ class Middleware:
           
         else:
             #body = environ['wsgi.input']
-            print('wsgi or baseapp in path')
+            print('request.path >>>>' , request.path)
+            print('email_domain >>>>', email_domain)
+            print('wsgi or baseapp in path not gaitskell.com or brown.edu')
             #print('body')
             #print(body)
             #modified_body = body
