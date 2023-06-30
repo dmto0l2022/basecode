@@ -290,9 +290,9 @@ def get_layout():
     
         maindiv =  html.Div(className="ALL_ROW NOPADDING",children=[maincolumn])
         
-        layout4 = html.Div([html.Div(id='content',children=[maindiv],className="PAGE_GRAPH_CONTENT")
-            className="PAGE_CONTENT",
-            )
+        layout4 = html.Div(id='content',children=[maindiv],className="PAGE_GRAPH_CONTENT")
+            
+        ##className="PAGE_CONTENT",)
     
         return layout4
 
