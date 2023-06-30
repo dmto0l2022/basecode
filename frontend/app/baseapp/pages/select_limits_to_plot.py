@@ -266,7 +266,7 @@ list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", co
     
 maincolumn = dbc.Col(
             [
-                dcc.Location(id='url',refresh=False),
+                #dcc.Location(id='url',refresh=False),
                 filter_row_1,
                 dbc.Row([dbc.Col(
                     [get_limits_table()],
@@ -438,7 +438,7 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     
     return data_in
 
-
+'''
 @callback(
     [Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
      Output('limit_list','children')],
@@ -487,5 +487,5 @@ def button_click(button1,button2,button3,plot_table_in):
     else:
         href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
-
+'''
 
