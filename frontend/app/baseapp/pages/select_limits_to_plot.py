@@ -279,7 +279,7 @@ def get_layout():
                     dbc.Row([dbc.Col(
                         [get_limits_table()],
                         width=10,)],
-                        className ="TABLE_ROW NOPADDING")
+                        className ="TABLE_ROW NOPADDING"),
                     limits_to_plot_row,
                     next_button,
                     cancel_button,
