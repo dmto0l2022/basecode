@@ -227,11 +227,6 @@ def get_debug_table():
     #row3 = dbc.Row([dbc.Col(html.Div('List Here',id='tbl_out'),width=12,),])
     return row2_debug_ret, row3_1_debug_ret
 
- 
-limits_row = dbc.Row([dbc.Col(
-                [new_limits_table],
-                width=10,)],
-                    className ="TABLE_ROW NOPADDING")
     
 limits_to_plot_row = dbc.Row([dbc.Col(
                 [
