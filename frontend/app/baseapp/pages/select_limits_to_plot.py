@@ -296,7 +296,7 @@ def get_layout():
     
     return layout4
 
-layout = get_layout
+layout = get_layout()
 
 @callback(
     Output('limits_table_main', 'data'),
