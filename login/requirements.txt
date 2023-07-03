@@ -2,5 +2,7 @@ gunicorn
 blinker
 Flask
 Flask-Dance
-Flask-Login
 Flask-SQLAlchemy
+flask_session
+flask_security
+flask_login
