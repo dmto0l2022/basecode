@@ -16,6 +16,10 @@ from app import db
 from app.models import GoogleUser
 from app.models import OAuth
 
+from os import environ, path
+
+from dotenv import load_dotenv
+
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
@@ -38,7 +42,7 @@ google_login_bp = make_google_blueprint(
 #app.register_blueprint(google_blueprint)
 
 
-@app.route('/google_login/')
+@app.route('/app/google_login/')
 def index():
     google_data = None
     user_info_endpoint = 'oauth2/v2/userinfo'
@@ -49,7 +53,7 @@ def index():
                            fetch_url=google.base_url + user_info_endpoint)
 
 
-@app.route('/google_login/logout')
+@app.route('/app/google_login/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
