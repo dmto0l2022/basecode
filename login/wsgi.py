@@ -1,5 +1,7 @@
 from app import init_app
 
+application = init_app
+
 from app import current_user
 
 from app import session
@@ -15,8 +17,3 @@ from werkzeug.wrappers import Request, Response, ResponseStream
 from werkzeug.debug import DebuggedApplication
 
 from werkzeug.utils import redirect
-
-
-application = Middleware(application)
-
-application = DebuggedApplication(application, True)
