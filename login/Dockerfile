@@ -6,7 +6,7 @@ RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
 RUN apt-get install -y libmariadb-dev
 
-WORKDIR /workdir/login
+WORKDIR /workdir
 
 ARG USERNAME=agaitske
 ARG USER_UID=1001
@@ -18,8 +18,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 RUN chown $USER_UID:$USER_GID /workdir
 
-RUN mkdir /workdir/login
-RUN chown $USER_UID:$USER_GID /workdir/login
+#RUN mkdir /workdir/login
+#RUN chown $USER_UID:$USER_GID /workdir/login
 
 RUN mkdir /env
 RUN chown $USER_UID:$USER_GID /env
@@ -42,4 +42,6 @@ RUN /env/bin/pip3 install -r /env/requirements.txt
 RUN /env/bin/pip3 freeze
 #COPY . /workdir/.
 ##RUN ls -R /workdir/
+
+WORKDIR /workdir/login
 CMD ["gunicorn"  , "--bind", "0.0.0.0:8010", "wsgi:application"]
