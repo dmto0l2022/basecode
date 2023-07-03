@@ -3,6 +3,8 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, ForeignKey, Integer, String, Table, LargeBinary, DateTime, Boolean,UnicodeText
 
+from flask_dance.consumer.backend.sqla import (OAuthConsumerMixin,SQLAlchemyBackend)
+
 from flask_security import UserMixin, RoleMixin
 from sqlalchemy import create_engine
 from sqlalchemy.orm import relationship, backref
@@ -24,6 +26,19 @@ class Role(db.Base, RoleMixin):
     name = Column(String(80), unique=True)
     description = Column(String(255))
     permissions = Column(UnicodeText)
+
+
+
+class GoogleUser(db.Base, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(256), unique=True)
+    name = db.Column(db.String(256))
+
+
+class OAuth(OAuthConsumerMixin, db.Base):
+    provider_user_id = db.Column(db.String(256), unique=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship(GoogleUser)
 
 class User(db.Base, UserMixin):
     __tablename__ = 'user'
