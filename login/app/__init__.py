@@ -1,6 +1,8 @@
 import os
 
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, render_template_string, redirect, url_for, session
+from flask import flash
+from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import (LoginManager, UserMixin,
                          current_user, login_user, logout_user)
@@ -8,39 +10,25 @@ from flask_dance.consumer import oauth_authorized
 from flask_dance.contrib.google import make_google_blueprint, google
 from flask_dance.consumer.backend.sqla import (OAuthConsumerMixin,
                                                SQLAlchemyBackend)
+import redis
+from . import database_bind as dbind
 
+from flask_security import Security, current_user, auth_required, SQLAlchemySessionUserDatastore
+
+
+#from flask_mailman import Mail
+
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
 path = os.path.dirname(os.path.realpath(__file__))
-db_path = os.path.join(path, 'app.db')
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'YOUR-SECRET-HERE'
-
-db = SQLAlchemy(app)
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'google.login'
 
 
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(256), unique=True)
-    name = db.Column(db.String(256))
 
 
-class OAuth(OAuthConsumerMixin, db.Model):
-    provider_user_id = db.Column(db.String(256), unique=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship(User)
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 
 
@@ -103,19 +91,7 @@ def google_logged_in(blueprint, token):
 
 
 ########################################################
-import os
-from flask import Flask, render_template_string, session
-from flask import flash
-from flask_session import Session
-import redis
-from . import database_bind as dbind
 
-from flask_security import Security, current_user, auth_required, SQLAlchemySessionUserDatastore
-
-
-#from flask_mailman import Mail
-
-from werkzeug.middleware.proxy_fix import ProxyFix
 
 from flask_login import LoginManager
 login_manager = LoginManager()
@@ -201,13 +177,18 @@ def init_app():
          from . import security
          # for example if the User model above was in a different module:
          # Setup Flask-Security
-         
+      
          login_manager.init_app(app)
+         login_manager.login_view = 'google.login'
          
          @login_manager.user_loader
          def load_user(user_id):
              return User.get(user_id)
-     
+
+         #@login_manager.user_loader
+         #def load_user(user_id):
+         #    return User.query.get(int(user_id))
+
          db.init_app(app)
 
          user_datastore = SQLAlchemySessionUserDatastore(db.session, md.User, md.Role)
