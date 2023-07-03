@@ -31,6 +31,8 @@ print(BASE_DIR)
 GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
 
+google_login_bp = Blueprint('google_login_bp', __name__)
+
 google_login_bp = make_google_blueprint(
     client_id=GOOGLE_CLIENT_ID,
     client_secret=GOOGLE_CLIENT_SECRET,
@@ -41,7 +43,7 @@ google_login_bp = make_google_blueprint(
     ##backend=SQLAlchemyStorage(OAuth, db.session, user=current_user)
 )
 
-app.register_blueprint(google_blueprint)
+#app.register_blueprint(google_blueprint)
 
 
 @app.route('/app/google_login/')
