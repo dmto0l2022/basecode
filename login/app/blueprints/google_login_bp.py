@@ -37,11 +37,11 @@ google_login_bp = make_google_blueprint(
     scope=['https://www.googleapis.com/auth/userinfo.email',
            'https://www.googleapis.com/auth/userinfo.profile'],
     offline=True,
-    reprompt_consent=True,
-    backend=SQLAlchemyStorage(OAuth, db.session, user=current_user)
+    reprompt_consent=True##,
+    ##backend=SQLAlchemyStorage(OAuth, db.session, user=current_user)
 )
 
-#app.register_blueprint(google_blueprint)
+app.register_blueprint(google_blueprint)
 
 
 @app.route('/app/google_login/')
