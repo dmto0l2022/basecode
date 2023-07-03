@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, url_for
 from authlib.integrations.flask_client import OAuth
 
+from flask import current_app as app
+
 from flask import Blueprint, render_template
 
 github_login_bp = Blueprint('github_login_bp', __name__)
