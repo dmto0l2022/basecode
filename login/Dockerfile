@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.11.4-bullseye
 RUN apt-get update && apt-get -y install vim
 RUN apt-get -y install unzip
 
