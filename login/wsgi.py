@@ -1,6 +1,6 @@
 from app import init_app
 
-application = init_app
+application = init_app()
 
 from app import current_user
 
