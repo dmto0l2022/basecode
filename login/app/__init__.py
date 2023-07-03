@@ -25,17 +25,7 @@ os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 path = os.path.dirname(os.path.realpath(__file__))
 
 
-google_blueprint = make_google_blueprint(
-    client_id='YOUR-CLIENT-ID-HERE',
-    client_secret='YOUR-CLIENT-SECRET-HERE',
-    scope=['https://www.googleapis.com/auth/userinfo.email',
-           'https://www.googleapis.com/auth/userinfo.profile'],
-    offline=True,
-    reprompt_consent=True,
-    backend=SQLAlchemyBackend(OAuth, db.session, user=current_user)
-)
 
-app.register_blueprint(google_blueprint)
 
 
 @app.route('/')
@@ -211,7 +201,6 @@ def init_app():
          
          from app.blueprints.google_login_bp import google_login_bp
          app.register_blueprint(google_login_bp)
-
       
          ##users_bp
          #from app.blueprints.users_bp import users_bp
