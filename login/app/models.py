@@ -16,16 +16,16 @@ from . import db ## import db from __init__
 
 class RolesUsers(db.Base):
     __tablename__ = 'roles_users'
-    id = db.Column(db.Integer(), primary_key=True)
-    user_id = db.Column('user_id', Integer(), ForeignKey('user.id'))
-    role_id = db.Column('role_id', Integer(), ForeignKey('role.id'))
+    id = Column(Integer(), primary_key=True)
+    user_id = Column('user_id', Integer(), ForeignKey('user.id'))
+    role_id = Column('role_id', Integer(), ForeignKey('role.id'))
 
 class Role(db.Base, RoleMixin):
     __tablename__ = 'role'
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(80), unique=True)
-    description = db.Column(db.String(255))
-    permissions = db.Column(UnicodeText)
+    id = Column(Integer(), primary_key=True)
+    name = Column(String(80), unique=True)
+    description = Column(String(255))
+    permissions = Column(UnicodeText)
 
 
 
