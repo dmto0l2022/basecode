@@ -6,6 +6,6 @@ podman start container_api_1
 podman start container_fastapi_1
 podman start container_fastapi_orm_1
 podman start container_frontend_1
-
+podman start container_login_1
 
 
