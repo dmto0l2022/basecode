@@ -25,13 +25,6 @@ os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 path = os.path.dirname(os.path.realpath(__file__))
 
 
-
-
-
-
-
-
-
 google_blueprint = make_google_blueprint(
     client_id='YOUR-CLIENT-ID-HERE',
     client_secret='YOUR-CLIENT-SECRET-HERE',
@@ -79,7 +72,7 @@ def google_logged_in(blueprint, token):
         db.session.commit()
         login_user(oauth.user)
     if not oauth.user:
-        user = User(email=user_info["email"],
+        user = GoogleUser(email=user_info["email"],
                     name=user_info["name"])
         oauth.user = user
         db.session.add_all([user, oauth])
