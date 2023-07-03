@@ -9,4 +9,6 @@ flask_login
 redis
 pytz
 python-dotenv
+email_validator
+WTForms
 
