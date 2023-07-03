@@ -92,7 +92,8 @@ def init_app():
     
          # import your database tables if defined in a different module
          from . import models as md
-         from . import mail, security
+         #from . import mail, security
+         from . import security
          # for example if the User model above was in a different module:
          # Setup Flask-Security
          
@@ -117,24 +118,12 @@ def init_app():
          #def send_confirmation_context_processor():
          #    return dict(confirmation_link="https://dmtools.het.brown.edu/app/confirm")
          
-         mail = Mail(app)
+         #mail = Mail(app)
 
          ## setup session data
          app.config['SESSION_TYPE'] = 'redis'
-         #app.config['SESSION_PERMANENT'] = False
-         #app.config['SESSION_KEY_PREFIX'] = 'session:'
-         ##app.config['SESSION_MEMCACHED'] = '127.0.0.1:11211'
-         ##app.config['SESSION_REDIS'] = '127.0.0.1:6379'
-         #app.config['SESSION_REDIS'] = redis.Redis("redis")
-         ##app.config['SESSION_REDIS'] = redis.from_url('redis://10.154.0.20:6379')
-         ##app.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
-         #app.config['SESSION_REDIS'] = redis.from_url('redis://container_redis_1:6379')
-         #app.config['SESSION_REDIS'] = redis.from_url('redis://127.0.0.1:6379')
-         #app.config['SESSION_REDIS'] = 'container_redis_1'
          app.config['SESSION_REDIS'] = redis.from_url('redis://container_redis_1:6379')
-         #app.config['SESSION_USE_SIGNER'] = True
-         #app.config['SESSION_SQLALCHEMY_TABLE'] = 'sessions'
-         #app.config['SESSION_SQLALCHEMY'] = db
+         
          server_session = Session()
          
          server_session.init_app(app)
@@ -144,27 +133,9 @@ def init_app():
          #from app.blueprints.auth_bp import auth_bp
          #app.register_blueprint(auth_bp)
 
-         from app.blueprints.home_bp import home_bp
-         app.register_blueprint(home_bp)
-         
-         from app.blueprints.plotids_bp import plotids_bp
-         app.register_blueprint(plotids_bp)
-         
-         ##
-         #dashapp1_bp
-         from app.blueprints.dashapp1_bp import dashapp1_bp
-         app.register_blueprint(dashapp1_bp)
-         ##
-         ##todo_bp
-         from app.blueprints.todo_bp import todo_bp
-         app.register_blueprint(todo_bp)
-
-         ##session_bp
-         from app.blueprints.session_bp import session_bp
-         app.register_blueprint(session_bp)
-          
+      
          ##users_bp
-         from app.blueprints.users_bp import users_bp
-         app.register_blueprint(users_bp)
+         #from app.blueprints.users_bp import users_bp
+         #app.register_blueprint(users_bp)
 
          return app
