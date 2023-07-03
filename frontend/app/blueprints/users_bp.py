@@ -40,5 +40,5 @@ def remove():
     delete_user = User.query.filter_by(fs_uniquifier=userid).first()
     db.session.delete(delete_user)
     db.session.commit()
-    return redirect(url_for('home'))
+    return redirect(url_for('home_bp.home'))
     
