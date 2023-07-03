@@ -1,6 +1,5 @@
 from flask import current_app
-from flask_security import Security, current_user, auth_required, hash_password, \
-     SQLAlchemySessionUserDatastore
+from flask_security import Security, current_user, auth_required, SQLAlchemySessionUserDatastore
 
 ##https://stackoverflow.com/questions/14793098/how-to-use-flask-security-register-view
 current_app.config['SECURITY_REGISTERABLE'] = True
