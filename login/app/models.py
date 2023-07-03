@@ -30,14 +30,14 @@ class Role(db.Base, RoleMixin):
 
 
 class GoogleUser(db.Base, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(256), unique=True)
-    name = db.Column(db.String(256))
+    id = Column(Integer, primary_key=True)
+    email = Column(String(256), unique=True)
+    name = Column(String(256))
 
 
 class OAuth(OAuthConsumerMixin, db.Base):
-    provider_user_id = db.Column(db.String(256), unique=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    provider_user_id = Column(String(256), unique=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
     user = db.relationship(GoogleUser)
 
 class User(db.Base, UserMixin):
