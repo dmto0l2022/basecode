@@ -30,12 +30,14 @@ class Role(db.Base, RoleMixin):
 
 
 class GoogleUser(db.Base, UserMixin):
+    __tablename__ = 'google_users'
     id = Column(Integer, primary_key=True)
     email = Column(String(256), unique=True)
     name = Column(String(256))
 
 
 class OAuth(OAuthConsumerMixin, db.Base):
+    __tablename__ = 'oauth'
     provider_user_id = Column(String(256), unique=True)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = db.relationship(GoogleUser)
