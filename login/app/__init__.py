@@ -107,7 +107,7 @@ def init_app():
     ## session
     # Configure Redis for storing the session data on the server-side
 
-    oauth = OAuth(app)
+    #oauth = OAuth(app)
   
     with app.app_context():  
     
@@ -156,8 +156,8 @@ def init_app():
 
          #server_session.app.session_interface.db.create_all()
          
-         from app.blueprints.google_login_bp import google_login_bp
-         app.register_blueprint(google_login_bp)
+         #from app.blueprints.google_login_bp import google_login_bp
+         #app.register_blueprint(google_login_bp)
 
          #from app.blueprints.github_login_bp import github_login_bp
          #app.register_blueprint(github_login_bp)
