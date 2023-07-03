@@ -6,3 +6,4 @@ Flask-SQLAlchemy
 flask_session
 flask_security
 flask_login
+redis
