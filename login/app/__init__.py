@@ -163,7 +163,11 @@ def init_app():
          #app.register_blueprint(github_login_bp)
       
          ##users_bp
-         #from app.blueprints.users_bp import users_bp
-         #app.register_blueprint(users_bp)
+         from app.blueprints.users_bp import users_bp
+         app.register_blueprint(users_bp)
+
+         ##home_bp
+         from app.blueprints.home_bp import home_bp
+         app.register_blueprint(home_bp)
 
          return app
