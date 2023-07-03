@@ -3,7 +3,7 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, ForeignKey, Integer, String, Table, LargeBinary, DateTime, Boolean,UnicodeText
 
-from flask_dance.consumer.backend.sqla import (OAuthConsumerMixin,SQLAlchemyBackend)
+from flask_dance.consumer.storage.sqla import SQLAlchemyStorage , OAuthConsumerMixin
 
 from flask_security import UserMixin, RoleMixin
 from sqlalchemy import create_engine
