@@ -74,6 +74,7 @@ podman pod create \
 --publish 8004 \
 --publish 8006 \
 --publish 8008 \
+--publish 8010:8010 \
 --publish 3306 \
 --publish 6379
 
@@ -222,5 +223,19 @@ podman run -dt \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/frontend_1:latest
 
+## login
 
+cd /opt/dmtools/code/basecode/login
+
+podman rmi login_1:latest
+podman build -f Dockerfile -t login_1 .
+
+##-v /HOST-DIR:/CONTAINER-DIR
+
+podman run -dt \
+--name container_login_1 \
+--pod pod_main_backend \
+--user $uid:$gid \
+-v /opt/dmtools/code/basecode:/workdir \
+localhost/login_1:latest
 
