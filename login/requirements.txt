@@ -12,3 +12,4 @@ python-dotenv
 email_validator
 WTForms
 secure_cookie
+authlib
