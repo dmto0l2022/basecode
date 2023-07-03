@@ -41,7 +41,7 @@ class OAuth(OAuthConsumerMixin, db.Base):
     __tablename__ = 'oauth'
     provider_user_id = Column(String(256), unique=True)
     user_id = Column(Integer, ForeignKey('user.id'))
-    user = db.relationship(GoogleUser)
+    user = relationship(GoogleUser)
 
 class User(db.Base, UserMixin):
     __tablename__ = 'user'
