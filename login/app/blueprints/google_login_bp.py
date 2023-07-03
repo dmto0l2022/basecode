@@ -13,6 +13,9 @@ from flask_dance.contrib.google import make_google_blueprint, google
 
 from app import db
 
+from app.models import GoogleUser
+from app.models import OAuth
+
 google_login_bp = make_google_blueprint(
     client_id='YOUR-CLIENT-ID-HERE',
     client_secret='YOUR-CLIENT-SECRET-HERE',
