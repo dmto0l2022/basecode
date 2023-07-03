@@ -24,59 +24,8 @@ os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
 path = os.path.dirname(os.path.realpath(__file__))
 
-
-
-
-
-@app.route('/')
-def index():
-    google_data = None
-    user_info_endpoint = 'oauth2/v2/userinfo'
-    if current_user.is_authenticated and google.authorized:
-        google_data = google.get(user_info_endpoint).json()
-    return render_template('index.j2',
-                           google_data=google_data,
-                           fetch_url=google.base_url + user_info_endpoint)
-
-
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('index'))
-
-
-@oauth_authorized.connect_via(google_blueprint)
-def google_logged_in(blueprint, token):
-    resp = blueprint.session.get('/oauth2/v2/userinfo')
-    user_info = resp.json()
-    user_id = str(user_info['id'])
-    oauth = OAuth.query.filter_by(provider=blueprint.name,
-                                  provider_user_id=user_id).first()
-    if not oauth:
-        oauth = OAuth(provider=blueprint.name,
-                      provider_user_id=user_id,
-                      token=token)
-    else:
-        oauth.token = token
-        db.session.add(oauth)
-        db.session.commit()
-        login_user(oauth.user)
-    if not oauth.user:
-        user = GoogleUser(email=user_info["email"],
-                    name=user_info["name"])
-        oauth.user = user
-        db.session.add_all([user, oauth])
-        db.session.commit()
-        login_user(user)
-
-    return False
-
-
-
 ########################################################
 
-
-from flask_login import LoginManager
 login_manager = LoginManager()
 
 # outside of app factory
@@ -130,7 +79,8 @@ class User(db.Base):
 def init_app():
     MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
     MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
-    MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+    #MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+    MARIADB_DATABASE = 'systemdata'
     MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
     
     #FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## from file
@@ -166,7 +116,7 @@ def init_app():
          
          @login_manager.user_loader
          def load_user(user_id):
-             return User.get(user_id)
+             return GoogleUser.get(user_id)
 
          #@login_manager.user_loader
          #def load_user(user_id):
@@ -174,7 +124,7 @@ def init_app():
 
          db.init_app(app)
 
-         user_datastore = SQLAlchemySessionUserDatastore(db.session, md.User, md.Role)
+         user_datastore = SQLAlchemySessionUserDatastore(db.session, md.GoogleUser, md.Role)
          app.security = Security(app, user_datastore)
 
          # This processor is added to all templates
