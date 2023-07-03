@@ -8,4 +8,5 @@ flask_security
 flask_login
 redis
 pytz
+python-dotenv
 
