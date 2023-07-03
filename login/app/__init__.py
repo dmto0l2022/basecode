@@ -209,8 +209,8 @@ def init_app():
 
          #server_session.app.session_interface.db.create_all()
          
-         #from app.blueprints.auth_bp import auth_bp
-         #app.register_blueprint(auth_bp)
+         from app.blueprints.google_login_bp import google_login_bp
+         app.register_blueprint(google_login_bp)
 
       
          ##users_bp
