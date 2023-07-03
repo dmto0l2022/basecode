@@ -18,15 +18,13 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 RUN chown $USER_UID:$USER_GID /workdir
 
-RUN mkdir /workdir/uploads
-RUN chown $USER_UID:$USER_GID /workdir/uploads
+RUN mkdir /workdir/login
+RUN chown $USER_UID:$USER_GID /workdir/login
 
 RUN mkdir /env
 RUN chown $USER_UID:$USER_GID /env
 
 USER $USERNAME
-
-## https://pythonspeed.com/articles/activate-virtualenv-dockerfile/
 
 ENV VIRTUAL_ENV=/env
 RUN python3 -m venv $VIRTUAL_ENV
