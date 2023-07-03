@@ -12,6 +12,7 @@ Flask-Security-Too
 Flask-Session
 Flask-SQLAlchemy
 Flask-WTF
+flask_dance
 redis
 pytz
 python-dotenv
