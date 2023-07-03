@@ -19,6 +19,7 @@ from . import database_bind as dbind
 
 from flask_security import Security, current_user, auth_required, SQLAlchemySessionUserDatastore
 
+from authlib.integrations.flask_client import OAuth
 
 #from flask_mailman import Mail
 
@@ -105,7 +106,9 @@ def init_app():
     ###
     ## session
     # Configure Redis for storing the session data on the server-side
-   
+
+    oauth = OAuth(app)
+  
     with app.app_context():  
     
          # import your database tables if defined in a different module
@@ -155,6 +158,9 @@ def init_app():
          
          from app.blueprints.google_login_bp import google_login_bp
          app.register_blueprint(google_login_bp)
+
+         from app.blueprints.github_login_bp import github_login_bp
+         app.register_blueprint(github_login_bp)
       
          ##users_bp
          #from app.blueprints.users_bp import users_bp
