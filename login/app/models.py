@@ -1,6 +1,7 @@
 # model.py
 
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 from sqlalchemy import Column, ForeignKey, Integer, String, Table, LargeBinary, DateTime, Boolean,UnicodeText
 
 from flask_dance.consumer.storage.sqla import SQLAlchemyStorage , OAuthConsumerMixin
