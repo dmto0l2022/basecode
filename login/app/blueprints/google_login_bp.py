@@ -16,9 +16,18 @@ from app import db
 from app.models import GoogleUser
 from app.models import OAuth
 
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+print('BASE_DIR')
+print(BASE_DIR)
+
+GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
+
 google_login_bp = make_google_blueprint(
-    client_id='YOUR-CLIENT-ID-HERE',
-    client_secret='YOUR-CLIENT-SECRET-HERE',
+    client_id=GOOGLE_CLIENT_ID,
+    client_secret=GOOGLE_CLIENT_SECRET,
     scope=['https://www.googleapis.com/auth/userinfo.email',
            'https://www.googleapis.com/auth/userinfo.profile'],
     offline=True,
