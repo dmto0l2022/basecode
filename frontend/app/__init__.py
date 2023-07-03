@@ -8,7 +8,7 @@ from . import database_bind as dbind
 from flask_security import Security, current_user, auth_required, SQLAlchemySessionUserDatastore
 
 
-#from flask_mailman import Mail
+from flask_mailman import Mail
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from flask_login import LoginManager
