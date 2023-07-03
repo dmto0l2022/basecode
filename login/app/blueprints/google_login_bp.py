@@ -10,6 +10,7 @@ from flask_login import current_user
 import random
 
 from flask_dance.contrib.google import make_google_blueprint, google
+from flask_dance.consumer.backend.sqla import SQLAlchemyBackend
 
 from app import db
 
