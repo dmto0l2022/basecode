@@ -1,5 +1,6 @@
 podman stop container_login_1
-podman remove container_login_1
+podman rm container_login_1
+podman rmi login_1
 
 cd /opt/dmtools/code/basecode/login
 
