@@ -10,7 +10,8 @@ from flask_login import current_user
 import random
 
 from flask_dance.contrib.google import make_google_blueprint, google
-from flask_dance.consumer.backend.sqla import SQLAlchemyBackend
+
+from flask_dance.consumer.storage.sqla import SQLAlchemyStorage
 
 from app import db
 
@@ -37,7 +38,7 @@ google_login_bp = make_google_blueprint(
            'https://www.googleapis.com/auth/userinfo.profile'],
     offline=True,
     reprompt_consent=True,
-    backend=SQLAlchemyBackend(OAuth, db.session, user=current_user)
+    backend=SQLAlchemyStorage(OAuth, db.session, user=current_user)
 )
 
 #app.register_blueprint(google_blueprint)
