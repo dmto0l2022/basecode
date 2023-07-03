@@ -38,3 +38,8 @@ RUN whereis pip3
 
 COPY requirements.txt /env/requirements.txt
 RUN /env/bin/pip3 install -r /env/requirements.txt
+
+RUN /env/bin/pip3 freeze
+#COPY . /workdir/.
+##RUN ls -R /workdir/
+CMD ["gunicorn"  , "--bind", "0.0.0.0:8010", "wsgi:application"]
