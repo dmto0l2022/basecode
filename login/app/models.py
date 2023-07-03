@@ -33,6 +33,7 @@ class Role(db.Base, RoleMixin):
 class GoogleUser(db.Base, UserMixin):
     __tablename__ = 'google_users'
     id = Column(Integer, primary_key=True)
+    fs_uniquifier = Column(String(255), unique=True, nullable=False)
     email = Column(String(256), unique=True)
     name = Column(String(256))
 
@@ -125,6 +126,7 @@ class Session(db.Base):
 class User_new(db.Base):
     __tablename__ = 'users_new'
     id = Column(Integer, primary_key=True)
+    fs_uniquifier = Column(String(255), unique=True, nullable=False)
     username = Column(String(25), unique=True)
     password = Column(String(25), unique=True)
 
@@ -136,6 +138,7 @@ class User_new(db.Base):
 class UserSimple(db.Base):
     __tablename__ = "users_simple"
     id = Column(Integer, primary_key=True)
+    fs_uniquifier = Column(String(255), unique=True, nullable=False)
     username = Column(String(25))
     name = Column(String(25))
     email = Column(String(25))
