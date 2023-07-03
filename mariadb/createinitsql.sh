@@ -7,6 +7,8 @@ echo "CREATE USER '${MARIADB_USERNAME}'@'localhost' IDENTIFIED BY '${MARIADB_PAS
 
 echo "CREATE DATABASE data;" >> ../mariadb/init.sql
 
+echo "CREATE DATABASE systemdata;" >> ../mariadb/init.sql
+
 echo "GRANT ALL PRIVILEGES ON *.* TO '${MARIADB_USERNAME}'@'localhost' WITH GRANT OPTION;" >> ../mariadb/init.sql
 
 ##echo "GRANT ALL PRIVILEGES ON *.* TO '${MARIADB_USERNAME}'@'127.0.0.1' WITH GRANT OPTION;" >> ../mariadb/init.sql
