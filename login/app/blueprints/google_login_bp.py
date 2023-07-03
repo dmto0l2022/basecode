@@ -13,7 +13,7 @@ from flask_dance.contrib.google import make_google_blueprint, google
 
 from app import db
 
-google_blueprint = make_google_blueprint(
+google_login_bp = make_google_blueprint(
     client_id='YOUR-CLIENT-ID-HERE',
     client_secret='YOUR-CLIENT-SECRET-HERE',
     scope=['https://www.googleapis.com/auth/userinfo.email',
