@@ -46,7 +46,7 @@ google_login_bp = make_google_blueprint(
 #app.register_blueprint(google_blueprint)
 
 
-@app.route('/app/google_login/')
+@google_login_bp.route('/app/google_login/')
 def index():
     google_data = None
     user_info_endpoint = 'oauth2/v2/userinfo'
@@ -57,13 +57,13 @@ def index():
                            fetch_url=google.base_url + user_info_endpoint)
 
 
-@app.route('/app/google_login/logout')
+@google_login_bp.route('/app/google_login/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
 
-@oauth_authorized.connect_via(google_blueprint)
+@oauth_authorized.connect_via(google_login_bp)
 def google_logged_in(blueprint, token):
     resp = blueprint.session.get('/oauth2/v2/userinfo')
     user_info = resp.json()
