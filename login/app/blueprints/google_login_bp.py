@@ -39,8 +39,8 @@ print(BASE_DIR)
 GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
 
-app.config['GOOGLE_CLIENT_ID'] = GOOGLE_CLIENT_ID
-app.config['GOOGLE_CLIENT_SECRET'] = GOOGLE_CLIENT_SECRET
+#app.config['GOOGLE_CLIENT_ID'] = GOOGLE_CLIENT_ID
+#app.config['GOOGLE_CLIENT_SECRET'] = GOOGLE_CLIENT_SECRET
 
 google_login_bp = Blueprint('google_login_bp', __name__)
 
@@ -72,8 +72,8 @@ batman_example = OAuth2ConsumerBlueprint(
 
 google_login_cbp = OAuth2ConsumerBlueprint(
     name = 'google',
-    client_id = app.config["GOOGLE_CLIENT_ID"],
-    client_secret = app.config["GOOGLE_CLIENT_SECRET"],
+    client_id = GOOGLE_CLIENT_ID,
+    client_secret = GOOGLE_CLIENT_SECRET,
     access_token_url = 'https://accounts.google.com/o/oauth2/token',
     access_token_params = None,
     authorize_url = 'https://accounts.google.com/o/oauth2/auth',
