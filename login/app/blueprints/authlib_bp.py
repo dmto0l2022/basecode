@@ -43,7 +43,7 @@ def homepage():
 @authlib_bp.route('/login')
 def login():
     #redirect_uri = url_for('auth', _external=True)
-    redirect_uri = 'http://dev1.dmtool.info/app/authlib/auth'
+    redirect_uri = 'http://dev1.dmtool.info/app/login/authlib/auth'
     return oauth.google.authorize_redirect(redirect_uri)
 
 
