@@ -3,13 +3,27 @@
 from flask import Flask, render_template, url_for, redirect
 from authlib.integrations.flask_client import OAuth
 
-app = Flask(__name__)
+#app = Flask(__name__)
 
-oauth = OAuth(app)
+#oauth = OAuth(app)
 
-app.config['SECRET_KEY'] = "THIS SHOULD BE SECRET"
-app.config['GOOGLE_CLIENT_ID'] = "<your google client id>"
-app.config['GOOGLE_CLIENT_SECRET'] = "<your google client secret>"
+from os import environ, path
+
+from dotenv import load_dotenv
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+print('BASE_DIR')
+print(BASE_DIR)
+
+GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
+
+google_login_bp = Blueprint('google_login_bp', __name__)
+
+app.config['GOOGLE_CLIENT_ID'] = GOOGLE_CLIENT_ID
+app.config['GOOGLE_CLIENT_SECRET'] = GOOGLE_CLIENT_SECRET
 
 google_login_bp = oauth.register(
     name = 'google',
