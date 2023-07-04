@@ -1,6 +1,6 @@
 ## https://github.com/authlib/demo-oauth-client/blob/master/flask-google-login/app.py
 
-from flask import Flask, url_for, session
+from flask import Flask, url_for, session, Blueprint
 from flask import render_template, redirect
 from authlib.integrations.flask_client import OAuth
 
