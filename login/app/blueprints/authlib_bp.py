@@ -50,7 +50,8 @@ def login():
 @authlib_bp.route('/auth')
 def auth():
     token = oauth.google.authorize_access_token()
-    session['user'] = token['userinfo']
+    #session['user'] = token['userinfo']
+    print(token)
     return redirect(url_for('authlib_bp.homepage'))
 
 
