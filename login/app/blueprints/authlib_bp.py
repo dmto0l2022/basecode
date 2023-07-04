@@ -21,7 +21,7 @@ CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 
 oauth = OAuth(current_app)
 
-authlib_bp = Blueprint('authlib_bp', __name__,url_prefix='/app/authlib')
+authlib_bp = Blueprint('authlib_bp', __name__,url_prefix='/app/login/authlib')
 
 
 oauth.register(
