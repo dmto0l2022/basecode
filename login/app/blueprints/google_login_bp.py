@@ -38,10 +38,10 @@ print(BASE_DIR)
 GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
 
-google_login_bp = Blueprint('google_login_bp', __name__)
-
 app.config['GOOGLE_CLIENT_ID'] = GOOGLE_CLIENT_ID
 app.config['GOOGLE_CLIENT_SECRET'] = GOOGLE_CLIENT_SECRET
+
+google_login_bp = Blueprint('google_login_bp', __name__)
 
 '''
 google_login_bp = oauth.register(
@@ -69,7 +69,7 @@ batman_example = OAuth2ConsumerBlueprint(
 )
 '''
 
-google_login_bp = OAuth2ConsumerBlueprint(
+google_login_cbp = OAuth2ConsumerBlueprint(
     name = 'google',
     client_id = app.config["GOOGLE_CLIENT_ID"],
     client_secret = app.config["GOOGLE_CLIENT_SECRET"],
@@ -82,20 +82,19 @@ google_login_bp = OAuth2ConsumerBlueprint(
     client_kwargs = {'scope': 'openid email profile'},
 )
 
-app.register_blueprint(batman_example, url_prefix="/login")
 
 # Google login route
-@app.route('/login/google')
+@google_login_bp.route('/login/google')
 def google_login():
-    google = oauth.create_client('google')
+    google = google_login_cbp.create_client('google')
     redirect_uri = url_for('google_authorize', _external=True)
     return google.authorize_redirect(redirect_uri)
 
 
 # Google authorize route / call back
-@app.route('/login/google/authorize')
+@google_login_bp.route('/login/google/authorize')
 def google_authorize():
-    google = oauth.create_client('google')
+    google = google_login_cbp.create_client('google')
     token = google.authorize_access_token()
     resp = google.get('userinfo').json()
     print(f"\n{resp}\n")
