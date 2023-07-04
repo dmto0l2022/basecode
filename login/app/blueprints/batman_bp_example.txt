@@ -1,0 +1,25 @@
+## https://gist.github.com/Bachmann1234/fec472272ce79bb707d7
+
+from flask import Flask, url_for, redirect
+from flask_dance.consumer import OAuth2ConsumerBlueprint
+
+
+batman_example = OAuth2ConsumerBlueprint(
+    "batman-example", __name__,
+    client_id="<CLIENT_ID>",
+    client_secret="<SECRET>",
+    base_url="https://graph.facebook.com",
+    authorization_url="https://www.facebook.com/dialog/oauth",
+    token_url="https://graph.facebook.com/oauth/access_token",
+)
+
+app.register_blueprint(batman_example, url_prefix="/login")
+
+
+@app.route("/")
+def index():
+    if not batman_example.session.authorized:
+        return redirect(url_for("batman-example.login"))
+    resp = batman_example.session.get("me")
+    assert resp.ok
+    return resp.text
