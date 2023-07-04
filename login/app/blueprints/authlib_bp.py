@@ -18,6 +18,10 @@ GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
 
 CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 
+authlib_bp = Blueprint('authlib_bp', __name__,url_prefix='/app/authlib')
+
+oauth = OAuth(authlib_bp)
+
 oauth.register(
     name='google',
     server_metadata_url=CONF_URL,
@@ -26,7 +30,7 @@ oauth.register(
     }
 )
 
-authlib_bp = Blueprint('authlib_bp', __name__,url_prefix='/app/authlib')
+
 
 @authlib_bp.route('/home')
 def homepage():
