@@ -157,7 +157,7 @@ def init_app():
          #server_session.app.session_interface.db.create_all()
          
          from app.blueprints.google_login_bp import google_login_bp
-         app.register_blueprint(google_login_bp, url_prefix="/app/login")
+         app.register_blueprint(google_login_bp, url_prefix="/app/login/google")
 
          #from app.blueprints.github_login_bp import github_login_bp
          #app.register_blueprint(github_login_bp)
