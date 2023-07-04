@@ -22,7 +22,7 @@ example_blueprint = OAuth2ConsumerBlueprint("github", __name__,
                                     )
 
 
-@app.route('/example')
+@example_blueprint.route('/login')
 def login():
     if not example_blueprint.authorized:
         return redirect(url_for('example_blueprint.login'))
