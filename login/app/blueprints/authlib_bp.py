@@ -26,27 +26,29 @@ oauth.register(
     }
 )
 
+authlib_bp = Blueprint('authlib_bp', __name__)
 
-@app.route('/')
+@authlib_bp.route('/app/authlib/home')
 def homepage():
     user = session.get('user')
     return render_template('home.html', user=user)
 
 
-@app.route('/login')
+@authlib_bp.route('/app/authlib/login')
 def login():
-    redirect_uri = url_for('auth', _external=True)
+    #redirect_uri = url_for('auth', _external=True)
+    redirect_uri = 'http://dev1.dmtool.info/app/authlib/auth'
     return oauth.google.authorize_redirect(redirect_uri)
 
 
-@app.route('/auth')
+@authlib_bp.route('/app/authlib/auth')
 def auth():
     token = oauth.google.authorize_access_token()
     session['user'] = token['userinfo']
     return redirect('/')
 
 
-@app.route('/logout')
+@authlib_bp.route('/app/authlib/logout')
 def logout():
     session.pop('user', None)
     return redirect('/')
