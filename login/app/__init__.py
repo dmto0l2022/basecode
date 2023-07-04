@@ -113,7 +113,7 @@ def init_app():
     ## session
     # Configure Redis for storing the session data on the server-side
 
-    #oauth = OAuth(app)
+    oauth = OAuth(app)
   
     with app.app_context():  
     
