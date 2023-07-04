@@ -28,7 +28,7 @@ oauth.register(
     name='google',
     server_metadata_url=CONF_URL,
     client_kwargs={
-        'scope': 'openid email profile'
+        'scope': 'email'
     }
 )
 
