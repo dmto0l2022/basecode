@@ -97,7 +97,7 @@ google_login_cbp = OAuth2ConsumerBlueprint(
 @google_login_bp.route("/app/login/google")
 def index():
     if not google_login_cbp.session.authorized:
-        return redirect(url_for("google_login_cbp.login"))
+        return redirect(url_for("oauth-google.login"))
     resp = google_login_cbp.session.get("me")
     assert resp.ok
     return resp.text
