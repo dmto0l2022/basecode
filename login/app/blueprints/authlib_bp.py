@@ -1,4 +1,8 @@
 ## https://github.com/authlib/demo-oauth-client/blob/master/flask-google-login/app.py
+## commit as at 4 July - login works
+
+## next look into interpretation of the token and profile
+## >>>>  https://docs.authlib.org/en/latest/client/flask.html
 
 from flask import Flask, url_for, session, Blueprint
 from flask import render_template, redirect
