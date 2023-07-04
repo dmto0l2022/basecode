@@ -4,6 +4,18 @@ from flask import Flask, url_for, session
 from flask import render_template, redirect
 from authlib.integrations.flask_client import OAuth
 
+from dotenv import load_dotenv
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+print('BASE_DIR')
+print(BASE_DIR)
+
+#GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
+#GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
+
+
 CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 
 oauth.register(
