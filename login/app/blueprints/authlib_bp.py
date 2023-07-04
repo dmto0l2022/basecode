@@ -2,6 +2,7 @@
 
 from flask import Flask, url_for, session, Blueprint
 from flask import render_template, redirect
+from flask import current_app
 from authlib.integrations.flask_client import OAuth
 
 from os import environ, path
@@ -18,9 +19,10 @@ GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
 
 CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
 
+oauth = OAuth(current_app)
+
 authlib_bp = Blueprint('authlib_bp', __name__,url_prefix='/app/authlib')
 
-oauth = OAuth(authlib_bp)
 
 oauth.register(
     name='google',
