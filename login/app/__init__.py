@@ -90,7 +90,10 @@ def init_app():
     
     #FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## from file
     FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY") ## generated
-   
+
+    GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
+    GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
+  
     MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
                     MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
                     + MARIADB_DATABASE
@@ -100,7 +103,10 @@ def init_app():
     print('filename')
     print(filename)
     #SECRET_KEY = os.urandom(32)
+  
     app.config['SECRET_KEY'] = FLASK_SECRET_KEY
+    app.config['GOOGLE_CLIENT_ID'] = GOOGLE_CLIENT_ID
+    app.config['GOOGLE_CLIENT_SECRET'] = GOOGLE_CLIENT_SECRET
     app.config['SECURITY_PASSWORD_SALT'] = os.environ.get("SECURITY_PASSWORD_SALT",'146585145368132386173505678016728509634')
     app.config['SQLALCHEMY_DATABASE_URI'] = MARIADB_URI
     ###
