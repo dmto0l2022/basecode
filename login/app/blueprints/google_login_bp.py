@@ -17,6 +17,7 @@ GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
 google_login_bp = make_google_blueprint(
     client_id=GOOGLE_CLIENT_ID,
     client_secret=GOOGLE_CLIENT_SECRET,
+    redirect_url = 'http://dev1.dmtool.info/app/login/google/authorized',
     scope=["profile", "email"]
 )
 
