@@ -86,7 +86,7 @@ google_login_cbp = OAuth2ConsumerBlueprint(
 
 
 # Google login route
-@google_login_bp.route('/login/google')
+@google_login_bp.route('/app/login/google')
 def google_login():
     google = google_login_cbp.create_client('google')
     redirect_uri = url_for('google_authorize', _external=True)
@@ -94,7 +94,7 @@ def google_login():
 
 
 # Google authorize route / call back
-@google_login_bp.route('/login/google/authorize')
+@google_login_bp.route('/app/login/google/authorize')
 def google_authorize():
     google = google_login_cbp.create_client('google')
     token = google.authorize_access_token()
