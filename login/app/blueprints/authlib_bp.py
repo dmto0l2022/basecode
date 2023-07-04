@@ -51,7 +51,7 @@ def login():
 def auth():
     token = oauth.google.authorize_access_token()
     session['user'] = token['userinfo']
-    return redirect('/')
+    return redirect('/home')
 
 
 @authlib_bp.route('/logout')
