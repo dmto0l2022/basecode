@@ -1,5 +1,5 @@
 ## https://github.com/ASHIK11ab/Flask-Series/blob/OAuth-implementation/app.py
-
+from flask import Blueprint
 from flask import Flask, render_template, url_for, redirect
 from authlib.integrations.flask_client import OAuth
 ####
