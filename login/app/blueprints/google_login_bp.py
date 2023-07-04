@@ -6,6 +6,7 @@ from authlib.integrations.flask_client import OAuth
 
 from flask_dance.consumer import OAuth2ConsumerBlueprint
 
+from flask_dance.contrib.google import make_google_blueprint, google
 
 
 
@@ -97,7 +98,7 @@ google_login_cbp = OAuth2ConsumerBlueprint(
 @google_login_bp.route("/app/login/google")
 def index():
     if not google_login_cbp.session.authorized:
-        return redirect(url_for("oauth-google.login"))
+        return redirect(url_for("google.login"))
     resp = google_login_cbp.session.get("me")
     assert resp.ok
     return resp.text
