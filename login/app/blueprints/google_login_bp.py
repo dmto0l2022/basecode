@@ -21,7 +21,7 @@ google_login_bp = make_google_blueprint(
     scope=["profile", "email"]
 )
 
-@google_login_bp.route("/")
+@google_login_bp.route("/google/")
 def index():
     if not google.authorized:
         return redirect(url_for("google.login"))
