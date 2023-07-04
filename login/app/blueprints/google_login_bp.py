@@ -14,13 +14,13 @@ print(BASE_DIR)
 GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
 
-google_blueprint = make_google_blueprint(
+google_login_bp = make_google_blueprint(
     client_id=GOOGLE_CLIENT_ID,
     client_secret=GOOGLE_CLIENT_SECRET,
     scope=["profile", "email"]
 )
 
-@google_blueprint.route("/app/login/google")
+@google_login_bp.route("/app/login/google")
 def index():
     if not google.authorized:
         return redirect(url_for("google.login"))
