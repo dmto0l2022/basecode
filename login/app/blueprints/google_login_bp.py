@@ -69,7 +69,7 @@ batman_example = OAuth2ConsumerBlueprint(
     token_url="https://graph.facebook.com/oauth/access_token",
 )
 '''
-
+'''
 google_login_cbp = OAuth2ConsumerBlueprint(
     import_name = 'google',
     name = 'google',
@@ -83,7 +83,16 @@ google_login_cbp = OAuth2ConsumerBlueprint(
     userinfo_endpoint = 'https://openidconnect.googleapis.com/v1/userinfo',  # This is only needed if using openId to fetch user info
     client_kwargs = {'scope': 'openid email profile'},
 )
+'''
 
+google_login_cbp = OAuth2ConsumerBlueprint(
+    "oauth-google", __name__,
+    client_id=GOOGLE_CLIENT_ID,
+    client_secret=GOOGLE_CLIENT_SECRET,
+    base_url="https://www.googleapis.com/oauth2/v1/",
+    token_url="https://accounts.google.com/o/oauth2/token",
+    authorization_url="https://accounts.google.com/o/oauth2/auth",
+)
 
 @google_login_bp.route("/app/login/google")
 def index():
