@@ -9,7 +9,7 @@ from flask_dance.consumer import OAuth2ConsumerBlueprint
 
 
 
-
+'''
 @app.route("/")
 def index():
     if not batman_example.session.authorized:
@@ -17,6 +17,7 @@ def index():
     resp = batman_example.session.get("me")
     assert resp.ok
     return resp.text
+'''
 
 ###
 
