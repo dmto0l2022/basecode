@@ -71,6 +71,7 @@ batman_example = OAuth2ConsumerBlueprint(
 '''
 
 google_login_cbp = OAuth2ConsumerBlueprint(
+    import_name = 'google',
     name = 'google',
     client_id = GOOGLE_CLIENT_ID,
     client_secret = GOOGLE_CLIENT_SECRET,
