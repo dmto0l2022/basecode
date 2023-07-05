@@ -291,10 +291,11 @@ async def get_authlibuser(email: str):
     return await User_authlib_Pydantic.from_queryset_single(Users_authlib.get(email=email))
 
 @app.get(
-    "/apiorm/authlibuser/exists/{email}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+    "/apiorm/authlibuser/exists/{email}", response_model=Status, responses={404: {"model": HTTPNotFoundError}}
 )
 async def get_authlibuser_count(email: str):
-    return await User_authlib_Pydantic.from_queryset_single(Users_authlib.get(email=email)).count()
+    user_count = await Users_authlib.filter(email=email).count()
+    return Status(message=f"user count >> {user_count}")
 
 @app.put(
     "/apiorm/authlibusers/{email}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
