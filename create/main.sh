@@ -73,7 +73,7 @@ podman pod create \
 --publish 8002:8002 \
 --publish 8004 \
 --publish 8006 \
---publish 8008 \
+--publish 8008:8008 \
 --publish 8010:8010 \
 --publish 3306:3306 \
 --publish 6379
