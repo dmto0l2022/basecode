@@ -56,7 +56,8 @@ def auth():
     token = oauth.google.authorize_access_token()
     #session['user'] = token['userinfo']
     print('token data type >>>',type(token))
-    print(token)
+    #print(token)
+    print(token['userinfo'])
     return redirect(url_for('authlib_bp.homepage'))
 
 
