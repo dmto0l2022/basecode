@@ -20,8 +20,10 @@ class Users_authlib(models.Model):
         ##schema = ""
     
     
-User_Pydantic = pydantic_model_creator(Users_authlib, name="Users_authlib")
-UserIn_Pydantic = pydantic_model_creator(Users_authlib, name="Users_authlibIn", exclude_readonly=True)
+Users_authlib_Pydantic = pydantic_model_creator(Users_authlib, name="Users_authlib")
+Users_authlibIn_Pydantic = pydantic_model_creator(Users_authlib, name="Users_authlibIn", exclude_readonly=True)
+
+###
 
 class Users(models.Model):
     """
