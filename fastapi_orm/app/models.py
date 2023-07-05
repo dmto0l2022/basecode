@@ -28,6 +28,8 @@ User_authlibIn_Pydantic = pydantic_model_creator(Users_authlib, name="User_authl
 class Users_authlib_count(BaseModel):
     count: int
 
+User_authlib_count_Pydantic = pydantic_model_creator(Users_authlib_count, name="User_authlib_count")
+
 class Users(models.Model):
     """
     The User model
