@@ -270,42 +270,42 @@ async def delete_user(user_id: int):
     return Status(message=f"Deleted user {user_id}")
 
 
-## authlib users
+### authlib users ###
 
 #### users #####
 
 @app.get("/apiorm/authlibusers", response_model=List[User_authlib_Pydantic])
-async def get_users():
-    return await User_Pydantic.from_queryset(Users.all())
+async def get_authlibusers():
+    return await User_authlib_Pydantic.from_queryset(Users_authlib.all())
 
 
-@app.post("/apiorm/users", response_model=User_authlib_Pydantic)
-async def create_user(user: User_authlib_Pydantic):
-    user_obj = await Users_authlib.create(**user.dict(exclude_unset=True))
-    return await User_Pydantic.from_tortoise_orm(user_obj)
+@app.post("/apiorm/authlibusers", response_model=User_authlib_Pydantic)
+async def create_authlibuser(userauthlib: User_authlib_Pydantic):
+    user_authlib_obj = await Users_authlib.create(**userauthlib.dict(exclude_unset=True))
+    return await User_authlib_Pydantic.from_tortoise_orm(user_authlib_obj)
 
 
 @app.get(
-    "/apiorm/user/{user_id}", response_model=User_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+    "/apiorm/authlibuser/{email}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
-async def get_user(user_id: int):
-    return await User_Pydantic.from_queryset_single(Users.get(id=user_id))
+async def get_authlibuser(email: str):
+    return await User_authlib_Pydantic.from_queryset_single(Users_authlib.get(email=email))
 
 
 @app.put(
-    "/apiorm/user/{user_id}", response_model=User_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+    "/apiorm/authlibusers/{email}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
-async def update_user(user_id: int, user: UserIn_Pydantic):
-    await Users.filter(id=user_id).update(**user.dict(exclude_unset=True))
-    return await User_Pydantic.from_queryset_single(Users.get(id=user_id))
+async def update_authlibuser(email: str, user_authlib: User_authlibIn_Pydantic):
+    await Users_authlib.filter(email=email).update(**user_authlib.dict(exclude_unset=True))
+    return await Users_authlib_Pydantic.from_queryset_single(Users_authlib.get(email=email))
 
 
-@app.delete("/apiorm/user/{user_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
-async def delete_user(user_id: int):
-    deleted_count = await Users.filter(id=user_id).delete()
+@app.delete("/apiorm/authlibuser/{email}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
+async def delete_authlibuser(email: str):
+    deleted_count = await Users_authlib.filter(email=email).delete()
     if not deleted_count:
-        raise HTTPException(status_code=404, detail=f"User {user_id} not found")
-    return Status(message=f"Deleted user {user_id}")
+        raise HTTPException(status_code=404, detail=f"Users_authlib {email} not found")
+    return Status(message=f"Deleted authlib user {email}")
 
 
 MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
