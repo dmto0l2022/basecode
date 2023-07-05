@@ -1,4 +1,6 @@
 # pylint: disable=E0611,E0401
+## starting point was https://tortoise.github.io/examples/fastapi.html
+
 import os
 from os import environ, path
 
@@ -282,7 +284,6 @@ async def create_authlibuser(userauthlib: User_authlibIn_Pydantic):
     user_authlib_obj = await Users_authlib.create(**userauthlib.dict(exclude_unset=True))
     return await User_authlib_Pydantic.from_tortoise_orm(user_authlib_obj)
 
-'''
 @app.get(
     "/apiorm/authlibuser/{email}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
@@ -304,7 +305,6 @@ async def delete_authlibuser(email: str):
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Users_authlib {email} not found")
     return Status(message=f"Deleted authlib user {email}")
-'''
 
 MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
 MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
