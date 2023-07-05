@@ -8,4 +8,7 @@ podman start container_fastapi_orm_1
 podman start container_frontend_1
 podman start container_login_1
 
+podman start infra_1
+podman start container_dmtool80
+
 
