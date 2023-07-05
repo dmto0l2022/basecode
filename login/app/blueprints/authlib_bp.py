@@ -54,10 +54,14 @@ def login():
 @authlib_bp.route('/auth')
 def auth():
     token = oauth.google.authorize_access_token()
-    #session['user'] = token['userinfo']
-    print('token data type >>>',type(token))
+    user = token['userinfo']
+    #print('token data type >>>',type(token))
     #print(token)
     print(token['userinfo'])
+    email = user.get("email")
+    email_verified = user.get("email_verified")
+    name = user.get("name")
+    iss = user.get("iss") ##: 'https://accounts.google.com'
     return redirect(url_for('authlib_bp.homepage'))
 
 
