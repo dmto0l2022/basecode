@@ -27,6 +27,8 @@ from models import Plot_Pydantic, PlotIn_Pydantic, Plots
 
 from models import User_Pydantic, UserIn_Pydantic, Users
 
+from models import User_authlib_Pydantic, User_authlibIn_Pydantic, Users_authlib
+
 from pydantic import BaseModel
 
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
