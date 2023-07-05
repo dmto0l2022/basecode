@@ -278,7 +278,7 @@ async def get_authlibusers():
 
 
 @app.post("/apiorm/authlibusers", response_model=User_authlib_Pydantic)
-async def create_authlibuser(userauthlib: User_authlib_Pydantic):
+async def create_authlibuser(userauthlib: User_authlibIn_Pydantic):
     user_authlib_obj = await Users_authlib.create(**userauthlib.dict(exclude_unset=True))
     return await User_authlib_Pydantic.from_tortoise_orm(user_authlib_obj)
 
