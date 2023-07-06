@@ -29,6 +29,7 @@ from models import Plot_Ownership_Pydantic, Plot_OwnershipIn_Pydantic, Plot_Owne
 from models import Plot_Pydantic, PlotIn_Pydantic, Plots
 '''
 
+from routers import users
 from routers import dmtool
 
 from pydantic import BaseModel
@@ -329,8 +330,8 @@ MARIADB_URI = "mysql://" + MARIADB_USERNAME + ":" + \
 
 print(MARIADB_URI)
 
-
 app.include_router(dmtool.router)
+app.include_router(users.router)
 
 register_tortoise(
     app,
