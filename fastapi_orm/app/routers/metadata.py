@@ -20,7 +20,7 @@ async def get_pairs():
 
 @router.get("/apiorm/metadata/experiments", response_model=List[dropdown_valuepair_Pydantic])
 async def get_experiment_pairs():
-    return await dropdown_valuepair_Pydantic.from_queryset(dropdown_valuepairs.filter(variable="experiment").values("label", "value"))
+    return await dropdown_valuepair_Pydantic.from_queryset(dropdown_valuepairs.filter(variable="experiment").all())
 
 ## User.objects.filter(name="homy", home__isnull=False).values("id", "name")
 
