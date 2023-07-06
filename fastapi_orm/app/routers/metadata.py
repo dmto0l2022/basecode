@@ -3,7 +3,8 @@ router = APIRouter()
 
 from typing import List
 
-from models.metadata import User_Pydantic, UserIn_Pydantic, Users
+from models.metadata import dropdown_valuepair_Pydantic, dropdown_valuepairIn_Pydantic
+
 
 from pydantic import BaseModel
 
@@ -14,13 +15,13 @@ class Status(BaseModel):
 
 #### users #####
 
-@router.get("/apiorm/metadata", response_model=List[User_Pydantic])
+@router.get("/apiorm/metadata", response_model=List[dropdown_valuepair_Pydantic])
 async def get_users():
-    return await User_Pydantic.from_queryset(Users.all())
+    return await dropdown_valuepair_Pydantic.from_queryset(Users.all())
 
 
-@router.post("/apiorm/metadata", response_model=User_Pydantic)
-async def create_user(user: UserIn_Pydantic):
+@router.post("/apiorm/metadata", response_model=dropdown_valuepair_Pydantic)
+async def create_user(user: dropdown_valuepairIn_Pydantic):
     user_obj = await Users.create(**user.dict(exclude_unset=True))
     return await User_Pydantic.from_tortoise_orm(user_obj)
 
