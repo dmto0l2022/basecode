@@ -95,7 +95,7 @@ def auth():
             }
         
         #json_data = json.dumps(newuser)
-        url = "http://container_fastapi_orm_1:8008/apiorm/authlibuser"
+        url = "http://container_fastapi_orm_1:8008/apiorm/authlibusers"
         # response = requests.post(url, data=json.dumps(newuser), headers=headers)
         # response = requests.post(url, data=json.dumps(new_user_json))
         # json={"key": "value"}
