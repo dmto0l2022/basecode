@@ -99,7 +99,7 @@ def auth():
         # response = requests.post(url, data=json.dumps(newuser), headers=headers)
         # response = requests.post(url, data=json.dumps(new_user_json))
         # json={"key": "value"}
-        response = requests.post(url, json=new_user_json, headers=headers)
+        response = requests.post(url, json=new_user, headers=headers)
         # Print the response
         response_json = response.json()
         print(response_json)
