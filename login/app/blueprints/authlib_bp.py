@@ -70,7 +70,7 @@ def auth():
     iss = user.get("iss") ##: 'https://accounts.google.com'
 
     # The API endpoint
-    url = "https://jsonplaceholder.typicode.com/posts/1"
+    # url = "https://jsonplaceholder.typicode.com/posts/1"
     url = "http://container_fastapi_orm_1:8008/apiorm/authlibuser/" + email
     # A GET request to the API
     response = requests.get(url)
@@ -97,9 +97,9 @@ def auth():
         #json_data = json.dumps(newuser)
         url = "http://container_fastapi_orm_1:8008/apiorm/authlibuser/"
         # response = requests.post(url, data=json.dumps(newuser), headers=headers)
-        response = requests.post(url, data=json.dumps(new_user_json))
+        # response = requests.post(url, data=json.dumps(new_user_json))
         # json={"key": "value"}
-        # response = requests.post(url, json=new_user_json, headers=headers)
+        response = requests.post(url, json=new_user_json, headers=headers)
         # Print the response
         response_json = response.json()
         print(response_json)
