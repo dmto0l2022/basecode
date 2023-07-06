@@ -26,5 +26,5 @@ class dropdown_valuepairs(models.Model):
         table="dropdown_valuepairs"
         ##schema = ""
 
-dropdown_valuepair_Pydantic = pydantic_model_creator(Experiments, name="dropdown_valuepair")
-dropdown_valuepairIn_Pydantic = pydantic_model_creator(Experiments, name="dropdown_valuepairIn", exclude_readonly=True)
+dropdown_valuepair_Pydantic = pydantic_model_creator(dropdown_valuepairs, name="dropdown_valuepair")
+dropdown_valuepairIn_Pydantic = pydantic_model_creator(dropdown_valuepairs, name="dropdown_valuepairIn", exclude_readonly=True)
