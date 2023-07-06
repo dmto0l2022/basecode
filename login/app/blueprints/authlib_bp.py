@@ -110,6 +110,7 @@ def auth():
     response_json = response.json()
     user_id = response_json['id']
     print("user_id >>" , user_id)
+    session['dmtool_user_id'] = user_id
     
     return redirect(url_for('authlib_bp.homepage'))
 
