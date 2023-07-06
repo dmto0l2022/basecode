@@ -7,7 +7,7 @@ class Users_authlib(models.Model):
     """
 
     id = fields.IntField(pk=True)
-    email = fields.CharField(max_length=20, unique=True)
+    email = fields.CharField(max_length=50, unique=True)
     email_verified = fields.BooleanField()
     name = fields.CharField(max_length=50, null=True)
     given_name = fields.CharField(max_length=50, null=True)
