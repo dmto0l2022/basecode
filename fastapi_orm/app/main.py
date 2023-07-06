@@ -31,9 +31,9 @@ from models import Plot_Pydantic, PlotIn_Pydantic, Plots
 
 from routers import dmtool
 
-from app.models.users import User_Pydantic, UserIn_Pydantic, Users
-from app.models.users import User_authlib_Pydantic, User_authlibIn_Pydantic, Users_authlib
-from app.models.users import User_authlib_count_Pydantic
+from models.users import User_Pydantic, UserIn_Pydantic, Users
+from models.users import User_authlib_Pydantic, User_authlibIn_Pydantic, Users_authlib
+from models.users import User_authlib_count_Pydantic
 
 
 from pydantic import BaseModel
