@@ -102,7 +102,14 @@ def auth():
         response = requests.post(url, json=new_user, headers=headers)
         # Print the response
         response_json = response.json()
-        print(response_json)
+        #print(response_json)
+    
+    url = "http://container_fastapi_orm_1:8008/apiorm/authlibuser/" + email
+    # A GET request to the API
+    response = requests.get(url)
+    response_json = response.json()
+    user_id = response_json['id']
+    print("user_id >>" , user_id)
     
     return redirect(url_for('authlib_bp.homepage'))
 
