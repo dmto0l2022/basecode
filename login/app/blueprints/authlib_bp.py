@@ -12,6 +12,8 @@ from authlib.integrations.flask_client import OAuth
 from os import environ, path
 from dotenv import load_dotenv
 
+import requests
+
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
@@ -61,7 +63,30 @@ def auth():
     email = user.get("email")
     email_verified = user.get("email_verified")
     name = user.get("name")
+    given_name = user.get("given_name")
+    family_name = user.get("family_name")
+    
     iss = user.get("iss") ##: 'https://accounts.google.com'
+
+    # The API endpoint
+    url = "https://jsonplaceholder.typicode.com/posts/1"
+    url = "http://container_fastapi_orm_1:8008/apiorm/authlibuser/" + email
+    # A GET request to the API
+    response = requests.get(url)
+    if response.status_code = 404:
+        newuser = {}
+        newuser['email'] = email
+        newuser['email_verified'] = email_verified
+        newuser['name'] = name
+        newuser['given_name'] = given_name
+        newuser['family_name'] = family_name
+        json_data = json.dumps(newuser)
+        url = "http://container_fastapi_orm_1:8008/apiorm/authlibuser/" + json_data
+        response = requests.post(url)
+        # Print the response
+        response_json = response.json()
+        print(response_json)
+    
     return redirect(url_for('authlib_bp.homepage'))
 
 
