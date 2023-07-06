@@ -1,5 +1,6 @@
 # pylint: disable=E0611,E0401
 ## starting point was https://tortoise.github.io/examples/fastapi.html
+## https://fastapi.tiangolo.com/tutorial/bigger-applications/
 
 import os
 from os import environ, path
@@ -45,6 +46,7 @@ app = FastAPI(title="Tortoise ORM FastAPI example")
 class Status(BaseModel):
     message: str
 
+'''
 #### plot #####
 
 @app.get("/apiorm/plots", response_model=List[Plot_Pydantic])
@@ -241,6 +243,9 @@ async def delete_experiment(experiment_id: int):
         raise HTTPException(status_code=404, detail=f"Experiment {experiment_id} not found")
     return Status(message=f"Deleted experiment {experiment_id}")
 
+
+'''
+
 #### users #####
 
 @app.get("/apiorm/users", response_model=List[User_Pydantic])
@@ -329,6 +334,8 @@ MARIADB_URI = "mysql://" + MARIADB_USERNAME + ":" + \
 
 print(MARIADB_URI)
 
+
+app.include_router(dmtool.router)
 
 register_tortoise(
     app,
