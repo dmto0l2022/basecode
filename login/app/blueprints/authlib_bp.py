@@ -74,6 +74,10 @@ def auth():
     url = "http://container_fastapi_orm_1:8008/apiorm/authlibuser/" + email
     # A GET request to the API
     response = requests.get(url)
+    #url = "http://localhost:8080"
+    #data = {'sender': 'Alice', 'receiver': 'Bob', 'message': 'We did it!'}
+    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    #r = requests.post(url, data=json.dumps(data), headers=headers)
     if response.status_code == 404:
         newuser = {}
         newuser['email'] = email
@@ -81,9 +85,9 @@ def auth():
         newuser['name'] = name
         newuser['given_name'] = given_name
         newuser['family_name'] = family_name
-        json_data = json.dumps(newuser)
-        url = "http://container_fastapi_orm_1:8008/apiorm/authlibuser/" + json_data
-        response = requests.post(url)
+        #json_data = json.dumps(newuser)
+        url = "http://container_fastapi_orm_1:8008/apiorm/authlibuser/"
+        response = requests.post(url, data=json.dumps(newuser), headers=headers)
         # Print the response
         response_json = response.json()
         print(response_json)
