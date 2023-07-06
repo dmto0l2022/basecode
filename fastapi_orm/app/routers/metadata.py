@@ -33,14 +33,14 @@ async def get_pair(id: int):
 
 
 @router.put(
-    "/apiorm/metadata/{user_id}", response_model=dropdown_valuepair_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+    "/apiorm/metadata/{id}", response_model=dropdown_valuepair_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def update_pair(id: int, pair: dropdown_valuepairIn_Pydantic):
     await dropdown_valuepairs.filter(id=id).update(**pair.dict(exclude_unset=True))
     return await dropdown_valuepair_Pydantic.from_queryset_single(dropdown_valuepairs.get(id=id))
 
 
-@router.delete("/apiorm/metadata/{user_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
+@router.delete("/apiorm/metadata/{id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
 async def delete_pair(id: int):
     deleted_count = await dropdown_valuepairs.filter(id=id).delete()
     if not deleted_count:
