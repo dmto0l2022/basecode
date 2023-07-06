@@ -19,7 +19,7 @@ async def get_pairs():
     return await dropdown_valuepair_Pydantic.from_queryset(dropdown_valuepairs.all())
 
 @router.get("/apiorm/metadata/{dropdown_type}", response_model=List[dropdown_valuepair_Pydantic])
-async def get_dropdown_pairs():
+async def get_dropdown_pairs(dropdown_type: str):
     return await dropdown_valuepair_Pydantic.from_queryset(dropdown_valuepairs.filter(variable=dropdown_type).all())
 
 ## User.objects.filter(name="homy", home__isnull=False).values("id", "name")
