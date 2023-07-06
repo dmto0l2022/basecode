@@ -79,12 +79,12 @@ def auth():
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
     #r = requests.post(url, data=json.dumps(data), headers=headers)
     if response.status_code == 404:
-        newuser = {}
-        newuser['email'] = email
-        newuser['email_verified'] = email_verified
-        newuser['name'] = name
-        newuser['given_name'] = given_name
-        newuser['family_name'] = family_name
+        new_user = {}
+        new_user['email'] = email
+        new_user['email_verified'] = email_verified
+        new_user['name'] = name
+        new_user['given_name'] = given_name
+        new_user['family_name'] = family_name
 
         new_user_json = {
               "email": "string",
