@@ -88,7 +88,7 @@ def auth():
 
         new_user_json = {
               "email": "string",
-              "email_verified": true,
+              "email_verified": True,
               "name": "string",
               "given_name": "string",
               "family_name": "string"
