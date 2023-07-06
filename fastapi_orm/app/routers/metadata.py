@@ -18,6 +18,12 @@ class Status(BaseModel):
 async def get_pairs():
     return await dropdown_valuepair_Pydantic.from_queryset(dropdown_valuepairs.all())
 
+@router.get("/apiorm/metadata/experiments", response_model=List[dropdown_valuepair_Pydantic])
+async def get_experiment_pairs():
+    return await dropdown_valuepair_Pydantic.from_queryset(dropdown_valuepairs.filter(variable="experiment").values("label", "value"))
+
+## User.objects.filter(name="homy", home__isnull=False).values("id", "name")
+
 
 @router.post("/apiorm/metadata", response_model=dropdown_valuepair_Pydantic)
 async def create_pair(pair: dropdown_valuepairIn_Pydantic):
