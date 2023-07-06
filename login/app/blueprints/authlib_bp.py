@@ -85,11 +85,20 @@ def auth():
         newuser['name'] = name
         newuser['given_name'] = given_name
         newuser['family_name'] = family_name
+
+        new_user_json = {
+              "email": "string",
+              "email_verified": true,
+              "name": "string",
+              "given_name": "string",
+              "family_name": "string"
+            }
+        
         #json_data = json.dumps(newuser)
         url = "http://container_fastapi_orm_1:8008/apiorm/authlibuser/"
         #response = requests.post(url, data=json.dumps(newuser), headers=headers)
         #json={"key": "value"}
-        response = requests.post(url, json=newuser, headers=headers)
+        response = requests.post(url, json=new_user_json, headers=headers)
         # Print the response
         response_json = response.json()
         print(response_json)
