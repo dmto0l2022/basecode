@@ -14,6 +14,10 @@ from pydantic import BaseModel
 
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
+class Status(BaseModel):
+    message: str
+
+
 #### plot #####
 
 @router.get("/apiorm/plots", response_model=List[Plot_Pydantic])
