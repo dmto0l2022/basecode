@@ -29,7 +29,7 @@ from models import Plot_Ownership_Pydantic, Plot_OwnershipIn_Pydantic, Plot_Owne
 from models import Plot_Pydantic, PlotIn_Pydantic, Plots
 '''
 
-from .routers import dmtool
+from routers import dmtool
 
 from models import User_Pydantic, UserIn_Pydantic, Users
 
