@@ -13,6 +13,7 @@ from os import environ, path
 from dotenv import load_dotenv
 
 import requests
+import json
 
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
@@ -73,7 +74,7 @@ def auth():
     url = "http://container_fastapi_orm_1:8008/apiorm/authlibuser/" + email
     # A GET request to the API
     response = requests.get(url)
-    if response.status_code = 404:
+    if response.status_code == 404:
         newuser = {}
         newuser['email'] = email
         newuser['email_verified'] = email_verified
