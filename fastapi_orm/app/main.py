@@ -238,7 +238,7 @@ async def delete_experiment(experiment_id: int):
     return Status(message=f"Deleted experiment {experiment_id}")
 
 
-'''
+
 
 #### users #####
 
@@ -316,6 +316,7 @@ async def delete_authlibuser(email: str):
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Users_authlib {email} not found")
     return Status(message=f"Deleted authlib user {email}")
+'''
 
 MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
 MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
