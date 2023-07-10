@@ -27,6 +27,8 @@ GITHUB_CLIENT_SECRET = environ.get("GITHUB_CLIENT_SECRET")
 
 oauth = OAuth(current_app)
 
+authlib_github2_bp = Blueprint('authlib_github2_bp', __name__,url_prefix='/app/login/github2')
+
 github = oauth.register(
     name="github",
     client_id=GITHUB_CLIENT_ID,
