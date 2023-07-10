@@ -6,6 +6,11 @@ from flask import Blueprint
 
 import requests
 from authlib.integrations.flask_client import OAuth
+from authlib.integrations.requests_client import OAuth2Session
+
+scope = 'user:email'  # we want to fetch user's email
+
+
 import os
 import sys
 
@@ -31,19 +36,20 @@ GITHUB_CLIENT_SECRET = environ.get("GITHUB_CLIENT_SECRET")
 oauth = OAuth(current_app)
 
 authlib_github2_bp = Blueprint('authlib_github2_bp', __name__,url_prefix='/app/login/github2')
-
+'''
 github = oauth.register(
     name="github",
     client_id=GITHUB_CLIENT_ID,
     client_secret=GITHUB_CLIENT_SECRET,
     access_token_url="https://github.com/login/oauth/access_token",
     access_token_params=None,
-    #authorize_url="https://github.com/login/oauth/authorize",
-    authorize_url="http://dev1.dmtool.info/app/login/github2/callback",
-    #authorize_params=None,
+    authorize_url="https://github.com/login/oauth/authorize",
+    #authorize_url="http://dev1.dmtool.info/app/login/github2/callback",
+    authorize_params=None,
     api_base_url="https://api.github.com/",
     client_kwargs={"scope": "user:email"},
 )
+'''
 
 @authlib_github2_bp.route("/home")
 def home():
@@ -72,10 +78,23 @@ def login():
     if "access_token" in session:
         # User is already authenticated, redirect to the index page
         return redirect(url_for("authlib_github2_bp.home"))
-    redirect_url = "http//dev1.dmtool.info/app/login/github2/callback"
+    #redirect_url = "http//dev1.dmtool.info/app/login/github2/callback"
+    client = OAuth2Session(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, scope=scope)
+    authorization_endpoint = 'https://github.com/login/oauth/authorize'
+    uri, state = client.create_authorization_url(authorization_endpoint)
+    print(uri)
+    #authorization_response = 'https://example.com/github?code=42..e9&state=d..t'
+    authorization_response = uri
+    token_endpoint = 'https://github.com/login/oauth/access_token'
+    token = client.fetch_token(token_endpoint, authorization_response=authorization_response)
+    print(token)
+    state = restore_previous_state()
+    # using requests
+    client = OAuth2Session(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, state=state)
     # User is not authenticated, start the OAuth process
     #return github.authorize_redirect(url_for("authlib_github2_bp.callback", _external=True))
-    return github.authorize_redirect(redirect_url, _external=True)
+    #return github.authorize_redirect(redirect_url, _external=True)
+    return url_for("authlib_github2_bp.home")
 
 
 @authlib_github2_bp.route("/callback")
