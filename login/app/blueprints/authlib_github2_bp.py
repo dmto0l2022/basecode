@@ -45,16 +45,23 @@ github = oauth.register(
     client_kwargs={"scope": "user:email"},
 )
 
-@authlib_github2_bp.route("/")
-def index():
-    # Check if the username is saved in the session
+@authlib_github2_bp.route("/home")
+def home():
     username = session.get("username")
     if username:
         # Display the username and project names
-        return f"Hello {username}! You're now logged in. Projects: {', '.join(projects)}"
-    else:
-        # Username is not saved, redirect to the login page
-        return redirect(url_for("authlib_github2_bp.login"))
+        return f"Hello {username}! You're now logged in"
+
+#@authlib_github2_bp.route("/")
+#def index():
+#    # Check if the username is saved in the session
+#    username = session.get("username")
+#    if username:
+#        # Display the username and project names
+#        return f"Hello {username}! You're now logged in. Projects: {', '.join(projects)}"
+#    else:
+#        # Username is not saved, redirect to the login page
+#        return redirect(url_for("authlib_github2_bp.login"))
 
 
 @authlib_github2_bp.route("/login")
@@ -62,7 +69,7 @@ def login():
     # Check if the user is already authenticated
     if "access_token" in session:
         # User is already authenticated, redirect to the index page
-        return redirect(url_for("authlib_github2_bp.index"))
+        return redirect(url_for("authlib_github2_bp.home"))
     redirect_url = "http//dev1.dmtool.info/app/login/github2/callback"
     # User is not authenticated, start the OAuth process
     #return github.authorize_redirect(url_for("authlib_github2_bp.callback", _external=True))
@@ -74,7 +81,7 @@ def callback():
     # Check if the user is already authenticated
     if "access_token" in session:
         # User is already authenticated, redirect to the index page
-        return redirect(url_for("authlib_github2_bp.index"))
+        return redirect(url_for("authlib_github2_bp.home"))
 
     # Get the OAuth code from the request
     code = request.args.get("code")
@@ -95,7 +102,7 @@ def callback():
     #save_user_info(username)
 
     # Redirect the user to the index page
-    return redirect(url_for("authlib_github2_bp.index"))
+    return redirect(url_for("authlib_github2_bp.home"))
 
 
 
