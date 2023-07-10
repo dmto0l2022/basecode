@@ -52,7 +52,7 @@ def homepage():
 @authlib_google_bp.route('/login')
 def login():
     #redirect_uri = url_for('auth', _external=True)
-    redirect_uri = 'http://dev1.dmtool.info/app/login/authlib/auth'
+    redirect_uri = 'http://dev1.dmtool.info/app/login/google/auth'
     return oauth.google.authorize_redirect(redirect_uri)
 
 
@@ -114,7 +114,7 @@ def auth():
     print("user_id >>" , user_id)
     session['dmtool_user_id'] = user_id
     
-    return redirect(url_for('authlib_bp.homepage'))
+    return redirect(url_for('authlib_google_bp.homepage'))
 
 
 @authlib_google_bp.route('/logout')
