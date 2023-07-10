@@ -39,19 +39,19 @@ GITHUB_CLIENT_SECRET = environ.get("GITHUB_CLIENT_SECRET")
 
 oauth = OAuth(current_app)
 
+authlib_github3_bp = Blueprint('authlib_github3_bp', __name__,url_prefix='/app/login/github3')
 
 authorization_base_url = 'https://github.com/login/oauth/authorize'
 token_url = 'https://github.com/login/oauth/access_token'
 
-
-@app.route("/")
+@authlib_github3_bp.route("/")
 def demo():
     """Step 1: User Authorization.
 
     Redirect the user/resource owner to the OAuth provider (i.e. Github)
     using an URL with a few key OAuth parameters.
     """
-    github = OAuth2Session(client_id)
+    github = OAuth2Session(GITHUB_CLIENT_ID)
     authorization_url, state = github.authorization_url(authorization_base_url)
 
     # State is used to prevent CSRF, keep this for later.
@@ -61,7 +61,7 @@ def demo():
 
 # Step 2: User authorization, this happens on the provider.
 
-@app.route("/callback", methods=["GET"])
+@authlib_github3_bp.route("/callback", methods=["GET"])
 def callback():
     """ Step 3: Retrieving an access token.
 
@@ -70,8 +70,8 @@ def callback():
     in the redirect URL. We will use that to obtain an access token.
     """
 
-    github = OAuth2Session(client_id, state=session['oauth_state'])
-    token = github.fetch_token(token_url, client_secret=client_secret,
+    github = OAuth2Session(GITHUB_CLIENT_ID, state=session['oauth_state'])
+    token = github.fetch_token(token_url, client_secret=GITHUB_CLIENT_SECRET,
                                authorization_response=request.url)
 
     # At this point you can fetch protected resources but lets save
@@ -79,20 +79,12 @@ def callback():
     # in /profile.
     session['oauth_token'] = token
 
-    return redirect(url_for('.profile'))
+    return redirect(url_for('authlib_github3_bp.profile'))
 
 
-@app.route("/profile", methods=["GET"])
+@authlib_github3_bp.route("/profile", methods=["GET"])
 def profile():
     """Fetching a protected resource using an OAuth 2 token.
     """
     github = OAuth2Session(client_id, token=session['oauth_token'])
     return jsonify(github.get('https://api.github.com/user').json())
-
-
-if __name__ == "__main__":
-    # This allows us to use a plain HTTP callback
-    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = "1"
-
-    app.secret_key = os.urandom(24)
-    app.run(debug=True)
