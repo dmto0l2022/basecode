@@ -59,15 +59,16 @@ def homepage():
 def login():
     #redirect_uri = url_for('auth', _external=True)
     redirect_uri = 'http://dev1.dmtool.info/app/login/github/auth'
-    return oauth.google.authorize_redirect(redirect_uri)
+    return oauth.github.authorize_redirect(redirect_uri)
 
 
 @authlib_github_bp.route('/auth')
 def auth():
     token = oauth.github.authorize_access_token()
-    user = token['userinfo']
+    #user = token['userinfo']
     #print('token data type >>>',type(token))
-    #print(token)
+    print(token)
+    '''
     print(token['userinfo'])
     email = user.get("email")
     email_verified = user.get("email_verified")
@@ -119,6 +120,7 @@ def auth():
     user_id = response_json['id']
     print("user_id >>" , user_id)
     session['dmtool_user_id'] = user_id
+    '''
     
     return redirect(url_for('authlib_github_bp.homepage'))
 
