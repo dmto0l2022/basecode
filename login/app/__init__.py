@@ -4,8 +4,8 @@ from flask import Flask, render_template, render_template_string, redirect, url_
 from flask import flash
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import (LoginManager, UserMixin,
-                         current_user, login_user, logout_user)
+#from flask_login import (LoginManager, UserMixin,
+#                         current_user, login_user, logout_user)
 from flask_dance.consumer import oauth_authorized
 from flask_dance.contrib.google import make_google_blueprint, google
 
@@ -17,7 +17,7 @@ from flask_dance.contrib.google import make_google_blueprint, google
 import redis
 from . import database_bind as dbind
 
-from flask_security import Security, current_user, auth_required, SQLAlchemySessionUserDatastore
+#from flask_security import Security, current_user, auth_required, SQLAlchemySessionUserDatastore
 
 from authlib.integrations.flask_client import OAuth
 
@@ -31,7 +31,7 @@ path = os.path.dirname(os.path.realpath(__file__))
 
 ########################################################
 
-login_manager = LoginManager()
+#login_manager = LoginManager()
 
 # outside of app factory
 db = dbind.SQLAlchemy_bind()
@@ -98,10 +98,12 @@ def init_app():
                     MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
                     + MARIADB_DATABASE
     print(MARIADB_URI)
+    
     app = Flask(__name__)
-    filename = os.path.join(app.instance_path, 'my_folder', 'my_file.txt')
-    print('filename')
-    print(filename)
+    
+    #filename = os.path.join(app.instance_path, 'my_folder', 'my_file.txt')
+    #print('filename')
+    #print(filename)
     #SECRET_KEY = os.urandom(32)
   
     app.config['SECRET_KEY'] = FLASK_SECRET_KEY
@@ -119,17 +121,17 @@ def init_app():
     
          # import your database tables if defined in a different module
          from . import models as md
-         #from . import mail, security
-         from . import security
+         # from . import mail, security
+         # from . import security
          # for example if the User model above was in a different module:
          # Setup Flask-Security
       
-         login_manager.init_app(app)
-         login_manager.login_view = 'google.login'
+         # login_manager.init_app(app)
+         # login_manager.login_view = 'google.login'
          
-         @login_manager.user_loader
-         def load_user(user_id):
-             return GoogleUser.get(user_id)
+         #@login_manager.user_loader
+         #def load_user(user_id):
+         #    return GoogleUser.get(user_id)
 
          #@login_manager.user_loader
          #def load_user(user_id):
@@ -137,8 +139,8 @@ def init_app():
 
          db.init_app(app)
 
-         user_datastore = SQLAlchemySessionUserDatastore(db.session, md.GoogleUser, md.Role)
-         app.security = Security(app, user_datastore)
+         #user_datastore = SQLAlchemySessionUserDatastore(db.session, md.GoogleUser, md.Role)
+         #app.security = Security(app, user_datastore)
 
          # This processor is added to all templates
          #@app.security.context_processor
