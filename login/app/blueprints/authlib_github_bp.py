@@ -26,7 +26,7 @@ print(BASE_DIR)
 GOOGLE_CLIENT_ID = environ.get("GITHUB_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = environ.get("GITHUB_CLIENT_SECRET")
 
-CONF_URL = 'https://accounts.github.com/.well-known/openid-configuration'
+#CONF_URL = 'https://accounts.github.com/.well-known/openid-configuration'
 
 oauth = OAuth(current_app)
 
@@ -59,7 +59,7 @@ def homepage():
 @authlib_github_bp.route('/login')
 def login():
     #redirect_uri = url_for('auth', _external=True)
-    redirect_uri = url_for('oauth.authorize', _external=True)
+    redirect_uri = url_for('authlib_github_bp.authorize', _external=True)
     print(redirect_uri) 
     return oauth.github.authorize_redirect(redirect_uri)
     #redirect_uri = 'http://dev1.dmtool.info/app/login/github/auth'
