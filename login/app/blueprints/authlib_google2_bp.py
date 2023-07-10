@@ -7,16 +7,42 @@ from time import time
 
 from flask import Flask, request, redirect, session, url_for
 from flask.json import jsonify
+
 import requests
 from requests_oauthlib import OAuth2Session
 
-app = Flask(__name__)
+import os
+import sys
+
+from flask import current_app
+
+from os import environ, path
+from dotenv import load_dotenv
+
+import requests
+import json
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+print('BASE_DIR')
+print(BASE_DIR)
+
+GITHUB_CLIENT_ID = environ.get("GITHUB_CLIENT_ID")
+GITHUB_CLIENT_SECRET = environ.get("GITHUB_CLIENT_SECRET")
+
+#CONF_URL = 'https://accounts.github.com/.well-known/openid-configuration'
+
+oauth = OAuth(current_app)
+
+authlib_google2_bp = Blueprint('authlib_google2_bp', __name__,url_prefix='/app/login/google2')
+
 
 # This information is obtained upon registration of a new Google OAuth
 # application at https://code.google.com/apis/console
-client_id = "<your client key>"
-client_secret = "<your client secret>"
-redirect_uri = 'https://your.registered/callback'
+client_id = GITHUB_CLIENT_ID
+client_secret = GITHUB_CLIENT_SECRET
+redirect_uri = 'http://dev1.dmtool.info/app/login/google2/callback'
 
 # Uncomment for detailed oauthlib logs
 #import logging
@@ -28,13 +54,15 @@ redirect_uri = 'https://your.registered/callback'
 # OAuth endpoints given in the Google API documentation
 authorization_base_url = "https://accounts.google.com/o/oauth2/auth"
 token_url = "https://accounts.google.com/o/oauth2/token"
+
 refresh_url = token_url # True for Google but not all providers.
+
 scope = [
     "https://www.googleapis.com/auth/userinfo.email",
     "https://www.googleapis.com/auth/userinfo.profile",
 ]
 
-@app.route("/")
+@authlib_google2_bp.route("/")
 def demo():
     """Step 1: User Authorization.
 
@@ -53,7 +81,7 @@ def demo():
 
 
 # Step 2: User authorization, this happens on the provider.
-@app.route("/callback", methods=["GET"])
+@authlib_google2_bp.route("/callback", methods=["GET"])
 def callback():
     """ Step 3: Retrieving an access token.
 
@@ -73,7 +101,7 @@ def callback():
     return redirect(url_for('.menu'))
 
 
-@app.route("/menu", methods=["GET"])
+@authlib_google2_bp.route("/menu", methods=["GET"])
 def menu():
     """"""
     return """
@@ -92,7 +120,7 @@ def menu():
     """ % pformat(session['oauth_token'], indent=4)
 
 
-@app.route("/profile", methods=["GET"])
+@authlib_google2_bp.route("/profile", methods=["GET"])
 def profile():
     """Fetching a protected resource using an OAuth 2 token.
     """
@@ -100,7 +128,7 @@ def profile():
     return jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
 
 
-@app.route("/automatic_refresh", methods=["GET"])
+@authlib_google2_bp.route("/automatic_refresh", methods=["GET"])
 def automatic_refresh():
     """Refreshing an OAuth 2 token using a refresh token.
     """
@@ -130,7 +158,7 @@ def automatic_refresh():
     return jsonify(session['oauth_token'])
 
 
-@app.route("/manual_refresh", methods=["GET"])
+@authlib_google2_bp.route("/manual_refresh", methods=["GET"])
 def manual_refresh():
     """Refreshing an OAuth 2 token using a refresh token.
     """
@@ -145,7 +173,7 @@ def manual_refresh():
     session['oauth_token'] = google.refresh_token(refresh_url, **extra)
     return jsonify(session['oauth_token'])
 
-@app.route("/validate", methods=["GET"])
+@authlib_google2_bp.route("/validate", methods=["GET"])
 def validate():
     """Validate a token with the OAuth provider Google.
     """
