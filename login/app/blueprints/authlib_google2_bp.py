@@ -33,10 +33,8 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 print('BASE_DIR')
 print(BASE_DIR)
 
-GITHUB_CLIENT_ID = environ.get("GITHUB_CLIENT_ID")
-GITHUB_CLIENT_SECRET = environ.get("GITHUB_CLIENT_SECRET")
-
-#CONF_URL = 'https://accounts.github.com/.well-known/openid-configuration'
+GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
 
 oauth = OAuth(current_app)
 
@@ -45,8 +43,9 @@ authlib_google2_bp = Blueprint('authlib_google2_bp', __name__,url_prefix='/app/l
 
 # This information is obtained upon registration of a new Google OAuth
 # application at https://code.google.com/apis/console
-client_id = GITHUB_CLIENT_ID
-client_secret = GITHUB_CLIENT_SECRET
+client_id = GOOGLE_CLIENT_ID
+client_secret = GOOGLE_CLIENT_SECRET
+
 redirect_uri = 'http://dev1.dmtool.info/app/login/google2/callback'
 
 # Uncomment for detailed oauthlib logs
