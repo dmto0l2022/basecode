@@ -4,7 +4,8 @@
 ## next look into interpretation of the token and profile
 ## >>>>  https://docs.authlib.org/en/latest/client/flask.html
 
-from flask import Flask, url_for, session, Blueprint
+from flask import Flask, url_for, Blueprint
+from flask import session
 from flask import render_template, redirect
 from flask import current_app
 from authlib.integrations.flask_client import OAuth
