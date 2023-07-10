@@ -32,22 +32,23 @@ oauth = OAuth(current_app)
 
 authlib_github_bp = Blueprint('authlib_github_bp', __name__,url_prefix='/app/login/github')
 
-# oauth.register(
-#    name='github',
-#    access_token_url='https://github.com/login/oauth/access_token',
-#    authorize_url='https://github.com/login/oauth/authorize',
-#    api_base_url='https://api.github.com/',
-#    client_kwargs={'scope': 'read:user'},
-#  )
-
-
 oauth.register(
     name='github',
-    server_metadata_url=CONF_URL,
-    client_kwargs={
-        'scope': 'read:user'
-    }
-)
+    access_token_url='https://github.com/login/oauth/access_token',
+    #authorize_url='https://github.com/login/oauth/authorize',
+    authorize_url='http://dev1.dmtool.info/login/github/auth',
+    api_base_url='https://api.github.com/',
+    client_kwargs={'scope': 'read:user'},
+  )
+
+
+#oauth.register(
+#    name='github',
+#    server_metadata_url=CONF_URL,
+#    client_kwargs={
+#        'scope': 'read:user'
+#    }
+#)
 
 @authlib_github_bp.route('/home')
 def homepage():
