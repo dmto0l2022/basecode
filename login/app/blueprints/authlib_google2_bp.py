@@ -8,6 +8,9 @@ from time import time
 from flask import Flask, request, redirect, session, url_for
 from flask.json import jsonify
 
+from flask import Blueprint
+
+
 from authlib.integrations.flask_client import OAuth
 
 import requests
