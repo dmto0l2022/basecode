@@ -20,4 +20,5 @@ email_validator
 WTForms
 secure_cookie
 authlib
+flask_oauthlib
 mariadb
