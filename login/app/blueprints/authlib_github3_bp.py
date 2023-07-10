@@ -86,5 +86,5 @@ def callback():
 def profile():
     """Fetching a protected resource using an OAuth 2 token.
     """
-    github = OAuth2Session(client_id, token=session['oauth_token'])
+    github = OAuth2Session(GITHUB_CLIENT_ID, token=session['oauth_token'])
     return jsonify(github.get('https://api.github.com/user').json())
