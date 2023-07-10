@@ -23,40 +23,48 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 print('BASE_DIR')
 print(BASE_DIR)
 
-GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
-GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
+GOOGLE_CLIENT_ID = environ.get("GITHUB_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = environ.get("GITHUB_CLIENT_SECRET")
 
-CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
+CONF_URL = 'https://accounts.github.com/.well-known/openid-configuration'
 
 oauth = OAuth(current_app)
 
-authlib_google_bp = Blueprint('authlib_google_bp', __name__,url_prefix='/app/login/google')
+authlib_github_bp = Blueprint('authlib_github_bp', __name__,url_prefix='/app/login/github')
+
+# oauth.register(
+#    name='github',
+#    access_token_url='https://github.com/login/oauth/access_token',
+#    authorize_url='https://github.com/login/oauth/authorize',
+#    api_base_url='https://api.github.com/',
+#    client_kwargs={'scope': 'read:user'},
+#  )
 
 
 oauth.register(
-    name='google',
+    name='github',
     server_metadata_url=CONF_URL,
     client_kwargs={
-        'scope': 'openid email profile'
+        'scope': 'read:user'
     }
 )
 
 
 
-@authlib_google_bp.route('/home')
+@authlib_github_bp.route('/home')
 def homepage():
     user = session.get('dmtool_user_id')
     return render_template('home.html', user=user)
 
 
-@authlib_google_bp.route('/login')
+@authlib_github_bp.route('/login')
 def login():
     #redirect_uri = url_for('auth', _external=True)
     redirect_uri = 'http://dev1.dmtool.info/app/login/google/auth'
     return oauth.google.authorize_redirect(redirect_uri)
 
 
-@authlib_google_bp.route('/auth')
+@authlib_github_bp.route('/auth')
 def auth():
     token = oauth.google.authorize_access_token()
     user = token['userinfo']
