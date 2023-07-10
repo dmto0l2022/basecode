@@ -1,6 +1,9 @@
 ## thank you to https://github.com/SchBenedikt/Text-Editor/blob/main/auth.py
 
 from flask import Flask, redirect, request, session, url_for
+from flask import Blueprint
+
+
 import requests
 from authlib.integrations.flask_client import OAuth
 import os
