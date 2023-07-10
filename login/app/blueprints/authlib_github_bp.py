@@ -35,8 +35,8 @@ authlib_github_bp = Blueprint('authlib_github_bp', __name__,url_prefix='/app/log
 oauth.register(
     name='github',
     access_token_url='https://github.com/login/oauth/access_token',
-    authorize_url='https://github.com/login/oauth/authorize',
-    #authorize_url='http://dev1.dmtool.info/login/github/auth',
+    #authorize_url='https://github.com/login/oauth/authorize',
+    authorize_url='http://dev1.dmtool.info/login/github/auth',
     api_base_url='https://api.github.com/',
     client_kwargs={'scope': 'read:user'},
   )
@@ -59,7 +59,7 @@ def homepage():
 @authlib_github_bp.route('/login')
 def login():
     #redirect_uri = url_for('auth', _external=True)
-    redirect_uri = url_for('authlib_github_bp.authorize', _external=True)
+    redirect_uri = url_for('authlib_github_bp.auth', _external=True)
     print(redirect_uri) 
     return oauth.github.authorize_redirect(redirect_uri)
     #redirect_uri = 'http://dev1.dmtool.info/app/login/github/auth'
