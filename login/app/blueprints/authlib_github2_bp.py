@@ -6,14 +6,31 @@ from authlib.integrations.flask_client import OAuth
 import os
 import sys
 
+from flask import current_app
 
+from os import environ, path
+from dotenv import load_dotenv
+
+import requests
+import json
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+print('BASE_DIR')
+print(BASE_DIR)
+
+GITHUB_CLIENT_ID = environ.get("GITHUB_CLIENT_ID")
+GITHUB_CLIENT_SECRET = environ.get("GITHUB_CLIENT_SECRET")
+
+#CONF_URL = 'https://accounts.github.com/.well-known/openid-configuration'
 
 oauth = OAuth(current_app)
 
 github = oauth.register(
     name="github",
-    client_id="217973d6a6bd9d3defb9",
-    client_secret="861b796155a2e5a53ab17e68890e70bbeebadae6",
+    client_id=GITHUB_CLIENT_ID,
+    client_secret=GITHUB_CLIENT_SECRET,
     access_token_url="https://github.com/login/oauth/access_token",
     access_token_params=None,
     authorize_url="https://github.com/login/oauth/authorize",
@@ -31,7 +48,7 @@ def index():
         return f"Hello {username}! You're now logged in. Projects: {', '.join(projects)}"
     else:
         # Username is not saved, redirect to the login page
-        return redirect(url_for("login"))
+        return redirect(url_for("authlib_github2_bp.login"))
 
 
 @authlib_github2_bp.route("/login")
@@ -50,7 +67,7 @@ def callback():
     # Check if the user is already authenticated
     if "access_token" in session:
         # User is already authenticated, redirect to the index page
-        return redirect(url_for("index"))
+        return redirect(url_for("authlib_github2_bp.index"))
 
     # Get the OAuth code from the request
     code = request.args.get("code")
@@ -71,15 +88,15 @@ def callback():
     save_user_info(username)
 
     # Redirect the user to the index page
-    return redirect(url_for("index"))
+    return redirect(url_for("authlib_github2_bp.index"))
 
 
 
 def get_access_token(code):
     # Configure the access token request
     payload = {
-        "client_id": "217973d6a6bd9d3defb9",
-        "client_secret": "861b796155a2e5a53ab17e68890e70bbeebadae6",
+        "client_id": '"' + GITHUB_CLIENT_ID + '"',
+        "client_secret": '"' + GITHUB_CLIENT_SECRET + '"',
         "code": code,
     }
 
