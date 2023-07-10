@@ -1,7 +1,10 @@
 ## https://github.com/lepture/flask-oauthlib/blob/master/example/github.py
 
-from flask import Flask, url_for, Blueprint
+from flask import Blueprint
 from flask import session
+
+from flask import Flask, url_for, session, request, jsonify
+from flask_oauthlib.client import OAuth
 
 from flask import render_template, redirect
 from flask import current_app
@@ -19,27 +22,19 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 print('BASE_DIR')
 print(BASE_DIR)
 
-GOOGLE_CLIENT_ID = environ.get("GITHUB_CLIENT_ID")
-GOOGLE_CLIENT_SECRET = environ.get("GITHUB_CLIENT_SECRET")
+GITHUB_CLIENT_ID = environ.get("GITHUB_CLIENT_ID")
+GITHUB_CLIENT_SECRET = environ.get("GITHUB_CLIENT_SECRET")
 
 #CONF_URL = 'https://accounts.github.com/.well-known/openid-configuration'
 
 oauth = OAuth(current_app)
 ############################################
 
-from flask import Flask, redirect, url_for, session, request, jsonify
-from flask_oauthlib.client import OAuth
-
-
-app = Flask(__name__)
-app.debug = True
-app.secret_key = 'development'
-oauth = OAuth(app)
 
 github = oauth.remote_app(
     'github',
-    consumer_key='a11a1bda412d928fb39a',
-    consumer_secret='92b7cf30bc42c49d589a10372c3f9ff3bb310037',
+    consumer_key=GITHUB_CLIENT_ID,
+    consumer_secret=GITHUB_CLIENT_SECRET,
     request_token_params={'scope': 'user:email'},
     base_url='https://api.github.com/',
     request_token_url=None,
@@ -48,8 +43,10 @@ github = oauth.remote_app(
     authorize_url='https://github.com/login/oauth/authorize'
 )
 
+authlib_github_bp = Blueprint('authlib_github_bp', __name__,url_prefix='/app/login/github')
 
-@app.route('/')
+
+@authlib_github_bp.route('/')
 def index():
     if 'github_token' in session:
         me = github.get('user')
@@ -57,7 +54,7 @@ def index():
     return redirect(url_for('login'))
 
 
-@app.route('/login')
+@authlib_github_bp.route('/login')
 def login():
     return github.authorize(callback=url_for('authorized', _external=True))
 
@@ -68,7 +65,7 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/login/authorized')
+@authlib_github_bp.route('/login/auth')
 def authorized():
     resp = github.authorized_response()
     if resp is None or resp.get('access_token') is None:
@@ -87,17 +84,12 @@ def get_github_oauth_token():
     return session.get('github_token')
 
 
-if __name__ == '__main__':
-    app.run()
-
-
 
 ############################################
 
+'''
 
 
-
-authlib_github_bp = Blueprint('authlib_github_bp', __name__,url_prefix='/app/login/github')
 
 oauth.register(
     name='github',
@@ -140,7 +132,6 @@ def auth():
     #user = token['userinfo']
     #print('token data type >>>',type(token))
     print(token)
-    '''
     print(token['userinfo'])
     email = user.get("email")
     email_verified = user.get("email_verified")
@@ -192,7 +183,6 @@ def auth():
     user_id = response_json['id']
     print("user_id >>" , user_id)
     session['dmtool_user_id'] = user_id
-    '''
     
     return redirect(url_for('authlib_github_bp.homepage'))
 
@@ -201,3 +191,4 @@ def auth():
 def logout():
     session.pop('dmtool_user_id', None)
     return redirect(url_for('authlib_github_bp.homepage'))
+'''
