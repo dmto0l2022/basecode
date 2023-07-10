@@ -119,5 +119,5 @@ def auth():
 
 @authlib_bp.route('/logout')
 def logout():
-    session.pop('user', None)
+    session.pop('dmtool_user_id', None)
     return redirect(url_for('authlib_bp.homepage'))
