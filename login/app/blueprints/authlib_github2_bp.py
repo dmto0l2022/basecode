@@ -64,7 +64,7 @@ def login():
         return redirect(url_for("index"))
 
     # User is not authenticated, start the OAuth process
-    return github.authorize_redirect(url_for("callback", _external=True))
+    return github.authorize_redirect(url_for("authlib_github2_bp.callback", _external=True))
 
 
 @authlib_github2_bp.route("/callback")
