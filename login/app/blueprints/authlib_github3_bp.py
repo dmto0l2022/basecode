@@ -1,6 +1,6 @@
 ## https://requests-oauthlib.readthedocs.io/en/v1.3.1/examples/real_world_example.html
 
-#from requests_oauthlib import OAuth2Session
+from requests_oauthlib import OAuth2Session
 from flask import Flask, request, redirect, session, url_for
 from flask.json import jsonify
 import os
@@ -10,7 +10,7 @@ from flask import Blueprint
 
 import requests
 from authlib.integrations.flask_client import OAuth
-from authlib.integrations.requests_client import OAuth2Session
+# from authlib.integrations.requests_client import OAuth2Session
 
 scope = 'user:email'  # we want to fetch user's email
 
