@@ -1,4 +1,6 @@
 ## https://requests-oauthlib.readthedocs.io/en/v1.3.1/examples/real_world_example.html
+## may need
+## https://requests-oauthlib.readthedocs.io/en/v1.3.1/examples/real_world_example_with_refresh.html
 
 from requests_oauthlib import OAuth2Session
 from flask import Flask, request, redirect, session, url_for
