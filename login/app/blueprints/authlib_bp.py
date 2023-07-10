@@ -6,7 +6,7 @@
 
 from flask import Flask, url_for, Blueprint
 #from flask import session
-from app import session
+from app import server_session as session
 from flask import render_template, redirect
 from flask import current_app
 from authlib.integrations.flask_client import OAuth
