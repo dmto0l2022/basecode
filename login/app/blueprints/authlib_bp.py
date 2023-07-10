@@ -43,7 +43,7 @@ oauth.register(
 
 @authlib_bp.route('/home')
 def homepage():
-    user = session.get('user')
+    user = session.get('dmtool_user_id')
     return render_template('home.html', user=user)
 
 
