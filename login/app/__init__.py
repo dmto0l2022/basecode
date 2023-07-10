@@ -173,6 +173,10 @@ def init_app():
          from app.blueprints.authlib_google_bp import authlib_google_bp
          app.register_blueprint(authlib_google_bp, url_prefix="/app/login/google")
 
+         ## github_login_bp
+         from app.blueprints.authlib_github_bp import authlib_github_bp
+         app.register_blueprint(authlib_github_bp, url_prefix="/app/login/github")
+        
          #from app.blueprints.github_login_bp import github_login_bp
          #app.register_blueprint(github_login_bp)
       
