@@ -62,7 +62,7 @@ def login():
     # Check if the user is already authenticated
     if "access_token" in session:
         # User is already authenticated, redirect to the index page
-        return redirect(url_for("index"))
+        return redirect(url_for("authlib_github2_bp.index"))
     redirect_url = "http//dev1.dmtool.info/app/login/github2/callback"
     # User is not authenticated, start the OAuth process
     #return github.authorize_redirect(url_for("authlib_github2_bp.callback", _external=True))
