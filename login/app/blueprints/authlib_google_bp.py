@@ -43,20 +43,20 @@ oauth.register(
 
 
 
-@authlib_bp.route('/home')
+@authlib_google_bp.route('/home')
 def homepage():
     user = session.get('dmtool_user_id')
     return render_template('home.html', user=user)
 
 
-@authlib_bp.route('/login')
+@authlib_google_bp.route('/login')
 def login():
     #redirect_uri = url_for('auth', _external=True)
     redirect_uri = 'http://dev1.dmtool.info/app/login/authlib/auth'
     return oauth.google.authorize_redirect(redirect_uri)
 
 
-@authlib_bp.route('/auth')
+@authlib_google_bp.route('/auth')
 def auth():
     token = oauth.google.authorize_access_token()
     user = token['userinfo']
@@ -117,7 +117,7 @@ def auth():
     return redirect(url_for('authlib_bp.homepage'))
 
 
-@authlib_bp.route('/logout')
+@authlib_google_bp.route('/logout')
 def logout():
     session.pop('dmtool_user_id', None)
     return redirect(url_for('authlib_bp.homepage'))
