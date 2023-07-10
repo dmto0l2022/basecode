@@ -51,6 +51,8 @@ def home():
     if username:
         # Display the username and project names
         return f"Hello {username}! You're now logged in"
+    else:
+        return f"Hello! You're not logged in"
 
 #@authlib_github2_bp.route("/")
 #def index():
