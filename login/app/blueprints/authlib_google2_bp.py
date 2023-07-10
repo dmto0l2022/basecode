@@ -112,10 +112,10 @@ def menu():
     <h1>Congratulations, you have obtained an OAuth 2 token!</h1>
     <h2>What would you like to do next?</h2>
     <ul>
-        <li><a href="/profile"> Get account profile</a></li>
-        <li><a href="/automatic_refresh"> Implicitly refresh the token</a></li>
-        <li><a href="/manual_refresh"> Explicitly refresh the token</a></li>
-        <li><a href="/validate"> Validate the token</a></li>
+        <li><a href="/app/login/google2/profile"> Get account profile</a></li>
+        <li><a href="/app/login/google2/automatic_refresh"> Implicitly refresh the token</a></li>
+        <li><a href="/app/login/google2/manual_refresh"> Explicitly refresh the token</a></li>
+        <li><a href="/app/login/google2/validate"> Validate the token</a></li>
     </ul>
 
     <pre>
