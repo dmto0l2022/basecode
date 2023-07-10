@@ -92,7 +92,7 @@ def callback():
     session["username"] = username
 
     # Save user information to the about.txt file
-    save_user_info(username)
+    #save_user_info(username)
 
     # Redirect the user to the index page
     return redirect(url_for("authlib_github2_bp.index"))
