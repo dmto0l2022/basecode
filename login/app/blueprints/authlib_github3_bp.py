@@ -1,17 +1,45 @@
 ## https://requests-oauthlib.readthedocs.io/en/v1.3.1/examples/real_world_example.html
 
-from requests_oauthlib import OAuth2Session
+#from requests_oauthlib import OAuth2Session
 from flask import Flask, request, redirect, session, url_for
 from flask.json import jsonify
 import os
 
-app = Flask(__name__)
+from flask import Blueprint
 
 
-# This information is obtained upon registration of a new GitHub OAuth
-# application here: https://github.com/settings/applications/new
-client_id = "<your client key>"
-client_secret = "<your client secret>"
+import requests
+from authlib.integrations.flask_client import OAuth
+from authlib.integrations.requests_client import OAuth2Session
+
+scope = 'user:email'  # we want to fetch user's email
+
+
+import os
+import sys
+
+from flask import current_app
+
+from os import environ, path
+from dotenv import load_dotenv
+
+import requests
+import json
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+print('BASE_DIR')
+print(BASE_DIR)
+
+GITHUB_CLIENT_ID = environ.get("GITHUB_CLIENT_ID")
+GITHUB_CLIENT_SECRET = environ.get("GITHUB_CLIENT_SECRET")
+
+#CONF_URL = 'https://accounts.github.com/.well-known/openid-configuration'
+
+oauth = OAuth(current_app)
+
+
 authorization_base_url = 'https://github.com/login/oauth/authorize'
 token_url = 'https://github.com/login/oauth/access_token'
 
