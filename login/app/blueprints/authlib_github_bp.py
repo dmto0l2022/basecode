@@ -49,8 +49,6 @@ oauth.register(
     }
 )
 
-
-
 @authlib_github_bp.route('/home')
 def homepage():
     user = session.get('dmtool_user_id')
@@ -60,13 +58,13 @@ def homepage():
 @authlib_github_bp.route('/login')
 def login():
     #redirect_uri = url_for('auth', _external=True)
-    redirect_uri = 'http://dev1.dmtool.info/app/login/google/auth'
+    redirect_uri = 'http://dev1.dmtool.info/app/login/github/auth'
     return oauth.google.authorize_redirect(redirect_uri)
 
 
 @authlib_github_bp.route('/auth')
 def auth():
-    token = oauth.google.authorize_access_token()
+    token = oauth.github.authorize_access_token()
     user = token['userinfo']
     #print('token data type >>>',type(token))
     #print(token)
@@ -122,10 +120,10 @@ def auth():
     print("user_id >>" , user_id)
     session['dmtool_user_id'] = user_id
     
-    return redirect(url_for('authlib_google_bp.homepage'))
+    return redirect(url_for('authlib_github_bp.homepage'))
 
 
-@authlib_google_bp.route('/logout')
+@authlib_github_bp.route('/logout')
 def logout():
     session.pop('dmtool_user_id', None)
-    return redirect(url_for('authlib_bp.homepage'))
+    return redirect(url_for('authlib_github_bp.homepage'))
