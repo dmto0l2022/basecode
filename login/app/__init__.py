@@ -173,8 +173,11 @@ def init_app():
          from app.blueprints.authlib_google_bp import authlib_google_bp
          app.register_blueprint(authlib_google_bp, url_prefix="/app/login/google")
 
-         from app.blueprints.authlib_github2_bp import authlib_github2_bp
-         app.register_blueprint(authlib_github2_bp, url_prefix="/app/login/github2")
+         #from app.blueprints.authlib_github2_bp import authlib_github2_bp
+         #app.register_blueprint(authlib_github2_bp, url_prefix="/app/login/github2")
+
+         from app.blueprints.authlib_github3_bp import authlib_github3_bp
+         app.register_blueprint(authlib_github3_bp, url_prefix="/app/login/github3")
         
          #from app.blueprints.authlib_github_bp import authlib_github_bp
          #app.register_blueprint(authlib_github_bp, url_prefix="/app/login/github")
