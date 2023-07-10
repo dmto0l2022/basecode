@@ -59,7 +59,8 @@ def homepage():
 @authlib_github_bp.route('/login')
 def login():
     #redirect_uri = url_for('auth', _external=True)
-    redirect_uri = url_for('authlib_github_bp.auth', _external=True)
+    #redirect_uri = url_for('authlib_github_bp.auth', _external=True)
+    redirect_uri = 'http://dev1.dmtool.info/login/github/auth'
     print(redirect_uri) 
     return oauth.github.authorize_redirect(redirect_uri)
     #redirect_uri = 'http://dev1.dmtool.info/app/login/github/auth'
