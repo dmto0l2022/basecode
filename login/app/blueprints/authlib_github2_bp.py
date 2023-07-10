@@ -64,7 +64,8 @@ def login():
         return redirect(url_for("index"))
     redirect_url = "http//dev1.dmtool.info/app/login/github2/callback"
     # User is not authenticated, start the OAuth process
-    return github.authorize_redirect(url_for("authlib_github2_bp.callback", _external=True))
+    #return github.authorize_redirect(url_for("authlib_github2_bp.callback", _external=True))
+    return github.authorize_redirect(redirect_url, _external=True)
 
 
 @authlib_github2_bp.route("/callback")
