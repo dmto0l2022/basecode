@@ -48,7 +48,8 @@ layout = row
 	Input('submit-val', 'n_clicks'))
 def getvalue(clicks_in):
 	return_value = {}
-	print((flask.request.cookies))
+	#print((flask.request.cookies))
+	print((flask.request.cookies['session']))
 	if not session:
 		return_value = html.Div(id='div2',children=['no session data'])
 	else:
