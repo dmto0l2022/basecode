@@ -14,6 +14,6 @@ layout = html.Div([html.Div(id='div2'),html.Button('Submit', id='submit-val', n_
 	Input('submit-val', 'n_clicks'))
 def getvalue(clicks_in):
 	return_value = {}
-	for key, value in session.items()
+	for key, value in session.items():
               return_value[key] = value
 	return return_value
