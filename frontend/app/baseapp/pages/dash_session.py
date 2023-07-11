@@ -13,14 +13,20 @@ submit_button = html.Button('Submit', id='submit-val', n_clicks=0)
 import dash_bootstrap_components as dbc
 from dash import html
 
-row = html.Div(
+row1 = html.Div(
     [
-        dbc.Row(dbc.Col(data_here)),
-	dbc.Row(dbc.Col(submit_button)),
+        dbc.Row(dbc.Col(data_here))
     ]
 )
 
-layout = row
+row2 = html.Div(
+    [
+        dbc.Row(dbc.Col(submit_button))
+    ]
+)
+
+
+layout = html.Div([row1,row2])
 
 @callback(
 	Output('div2', 'children'),
