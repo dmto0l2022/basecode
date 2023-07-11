@@ -109,7 +109,7 @@ class Middleware:
         print('==================request data==============================')
         
         cursor = self.connection.cursor(dictionary=True)
-        cursor.execute("SELECT id, email, username, active, confirmed_at FROM world.`user` where fs_uniquifier = %s" \
+        cursor.execute("SELECT id, email, username, active, confirmed_at FROM data.`user` where fs_uniquifier = %s" \
                        , (current_user_in,)) ## , is important
         
         try:
