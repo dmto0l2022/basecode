@@ -7,16 +7,12 @@ from flask import session
 
 dash.register_page(__name__, path='/dash_session')
 
-layout = html.Div([
-    html.Div(id='div2'),
-    html.Div(id='div3')
-    ])
-    return layout02
+layout = html.Div([html.Div(id='div2'),html.Div(id='div3')])
 
 @callback(
 	Output('div2', 'children'),
-	[Input('div3', 'children')])
+	Input('div3', 'children'))
 def update_user(children):
 	return 'User: {}'.format(session.get('dmtool_email_address', None))
 
-layout = create_layout()
+
