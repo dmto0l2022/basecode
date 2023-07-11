@@ -119,7 +119,7 @@ class Middleware:
             for row in user_details:
                 current_user_email = row["email"]
             cursor.close()
-            self.redisserver.set('dmtool_email_address', current_user_email)
+            session['dmtool_email_address'] = current_user_email
             #print('current user email > ' , current_user_email)
             email_domain = current_user_email.split('@')[1]
             #print('email domain > ', email_domain)
