@@ -1,6 +1,7 @@
 import dash
 from dash import html, dcc, callback, Output, Input
-from flask import session
+#from flask import session
+from app import session
 
 #import libraries.formlibrary as fl
 #from app.baseapp.libraries import formlibrary as fl
