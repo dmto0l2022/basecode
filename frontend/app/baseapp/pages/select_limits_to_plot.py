@@ -259,10 +259,10 @@ def old_form_stuff():
     )
 
 '''
-def get_plot_name_div():
-    current_plot_name = "current plot name is : >> " + session['dmtool_plot_name']
-    plot_name_div_return = html.Div(children=[current_plot_name],id='current_plot_name_id')
-    return plot_name_div_return
+#def get_plot_name_div():
+#    current_plot_name = "current plot name is : >> " + session['dmtool_plot_name']
+#    plot_name_div_return = html.Div(children=[current_plot_name],id='current_plot_name_id')
+#    return plot_name_div_return
 
 ##plot_name_div = html.Div(children=[current_plot_name],id='current_plot_name_id')
 next_button =  html.Div(dbc.Button("Next",  id=page_name + "_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
@@ -286,7 +286,9 @@ maincolumn = dbc.Col(
             width=12,)
 
 def get_layout():
-    layout_out = html.Div(id=page_name+'content',children=[get_plot_name_div(),maincolumn],className="PAGE_GRAPH_CONTENT")
+    layout_out = html.Div(id=page_name+'content',children=[
+        plot_name_div_return = html.Div(children=[session['dmtool_plot_name']],id='current_plot_name_id')
+        maincolumn],className="PAGE_GRAPH_CONTENT")
     return layout_out
         
 ##className="PAGE_CONTENT",)
