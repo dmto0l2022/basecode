@@ -3,6 +3,8 @@ from dash import html, dcc, callback, Output, Input
 #from flask import session
 from app import session
 
+import requests
+
 import flask
 
 #import libraries.formlibrary as fl
@@ -49,7 +51,13 @@ layout = row
 def getvalue(clicks_in):
 	return_value = {}
 	#print((flask.request.cookies))
-	print((flask.request.cookies['session']))
+	#print((flask.request.cookies['session']))
+	cookie = flask.request.cookies.get('session')
+	print("cookie >>>> ", cookie)
+	
+	sessionSession = requests.Session()
+	print("sessionSession >>>>>>>>" , sessionSession.cookies.get_dict())
+	
 	if not session:
 		return_value = html.Div(id='div2',children=['no session data'])
 	else:
