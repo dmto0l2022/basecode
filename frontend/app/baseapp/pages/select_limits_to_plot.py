@@ -264,7 +264,7 @@ def get_plot_name_div():
     plot_name_div_return = html.Div(children=[current_plot_name],id='current_plot_name_id')
     return plot_name_div_return
 
-plot_name_div = html.Div(children=[current_plot_name],id='current_plot_name_id')
+##plot_name_div = html.Div(children=[current_plot_name],id='current_plot_name_id')
 next_button =  html.Div(dbc.Button("Next",  id=page_name + "_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 cancel_button =  html.Div(dbc.Button("Cancel",  id=page_name + "_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
