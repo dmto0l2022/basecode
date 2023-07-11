@@ -2,6 +2,7 @@ import dash
 from dash import html, dcc, callback, Output, Input
 #from flask import session
 from app import session
+import redis
 
 import requests
 
@@ -54,6 +55,20 @@ def getvalue(clicks_in):
 	#print((flask.request.cookies['session']))
 	cookie = flask.request.cookies.get('session')
 	print("cookie text >>>> ", cookie)
+
+	r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+	all_keys = r.keys('*')
+	#print(all_keys)
+	print(type(all_keys))
+	#first = all_keys[0]
+	#val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
+	for k in all_keys:
+	    val = r.get(k)
+	    print(k)
+	    print('---------------------------------------')
+	    print(val)
+	    print('=======================================')
+	
 	
 	#sessionSession = requests.Session()
 	#print("sessionSession >>>>>>>>" , sessionSession.cookies.get_dict())
