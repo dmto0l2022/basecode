@@ -259,8 +259,11 @@ def old_form_stuff():
     )
 
 '''
+def get_plot_name_div()
+    current_plot_name = "current plot name is : >> " + session['dmtool_plot_name']
+    plot_name_div_return = html.Div(children=[current_plot_name],id='current_plot_name_id')
+    return plot_name_div_return
 
-current_plot_name = "current plot name is : >> " + session['dmtool_plot_name']
 plot_name_div = html.Div(children=[current_plot_name],id='current_plot_name_id')
 next_button =  html.Div(dbc.Button("Next",  id=page_name + "_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 cancel_button =  html.Div(dbc.Button("Cancel",  id=page_name + "_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
@@ -269,7 +272,7 @@ list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", co
 maincolumn = dbc.Col(
             [
                 dcc.Location(id=page_name+'url',refresh=True),
-                plot_name_div,
+                get_plot_name_div(),
                 filter_row_1,
                 dbc.Row([dbc.Col(
                     [get_limits_table()],
