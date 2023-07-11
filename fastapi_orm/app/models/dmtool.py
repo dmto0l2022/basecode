@@ -20,8 +20,14 @@ class Limit_Display(models.Model):
     id = fields.IntField(pk=True)
     limit_id = fields.IntField(pk=False)
     plot_id = fields.IntField(pk=False)
-    color = fields.CharField(max_length=255)
-    style = fields.CharField(max_length=255)
+    trace_id = fields.IntField(pk=False) ## new field
+    symbol = fields.CharField(max_length=255) ## new field
+    symbol_color = fields.CharField(max_length=255) ## new field
+    line_style = fields.CharField(max_length=255) ## new field
+    line_color = fields.CharField(max_length=255) ## new field
+    fill_color = fields.CharField(max_length=255) ## new field
+    color = fields.CharField(max_length=255) ## legacy field
+    style = fields.CharField(max_length=255) ## legacy field
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now_add=True)
     
@@ -72,12 +78,9 @@ class Limits(models.Model):
     experiment = fields.CharField(max_length=255)
     rating = fields.IntField(pk=False)
     date_of_announcement = fields.DateField(auto_now_add=False)
-    #public = fields.IntField(pk=False)
     public = fields.BooleanField()
-    #official = fields.IntField(pk=False)
     official = fields.BooleanField()
     date_official = fields.DateField(auto_now_add=False)
-    #greatest_hit = fields.IntField(pk=False)
     greatest_hit = fields.BooleanField()
     date_of_run_start = fields.DateField(auto_now_add=False)
     date_of_run_end = fields.DateField(auto_now_add=False)
