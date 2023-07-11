@@ -7,7 +7,9 @@ from flask import session
 
 dash.register_page(__name__, path='/dash_session')
 
-layout = html.Div([html.Div(id='div2',children=['data here']),html.Button('Submit', id='submit-val', n_clicks=0)])
+data_here = html.Div(id='div2',children=['data here'])
+submit_button = html.Button('Submit', id='submit-val', n_clicks=0)
+layout = html.Div(children=[data_here,submit_button],id='content1')
 
 @callback(
 	Output('div2', 'children'),
