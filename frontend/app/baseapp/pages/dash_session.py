@@ -13,6 +13,6 @@ layout = html.Div([html.Div(id='div2'),html.Div(id='div3')])
 	Output('div2', 'children'),
 	Input('div3', 'children'))
 def update_user(children):
-	return 'User: {}'.format(session.get('dmtool_email_address', None))
+	return 'User: {}'.format(session.get('email', None))
 
 
