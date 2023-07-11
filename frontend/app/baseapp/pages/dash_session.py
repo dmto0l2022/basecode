@@ -53,7 +53,7 @@ def getvalue(clicks_in):
 	#print((flask.request.cookies))
 	#print((flask.request.cookies['session']))
 	cookie = flask.request.cookies.get('session')
-	print("cookie text >>>> ", cookie.text)
+	print("cookie text >>>> ", cookie)
 	
 	#sessionSession = requests.Session()
 	#print("sessionSession >>>>>>>>" , sessionSession.cookies.get_dict())
