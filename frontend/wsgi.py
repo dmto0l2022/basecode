@@ -1,4 +1,6 @@
 from app import init_app
+from app import session
+
 
 from jinja2 import Environment, FileSystemLoader
 
