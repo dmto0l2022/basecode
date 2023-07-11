@@ -9,17 +9,7 @@ dash.register_page(__name__, path='/dash_session')
 
 def create_layout():
     layout02 = html.Div([
-    html.H3(‘App 1’),
-    dcc.Dropdown(
-        id='app-1-dropdown',
-        options=[
-        {'label': 'App 1 - {}'.format(i), 'value': i} for i in [
-        'NYC', 'MTL', 'LA'
-        ]
-        ],
-        value=]
-        ),
-    html.Div(children=[session['dmtool_email_address'],id=‘app-1-display-value’)
+    html.Div(children=[session['dmtool_email_address'],id=‘display-value’)
     ])
     return layout02
     
