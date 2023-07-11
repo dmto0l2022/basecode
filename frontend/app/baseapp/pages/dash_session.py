@@ -25,8 +25,20 @@ row2 = html.Div(
     ]
 )
 
+row = html.Div(
+    [
+        dbc.Row(dbc.Col(html.Div("A single column"))),
+        dbc.Row(
+            [
+                dbc.Col(html.Div("One of three columns")),
+                dbc.Col(html.Div("One of three columns")),
+                dbc.Col(html.Div("One of three columns")),
+            ]
+        ),
+    ]
+)
 
-layout = html.Div([row1,row2])
+layout = row
 
 @callback(
 	Output('div2', 'children'),
