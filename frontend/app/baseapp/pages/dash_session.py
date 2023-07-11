@@ -27,7 +27,7 @@ row2 = html.Div(
 
 row = html.Div(
     [
-        dbc.Row(dbc.Col(html.Div("A single column"))),
+        dbc.Row(dbc.Col(data_here)),
         dbc.Row(
             [
                 dbc.Col(html.Div("One of three columns")),
