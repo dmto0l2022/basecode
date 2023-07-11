@@ -53,10 +53,10 @@ def getvalue(clicks_in):
 	#print((flask.request.cookies))
 	#print((flask.request.cookies['session']))
 	cookie = flask.request.cookies.get('session')
-	print("cookie >>>> ", cookie)
+	print("cookie text >>>> ", cookie.text)
 	
-	sessionSession = requests.Session()
-	print("sessionSession >>>>>>>>" , sessionSession.cookies.get_dict())
+	#sessionSession = requests.Session()
+	#print("sessionSession >>>>>>>>" , sessionSession.cookies.get_dict())
 	
 	if not session:
 		return_value = html.Div(id='div2',children=['no session data'])
