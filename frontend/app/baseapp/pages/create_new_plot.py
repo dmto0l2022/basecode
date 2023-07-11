@@ -7,11 +7,13 @@ from app.baseapp.libraries import formlibrary as fl
 dash.register_page(__name__, path='/create_new_plot')
 page_name = 'create_new_plot'
 
+## id='plot_name_form_field_id',
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
-    dcc.Location(id="url", refresh=True), ## important to allow redirects
+    dcc.Location(id="url_create_new_plot", refresh=True), ## important to allow redirects
     html.Div("Create New Plot"),
+    fl.plot_name_input_row,
     html.Button('Create', id=page_name + '_create_' + 'button_id', n_clicks=0),
     html.Button('Cancel',  id=page_name + '_cancel_' + 'button_id', n_clicks=0),
     html.Div('No Button Pressed', id="whatbutton")
@@ -23,10 +25,11 @@ layout = html.Div([
     [
     Input(page_name + '_create_' + 'button_id', "n_clicks"),
     Input(page_name + '_cancel_' + 'button_id', "n_clicks"),
+    Input("plot_name_form_field_id", "value")
         ],
         prevent_initial_call=True
 )
-def button_click(button1,button2):
+def button_click(button1,button2,plot_name_input):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     print("create new plot >> prop id >>  " ,prop_id)
