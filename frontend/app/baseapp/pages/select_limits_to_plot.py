@@ -272,7 +272,6 @@ list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", co
 maincolumn = dbc.Col(
             [
                 dcc.Location(id=page_name+'url',refresh=True),
-                get_plot_name_div(),
                 filter_row_1,
                 dbc.Row([dbc.Col(
                     [get_limits_table()],
@@ -286,12 +285,13 @@ maincolumn = dbc.Col(
             ],
             width=12,)
 
-    
-layout4 = html.Div(id=page_name+'content',children=[maincolumn],className="PAGE_GRAPH_CONTENT")
+def get_layout():
+    layout_out = html.Div(id=page_name+'content',children=[get_plot_name_div(),maincolumn],className="PAGE_GRAPH_CONTENT")
+    return layout_out
         
 ##className="PAGE_CONTENT",)
 
-layout = layout4
+layout = get_layout()
 
 @callback(
     Output(page_name+'limits_table_main', 'data'),
