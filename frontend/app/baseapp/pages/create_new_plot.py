@@ -22,7 +22,7 @@ layout = html.Div([
 
 
 @callback(
-    Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    Output('url_create_new_plot', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
     Input(page_name + '_create_' + 'button_id', "n_clicks"),
     Input(page_name + '_cancel_' + 'button_id', "n_clicks"),
