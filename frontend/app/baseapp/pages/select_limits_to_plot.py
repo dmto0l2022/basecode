@@ -259,7 +259,7 @@ def old_form_stuff():
     )
 
 '''
-def get_plot_name_div()
+def get_plot_name_div():
     current_plot_name = "current plot name is : >> " + session['dmtool_plot_name']
     plot_name_div_return = html.Div(children=[current_plot_name],id='current_plot_name_id')
     return plot_name_div_return
