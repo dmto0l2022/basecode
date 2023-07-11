@@ -45,6 +45,9 @@ layout = row
 	Input('submit-val', 'n_clicks'))
 def getvalue(clicks_in):
 	return_value = {}
-	for key, value in session.items():
-              return_value[key] = value
+	if not session:
+		return_value = {'nodata':'nodata'}
+	else:
+		for key, value in session.items():
+	              return_value[key] = value
 	return return_value
