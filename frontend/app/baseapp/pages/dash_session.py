@@ -46,7 +46,7 @@ layout = row
 def getvalue(clicks_in):
 	return_value = {}
 	if not session:
-		return_value = {'nodata':'nodata'}
+		return_value = html.Div(id='div2',children=['no session data'])
 	else:
 		for key, value in session.items():
 	              return_value[key] = value
