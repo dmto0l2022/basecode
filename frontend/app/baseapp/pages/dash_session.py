@@ -32,7 +32,7 @@ row = html.Div(
             [
                 dbc.Col(html.Div("One of three columns")),
                 dbc.Col(html.Div("One of three columns")),
-                dbc.Col(html.Div("One of three columns")),
+                dbc.Col(submit_button),
             ]
         ),
     ]
