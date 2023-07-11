@@ -9,7 +9,18 @@ dash.register_page(__name__, path='/dash_session')
 
 data_here = html.Div(id='div2',children=['data here'])
 submit_button = html.Button('Submit', id='submit-val', n_clicks=0)
-layout = html.Div(children=[data_here,submit_button],id='content1')
+
+import dash_bootstrap_components as dbc
+from dash import html
+
+row = html.Div(
+    [
+        dbc.Row(dbc.Col(data_here)),
+	dbc.Row(dbc.Col(submit_button)),
+    ]
+)
+
+layout = row
 
 @callback(
 	Output('div2', 'children'),
