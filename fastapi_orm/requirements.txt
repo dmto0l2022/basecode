@@ -1,8 +1,8 @@
 flask
 mariadb
+pydantic<2.0.0
 tortoise-orm[asyncmy]
 fastapi
-pydantic
 uvicorn
 python-dotenv
 aiomysql
