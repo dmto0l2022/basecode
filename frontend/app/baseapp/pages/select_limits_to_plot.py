@@ -286,9 +286,7 @@ maincolumn = dbc.Col(
             width=12,)
 
 def get_layout():
-    layout_out = html.Div(id=page_name+'content',children=[
-        html.Div(children=[session['dmtool_plot_name']],id='current_plot_name_id'),
-        maincolumn],className="PAGE_GRAPH_CONTENT")
+    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="PAGE_GRAPH_CONTENT")
     return layout_out
         
 ##className="PAGE_CONTENT",)
