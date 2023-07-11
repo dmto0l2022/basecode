@@ -55,20 +55,23 @@ def getvalue(clicks_in):
 	#print((flask.request.cookies['session']))
 	cookie = flask.request.cookies.get('session')
 	print("cookie text >>>> ", cookie)
+	session_cookie = "session:" + cookie
 
 	r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 	all_keys = r.keys('*')
 	#print(all_keys)
 	print(type(all_keys))
-	#first = all_keys[0]
-	#val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
 	for k in all_keys:
 	    val = r.get(k)
 	    print(k)
 	    print('---------------------------------------')
 	    print(val)
 	    print('=======================================')
-	
+		
+	#first = all_keys[0]
+	#val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
+	val = r.get(session_cookie)
+	print('current session cookie >>>>>>>', val)
 	
 	#sessionSession = requests.Session()
 	#print("sessionSession >>>>>>>>" , sessionSession.cookies.get_dict())
