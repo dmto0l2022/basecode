@@ -13,5 +13,5 @@ layout = html.Div([html.Div(id='div2'),html.Button('Submit', id='submit-val', n_
 	Output('div2', 'children'),
 	Input('submit-val', 'n_clicks'))
 def getvalue(clicks_in):
-	value = session['email']
+	value = session
 	return value
