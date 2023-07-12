@@ -192,13 +192,13 @@ def profile():
     """
     google = OAuth2Session(client_id, token=session['oauth_token'])
     profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
-    data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
-    name = data['name']
-    print('name >>>>',name)
-    session['name'] = name
-    email = data['email']
-    print('email >>>>',email)
-    session['email'] = email
+    #data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
+    #name = data['name']
+    #print('name >>>>',name)
+    #session['name'] = name
+    #email = data['email']
+    #print('email >>>>',email)
+    #session['email'] = email
     return jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
 
 
