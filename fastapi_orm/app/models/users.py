@@ -7,10 +7,11 @@ class Users_authlib(models.Model):
     """
 
     id = fields.IntField(pk=True)
-    google_id = fields.CharField(max_length=50, unique=True)
-    github_login = fields.CharField(max_length=50, null=True)
+    authlib_id = fields.CharField(max_length=50, unique=True)
+    authlib_provider = fields.CharField(max_length=50, null=True)
     created_at = fields.DatetimeField(auto_now_add=True)
     modified_at = fields.DatetimeField(auto_now=True)
+    ceased_at = fields.DatetimeField(auto_now=True)
 
     class Meta:
         table="users_authlib"
