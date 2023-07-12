@@ -31,6 +31,7 @@ from dotenv import load_dotenv
 
 import requests
 import json
+from http.cookies import SimpleCookie
 
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
@@ -111,10 +112,19 @@ def demo():
         #print(detected["encoding"])
         decoded_current_session_data = current_session_data.decode(detected["encoding"])
         
-        print('decoded_current_session_data string')
-        print('-------------here----------------')
-        print(decoded_current_session_data)
-        print('------------to here--------------')
+        #print('decoded_current_session_data string')
+        #print('-------------here----------------')
+        #print(decoded_current_session_data)
+        #print('------------to here--------------')
+
+        
+        Simple_Cookie = SimpleCookie()
+        Simple_Cookie.load(current_session_data)
+        
+        # Even though SimpleCookie is dictionary-like, it internally uses a Morsel object
+        # which is incompatible with requests. Manually construct a dictionary instead.
+        Simple_Cookies = {k: v.value for k, v in Simple_Cookie.items()}
+        print(Simple_Cookies)
         
         all_values = []
         email = []
