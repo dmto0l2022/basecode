@@ -182,6 +182,7 @@ def callback():
     profile_data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
     google_id = profile_data['id']
     url_get = fastapi_url + "/apiorm/authlibuser/google/" + google_id
+    print("url_get >>>" , url_get)
     google_req = requests.get(url_get)
     print("google user status code >>>> " , google_req.status_code)
     if google_req.status_code == 404:
