@@ -154,6 +154,10 @@ def profile():
     """Fetching a protected resource using an OAuth 2 token.
     """
     google = OAuth2Session(client_id, token=session['oauth_token'])
+    profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
+    name = profile_json['name']
+    print('name >>>>', name)
+    session['name'] = name
     return jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
 
 
