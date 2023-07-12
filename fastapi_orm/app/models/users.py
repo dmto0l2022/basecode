@@ -7,11 +7,8 @@ class Users_authlib(models.Model):
     """
 
     id = fields.IntField(pk=True)
-    email = fields.CharField(max_length=50, unique=True)
-    email_verified = fields.BooleanField()
-    name = fields.CharField(max_length=50, null=True)
-    given_name = fields.CharField(max_length=50, null=True)
-    family_name = fields.CharField(max_length=50, null=True)
+    google_id = fields.CharField(max_length=50, unique=True)
+    github_login = fields.CharField(max_length=50, null=True)
     created_at = fields.DatetimeField(auto_now_add=True)
     modified_at = fields.DatetimeField(auto_now=True)
 
