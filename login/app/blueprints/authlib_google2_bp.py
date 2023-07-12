@@ -103,8 +103,44 @@ def demo():
     		
     #first = all_keys[0]
     #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
-    val = r.get(session_cookie)
-    print('current session google2 cookie >>>>>>>', val)
+    current_session_data = r.get(session_cookie)
+    print('current session google2 cookie >>>>>>>', current_session_data)
+
+    detected = chardet.detect(current_session_data_in)
+    #print(detected["encoding"])
+    decoded_current_session_data = current_session_data.decode(detected["encoding"])
+    
+    print('decoded_current_session_data string')
+    print('-------------here----------------')
+    print(decoded_current_session_data)
+    print('------------to here--------------')
+    
+    all_values = []
+    email = []
+    
+    splt = decoded_current_session_data.split('”Œ')
+    
+    next_value = 0
+    
+    for s in splt:
+        s1 = s.split('Œ')
+        for l1 in s1:
+            if next_value == 1:
+                email.append(l1)
+                next_value = 0
+            if 'email' in l1:
+                next_value = 1
+            all_values.append(l1)
+    try:
+        current_email_from_cookie = email[0].lstrip()
+    except:
+        current_email_from_cookie = 'No email'
+    
+    
+    print('________all____________')
+    print(all_values)
+    print('________current_email_from_cookie____________')
+    print(current_email_from_cookie)
 
     return redirect(authorization_url)
 
@@ -159,6 +195,9 @@ def profile():
     name = data['name']
     print('name >>>>',name)
     session['name'] = name
+    email = data['email']
+    print('email >>>>',email)
+    session['email'] = email
     return jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
 
 
