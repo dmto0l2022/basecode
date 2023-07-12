@@ -119,7 +119,7 @@ def demo():
 
     
     Simple_Cookie = SimpleCookie()
-    Simple_Cookie.load(current_session_data)
+    Simple_Cookie.load(decoded_current_session_data)
     
     # Even though SimpleCookie is dictionary-like, it internally uses a Morsel object
     # which is incompatible with requests. Manually construct a dictionary instead.
