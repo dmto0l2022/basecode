@@ -110,16 +110,16 @@ def getsession():
 
 @session_bp.route('/app/session/googlesession')
 def getgooglesession():
-    #try:
-    print("session_bp - oauth_token >>>> ",session['oauth_token'])
-    google = OAuth2Session(GOOGLE_CLIENT_ID, token=session['oauth_token'])
-    profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
-    data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
-    google_id = data['id']
-    print('google_id >>>>',google_id)
-    return f"Welcome google id >> {google_id} " ## your userid is {UserID} and sessionid {SessionID}"
-    #except:
-    #return f"No Google Session"
+    try:
+        print("session_bp - oauth_token >>>> ",session['oauth_token'])
+        google = OAuth2Session(GOOGLE_CLIENT_ID, token=session['oauth_token'])
+        profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
+        data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
+        google_id = data['id']
+        print('google_id >>>>',google_id)
+        return f"Welcome google id >> {google_id} " ## your userid is {UserID} and sessionid {SessionID}"
+    except:
+        return f"No Google Session"
 
 @session_bp.route('/app/session/popsession')
 def popsession():
