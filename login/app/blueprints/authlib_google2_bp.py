@@ -181,11 +181,11 @@ def callback():
     google = OAuth2Session(client_id, token=token)
     profile_data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
     google_id = profile_data['id']
-    url_get = fastapi_url + "/apiorm/authlibusers/google/" + google_id
+    url_get = fastapi_url + "/apiorm/authlibuser/google/" + google_id
     google_req = requests.get(url_get)
     print("google user status code >>>> " , google_req.status_code)
     if google_req.status_code == 404:
-        url = fastapi_url + "/apiorm/authlibusers/google/"
+        url = fastapi_url + "/apiorm/authlibuser/google/"
         #json={"key": "value"}
         json = {
           "authlib_id": google_id,
