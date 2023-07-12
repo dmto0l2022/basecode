@@ -105,6 +105,7 @@ def init_app():
     #print('filename')
     #print(filename)
     #SECRET_KEY = os.urandom(32)
+    app.config['SESSION_COOKIE_PATH'] = '/'
   
     app.config['SECRET_KEY'] = FLASK_SECRET_KEY
     app.config['GOOGLE_CLIENT_ID'] = GOOGLE_CLIENT_ID
