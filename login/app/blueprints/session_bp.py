@@ -5,6 +5,10 @@ import datetime
 
 from flask_security import current_user
 
+from flask.json import jsonify
+import requests
+from requests_oauthlib import OAuth2Session
+
 session_bp = Blueprint('session_bp', __name__)
 
 def createsessionid():
