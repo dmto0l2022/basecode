@@ -123,8 +123,8 @@ def demo():
     
     # Even though SimpleCookie is dictionary-like, it internally uses a Morsel object
     # which is incompatible with requests. Manually construct a dictionary instead.
-    Simple_Cookies = {k: v.value for k, v in Simple_Cookie.items()}
-    print(Simple_Cookies)
+    #Simple_Cookies = {k: v.value for k, v in Simple_Cookie.items()}
+    print("Simple Cookie >>>>>" , Simple_Cookie)
     
     all_values = []
     email = []
