@@ -73,7 +73,7 @@ async def create_google_authlibuser(userauthlib: User_authlibIn_Pydantic):
     "/apiorm/authlibuser/google/{google_id}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def get_google_authlibuser(google_id: str):
-    return await User_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=google_id))
+    return await User_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=google_id, authlib_provider='google'))
 
 @router.get(
     "/apiorm/authlibuser/google/exists/{google_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}}
@@ -87,13 +87,13 @@ async def get_google_authlibuser_count(google_id: str):
     "/apiorm/authlibusers/google/{google_id}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def update_google_authlibuser(google_id: str, user_authlib: User_authlibIn_Pydantic):
-    await Users_authlib.filter(authlib_id=google_id).update(**user_authlib.dict(exclude_unset=True))
-    return await Users_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=google_id))
+    await Users_authlib.filter(authlib_id=google_id, authlib_provider='google').update(**user_authlib.dict(exclude_unset=True))
+    return await Users_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=google_id, authlib_provider='google'))
 
 
 @router.delete("/apiorm/authlibuser/google/{google_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
 async def delete_google_authlibuser(google_id: str):
-    deleted_count = await Users_authlib.filter(authlib_id=google_id).delete()
+    deleted_count = await Users_authlib.filter(authlib_id=google_id, authlib_provider='google').delete()
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Users_authlib {google_id} not found")
     return Status(message=f"Deleted authlib user {google_id}")
@@ -109,13 +109,13 @@ async def create_authlibuser(userauthlib: User_authlibIn_Pydantic):
     "/apiorm/authlibuser/github/{github_login}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def get_github_authlibuser(github_login: str):
-    return await User_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=github_login))
+    return await User_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=github_login, authlib_provider='github'))
 
 @router.get(
     "/apiorm/authlibuser/github/exists/{github_login}", response_model=Status, responses={404: {"model": HTTPNotFoundError}}
 )
 async def get_github_authlibuser_count(github_login: str):
-    user_count = await Users_authlib.filter(authlib_id=github_login).count()
+    user_count = await Users_authlib.filter(authlib_id=github_login, authlib_provider='github').count()
     return Status(message=f"usercount : {user_count}")
     
 
@@ -123,13 +123,13 @@ async def get_github_authlibuser_count(github_login: str):
     "/apiorm/authlibusers/github/{github_login}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
 async def update_github_authlibuser(github_login: str, user_authlib: User_authlibIn_Pydantic):
-    await Users_authlib.filter(authlib_id=github_login).update(**user_authlib.dict(exclude_unset=True))
-    return await Users_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=github_login))
+    await Users_authlib.filter(authlib_id=github_login, authlib_provider='github').update(**user_authlib.dict(exclude_unset=True))
+    return await Users_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=github_login, authlib_provider='github'))
 
 
 @router.delete("/apiorm/authlibuser/github/{github_login}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
 async def delete_github_authlibuser(github_login: str):
-    deleted_count = await Users_authlib.filter(authlib_id=github_login).delete()
+    deleted_count = await Users_authlib.filter(authlib_id=github_login, authlib_provider='github').delete()
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Users_authlib {github_login} not found")
     return Status(message=f"Deleted authlib user {github_login}")
