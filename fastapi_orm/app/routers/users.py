@@ -64,7 +64,7 @@ async def create_authlibuser(userauthlib: User_authlibIn_Pydantic):
 
 #### google users
 
-@router.post("/apiorm/authlibusers/google", response_model=User_authlib_Pydantic)
+@router.post("/apiorm/authlibuser/google", response_model=User_authlib_Pydantic)
 async def create_google_authlibuser(userauthlib: User_authlibIn_Pydantic):
     user_authlib_obj = await Users_authlib.create(**userauthlib.dict(exclude_unset=True))
     return await User_authlib_Pydantic.from_tortoise_orm(user_authlib_obj)
@@ -100,7 +100,7 @@ async def delete_google_authlibuser(google_id: str):
 
 #### github users
 
-@router.post("/apiorm/authlibusers/github", response_model=User_authlib_Pydantic)
+@router.post("/apiorm/authlibuser/github", response_model=User_authlib_Pydantic)
 async def create_authlibuser(userauthlib: User_authlibIn_Pydantic):
     user_authlib_obj = await Users_authlib.create(**userauthlib.dict(exclude_unset=True))
     return await User_authlib_Pydantic.from_tortoise_orm(user_authlib_obj)
