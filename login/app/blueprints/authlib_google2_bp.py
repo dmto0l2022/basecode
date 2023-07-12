@@ -88,7 +88,7 @@ def demo():
     cookie = flask.request.cookies.get('session')
 	print("google2 cookie text >>>> ", cookie)
 	session_cookie = "session:" + cookie
-
+	
 	r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 	all_keys = r.keys('*')
 	#print(all_keys)
@@ -104,7 +104,7 @@ def demo():
 	#val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
 	val = r.get(session_cookie)
 	print('current session google2 cookie >>>>>>>', val)
-    
+
     return redirect(authorization_url)
 
 
