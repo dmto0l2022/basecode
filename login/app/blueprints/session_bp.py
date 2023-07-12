@@ -83,8 +83,9 @@ def setsession():
  
 @session_bp.route('/app/session/getsession')
 def getsession():
-    if 'Username' in session:
-        Username = session['Username']
+    #if 'Username' in session:
+    # Username = session['Username']
+    if session:
         allsession = session
         #UserID =  session['UserID']
         #SessionID = session['SessionID']
