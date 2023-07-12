@@ -21,6 +21,26 @@ class Users_authlib(models.Model):
 User_authlib_Pydantic = pydantic_model_creator(Users_authlib, name="User_authlib")
 User_authlibIn_Pydantic = pydantic_model_creator(Users_authlib, name="User_authlibIn", exclude_readonly=True)
 
+class Users_authlib_permissions(models.Model):
+    """
+    The User permissions model
+    """
+
+    id = fields.IntField(pk=True)
+    user_id = fields.IntField(pk=False)
+    authorised = fields.BooleanField()
+    created_at = fields.DatetimeField(auto_now_add=True)
+    modified_at = fields.DatetimeField(auto_now=True)
+    ceased_at = fields.DatetimeField(auto_now=True)
+
+    class Meta:
+        table="users_authlib"
+        ##schema = ""
+    
+    
+User_authlib_permissions_Pydantic = pydantic_model_creator(Users_authlib_permissions, name="User_authlib_permissions")
+User_authlib_permissionsIn_Pydantic = pydantic_model_creator(Users_authlib_permissions, name="User_authlib_permissionsIn", exclude_readonly=True)
+
 ###
 
 class Users_authlib_count(models.Model):
