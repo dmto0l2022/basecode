@@ -196,4 +196,8 @@ def init_app():
          from app.blueprints.home_bp import home_bp
          app.register_blueprint(home_bp)
 
+         ##session_bp
+         from app.blueprints.session_bp import session_bp
+         app.register_blueprint(session_bp)
+
          return app
