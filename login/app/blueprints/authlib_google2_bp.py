@@ -11,6 +11,7 @@ from flask.json import jsonify
 import flask
 import redis
 import requests
+import chardet
 
 from flask import Blueprint
 
