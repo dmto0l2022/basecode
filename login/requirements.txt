@@ -1,3 +1,4 @@
+chardet
 gunicorn
 blinker
 Flask>=2.2.2
