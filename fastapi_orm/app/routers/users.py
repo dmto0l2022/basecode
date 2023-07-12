@@ -64,6 +64,11 @@ async def create_authlibuser(userauthlib: User_authlibIn_Pydantic):
 
 #### google users
 
+@router.post("/apiorm/authlibusers/google", response_model=User_authlib_Pydantic)
+async def create_authlibuser(userauthlib: User_authlibIn_Pydantic):
+    user_authlib_obj = await Users_authlib.create(**userauthlib.dict(exclude_unset=True))
+    return await User_authlib_Pydantic.from_tortoise_orm(user_authlib_obj)
+
 @router.get(
     "/apiorm/authlibuser/google/{google_id}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
