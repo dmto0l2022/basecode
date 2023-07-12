@@ -91,7 +91,8 @@ def getsession():
         return "Welcome Anonymous"
 
 @session_bp.route('/app/session/googlesession')
-     try:
+def getgooglesession():
+    try:
         google = OAuth2Session(client_id, token=session['oauth_token'])
         profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
         data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
