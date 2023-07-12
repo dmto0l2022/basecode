@@ -85,25 +85,25 @@ def demo():
     # State is used to prevent CSRF, keep this for later.
     session['oauth_state'] = state
 
-    cookie = flask.request.cookies.get('session')
-	print("google2 cookie text >>>> ", cookie)
-	session_cookie = "session:" + cookie
+cookie = flask.request.cookies.get('session')
+print("google2 cookie text >>>> ", cookie)
+session_cookie = "session:" + cookie
 	
-	r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-	all_keys = r.keys('*')
-	#print(all_keys)
-	print(type(all_keys))
-	for k in all_keys:
-	    val = r.get(k)
-	    print(k)
-	    print('---------------------------------------')
-	    print(val)
-	    print('=======================================')
+r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+all_keys = r.keys('*')
+#print(all_keys)
+print(type(all_keys))
+for k in all_keys:
+val = r.get(k)
+print(k)
+print('---------------------------------------')
+print(val)
+print('=======================================')
 		
-	#first = all_keys[0]
-	#val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
-	val = r.get(session_cookie)
-	print('current session google2 cookie >>>>>>>', val)
+#first = all_keys[0]
+#val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
+val = r.get(session_cookie)
+print('current session google2 cookie >>>>>>>', val)
 
     return redirect(authorization_url)
 
