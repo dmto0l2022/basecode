@@ -87,73 +87,73 @@ def demo():
 
     # State is used to prevent CSRF, keep this for later.
     session['oauth_state'] = state
-    try:
-        cookie = flask.request.cookies.get('session')
-        print("google2 cookie text >>>> ", cookie)
-        session_cookie = "session:" + cookie
-        	
-        r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-        all_keys = r.keys('*')
-        #print(all_keys)
-        print(type(all_keys))
-        for k in all_keys:
-            val = r.get(k)
-            print(k)
-            print('---------------------------------------')
-            print(val)
-            print('=======================================')
-        		
-        #first = all_keys[0]
-        #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
-        current_session_data = r.get(session_cookie)
-        print('current session google2 cookie >>>>>>>', current_session_data)
-    
-        detected = chardet.detect(current_session_data)
-        #print(detected["encoding"])
-        decoded_current_session_data = current_session_data.decode(detected["encoding"])
+    #try:
+    cookie = flask.request.cookies.get('session')
+    print("google2 cookie text >>>> ", cookie)
+    session_cookie = "session:" + cookie
         
-        #print('decoded_current_session_data string')
-        #print('-------------here----------------')
-        #print(decoded_current_session_data)
-        #print('------------to here--------------')
+    r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+    all_keys = r.keys('*')
+    #print(all_keys)
+    print(type(all_keys))
+    for k in all_keys:
+        val = r.get(k)
+        print(k)
+        print('---------------------------------------')
+        print(val)
+        print('=======================================')
+            
+    #first = all_keys[0]
+    #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
+    current_session_data = r.get(session_cookie)
+    print('current session google2 cookie >>>>>>>', current_session_data)
 
-        
-        Simple_Cookie = SimpleCookie()
-        Simple_Cookie.load(current_session_data)
-        
-        # Even though SimpleCookie is dictionary-like, it internally uses a Morsel object
-        # which is incompatible with requests. Manually construct a dictionary instead.
-        Simple_Cookies = {k: v.value for k, v in Simple_Cookie.items()}
-        print(Simple_Cookies)
-        
-        all_values = []
-        email = []
-        
-        splt = decoded_current_session_data.split('”Œ')
-        
-        next_value = 0
-        
-        for s in splt:
-            s1 = s.split('Œ')
-            for l1 in s1:
-                if next_value == 1:
-                    email.append(l1)
-                    next_value = 0
-                if 'email' in l1:
-                    next_value = 1
-                all_values.append(l1)
-        try:
-            current_email_from_cookie = email[0].lstrip()
-        except:
-            current_email_from_cookie = 'No email'
-        
-        
-        print('________all____________')
-        print(all_values)
-        print('________current_email_from_cookie____________')
-        print(current_email_from_cookie)
+    detected = chardet.detect(current_session_data)
+    #print(detected["encoding"])
+    decoded_current_session_data = current_session_data.decode(detected["encoding"])
+    
+    #print('decoded_current_session_data string')
+    #print('-------------here----------------')
+    #print(decoded_current_session_data)
+    #print('------------to here--------------')
+
+    
+    Simple_Cookie = SimpleCookie()
+    Simple_Cookie.load(current_session_data)
+    
+    # Even though SimpleCookie is dictionary-like, it internally uses a Morsel object
+    # which is incompatible with requests. Manually construct a dictionary instead.
+    Simple_Cookies = {k: v.value for k, v in Simple_Cookie.items()}
+    print(Simple_Cookies)
+    
+    all_values = []
+    email = []
+    
+    splt = decoded_current_session_data.split('”Œ')
+    
+    next_value = 0
+    
+    for s in splt:
+        s1 = s.split('Œ')
+        for l1 in s1:
+            if next_value == 1:
+                email.append(l1)
+                next_value = 0
+            if 'email' in l1:
+                next_value = 1
+            all_values.append(l1)
+    try:
+        current_email_from_cookie = email[0].lstrip()
     except:
-        a = 1
+        current_email_from_cookie = 'No email'
+    
+    
+    print('________all____________')
+    print(all_values)
+    print('________current_email_from_cookie____________')
+    print(current_email_from_cookie)
+    #except:
+    a = 1
     
     return redirect(authorization_url)
 
