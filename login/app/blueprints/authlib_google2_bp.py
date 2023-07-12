@@ -184,7 +184,7 @@ def callback():
     url_get = fastapi_url + "/apiorm/authlibusers/google/" + google_id
     google_req = requests.get(url_get)
     print("google user status code >>>> " , google_req.status_code)
-    if google_req.status_code = 404:
+    if google_req.status_code == 404:
         url = fastapi_url + "/apiorm/authlibusers/google/"
         #json={"key": "value"}
         json = {
