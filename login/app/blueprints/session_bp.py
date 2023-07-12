@@ -91,13 +91,15 @@ def getsession():
         return "Welcome Anonymous"
 
 @session_bp.route('/app/session/googlesession')
- 
-    google = OAuth2Session(client_id, token=session['oauth_token'])
-    profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
-    data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
-    google_id = data['id']
-    print('google_id >>>>',google_id)
-    return f"Welcome google id >> {google_id} " ## your userid is {UserID} and sessionid {SessionID}"
+     try:
+        google = OAuth2Session(client_id, token=session['oauth_token'])
+        profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
+        data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
+        google_id = data['id']
+        print('google_id >>>>',google_id)
+        return f"Welcome google id >> {google_id} " ## your userid is {UserID} and sessionid {SessionID}"
+    except:
+        return f"No Google Session"
 
 @session_bp.route('/app/session/popsession')
 def popsession():
