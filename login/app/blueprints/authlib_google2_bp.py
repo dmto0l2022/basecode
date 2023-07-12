@@ -107,7 +107,7 @@ def demo():
     current_session_data = r.get(session_cookie)
     print('current session google2 cookie >>>>>>>', current_session_data)
 
-    detected = chardet.detect(current_session_data_in)
+    detected = chardet.detect(current_session_data)
     #print(detected["encoding"])
     decoded_current_session_data = current_session_data.decode(detected["encoding"])
     
