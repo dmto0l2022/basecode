@@ -65,20 +65,20 @@ async def create_authlibuser(userauthlib: User_authlibIn_Pydantic):
 #### google users
 
 @router.post("/apiorm/authlibusers/google", response_model=User_authlib_Pydantic)
-async def create_authlibuser(userauthlib: User_authlibIn_Pydantic):
+async def create_google_authlibuser(userauthlib: User_authlibIn_Pydantic):
     user_authlib_obj = await Users_authlib.create(**userauthlib.dict(exclude_unset=True))
     return await User_authlib_Pydantic.from_tortoise_orm(user_authlib_obj)
 
 @router.get(
     "/apiorm/authlibuser/google/{google_id}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
-async def get_authlibuser(google_id: str):
+async def get_google_authlibuser(google_id: str):
     return await User_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=google_id))
 
 @router.get(
     "/apiorm/authlibuser/google/exists/{google_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}}
 )
-async def get_authlibuser_count(google_id: str):
+async def get_google_authlibuser_count(google_id: str):
     user_count = await Users_authlib.filter(authlib_id=google_id).count()
     return Status(message=f"usercount : {user_count}")
     
@@ -86,13 +86,13 @@ async def get_authlibuser_count(google_id: str):
 @router.put(
     "/apiorm/authlibusers/google/{google_id}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
-async def update_authlibuser(google_id: str, user_authlib: User_authlibIn_Pydantic):
+async def update_google_authlibuser(google_id: str, user_authlib: User_authlibIn_Pydantic):
     await Users_authlib.filter(authlib_id=google_id).update(**user_authlib.dict(exclude_unset=True))
     return await Users_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=google_id))
 
 
 @router.delete("/apiorm/authlibuser/google/{google_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
-async def delete_authlibuser(google_id: str):
+async def delete_google_authlibuser(google_id: str):
     deleted_count = await Users_authlib.filter(authlib_id=google_id).delete()
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Users_authlib {google_id} not found")
@@ -108,13 +108,13 @@ async def create_authlibuser(userauthlib: User_authlibIn_Pydantic):
 @router.get(
     "/apiorm/authlibuser/github/{github_login}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
-async def get_authlibuser(github_login: str):
+async def get_github_authlibuser(github_login: str):
     return await User_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=github_login))
 
 @router.get(
     "/apiorm/authlibuser/github/exists/{github_login}", response_model=Status, responses={404: {"model": HTTPNotFoundError}}
 )
-async def get_authlibuser_count(github_login: str):
+async def get_github_authlibuser_count(github_login: str):
     user_count = await Users_authlib.filter(authlib_id=github_login).count()
     return Status(message=f"usercount : {user_count}")
     
@@ -122,13 +122,13 @@ async def get_authlibuser_count(github_login: str):
 @router.put(
     "/apiorm/authlibusers/github/{github_login}", response_model=User_authlib_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
-async def update_authlibuser(github_login: str, user_authlib: User_authlibIn_Pydantic):
+async def update_github_authlibuser(github_login: str, user_authlib: User_authlibIn_Pydantic):
     await Users_authlib.filter(authlib_id=github_login).update(**user_authlib.dict(exclude_unset=True))
     return await Users_authlib_Pydantic.from_queryset_single(Users_authlib.get(authlib_id=github_login))
 
 
 @router.delete("/apiorm/authlibuser/github/{github_login}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
-async def delete_authlibuser(github_login: str):
+async def delete_github_authlibuser(github_login: str):
     deleted_count = await Users_authlib.filter(authlib_id=github_login).delete()
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Users_authlib {github_login} not found")
