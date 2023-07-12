@@ -11,6 +11,20 @@ from flask.json import jsonify
 import requests
 from requests_oauthlib import OAuth2Session
 
+from dotenv import load_dotenv
+
+import requests
+import json
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+print('BASE_DIR')
+print(BASE_DIR)
+
+GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
+
 session_bp = Blueprint('session_bp', __name__)
 
 def createsessionid():
@@ -96,7 +110,7 @@ def getsession():
 @session_bp.route('/app/session/googlesession')
 def getgooglesession():
     try:
-        google = OAuth2Session(client_id, token=session['oauth_token'])
+        google = OAuth2Session(GOOGLE_CLIENT_ID, token=session['oauth_token'])
         profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
         data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
         google_id = data['id']
