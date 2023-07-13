@@ -211,6 +211,7 @@ class Middleware:
         #redis_server = redis.Redis(host='container_redis_1', port=6379, decode_responses=True)
         redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
         #redis_server = redis.StrictRedis(host='container_redis_1', port=6379, charset="utf-8", decode_responses=True)
+        dmtool_authorised = False
         try:
             val = redis_server.get(redis_key)
             print(redis_key)
