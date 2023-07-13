@@ -143,156 +143,156 @@ app = init_app()
 
 class Middleware:
 
-    def __init__(self, wsgi):
-        self.wsgi = wsgi
-        self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
-    
-        #template_path = os.path.join(os.path.dirname(__file__), '/werkzeug/templates')
-        #BASE_DIR = path.abspath(path.dirname(__file__))
-        template_path = path.join(BASE_DIR, "/workdir/frontend/werkzeug/templates")
-        #print('template path')
-        #print(template_path)
-        self.jinja_env = Environment(loader=FileSystemLoader(template_path),
-                                 autoescape=True)
-    
-    def render_template(self, template_name, **context):
-        t = self.jinja_env.get_template(template_name)
-        return Response(t.render(context), mimetype='text/html')
-    
-    def getcurrentuser(self,current_user_in):
+def __init__(self, wsgi):
+self.wsgi = wsgi
+self.redisserver = redis.Redis(host='container_redis_1', port=6379, db=0)
 
-        token = session['oauth_token']
+#template_path = os.path.join(os.path.dirname(__file__), '/werkzeug/templates')
+#BASE_DIR = path.abspath(path.dirname(__file__))
+template_path = path.join(BASE_DIR, "/workdir/frontend/werkzeug/templates")
+#print('template path')
+#print(template_path)
+self.jinja_env = Environment(loader=FileSystemLoader(template_path),
+                     autoescape=True)
 
-        google = OAuth2Session(client_id, token=token)
-        profile_data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
-        google_id = profile_data['id']
-        url_get = fastapi_url + "/apiorm/authlibuser/google/" + google_id
-        print("url_get >>>" , url_get)
-        google_req = requests.get(url_get)
-        print("google user status code >>>> " , google_req.status_code)
-        if google_req.status_code == 404:
-            url = fastapi_url + "/apiorm/authlibuser/google/"
-            #json={"key": "value"}
-            json = {
-              "authlib_id": google_id,
-              "authlib_provider": "google"
-            }
-            post_request = requests.post(url, json=json)
-            print('post request status code >>> ' ,post_request.status_code)
-        
-        google_req = requests.get(url_get)
-        dmtool_userid = google_req.json()['id']
-        print('dmtool_userid >>>>>>', dmtool_userid)
-        #print(google_req.json())
-        
-        
-        print('============================================================')
-        current_date = datetime.now()
-        print(current_date.strftime('%Y-%m-%dT%H:%M:%S.%f%z'))
-        
-        
-        return dmtool_userid
-    
-   def __call__(self, environ, start_response):
-        # not Flask request - from werkzeug.wrappers import Request
-        ##r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-        environ_data = repr(environ).encode('utf-8')
-        #print('environ type')
-        #print(type(environ))
-        #print('environ data')
-        #print('---------------------')
-        #print(environ_data)
-        try:
-            session_data,current_user, current_user_email, email_domain = self.getcookiedata(environ)
-            #print('current session data')
-            #print('-------------------')
-            #print(session_data)
-            #print('current user')
-            #print('-------------------')
-            #print(current_user)
-            #print('current user email')
-            #print('-------------------')
-            #print(current_user_email)
-            #print('current email domain')
-            #print('-------------------')
-            #print(email_domain)
-        except:
-            print('no current session')
-            session_data = {}
-            current_user = 'unknown'
-            current_user_email = 'unknown'
-            email_domain = 'unknown'
-            
-        request = Request(environ)
-        ##url_return_parts = urlparse(request.url)
-        ##welcome_url_parts = url_return_parts._replace(path='/app/welcome')
-        ##url_return = urlunparse(welcome_url_parts)
-        #all_keys = r.keys('*')
-        #print(all_keys)
-        #print(session['Username'])
-        ##print(url_return)
-        #print('path: %s, url: %s' % (request.path, request.url))
-        # just do here everything what you need
-        #if 'wsgi' not in request.path:
-        #    print('wsgi not in path')
-        #    return self.wsgi(environ, start_response)
-        #elif 'wsgi' in request.path and email_domain == 'gaitskell.com':
-        #    print('authorised email domain')
-        #    return self.wsgi(environ, start_response)
-        #else:
-        #    print('url contains wsgi - from unknown or unauthorised email domain')
-        #    ##print(url_return)
-        #    print('-----------')
-        #    #url_return = urlparse(request.url)
-        #    #url_return._replace(path='/app/welcome')
-        #    start_response('301 Redirect', [('Location', '/app/welcome'),])
-        #    return []
+def render_template(self, template_name, **context):
+t = self.jinja_env.get_template(template_name)
+return Response(t.render(context), mimetype='text/html')
 
-        if ('wsgi' not in request.path and 'baseapp' not in request.path) :
-            print('wsgi and baseapp not in path')
-            #response = Response('Hello World!')
-            #response = request.get_response(self.wsgi)
-            #print('------------ response ---------------')
-            #print(response)
-            return self.wsgi(environ,start_response)       
-            #else:
-            #    print('wsgi in path')
-            #    #environ['PATH_INFO']='/app/welcome'
-            #    response = Response('Hello World!')
-            #    print(response)
-            #    return response(environ,start_response)
-        elif ('wsgi' in request.path or 'baseapp' in request.path) and (email_domain == 'gaitskell.com' or email_domain == 'brown.edu') :
-            return self.wsgi(environ,start_response)
-          
-        else:
-            #body = environ['wsgi.input']
-            #print('request.path >>>>' , request.path)
-            #print('email_domain >>>>', email_domain)
-            #print('wsgi or baseapp in path not gaitskell.com or brown.edu')
-            #print('body')
-            #print(body)
-            #modified_body = body
-            #new_stream = io.BytesIO(modified_body)
-            #environ['wsgi.input'] = new_stream
-            ##start_response('302 Found', [('Location','/app/welcome')])
-            #hello_response = Response('Hello World!')
-            ##return response(environ, start_response)
-            ##redirect_response = redirect('/app/welcome',code=302)
-            
-            ##headers = [('Location', '/app/welcome')]
-            ##r = Response("redirected", status=302, headers=headers)
-            ##return r(environ, start_response)
-            #body = b'Hello world!\n'
-            #status = '200 OK'
-            #headers = [('Content-type', 'text/plain')]
-            #start_response(status, headers)
-            
-            hello_response = Response('Hello World!')
-            unauthorised_response = self.render_template('unauthorised.html')
-            #return hello_response(environ, start_response)
-            return unauthorised_response(environ, start_response)
-            ##return [body]
-            ##return self.wsgi(environ,redirect_response)
+def getcurrentuser(self,current_user_in):
+
+token = session['oauth_token']
+
+google = OAuth2Session(client_id, token=token)
+profile_data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
+google_id = profile_data['id']
+url_get = fastapi_url + "/apiorm/authlibuser/google/" + google_id
+print("url_get >>>" , url_get)
+google_req = requests.get(url_get)
+print("google user status code >>>> " , google_req.status_code)
+if google_req.status_code == 404:
+url = fastapi_url + "/apiorm/authlibuser/google/"
+#json={"key": "value"}
+json = {
+  "authlib_id": google_id,
+  "authlib_provider": "google"
+}
+post_request = requests.post(url, json=json)
+print('post request status code >>> ' ,post_request.status_code)
+
+google_req = requests.get(url_get)
+dmtool_userid = google_req.json()['id']
+print('dmtool_userid >>>>>>', dmtool_userid)
+#print(google_req.json())
+
+
+print('============================================================')
+current_date = datetime.now()
+print(current_date.strftime('%Y-%m-%dT%H:%M:%S.%f%z'))
+
+
+return dmtool_userid
+
+def __call__(self, environ, start_response):
+# not Flask request - from werkzeug.wrappers import Request
+##r_middle = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+environ_data = repr(environ).encode('utf-8')
+#print('environ type')
+#print(type(environ))
+#print('environ data')
+#print('---------------------')
+#print(environ_data)
+try:
+session_data,current_user, current_user_email, email_domain = self.getcookiedata(environ)
+#print('current session data')
+#print('-------------------')
+#print(session_data)
+#print('current user')
+#print('-------------------')
+#print(current_user)
+#print('current user email')
+#print('-------------------')
+#print(current_user_email)
+#print('current email domain')
+#print('-------------------')
+#print(email_domain)
+except:
+print('no current session')
+session_data = {}
+current_user = 'unknown'
+current_user_email = 'unknown'
+email_domain = 'unknown'
+
+request = Request(environ)
+##url_return_parts = urlparse(request.url)
+##welcome_url_parts = url_return_parts._replace(path='/app/welcome')
+##url_return = urlunparse(welcome_url_parts)
+#all_keys = r.keys('*')
+#print(all_keys)
+#print(session['Username'])
+##print(url_return)
+#print('path: %s, url: %s' % (request.path, request.url))
+# just do here everything what you need
+#if 'wsgi' not in request.path:
+#    print('wsgi not in path')
+#    return self.wsgi(environ, start_response)
+#elif 'wsgi' in request.path and email_domain == 'gaitskell.com':
+#    print('authorised email domain')
+#    return self.wsgi(environ, start_response)
+#else:
+#    print('url contains wsgi - from unknown or unauthorised email domain')
+#    ##print(url_return)
+#    print('-----------')
+#    #url_return = urlparse(request.url)
+#    #url_return._replace(path='/app/welcome')
+#    start_response('301 Redirect', [('Location', '/app/welcome'),])
+#    return []
+
+if ('wsgi' not in request.path and 'baseapp' not in request.path) :
+print('wsgi and baseapp not in path')
+#response = Response('Hello World!')
+#response = request.get_response(self.wsgi)
+#print('------------ response ---------------')
+#print(response)
+return self.wsgi(environ,start_response)       
+#else:
+#    print('wsgi in path')
+#    #environ['PATH_INFO']='/app/welcome'
+#    response = Response('Hello World!')
+#    print(response)
+#    return response(environ,start_response)
+elif ('wsgi' in request.path or 'baseapp' in request.path) and (email_domain == 'gaitskell.com' or email_domain == 'brown.edu') :
+return self.wsgi(environ,start_response)
+
+else:
+#body = environ['wsgi.input']
+#print('request.path >>>>' , request.path)
+#print('email_domain >>>>', email_domain)
+#print('wsgi or baseapp in path not gaitskell.com or brown.edu')
+#print('body')
+#print(body)
+#modified_body = body
+#new_stream = io.BytesIO(modified_body)
+#environ['wsgi.input'] = new_stream
+##start_response('302 Found', [('Location','/app/welcome')])
+#hello_response = Response('Hello World!')
+##return response(environ, start_response)
+##redirect_response = redirect('/app/welcome',code=302)
+
+##headers = [('Location', '/app/welcome')]
+##r = Response("redirected", status=302, headers=headers)
+##return r(environ, start_response)
+#body = b'Hello world!\n'
+#status = '200 OK'
+#headers = [('Content-type', 'text/plain')]
+#start_response(status, headers)
+
+hello_response = Response('Hello World!')
+unauthorised_response = self.render_template('unauthorised.html')
+#return hello_response(environ, start_response)
+return unauthorised_response(environ, start_response)
+##return [body]
+##return self.wsgi(environ,redirect_response)
     '''
 useremail
 https://gist.github.com/devries/4a747a284e75a5d63f93
