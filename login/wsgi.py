@@ -280,7 +280,7 @@ class Middleware:
         #    response = Response('Hello World!')
         #    print(response)
         #    return response(environ,start_response)
-        elif ('wsgi' in request.path or 'session_app' in request.path) and (dmtool_authorised=True) :
+        elif ('wsgi' in request.path or 'session_app' in request.path) and (dmtool_authorised==True) :
             return self.wsgi(environ,start_response)
         
         else:
