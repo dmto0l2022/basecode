@@ -203,7 +203,7 @@ def callback():
     session['dmtool_userid'] = dmtool_userid
 
     url = fastapi_url + "/apiorm/authlibuser/permissions/"
-    request_permissions = url + dmtool_userid
+    request_permissions = url + str(dmtool_userid)
     print('request_permissions >>>>', request_permissions)
     authorisation_check = requests.get(request_permissions)
     print('authorisation_check.json() >>>>>>', authorisation_check.json())
