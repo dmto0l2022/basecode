@@ -202,6 +202,7 @@ class Middleware:
         session_key = request.cookies.get(SESSION_COOKIE_NAME)
         print('session key >>',session_key)
         redis_key = 'session:'+session_key
+        print('redis_key >>',redis_key)
         
         redis_server = redis.Redis(host='container_redis_1', port=6379, decode_responses=True)
         val = redis_server.get(redis_key)
