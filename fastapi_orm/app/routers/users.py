@@ -5,6 +5,7 @@ from typing import List
 
 from models.users import User_Pydantic, UserIn_Pydantic, Users
 from models.users import User_authlib_Pydantic, User_authlibIn_Pydantic, Users_authlib
+from models.users import User_authlib_permissions_Pydantic, User_authlib_permissionsIn_Pydantic
 from models.users import User_authlib_count_Pydantic
 
 from pydantic import BaseModel
@@ -134,3 +135,31 @@ async def delete_github_authlibuser(github_login: str):
         raise HTTPException(status_code=404, detail=f"Users_authlib {github_login} not found")
     return Status(message=f"Deleted authlib user {github_login}")
 
+#### users permissions
+
+@router.post("/apiorm/authlibuser/permissions", response_model=User_authlib_permissions_Pydantic)
+async def create_authlibuser_permissions(userauthlibpermissions: User_authlib_permissionsIn_Pydantic):
+    user_authlib_permissions_obj = await Users_authlib_permissions.create(**userauthlibpermissions.dict(exclude_unset=True))
+    return await User_authlib_permissions_Pydantic.from_tortoise_orm(user_authlib_permissions_obj)
+
+@router.get(
+    "/apiorm/authlibuser/permissions/{user_id}", response_model=User_authlib_permissions_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+)
+async def get_authlibuser_permissions(user_id: str):
+    return await User_authlib_permissions_Pydantic.from_queryset_single(Users_authlib_permissions.get(user_id=user_id))
+
+@router.put(
+    "/apiorm/authlibusers/permissions/{user_id}", response_model=User_authlib_permissions_Pydantic, responses={404: {"model": HTTPNotFoundError}}
+)
+async def update_authlibuser_permissions(user_id: str, user_authlib_permissions: User_authlib_permissionsIn_Pydantic):
+    await Users_authlib_permissions.filter(user_id=user_id).update(**user_authlib_permissions.dict(exclude_unset=True))
+    return await Users_authlib_permissions_Pydantic.from_queryset_single(Users_authlib_permissions.get(user_id=user_id))
+
+
+@router.delete("/apiorm/authlibuser/permissions/{user_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
+async def delete_authlibuser_permissions(user_id: str):
+    deleted_count = await Users_authlib_permissions.filter(user_id=user_id).delete()
+    if not deleted_count:
+        raise HTTPException(status_code=404, detail=f"Users_authlib_permissions {user_id} not found")
+    return Status(message=f"Deleted authlib permissions for user {user_id}")
+    
