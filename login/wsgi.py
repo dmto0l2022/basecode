@@ -124,22 +124,6 @@ from app.dashapps.session_app import app as app3
 
 SESSION_COOKIE_NAME = "session"
 import redis
-
-redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-all_keys = redis_server.keys('*')
-print(all_keys)
-print(type(all_keys))
-session_key = request.cookies.get(SESSION_COOKIE_NAME)
-first = all_keys[0]
-#val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
-for k in all_keys:
-    val = r.get(k)
-    print(k)
-    print('---------------------------------------')
-    print(val)
-    print('=======================================')
-
-
 app = init_app()
 
 class Middleware:
@@ -188,6 +172,22 @@ class Middleware:
         print('environ data')
         print('---------------------')
         print(environ_data)
+        ################
+        redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+        all_keys = redis_server.keys('*')
+        print(all_keys)
+        print(type(all_keys))
+        #session_key = request.cookies.get(SESSION_COOKIE_NAME)
+        first = all_keys[0]
+        #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
+        for k in all_keys:
+            val = r.get(k)
+            print(k)
+            print('---------------------------------------')
+            print(val)
+            print('=======================================')
+        ################
+        
         #try:
         #current_user = self.getcurrentuser()
         #print('current session data')
