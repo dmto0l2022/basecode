@@ -8,7 +8,7 @@ from dash import Dash, dcc, html, Input, Output, dash_table, no_update
 
 import json
 
-server = flask.Flask(__name__)
+server = flask.Flask(__name__, requests_pathname_prefix="/app/session_app/")
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP],server=server, requests_pathname_prefix='/session_app/')
 
