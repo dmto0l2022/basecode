@@ -27,14 +27,14 @@ class Users_authlib_permissions(models.Model):
     """
 
     id = fields.IntField(pk=True)
-    user_id = fields.IntField(pk=False)
+    user_id = fields.IntField()
     authorised = fields.BooleanField()
     created_at = fields.DatetimeField(auto_now_add=True)
     modified_at = fields.DatetimeField(auto_now=True)
     ceased_at = fields.DatetimeField(auto_now=True)
 
     class Meta:
-        table="users_authlib"
+        table="users_authlib_permissions"
         ##schema = ""
     
     
