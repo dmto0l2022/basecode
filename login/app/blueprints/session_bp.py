@@ -122,7 +122,7 @@ def getgooglesession():
         return f"No Google Session"
 
 @session_bp.route('/app/session/getgoogleid')
-def getgooglesession():
+def getgoogleid():
     try:
         google = OAuth2Session(GOOGLE_CLIENT_ID, token=session['oauth_token'])
         profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
