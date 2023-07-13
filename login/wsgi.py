@@ -208,7 +208,8 @@ class Middleware:
             a = 1
         
         #redis_server = redis.Redis(host='container_redis_1', port=6379, decode_responses=True)
-        redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+        #redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+        redis_server = redis.StrictRedis(host='container_redis_1', port=6379, charset="utf-8", decode_responses=True)
         try:
             val = redis_server.get(redis_key)
             print(redis_key)
