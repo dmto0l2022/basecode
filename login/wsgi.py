@@ -53,13 +53,13 @@ fastapi_url = environ.get("FASTAPI_URL")
 print('BASE_DIR')
 print(BASE_DIR)
 
-#GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
-#GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
+GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
 
 # This information is obtained upon registration of a new Google OAuth
 # application at https://code.google.com/apis/console
-#client_id = GOOGLE_CLIENT_ID
-#client_secret = GOOGLE_CLIENT_SECRET
+client_id = GOOGLE_CLIENT_ID
+client_secret = GOOGLE_CLIENT_SECRET
 
 redirect_uri = 'http://dev1.dmtool.info/app/login/google2/callback'
 
@@ -221,7 +221,10 @@ class Middleware:
         print(decoded_val)
         print('dmtool_userid >>>' ,decoded_val['dmtool_userid'])
         print('=======================================')
-        
+
+        google = OAuth2Session(client_id, token=decoded_val['oauth_token'])
+        profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
+        print('profile_json >>>', profile_json)
         #except:
         #    a = 1
         '''
