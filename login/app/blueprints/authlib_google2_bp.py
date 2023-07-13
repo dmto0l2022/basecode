@@ -196,8 +196,8 @@ def callback():
         print('post request status code >>> ' ,post_request.status_code)
    
     google_req = requests.get(url_get)
-    #dmtool_userid = google_req.json()['id']
-    #print('dmtool_userid >>>>>>', dmtool_userid)
+    dmtool_userid = google_req.json()['id']
+    print('dmtool_userid >>>>>>', dmtool_userid)
     print(google_req.json())
 
     session['dmtool_userid'] = dmtool_userid
