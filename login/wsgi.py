@@ -174,18 +174,21 @@ class Middleware:
         print(environ_data)
         ################
         redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-        all_keys = redis_server.keys('*')
-        print(all_keys)
-        print(type(all_keys))
-        #session_key = request.cookies.get(SESSION_COOKIE_NAME)
-        first = all_keys[0]
-        #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
-        for k in all_keys:
-            val = r.get(k)
-            print(k)
-            print('---------------------------------------')
-            print(val)
-            print('=======================================')
+        try:
+            all_keys = redis_server.keys('*')
+            print(all_keys)
+            print(type(all_keys))
+            #session_key = request.cookies.get(SESSION_COOKIE_NAME)
+            first = all_keys[0]
+            #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
+            for k in all_keys:
+                val = r.get(k)
+                print(k)
+                print('---------------------------------------')
+                print(val)
+                print('=======================================')
+        except:
+            print('no keys')
         ################
         
         #try:
