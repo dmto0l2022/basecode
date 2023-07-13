@@ -122,13 +122,15 @@ from werkzeug.utils import redirect
 from app.dashapps.session_app import app as app3
 #from app.baseapp.app import app as app4
 
+SESSION_COOKIE_NAME = "session"
 import redis
-'''
-r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-all_keys = r.keys('*')
-#print(all_keys)
+
+redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+all_keys = redis_server.keys('*')
+print(all_keys)
 print(type(all_keys))
-#first = all_keys[0]
+session_key = request.cookies.get(SESSION_COOKIE_NAME)
+first = all_keys[0]
 #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
 for k in all_keys:
     val = r.get(k)
@@ -136,7 +138,7 @@ for k in all_keys:
     print('---------------------------------------')
     print(val)
     print('=======================================')
-'''
+
 
 app = init_app()
 
@@ -183,17 +185,17 @@ class Middleware:
         environ_data = repr(environ).encode('utf-8')
         #print('environ type')
         #print(type(environ))
-        #print('environ data')
-        #print('---------------------')
-        #print(environ_data)
+        print('environ data')
+        print('---------------------')
+        print(environ_data)
         #try:
-        current_user = self.getcurrentuser()
+        #current_user = self.getcurrentuser()
         #print('current session data')
         #print('-------------------')
         #print(session_data)
-        print('current user')
-        print('-------------------')
-        print(current_user)
+        #print('current user')
+        #print('-------------------')
+        #print(current_user)
         #print('current user email')
         #print('-------------------')
         #print(current_user_email)
@@ -208,6 +210,9 @@ class Middleware:
         #email_domain = 'unknown'
             
         request = Request(environ)
+        session_key = request.cookies.get(SESSION_COOKIE_NAME)
+        print('session key >>',session_key)
+        
         ##url_return_parts = urlparse(request.url)
         ##welcome_url_parts = url_return_parts._replace(path='/app/welcome')
         ##url_return = urlunparse(welcome_url_parts)
