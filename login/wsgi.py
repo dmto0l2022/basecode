@@ -159,7 +159,7 @@ class Middleware:
         return Response(t.render(context), mimetype='text/html')
     
     def getcurrentuser(self):
-        x = requests.get('/app/session/getgoogleid')
+        x = requests.get('http://dev1.dmtool.info/app/session/getgoogleid')
         print(x.status_code)
         print(x.json)
         if x.status_code == 200:
