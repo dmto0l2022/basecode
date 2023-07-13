@@ -219,9 +219,11 @@ class Middleware:
             print('--------- decoded val------------------------------')
             decoded_val = pickle.loads(val)
             print(decoded_val)
+            dmtool_userid = decoded_val['dmtool_userid']
+            dmtool_authorised = decoded_val['dmtool_authorised']
             print('dmtool_userid >>>' ,decoded_val['dmtool_userid'])
             print('=======================================')
-
+            
         except:
             print('no session')
         '''
@@ -265,8 +267,8 @@ class Middleware:
         #    start_response('301 Redirect', [('Location', '/app/welcome'),])
         #    return []
         
-        if ('wsgi' not in request.path and 'baseapp' not in request.path) :
-            print('wsgi and baseapp not in path')
+        if ('wsgi' not in request.path and 'session_app' not in request.path) :
+            print('wsgi and session_app not in path')
             #response = Response('Hello World!')
             #response = request.get_response(self.wsgi)
             #print('------------ response ---------------')
@@ -278,7 +280,7 @@ class Middleware:
         #    response = Response('Hello World!')
         #    print(response)
         #    return response(environ,start_response)
-        elif ('wsgi' in request.path or 'baseapp' in request.path) and (email_domain == 'gaitskell.com' or email_domain == 'brown.edu') :
+        elif ('wsgi' in request.path or 'session_app' in request.path) and (dmtool_authorised=True) :
             return self.wsgi(environ,start_response)
         
         else:
