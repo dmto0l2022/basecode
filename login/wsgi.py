@@ -173,22 +173,8 @@ class Middleware:
         print('---------------------')
         print(environ_data)
         ################
-        redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-        try:
-            all_keys = redis_server.keys('*')
-            print(all_keys)
-            print(type(all_keys))
-            #session_key = request.cookies.get(SESSION_COOKIE_NAME)
-            first = all_keys[0]
-            #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
-            for k in all_keys:
-                val = r.get(k)
-                print(k)
-                print('---------------------------------------')
-                print(val)
-                print('=======================================')
-        except:
-            print('no keys')
+        #redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+        
         ################
         
         #try:
@@ -215,7 +201,31 @@ class Middleware:
         request = Request(environ)
         session_key = request.cookies.get(SESSION_COOKIE_NAME)
         print('session key >>',session_key)
+        redis_key = 'session:'+session_key
         
+        redis_server = redis.Redis(host='container_redis_1', port=6379, decode_responses=True)
+        val = redis_server.get(redis_key)
+        print(redis_key)
+        print('---------------------------------------')
+        print(val)
+        print('=======================================')
+        '''
+        try:
+            all_keys = redis_server.keys('*')
+            print(all_keys)
+            print(type(all_keys))
+            #session_key = request.cookies.get(SESSION_COOKIE_NAME)
+            first = all_keys[0]
+            #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
+            for k in all_keys:
+                val = r.get(k)
+                print(k)
+                print('---------------------------------------')
+                print(val)
+                print('=======================================')
+        except:
+            print('no keys')
+        '''
         ##url_return_parts = urlparse(request.url)
         ##welcome_url_parts = url_return_parts._replace(path='/app/welcome')
         ##url_return = urlunparse(welcome_url_parts)
