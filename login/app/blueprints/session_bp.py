@@ -121,6 +121,18 @@ def getgooglesession():
     except:
         return f"No Google Session"
 
+@session_bp.route('/app/session/getgoogleid')
+def getgooglesession():
+    try:
+        google = OAuth2Session(GOOGLE_CLIENT_ID, token=session['oauth_token'])
+        profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
+        data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
+        google_id = data['id']
+        print('google_id >>>>',google_id)
+        return jsonify({'google_id':google_id})
+    except:
+        return jsonify({'google_id':'99999999'})
+
 @session_bp.route('/app/session/popsession')
 def popsession():
     session.pop('Username',None)
