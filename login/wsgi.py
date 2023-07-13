@@ -158,7 +158,7 @@ class Middleware:
         t = self.jinja_env.get_template(template_name)
         return Response(t.render(context), mimetype='text/html')
     
-    def getcurrentuser(self,current_user_in):
+    def getcurrentuser(self):
     
         token = session['oauth_token']
         
@@ -203,51 +203,51 @@ class Middleware:
         #print('environ data')
         #print('---------------------')
         #print(environ_data)
-        try:
-            session_data,current_user, current_user_email, email_domain = self.getcookiedata(environ)
-            #print('current session data')
-            #print('-------------------')
-            #print(session_data)
-            #print('current user')
-            #print('-------------------')
-            #print(current_user)
-            #print('current user email')
-            #print('-------------------')
-            #print(current_user_email)
-            #print('current email domain')
-            #print('-------------------')
-            #print(email_domain)
-        except:
-            print('no current session')
-            session_data = {}
-            current_user = 'unknown'
-            current_user_email = 'unknown'
-            email_domain = 'unknown'
+        #try:
+        current_user = self.getcurrentuser()
+        #print('current session data')
+        #print('-------------------')
+        #print(session_data)
+        print('current user')
+        print('-------------------')
+        print(current_user)
+        #print('current user email')
+        #print('-------------------')
+        #print(current_user_email)
+        #print('current email domain')
+        #print('-------------------')
+        #print(email_domain)
+        #except:
+        #print('no current session')
+        #session_data = {}
+        #current_user = 'unknown'
+        #current_user_email = 'unknown'
+        #email_domain = 'unknown'
             
-            request = Request(environ)
-            ##url_return_parts = urlparse(request.url)
-            ##welcome_url_parts = url_return_parts._replace(path='/app/welcome')
-            ##url_return = urlunparse(welcome_url_parts)
-            #all_keys = r.keys('*')
-            #print(all_keys)
-            #print(session['Username'])
-            ##print(url_return)
-            #print('path: %s, url: %s' % (request.path, request.url))
-            # just do here everything what you need
-            #if 'wsgi' not in request.path:
-            #    print('wsgi not in path')
-            #    return self.wsgi(environ, start_response)
-            #elif 'wsgi' in request.path and email_domain == 'gaitskell.com':
-            #    print('authorised email domain')
-            #    return self.wsgi(environ, start_response)
-            #else:
-            #    print('url contains wsgi - from unknown or unauthorised email domain')
-            #    ##print(url_return)
-            #    print('-----------')
-            #    #url_return = urlparse(request.url)
-            #    #url_return._replace(path='/app/welcome')
-            #    start_response('301 Redirect', [('Location', '/app/welcome'),])
-            #    return []
+        request = Request(environ)
+        ##url_return_parts = urlparse(request.url)
+        ##welcome_url_parts = url_return_parts._replace(path='/app/welcome')
+        ##url_return = urlunparse(welcome_url_parts)
+        #all_keys = r.keys('*')
+        #print(all_keys)
+        #print(session['Username'])
+        ##print(url_return)
+        #print('path: %s, url: %s' % (request.path, request.url))
+        # just do here everything what you need
+        #if 'wsgi' not in request.path:
+        #    print('wsgi not in path')
+        #    return self.wsgi(environ, start_response)
+        #elif 'wsgi' in request.path and email_domain == 'gaitskell.com':
+        #    print('authorised email domain')
+        #    return self.wsgi(environ, start_response)
+        #else:
+        #    print('url contains wsgi - from unknown or unauthorised email domain')
+        #    ##print(url_return)
+        #    print('-----------')
+        #    #url_return = urlparse(request.url)
+        #    #url_return._replace(path='/app/welcome')
+        #    start_response('301 Redirect', [('Location', '/app/welcome'),])
+        #    return []
         
         if ('wsgi' not in request.path and 'baseapp' not in request.path) :
             print('wsgi and baseapp not in path')
