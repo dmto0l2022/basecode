@@ -62,7 +62,7 @@ class Middleware:
         self.template_path = path.join(BASE_DIR, "/workdir/frontend/werkzeug/templates")
         #print('template path')
         #print(template_path)
-        self.jinja_env = Environment(loader=FileSystemLoader(template_path),
+        self.jinja_env = Environment(loader=FileSystemLoader(self.template_path),
                              autoescape=True)
     
     def render_template(self, template_name, **context):
@@ -74,9 +74,7 @@ class Middleware:
         #print('environ data')
         #print('---------------------')
         #print(environ_data)
-        ################
-        #redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-            
+        
         request = Request(environ)
         try:
             session_key = request.cookies.get(self.SESSION_COOKIE_NAME)
