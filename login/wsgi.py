@@ -219,7 +219,9 @@ class Middleware:
         print('--------- decoded val------------------------------')
         decoded_val = pickle.loads(val)
         print(decoded_val)
+        print('dmtool_userid >>>' ,decoded_val['dmtool_userid'])
         print('=======================================')
+        
         #except:
         #    a = 1
         '''
