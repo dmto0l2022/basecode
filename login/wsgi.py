@@ -171,17 +171,19 @@ class Middleware:
         google_req = requests.get(url_get)
         print("google user status code >>>> " , google_req.status_code)
         if google_req.status_code == 404:
-        url = fastapi_url + "/apiorm/authlibuser/google/"
-        #json={"key": "value"}
-        json = {
-          "authlib_id": google_id,
-          "authlib_provider": "google"
-        }
-        post_request = requests.post(url, json=json)
-        print('post request status code >>> ' ,post_request.status_code)
-        
-        google_req = requests.get(url_get)
-        dmtool_userid = google_req.json()['id']
+            dmtool_userid = '9999999'
+            #    url = fastapi_url + "/apiorm/authlibuser/google/"
+            #    #json={"key": "value"}
+            #    json = {
+            #      "authlib_id": google_id,
+            #      "authlib_provider": "google"
+            #    }
+            #    post_request = requests.post(url, json=json)
+            #    print('post request status code >>> ' ,post_request.status_code)
+            
+            #google_req = requests.get(url_get)
+        else:
+            dmtool_userid = google_req.json()['id']
         print('dmtool_userid >>>>>>', dmtool_userid)
         #print(google_req.json())
         
