@@ -200,33 +200,33 @@ class Middleware:
         #email_domain = 'unknown'
             
         request = Request(environ)
-        #try:
-        session_key = request.cookies.get(SESSION_COOKIE_NAME)
-        print('session key >>',session_key)
-        redis_key = 'session:'+session_key
-        print('redis_key >>',redis_key)
-        #except:
-        #    a = 1
+        try:
+            session_key = request.cookies.get(SESSION_COOKIE_NAME)
+            print('session key >>',session_key)
+            redis_key = 'session:'+session_key
+            print('redis_key >>',redis_key)
+        except:
+            a = 1
         
         #redis_server = redis.Redis(host='container_redis_1', port=6379, decode_responses=True)
         redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
         #redis_server = redis.StrictRedis(host='container_redis_1', port=6379, charset="utf-8", decode_responses=True)
-        #try:
-        val = redis_server.get(redis_key)
-        print(redis_key)
-        print('---------val------------------------------')
-        print(val)
-        print('--------- decoded val------------------------------')
-        decoded_val = pickle.loads(val)
-        print(decoded_val)
-        print('dmtool_userid >>>' ,decoded_val['dmtool_userid'])
-        print('=======================================')
-
-        google = OAuth2Session(client_id, token=decoded_val['oauth_token'])
-        profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
-        print('profile_json >>>', profile_json)
-        #except:
-        #    a = 1
+        try:
+            val = redis_server.get(redis_key)
+            print(redis_key)
+            print('---------val------------------------------')
+            print(val)
+            print('--------- decoded val------------------------------')
+            decoded_val = pickle.loads(val)
+            print(decoded_val)
+            print('dmtool_userid >>>' ,decoded_val['dmtool_userid'])
+            print('=======================================')
+    
+            google = OAuth2Session(client_id, token=decoded_val['oauth_token'])
+            profile_json = jsonify(google.get('https://www.googleapis.com/oauth2/v1/userinfo').json())
+            print('profile_json >>>', profile_json)
+        except:
+            print('no session')
         '''
         try:
             all_keys = redis_server.keys('*')
