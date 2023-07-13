@@ -292,7 +292,7 @@ class Middleware:
             #hello_response = Response('Hello World!')
             unauthorised_response = self.render_template('unauthorised.html')
             #return hello_response(environ, start_response)
-    return unauthorised_response(environ, start_response)
+        return unauthorised_response(environ, start_response)
 ##return [body]
 ##return self.wsgi(environ,redirect_response)
     '''
