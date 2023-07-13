@@ -1,4 +1,5 @@
 from app import init_app
+import pickle
 
 application = init_app()
 
@@ -208,13 +209,16 @@ class Middleware:
         #    a = 1
         
         #redis_server = redis.Redis(host='container_redis_1', port=6379, decode_responses=True)
-        #redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-        redis_server = redis.StrictRedis(host='container_redis_1', port=6379, charset="utf-8", decode_responses=True)
+        redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+        #redis_server = redis.StrictRedis(host='container_redis_1', port=6379, charset="utf-8", decode_responses=True)
         #try:
         val = redis_server.get(redis_key)
         print(redis_key)
-        print('---------------------------------------')
+        print('---------val------------------------------')
         print(val)
+        print('--------- decoded val------------------------------')
+        decoded_val = pickle.loads(val)
+        print(decoded_val)
         print('=======================================')
         #except:
         #    a = 1
