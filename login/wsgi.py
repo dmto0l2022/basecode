@@ -4,7 +4,7 @@ application = init_app()
 
 #from app import current_user
 
-from app import session
+#from app import session
 
 from urllib.parse import urlparse, urlunparse
 
@@ -52,13 +52,13 @@ fastapi_url = environ.get("FASTAPI_URL")
 print('BASE_DIR')
 print(BASE_DIR)
 
-GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
-GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
+#GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
+#GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
 
 # This information is obtained upon registration of a new Google OAuth
 # application at https://code.google.com/apis/console
-client_id = GOOGLE_CLIENT_ID
-client_secret = GOOGLE_CLIENT_SECRET
+#client_id = GOOGLE_CLIENT_ID
+#client_secret = GOOGLE_CLIENT_SECRET
 
 redirect_uri = 'http://dev1.dmtool.info/app/login/google2/callback'
 
@@ -93,7 +93,7 @@ import ast
 import chardet
 from datetime import datetime
 
-
+import requests
 
 import io
 
@@ -159,30 +159,13 @@ class Middleware:
         return Response(t.render(context), mimetype='text/html')
     
     def getcurrentuser(self):
-    
-        token = session['oauth_token']
-        
-        google = OAuth2Session(client_id, token=token)
-        profile_data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
-        google_id = profile_data['id']
-        url_get = fastapi_url + "/apiorm/authlibuser/google/" + google_id
-        print("url_get >>>" , url_get)
-        google_req = requests.get(url_get)
-        print("google user status code >>>> " , google_req.status_code)
-        if google_req.status_code == 404:
-            dmtool_userid = '9999999'
-            #    url = fastapi_url + "/apiorm/authlibuser/google/"
-            #    #json={"key": "value"}
-            #    json = {
-            #      "authlib_id": google_id,
-            #      "authlib_provider": "google"
-            #    }
-            #    post_request = requests.post(url, json=json)
-            #    print('post request status code >>> ' ,post_request.status_code)
-            
-            #google_req = requests.get(url_get)
+        x = requests.get('/app/session/getgoogleid')
+        print(x.status_code)
+        print(x.json)
+        if x.status_code = 200:
+            dmtool_userid = x.json()['google_id']
         else:
-            dmtool_userid = google_req.json()['id']
+            dmtool_userid = '999999'
         print('dmtool_userid >>>>>>', dmtool_userid)
         #print(google_req.json())
         
