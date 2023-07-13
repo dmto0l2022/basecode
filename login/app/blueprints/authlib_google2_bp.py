@@ -201,6 +201,11 @@ def callback():
     print(google_req.json())
 
     session['dmtool_userid'] = dmtool_userid
+
+    url = fastapi_url + "/apiorm/authlibuser/permissions/"
+    request_permissions = url + dmtool_userid
+    authorisation_check = requests.get(request_permissions)
+    session['dmtool_authorised'] = authorisation_check.json()['authorised']
     
     return redirect(url_for('.menu'))
 
