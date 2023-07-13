@@ -199,6 +199,8 @@ def callback():
     #dmtool_userid = google_req.json()['id']
     #print('dmtool_userid >>>>>>', dmtool_userid)
     print(google_req.json())
+
+    session['dmtool_userid'] = dmtool_userid
     
     return redirect(url_for('.menu'))
 
