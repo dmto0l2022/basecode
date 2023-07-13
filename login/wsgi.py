@@ -162,7 +162,7 @@ class Middleware:
         x = requests.get('/app/session/getgoogleid')
         print(x.status_code)
         print(x.json)
-        if x.status_code = 200:
+        if x.status_code == 200:
             dmtool_userid = x.json()['google_id']
         else:
             dmtool_userid = '999999'
