@@ -205,9 +205,15 @@ def callback():
     url = fastapi_url + "/apiorm/authlibuser/permissions/"
     request_permissions = url + str(dmtool_userid)
     print('request_permissions >>>>', request_permissions)
+    
     authorisation_check = requests.get(request_permissions)
-    print('authorisation_check.json() >>>>>>', authorisation_check.json())
-    session['dmtool_authorised'] = authorisation_check.json()['authorised']
+    if authorisation_check.status_code == 404:
+        session['dmtool_authorised'] = False
+    else:
+        session['dmtool_authorised'] = True
+    
+    #print('authorisation_check.json() >>>>>>', authorisation_check.json())
+    #session['dmtool_authorised'] = authorisation_check.json()['authorised']
     
     return redirect(url_for('.menu'))
 
