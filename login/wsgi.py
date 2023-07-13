@@ -37,11 +37,11 @@ import json
 
 fastapi_url = environ.get("FASTAPI_URL")
 
-print('BASE_DIR')
-print(BASE_DIR)
-
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, "/app/.env"))
+
+print('BASE_DIR')
+print(BASE_DIR)
 
 #from app.dashapps.crud_table import app as app0
 #from app.dashapps.interactive_table import app as app1
