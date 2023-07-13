@@ -199,25 +199,25 @@ class Middleware:
         #email_domain = 'unknown'
             
         request = Request(environ)
-        try:
-            session_key = request.cookies.get(SESSION_COOKIE_NAME)
-            print('session key >>',session_key)
-            redis_key = 'session:'+session_key
-            print('redis_key >>',redis_key)
-        except:
-            a = 1
+        #try:
+        session_key = request.cookies.get(SESSION_COOKIE_NAME)
+        print('session key >>',session_key)
+        redis_key = 'session:'+session_key
+        print('redis_key >>',redis_key)
+        #except:
+        #    a = 1
         
         #redis_server = redis.Redis(host='container_redis_1', port=6379, decode_responses=True)
         #redis_server = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
         redis_server = redis.StrictRedis(host='container_redis_1', port=6379, charset="utf-8", decode_responses=True)
-        try:
-            val = redis_server.get(redis_key)
-            print(redis_key)
-            print('---------------------------------------')
-            print(val)
-            print('=======================================')
-        except:
-            a = 1
+        #try:
+        val = redis_server.get(redis_key)
+        print(redis_key)
+        print('---------------------------------------')
+        print(val)
+        print('=======================================')
+        #except:
+        #    a = 1
         '''
         try:
             all_keys = redis_server.keys('*')
