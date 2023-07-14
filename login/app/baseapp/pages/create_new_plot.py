@@ -16,6 +16,7 @@ layout = html.Div([
     dcc.Location(id="url_create_new_plot", refresh=True), ## important to allow redirects
     html.Div("Create New Plot"),
     fl.plot_name_input_row,
+    html.Button('Print', id=page_name + '_print_' + 'button_id', n_clicks=0),
     html.Button('Create', id=page_name + '_create_' + 'button_id', n_clicks=0),
     html.Button('Cancel',  id=page_name + '_cancel_' + 'button_id', n_clicks=0),
     html.Div('No Button Pressed', id="whatbutton")
@@ -24,18 +25,22 @@ layout = html.Div([
 
 @callback(
     Output('url_create_new_plot', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    Input(page_name + '_print_' + 'button_id', "n_clicks"),
     Input(page_name + '_create_' + 'button_id', "n_clicks"),
     Input(page_name + '_cancel_' + 'button_id', "n_clicks"),
     State("plot_name_form_field_id", "value"),
         prevent_initial_call=True
 )
-def button_click_create_new_plot(button1,button2,plot_name_input):
+def button_click_create_new_plot(button0,button1,button2,plot_name_input):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     print("create new plot >> prop id >>  " ,prop_id)
     #msg = prop_id
-    if page_name + '_create_' + 'button_id' == prop_id :
+    if page_name + '_print_' + 'button_id' == prop_id :
         print('XXXXXXXXXXXXXXXXX')
+        href_return = '/app/baseapp/create_new_plot'
+        return href_return
+    elif page_name + '_create_' + 'button_id' == prop_id :
         href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
     elif page_name + '_cancel_' + 'button_id' == prop_id:
