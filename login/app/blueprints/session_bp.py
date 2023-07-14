@@ -100,12 +100,12 @@ def setsession():
 def getsession():
     #if 'Username' in session:
     # Username = session['Username']
-    if session:
-        allsession = session
+    try:
+        dmtool_userid = session['dmtool_userid']
         #UserID =  session['UserID']
         #SessionID = session['SessionID']
-        return f"Welcome {allsession} " ## your userid is {UserID} and sessionid {SessionID}"
-    else:
+        return f"Welcome DMTool User {dmtool_userid} " ## your userid is {UserID} and sessionid {SessionID}"
+    except:
         return "Welcome Anonymous"
 
 @session_bp.route('/app/session/googlesession')
