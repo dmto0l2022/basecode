@@ -61,10 +61,11 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
-app.config['SESSION_COOKIE_PATH'] = '/'
-app.config['SECRET_KEY'] = FLASK_SECRET_KEY
+
 
 server = app.server
+server.config['SECRET_KEY'] = FLASK_SECRET_KEY
+server.config['SESSION_COOKIE_PATH'] =  '/'
 
 headertext = 'Dark Matter Tool'
 footertext = 'ACG'
