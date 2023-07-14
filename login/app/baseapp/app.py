@@ -68,7 +68,7 @@ FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
 
 server = app.server
 server.config['SECRET_KEY'] = FLASK_SECRET_KEY
-server.config['FLASK_DEBUG'] = 1
+server.config['FLASK_DEBUG'] = 0
 
 #server.config['SESSION_COOKIE_PATH'] =  '/'
 
