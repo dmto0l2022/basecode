@@ -1,6 +1,7 @@
 import os
 from os import environ, path
 from flask_session import Session
+import redis
 
 import dash
 from dash import dcc
