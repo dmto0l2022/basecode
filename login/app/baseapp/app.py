@@ -67,8 +67,8 @@ FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
 
 
 server = app.server
-server.config['SECRET_KEY'] = FLASK_SECRET_KEY
-server.config['SESSION_COOKIE_PATH'] =  '/'
+#server.config['SECRET_KEY'] = FLASK_SECRET_KEY
+#server.config['SESSION_COOKIE_PATH'] =  '/'
 
 ## setup session data
 #server.config['SESSION_TYPE'] = 'redis'
