@@ -15,6 +15,7 @@ Flask-Session
 Flask-SQLAlchemy
 Flask-WTF
 flask_dance
+flask_session
 dash>=2.9.3
 dash-bootstrap-components
 dash-core-components>=2.0.0
