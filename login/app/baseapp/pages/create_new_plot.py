@@ -26,8 +26,8 @@ layout = html.Div([
     Output('url_create_new_plot', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     Input(page_name + '_create_' + 'button_id', "n_clicks"),
     Input(page_name + '_cancel_' + 'button_id', "n_clicks"),
-    State("plot_name_form_field_id", "value")#,
-        #prevent_initial_call=True
+    State("plot_name_form_field_id", "value"),
+        prevent_initial_call=True
 )
 def button_click_create_new_plot(button1,button2,plot_name_input):
     #msg = "None of the buttons have been clicked yet"
