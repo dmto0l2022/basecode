@@ -26,7 +26,7 @@ layout = html.Div([
     [
     Input(page_name + '_create_' + 'button_id', "n_clicks"),
     Input(page_name + '_cancel_' + 'button_id', "n_clicks"),
-    Input("plot_name_form_field_id", "value")
+    State("plot_name_form_field_id", "value")
         ],
         prevent_initial_call=True
 )
