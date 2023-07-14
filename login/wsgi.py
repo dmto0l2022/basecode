@@ -47,9 +47,7 @@ print(BASE_DIR)
 #from app.dashapps.interactive_table import app as app1
 #from app.dashapps.basic_table import app as app2
 from app.dashapps.session_app import app as app3
-#from app.baseapp.app import app as app4
-
-
+from app.baseapp.app import app as app4
 
 app = init_app()
 
@@ -101,10 +99,10 @@ class Middleware:
         except:
             print('no session')
         
-        if ('wsgi' not in request.path and 'session_app' not in request.path) :
-            print('wsgi and session_app not in path')
+        if ('wsgi' not in request.path and 'session_app' not in request.path and 'baseapp' not in request.path ) :
+            print('wsgi and session_app and baseapp not in path')
             return self.wsgi(environ,start_response)       
-        elif ('wsgi' in request.path or 'session_app' in request.path) and (dmtool_authorised==True) :
+        elif ('wsgi' in request.path or 'session_app' in request.path or 'baseapp' in request.path) and (dmtool_authorised==True) :
             return self.wsgi(environ,start_response)
         
         else:
@@ -116,7 +114,7 @@ application = DispatcherMiddleware(app, {
     #'/app/wsgi_app1': app1.server,
     #'/app/wsgi_app2': app2.server,
     '/app/session_app': app3.server,
-    #'/app/baseapp': app4.server,
+    '/app/baseapp': app4.server,
 })  
 
 application = Middleware(application)
