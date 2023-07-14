@@ -35,15 +35,7 @@ def button_click_create_new_plot(button1,button2,plot_name_input):
     print("create new plot >> prop id >>  " ,prop_id)
     #msg = prop_id
     if page_name + '_create_' + 'button_id' == prop_id :
-        #msg = "Button 1 was most recently clicked"
-        #session['dmtool_plot_name'] = plot_name_input
-        print('hellooooooooooooooo')
-        #session_key = request.cookies.get('session')
-        #print('cnp : session key >>',session_key)
-        #redis_key = 'session:'+session_key
-        #print('cnp : redis_key >>',redis_key)
-        #except:
-        #    a = 1
+        print('XXXXXXXXXXXXXXXXX')
         href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
     elif page_name + '_cancel_' + 'button_id' == prop_id:
