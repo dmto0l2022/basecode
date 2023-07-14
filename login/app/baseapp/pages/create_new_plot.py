@@ -40,6 +40,7 @@ def button_click_create_new_plot(button1,button2,plot_name_input):
         #msg = "Button 1 was most recently clicked"
         #session['dmtool_plot_name'] = plot_name_input
         #try:
+        print('hellooooooooooooooo')
         session_key = request.cookies.get('session')
         print('cnp : session key >>',session_key)
         redis_key = 'session:'+session_key
