@@ -7,6 +7,7 @@ cp ./.env ../fastapi/app/.env
 cp ./.env ../fastapi_orm/app/.env
 cp ./.env ../frontend/app/.env
 cp ./.env ../login/app/.env
+cp ./.env ../login/app/baseapp/.env
 ## set the variables for the mariadb 
 source ../mariadb/setenv.sh
 source ../mariadb/createinitsql.sh
