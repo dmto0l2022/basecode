@@ -53,6 +53,7 @@ from app.baseapp.libraries import create_test_data
 
 #app = Dash(__name__, use_pages=True,requests_pathname_prefix='/app/multipage/')
 app = Dash(__name__,
+	    debug = True,
             use_pages=True,
             requests_pathname_prefix='/app/baseapp/',
             external_stylesheets=external_stylesheets,
