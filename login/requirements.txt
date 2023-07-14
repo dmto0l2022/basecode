@@ -30,3 +30,5 @@ secure_cookie
 authlib
 requests-oauthlib
 mariadb
+pymysql
+
