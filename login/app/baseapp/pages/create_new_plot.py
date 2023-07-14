@@ -1,7 +1,7 @@
 import dash
 from dash import html, dcc, callback, Output, Input, State
 #from flask import session
-#from flask import request
+from flask import request
 
 #import libraries.formlibrary as fl
 from app.baseapp.libraries import formlibrary as fl
@@ -37,7 +37,10 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
     print("create new plot >> prop id >>  " ,prop_id)
     #msg = prop_id
     if page_name + '_print_' + 'button_id' == prop_id :
-        print('XXXXXXXXXXXXXXXXX')
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        session_key = request.cookies.get('session')
+        print('cnp : session key >>',session_key)
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         href_return = '/app/baseapp/create_new_plot'
         return href_return
     elif page_name + '_create_' + 'button_id' == prop_id :
