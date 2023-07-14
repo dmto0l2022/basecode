@@ -31,7 +31,7 @@ layout = html.Div([
         ],
         prevent_initial_call=True
 )
-def button_click(button1,button2,plot_name_input):
+def button_click_create_new_plot(button1,button2,plot_name_input):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     print("create new plot >> prop id >>  " ,prop_id)
