@@ -39,13 +39,13 @@ def button_click(button1,button2,plot_name_input):
     if page_name + '_create_' + 'button_id' == prop_id :
         #msg = "Button 1 was most recently clicked"
         #session['dmtool_plot_name'] = plot_name_input
-        try:
-            session_key = request.cookies.get('session')
-            print('cnp : session key >>',session_key)
-            redis_key = 'session:'+session_key
-            print('cnp : redis_key >>',redis_key)
-        except:
-            a = 1
+        #try:
+        session_key = request.cookies.get('session')
+        print('cnp : session key >>',session_key)
+        redis_key = 'session:'+session_key
+        print('cnp : redis_key >>',redis_key)
+        #except:
+        #    a = 1
         href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
     elif page_name + '_cancel_' + 'button_id' == prop_id:
