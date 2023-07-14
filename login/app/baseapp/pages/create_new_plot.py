@@ -1,7 +1,7 @@
 import dash
 from dash import html, dcc, callback, Output, Input, State
 #from flask import session
-from flask import request
+#from flask import request
 
 #import libraries.formlibrary as fl
 from app.baseapp.libraries import formlibrary as fl
@@ -24,12 +24,10 @@ layout = html.Div([
 
 @callback(
     Output('url_create_new_plot', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
-    [
     Input(page_name + '_create_' + 'button_id', "n_clicks"),
     Input(page_name + '_cancel_' + 'button_id', "n_clicks"),
-    State("plot_name_form_field_id", "value")
-        ],
-        prevent_initial_call=True
+    State("plot_name_form_field_id", "value")#,
+        #prevent_initial_call=True
 )
 def button_click_create_new_plot(button1,button2,plot_name_input):
     #msg = "None of the buttons have been clicked yet"
@@ -39,7 +37,6 @@ def button_click_create_new_plot(button1,button2,plot_name_input):
     if page_name + '_create_' + 'button_id' == prop_id :
         #msg = "Button 1 was most recently clicked"
         #session['dmtool_plot_name'] = plot_name_input
-        #try:
         print('hellooooooooooooooo')
         #session_key = request.cookies.get('session')
         #print('cnp : session key >>',session_key)
