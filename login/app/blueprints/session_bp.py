@@ -135,5 +135,6 @@ def getgoogleid():
 
 @session_bp.route('/app/session/popsession')
 def popsession():
-    session.pop('Username',None)
+    for key in list(session.keys()):
+         session.pop(key)
     return "Session Deleted"
