@@ -54,6 +54,13 @@ app = Dash(__name__,
             ##suppress_callback_exceptions=True,
 	  )
 
+from dotenv import load_dotenv
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
+app.config['SESSION_COOKIE_PATH'] = '/'
+app.config['SECRET_KEY'] = FLASK_SECRET_KEY
+
 server = app.server
 
 headertext = 'Dark Matter Tool'
