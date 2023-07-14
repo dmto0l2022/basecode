@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, Flask, render_template_string, req
 from flask_restful import Api, Resource, url_for
 import datetime
 
-from app import session
+from flask import session
 
 from flask_security import current_user
 
