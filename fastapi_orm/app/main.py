@@ -37,7 +37,7 @@ from pydantic import BaseModel
 
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
-app = FastAPI(title="DMTOOL API Server", docs_url="/apiorm/docs", redoc_url=None)
+app = FastAPI(title="DMTOOL API Server", openapi_url="/apiorm/openapi.json", docs_url="/apiorm/docs", redoc_url=None)
 
 class Status(BaseModel):
     message: str
