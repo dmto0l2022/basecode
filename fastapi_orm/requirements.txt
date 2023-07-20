@@ -6,3 +6,7 @@ fastapi
 uvicorn
 python-dotenv
 aiomysql
+starlette
+authlib
+
+
