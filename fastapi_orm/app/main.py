@@ -33,6 +33,7 @@ from authlib.integrations.starlette_client import OAuth, OAuthError
 ## from starlette.middleware.sessions import SessionMiddleware
 #################
 
+import redis
 from redis import Redis
 from starlette.applications import Starlette
 from starlette.requests import Request
