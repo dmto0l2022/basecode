@@ -111,7 +111,7 @@ redis_client = Redis(host="container_redis_1", port=6379)
 app.add_middleware(
     SessionMiddleware,
     secret_key="secret",
-    cookie_name="cookie22",
+    cookie_name="session",
     backend_type=BackendType.redis,
     backend_client=redis_client,
 )
