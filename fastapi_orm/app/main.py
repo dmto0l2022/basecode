@@ -92,7 +92,8 @@ oauth.register(
     client_id=environ['FASTAPI_CLIENT_ID'],
     client_secret=environ['FASTAPI_CLIENT_SECRET'],
     client_kwargs={
-        'scope': "https://www.googleapis.com/auth/userinfo.email",
+        'scope': ["https://www.googleapis.com/auth/userinfo.email",
+                  "https://www.googleapis.com/auth/userinfo.profile"]
     }
 )
 
