@@ -173,16 +173,22 @@ def view_session(request: Request) -> JSONResponse:
     except:
         a = 1
     
-    #try:
-    val = redisserver.get(redis_key)
-    print(redis_key)
-    print('---------val------------------------------')
-    print(val)
-    print('--------- decoded val------------------------------')
-    decoded_val = pickle.loads(val)
-    print(decoded_val)
-    #except:
-    #    a = 1
+    try:
+        all_keys = redis_server.keys('*')
+        print('---------- all keys -----------')
+        print(all_keys)
+    
+    try:
+        val = redisserver.get(redis_key)
+        print(redis_key)
+        print('---------val------------------------------')
+        print(val)
+        print('--------- decoded val------------------------------')
+        decoded_val = pickle.loads(val)
+        print(decoded_val)
+    except:
+        a = 1
+    
     return JSONResponse({"session": request.session})
 
 
