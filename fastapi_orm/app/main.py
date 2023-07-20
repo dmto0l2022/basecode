@@ -49,7 +49,7 @@ from pydantic import BaseModel
 
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
-config = Config('.env')  # read config from .env file
+config = Config('.env_fastapi_google')  # read config from .env file
 oauth = OAuth(config)
 oauth.register(
     name='google',
