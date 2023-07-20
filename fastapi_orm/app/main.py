@@ -162,7 +162,6 @@ async def clear_session(request: Request):
 
 @app.get('/apiorm/view_session')
 def view_session(request: Request) -> JSONResponse:
-    request = Request(environ)
     try:
         session_key = request.cookies.get('session')
         print('session key >>',session_key)
