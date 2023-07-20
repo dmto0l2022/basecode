@@ -19,10 +19,16 @@ print(BASE_DIR)
 
 from typing import List
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException
 
-from authlib.integrations.starlette_client import OAuth
 from starlette.config import Config
+
+import json
+
+from starlette.requests import Request
+
+from starlette.responses import HTMLResponse, RedirectResponse
+from authlib.integrations.starlette_client import OAuth, OAuthError
 
 from starlette.middleware.sessions import SessionMiddleware
 
@@ -96,23 +102,41 @@ app.include_router(dmtool.router)
 app.include_router(users.router)
 app.include_router(metadata.router)
 
-'''
-@app.get("/apiorm/docs", include_in_schema=False)
-async def custom_swagger_ui_html(req: Request):
-    root_path = req.scope.get("root_path", "").rstrip("/")
-    openapi_url = root_path + app.openapi_url
-    return get_swagger_ui_html(
-        openapi_url=openapi_url,
-        title="API",
-    )
-'''
 
-@app.route('/apiorm/login')
+@app.get('/apiorm/')
+async def homepage(request: Request):
+    user = request.session.get('user')
+    if user:
+        data = json.dumps(user)
+        html = (
+            f'<pre>{data}</pre>'
+            '<a href="/apiorm/logout">logout</a>'
+        )
+        return HTMLResponse(html)
+    return HTMLResponse('<a href="/apiorm/login">login</a>')
+
+@app.get('/login')
 async def login(request: Request):
-    # absolute url for callback
-    # we will define it below
     redirect_uri = request.url_for('auth')
     return await oauth.google.authorize_redirect(request, redirect_uri)
+
+
+@app.get('/auth')
+async def auth(request: Request):
+    try:
+        token = await oauth.google.authorize_access_token(request)
+    except OAuthError as error:
+        return HTMLResponse(f'<h1>{error.error}</h1>')
+    user = token.get('userinfo')
+    if user:
+        request.session['user'] = dict(user)
+    return RedirectResponse(url='/')
+
+
+@app.get('/logout')
+async def logout(request: Request):
+    request.session.pop('user', None)
+    return RedirectResponse(url='/')
 
 register_tortoise(
     app,
