@@ -1,3 +1,4 @@
+pickle
 redis
 flask
 mariadb
