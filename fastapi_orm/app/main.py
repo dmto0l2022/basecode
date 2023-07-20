@@ -38,14 +38,15 @@ from pydantic import BaseModel
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
 app = FastAPI(title="DMTOOL API Server",
-              servers=[
-        {"url": "http://dev1.dmtool.info", "description": "Dev environment"}
-              ],
-              root_path="/apiorm/",
+              ##servers=[
+        ##{"url": "http://dev1.dmtool.info", "description": "Dev environment"}
+              ##],
+              ##root_path="/apiorm/",
               ##openapi_url="/openapi.json",
-              docs_url="/apiorm/docs",
-              redoc_url=None,
-              root_path_in_servers=False,)
+              ##docs_url="/apiorm/docs",
+              ##redoc_url=None,
+              ##root_path_in_servers=False,
+             )
 
 '''
 app = FastAPI(
@@ -77,6 +78,7 @@ app.include_router(dmtool.router)
 app.include_router(users.router)
 app.include_router(metadata.router)
 
+'''
 @app.get("/apiorm/docs", include_in_schema=False)
 async def custom_swagger_ui_html(req: Request):
     root_path = req.scope.get("root_path", "").rstrip("/")
@@ -85,6 +87,7 @@ async def custom_swagger_ui_html(req: Request):
         openapi_url=openapi_url,
         title="API",
     )
+'''
 
 register_tortoise(
     app,
