@@ -179,6 +179,8 @@ def view_session(request: Request) -> JSONResponse:
         print('--------- decoded val------------------------------')
         decoded_val = pickle.loads(val)
         print(decoded_val)
+    except:
+        a = 1
     return JSONResponse({"session": request.session})
 
 
