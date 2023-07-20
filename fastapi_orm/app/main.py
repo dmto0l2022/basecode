@@ -150,7 +150,9 @@ app.include_router(metadata.router)
 
 @app.get('/apiorm/setup_session')
 async def setup_session(request: Request) -> JSONResponse:
-    request.session.update({"data": "session_data"})
+    #request.session.update({"data": "session_data"})
+    request.session['data'] = "session_data"
+    request.session['user_name'] = "session_user"
     return JSONResponse({"session": request.session})
 
 @app.get('/apiorm/clear_session')
