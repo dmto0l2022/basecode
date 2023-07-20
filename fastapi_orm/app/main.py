@@ -177,7 +177,9 @@ def view_session(request: Request) -> JSONResponse:
         all_keys = redis_server.keys('*')
         print('---------- all keys -----------')
         print(all_keys)
-    
+    except:
+        a = 1
+        
     try:
         val = redisserver.get(redis_key)
         print(redis_key)
