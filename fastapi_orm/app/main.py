@@ -43,7 +43,7 @@ app = FastAPI(title="DMTOOL API Server",
               ],
               root_path="/apiorm/",
               openapi_url="/openapi.json",
-              docs_url="/docs",
+              docs_url="/apiorm/docs",
               redoc_url=None,
               root_path_in_servers=False,)
 
