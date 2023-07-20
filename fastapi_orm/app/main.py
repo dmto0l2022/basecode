@@ -194,6 +194,7 @@ async def auth(request: Request):
     user = token.get('userinfo')
     if user:
         request.session['user'] = dict(user)
+    request.session['user_login'] = 'user_login'
     return RedirectResponse(url='/apiorm/')
 
 
