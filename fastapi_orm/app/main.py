@@ -77,6 +77,15 @@ app.include_router(dmtool.router)
 app.include_router(users.router)
 app.include_router(metadata.router)
 
+@app.get("/apiorm/docs", include_in_schema=False)
+async def custom_swagger_ui_html(req: Request):
+    root_path = req.scope.get("root_path", "").rstrip("/")
+    openapi_url = root_path + app.openapi_url
+    return get_swagger_ui_html(
+        openapi_url=openapi_url,
+        title="API",
+    )
+
 register_tortoise(
     app,
     db_url=MARIADB_URI,
