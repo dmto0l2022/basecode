@@ -37,7 +37,26 @@ from pydantic import BaseModel
 
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
-app = FastAPI(title="DMTOOL API Server", openapi_url="/apiorm/openapi.json", docs_url="/apiorm/docs", redoc_url=None)
+app = FastAPI(title="DMTOOL API Server",
+              servers=[
+        {"url": "http://dev1.dmtool.info", "description": "Dev environment"}
+              ],
+              root_path="/apiorm",
+              openapi_url="/apiorm/openapi.json",
+              docs_url="/apiorm/docs",
+              redoc_url=None,
+              root_path_in_servers=False,)
+
+'''
+app = FastAPI(
+    servers=[
+        {"url": "https://stag.example.com", "description": "Staging environment"},
+        {"url": "https://prod.example.com", "description": "Production environment"},
+    ],
+    root_path="/api/v1",
+    root_path_in_servers=False,
+)
+'''
 
 class Status(BaseModel):
     message: str
