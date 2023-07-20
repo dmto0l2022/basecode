@@ -49,15 +49,28 @@ from pydantic import BaseModel
 
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
-config = Config('.env_fastapi_google')  # read config from .env file
-oauth = OAuth(config)
+#config = Config('.env_fastapi_google')  # read config from .env file
+#oauth = OAuth(config)
+#oauth.register(
+#    name='google',
+#    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+#    client_kwargs={
+#        'scope': 'openid email profile'
+#    }
+#)
+
+from starlette.config import environ
+oauth = OAuth()
 oauth.register(
     name='google',
     server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+    client_id=environ['FASTAPI_CLIENT_ID'],
+    client_secret=environ['FASTAPI_CLIENT_SECRET'],
     client_kwargs={
-        'scope': 'openid email profile'
+        'scope': 'user:email'
     }
 )
+
 
 app = FastAPI(title="DMTOOL API Server",
               ##servers=[
@@ -115,10 +128,12 @@ async def homepage(request: Request):
         return HTMLResponse(html)
     return HTMLResponse('<a href="/apiorm/login">login</a>')
 
-@app.get('/apiorm/login')
-async def login(request: Request):
-    redirect_uri = request.url_for('auth')
-    return await oauth.google.authorize_redirect(request, redirect_uri)
+@app.route('/apiorm/login')
+async def login_via_google(request):
+    google = oauth.create_client('google')
+    #redirect_uri = request.url_for('authorize_google')
+    redirect_uri = 'http://dev1.dmtool.info/apiorm/auth'
+    return await google.authorize_redirect(request, redirect_uri)
 
 
 @app.get('/apiorm/auth')
@@ -130,13 +145,13 @@ async def auth(request: Request):
     user = token.get('userinfo')
     if user:
         request.session['user'] = dict(user)
-    return RedirectResponse(url='/')
+    return RedirectResponse(url='/apiorm/')
 
 
 @app.get('/apiorm/logout')
 async def logout(request: Request):
     request.session.pop('user', None)
-    return RedirectResponse(url='/')
+    return RedirectResponse(url='/apiorm/')
 
 register_tortoise(
     app,
