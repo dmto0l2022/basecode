@@ -4,6 +4,7 @@
 
 import os
 from os import environ, path
+import pickle
 
 from dotenv import load_dotenv
 
