@@ -20,6 +20,12 @@ print(BASE_DIR)
 from typing import List
 
 from fastapi import FastAPI, HTTPException, Request
+
+from authlib.integrations.starlette_client import OAuth
+from starlette.config import Config
+
+from starlette.middleware.sessions import SessionMiddleware
+
 '''
 from models import Experiment_Pydantic, ExperimentIn_Pydantic, Experiments
 from models import Limit_Display_Pydantic, Limit_DisplayIn_Pydantic, Limit_Display
@@ -37,6 +43,16 @@ from pydantic import BaseModel
 
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
+config = Config('.env')  # read config from .env file
+oauth = OAuth(config)
+oauth.register(
+    name='google',
+    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+    client_kwargs={
+        'scope': 'openid email profile'
+    }
+)
+
 app = FastAPI(title="DMTOOL API Server",
               ##servers=[
         ##{"url": "http://dev1.dmtool.info", "description": "Dev environment"}
@@ -47,6 +63,8 @@ app = FastAPI(title="DMTOOL API Server",
               ##redoc_url=None,
               ##root_path_in_servers=False,
              )
+
+app.add_middleware(SessionMiddleware, secret_key="secret-string")
 
 '''
 app = FastAPI(
@@ -88,6 +106,13 @@ async def custom_swagger_ui_html(req: Request):
         title="API",
     )
 '''
+
+@app.route('/apiorm/login')
+async def login(request: Request):
+    # absolute url for callback
+    # we will define it below
+    redirect_uri = request.url_for('auth')
+    return await oauth.google.authorize_redirect(request, redirect_uri)
 
 register_tortoise(
     app,
