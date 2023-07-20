@@ -162,6 +162,23 @@ async def clear_session(request: Request):
 
 @app.get('/apiorm/view_session')
 def view_session(request: Request) -> JSONResponse:
+    request = Request(environ)
+    try:
+        session_key = request.cookies.get('session')
+        print('session key >>',session_key)
+        redis_key = 'session:'+session_key
+        print('redis_key >>',redis_key)
+    except:
+        a = 1
+    
+    try:
+        val = self.redisserver.get(redis_key)
+        print(redis_key)
+        print('---------val------------------------------')
+        print(val)
+        print('--------- decoded val------------------------------')
+        decoded_val = pickle.loads(val)
+        print(decoded_val)
     return JSONResponse({"session": request.session})
 
 
