@@ -65,4 +65,4 @@ RUN /env/bin/pip3 install -r /env/requirements.txt
 ## CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
 ## above used nginx
 #CMD ["uvicorn"  , "--bind", "0.0.0.0:8006",  "main:app", "--reload"]
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8008", "--root-path"="/apiorm"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8008", "--root-path" , "/apiorm"]
