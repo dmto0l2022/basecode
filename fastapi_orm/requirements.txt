@@ -1,3 +1,4 @@
+redis
 flask
 mariadb
 pydantic<2.0.0
@@ -7,6 +8,7 @@ uvicorn
 python-dotenv
 aiomysql
 starlette
+starlette_session
 authlib
 httpx
 
