@@ -115,13 +115,13 @@ async def homepage(request: Request):
         return HTMLResponse(html)
     return HTMLResponse('<a href="/apiorm/login">login</a>')
 
-@app.get('/login')
+@app.get('/apiorm/login')
 async def login(request: Request):
     redirect_uri = request.url_for('auth')
     return await oauth.google.authorize_redirect(request, redirect_uri)
 
 
-@app.get('/auth')
+@app.get('/apiorm/auth')
 async def auth(request: Request):
     try:
         token = await oauth.google.authorize_access_token(request)
@@ -133,7 +133,7 @@ async def auth(request: Request):
     return RedirectResponse(url='/')
 
 
-@app.get('/logout')
+@app.get('/apiorm/logout')
 async def logout(request: Request):
     request.session.pop('user', None)
     return RedirectResponse(url='/')
