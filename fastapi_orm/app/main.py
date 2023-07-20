@@ -30,8 +30,23 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse, RedirectResponse
 from authlib.integrations.starlette_client import OAuth, OAuthError
 
-from starlette.middleware.sessions import SessionMiddleware
+## from starlette.middleware.sessions import SessionMiddleware
+#################
 
+from redis import Redis
+from starlette.applications import Starlette
+from starlette.requests import Request
+from starlette.responses import JSONResponse
+from starlette.routing import Route
+from starlette.config import environ
+
+from starlette_session import SessionMiddleware
+from starlette_session.backends import BackendType
+
+
+
+
+################
 '''
 from models import Experiment_Pydantic, ExperimentIn_Pydantic, Experiments
 from models import Limit_Display_Pydantic, Limit_DisplayIn_Pydantic, Limit_Display
@@ -66,7 +81,7 @@ scope = [
 ]
 '''
 
-from starlette.config import environ
+
 oauth = OAuth()
 oauth.register(
     name='google',
@@ -90,7 +105,18 @@ app = FastAPI(title="DMTOOL API Server",
               ##root_path_in_servers=False,
              )
 
-app.add_middleware(SessionMiddleware, secret_key="secret-string")
+redis_client = Redis(host="container_redis_1", port=6379)
+#app = Starlette(debug=True, routes=routes)
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key="secret",
+    cookie_name="cookie22",
+    backend_type=BackendType.redis,
+    backend_client=redis_client,
+)
+
+#app.add_middleware(SessionMiddleware, secret_key="secret-string")
 
 '''
 app = FastAPI(
@@ -121,6 +147,20 @@ print(MARIADB_URI)
 app.include_router(dmtool.router)
 app.include_router(users.router)
 app.include_router(metadata.router)
+
+@app.get('/apiorm/setup_session')
+async def setup_session(request: Request) -> JSONResponse:
+    request.session.update({"data": "session_data"})
+    return JSONResponse({"session": request.session})
+
+@app.get('/apiorm/clear_session')
+async def clear_session(request: Request):
+    request.session.clear()
+    return JSONResponse({"session": request.session})
+
+@app.get('/apiorm/view_session')
+def view_session(request: Request) -> JSONResponse:
+    return JSONResponse({"session": request.session})
 
 
 @app.get('/apiorm/')
