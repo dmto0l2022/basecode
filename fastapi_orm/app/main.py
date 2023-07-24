@@ -258,7 +258,7 @@ async def protected(request: Request) -> JSONResponse:
         name = user.get('name')
         return HTMLResponse(f'<p>Hello {name}!</p><a href=/logout>Logout</a>')
     #return HTMLResponse('<a href=/login>Login</a>')
-    return JSONResponse({"name": "name"})
+    return JSONResponse({"name": name})
 
 register_tortoise(
     app,
