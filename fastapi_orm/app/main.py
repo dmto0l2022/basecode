@@ -244,6 +244,7 @@ async def protected(request: Request) -> JSONResponse:
     #else:
     #    return JSONResponse({"userinfo": "none"})
     print("request.client >>>>" , request.client)
+    print("request.cookies >>>>" , request.cookies)
     return JSONResponse({"request": "request"})
 
 register_tortoise(
