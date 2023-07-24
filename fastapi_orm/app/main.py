@@ -223,10 +223,10 @@ async def auth(request: Request):
         return HTMLResponse(f'<h1>{error.error}</h1>')
     
     profile_data = oauth.google.get('https://www.googleapis.com/oauth2/v1/userinfo')
-    google_id = profile_data['id']
+    ##profile_data = profile_data['id']
     
     #user = access_token.get('userinfo')
-    print('google_id >>>>>', google_id)
+    print('profile_data >>>>>', profile_data)
     #print('access_token >>>>>>' , access_token)
     if user:
         request.session['user'] = dict(user)
