@@ -236,7 +236,7 @@ async def logout(request: Request):
 @app.get('/apiorm/protected')
 async def protected(request: Request) -> JSONResponse:
     #user = request.session.get('user')
-    token = await oauth.google.authorize_access_token()
+    token = await oauth.google.authorize_access_token(request)
     userinfo = token['userinfo']
     if userinfo:
         print(userinfo)
