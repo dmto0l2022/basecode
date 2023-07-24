@@ -222,6 +222,7 @@ async def auth(request: Request):
     except OAuthError as error:
         return HTMLResponse(f'<h1>{error.error}</h1>')
     user = access_token.get('userinfo')
+    print('user >>>>>', user)
     if user:
         request.session['user'] = dict(user)
     request.session['user_login'] = 'user_login'
