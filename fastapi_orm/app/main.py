@@ -243,7 +243,8 @@ async def protected(request: Request) -> JSONResponse:
     #    return JSONResponse({"userinfo": userinfo})
     #else:
     #    return JSONResponse({"userinfo": "none"})
-    return JSONResponse({"request": request})
+    print(request)
+    return JSONResponse({"request": "request"})
 
 register_tortoise(
     app,
