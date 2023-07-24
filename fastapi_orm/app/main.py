@@ -222,7 +222,7 @@ async def auth(request: Request):
     except OAuthError as error:
         return HTMLResponse(f'<h1>{error.error}</h1>')
     
-    profile_data = oauth.google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
+    profile_data = oauth.google.get('https://www.googleapis.com/oauth2/v1/userinfo')
     google_id = profile_data['id']
     
     #user = access_token.get('userinfo')
