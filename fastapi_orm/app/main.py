@@ -251,6 +251,7 @@ async def protected(request: Request) -> JSONResponse:
     session = request.headers.get('session')
     print("request.session >>>>" , session)
     user = request.session.get('user')
+    print("user >>>>" , user)
     name = 'unknown'
     if user:
         name = user.get('name')
