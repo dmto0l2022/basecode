@@ -249,8 +249,8 @@ async def protected(request: Request) -> JSONResponse:
     print("request.headers >>>>" , request.headers)
     access_token = request.headers.get('Authorization')
     print("access_token >>>>" , access_token)
-    session = request.headers.get('session')
-    print("request.session >>>>" , session)
+    cookies = request.headers.get('cookies')
+    print("cookies >>>>" , cookies)
     user = request.session.get('user')
     print("user >>>>" , user)
     name = 'unknown'
