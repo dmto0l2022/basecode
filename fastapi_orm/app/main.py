@@ -228,8 +228,8 @@ async def auth(request: Request):
     #user = access_token.get('userinfo')
     print('profile_data >>>>>', profile_data)
     #print('access_token >>>>>>' , access_token)
-    if user:
-        request.session['user'] = dict(user)
+    if profile_data:
+        request.session['profile_data'] = dict(profile_data)
     request.session['user_login'] = 'user_login'
     return RedirectResponse(url='/apiorm/')
 
