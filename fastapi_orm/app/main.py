@@ -249,7 +249,7 @@ async def protected(request: Request) -> JSONResponse:
     print("request.headers >>>>" , request.headers)
     access_token = request.headers.get('Authorization')
     print("access_token >>>>" , access_token)
-    cookies = request.headers.get('cookie')
+    cookie = request.headers.get('cookie')
     print("cookie >>>>" , cookie)
     user = request.session.get('user')
     print("user >>>>" , user)
