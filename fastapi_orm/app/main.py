@@ -221,9 +221,13 @@ async def auth(request: Request):
         access_token = await oauth.google.authorize_access_token(request)
     except OAuthError as error:
         return HTMLResponse(f'<h1>{error.error}</h1>')
-    user = access_token.get('userinfo')
-    print('user >>>>>', user)
-    print('access_token >>>>>>' , access_token)
+    
+    profile_data = oauth.google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
+    google_id = profile_data['id']
+    
+    #user = access_token.get('userinfo')
+    print('google_id >>>>>', google_id)
+    #print('access_token >>>>>>' , access_token)
     if user:
         request.session['user'] = dict(user)
     request.session['user_login'] = 'user_login'
