@@ -248,6 +248,8 @@ async def protected(request: Request) -> JSONResponse:
     print("request.headers >>>>" , request.headers)
     access_token = request.headers.get('Authorization')
     print("access_token >>>>" , access_token)
+    session = request.headers.get('session')
+    print("request.session >>>>" , session)
     return JSONResponse({"request": "request"})
 
 register_tortoise(
