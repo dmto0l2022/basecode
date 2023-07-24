@@ -222,14 +222,15 @@ async def auth(request: Request):
     except OAuthError as error:
         return HTMLResponse(f'<h1>{error.error}</h1>')
     
-    profile_data = oauth.google.get('https://www.googleapis.com/oauth2/v1/userinfo')
+    ## profile_data = oauth.google.get('https://www.googleapis.com/oauth2/v1/userinfo')
     ##profile_data = profile_data['id']
-    
+    user = await oauth.google.parse_id_token(request, access_token)
     #user = access_token.get('userinfo')
-    print('profile_data >>>>>', profile_data)
-    #print('access_token >>>>>>' , access_token)
-    if profile_data:
-        request.session['profile_data'] = profile_data
+    ## print('profile_data >>>>>', profile_data)
+    print('access_token >>>>>>' , access_token)
+    print('user >>>>>>' , user)
+    ##if profile_data:
+    ##    request.session['profile_data'] = profile_data
     request.session['user_login'] = 'user_login'
     return RedirectResponse(url='/apiorm/')
 
