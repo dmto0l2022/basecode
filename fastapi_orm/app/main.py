@@ -256,12 +256,12 @@ async def protected(request: Request) -> JSONResponse:
     print("access_token >>>>" , access_token)
     cookie = request.headers.get('cookie')
     print("cookie >>>>" , cookie)
-    user = request.session.get('user')
-    print("user >>>>" , user)
+    #user = request.session.get('user')
+    #print("user >>>>" , user)
     name = 'unknown'
-    if user:
-        name = user.get('name')
-        return HTMLResponse(f'<p>Hello {name}!</p><a href=/logout>Logout</a>')
+    #if user:
+    #    name = user.get('name')
+    #    return HTMLResponse(f'<p>Hello {name}!</p><a href=/logout>Logout</a>')
     #return HTMLResponse('<a href=/login>Login</a>')
     return JSONResponse({"name": name})
 
