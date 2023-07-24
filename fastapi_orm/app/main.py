@@ -221,11 +221,9 @@ async def auth(request: Request):
         access_token = await oauth.google.authorize_access_token(request)
     except OAuthError as error:
         return HTMLResponse(f'<h1>{error.error}</h1>')
-    user_data = await oauth.google.parse_id_token(request, access_token)
-    request.session['user'] = dict(user_data)
-    #user = token.get('userinfo')
-    #if user:
-    #    request.session['user'] = dict(user)
+    user = access_token.get('userinfo')
+    if user:
+        request.session['user'] = dict(user)
     request.session['user_login'] = 'user_login'
     return RedirectResponse(url='/apiorm/')
 
