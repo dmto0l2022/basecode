@@ -223,6 +223,7 @@ async def auth(request: Request):
         return HTMLResponse(f'<h1>{error.error}</h1>')
     user = access_token.get('userinfo')
     print('user >>>>>', user)
+    print('access_token >>>>>>' , access_token)
     if user:
         request.session['user'] = dict(user)
     request.session['user_login'] = 'user_login'
