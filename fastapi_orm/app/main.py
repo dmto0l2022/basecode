@@ -276,6 +276,26 @@ async def protected(request: Request) -> JSONResponse:
         return HTMLResponse(f'<p>Hello!</p><a href=/login>Login</a>')
     #return JSONResponse({"name": name})
 
+from fastapi import FastAPI, Request
+from fastapi import HTTPException
+
+def check_authenticated(func):
+    @wraps(func)
+    def wrapper(request, *args, **kwargs):
+        try:
+            if request.session['authenticated'] == True:
+                return func(*args, **kwargs)
+        except:
+            raise HTTPException(status_code=401, detail="User not authenticated")
+    return wrapper
+
+@app.get('/apiorm/authenticationcheck')
+@check_authenticated
+async def authentication_check(request: Request) -> JSONResponse:
+    #request.session.update({"data": "session_data"})
+    email = request.session['email']
+    return JSONResponse({"authenticated email": email})
+    
 register_tortoise(
     app,
     db_url=MARIADB_URI,
