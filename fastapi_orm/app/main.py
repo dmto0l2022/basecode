@@ -123,7 +123,7 @@ app.add_middleware(
 )
 
 @app.middleware("http")
-async def checkauthorisation(request: Request):
+async def checkauthorisation(request: Request, call_next):
     try:
         if (request.session['authenticated'] != 'yes' and "session" in request.url._url):
             HTMLResponse(f'<p>Unauthorised Request!</p>')
