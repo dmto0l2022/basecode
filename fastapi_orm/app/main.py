@@ -227,16 +227,19 @@ async def auth(request: Request):
     #user = await oauth.google.parse_id_token(request, access_token)
     #user = access_token.get('userinfo')
     #user = access_token['userinfo']
-    #user = oauth.google.parse_id_token(access_token, None)
+    #user = oauth.google.parse_id_token(access_token, None) ## needed the await
     #user = await oauth.google.parse_id_token(access_token, nonce=access_token['userinfo']['nonce'])
-    user_data = await oauth.google.parse_id_token(access_token, None)
+    user_data = await oauth.google.parse_id_token(access_token, None) ## undocumented solution
     #userinfo = access_token['userinfo']
     print('user >>>>>', user_data)
+    print('email >>>>>', user_data['email'])
     print('access_token >>>>>>' , access_token)
     #print('user >>>>>>' , user)
     ##if profile_data:
     ##    request.session['profile_data'] = profile_data
     request.session['user_login'] = 'user_login'
+    request.session['email'] = user_data['email']
+    request.session['authenticated'] = True
     return RedirectResponse(url='/apiorm/')
 
 
@@ -258,18 +261,18 @@ async def protected(request: Request) -> JSONResponse:
     print("request.client >>>>" , request.client)
     print("request.cookies >>>>" , request.cookies)
     print("request.headers >>>>" , request.headers)
-    access_token = request.headers.get('Authorization')
-    print("access_token >>>>" , access_token)
+    ## access_token = request.headers.get('Authorization')
+    ##print("access_token >>>>" , access_token)
     cookie = request.headers.get('cookie')
     print("cookie >>>>" , cookie)
     #user = request.session.get('user')
     #print("user >>>>" , user)
     name = 'unknown'
-    #if user:
-    #    name = user.get('name')
-    #    return HTMLResponse(f'<p>Hello {name}!</p><a href=/logout>Logout</a>')
-    #return HTMLResponse('<a href=/login>Login</a>')
-    return JSONResponse({"name": name})
+    if request.session['authenticated'] == True:
+        email = request.session['email']
+        return HTMLResponse(f'<p>Hello {email}!</p><a href=/logout>Logout</a>')
+    return HTMLResponse(f'<p>Hello!</p>'<a href=/login>Login</a>')
+    #return JSONResponse({"name": name})
 
 register_tortoise(
     app,
