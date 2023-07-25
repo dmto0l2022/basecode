@@ -5,7 +5,7 @@
 import os
 from os import environ, path
 import pickle
-import functools
+from functools import wraps
 
 
 from dotenv import load_dotenv
@@ -280,7 +280,7 @@ async def protected(request: Request) -> JSONResponse:
     #return JSONResponse({"name": name})
 
 #def check_authenticated(func):
-#    @functools.wraps(func)
+#    @wraps(func)
 #    def wrapper(request, *args, **kwargs):
 #        if request.session['authenticated'] != 'yes':
 #            raise HTTPException(status_code=401, detail="User not authenticated")
