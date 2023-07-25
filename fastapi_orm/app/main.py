@@ -225,8 +225,8 @@ async def auth(request: Request):
     ## profile_data = oauth.google.get('https://www.googleapis.com/oauth2/v1/userinfo')
     ##profile_data = profile_data['id']
     #user = await oauth.google.parse_id_token(request, access_token)
-    #user = access_token.get('userinfo')
-    ## print('profile_data >>>>>', profile_data)
+    user = access_token.get('userinfo')
+    print('user >>>>>', user)
     print('access_token >>>>>>' , access_token)
     #print('user >>>>>>' , user)
     ##if profile_data:
