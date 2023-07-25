@@ -228,10 +228,10 @@ async def auth(request: Request):
     #user = access_token.get('userinfo')
     #user = access_token['userinfo']
     #user = oauth.google.parse_id_token(access_token, None)
-    user = await oauth.google.parse_id_token(access_token, nonce=access_token['userinfo']['nonce'])
-   
+    #user = await oauth.google.parse_id_token(access_token, nonce=access_token['userinfo']['nonce'])
+    user_data = await oauth.google.parse_id_token(request, access_token)
     #userinfo = access_token['userinfo']
-    print('user >>>>>', user)
+    print('user >>>>>', user_data)
     print('access_token >>>>>>' , access_token)
     #print('user >>>>>>' , user)
     ##if profile_data:
