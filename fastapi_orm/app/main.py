@@ -290,10 +290,10 @@ async def is_authenticated(request: Request):
     authenticated = request.session.get('authenticated')
     return authenticated
 
-def login_required(f):
+async def login_required(f):
     @wraps(f)
     def wrapper(request, *args, **kwargs):
-        if is_authenticated(request) == {"authenticated": "no"}:
+        if await is_authenticated(request) == {"authenticated": "no"}:
             return HTMLResponse('<a href="/apiorm/login">login</a>')
         return f(request, *args, **kwargs)
     return wrapper
