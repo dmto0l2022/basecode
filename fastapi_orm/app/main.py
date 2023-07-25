@@ -286,14 +286,14 @@ async def protected(request: Request) -> JSONResponse:
 #            raise HTTPException(status_code=401, detail="User not authenticated")
 #        return wrapper
 
-def is_authenticated(request):
+async def is_authenticated(request: Request) -> JSONResponse:
     authenticated = request.session.get('authenticated')
-    return authenticated
+    return JSONResponse({"authenticated": authenticated})
 
-def login_required(f):
+async def login_required(f):
     @wraps(f)
     def wrapper(request, *args, **kwargs):
-        if is_authenticated(request) == 'no':
+        if is_authenticated(request) == {"authenticated": "no"}:
             return HTMLResponse('<a href="/apiorm/login">login</a>')
         return f(request, *args, **kwargs)
     return wrapper
