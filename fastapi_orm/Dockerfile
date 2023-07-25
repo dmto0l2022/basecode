@@ -54,6 +54,7 @@ RUN whereis pip3
 
 COPY ./requirements.txt /env/requirements.txt
 RUN /env/bin/pip3 install -r /env/requirements.txt
+RUN /env/bin/pip3 freeze
 
 ##################
 
