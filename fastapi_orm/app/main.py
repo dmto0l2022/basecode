@@ -268,10 +268,12 @@ async def protected(request: Request) -> JSONResponse:
     #user = request.session.get('user')
     #print("user >>>>" , user)
     name = 'unknown'
-    if request.session['authenticated'] == True:
-        email = request.session['email']
-        return HTMLResponse(f'<p>Hello {email}!</p><a href=/logout>Logout</a>')
-    return HTMLResponse(f'<p>Hello!</p><a href=/login>Login</a>')
+    try:
+        if request.session['authenticated'] == True:
+            email = request.session['email']
+            return HTMLResponse(f'<p>Hello {email}!</p><a href=/logout>Logout</a>')
+    except:
+        return HTMLResponse(f'<p>Hello!</p><a href=/login>Login</a>')
     #return JSONResponse({"name": name})
 
 register_tortoise(
