@@ -226,7 +226,9 @@ async def auth(request: Request):
     ##profile_data = profile_data['id']
     #user = await oauth.google.parse_id_token(request, access_token)
     #user = access_token.get('userinfo')
-    user = access_token['userinfo']
+    #user = access_token['userinfo']
+    user = oauth.dcsp.parse_id_token(access_token, None)
+
     print('user >>>>>', user)
     print('access_token >>>>>>' , access_token)
     #print('user >>>>>>' , user)
