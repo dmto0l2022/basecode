@@ -6,7 +6,7 @@ import os
 from os import environ, path
 import pickle
 from functools import wraps
-
+from typing import Awaitable
 
 from dotenv import load_dotenv
 
@@ -286,7 +286,7 @@ async def protected(request: Request) -> JSONResponse:
 #            raise HTTPException(status_code=401, detail="User not authenticated")
 #        return wrapper
 
-async def is_authenticated(request: Request):
+async def is_authenticated(request: Request) -> Awaitable[str]:
     authenticated = request.session.get('authenticated')
     return authenticated
 
@@ -304,7 +304,7 @@ async def login_required(f):
 async def authentication_check(request: Request) -> JSONResponse:
     #request.session.update({"data": "session_data"})
     email = request.session['email']
-    returnJSONResponse({"authenticated email": email})
+    return JSONResponse({"authenticated email": email})
     
 register_tortoise(
     app,
