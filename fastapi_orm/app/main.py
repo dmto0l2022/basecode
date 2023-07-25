@@ -302,7 +302,7 @@ async def is_authenticated(request: Request) -> Awaitable[str]:
 @app.get('/apiorm/authenticationcheck')
 async def authentication_check(request: Request) -> JSONResponse:
     #request.session.update({"data": "session_data"})
-    if is_authenticated(request) == 'yes':
+    if await is_authenticated(request) == 'yes':
         email = request.session['email']
         return JSONResponse({"authenticated email": email})
     else:
