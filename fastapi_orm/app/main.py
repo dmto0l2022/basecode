@@ -129,10 +129,16 @@ async def add_process_time_header(request: Request, call_next):
     process_time = time.time() - start_time
     response.headers["X-Process-Time"] = str(process_time)
     #request.url._url
-    if (request.session['authenticated'] != 'yes' and "session" in request.url._url):
-        HTMLResponse(f'<p>Unauthorised Request!</p>')
-    else:
-        return response
+    try:
+        if (request.session['authenticated'] != 'yes' and "session" in request.url._url):
+            HTMLResponse(f'<p>Unauthorised Request!</p>')
+        else:
+            return response
+    except:
+        if ("session" in request.url._url):
+            HTMLResponse(f'<p>Unauthorised Request!</p>')
+        else:
+            return response
 
 #app.add_middleware(SessionMiddleware, secret_key="secret-string")
 
