@@ -282,10 +282,9 @@ async def protected(request: Request) -> JSONResponse:
 def check_authenticated(func):
     @functools.wraps(func)
     def wrapper(request, *args, **kwargs):
-        if request.session['authenticated'] == 'yes':
-            return wrapper
-        else:
+        if request.session['authenticated'] != 'yes':
             raise HTTPException(status_code=401, detail="User not authenticated")
+        return wrapper
     
 
 @app.get('/apiorm/authenticationcheck')
