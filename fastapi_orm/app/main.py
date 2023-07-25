@@ -211,8 +211,11 @@ def view_session(request: Request) -> JSONResponse:
         print(decoded_val)
     except:
         a = 1
-    
-    return JSONResponse({"session": request.session})
+
+    try:
+        return JSONResponse({"session": request.session})
+    except:
+        return JSONResponse({"session": "no current session"})
 
 
 @app.get('/apiorm/')
@@ -291,7 +294,7 @@ async def protected(request: Request) -> JSONResponse:
     #print("user >>>>" , user)
     name = 'unknown'
     try:
-        if request.session['authenticated'] == True:
+        if request.session['authenticated'] == "yes":
             email = request.session['email']
             return HTMLResponse(f'<p>Hello {email}!</p><a href=/logout>Logout</a>')
     except:
