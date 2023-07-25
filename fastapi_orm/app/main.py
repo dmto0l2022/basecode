@@ -290,21 +290,23 @@ async def is_authenticated(request: Request) -> Awaitable[str]:
     authenticated = request.session.get('authenticated')
     return authenticated
 
-def login_required(f):
-    @wraps(f)
-    def wrapper(request, *args, **kwargs):
-        a = await is_authenticated(request)
-        if a == "no":
-            return HTMLResponse('<a href="/apiorm/login">login</a>')
-        return f(request, *args, **kwargs)
-    return wrapper
+#def login_required(f):
+#    @wraps(f)
+#    def wrapper(request, *args, **kwargs):
+#        a = is_authenticated(request)
+#        if a == "no":
+#            return HTMLResponse('<a href="/apiorm/login">login</a>')
+#        return f(request, *args, **kwargs)
+#    return wrapper
 
 @app.get('/apiorm/authenticationcheck')
-@login_required
 async def authentication_check(request: Request) -> JSONResponse:
     #request.session.update({"data": "session_data"})
-    email = request.session['email']
-    return JSONResponse({"authenticated email": email})
+    if is_authenticated(request) == 'yes':
+        email = request.session['email']
+        return JSONResponse({"authenticated email": email})
+    else:
+        return JSONResponse({"authenticated email": "not authenticated"})
     
 register_tortoise(
     app,
