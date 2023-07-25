@@ -122,6 +122,7 @@ app.add_middleware(
     backend_client=redis_client,
 )
 
+'''
 @app.middleware("http")
 async def checkauthorisation(request: Request, call_next):
     try:
@@ -134,6 +135,7 @@ async def checkauthorisation(request: Request, call_next):
             HTMLResponse(f'<p>Unauthorised Request!</p>')
         else:
             return response
+'''
 
 #app.add_middleware(SessionMiddleware, secret_key="secret-string")
 
