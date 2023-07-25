@@ -283,7 +283,7 @@ def check_authenticated(func):
     @functools.wraps(func)
     def wrapper(request, *args, **kwargs):
         if request.session['authenticated'] == 'yes':
-            return func(*args, **kwargs)
+            return func(request, *args, **kwargs)
         else:
             raise HTTPException(status_code=401, detail="User not authenticated")
     return wrapper
