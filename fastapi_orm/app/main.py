@@ -5,6 +5,8 @@
 import os
 from os import environ, path
 import pickle
+import functools
+
 
 from dotenv import load_dotenv
 
@@ -276,11 +278,8 @@ async def protected(request: Request) -> JSONResponse:
         return HTMLResponse(f'<p>Hello!</p><a href=/login>Login</a>')
     #return JSONResponse({"name": name})
 
-from fastapi import FastAPI, Request
-from fastapi import HTTPException
-
 def check_authenticated(func):
-    @wraps(func)
+    @functools.wraps(func)
     def wrapper(request, *args, **kwargs):
         try:
             if request.session['authenticated'] == True:
