@@ -219,6 +219,7 @@ async def login_via_google(request):
 
 @app.get('/apiorm/auth')
 async def auth(request: Request):
+    request.session['authenticated'] = 'no'
     try:
         access_token = await oauth.google.authorize_access_token(request)
     except OAuthError as error:
@@ -241,7 +242,7 @@ async def auth(request: Request):
     ##    request.session['profile_data'] = profile_data
     request.session['user_login'] = 'user_login'
     request.session['email'] = user_data['email']
-    request.session['authenticated'] = True
+    request.session['authenticated'] = 'yes'
     return RedirectResponse(url='/apiorm/')
 
 
@@ -281,10 +282,9 @@ async def protected(request: Request) -> JSONResponse:
 def check_authenticated(func):
     @functools.wraps(func)
     def wrapper(request, *args, **kwargs):
-        try:
-            if request.session['authenticated'] == True:
-                return func(*args, **kwargs)
-        except:
+        if request.session['authenticated'] == 'yes':
+            return func(*args, **kwargs)
+        else:
             raise HTTPException(status_code=401, detail="User not authenticated")
     return wrapper
 
