@@ -290,7 +290,7 @@ async def is_authenticated(request: Request) -> Awaitable[str]:
     authenticated = request.session.get('authenticated')
     return authenticated
 
-async def login_required(f):
+def login_required(f):
     @wraps(f)
     def wrapper(request, *args, **kwargs):
         a = await is_authenticated(request)
