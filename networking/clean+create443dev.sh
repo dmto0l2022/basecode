@@ -6,7 +6,7 @@ podman rm container_8080
 podman rm container_8090
 podman rm container_443dev
 
-podman pod rm pod_networking
+podman pod rm pod_networking_1
 podman rm infra_networking_1
 
 podman rmi nginx:latest
