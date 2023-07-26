@@ -2,7 +2,13 @@ podman stop container_8080
 podman stop container_8090
 podman stop container_443dev
 
+podman rm container_8080
+podman rm container_8090
+podman rm container_443dev
+
 podman pod rm pod_networking
+podman rm infra_networking_1
+
 podman rmi nginx:latest
 podman rmi image_nginx443dev:latest
 podman rmi image_nginx8080:latest
