@@ -23,7 +23,7 @@ print(BASE_DIR)
 
 from typing import List
 
-from fastapi import FastAPI, HTTPException
+from fastapi import HTTPException,Header,Depends,FastAPI
 
 from starlette.config import Config
 
@@ -49,7 +49,37 @@ from starlette_session import SessionMiddleware
 from starlette_session.backends import BackendType
 
 
+################
 
+
+import hashlib
+import os
+from passlib.context import CryptContext
+
+#set your salt as an env variable
+private_salt = os.getenv("API_SALT")
+
+pwd_hash = CryptContext(schemes=['bcrypt'], deprecated='auto')
+
+
+
+def hash_api_key(api_key):
+    return pwd_hash.hash(api_key)
+
+
+def verify_hashed_key(api_key, hashed_api_key):
+    return pwd_hash.verify(api_key,hashed_api_key)
+
+def generate_api_key(user_id: str) -> str:
+    try:
+        salt = private_salt
+        key = user_id + salt
+        generated_key = hashlib.sha256(key.encode()).hexdigest()
+        #format the key to your needs
+        formated_key = f"MV_SECRET_{generated_key}"
+        return formated_key
+    except Exception as e:
+        raise e
 
 ################
 '''
