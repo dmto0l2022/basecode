@@ -6,3 +6,5 @@ https://fastapi.tiangolo.com/tutorial/sql-databases/#__tabbed_8_3
 
 https://madvirus.hashnode.dev/securing-your-fastapi-with-api-key-authentication-a-step-by-step-guide
 
+https://joshdimella.com/blog/adding-api-key-auth-to-fast-api
+
