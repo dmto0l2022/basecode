@@ -51,7 +51,7 @@ User_authlib_count_Pydantic = pydantic_model_creator(Users_authlib_count, name="
 ##response_model=User_authlib_count_Pydantic
 
 
-class UserApiKeys(Base):
+class UserApiKeys(models.Model):
     __tablename__ = 'user_api_keys'
     id = fields.IntField(pk=True)
     user_id = fields.IntField()
