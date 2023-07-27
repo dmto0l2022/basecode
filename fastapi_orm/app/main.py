@@ -250,7 +250,7 @@ async def login_via_google(request):
     google = oauth.create_client('google')
     print("lvg:request >>>>>", request)
     #redirect_uri = request.url_for('authorize_google')
-    redirect_uri = 'https://dev1.dmtool.info/apiorm/auth'
+    redirect_uri = 'https://dev1.dmtool.info/apiorm/auth/'
     return await google.authorize_redirect(request, redirect_uri)
 
 
