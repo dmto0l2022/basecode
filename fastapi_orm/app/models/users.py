@@ -51,7 +51,7 @@ User_authlib_count_Pydantic = pydantic_model_creator(Users_authlib_count, name="
 ##response_model=User_authlib_count_Pydantic
 
 
-class UserApiKeys(models.Model):
+class User_api_keys(models.Model):
     id = fields.IntField(pk=True)
     user_id = fields.IntField()
     secret_key = fields.CharField(max_length=255, null=True)
@@ -64,6 +64,10 @@ class UserApiKeys(models.Model):
     class Meta:
         table="user_api_keys"
         ##schema = ""
+
+User_api_key_Pydantic = pydantic_model_creator(User_api_keys, name="User_api_key")
+User_api_keyIn_Pydantic = pydantic_model_creator(User_api_keys, name="User_api_keyIn", exclude_readonly=True)
+
 
 class Users(models.Model):
     """
