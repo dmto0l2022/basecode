@@ -20,7 +20,7 @@ fastapi_orm_url = "http://container_fastapi_orm_1:8008"
 fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
 
 dash.register_page(__name__, path='/list_all_limits')
-
+baseapp_prefix = '/login/baseapp'
 
 #### list all limits
 
