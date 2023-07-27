@@ -11,5 +11,7 @@ starlette
 starlette_session
 authlib
 httpx
+hashlib
+passlib
 
 
