@@ -168,7 +168,7 @@ async def delete_authlibuser_permissions(user_id: str):
 
 #User_api_key_Pydantic = pydantic_model_creator(User_api_keys, name="User_api_key")
 #User_api_keyIn_Pydantic = pydantic_model_creator(User_api_keys, name="User_api_keyIn", exclude_readonly=True)
-'''
+
 @router.post("/apiorm/apikey", response_model=User_api_key_Pydantic)
 async def create_userapikey(userapikeys: User_api_keyIn_Pydantic):
     user_apikey_obj = await User_api_keys.create(**userapikeys.dict(exclude_unset=True))
@@ -187,11 +187,10 @@ async def update_userapikey(user_id: str, user_api_keys: User_api_keyIn_Pydantic
     await User_api_keys.filter(user_id=user_id).update(**user_api_keys.dict(exclude_unset=True))
     return await User_api_key_Pydantic.from_queryset_single(User_api_keys.get(user_id=user_id))
 
-
 @router.delete("/apiorm/apikey/{user_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
 async def delete_user_api_keys(user_id: str):
     deleted_count = await User_api_keys.filter(user_id=user_id).delete()
     if not deleted_count:
-        raise HTTPException(status_code=404, detail=f"Users_authlib_permissions {user_id} not found")
+        raise HTTPException(status_code=404, detail=f"user api keys for user {user_id} not found")
     return Status(message=f"Deleted user api keys for user {user_id}")
-'''
+
