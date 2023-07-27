@@ -4,6 +4,7 @@ router = APIRouter()
 from typing import List
 
 from models.users import User_Pydantic, UserIn_Pydantic, Users
+from models.users import User_api_key_Pydantic, User_api_keyIn_Pydantic
 from models.users import User_authlib_Pydantic, User_authlibIn_Pydantic, Users_authlib
 from models.users import User_authlib_permissions_Pydantic, User_authlib_permissionsIn_Pydantic, Users_authlib_permissions
 from models.users import User_authlib_count_Pydantic
