@@ -182,14 +182,14 @@ async def get_userapikey(user_id: str):
 @router.put(
     "/apiorm/apikey/{user_id}", response_model=User_api_key_Pydantic, responses={404: {"model": HTTPNotFoundError}}
 )
-async def update_userapikey(user_id: str, user_authlib_permissions: User_authlib_permissionsIn_Pydantic):
-    await Users_authlib_permissions.filter(user_id=user_id).update(**user_authlib_permissions.dict(exclude_unset=True))
-    return await Users_authlib_permissions_Pydantic.from_queryset_single(Users_authlib_permissions.get(user_id=user_id))
+async def update_userapikey(user_id: str, user_api_keys: User_api_keyIn_Pydantic):
+    await User_api_keys.filter(user_id=user_id).update(**user_api_keys.dict(exclude_unset=True))
+    return await User_api_key_Pydantic.from_queryset_single(User_api_keys.get(user_id=user_id))
 
 
 @router.delete("/apiorm/apikey/{user_id}", response_model=Status, responses={404: {"model": HTTPNotFoundError}})
-async def delete_authlibuser_permissions(user_id: str):
-    deleted_count = await Users_authlib_permissions.filter(user_id=user_id).delete()
+async def delete_user_api_keys(user_id: str):
+    deleted_count = await User_api_keys.filter(user_id=user_id).delete()
     if not deleted_count:
         raise HTTPException(status_code=404, detail=f"Users_authlib_permissions {user_id} not found")
-    return Status(message=f"Deleted authlib permissions for user {user_id}")
+    return Status(message=f"Deleted user api keys for user {user_id}")
