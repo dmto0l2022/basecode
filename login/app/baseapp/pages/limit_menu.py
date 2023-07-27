@@ -6,7 +6,7 @@ from app.baseapp.libraries import formlibrary as fl
 
 dash.register_page(__name__, path='/limit_menu')
 page_name = 'limit_menu'
-
+baseapp_prefix = '/login/baseapp'
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
@@ -34,17 +34,17 @@ def button_click(button1,button2,button3):
     #msg = prop_id
     if page_name + '_create_new_' + 'button_id' == prop_id :
         #msg = "Button 1 was most recently clicked"
-        href_return = '/app/baseapp/create_new_limit'
+        href_return = baseapp_prefix + '/create_new_limit'
         return href_return
     elif page_name + '_edit_existing_' + 'button_id' == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.edit_existing_plot']['path']
-        href_return = '/app/baseapp/edit_existing_limit'
+        href_return = baseapp_prefix + '/edit_existing_limit'
         return href_return
     elif page_name + '_list__' + 'button_id' == prop_id:
         #msg = "Button 2 was most recently clicked"
-        href_return = '/app/baseapp/list_all_limits'
+        href_return = baseapp_prefix +' /list_all_limits'
         return href_return
     else:
-        href_return = '/baseapp/limit_menu'
+        href_return = baseapp_prefix + '/limit_menu'
         return href_return
