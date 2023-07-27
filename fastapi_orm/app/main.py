@@ -145,13 +145,13 @@ app = FastAPI(title="DMTOOL API Server",
 redis_client = Redis(host="container_redis_1", port=6379)
 #app = Starlette(debug=True, routes=routes)
 
-app.add_middleware(
-    SessionMiddleware,
-    secret_key="secret",
-    cookie_name="session",
-    backend_type=BackendType.redis,
-    backend_client=redis_client,
-)
+#app.add_middleware(
+#    SessionMiddleware,
+#    secret_key="secret",
+#    cookie_name="session",
+#    backend_type=BackendType.redis,
+#    backend_client=redis_client,
+#)
 
 '''
 @app.middleware("http")
