@@ -5,6 +5,7 @@ from urllib.parse import urlparse, parse_qs
 cwd = os.getcwd()
 
 page_name = 'style_plot_and_traces'
+baseapp_prefix = '/login/baseapp'
 
 from datetime import datetime
 
