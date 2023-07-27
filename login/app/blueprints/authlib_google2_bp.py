@@ -46,7 +46,7 @@ GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
 
 oauth = OAuth(current_app)
 
-authlib_google2_bp = Blueprint('authlib_google2_bp', __name__,url_prefix='/app/login/google2')
+authlib_google2_bp = Blueprint('authlib_google2_bp', __name__,url_prefix='/login/google2')
 
 
 # This information is obtained upon registration of a new Google OAuth
@@ -54,7 +54,7 @@ authlib_google2_bp = Blueprint('authlib_google2_bp', __name__,url_prefix='/app/l
 client_id = GOOGLE_CLIENT_ID
 client_secret = GOOGLE_CLIENT_SECRET
 
-redirect_uri = 'http://dev1.dmtool.info/app/login/google2/callback'
+redirect_uri = 'https://dev1.dmtool.info/login/google2/callback'
 
 # Uncomment for detailed oauthlib logs
 #import logging
