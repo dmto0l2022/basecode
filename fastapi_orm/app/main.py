@@ -51,7 +51,7 @@ from starlette_session.backends import BackendType
 
 ################
 
-
+'''
 import hashlib
 import os
 from passlib.context import CryptContext
@@ -80,6 +80,7 @@ def generate_api_key(user_id: str) -> str:
         return formated_key
     except Exception as e:
         raise e
+'''
 
 ################
 '''
