@@ -13,6 +13,8 @@ from app.baseapp.libraries import formlibrary as fl
 
 import xml.etree.ElementTree as ET
 
+baseapp_prefix = '/login/baseapp'
+
 dash.register_page(__name__, path='/create_new_limit')
 
 '''
@@ -468,14 +470,14 @@ def button_click(
         #print(x.text)
         
         
-        href_return = '/app/baseapp/list_all_limits'
+        href_return = baseapp_prefix + '/list_all_limits'
         
         return href_return
     
     elif "create_new_limit_cancel_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
-        href_return = '/app/baseapp/homepage'
+        href_return = baseapp_prefix' + /homepage'
         return href_return
         
 '''
