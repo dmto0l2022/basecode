@@ -91,7 +91,7 @@ page_header_2 = dbc.Row(
                 ),
                  dbc.Col(
                     #html.P("Logged in as pauser (log out)", className="HEADER_TEXT"),
-                    dcc.Link('Login',id='login_link_1', href= baseapp_prefix + /login',className="HEADER_TEXT"),
+                    dcc.Link('Login',id='login_link_1', href= baseapp_prefix + '/login',className="HEADER_TEXT"),
                     width=4,
                     className = "HEADER_COLUMN",
                  ),
