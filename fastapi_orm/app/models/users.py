@@ -50,6 +50,18 @@ User_authlib_count_Pydantic = pydantic_model_creator(Users_authlib_count, name="
 
 ##response_model=User_authlib_count_Pydantic
 
+
+class UserApiKeys(Base):
+    __tablename__ = 'user_api_keys'
+    id = fields.IntField(pk=True)
+    user_id = fields.IntField()
+    secret_key = fields.CharField(max_length=255, null=True)
+    public_key = fields.CharField(max_length=50, null=True)
+    created_at = fields.DatetimeField(auto_now_add=True)
+    modified_at = fields.DatetimeField(auto_now=True)
+    ceased_at = fields.DatetimeField(auto_now=True)
+    user_id = fields.IntField()
+
 class Users(models.Model):
     """
     The User model
