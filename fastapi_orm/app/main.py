@@ -367,6 +367,6 @@ register_tortoise(
     app,
     db_url=MARIADB_URI,
     modules={"models": ["models.dmtool","models.users","models.metadata"]},
-    generate_schemas=True,
+    generate_schemas=False,
     add_exception_handlers=True,
 )
