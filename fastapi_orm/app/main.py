@@ -205,6 +205,17 @@ app.include_router(dmtool.router)
 app.include_router(users.router)
 app.include_router(metadata.router)
 
+async def migrate_db():
+    try:
+        os.system("aerich init -t app.db.TORTOISE_ORM")
+        os.system("aerich init-db")
+    except Exception as e:
+        raise e
+
+@app.on_event("startup")
+async def on_startup():
+    await migrate_db()
+
 @app.get('/apiorm/setup_session')
 async def setup_session(request: Request) -> JSONResponse:
     #request.session.update({"data": "session_data"})
