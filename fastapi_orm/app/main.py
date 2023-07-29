@@ -213,10 +213,10 @@ async def migrate_db():
         os.system("aerich -h")
         print("aerich init")
         os.system("aerich init")
-        #print("aerich init -t db.TORTOISE_ORM --location /workdir/fastapi_orm/app/migrations")
-        #os.system("aerich init -t db.TORTOISE_ORM --location /workdir/fastapi_orm/app/migrations")
-        #print("aerich init-db")
-        #os.system("aerich init-db")
+        print("aerich init -t db.TORTOISE_ORM --location /workdir/fastapi_orm/app/migrations")
+        os.system("aerich init -t db.TORTOISE_ORM --location /workdir/fastapi_orm/app/migrations")
+        print("aerich init-db")
+        os.system("aerich init-db")
     except Exception as e:
         raise e
 
@@ -237,7 +237,7 @@ async def generate_schema() -> None:
 
 @app.on_event("startup")
 async def on_startup():
-    await generate_schema()
+    await migrate_db()
 
 @app.get('/apiorm/setup_session')
 async def setup_session(request: Request) -> JSONResponse:
