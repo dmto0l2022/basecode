@@ -8,6 +8,7 @@ class Users_authlib(models.Model):
 
     id = fields.IntField(pk=True)
     test = fields.CharField(max_length=50, unique=False)
+    test2 = fields.CharField(max_length=50, unique=False)
     authlib_id = fields.CharField(max_length=50, unique=True)
     authlib_provider = fields.CharField(max_length=50, null=True)
     created_at = fields.DatetimeField(auto_now_add=True)
