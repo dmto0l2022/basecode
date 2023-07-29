@@ -56,6 +56,9 @@ COPY ./requirements.txt /env/requirements.txt
 RUN /env/bin/pip3 install -r /env/requirements.txt
 RUN /env/bin/pip3 freeze
 
+RUN aerich init -t app.db.TORTOISE_ORM
+RUN aerich init-db
+
 ##################
 
 #RUN pip install --no-cache-dir --upgrade -r /workdir/fastapi/requirements.txt
