@@ -12,5 +12,7 @@ starlette_session
 authlib
 httpx
 passlib
+ddlparse
+dictdiffer
 aerich
 
