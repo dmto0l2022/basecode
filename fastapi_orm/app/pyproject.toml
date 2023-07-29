@@ -1,4 +1,3 @@
-
 [tool.poetry]
 name = "aerich"
 version = "0.7.2"
