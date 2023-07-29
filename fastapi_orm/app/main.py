@@ -100,6 +100,8 @@ from pydantic import BaseModel
 
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
+from tortoise import Tortoise, run_async
+
 #config = Config('.env_fastapi_google')  # read config from .env file
 #oauth = OAuth(config)
 #oauth.register(
@@ -226,7 +228,8 @@ async def generate_schema() -> None:
         modules={"models": ["models.dmtool","models.users","models.metadata"]},
     )
 
-    log.info("Generating Database schema via Tortoise...")
+    #log.info("Generating Database schema via Tortoise...")
+    print("Generating Database schema via Tortoise...")
 
     await Tortoise.generate_schemas()
     await Tortoise.close_connections()
