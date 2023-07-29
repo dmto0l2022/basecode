@@ -18,10 +18,10 @@ MARIADB_URI = "mysql://" + MARIADB_USERNAME + ":" + \
 print(MARIADB_URI)
 
 TORTOISE_ORM = {
-    "connections": {"default": os.environ.get('DATABASE_URL')},
+    "connections": {"default": os.environ.get('MARIADB_URI')},
     "apps": {
         "models": {
-            "models": ["app.models.tortoise", "aerich.models"],
+            "models": ["models.dmtool","models.users","models.metadata", "aerich.models"],
             "default_connection": "default",
         },
     },
