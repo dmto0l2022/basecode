@@ -230,6 +230,13 @@ config = {
     },
 }
 
+
+async def migrate_db2():
+    command = Command(tortoise_config=config, app='models')
+    await command.init()
+    await command.migrate('test')
+
+
 async def migrate_db1():
     try:
         command = Command(tortoise_config=config, app='models')
@@ -263,7 +270,7 @@ async def generate_schema() -> None:
 
 @app.on_event("startup")
 async def on_startup():
-    await migrate_db1()
+    await migrate_db2()
 
 @app.get('/apiorm/setup_session')
 async def setup_session(request: Request) -> JSONResponse:
