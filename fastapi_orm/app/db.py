@@ -21,8 +21,10 @@ TORTOISE_ORM = {
     "connections": {"default": os.environ.get('MARIADB_URI')},
     "apps": {
         "models": {
-            "models": ["models.dmtool","models.users","models.metadata", "aerich.models"],
+            "models": ["models.dmtool","models.users","models.metadata"],
             "default_connection": "default",
         },
     },
 }
+
+#"aerich.models"
