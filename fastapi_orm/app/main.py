@@ -207,7 +207,11 @@ app.include_router(metadata.router)
 
 async def migrate_db():
     try:
+        print("aerich -h")
+        os.system("aerich -h")
+        print("aerich init -t db.TORTOISE_ORM --location /workdir/fastapi_orm/app ")
         os.system("aerich init -t db.TORTOISE_ORM --location /workdir/fastapi_orm/app ")
+        print("aerich init-db")
         os.system("aerich init-db")
     except Exception as e:
         raise e
