@@ -220,6 +220,16 @@ async def migrate_db():
 
 from aerich import Command
 
+config = {
+    "connections": {"default" : MARIADB_URI)},
+    "apps": {
+        "models": {
+            "models": ["aerich.models","models.dmtool","models.users","models.metadata"],
+            "default_connection": "default",
+        },
+    },
+}
+
 async def migrate_db1():
     command = Command(tortoise_config=config, app='models')
     await command.init()
@@ -242,7 +252,7 @@ async def generate_schema() -> None:
 
 @app.on_event("startup")
 async def on_startup():
-    await migrate_db()
+    await migrate_db1()
 
 @app.get('/apiorm/setup_session')
 async def setup_session(request: Request) -> JSONResponse:
