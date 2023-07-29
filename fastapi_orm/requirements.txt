@@ -12,5 +12,5 @@ starlette_session
 authlib
 httpx
 passlib
-
+aerich
 
