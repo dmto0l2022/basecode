@@ -218,9 +218,22 @@ async def migrate_db():
     except Exception as e:
         raise e
 
+async def generate_schema() -> None:
+    log.info('Initializing Tortoise...')
+
+    await Tortoise.init(
+        db_url=os.environ.get('MARIADB_URI'),
+        modules={"models": ["models.dmtool","models.users","models.metadata"]},
+    )
+
+    log.info("Generating Database schema via Tortoise...")
+
+    await Tortoise.generate_schemas()
+    await Tortoise.close_connections()
+
 @app.on_event("startup")
 async def on_startup():
-    await migrate_db()
+    await generate_schema()
 
 @app.get('/apiorm/setup_session')
 async def setup_session(request: Request) -> JSONResponse:
