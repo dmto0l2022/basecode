@@ -225,7 +225,7 @@ async def generate_schema() -> None:
     print('Initializing Tortoise...')
 
     await Tortoise.init(
-        db_url=os.environ.get('MARIADB_URI'),
+        db_url=MARIADB_URI,
         modules={"models": ["models.dmtool","models.users","models.metadata"]},
     )
 
