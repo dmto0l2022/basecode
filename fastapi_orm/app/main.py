@@ -238,18 +238,18 @@ async def migrate_db2():
 
 
 async def migrate_db1():
-    try:
-        command = Command(tortoise_config=config, app='models')
-    except:
-        a = 1
+    command = Command(tortoise_config=config, app='models')
+    print("command : " , command)
     
     try:
         await command.init()
+        print("command.init() successful")
     except:
         a = 1
     
     try:
         await command.migrate('test')
+        print("command.migrate('test') successful")
     except:
         a = 1
 
