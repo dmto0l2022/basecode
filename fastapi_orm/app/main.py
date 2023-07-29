@@ -238,7 +238,7 @@ async def migrate_db1():
     
     try:
         await command.init()
-     except:
+    except:
         a = 1
     
     try:
