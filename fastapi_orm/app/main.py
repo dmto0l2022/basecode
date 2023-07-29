@@ -218,6 +218,13 @@ async def migrate_db():
     except Exception as e:
         raise e
 
+from aerich import Command
+
+async def migrate_db1():
+    command = Command(tortoise_config=config, app='models')
+    await command.init()
+    await command.migrate('test')
+
 async def generate_schema() -> None:
     #log.info('Initializing Tortoise...')
     print('Initializing Tortoise...')
