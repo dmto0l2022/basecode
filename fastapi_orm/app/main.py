@@ -231,9 +231,20 @@ config = {
 }
 
 async def migrate_db1():
-    command = Command(tortoise_config=config, app='models')
-    await command.init()
-    await command.migrate('test')
+    try:
+        command = Command(tortoise_config=config, app='models')
+    except:
+        a = 1
+    
+    try:
+        await command.init()
+     except:
+        a = 1
+    
+    try:
+        await command.migrate('test')
+    except:
+        a = 1
 
 async def generate_schema() -> None:
     #log.info('Initializing Tortoise...')
