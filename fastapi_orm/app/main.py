@@ -221,7 +221,7 @@ async def migrate_db():
 from aerich import Command
 
 config = {
-    "connections": {"default" : MARIADB_URI)},
+    "connections": {"default" : MARIADB_URI},
     "apps": {
         "models": {
             "models": ["aerich.models","models.dmtool","models.users","models.metadata"],
