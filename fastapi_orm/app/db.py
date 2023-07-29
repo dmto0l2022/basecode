@@ -1,5 +1,16 @@
 import os
 
+MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+
+MARIADB_URI = "mysql://" + MARIADB_USERNAME + ":" + \
+                MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
+                + MARIADB_DATABASE
+
+print(MARIADB_URI)
+
 TORTOISE_ORM = {
     "connections": {"default": os.environ.get('DATABASE_URL')},
     "apps": {
