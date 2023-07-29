@@ -1,5 +1,10 @@
 import os
 
+from dotenv import load_dotenv
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
 MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
 MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
 MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
