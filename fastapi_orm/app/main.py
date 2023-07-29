@@ -221,7 +221,8 @@ async def migrate_db():
         raise e
 
 async def generate_schema() -> None:
-    log.info('Initializing Tortoise...')
+    #log.info('Initializing Tortoise...')
+    print('Initializing Tortoise...')
 
     await Tortoise.init(
         db_url=os.environ.get('MARIADB_URI'),
