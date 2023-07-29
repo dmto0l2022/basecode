@@ -56,7 +56,7 @@ COPY ./requirements.txt /env/requirements.txt
 RUN /env/bin/pip3 install -r /env/requirements.txt
 RUN /env/bin/pip3 freeze
 
-RUN aerich init -t app.db.TORTOISE_ORM
+RUN aerich init -t db.TORTOISE_ORM
 RUN aerich init-db
 
 ##################
