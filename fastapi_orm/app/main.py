@@ -211,8 +211,6 @@ async def migrate_db():
     try:
         print("aerich -h")
         os.system("aerich -h")
-        print("aerich init")
-        os.system("aerich init")
         print("aerich init -t db.TORTOISE_ORM --location /workdir/fastapi_orm/app/migrations")
         os.system("aerich init -t db.TORTOISE_ORM --location /workdir/fastapi_orm/app/migrations")
         print("aerich init-db")
