@@ -15,5 +15,3 @@ passlib
 ddlparse
 dictdiffer
 aerich
-conftest
-
