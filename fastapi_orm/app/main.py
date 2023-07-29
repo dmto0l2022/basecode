@@ -224,7 +224,7 @@ config = {
     "connections": {"default" : MARIADB_URI},
     "apps": {
         "models": {
-            "models": ["aerich.models","models.dmtool","models.users","models.metadata"],
+            "models": ["models.dmtool","models.users","models.metadata","aerich.models"],
             "default_connection": "default",
         },
     },
