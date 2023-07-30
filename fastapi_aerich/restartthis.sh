@@ -1,2 +1,2 @@
-podman stop container_fastapi_orm_1
-podman start container_fastapi_orm_1
+podman stop container_fastapi_aerich_1
+podman start container_fastapi_aerich_1
