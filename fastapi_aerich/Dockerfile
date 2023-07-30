@@ -3,12 +3,7 @@
 ##3.10.9-slim-bullseye, 3.10-slim-bullseye, 3.10.9-slim, 3.10-slim
 #FROM python:3.10.9-slim-bullseye
 FROM python:3.11.4-bullseye
-RUN apt-get update &&
-    apt-get -y install vim &&
-    apt-get -y install netcat gcc &&
-    apt-get -y install unzip &&
-    apt-get -y install curl &&
-    apt-get clean
+RUN apt-get update && apt-get -y install vim netcat gcc install unzip && apt-get clean
 
 
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
