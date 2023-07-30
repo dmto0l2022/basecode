@@ -149,17 +149,19 @@ def GetLimits():
     #fastapi_orm_url = "http://35.214.16.124:8008"
     fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
     url = fastapi_orm_url_api + "/limit/"
-    r = requests.get(url)
-    response_data = r.json()
-    #print(response_data)
-    response_data_frame = pd.DataFrame(response_data)
-    limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
-    column_names=['id','data_label','data_comment','data_values']
-
-    #print('limit_list_df >>', limit_list_df_resp)
-    #print('trace_list_df >>', trace_list_df_resp)
-    #print('limit_data_df >>', limit_data_df_resp)
-
+    try:
+        r = requests.get(url)
+        response_data = r.json()
+        #print(response_data)
+        response_data_frame = pd.DataFrame(response_data)
+        limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
+        column_names=['id','data_label','data_comment','data_values']
+    
+        #print('limit_list_df >>', limit_list_df_resp)
+        #print('trace_list_df >>', trace_list_df_resp)
+        #print('limit_data_df >>', limit_data_df_resp)
+    except:
+        a = 1
     
     if response_data_frame.empty:
         limit_columns = ['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']
