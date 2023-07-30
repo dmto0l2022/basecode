@@ -5,3 +5,4 @@ tortoise-orm
 uvicorn
 python-dotenv
 aiomysql
+mariadb
