@@ -102,6 +102,7 @@ def GetLimit(limit_id_in):
     #fastapi_orm_url = "http://35.214.16.124:8008"
     fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
     url = fastapi_orm_url_api + "/limit/" + str(limit_id_in)
+    response_data_frame = pd.DataFrame()
     try:
         r = requests.get(url)
         response_data = r.json()
@@ -148,6 +149,7 @@ def GetLimits():
     #fastapi_orm_url = "http://35.214.16.124:8008"
     fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
     url = fastapi_orm_url_api + "/limit/"
+    response_data_frame = pd.DataFrame()
     try:
         r = requests.get(url)
         response_data = r.json()
