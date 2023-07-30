@@ -3,3 +3,4 @@ asyncpg
 fastapi
 tortoise-orm
 uvicorn
+python-dotenv
