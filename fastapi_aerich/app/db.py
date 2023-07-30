@@ -1,10 +1,34 @@
 import os
 
+from dotenv import load_dotenv
+
+import secrets
+import string
+import random
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+
+print('BASE_DIR')
+print(BASE_DIR)
+
+MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+#MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+MARIADB_DATABASE = "dev"
+MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+
+MARIADB_URI = "mysql://" + MARIADB_USERNAME + ":" + \
+                MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
+                + MARIADB_DATABASE
+
+print("aerich db >>>" , MARIADB_URI)
+
 from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
 
 TORTOISE_ORM = {
-    "connections": {"default": os.environ.get("DATABASE_URL")},
+    "connections": {"default": MARIADB_URI},
     "apps": {
         "models": {
             "models": ["models", "aerich.models"],
@@ -17,7 +41,7 @@ TORTOISE_ORM = {
 def init_db(app: FastAPI) -> None:
     register_tortoise(
         app,
-        db_url=os.environ.get("DATABASE_URL"),
+        db_url=MARIADB_URI,
         modules={"models": ["models"]},
         generate_schemas=False,
         add_exception_handlers=True,
