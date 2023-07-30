@@ -28,6 +28,6 @@ async def shutdown_event():
     print("Shutting down...")
 
 
-@app.get("/ping")
+@app.get("/aerich/ping")
 def pong():
     return {"ping": "pong!"}
