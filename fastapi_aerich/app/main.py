@@ -7,7 +7,10 @@ log = logging.getLogger(__name__)
 
 
 def create_application() -> FastAPI:
-    application = FastAPI()
+    application = FastAPI(title="DMTOOL API Server",
+              openapi_url="/aerich/openapi.json",
+              docs_url="/aerich/docs"
+             )
     return application
 
 
