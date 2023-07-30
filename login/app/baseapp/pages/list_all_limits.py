@@ -73,11 +73,16 @@ def DeleteRow(limit_in):
 
 def RefreshTableData():
     url = fastapi_orm_url_api + "/limit/"
-    r = requests.get(url)
-    response_data = r.json()
-    #print(response_data)
-    response_data_frame = pd.DataFrame(response_data)
     column_names=['id','experiment','data_comment','create', 'read', 'update', 'delete']
+    response_data_frame = pd.DataFrame()
+    try:
+        r = requests.get(url)
+        response_data = r.json()
+        #print(response_data)
+        response_data_frame = pd.DataFrame(response_data)
+    except:
+        a = 1
+    
     if response_data_frame.empty:
         empty_data = [['id','experiment','data_comment','create', 'read', 'update', 'delete']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
