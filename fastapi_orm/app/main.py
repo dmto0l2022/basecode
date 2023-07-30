@@ -268,9 +268,9 @@ async def generate_schema() -> None:
     await Tortoise.generate_schemas()
     await Tortoise.close_connections()
 
-@app.on_event("startup")
-async def on_startup():
-    await migrate_db2()
+#@app.on_event("startup")
+#async def on_startup():
+#    await migrate_db2()
 
 @app.get('/apiorm/setup_session')
 async def setup_session(request: Request) -> JSONResponse:
