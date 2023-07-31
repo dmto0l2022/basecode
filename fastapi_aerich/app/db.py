@@ -41,7 +41,7 @@ TORTOISE_ORM = {
 
 
 def init_db(app: FastAPI) -> None:
-    Tortoise.init_models(["models"], "models")
+    ##Tortoise.init_models(["models"], "models")
     register_tortoise(
         app,
         db_url=MARIADB_URI,
