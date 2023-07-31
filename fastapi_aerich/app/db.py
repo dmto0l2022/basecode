@@ -50,8 +50,4 @@ def init_db(app: FastAPI) -> None:
         generate_schemas=True,
         add_exception_handlers=True,
     )
-    await Tortoise.init(
-         db_url=MARIADB_URI,
-         modules={"models": TORTOISE_MODELS_LIST}
-      )
 
