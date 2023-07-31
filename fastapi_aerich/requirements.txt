@@ -1,6 +1,7 @@
 aerich
 asyncpg
 fastapi
+fastapi_crudrouter
 tortoise-orm
 uvicorn
 python-dotenv
