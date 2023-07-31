@@ -28,6 +28,25 @@ async def shutdown_event():
     print("Shutting down...")
 
 
+from aerich import Command
+
+config = {
+    "connections": {"default": "mysql://pythonuser:pythonuser@container_mariadb:3306/dev"},
+    "apps": {
+        "models": {
+            "models": ["models", "aerich.models"],
+            "default_connection": "default",
+        },
+    },
+}
+
+@app.get("/aerich/migrate")
+def migrate():
+    command = Command(tortoise_config=config, app='models')
+    await command.init()
+    await command.migrate('test')
+    return {"migrate": "migrated!"}
+
 @app.get("/aerich/ping")
 def pong():
     return {"ping": "pong!"}
