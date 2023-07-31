@@ -11,7 +11,7 @@ TORTOISE_ORM = {
     "connections": {"default": 'mysql://pythonuser:pythonuser@container_mariadb:3306/dev'},
     "apps": {
         "models": {
-            "models": ["example"],
+            "models": ["models", "aerich.models"],
             "default_connection": "default",
         },
     },
