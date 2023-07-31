@@ -1,4 +1,6 @@
 import logging
+import mariadb
+
 
 from db import init_db
 from fastapi import FastAPI
