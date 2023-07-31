@@ -27,6 +27,7 @@ print("aerich db >>>" , MARIADB_URI)
 
 from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
+from tortoise import Tortoise
 
 TORTOISE_ORM = {
     "connections": {"default": MARIADB_URI},
@@ -40,6 +41,7 @@ TORTOISE_ORM = {
 
 
 def init_db(app: FastAPI) -> None:
+    Tortoise.init_models(models_list, "models")
     register_tortoise(
         app,
         db_url=MARIADB_URI,
