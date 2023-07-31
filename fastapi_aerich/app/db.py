@@ -41,6 +41,15 @@ TORTOISE_ORM = {
 
 TORTOISE_MODELS_LIST = ["models", "aerich.models"]
 
+register_tortoise(
+        app,
+        db_url=MARIADB_URI,
+        modules={"models": TORTOISE_MODELS_LIST},
+        generate_schemas=False,
+        add_exception_handlers=True,
+    )
+
+'''
 def init_db(app: FastAPI) -> None:
     ##Tortoise.init_models(["models"], "models")
     register_tortoise(
@@ -50,3 +59,4 @@ def init_db(app: FastAPI) -> None:
         generate_schemas=False,
         add_exception_handlers=True,
     )
+'''
