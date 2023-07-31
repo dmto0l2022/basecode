@@ -46,6 +46,6 @@ def init_db(app: FastAPI) -> None:
         app,
         db_url=MARIADB_URI,
         modules={"models": ["models"]},
-        generate_schemas=False,
+        generate_schemas=True,
         add_exception_handlers=True,
     )
