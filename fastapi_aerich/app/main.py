@@ -2,7 +2,7 @@ import logging
 import mariadb
 
 
-from db import init_db
+from db import init_db, init_tortoise
 from fastapi import FastAPI
 
 log = logging.getLogger(__name__)
@@ -23,6 +23,7 @@ app = create_application()
 async def startup_event():
     print("Starting up...")
     init_db(app)
+    init_tortoise()
 
 
 @app.on_event("shutdown")
