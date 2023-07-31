@@ -12,7 +12,6 @@ RUN apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariad
 RUN apt-get install -y libmariadb-dev
 
 #WORKDIR /workdir/fastapi_aerich/app
-COPY ./requirements.txt /env/requirements.txt
 COPY app/ /app/
 RUN ls -la /app/*
 
