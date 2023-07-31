@@ -23,7 +23,7 @@ app = create_application()
 async def startup_event():
     print("Starting up...")
     init_db(app)
-    init_tortoise()
+    await init_tortoise()
 
 
 @app.on_event("shutdown")
