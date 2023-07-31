@@ -41,7 +41,7 @@ config = {
 }
 
 @app.get("/aerich/migrate")
-def migrate():
+async def migrate():
     command = Command(tortoise_config=config, app='models')
     await command.init()
     await command.migrate('test')
