@@ -1,9 +1,7 @@
 aerich
-asyncpg
-asyncmy
 fastapi
 fastapi_crudrouter
-tortoise-orm
+tortoise-orm[asyncmy]
 uvicorn
 python-dotenv
 aiomysql
