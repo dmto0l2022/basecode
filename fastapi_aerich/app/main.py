@@ -1,6 +1,7 @@
 import logging
 import mariadb
 import asyncmy
+import tortoise
 
 from db import init_db, init_tortoise
 from fastapi import FastAPI
