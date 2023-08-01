@@ -8,21 +8,31 @@ ENV PYTHONUNBUFFERED 1
 # install system dependencies
 RUN apt-get update && apt-get -y install vim unzip curl netcat gcc && apt-get clean
 
-
 RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
 RUN apt-get install -y libmariadb-dev
 
 #WORKDIR /workdir/fastapi_alembic/app
 
-# set working directory
-#WORKDIR /usr/src/app
-
 WORKDIR /app
-COPY app/ /app/
-RUN ls -la /app/*
+
+ARG USERNAME=agaitske
+ARG USER_UID=1001
+ARG USER_GID=1002 ## dm group
+
+# Create the user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+RUN chown $USER_UID:$USER_GID /app
 
 RUN mkdir /env
+RUN chown $USER_UID:$USER_GID /env
+
+USER $USERNAME
+
+COPY app/ /app/
+RUN ls -la /app/*
 
 ENV VIRTUAL_ENV=/env
 RUN python3 -m venv $VIRTUAL_ENV
