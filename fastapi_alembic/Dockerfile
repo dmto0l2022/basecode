@@ -1,3 +1,4 @@
+USER root
 # pull official base image
 FROM python:3.11.4-bullseye
 
@@ -24,17 +25,20 @@ ARG USER_GID=1002 ## dm group
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
-RUN chown $USER_UID:$USER_GID /app
+
 RUN chmod g+s /app
 
 RUN mkdir /env
 RUN chown $USER_UID:$USER_GID /env
 RUN chmod g+s /env
 
-USER $USERNAME
-
 COPY app/ /app/
+
+RUN chown -R $USER_UID:$USER_GID /app
+
 RUN ls -la /app/*
+
+USER $USERNAME
 
 ENV VIRTUAL_ENV=/env
 RUN python3 -m venv $VIRTUAL_ENV
