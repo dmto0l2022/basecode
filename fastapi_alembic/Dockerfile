@@ -25,11 +25,11 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
 RUN chown $USER_UID:$USER_GID /app
-RUN chmod g+s somefolder /app
+RUN chmod g+s /app
 
 RUN mkdir /env
 RUN chown $USER_UID:$USER_GID /env
-RUN chmod g+s somefolder /env
+RUN chmod g+s /env
 
 USER $USERNAME
 
