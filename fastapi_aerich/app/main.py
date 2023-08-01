@@ -109,7 +109,7 @@ async def connect():
     '''
     conn: BaseDBAsyncClient = connections.get("default")
     try:
-        await conn.execute_query('SELECT * FROM "event"')
+        await conn.execute_query('SELECT id, name FROM dev.event')
     except OperationalError:
         print("Expected it to fail")
     return {"conn": "connected!"}
