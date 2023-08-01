@@ -1,6 +1,11 @@
 uid=${ENV_UID} ##1001
 gid=${ENV_GID} ##1002
 
+subuidSize=$(( $(podman info --format "{{ range \
+   .Host.IDMappings.UIDMap }}+{{.Size }}{{end }}" ) - 1 ))
+subgidSize=$(( $(podman info --format "{{ range \
+   .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
+
 cd /opt/dmtools/code/basecode/fastapi_alembic
 
 podman stop container_fastapi_alembic_1
