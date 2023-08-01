@@ -7,8 +7,18 @@ from tortoise.contrib.pydantic import pydantic_model_creator
 from tortoise.models import Model
 from tortoise import fields, Tortoise
 
+#TORTOISE_ORM = {
+#    "connections": {"default": 'mysql://pythonuser:pythonuser@container_mariadb:3306/dev'},
+#    "apps": {
+#        "models": {
+#            "models": ["models", "aerich.models"],
+#            "default_connection": "default",
+#        },
+#    },
+#}
+
 TORTOISE_ORM = {
-    "connections": {"default": 'mysql://pythonuser:pythonuser@container_mariadb:3306/dev'},
+    "connections": {"default": 'mysql://pythonuser:pythonuser@0.0.0.0:3306/dev'},
     "apps": {
         "models": {
             "models": ["models", "aerich.models"],
