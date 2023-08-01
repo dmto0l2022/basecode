@@ -1,4 +1,3 @@
-USER root
 #FROM python:3.10.9-slim-bullseye
 ##3.10.9-slim-bullseye, 3.10-slim-bullseye, 3.10.9-slim, 3.10-slim
 FROM python:3.10.9-slim-bullseye
