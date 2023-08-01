@@ -38,3 +38,4 @@ COPY ./requirements.txt /env/requirements.txt
 RUN /env/bin/pip3 install -r /env/requirements.txt
 RUN /env/bin/pip3 freeze
 
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8014"]
