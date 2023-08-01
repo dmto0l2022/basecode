@@ -1,6 +1,5 @@
 import logging
 import mariadb
-import mysqlclient
 import asyncmy
 import tortoise
 
