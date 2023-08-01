@@ -1,6 +1,17 @@
 from sqlmodel import SQLModel, Field
 from typing import Optional
 
+from sqlalchemy.ext.declarative import declarative_base
+
+from sqlalchemy import Column
+from sqlalchemy import Integer
+from typing import Optional
+from sqlmodel import Field, SQLModel
+from sqlalchemy import String
+
+# Declarative base object
+Base = declarative_base()
+SQLModel.metadata = Base.metadata
 
 class SongBase(SQLModel):
     name: str
