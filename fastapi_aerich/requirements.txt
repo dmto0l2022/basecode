@@ -8,5 +8,4 @@ uvicorn
 python-dotenv
 aiomysql
 mariadb
-mysqlclient
 pydantic<2.0.0
