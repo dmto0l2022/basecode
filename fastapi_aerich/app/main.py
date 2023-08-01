@@ -43,6 +43,32 @@ config = {
     },
 }
 
+TORTOISE_ORM = {
+    'connections': {
+        # Dict format for connection
+        'default': {
+            'engine': 'tortoise.backends.asyncmy',
+            'credentials': {
+                'host': '0.0.0.0',
+                'port': '5432',
+                'user': 'pythonuser',
+                'password': 'pythonuser',
+                'database': 'dev',
+            }
+        },
+        # Using a DB_URL string
+        ##'default': 'postgres://postgres:qwerty123@localhost:5432/events'
+    },
+    'apps': {
+        'models': {
+            'models': ["models", "aerich.models"],
+            # If no default_connection specified, defaults to 'default'
+            'default_connection': 'default',
+        }
+    }
+}
+
+
 @app.get("/aerich/migrate")
 async def migrate():
     command = Command(tortoise_config=config, app='models')
@@ -64,19 +90,7 @@ from tortoise import Tortoise
 async def connect():
     # Assume that this is the Tortoise configuration used
     
-    await Tortoise.init(
-        {
-            "connections":{
-            "default": "mysql://pythonuser:pythonuser@container_mariadb:3306/dev"
-            },
-            "apps": {
-                "models": {
-                    "models": ["models", "aerich.models"],
-                    "default_connection": "default",
-                        },
-                    },
-        }
-    )
+    await Tortoise.init(TORTOISE_ORM)
     '''
      await Tortoise.init(
         {
