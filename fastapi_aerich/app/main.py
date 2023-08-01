@@ -47,7 +47,7 @@ TORTOISE_ORM = {
     'connections': {
         # Dict format for connection
         'default': {
-            'engine': 'asyncmy',
+            'engine': 'mysql',
             'credentials': {
                 'host': '0.0.0.0',
                 'port': '5432',
