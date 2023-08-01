@@ -63,7 +63,22 @@ from tortoise import Tortoise
 @app.get("/aerich/connect")
 async def connect():
     # Assume that this is the Tortoise configuration used
+    
     await Tortoise.init(
+        {
+            "connections":{
+            "default": "mysql://pythonuser:pythonuser@container_mariadb:3306/dev"
+            },
+            "apps": {
+                "models": {
+                    "models": ["models", "aerich.models"],
+                    "default_connection": "default",
+                        },
+                    },
+        }
+    )
+    '''
+     await Tortoise.init(
         {
             "connections": {
                 "default": {
@@ -76,7 +91,7 @@ async def connect():
             },
         }
     )
-    
+    '''
     conn: BaseDBAsyncClient = connections.get("default")
     try:
         await conn.execute_query('SELECT * FROM "event"')
