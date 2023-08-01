@@ -18,10 +18,23 @@ RUN apt-get install -y libmariadb-dev
 # set working directory
 #WORKDIR /usr/src/app
 
-# install python dependencies
-RUN pip install --upgrade pip
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
+WORKDIR /app
+COPY app/ /app/
+RUN ls -la /app/*
 
-# add app
-COPY . ./app
+RUN mkdir /env
+
+ENV VIRTUAL_ENV=/env
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+RUN /env/bin/python3 -m pip install --upgrade pip
+RUN . /env/bin/activate
+RUN /env/bin/python3 --version
+RUN whereis python3
+RUN whereis pip3
+
+COPY ./requirements.txt /env/requirements.txt
+RUN /env/bin/pip3 install -r /env/requirements.txt
+RUN /env/bin/pip3 freeze
+
