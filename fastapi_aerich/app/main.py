@@ -1,5 +1,6 @@
 import logging
 import mariadb
+import mysqlclient
 import asyncmy
 import tortoise
 
@@ -48,7 +49,7 @@ TORTOISE_ORM = {
     'connections': {
         # Dict format for connection
         'default': {
-            'engine': 'tortoise.contrib.mysql',
+            'engine': 'mysql',
             'credentials': {
                 'host': '0.0.0.0',
                 'port': '5432',
