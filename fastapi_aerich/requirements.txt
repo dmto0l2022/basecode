@@ -1,5 +1,6 @@
 aerich
 asyncpg
+asyncmy
 fastapi
 fastapi_crudrouter
 tortoise-orm
