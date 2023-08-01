@@ -29,7 +29,7 @@ print("aerich db >>>" , MARIADB_URI)
 from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
 from tortoise import Tortoise
-
+'''
 TORTOISE_ORM = {
     "connections": {"default": MARIADB_URI},
     "apps": {
@@ -38,6 +38,32 @@ TORTOISE_ORM = {
             "default_connection": "default",
         },
     },
+}
+'''
+
+TORTOISE_ORM = {
+    'connections': {
+        # Dict format for connection
+        'default': {
+            'engine': 'tortoise.backends.asyncmy',
+            'credentials': {
+                'host': MARIADB_CONTAINER,
+                'port': '5432',
+                'user': 'pythonuser',
+                'password': 'pythonuser',
+                'database': 'dev',
+            }
+        },
+        # Using a DB_URL string
+        ##'default': 'postgres://postgres:qwerty123@localhost:5432/events'
+    },
+    'apps': {
+        'models': {
+            'models': ["models", "aerich.models"],
+            # If no default_connection specified, defaults to 'default'
+            'default_connection': 'default',
+        }
+    }
 }
 
 TORTOISE_MODELS_LIST = ["models", "aerich.models"]
