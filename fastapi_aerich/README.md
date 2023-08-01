@@ -1,4 +1,8 @@
-# This does not work!
+# Started from
+
+https://github.com/testdrivenio/fastapi-tortoise-aerich
+
+# Modified to use Podman and it does not work!
 
 podman exec container_fastapi_aerich_1 aerich init-db
 BASE_DIR
