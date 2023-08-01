@@ -50,8 +50,8 @@ TORTOISE_ORM = {
         'default': {
             'engine': 'tortoise.backends.mysql',
             'credentials': {
-                'host': '0.0.0.0',
-                'port': '5432',
+                'host': 'container_mariadb',
+                'port': '3306',
                 'user': 'pythonuser',
                 'password': 'pythonuser',
                 'database': 'dev',
