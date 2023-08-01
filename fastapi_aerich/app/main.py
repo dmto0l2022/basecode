@@ -1,6 +1,6 @@
 import logging
 import mariadb
-
+import asyncmy
 
 from db import init_db, init_tortoise
 from fastapi import FastAPI
@@ -47,7 +47,7 @@ TORTOISE_ORM = {
     'connections': {
         # Dict format for connection
         'default': {
-            'engine': 'tortoise.backends.asyncmy',
+            'engine': 'asyncmy',
             'credentials': {
                 'host': '0.0.0.0',
                 'port': '5432',
