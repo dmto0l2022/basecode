@@ -53,5 +53,5 @@ class Rate(RateBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 
-class RateCreate(TuneBase):
+class RateCreate(RateBase):
     pass
