@@ -13,7 +13,7 @@ RUN curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | bash
 RUN apt-get update && apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariadb-backup mariadb-common
 RUN apt-get install -y libmariadb-dev
 
-WORKDIR /workdir
+WORKDIR /workdir/fastapi_alembic/app
 
 #WORKDIR /app
 
@@ -26,7 +26,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
 
-RUN chmod g+s /app
+#RUN chmod g+s /app
 
 RUN mkdir /env
 RUN chown $USER_UID:$USER_GID /env
