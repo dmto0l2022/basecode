@@ -25,3 +25,18 @@ class Song(SongBase, table=True):
 
 class SongCreate(SongBase):
     pass
+
+### Tune
+
+class TuneBase(SQLModel):
+    name: str
+    artist: str
+    year: Optional[int] = None
+
+
+class Tune(TuneBase, table=True):
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+
+class TuneCreate(TuneBase):
+    pass
