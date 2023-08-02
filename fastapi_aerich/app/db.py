@@ -58,7 +58,7 @@ TORTOISE_ORM_DICT = {
 TORTOISE_ORM = {
     'connections': {
         # Using a DB_URL string
-        'default': 'mysql+aiomysql://pythonuser:pythonuser@container_mariadb:3306/dev'
+        'default': 'aiomysql://pythonuser:pythonuser@container_mariadb:3306/dev'
     },
     'apps': {
         'models': {
