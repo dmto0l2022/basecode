@@ -37,5 +37,5 @@ async def delete_song(song_id: int, session: AsyncSession = Depends(get_session)
     statement = select(Song).where(Song.id == song_id)
     results = await session.exec(statement)
     song = results.one()
-    print("Song: ", song)
+    await session.delete(song)
     return {"deleted": song}
