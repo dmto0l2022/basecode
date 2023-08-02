@@ -11,10 +11,32 @@ RUN apt-get install -y mariadb-server galera-4 mariadb-client libmariadb3 mariad
 RUN apt-get install -y libmariadb-dev
 
 WORKDIR /app
-COPY app/ /app/
-RUN ls -la /app/*
+
+ARG USERNAME=agaitske
+ARG USER_UID=1001
+ARG USER_GID=1002 ## dm group
+
+# Create the user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+
+RUN chmod g+s /app
 
 RUN mkdir /env
+RUN chown $USER_UID:$USER_GID /env
+RUN chmod g+s /env
+
+COPY app/ /app/
+
+RUN chown -R $USER_UID:$USER_GID /app
+
+RUN ls -la /app/*
+
+USER $USERNAME
+
+
+WORKDIR /app
 
 ENV VIRTUAL_ENV=/env
 RUN python3 -m venv $VIRTUAL_ENV
