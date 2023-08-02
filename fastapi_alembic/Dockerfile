@@ -1,4 +1,3 @@
-USER root
 # pull official base image
 FROM python:3.11.4-bullseye
 
