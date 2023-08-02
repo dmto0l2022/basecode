@@ -34,6 +34,7 @@ async def add_song(song: SongCreate, session: AsyncSession = Depends(get_session
 @router.delete("/alembic/songs/{song_id}")
 async def delete_song(song_id: int, session: AsyncSession = Depends(get_session)):
     song = session.get(Song, song_id) ## works on the primary key of the table
+    print(song)
     if not song:
         raise HTTPException(status_code=404, detail="Song not found")
     session.delete(song)
