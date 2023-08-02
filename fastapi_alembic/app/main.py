@@ -3,7 +3,7 @@ from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from db import get_session, init_db
-from models import Song, SongCreate
+from models.models import Song, SongCreate
 
 app = FastAPI()
 
