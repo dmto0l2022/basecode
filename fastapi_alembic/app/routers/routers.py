@@ -38,4 +38,5 @@ async def delete_song(song_id: int, session: AsyncSession = Depends(get_session)
     results = await session.exec(statement)
     song = results.one()
     await session.delete(song)
+    await session.commit()
     return {"deleted": song}
