@@ -34,9 +34,9 @@ RUN chmod g+s /env
 
 #COPY app/ /app/
 
-RUN chown -R $USER_UID:$USER_GID /app
+#RUN chown -R $USER_UID:$USER_GID /app
 
-RUN ls -la /app/*
+#RUN ls -la /app/*
 
 USER $USERNAME
 
