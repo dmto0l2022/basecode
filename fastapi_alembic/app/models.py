@@ -20,6 +20,7 @@ class SongBase(SQLModel):
 
 
 class Song(SongBase, table=True):
+     __tablename__ = "tbl_song"
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 
