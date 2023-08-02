@@ -7,6 +7,8 @@ router = APIRouter()
 
 from typing import List
 
+from db import get_session
+
 from models.models import Song
 
 @router.get("/alembic/ping")
