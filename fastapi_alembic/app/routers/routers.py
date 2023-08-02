@@ -37,6 +37,6 @@ async def delete_song(song_id: int, session: AsyncSession = Depends(get_session)
     print(song)
     if not song:
         raise HTTPException(status_code=404, detail="Song not found")
-    session.delete(song)
-    session.commit()
-    return {"ok": True}
+    await session.delete(song)
+    await session.commit()
+    return {"deleted": song}
