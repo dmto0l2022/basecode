@@ -30,7 +30,7 @@ from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
 from tortoise import Tortoise
 
-TORTOISE_ORM = {
+TORTOISE_ORM_DICT = {
     'connections': {
         # Dict format for connection
         'default': {
@@ -54,6 +54,23 @@ TORTOISE_ORM = {
         }
     }
 }
+
+TORTOISE_ORM = {
+    'connections': {
+        # Using a DB_URL string
+        'default': 'mysql+aiomysql://pythonuser:pythonuser@container_mariadb:3306/dev'
+    },
+    'apps': {
+        'models': {
+            'models': ["models", "aerich.models"],
+            # If no default_connection specified, defaults to 'default'
+            'default_connection': 'default',
+        }
+    }
+}
+
+
+## mysql+aiomysql://pythonuser:pythonuser@container_mariadb:3306/dev
 
 TORTOISE_MODELS_LIST = ["models", "aerich.models"]
 
