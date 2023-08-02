@@ -19,5 +19,5 @@ podman run -dt \
 --name container_fastapi_alembic_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
--v /opt/dmtools/code/basecode:/workdir \
+-v /opt/dmtools/code/basecode:/workdir:z \
 localhost/fastapi_alembic_1:latest
