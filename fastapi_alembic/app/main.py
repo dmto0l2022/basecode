@@ -17,3 +17,5 @@ app = FastAPI(title="DMTOOL API Server - Alembic",
               ##redoc_url=None,
               ##root_path_in_servers=False,
              )
+
+app.include_router(routers.router)
