@@ -35,7 +35,7 @@ async def add_song(song: SongCreate, session: AsyncSession = Depends(get_session
 async def delete_song(song_id: int, session: AsyncSession = Depends(get_session)):
     #song = session.get(Song, song_id) ## works on the primary key of the table
     statement = select(Song).where(Song.id == song_id)
-    results = session.exec(statement)
+    results = await session.exec(statement)
     song = results.one()
     print("Song: ", song)
     return {"deleted": song}
