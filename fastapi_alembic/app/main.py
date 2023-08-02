@@ -5,6 +5,8 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from db import get_session, init_db
 from models.models import Song, SongCreate
 
+import routes.routes
+
 app = FastAPI(title="DMTOOL API Server - Alembic",
               ##servers=[
         ##{"url": "http://dev1.dmtool.info", "description": "Dev environment"}
