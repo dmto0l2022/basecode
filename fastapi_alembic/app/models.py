@@ -14,14 +14,14 @@ Base = declarative_base()
 SQLModel.metadata = Base.metadata
 
 class SongBase(SQLModel):
-name: str
-artist: str
-year: Optional[int] = None
+    name: str
+    artist: str
+    year: Optional[int] = None
 
 
 class Song(SongBase, table=True):
-id: int = Field(default=None, nullable=False, primary_key=True)
+    id: int = Field(default=None, nullable=False, primary_key=True)
 
 
 class SongCreate(SongBase):
-pass
+    pass
