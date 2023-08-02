@@ -55,3 +55,14 @@ class Rate(RateBase, table=True):
 
 class RateCreate(RateBase):
     pass
+
+## Experiment
+
+class ExperimentBase(SQLModel):
+    name: str
+
+class Experiment(ExperimentBase, table=True):
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+class ExperimentCreate(ExperimentBase):
+    pass
