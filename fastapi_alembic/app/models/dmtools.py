@@ -14,7 +14,7 @@ from sqlalchemy import UniqueConstraint
 #Base = declarative_base()
 #SQLModel.metadata = Base.metadata
 
-from models.models import Base
+from models.base import Base
 
 ### Experiments
 
