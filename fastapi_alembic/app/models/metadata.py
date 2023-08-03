@@ -10,7 +10,8 @@ from sqlmodel import Field, SQLModel
 from sqlalchemy import String
 
 # Declarative base object
-Base = declarative_base()
+#Base = declarative_base()
+from models.base import Base
 SQLModel.metadata = Base.metadata
 
 
