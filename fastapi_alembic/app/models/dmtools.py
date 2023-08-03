@@ -25,23 +25,40 @@ class Song(SongBase, table=True):
 
 class SongCreate(SongBase):
     pass
-
-from tortoise import fields, models
-from tortoise.contrib.pydantic import pydantic_model_creator
-
-class Experiments(models.Model):
-    """
-    The Experiments model
-    """
-    id = fields.IntField(pk=True)
-    name = fields.CharField(max_length=255, unique=True)
     
-    class Meta:
-        table="experiments"
-        ##schema = ""
+### Experiments
 
-Experiment_Pydantic = pydantic_model_creator(Experiments, name="Experiment")
-ExperimentIn_Pydantic = pydantic_model_creator(Experiments, name="ExperimentsIn", exclude_readonly=True)        
+class ExperimentBase(SQLModel):
+    name: str
+
+class Experiment(ExperimentBase, table=True):
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+class ExperimentCreate(SongBase):
+    pass
+
+## Limit Display
+
+class Limit_displayBase(SQLModel):
+    name: str
+    limit_id : int = Field(default=None, nullable=False, primary_key=False)
+    plot_id : int = Field(default=None, nullable=False, primary_key=False)
+    trace_id : int = Field(default=None, nullable=False, primary_key=False)
+    symbol : str
+    symbol_color :  str
+    line_style : str
+    line_color :  str
+    fill_color :  str
+    color :  str
+    style :  str
+    created_at : fields.DatetimeField(auto_now_add=True)
+    updated_at : fields.DatetimeField(auto_now_add=True)
+
+class Limit_display(Limit_displayBase, table=True):
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+class Limit_displayCreate(SongBase):
+    pass
         
 class Limit_Display(models.Model):
     
