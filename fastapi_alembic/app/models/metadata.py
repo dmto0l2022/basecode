@@ -1,7 +1,7 @@
 from sqlmodel import SQLModel, Field
 from typing import Optional
 
-import datetime
+from datetime import datetime
 
 from sqlalchemy.ext.declarative import declarative_base
 
