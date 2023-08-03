@@ -21,6 +21,10 @@ SQLModel.metadata = Base.metadata
 #symbol : str = Field(default=None)
 #created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
+## Classes
+Users
+Users_permissions
+User_api_keys
 
 ## Users
 
