@@ -10,8 +10,9 @@ from sqlmodel import Field, SQLModel
 from sqlalchemy import String
 
 # Declarative base object
-Base = declarative_base()
-SQLModel.metadata = Base.metadata
+#Base = declarative_base()
+#SQLModel.metadata = Base.metadata
+from models.models import Base
 
 class SongBase(SQLModel):
     name: str
