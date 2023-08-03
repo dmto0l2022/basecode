@@ -8,6 +8,7 @@ from sqlalchemy import Integer
 from typing import Optional
 from sqlmodel import Field, SQLModel
 from sqlalchemy import String
+from sqlalchemy import UniqueConstraint
 
 # Declarative base object
 Base = declarative_base()
@@ -34,7 +35,7 @@ class ExperimentBase(SQLModel):
 class Experiment(ExperimentBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-class ExperimentCreate(SongBase):
+class ExperimentCreate(ExperimentBase):
     pass
 
 ## Limit Display
@@ -77,11 +78,6 @@ class Limit_ownershipCreate(Limit_ownershipBase):
 ## Limits
 
 class LimitsBase(SQLModel):
-    user_id : int = Field(default=None, nullable=False, primary_key=False)
-    limit_id : int = Field(default=None, nullable=False, primary_key=False)
-    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-
     spin_dependency : str = Field(default=None)
     result_type : str = Field(default=None)
     measurement_type : str = Field(default=None)
@@ -97,19 +93,19 @@ class LimitsBase(SQLModel):
     file_name : str = Field(default=None)
     data_comment : str = Field(default=None)
     data_reference : str = Field(default=None)
-    created_at : fields.DatetimeField(auto_now_add=True)
-    updated_at : fields.DatetimeField(auto_now_add=True)
-    creator_id : fields.IntField(pk=False)
+    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    creator_id : int = Field(default=None, nullable=False, primary_key=False)
     experiment : fields.CharField(max_length=255)
-    rating : fields.IntField(pk=False)
-    date_of_announcement : fields.DateField(auto_now_add=False)
-    public : fields.BooleanField()
-    official : fields.BooleanField():
-    date_official : fields.DateField(auto_now_add=False)
-    greatest_hit : fields.BooleanField()
-    date_of_run_start : fields.DateField(auto_now_add=False)
-    date_of_run_end : fields.DateField(auto_now_add=False)
-    year : fields.IntField(pk=False)
+    rating : int = Field(default=None, nullable=False, primary_key=False)
+    date_of_announcement : datetime = Field(default=datetime.utcnow(), nullable=False)
+    public : int = Field(default=None, nullable=False, primary_key=False) ## boolean
+    official : int = Field(default=None, nullable=False, primary_key=False) ## boolean
+    date_official : datetime = Field(default=datetime.utcnow(), nullable=False)
+    greatest_hit : int = Field(default=None, nullable=False, primary_key=False) ## boolean
+    date_of_run_start : datetime = Field(default=datetime.utcnow(), nullable=False)
+    date_of_run_end : datetime = Field(default=datetime.utcnow(), nullable=False)
+    year : int = Field(default=None, nullable=False, primary_key=False)
 
 class Limits(LimitsBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
@@ -117,82 +113,42 @@ class Limits(LimitsBase, table=True):
 class LimitsCreate(LimitsBase):
     pass
         
-class Limits(models.Model):  
-    
-    id = fields.IntField(pk=True)
-    spin_dependency = fields.CharField(max_length=255)
-    result_type = fields.CharField(max_length=255)
-    measurement_type = fields.CharField(max_length=60)
-    nomhash = fields.CharField(max_length=255)
-    x_units = fields.CharField(max_length=255)
-    y_units = fields.CharField(max_length=255)
-    x_rescale = fields.CharField(max_length=255)
-    y_rescale = fields.CharField(max_length=255)
-    default_color = fields.CharField(max_length=255)
-    default_style = fields.CharField(max_length=255)
-    data_values = fields.TextField()
-    data_label = fields.CharField(max_length=255)
-    file_name = fields.CharField(max_length=255)
-    data_comment = fields.CharField(max_length=255)
-    data_reference = fields.CharField(max_length=255)
-    created_at = fields.DatetimeField(auto_now_add=True)
-    updated_at = fields.DatetimeField(auto_now_add=True)
-    creator_id = fields.IntField(pk=False)
-    experiment = fields.CharField(max_length=255)
-    rating = fields.IntField(pk=False)
-    date_of_announcement = fields.DateField(auto_now_add=False)
-    public = fields.BooleanField()
-    official = fields.BooleanField()
-    date_official = fields.DateField(auto_now_add=False)
-    greatest_hit = fields.BooleanField()
-    date_of_run_start = fields.DateField(auto_now_add=False)
-    date_of_run_end = fields.DateField(auto_now_add=False)
-    year = fields.IntField(pk=False)
-    
-    class Meta:
-        table="limits"
-        ##schema = ""
+## Plot Ownership 
 
-Limit_Pydantic = pydantic_model_creator(Limits, name="Limit")
-LimitIn_Pydantic = pydantic_model_creator(Limits, name="LimitIn", exclude_readonly=True)      
-        
-class Plot_Ownership(models.Model):      
-    
-    id = fields.IntField(pk=True)
-    user_id = fields.IntField(pk=False)
-    plot_id = fields.IntField(pk=False)
-    created_at = fields.DatetimeField(auto_now_add=True)
-    updated_at = fields.DatetimeField(auto_now_add=True)
-    
-    class Meta:
-        table="plot_ownership"
-        ##schema = ""
+class Plot_ownershipBase(SQLModel):
+    user_id : int = Field(default=None, nullable=False, primary_key=False)
+    plot_id : int = Field(default=None, nullable=False, primary_key=False)
+    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
-Plot_Ownership_Pydantic = pydantic_model_creator(Plot_Ownership, name="Plot_Ownership")
-Plot_OwnershipIn_Pydantic = pydantic_model_creator(Plot_Ownership, name="Plot_OwnershipIn", exclude_readonly=True)   
+class Plot_ownership(Plot_ownershipBase, table=True):
+    id: int = Field(default=None, nullable=False, primary_key=True)
 
-class Plots(models.Model):      
-    
-    id = fields.IntField(pk=True)
-    name = fields.CharField(max_length=255, unique=True)
-    x_min = fields.CharField(max_length=255)
-    x_max = fields.CharField(max_length=255)
-    y_min = fields.CharField(max_length=255)
-    y_max = fields.CharField(max_length=255)
-    x_units = fields.CharField(max_length=255)
-    y_units = fields.CharField(max_length=255)
-    user_id = fields.IntField(pk=False)
-    created_at = fields.DatetimeField(auto_now_add=True)
-    updated_at = fields.DatetimeField(auto_now_add=True)
-    plot_png = fields.TextField()
-    legend_png = fields.TextField()
-    plot_eps = fields.TextField()
-    legend_eps = fields.TextField()
-    no_id = fields.IntField(pk=False)
+class Plot_ownershipCreate(Plot_ownershipBase):
+    pass
 
-    class Meta:
-        table="plots"
-        ##schema = ""
+## Plots
 
-Plot_Pydantic = pydantic_model_creator(Plots, name="Plot")
-PlotIn_Pydantic = pydantic_model_creator(Plots, name="PlotIn", exclude_readonly=True)  
+class PlotsBase(SQLModel):
+    name : str = Field(default=None,nullable=False, primary_key=False) ## Unique??
+    x_min : str = Field(default=None)
+    x_max : str = Field(default=None)
+    y_min : str = Field(default=None)
+    y_max : str = Field(default=None)
+    x_units : str = Field(default=None)
+    y_units : str = Field(default=None)
+    user_id : int = Field(default=None, nullable=False, primary_key=False)
+    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    plot_png = str = Field(default=None)
+    legend_png = str = Field(default=None)
+    plot_eps = str = Field(default=None)
+    legend_eps = str = Field(default=None)
+    no_id = int = Field(default=None, nullable=False, primary_key=False)
+
+class Plots(PlotsBase, table=True):
+    __table_args__ = (UniqueConstraint("name"),)
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+class PlotsCreate(PlotsBase):
+    pass
