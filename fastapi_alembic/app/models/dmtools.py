@@ -142,11 +142,11 @@ class PlotsBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    plot_png = str = Field(default=None)
-    legend_png = str = Field(default=None)
-    plot_eps = str = Field(default=None)
-    legend_eps = str = Field(default=None)
-    no_id = int = Field(default=None, nullable=False, primary_key=False)
+    plot_png : str = Field(default=None)
+    legend_png : str = Field(default=None)
+    plot_eps : str = Field(default=None)
+    legend_eps : str = Field(default=None)
+    no_id : int = Field(default=None, nullable=False, primary_key=False)
 
 class Plots(PlotsBase, table=True):
     __table_args__ = (UniqueConstraint("name"),)
