@@ -13,46 +13,24 @@ from sqlalchemy import String
 Base = declarative_base()
 SQLModel.metadata = Base.metadata
 
-class SongBase(SQLModel):
-    name: str
-    artist: str
-    year: Optional[int] = None
+
+#name: str = Field(default=None)
+#limit_id : int = Field(default=None, nullable=False, primary_key=False)
+#symbol : str = Field(default=None)
+#created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+
+## dropdown_valuepairs
+
+class Dropdown_valuepairsBase(SQLModel):
+    variable : str = Field(default=None)
+    label : str = Field(default=None)
+    value : str = Field(default=None)
+    data_type : str = Field(default=None)
 
 
-class Song(SongBase, table=True):
+class Dropdown_valuepairs(Dropdown_valuepairsBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 
-class SongCreate(SongBase):
+class Dropdown_valuepairsCreate(Dropdown_valuepairsBase):
     pass
-
-from tortoise import fields, models
-from tortoise.contrib.pydantic import pydantic_model_creator
-
-'''
-`dropdown_valuepairs` (
-  `variable` text DEFAULT NULL,
-  `label` text DEFAULT NULL,
-  `value` text DEFAULT NULL,
-  `data_type` text DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-'''
-
-
-class dropdown_valuepairs(models.Model):
-    """
-    The dropdown_valuepairs model
-    """
-    id = fields.IntField(pk=True)
-    variable = fields.CharField(max_length=255, unique=True)
-    label = fields.CharField(max_length=255, unique=True)
-    value = fields.CharField(max_length=255, unique=True)
-    data_type = fields.CharField(max_length=255, unique=True)
-    
-    
-    class Meta:
-        table="dropdown_valuepairs"
-        ##schema = ""
-
-dropdown_valuepair_Pydantic = pydantic_model_creator(dropdown_valuepairs, name="dropdown_valuepair")
-dropdown_valuepairIn_Pydantic = pydantic_model_creator(dropdown_valuepairs, name="dropdown_valuepairIn", exclude_readonly=True)
