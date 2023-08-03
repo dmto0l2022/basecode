@@ -40,64 +40,82 @@ class ExperimentCreate(SongBase):
 ## Limit Display
 
 class Limit_displayBase(SQLModel):
-    name: str
+    name: str = Field(default=None)
     limit_id : int = Field(default=None, nullable=False, primary_key=False)
     plot_id : int = Field(default=None, nullable=False, primary_key=False)
     trace_id : int = Field(default=None, nullable=False, primary_key=False)
-    symbol : str
-    symbol_color :  str
-    line_style : str
-    line_color :  str
-    fill_color :  str
-    color :  str
-    style :  str
-    created_at : fields.DatetimeField(auto_now_add=True)
-    updated_at : fields.DatetimeField(auto_now_add=True)
+    symbol : str = Field(default=None)
+    symbol_color :  str = Field(default=None)
+    line_style : str = Field(default=None)
+    line_color :  str = Field(default=None)
+    fill_color :  str = Field(default=None)
+    color :  str = Field(default=None)
+    style :  str = Field(default=None)
+    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
 class Limit_display(Limit_displayBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-class Limit_displayCreate(SongBase):
+class Limit_displayCreate(Limit_displayBase):
     pass
         
-class Limit_Display(models.Model):
-    
-    id = fields.IntField(pk=True)
-    limit_id = fields.IntField(pk=False)
-    plot_id = fields.IntField(pk=False)
-    trace_id = fields.IntField(pk=False) ## new field
-    symbol = fields.CharField(max_length=255) ## new field
-    symbol_color = fields.CharField(max_length=255) ## new field
-    line_style = fields.CharField(max_length=255) ## new field
-    line_color = fields.CharField(max_length=255) ## new field
-    fill_color = fields.CharField(max_length=255) ## new field
-    color = fields.CharField(max_length=255) ## legacy field
-    style = fields.CharField(max_length=255) ## legacy field
-    created_at = fields.DatetimeField(auto_now_add=True)
-    updated_at = fields.DatetimeField(auto_now_add=True)
-    
-    class Meta:
-        table="limit_display"
-        ##schema = ""
+## Limit Ownership
 
-Limit_Display_Pydantic = pydantic_model_creator(Limit_Display, name="Limit_Display")
-Limit_DisplayIn_Pydantic = pydantic_model_creator(Limit_Display, name="Limit_DisplayIn", exclude_readonly=True)      
-        
-class Limit_Ownership(models.Model):    
-    
-    id = fields.IntField(pk=True)
-    user_id = fields.IntField(pk=False)
-    limit_id = fields.IntField(pk=False)
-    created_at = fields.DatetimeField(auto_now_add=True)
-    updated_at = fields.DatetimeField(auto_now_add=True)
-    
-    class Meta:
-        table="limit_ownership"
-        ##schema = ""
+class Limit_ownershipBase(SQLModel):
+    user_id : int = Field(default=None, nullable=False, primary_key=False)
+    limit_id : int = Field(default=None, nullable=False, primary_key=False)
+    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
-Limit_Ownership_Pydantic = pydantic_model_creator(Limit_Ownership, name="Limit_Ownership")
-Limit_OwnershipIn_Pydantic = pydantic_model_creator(Limit_Ownership, name="Limit_OwnershipIn", exclude_readonly=True)      
-         
+class Limit_ownership(Limit_ownershipBase, table=True):
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+class Limit_ownershipCreate(Limit_ownershipBase):
+    pass
+
+## Limits
+
+class LimitsBase(SQLModel):
+    user_id : int = Field(default=None, nullable=False, primary_key=False)
+    limit_id : int = Field(default=None, nullable=False, primary_key=False)
+    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+
+    spin_dependency : str = Field(default=None)
+    result_type : str = Field(default=None)
+    measurement_type : str = Field(default=None)
+    nomhash : str = Field(default=None)
+    x_units : str = Field(default=None)
+    y_units : str = Field(default=None)
+    x_rescale : str = Field(default=None)
+    y_rescale : str = Field(default=None)
+    default_color : str = Field(default=None)
+    default_style : str = Field(default=None) 
+    data_values : str = Field(default=None)
+    data_label : str = Field(default=None)
+    file_name : str = Field(default=None)
+    data_comment : str = Field(default=None)
+    data_reference : str = Field(default=None)
+    created_at : fields.DatetimeField(auto_now_add=True)
+    updated_at : fields.DatetimeField(auto_now_add=True)
+    creator_id : fields.IntField(pk=False)
+    experiment : fields.CharField(max_length=255)
+    rating : fields.IntField(pk=False)
+    date_of_announcement : fields.DateField(auto_now_add=False)
+    public : fields.BooleanField()
+    official : fields.BooleanField():
+    date_official : fields.DateField(auto_now_add=False)
+    greatest_hit : fields.BooleanField()
+    date_of_run_start : fields.DateField(auto_now_add=False)
+    date_of_run_end : fields.DateField(auto_now_add=False)
+    year : fields.IntField(pk=False)
+
+class Limits(LimitsBase, table=True):
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+class LimitsCreate(LimitsBase):
+    pass
         
 class Limits(models.Model):  
     
