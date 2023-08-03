@@ -23,10 +23,10 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 # target_metadata = None
-from models import dmtools
-from models import users
-from models import metadata
-from models.models import Base
+from models.dmtools import Experiment, Limit_display, Limit_ownership, Limits, Plot_ownership, Plots
+from models.users import Users, Users_permissions, User_api_keys
+from models.metadata import Dropdown_valuepairs
+from models.base import Base
 target_metadata = Base.metadata
 #target_metadata = SQLModel.metadata
 
