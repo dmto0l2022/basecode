@@ -98,7 +98,7 @@ class LimitsBase(SQLModel):
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     creator_id : int = Field(default=None, nullable=False, primary_key=False)
-    experiment : fields.CharField(max_length=255)
+    experiment :  str = Field(default=None)
     rating : int = Field(default=None, nullable=False, primary_key=False)
     date_of_announcement : datetime = Field(default=datetime.utcnow(), nullable=False)
     public : int = Field(default=None, nullable=False, primary_key=False) ## boolean
