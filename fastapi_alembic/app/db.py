@@ -9,7 +9,7 @@ config = {
     "connections": {"default": "mysql://pythonuser:pythonuser@container_mariadb:3306/dev"},
     "apps": {
         "models": {
-            "models": ["models", "aerich.models"],
+            "models": ["models.models","models.users", "models.metadata", "models.dmtools", "aerich.models"],
             "default_connection": "default",
         },
     },
