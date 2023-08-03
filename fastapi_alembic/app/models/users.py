@@ -9,7 +9,7 @@ from typing import Optional
 from sqlmodel import Field, SQLModel
 from sqlalchemy import String
 
-import datetime
+from datetime import datetime
 
 # Declarative base object
 #Base = declarative_base()
