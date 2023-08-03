@@ -26,93 +26,60 @@ class Song(SongBase, table=True):
 class SongCreate(SongBase):
     pass
 
+#name: str = Field(default=None)
+#limit_id : int = Field(default=None, nullable=False, primary_key=False)
+#symbol : str = Field(default=None)
+#created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+
+
 ## Users
 
 class UsersBase(SQLModel):
-    authlib_id = fields.CharField(max_length=50, unique=True)
-    authlib_provider = fields.CharField(max_length=50, null=True)
-    created_at = fields.DatetimeField(auto_now_add=True)
-    modified_at = fields.DatetimeField(auto_now=True)
-    ceased_at = fields.DatetimeField(auto_now=True)
+    authlib_id : str = Field(default=None)
+    authlib_provider : str = Field(default=None)
+    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
 
-class Song(UsersBase, table=True):
+class Users(UsersBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-
-class UsersCreate(SongBase):
+class UsersCreate(UsersBase):
     pass
 
-class Users_authlib(models.Model):
-    """
-    The User model
-    """
+## Users_permissions
 
-    id = fields.IntField(pk=True)
-    test = fields.CharField(max_length=50, unique=False)
-    test2 = fields.CharField(max_length=50, unique=False)
-    authlib_id = fields.CharField(max_length=50, unique=True)
-    authlib_provider = fields.CharField(max_length=50, null=True)
-    created_at = fields.DatetimeField(auto_now_add=True)
-    modified_at = fields.DatetimeField(auto_now=True)
-    ceased_at = fields.DatetimeField(auto_now=True)
+class Users_permissionsBase(SQLModel):
+    user_id = int = Field(default=None, nullable=False, primary_key=False)
+    authorised = int = Field(default=None, nullable=False, primary_key=False)
+    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
-    class Meta:
-        table="users_authlib"
-        ##schema = ""
-    
-    
-User_authlib_Pydantic = pydantic_model_creator(Users_authlib, name="User_authlib")
-User_authlibIn_Pydantic = pydantic_model_creator(Users_authlib, name="User_authlibIn", exclude_readonly=True)
+class Users_permissions(Users_permissionsBase, table=True):
+    id: int = Field(default=None, nullable=False, primary_key=True)
 
-class Users_authlib_permissions(models.Model):
-    """
-    The User permissions model
-    """
+class Users_permissionsBaseCreate(Users_permissionsBase):
+    pass
 
-    id = fields.IntField(pk=True)
-    user_id = fields.IntField()
-    authorised = fields.BooleanField()
-    created_at = fields.DatetimeField(auto_now_add=True)
-    modified_at = fields.DatetimeField(auto_now=True)
-    ceased_at = fields.DatetimeField(auto_now=True)
+## User_api_keys
 
-    class Meta:
-        table="users_authlib_permissions"
-        ##schema = ""
-    
-    
-User_authlib_permissions_Pydantic = pydantic_model_creator(Users_authlib_permissions, name="User_authlib_permissions")
-User_authlib_permissionsIn_Pydantic = pydantic_model_creator(Users_authlib_permissions, name="User_authlib_permissionsIn", exclude_readonly=True)
+class User_api_keysBase(SQLModel):
+    user_id : int = Field(default=None, nullable=False, primary_key=False)
+    secret_key : str = Field(default=None)
+    public_key : str = Field(default=None)
+    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
-###
+class User_api_keys(User_api_keysBase, table=True):
+    id: int = Field(default=None, nullable=False, primary_key=True)
 
-class Users_authlib_count(models.Model):
-    count: int
+class UUser_api_keysBaseCreate(User_api_keysBase):
+    pass
 
-User_authlib_count_Pydantic = pydantic_model_creator(Users_authlib_count, name="User_authlib_count")
-
-##response_model=User_authlib_count_Pydantic
-
-
-class User_api_keys(models.Model):
-    id = fields.IntField(pk=True)
-    user_id = fields.IntField()
-    secret_key = fields.CharField(max_length=255, null=True)
-    public_key = fields.CharField(max_length=50, null=True)
-    created_at = fields.DatetimeField(auto_now_add=True)
-    modified_at = fields.DatetimeField(auto_now=True)
-    ceased_at = fields.DatetimeField(auto_now=True)
-    user_id = fields.IntField()
-    
-    class Meta:
-        table="user_api_keys"
-        ##schema = ""
-
-User_api_key_Pydantic = pydantic_model_creator(User_api_keys, name="User_api_key")
-User_api_keyIn_Pydantic = pydantic_model_creator(User_api_keys, name="User_api_keyIn", exclude_readonly=True)
-
-
+'''
 class Users(models.Model):
     """
     The User model
@@ -146,3 +113,4 @@ class Users(models.Model):
     
 User_Pydantic = pydantic_model_creator(Users, name="User")
 UserIn_Pydantic = pydantic_model_creator(Users, name="UserIn", exclude_readonly=True)
+'''
