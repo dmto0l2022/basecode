@@ -3,9 +3,9 @@ from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from db import get_session, init_db
-from models.models import Song, SongCreate
 
 from routers import routers
+from routers import songs
 
 app = FastAPI(title="DMTOOL API Server - Alembic",
               ##servers=[
@@ -19,3 +19,4 @@ app = FastAPI(title="DMTOOL API Server - Alembic",
              )
 
 app.include_router(routers.router)
+app.include_router(songs.router)
