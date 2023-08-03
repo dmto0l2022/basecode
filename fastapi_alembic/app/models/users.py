@@ -13,19 +13,6 @@ from sqlalchemy import String
 Base = declarative_base()
 SQLModel.metadata = Base.metadata
 
-class SongBase(SQLModel):
-    name: str
-    artist: str
-    year: Optional[int] = None
-
-
-class Song(SongBase, table=True):
-    id: int = Field(default=None, nullable=False, primary_key=True)
-
-
-class SongCreate(SongBase):
-    pass
-
 #name: str = Field(default=None)
 #limit_id : int = Field(default=None, nullable=False, primary_key=False)
 #symbol : str = Field(default=None)
