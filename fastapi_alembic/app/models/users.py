@@ -47,8 +47,8 @@ class UsersCreate(UsersBase):
 ## Users_permissions
 
 class Users_permissionsBase(SQLModel):
-    user_id = int = Field(default=None, nullable=False, primary_key=False)
-    authorised = int = Field(default=None, nullable=False, primary_key=False)
+    user_id : int = Field(default=None, nullable=False, primary_key=False)
+    authorised : int = Field(default=None, nullable=False, primary_key=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
