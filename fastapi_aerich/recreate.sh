@@ -23,4 +23,6 @@ podman build -f Dockerfile -t fastapi_aerich_1
 podman run -dt \
 --name container_fastapi_aerich_1 \
 --pod pod_main_backend \
+--user $uid:$gid \
+-v /opt/dmtools/code/basecode:/workdir:z \
 localhost/fastapi_aerich_1:latest
