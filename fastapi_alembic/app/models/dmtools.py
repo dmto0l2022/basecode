@@ -11,8 +11,10 @@ from sqlalchemy import String
 from sqlalchemy import UniqueConstraint
 
 # Declarative base object
-Base = declarative_base()
-SQLModel.metadata = Base.metadata
+#Base = declarative_base()
+#SQLModel.metadata = Base.metadata
+
+from models.models import Base
 
 ### Experiments
 
