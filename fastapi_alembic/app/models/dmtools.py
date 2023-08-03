@@ -15,6 +15,17 @@ from sqlalchemy import UniqueConstraint
 #SQLModel.metadata = Base.metadata
 
 from models.base import Base
+SQLModel.metadata = Base.metadata
+
+## Classes
+
+#Experiment
+#Limit_display
+#Limit_ownership
+#Limits
+#Plot_ownership
+#Plots
+
 
 ### Experiments
 
