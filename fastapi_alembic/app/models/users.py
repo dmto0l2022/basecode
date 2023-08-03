@@ -26,8 +26,22 @@ class Song(SongBase, table=True):
 class SongCreate(SongBase):
     pass
 
-from tortoise import fields, models
-from tortoise.contrib.pydantic import pydantic_model_creator
+## Users
+
+class UsersBase(SQLModel):
+    authlib_id = fields.CharField(max_length=50, unique=True)
+    authlib_provider = fields.CharField(max_length=50, null=True)
+    created_at = fields.DatetimeField(auto_now_add=True)
+    modified_at = fields.DatetimeField(auto_now=True)
+    ceased_at = fields.DatetimeField(auto_now=True)
+
+
+class Song(UsersBase, table=True):
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+
+class UsersCreate(SongBase):
+    pass
 
 class Users_authlib(models.Model):
     """
