@@ -13,7 +13,8 @@ from sqlalchemy import String
 #Base = declarative_base()
 #SQLModel.metadata = Base.metadata
 
-from models.models import Base
+from models.base import Base
+SQLModel.metadata = Base.metadata
 
 #name: str = Field(default=None)
 #limit_id : int = Field(default=None, nullable=False, primary_key=False)
