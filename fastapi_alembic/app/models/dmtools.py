@@ -42,6 +42,22 @@ class ExperimentCreate(ExperimentBase):
 
 ## Limit Display
 
+#fields:
+#    id
+#    name
+#    limit_id
+#    plot_id
+#    trace_id
+#    symbol
+#    symbol_color
+#    line_style
+#    line_color
+#    fill_color
+#    color
+#    style
+#    created_at
+#    updated_at
+
 class Limit_displayBase(SQLModel):
     name: str = Field(default=None)
     limit_id : int = Field(default=None, nullable=False, primary_key=False)
