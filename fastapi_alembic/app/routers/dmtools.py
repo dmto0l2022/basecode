@@ -126,7 +126,7 @@ id = limit_ownership.id,
 user_id = limit_ownership.user_id,
 limit_id = limit_ownership.limit_id,
 created_at = limit_ownership.created_at,
-created_at = limit_ownership.created_at
+updated_at = limit_ownership.created_at
 '''
 
 @router.get("/alembic/limit_ownership", response_model=list[Limit_ownership])
@@ -137,7 +137,7 @@ async def get_limit_ownership(session: AsyncSession = Depends(get_session)):
                             user_id = limit_ownership.user_id,
                             limit_id = limit_ownership.limit_id,
                             created_at = limit_ownership.created_at,
-                            created_at = limit_ownership.created_at)
+                            updated_at = limit_ownership.updated_at)
             for limit_ownership in limit_ownerships]
 
 
@@ -146,7 +146,7 @@ async def add_limit_ownership(limit_ownership: Limit_ownershipCreate, session: A
     limit_ownership = Limit_ownership(user_id = limit_ownership.user_id,
                             limit_id = limit_ownership.limit_id,
                             created_at = limit_ownership.created_at,
-                            created_at = limit_ownership.created_at)
+                            updated_at = limit_ownership.updated_at)
     session.add(limit_ownership)
     await session.commit()
     await session.refresh(limit_ownership)
