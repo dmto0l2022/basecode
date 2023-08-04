@@ -16,6 +16,9 @@ from sqlalchemy import String
 from models.base import Base
 SQLModel.metadata = Base.metadata
 
+# Classes
+
+Dropdown_valuepairs, Dropdown_valuepairsCreate
 
 #name: str = Field(default=None)
 #limit_id : int = Field(default=None, nullable=False, primary_key=False)
