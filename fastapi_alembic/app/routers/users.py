@@ -9,30 +9,33 @@ from typing import List
 
 from db import get_session
 
-from models.models import Song, SongCreate
-
-@router.get("/alembic/songs", response_model=list[Song])
-async def get_songs(session: AsyncSession = Depends(get_session)):
-    result = await session.execute(select(Song))
-    songs = result.scalars().all()
-    return [Song(name=song.name, artist=song.artist, year=song.year, id=song.id) for song in songs]
+#from models.models import Song, SongCreate
+from models.users import Users, UsersCreate
+from models.users import Users_permissions, Users_permissionsCreate
+from models.users import User_api_keys, User_api_keysCreate
 
 
-@router.post("/alembic/songs")
-async def add_song(song: SongCreate, session: AsyncSession = Depends(get_session)):
-    song = Song(name=song.name, artist=song.artist, year=song.year)
-    session.add(song)
+@router.get("/alembic/users", response_model=list[Users])
+async def get_users(session: AsyncSession = Depends(get_session)):
+    result = await session.execute(select(User))
+    users = result.scalars().all()
+    return [User(name=song.name, artist=song.artist, year=song.year, id=song.id) for user in users]
+
+
+@router.post("/alembic/users")
+async def add_song(user: UserCreate, session: AsyncSession = Depends(get_session)):
+    user = User(name=song.name, artist=song.artist, year=song.year)
+    session.add(user)
     await session.commit()
-    await session.refresh(song)
-    return song
+    await session.refresh(user)
+    return user
 
-@router.delete("/alembic/songs/{song_id}")
-async def delete_song(song_id: int, session: AsyncSession = Depends(get_session)):
-    #song = session.get(Song, song_id) ## works on the primary key of the table
-    statement = select(Song).where(Song.id == song_id)
+@router.delete("/alembic/users/{user_id}")
+async def delete_user(user_id: int, session: AsyncSession = Depends(get_session)):
+    statement = select(User).where(User.id == user_id)
     results = await session.exec(statement)
-    song = results.one()
-    await session.delete(song)
+    user = results.one()
+    await session.delete(user)
     await session.commit()
-    return {"deleted": song}
+    return {"deleted": user}
   
