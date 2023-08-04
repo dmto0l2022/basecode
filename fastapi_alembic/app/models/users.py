@@ -24,9 +24,9 @@ SQLModel.metadata = Base.metadata
 #created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
 ## Classes
-#Users
-#Users_permissions
-#User_api_keys
+#Users, UsersCreate
+#Users_permissions, Users_permissionsCreate
+#User_api_keys, User_api_keysCreate
 
 ## Users
 
@@ -56,7 +56,7 @@ class Users_permissionsBase(SQLModel):
 class Users_permissions(Users_permissionsBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-class Users_permissionsBaseCreate(Users_permissionsBase):
+class Users_permissionsCreate(Users_permissionsBase):
     pass
 
 ## User_api_keys
@@ -72,7 +72,7 @@ class User_api_keysBase(SQLModel):
 class User_api_keys(User_api_keysBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-class UUser_api_keysBaseCreate(User_api_keysBase):
+class User_api_keysCreate(User_api_keysBase):
     pass
 
 '''
