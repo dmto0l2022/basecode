@@ -10,9 +10,9 @@ from typing import List
 from db import get_session
 
 #from models.models import Song, SongCreate
-from models.users import Users, UsersCreate
-from models.users import Users_permissions, Users_permissionsCreate
-from models.users import User_api_keys, User_api_keysCreate
+from models.users import User, UserCreate
+from models.users import User_permission, User_permissionCreate
+from models.users import User_api_key, User_api_keyCreate
 
 # Users
 
@@ -24,7 +24,7 @@ from models.users import User_api_keys, User_api_keysCreate
 #ceased_at
 
 
-@router.get("/alembic/users", response_model=list[Users])
+@router.get("/alembic/user", response_model=list[User])
 async def get_users(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(User))
     users = result.scalars().all()
@@ -36,8 +36,8 @@ async def get_users(session: AsyncSession = Depends(get_session)):
                 ceased_at=user.ceased_at) for user in users]
 
 
-@router.post("/alembic/users")
-async def add_song(user: UsersCreate, session: AsyncSession = Depends(get_session)):
+@router.post("/alembic/user")
+async def add_song(user: UserCreate, session: AsyncSession = Depends(get_session)):
     user = User(authlib_id=user.authlib_id,
                 authlib_provider=user.authlib_provider,
                 created_at=user.created_at,
@@ -48,7 +48,7 @@ async def add_song(user: UsersCreate, session: AsyncSession = Depends(get_sessio
     await session.refresh(user)
     return user
 
-@router.delete("/alembic/users/{user_id}")
+@router.delete("/alembic/user/{user_id}")
 async def delete_user(user_id: int, session: AsyncSession = Depends(get_session)):
     statement = select(User).where(User.id == user_id)
     results = await session.exec(statement)
