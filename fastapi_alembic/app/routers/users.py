@@ -121,22 +121,22 @@ async def get_user_api_key(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(User_api_key))
     user_api_keys = result.scalars().all()
     return [User_api_key(id = user_user_api_key.id,
-                        user_id = user_user_api_key.user_id,
-                        secret_key = user_user_api_key.secret_key,
-                        public_key = user_user_api_key.public_key,
-                        created_at = user_user_api_key.created_at,
-                        modified_at = user_user_api_key.modified_at,
-                        ceased_at = user_user_api_key.ceased_at
+                        user_id = user_api_key.user_id,
+                        secret_key = user_api_key.secret_key,
+                        public_key = user_api_key.public_key,
+                        created_at = user_api_key.created_at,
+                        modified_at = user_api_key.modified_at,
+                        ceased_at = user_api_key.ceased_at
                         ) for user_api_key in user_api_keys]
 
 
 @router.post("/alembic/user_api_key")
 async def add_user_api_key(user: User_api_keyCreate, session: AsyncSession = Depends(get_session)):
     user_api_key = User_api_key(user_id = user_user_api_key.user_id,
-                        secret_key = user_user_api_key.secret_key,
-                        public_key = user_user_api_key.public_key,
-                        created_at = user_user_api_key.created_at,
-                        modified_at = user_user_api_key.modified_at,
+                        secret_key = user_api_key.secret_key,
+                        public_key = user_api_key.public_key,
+                        created_at = user_api_key.created_at,
+                        modified_at = user_api_key.modified_at,
                         ceased_at = user_user_api_key.ceased_at)
     session.add(user_api_key)
     await session.commit()
