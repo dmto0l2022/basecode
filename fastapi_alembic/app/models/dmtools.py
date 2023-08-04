@@ -171,6 +171,14 @@ class LimitCreate(LimitBase):
     pass
         
 ## Plot Ownership 
+# Fields
+'''
+id
+user_id
+plot_id
+created_at
+updated_at
+'''
 
 class Plot_ownershipBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
@@ -185,6 +193,25 @@ class Plot_ownershipCreate(Plot_ownershipBase):
     pass
 
 ## Plot
+## Fields
+'''
+id
+name
+x_min
+x_max
+y_min
+y_max
+x_units
+y_units
+user_id
+created_at
+updated_at
+plot_png
+legend_png
+plot_eps
+legend_eps
+no_id
+'''
 
 class PlotBase(SQLModel):
     name : str = Field(default=None,nullable=False, primary_key=False) ## Unique??
