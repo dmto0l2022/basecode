@@ -27,7 +27,7 @@ async def get_experiments(session: AsyncSession = Depends(get_session)):
 
 @router.post("/alembic/experiments")
 async def add_experiment(experiment: ExperimentCreate, session: AsyncSession = Depends(get_session)):
-    experiment = Experiment(name=experiment.name, id=experiment.id)
+    experiment = Experiment(name=experiment.name)
     session.add(experiment)
     await session.commit()
     await session.refresh(experiment)
