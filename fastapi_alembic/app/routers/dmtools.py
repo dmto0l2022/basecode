@@ -199,7 +199,7 @@ year
 @router.get("/alembic/limit", response_model=list[Limit])
 async def get_limit(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(Limit))
-    limit = result.scalars().all()
+    limits = result.scalars().all()
     return [Limit(id = limit.id,
                 spin_dependency = limit.spin_dependency,
                 result_type = limit.result_type,
