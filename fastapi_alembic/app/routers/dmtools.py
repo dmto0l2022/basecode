@@ -381,7 +381,7 @@ async def add_plot(plot: PlotCreate, session: AsyncSession = Depends(get_session
     session.add(plot)
     await session.commit()
     await session.refresh(plot)
-    return plot_ownership
+    return plot
 
 @router.delete("/alembic/plot/{plot_id}")
 async def delete_plot_ownership(plot_id: int, session: AsyncSession = Depends(get_session)):
