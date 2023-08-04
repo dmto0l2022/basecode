@@ -121,7 +121,45 @@ user_id
 limit_id
 created_at
 updated_at
+
+id = limit_ownership.id,
+user_id = limit_ownership.user_id,
+limit_id = limit_ownership.limit_id,
+created_at = limit_ownership.created_at,
+created_at = limit_ownership.created_at
 '''
+
+@router.get("/alembic/limit_ownership", response_model=list[Limit_display])
+async def get_limit_ownership(session: AsyncSession = Depends(get_session)):
+    result = await session.execute(select(Limit_ownership))
+    limit_ownerships = result.scalars().all()
+    return [Limit_display(id = limit_ownership.id,
+                            user_id = limit_ownership.user_id,
+                            limit_id = limit_ownership.limit_id,
+                            created_at = limit_ownership.created_at,
+                            created_at = limit_ownership.created_at)
+            for limit_ownership in limit_ownerships]
+
+
+@router.post("/alembic/limit_ownership")
+async def add_limit_ownership(limit_ownership: Limit_ownershipCreate, session: AsyncSession = Depends(get_session)):
+    limit_ownership = Limit_ownership(user_id = limit_ownership.user_id,
+                            limit_id = limit_ownership.limit_id,
+                            created_at = limit_ownership.created_at,
+                            created_at = limit_ownership.created_at)
+    session.add(limit_ownership)
+    await session.commit()
+    await session.refresh(limit_ownership)
+    return limit_ownership
+
+@router.delete("/alembic/limit_ownership/{limit_ownership_id}")
+async def delete_limit_ownership(limit_ownership_id: int, session: AsyncSession = Depends(get_session)):
+    statement = select(Limit_ownership).where(Limit_ownership.id == limit_ownership_id)
+    results = await session.exec(statement)
+    limit_ownership = results.one()
+    await session.delete(limit_ownership)
+    await session.commit()
+    return {"deleted": limit_ownership}
 
 # Limit CRUD
 # Limit, LimitCreate
@@ -157,6 +195,38 @@ date_of_run_start
 date_of_run_end
 year
 '''
+
+@router.get("/alembic/limit", response_model=list[Limit])
+async def get_limit(session: AsyncSession = Depends(get_session)):
+    result = await session.execute(select(Limit_ownership))
+    limit_ownerships = result.scalars().all()
+    return [Limit_display(id = limit_ownership.id,
+                            user_id = limit_ownership.user_id,
+                            limit_id = limit_ownership.limit_id,
+                            created_at = limit_ownership.created_at,
+                            created_at = limit_ownership.created_at)
+            for limit_ownership in limit_ownerships]
+
+
+@router.post("/alembic/limit")
+async def add_limit(limit: LimitCreate, session: AsyncSession = Depends(get_session)):
+    limit = Limit(user_id = limit_ownership.user_id,
+                            limit_id = limit_ownership.limit_id,
+                            created_at = limit_ownership.created_at,
+                            created_at = limit_ownership.created_at)
+    session.add(limit)
+    await session.commit()
+    await session.refresh(limit)
+    return limit
+
+@router.delete("/alembic/limit/{limit_id}")
+async def delete_limit(limit_id: int, session: AsyncSession = Depends(get_session)):
+    statement = select(Limit).where(Limit.id == limit_id)
+    results = await session.exec(statement)
+    limit = results.one()
+    await session.delete(limit)
+    await session.commit()
+    return {"deleted": limit}
 
 # Plot_ownership
 # Plot_ownership, Plot_ownershipCreate
