@@ -137,7 +137,7 @@ async def add_user_api_key(user: User_api_keyCreate, session: AsyncSession = Dep
                         public_key = user_api_key.public_key,
                         created_at = user_api_key.created_at,
                         modified_at = user_api_key.modified_at,
-                        ceased_at = user_user_api_key.ceased_at)
+                        ceased_at = user_api_key.ceased_at)
     session.add(user_api_key)
     await session.commit()
     await session.refresh(user_api_key)
