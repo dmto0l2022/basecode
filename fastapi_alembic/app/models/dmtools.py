@@ -79,7 +79,13 @@ class Limit_display(Limit_displayBase, table=True):
 class Limit_displayCreate(Limit_displayBase):
     pass
         
-## Limit Ownership
+# Limit Ownership
+## Fields
+# id
+# user_id
+# limit_id
+# created_at
+# updated_at
 
 class Limit_ownershipBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
@@ -94,6 +100,39 @@ class Limit_ownershipCreate(Limit_ownershipBase):
     pass
 
 ## Limit
+
+## Fields
+'''
+id
+spin_dependency 
+result_type 
+measurement_type 
+nomhash 
+x_units 
+y_units 
+x_rescale 
+y_rescale 
+default_color 
+default_style 
+data_values 
+data_label 
+file_name 
+data_comment
+data_reference
+created_at
+updated_at
+creator_id
+experiment
+rating
+date_of_announcement
+public
+official
+date_official
+greatest_hit
+date_of_run_start
+date_of_run_end
+year
+'''
 
 class LimitBase(SQLModel):
     spin_dependency : str = Field(default=None)
