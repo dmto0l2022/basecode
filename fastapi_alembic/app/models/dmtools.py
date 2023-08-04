@@ -152,5 +152,5 @@ class Plot(PlotBase, table=True):
     __table_args__ = (UniqueConstraint("name"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-class PlotCreate(PlotsBase):
+class PlotCreate(PlotBase):
     pass
