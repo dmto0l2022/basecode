@@ -34,7 +34,7 @@ async def get_dropdown_valuepairs(session: AsyncSession = Depends(get_session)):
 
 @router.post("/alembic/dropdown_valuepairs")
 async def add_dropdown_valuepair(dropdown_valuepair: Dropdown_valuepairsCreate, session: AsyncSession = Depends(get_session)):
-    dropdown_valuepair = dropdown_valuepair(
+    dropdown_valuepair = Dropdown_valuepairs(
                                             variable=dropdown_valuepair.variable,
                                             label=dropdown_valuepair.label,
                                             value=dropdown_valuepair.value,
