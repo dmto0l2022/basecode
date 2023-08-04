@@ -66,8 +66,7 @@ async def delete_experiment(experiment_id: int, session: AsyncSession = Depends(
 async def get_limit_display(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(Limit_display))
     limit_displays = result.scalars().all()
-    return [Limit_display(
-                        limit_display.id,
+    return [Limit_display(limit_display.id,
                         limit_display.name,
                         limit_display.limit_id,
                         limit_display.plot_id,
@@ -86,8 +85,7 @@ async def get_limit_display(session: AsyncSession = Depends(get_session)):
 
 @router.post("/alembic/limit_display")
 async def add_limit_display(limit_display: Limit_displayCreate, session: AsyncSession = Depends(get_session)):
-    limit_display = Limit_display(
-                        limit_display.name,
+    limit_display = Limit_display(limit_display.name,
                         limit_display.limit_id,
                         limit_display.plot_id,
                         limit_display.trace_id,
