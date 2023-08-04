@@ -20,6 +20,13 @@ SQLModel.metadata = Base.metadata
 
 # Dropdown_valuepairs, Dropdown_valuepairsCreate
 
+# Fields
+
+#variable
+#label
+#value
+#data_type
+
 #name: str = Field(default=None)
 #limit_id : int = Field(default=None, nullable=False, primary_key=False)
 #symbol : str = Field(default=None)
