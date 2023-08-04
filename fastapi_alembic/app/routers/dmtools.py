@@ -198,22 +198,64 @@ year
 
 @router.get("/alembic/limit", response_model=list[Limit])
 async def get_limit(session: AsyncSession = Depends(get_session)):
-    result = await session.execute(select(Limit_ownership))
-    limit_ownerships = result.scalars().all()
-    return [Limit_display(id = limit_ownership.id,
-                            user_id = limit_ownership.user_id,
-                            limit_id = limit_ownership.limit_id,
-                            created_at = limit_ownership.created_at,
-                            created_at = limit_ownership.created_at)
-            for limit_ownership in limit_ownerships]
+    result = await session.execute(select(Limit))
+    limit = result.scalars().all()
+    return [Limit(id = limit.id,
+                spin_dependency = limit.spin_dependency,
+                result_type = limit.result_type,
+                measurement_type = limit.measurement_type,
+                nomhash = limit.nomhash,
+                x_units = limit.x_units,
+                y_units = limit.y_units,
+                x_rescale = limit.x_rescale,
+                y_rescale = limit.y_rescale,
+                default_color = limit.default_color,
+                file_name  = limit.file_name,
+                data_comment = limit.data_comment,
+                data_reference = limit.data_reference,
+                created_at = limit.created_at,
+                updated_at = limit.updated_at,
+                creator_id = limit.creator_id,
+                experiment = limit.experiment,
+                rating = limit.rating,
+                date_of_announcement = limit.date_of_announcement,
+                public = limit.public,
+                official = limit.official,
+                date_official = limit.date_official,
+                greatest_hit = limit.greatest_hit,
+                date_of_run_start = limit.date_of_run_start,
+                date_of_run_end = limit.date_of_run_end,
+                year = limit.year)
+            for limit in limits]
 
 
 @router.post("/alembic/limit")
 async def add_limit(limit: LimitCreate, session: AsyncSession = Depends(get_session)):
-    limit = Limit(user_id = limit_ownership.user_id,
-                            limit_id = limit_ownership.limit_id,
-                            created_at = limit_ownership.created_at,
-                            created_at = limit_ownership.created_at)
+    limit = Limit(spin_dependency = limit.spin_dependency,
+                result_type = limit.result_type,
+                measurement_type = limit.measurement_type,
+                nomhash = limit.nomhash,
+                x_units = limit.x_units,
+                y_units = limit.y_units,
+                x_rescale = limit.x_rescale,
+                y_rescale = limit.y_rescale,
+                default_color = limit.default_color,
+                file_name  = limit.file_name,
+                data_comment = limit.data_comment,
+                data_reference = limit.data_reference,
+                created_at = limit.created_at,
+                updated_at = limit.updated_at,
+                creator_id = limit.creator_id,
+                experiment = limit.experiment,
+                rating = limit.rating,
+                date_of_announcement = limit.date_of_announcement,
+                public = limit.public,
+                official = limit.official,
+                date_official = limit.date_official,
+                greatest_hit = limit.greatest_hit,
+                date_of_run_start = limit.date_of_run_start,
+                date_of_run_end = limit.date_of_run_end,
+                year = limit.year)
     session.add(limit)
     await session.commit()
     await session.refresh(limit)
