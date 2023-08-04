@@ -32,18 +32,18 @@ SQLModel.metadata = Base.metadata
 #symbol : str = Field(default=None)
 #created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
-## dropdown_valuepairs
+## dropdown_valuepair
 
-class Dropdown_valuepairsBase(SQLModel):
+class Dropdown_valuepairBase(SQLModel):
     variable : str = Field(default=None)
     label : str = Field(default=None)
     value : str = Field(default=None)
     data_type : str = Field(default=None)
 
 
-class Dropdown_valuepairs(Dropdown_valuepairsBase, table=True):
+class Dropdown_valuepair(Dropdown_valuepairBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 
-class Dropdown_valuepairsCreate(Dropdown_valuepairsBase):
+class Dropdown_valuepairCreate(Dropdown_valuepairsBase):
     pass
