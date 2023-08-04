@@ -9,29 +9,37 @@ from typing import List
 
 from db import get_session
 
-from models.models import Song, SongCreate
+from models.dmtools import Experiment, ExperimentCreate
+from models.dmtools import Limit_display, Limit_displayCreate
+from models.dmtools import Limit_ownership, Limit_ownershipCreate
+from models.dmtools import Limits, LimitsCreate
+from models.dmtools import Plot_ownership, Plot_ownershipCreate
+from models.dmtools import Plots, PlotsCreate
 
-@router.get("/alembic/songs", response_model=list[Song])
-async def get_songs(session: AsyncSession = Depends(get_session)):
-    result = await session.execute(select(Song))
-    songs = result.scalars().all()
-    return [Song(name=song.name, artist=song.artist, year=song.year, id=song.id) for song in songs]
+# Experiment CRUD
+
+@router.get("/alembic/experiments", response_model=list[Experiment])
+async def get_experiments(session: AsyncSession = Depends(get_session)):
+    result = await session.execute(select(Experiment))
+    experiment = result.scalars().all()
+    return [Experiment(name=experiment.name, id=experiment.id) for experiment in experiments]
 
 
-@router.post("/alembic/songs")
-async def add_song(song: SongCreate, session: AsyncSession = Depends(get_session)):
-    song = Song(name=song.name, artist=song.artist, year=song.year)
-    session.add(song)
+@router.post("/alembic/experiments")
+async def add_experiment(experiment: ExperimentCreate, session: AsyncSession = Depends(get_session)):
+    experiment = Experiment(name=experiment.name, id=experiment.id)
+    session.add(experiment)
     await session.commit()
-    await session.refresh(song)
-    return song
+    await session.refresh(experiment)
+    return experiment
 
-@router.delete("/alembic/songs/{song_id}")
-async def delete_song(song_id: int, session: AsyncSession = Depends(get_session)):
-    #song = session.get(Song, song_id) ## works on the primary key of the table
-    statement = select(Song).where(Song.id == song_id)
+@router.delete("/alembic/experiments/{experiment_id}")
+async def delete_experiment(experiment_id: int, session: AsyncSession = Depends(get_session)):
+    statement = select(Experiment).where(Experiment.id == experiment_id)
     results = await session.exec(statement)
-    song = results.one()
-    await session.delete(song)
+    experiment = results.one()
+    await session.delete(experiment)
     await session.commit()
-    return {"deleted": song}
+    return {"deleted": experiment}
+
+
