@@ -13,10 +13,10 @@ from models.metadata import Dropdown_valuepairs, Dropdown_valuepairsCreate
 
 # Dropdown_valuepairs CRUD
 
-@router.get("/alembic/dropdown_valuepairs", response_model=list[Dropdown_valuepair])
+@router.get("/alembic/dropdown_valuepairs", response_model=list[Dropdown_valuepairs])
 async def get_dropdown_valuepairs(session: AsyncSession = Depends(get_session)):
-    result = await session.execute(select(Dropdown_valuepair))
-    dropdown_valuepair = result.scalars().all()
+    result = await session.execute(select(Dropdown_valuepairs))
+    dropdown_valuepairs = result.scalars().all()
     return [dropdown_valuepair(name=dropdown_valuepair.name, id=dropdown_valuepair.id) for dropdown_valuepair in dropdown_valuepairs]
 
 
