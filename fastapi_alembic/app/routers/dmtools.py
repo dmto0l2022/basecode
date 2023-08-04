@@ -115,8 +115,42 @@ async def delete_limit_display(limit_display_id: int, session: AsyncSession = De
 # Limit_ownership CRUD
 ## Limit_ownership, Limit_ownershipCreate
 
+
+
 # Limit CRUD
 # Limit, LimitCreate
+
+'''
+id
+spin_dependency
+result_type
+measurement_type
+nomhash
+x_units 
+y_units
+x_rescale 
+y_rescale 
+default_color 
+default_style 
+data_values 
+data_label 
+file_name 
+data_comment
+data_reference
+created_at
+updated_at
+creator_id
+experiment
+rating
+date_of_announcement
+public
+official
+date_official
+greatest_hit
+date_of_run_start
+date_of_run_end
+year
+'''
 
 # Plot_ownership
 # Plot_ownership, Plot_ownershipCreate
