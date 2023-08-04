@@ -111,3 +111,15 @@ async def delete_limit_display(limit_display_id: int, session: AsyncSession = De
     await session.delete(limit_display)
     await session.commit()
     return {"deleted": limit_display}
+
+# Limit_ownership CRUD
+## Limit_ownership, Limit_ownershipCreate
+
+# Limit CRUD
+# Limit, LimitCreate
+
+# Plot_ownership
+# Plot_ownership, Plot_ownershipCreate
+
+# Plot CRUD
+# Plot, PlotCreate
