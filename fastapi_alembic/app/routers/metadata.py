@@ -24,7 +24,7 @@ from models.metadata import Dropdown_valuepairs, Dropdown_valuepairsCreate
 async def get_dropdown_valuepairs(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(Dropdown_valuepairs))
     dropdown_valuepairs = result.scalars().all()
-    return [dropdown_valuepair(variable=dropdown_valuepair.variable,
+    return [Dropdown_valuepairs(variable=dropdown_valuepair.variable,
                                label=dropdown_valuepair.label,
                                value=dropdown_valuepair.value,
                                data_type=dropdown_valuepair.data_type,
