@@ -21,7 +21,7 @@ from models.dmtools import Plots, PlotsCreate
 @router.get("/alembic/experiments", response_model=list[Experiment])
 async def get_experiments(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(Experiment))
-    experiment = result.scalars().all()
+    experiments = result.scalars().all()
     return [Experiment(name=experiment.name, id=experiment.id) for experiment in experiments]
 
 
