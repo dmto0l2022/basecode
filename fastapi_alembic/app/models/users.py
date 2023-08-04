@@ -30,6 +30,13 @@ SQLModel.metadata = Base.metadata
 
 ## Users
 
+# Fields
+#authlib_id
+#authlib_provider
+#created_at
+#modified_at
+#ceased_at
+
 class UsersBase(SQLModel):
     authlib_id : str = Field(default=None)
     authlib_provider : str = Field(default=None)
