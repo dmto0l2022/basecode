@@ -26,7 +26,6 @@ async def get_dropdown_valuepairs(session: AsyncSession = Depends(get_session)):
     dropdown_valuepairs = result.scalars().all()
     return [dropdown_valuepair(variable=dropdown_valuepair.variable,
                                label=dropdown_valuepair.label,
-                               variable=dropdown_valuepair.variable,
                                value=dropdown_valuepair.value,
                                data_type=dropdown_valuepair.data_type,
                                id=dropdown_valuepair.id
@@ -38,7 +37,6 @@ async def add_dropdown_valuepair(dropdown_valuepair: Dropdown_valuepairsCreate, 
     dropdown_valuepair = dropdown_valuepair(
                                             variable=dropdown_valuepair.variable,
                                             label=dropdown_valuepair.label,
-                                            variable=dropdown_valuepair.variable,
                                             value=dropdown_valuepair.value,
                                             data_type=dropdown_valuepair.data_type
                                             )
