@@ -131,7 +131,7 @@ async def get_user_api_key(session: AsyncSession = Depends(get_session)):
 
 
 @router.post("/alembic/user_api_key")
-async def add_user_api_key(user: User_api_keyCreate, session: AsyncSession = Depends(get_session)):
+async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSession = Depends(get_session)):
     user_api_key = User_api_key(user_id = user_api_key.user_id,
                         secret_key = user_api_key.secret_key,
                         public_key = user_api_key.public_key,
