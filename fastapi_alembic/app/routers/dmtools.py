@@ -281,37 +281,39 @@ created_at
 updated_at
 '''
 
-@router.get("/alembic/plot_ownership", response_model=list[Limit_display])
+
+@router.get("/alembic/plot_ownership", response_model=list[Plot_ownership])
 async def get_plot_ownership(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(Plot_ownership))
     plot_ownerships = result.scalars().all()
-    return [Limit_display(id = limit_ownership.id,
-                            user_id = limit_ownership.user_id,
-                            limit_id = limit_ownership.limit_id,
-                            created_at = limit_ownership.created_at,
-                            created_at = limit_ownership.created_at)
-            for limit_ownership in limit_ownerships]
+    return [Plot_ownership(id = plot_ownership.id,
+                            user_id = plot_ownership.user_id,
+                            plot_id = plot_ownership.plot_id,
+                            created_at = plot_ownership.created_at,
+                            updated_at = plot_ownership.updated_at
+                         )
+            for plot_ownership in plot_ownerships]
 
 
-@router.post("/alembic/limit_ownership")
-async def add_plot_ownership(limit_ownership: Limit_ownershipCreate, session: AsyncSession = Depends(get_session)):
-    limit_ownership = Limit_ownership(user_id = limit_ownership.user_id,
-                            limit_id = limit_ownership.limit_id,
-                            created_at = limit_ownership.created_at,
-                            created_at = limit_ownership.created_at)
-    session.add(limit_ownership)
+@router.post("/alembic/plot_ownership")
+async def add_plot_ownership(plot_ownership: Plot_ownershipCreate, session: AsyncSession = Depends(get_session)):
+    plot_ownership = Plot_ownership(user_id = plot_ownership.user_id,
+                            plot_id = plot_ownership.plot_id,
+                            created_at = plot_ownership.created_at,
+                            updated_at = plot_ownership.updated_at)
+    session.add(plot_ownership)
     await session.commit()
-    await session.refresh(limit_ownership)
-    return limit_ownership
+    await session.refresh(plot_ownership)
+    return plot_ownership
 
-@router.delete("/alembic/limit_ownership/{limit_ownership_id}")
-async def delete_plot_ownership(limit_ownership_id: int, session: AsyncSession = Depends(get_session)):
-    statement = select(Limit_ownership).where(Limit_ownership.id == limit_ownership_id)
+@router.delete("/alembic/plot_ownership/{plot_ownership_id}")
+async def delete_plot_ownership(plot_ownership_id: int, session: AsyncSession = Depends(get_session)):
+    statement = select(Plot_ownership).where(Plot_ownership.id == plot_ownership_id)
     results = await session.exec(statement)
-    limit_ownership = results.one()
-    await session.delete(limit_ownership)
+    plot_ownership = results.one()
+    await session.delete(plot_ownership)
     await session.commit()
-    return {"deleted": limit_ownership}
+    return {"deleted": plot_ownership}
 
 # Plot CRUD
 # Plot, PlotCreate
@@ -334,3 +336,58 @@ plot_eps
 legend_eps
 no_id
 '''
+
+@router.get("/alembic/plot", response_model=list[Plot])
+async def get_plot(session: AsyncSession = Depends(get_session)):
+    result = await session.execute(select(Plot))
+    plots = result.scalars().all()
+    return [Plot(id = plot.id
+                        name = plot.name,
+                        x_min = plot.x_min,
+                        x_max = plot.x_max,
+                        y_min = plot.y_min,
+                        y_max = plot.y_max,
+                        x_units = plot.x_units,
+                        y_units = plot.y_units,
+                        user_id = plot.user_id,
+                        created_at = plot.created_at,
+                        updated_at = plot.updated_at,
+                        plot_png = plot.plot_png,
+                        legend_png = plot.legend_png,
+                        plot_eps = plot.plot_eps,
+                        legend_eps = plot.legend_eps,
+                        no_id = plot.no_id
+                         )
+            for plot in plots]
+
+
+@router.post("/alembic/plot")
+async def add_plot(plot: PlotCreate, session: AsyncSession = Depends(get_session)):
+    plot = Plot(name = plot.name,
+                        x_min = plot.x_min,
+                        x_max = plot.x_max,
+                        y_min = plot.y_min,
+                        y_max = plot.y_max,
+                        x_units = plot.x_units,
+                        y_units = plot.y_units,
+                        user_id = plot.user_id,
+                        created_at = plot.created_at,
+                        updated_at = plot.updated_at,
+                        plot_png = plot.plot_png,
+                        legend_png = plot.legend_png,
+                        plot_eps = plot.plot_eps,
+                        legend_eps = plot.legend_eps,
+                        no_id = plot.no_id)
+    session.add(plot)
+    await session.commit()
+    await session.refresh(plot)
+    return plot_ownership
+
+@router.delete("/alembic/plot/{plot_id}")
+async def delete_plot_ownership(plot_id: int, session: AsyncSession = Depends(get_session)):
+    statement = select(Plot).where(Plot.id == plot_id)
+    results = await session.exec(statement)
+    plot = results.one()
+    await session.delete(plot)
+    await session.commit()
+    return {"deleted": plot}
