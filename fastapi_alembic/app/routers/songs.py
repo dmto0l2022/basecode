@@ -9,7 +9,7 @@ from typing import List
 
 from db import get_session
 
-from models.models import Song, SongCreate
+from models.songs import Song, SongCreate
 
 @router.get("/alembic/songs", response_model=list[Song])
 async def get_songs(session: AsyncSession = Depends(get_session)):
