@@ -24,9 +24,9 @@ SQLModel.metadata = Base.metadata
 #Experiment, ExperimentCreate
 #Limit_display, Limit_displayCreate
 #Limit_ownership, Limit_ownershipCreate
-#Limits, LimitsCreate
+#Limit, LimitCreate
 #Plot_ownership, Plot_ownershipCreate
-#Plots, PlotsCreate
+#Plot, PlotCreate
 
 
 ### Experiments
@@ -77,9 +77,9 @@ class Limit_ownership(Limit_ownershipBase, table=True):
 class Limit_ownershipCreate(Limit_ownershipBase):
     pass
 
-## Limits
+## Limit
 
-class LimitsBase(SQLModel):
+class LimitBase(SQLModel):
     spin_dependency : str = Field(default=None)
     result_type : str = Field(default=None)
     measurement_type : str = Field(default=None)
@@ -109,10 +109,10 @@ class LimitsBase(SQLModel):
     date_of_run_end : datetime = Field(default=datetime.utcnow(), nullable=False)
     year : int = Field(default=None, nullable=False, primary_key=False)
 
-class Limits(LimitsBase, table=True):
+class Limit(LimitBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-class LimitsCreate(LimitsBase):
+class LimitCreate(LimitBase):
     pass
         
 ## Plot Ownership 
@@ -129,9 +129,9 @@ class Plot_ownership(Plot_ownershipBase, table=True):
 class Plot_ownershipCreate(Plot_ownershipBase):
     pass
 
-## Plots
+## Plot
 
-class PlotsBase(SQLModel):
+class PlotBase(SQLModel):
     name : str = Field(default=None,nullable=False, primary_key=False) ## Unique??
     x_min : str = Field(default=None)
     x_max : str = Field(default=None)
@@ -148,9 +148,9 @@ class PlotsBase(SQLModel):
     legend_eps : str = Field(default=None)
     no_id : int = Field(default=None, nullable=False, primary_key=False)
 
-class Plots(PlotsBase, table=True):
+class Plot(PlotBase, table=True):
     __table_args__ = (UniqueConstraint("name"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-class PlotsCreate(PlotsBase):
+class PlotCreate(PlotsBase):
     pass
