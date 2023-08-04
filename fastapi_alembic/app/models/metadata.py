@@ -45,5 +45,5 @@ class Dropdown_valuepair(Dropdown_valuepairBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 
-class Dropdown_valuepairCreate(Dropdown_valuepairsBase):
+class Dropdown_valuepairCreate(Dropdown_valuepairBase):
     pass
