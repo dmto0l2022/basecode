@@ -52,6 +52,12 @@ class UserCreate(UserBase):
     pass
 
 ## User_permission
+# Fields
+# user_id
+# authorised
+# created_at
+# modified_at
+# ceased_at
 
 class User_permissionBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
@@ -67,6 +73,13 @@ class User_permissionCreate(User_permissionBase):
     pass
 
 ## User_api_keys
+# Fields
+# user_id
+# secret_key
+# public_key
+# created_at
+# modified_at
+# ceased_at
 
 class User_api_keyBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
