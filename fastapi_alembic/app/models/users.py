@@ -51,7 +51,7 @@ class User(UserBase, table=True):
 class UserCreate(UserBase):
     pass
 
-## Users_permission
+## User_permission
 
 class User_permissionBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
@@ -60,10 +60,10 @@ class User_permissionBase(SQLModel):
     modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
-class User_permission(Users_permissionBase, table=True):
+class User_permission(User_permissionBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-class User_permissionCreate(Users_permissionBase):
+class User_permissionCreate(User_permissionBase):
     pass
 
 ## User_api_keys
