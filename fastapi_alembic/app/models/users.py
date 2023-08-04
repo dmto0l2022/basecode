@@ -37,7 +37,7 @@ SQLModel.metadata = Base.metadata
 #modified_at
 #ceased_at
 
-class UsersBase(SQLModel):
+class UserBase(SQLModel):
     authlib_id : str = Field(default=None)
     authlib_provider : str = Field(default=None)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
@@ -45,30 +45,30 @@ class UsersBase(SQLModel):
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
 
-class Users(UsersBase, table=True):
+class User(UserBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-class UsersCreate(UsersBase):
+class UserCreate(UserBase):
     pass
 
 ## Users_permissions
 
-class Users_permissionsBase(SQLModel):
+class User_permissionBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
     authorised : int = Field(default=None, nullable=False, primary_key=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
-class Users_permissions(Users_permissionsBase, table=True):
+class User_permission(Users_permissionsBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-class Users_permissionsCreate(Users_permissionsBase):
+class User_permissionCreate(Users_permissionsBase):
     pass
 
 ## User_api_keys
 
-class User_api_keysBase(SQLModel):
+class User_api_keyBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
     secret_key : str = Field(default=None)
     public_key : str = Field(default=None)
@@ -76,10 +76,10 @@ class User_api_keysBase(SQLModel):
     modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
-class User_api_keys(User_api_keysBase, table=True):
+class User_api_key(User_api_keyBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
-class User_api_keysCreate(User_api_keysBase):
+class User_api_keyCreate(User_api_keyBase):
     pass
 
 '''
