@@ -9,8 +9,6 @@ from typing import List
 
 from db import get_session
 
-from models.models import Song, SongCreate
-
 @router.get("/alembic/ping")
 async def pong():
     return {"ping": "pong!"}
