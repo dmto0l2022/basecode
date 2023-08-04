@@ -21,12 +21,12 @@ SQLModel.metadata = Base.metadata
 
 ## Classes
 
-#Experiment
-#Limit_display
-#Limit_ownership
-#Limits
-#Plot_ownership
-#Plots
+#Experiment, ExperimentCreate
+#Limit_display, Limit_displayCreate
+#Limit_ownership, Limit_ownershipCreate
+#Limits, LimitsCreate
+#Plot_ownership, Plot_ownershipCreate
+#Plots, PlotsCreate
 
 
 ### Experiments
