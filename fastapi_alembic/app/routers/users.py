@@ -37,7 +37,7 @@ async def get_users(session: AsyncSession = Depends(get_session)):
 
 
 @router.post("/alembic/users")
-async def add_song(user: UserCreate, session: AsyncSession = Depends(get_session)):
+async def add_song(user: UsersCreate, session: AsyncSession = Depends(get_session)):
     user = User(authlib_id=user.authlib_id,
                 authlib_provider=user.authlib_provider,
                 created_at=user.created_at,
