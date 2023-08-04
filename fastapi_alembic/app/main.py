@@ -6,6 +6,9 @@ from db import get_session, init_db
 
 from routers import routers
 from routers import songs
+from routers import users
+from routers import dmtools
+from routers import metadata
 
 app = FastAPI(title="DMTOOL API Server - Alembic",
               ##servers=[
@@ -20,3 +23,7 @@ app = FastAPI(title="DMTOOL API Server - Alembic",
 
 app.include_router(routers.router)
 app.include_router(songs.router)
+app.include_router(users.router)
+app.include_router(dmtools.router)
+app.include_router(metadata.router)
+
