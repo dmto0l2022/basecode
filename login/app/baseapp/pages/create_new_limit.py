@@ -461,8 +461,13 @@ def button_click(
         
         x = requests.post(fastapi_url, json = post_data)
         #x = requests.post(fastapi_url, json = new_limit_txt)
+        print("post data")
+        print("================")
+        print(post_data)
 
-        #print(x.text)
+        print("request text")
+        print("================")
+        print(x.text)
         
         
         ## href_return = baseapp_prefix + '/list_all_limits'
