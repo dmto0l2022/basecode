@@ -1,28 +1,8 @@
-from sqlalchemy import create_engine
 import pandas as pd
 from dash import dash_table
 
 import os
 from os import environ, path
-
-from dotenv import load_dotenv
-
-load_dotenv(".env")
-
-import mariadb
-
-#MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
-#MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
-#MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
-#MARIADB_DATABASE = 'data'
-#MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
-
-#MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
-#                    MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
-#                    + MARIADB_DATABASE
-
-#import psycopg2
-#engine = create_engine(MARIADB_URI)
 
 class CrudTables():
 
@@ -36,17 +16,6 @@ class CrudTables():
         self.limits_df = None
         self.limits_table_df = None
         self.limits_table = None
-
-        self.MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
-        self.MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
-        #MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
-        self.MARIADB_DATABASE = 'data'
-        self.MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
-        
-        self.MARIADB_URI = "mariadb+mariadbconnector://" + self.MARIADB_USERNAME + ":" + \
-                        self.MARIADB_PASSWORD + "@" + self.MARIADB_CONTAINER + ":3306/"\
-                        + self.MARIADB_DATABASE
-        self.engine = create_engine(self.MARIADB_URI)
         self.populate_dataframes()
 
 
