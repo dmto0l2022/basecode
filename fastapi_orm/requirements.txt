@@ -1,7 +1,7 @@
 redis
 flask
 mariadb
-pydantic
+pydantic==1.10.10
 tortoise-orm[asyncmy]
 fastapi
 uvicorn
