@@ -1,7 +1,5 @@
 podman stop container_login_1
-podman stop container_frontend_1
-podman stop container_fastapi_orm_1
-podman stop container_fastapi_aerich_1
+podman stop container_fastapi_alembic_1
 podman stop container_mariadb
 podman stop container_redis_1
 podman stop infra_main_backend
