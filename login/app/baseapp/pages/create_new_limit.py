@@ -17,6 +17,8 @@ baseapp_prefix = '/login/baseapp'
 
 dash.register_page(__name__, path='/create_new_limit')
 
+fastapi_url = "http://container_fastapi_alembic_1:8012/apiorm/limit"
+
 '''
 ID List
 ========
@@ -457,20 +459,14 @@ def button_click(
         
         new_limit_json = json.dumps(new_limit_txt)
         
-        
-        #url = 'https://www.w3schools.com/python/demopage.php'
-        #url = 'http://35.214.16.124:8008/apiorm/limit'
-        fastapi_orm_url_api = "http://container_fastapi_orm_1:8008/apiorm/limit"
-        #url = 'http://container_fastapi_orm_1:8008/apiorm/limit'
-        #myobj = {'somekey': 'somevalue'}
-
         #x = requests.post(url, json = post_data)
-        x = requests.post(fastapi_orm_url_api, json = new_limit_txt)
+        x = requests.post(fastapi_url, json = new_limit_txt)
 
         #print(x.text)
         
         
-        href_return = baseapp_prefix + '/list_all_limits'
+        ## href_return = baseapp_prefix + '/list_all_limits'
+        href_return = baseapp_prefix + '/homepage'
         
         return href_return
     
