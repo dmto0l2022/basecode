@@ -459,8 +459,8 @@ def button_click(
         
         new_limit_json = json.dumps(new_limit_txt)
         
-        #x = requests.post(url, json = post_data)
-        x = requests.post(fastapi_url, json = new_limit_txt)
+        x = requests.post(url, json = post_data)
+        #x = requests.post(fastapi_url, json = new_limit_txt)
 
         #print(x.text)
         
