@@ -181,36 +181,36 @@ def callback():
     google = OAuth2Session(client_id, token=token)
     profile_data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
     google_id = profile_data['id']
-    url_get = fastapi_url + "/apiorm/authlibuser/google/" + google_id
-    print("url_get >>>" , url_get)
-    google_req = requests.get(url_get)
-    print("google user status code >>>> " , google_req.status_code)
-    if google_req.status_code == 404:
-        url = fastapi_url + "/apiorm/authlibuser/google/"
-        #json={"key": "value"}
-        json = {
-          "authlib_id": google_id,
-          "authlib_provider": "google"
-        }
-        post_request = requests.post(url, json=json)
-        print('post request status code >>> ' ,post_request.status_code)
+    #url_get = fastapi_url + "/apiorm/authlibuser/google/" + google_id
+    #print("url_get >>>" , url_get)
+    #google_req = requests.get(url_get)
+    #print("google user status code >>>> " , google_req.status_code)
+    #if google_req.status_code == 404:
+    #    url = fastapi_url + "/apiorm/authlibuser/google/"
+    #    #json={"key": "value"}
+    #    json = {
+    #      "authlib_id": google_id,
+    #      "authlib_provider": "google"
+    #    }
+    #    post_request = requests.post(url, json=json)
+    #    print('post request status code >>> ' ,post_request.status_code)
    
-    google_req = requests.get(url_get)
-    dmtool_userid = google_req.json()['id']
-    print('dmtool_userid >>>>>>', dmtool_userid)
-    print(google_req.json())
+    #google_req = requests.get(url_get)
+    #dmtool_userid = google_req.json()['id']
+    #print('dmtool_userid >>>>>>', dmtool_userid)
+    #print(google_req.json())
 
-    session['dmtool_userid'] = dmtool_userid
+    #session['dmtool_userid'] = dmtool_userid
 
-    url = fastapi_url + "/apiorm/authlibuser/permissions/"
-    request_permissions = url + str(dmtool_userid)
-    print('request_permissions >>>>', request_permissions)
+    #url = fastapi_url + "/apiorm/authlibuser/permissions/"
+    #request_permissions = url + str(dmtool_userid)
+    #print('request_permissions >>>>', request_permissions)
     
-    authorisation_check = requests.get(request_permissions)
-    if authorisation_check.status_code == 404:
-        session['dmtool_authorised'] = False
-    else:
-        session['dmtool_authorised'] = True
+    #authorisation_check = requests.get(request_permissions)
+    #if authorisation_check.status_code == 404:
+    #    session['dmtool_authorised'] = False
+    #else:
+    #    session['dmtool_authorised'] = True
     
     #print('authorisation_check.json() >>>>>>', authorisation_check.json())
     #session['dmtool_authorised'] = authorisation_check.json()['authorised']
