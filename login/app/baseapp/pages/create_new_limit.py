@@ -17,7 +17,7 @@ baseapp_prefix = '/login/baseapp'
 
 dash.register_page(__name__, path='/create_new_limit')
 
-fastapi_url = "http://container_fastapi_alembic_1:8014/apiorm/limit"
+fastapi_url = "http://container_fastapi_alembic_1:8014/alembic/limit"
 
 '''
 ID List
