@@ -1,7 +1,54 @@
 class CrudTables():
-  
 
-self.limits_table = dash_table.DataTable(
+    #import psycopg2
+    #engine1 = create_engine(MARIADB_URI1)
+
+    ##sqlquery = '''SELECT id, name FROM RubyDB.experiments;'''
+
+
+    def __init__(self):
+        self.limits_df = None
+        self.limits_table_df = None
+        self.limits_table = None
+
+        self.MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+        self.MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+        #MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+        self.MARIADB_DATABASE = 'data'
+        self.MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+        
+        self.MARIADB_URI = "mariadb+mariadbconnector://" + self.MARIADB_USERNAME + ":" + \
+                        self.MARIADB_PASSWORD + "@" + self.MARIADB_CONTAINER + ":3306/"\
+                        + self.MARIADB_DATABASE
+        self.engine = create_engine(self.MARIADB_URI)
+        self.populate_dataframes()
+
+
+    def populate_dataframes(self):
+        #do some parsing
+
+
+
+        limits_sql = '''SELECT id, limit_id, spin_dependency, result_type, measurement_type, nomhash, x_units, y_units, x_rescale,
+        y_rescale, default_color, default_style, data_label, file_name, data_comment,
+        data_reference, created_at, updated_at, creator_id, experiment, rating, date_of_announcement,
+        public, official, date_official, greatest_hit, date_of_run_start, date_of_run_end, `year`
+        FROM data.limits_metadata;'''
+        
+        self.limits_df = pd.read_sql_query(limits_sql, self.engine)
+        #self.limits_df['rowid'] = self.limits_df.index
+        
+        self.limits_table_df = self.limits_df[['id','limit_id','spin_dependency',
+                                 'experiment','official','greatest_hit','data_label',
+                                 'result_type','data_reference','year']].copy()
+
+
+        ###########################################################################
+        table_heights = 120
+        
+        style_header_var={ 'backgroundColor': 'black','color': 'white'}
+                
+        self.limits_table = dash_table.DataTable(
             id='limits_table_main',
             data=self.limits_table_df.to_dict('records'),
             columns=[{'name': 'id', 'id': 'id'},
@@ -51,4 +98,4 @@ self.limits_table = dash_table.DataTable(
             #    } for row in data
             #],
             tooltip_duration=None,
-        )
+            )
