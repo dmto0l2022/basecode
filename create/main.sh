@@ -194,36 +194,52 @@ localhost/mariadb_1:latest
 
 ####
 
-cd /opt/dmtools/code/basecode/fastapi_orm
+#cd /opt/dmtools/code/basecode/fastapi_orm
 
-podman rmi fastapi_orm_1
-podman build -f Dockerfile -t fastapi_orm_1
+#podman rmi fastapi_orm_1
+#podman build -f Dockerfile -t fastapi_orm_1
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
-podman run -dt \
---name container_fastapi_orm_1 \
---pod pod_main_backend \
---user $uid:$gid \
--v /opt/dmtools/code/basecode:/workdir \
-localhost/fastapi_orm_1:latest
+#podman run -dt \
+#--name container_fastapi_orm_1 \
+#--pod pod_main_backend \
+#--user $uid:$gid \
+#-v /opt/dmtools/code/basecode:/workdir \
+#localhost/fastapi_orm_1:latest
 
 ####
 
-cd /opt/dmtools/code/basecode/frontend
+cd /opt/dmtools/code/basecode/fastapi_alembic
 
-podman rmi frontend_1:latest
-podman build -f Dockerfile_frontendbase -t base_frontend_1 .
-podman build -f Dockerfile_frontend -t frontend_1 .
+podman rmi fastapi_orm_1
+podman build -f Dockerfile -t fastapi_alembic_1
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name container_frontend_1 \
+--name container_fastapi_alembic_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
-localhost/frontend_1:latest
+localhost/fastapi_alembic_1:latest
+
+###
+
+#cd /opt/dmtools/code/basecode/frontend
+
+#podman rmi frontend_1:latest
+#podman build -f Dockerfile_frontendbase -t base_frontend_1 .
+#podman build -f Dockerfile_frontend -t frontend_1 .
+
+##-v /HOST-DIR:/CONTAINER-DIR
+
+#podman run -dt \
+#--name container_frontend_1 \
+#--pod pod_main_backend \
+#--user $uid:$gid \
+#-v /opt/dmtools/code/basecode:/workdir \
+#localhost/frontend_1:latest
 
 ## login
 
