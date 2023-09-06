@@ -1,74 +1,58 @@
 import dash
-from dash import html, dcc, callback, Output, Input
-import dash_bootstrap_components as dbc
+from dash import html, dcc, callback, Output, Input, State
+#from flask import session
+from flask import request
 
+#import libraries.formlibrary as fl
 from app.baseapp.libraries import formlibrary as fl
 
 dash.register_page(__name__, path='/create_new_plot')
+page_name = 'create_new_plot'
+baseapp_prefix = '/login/baseapp'
 
-###############
+## id='plot_name_form_field_id',
 
-#### create new plot form
+layout = html.Div([
+    #html.Div(id="hidden_div_for_redirect_callback"),
+    dcc.Location(id="url_create_new_plot", refresh=True), ## important to allow redirects
+    html.Div("Create New Plot"),
+    fl.plot_name_input_row,
+    html.Button('Print', id=page_name + '_print_' + 'button_id', n_clicks=0),
+    html.Button('Create', id=page_name + '_create_' + 'button_id', n_clicks=0),
+    html.Button('Cancel',  id=page_name + '_cancel_' + 'button_id', n_clicks=0),
+    html.Div('No Button Pressed', id="whatbutton")
+    ])
 
-create_new_plot_form_title = html.Div(html.P(children='Create New Plot', className = "NOPADDING_CONTENT FORM_TITLE"))
-
-
-create_new_plot_form_content_old  = dbc.Row(
-    [
-        dbc.Col(
-            [
-                html.P(children='Create New Plot', className = "NOPADDING_CONTENT FORM_TITLE")
-            ],
-            width=6,
-        )
-    ],
-    className="g-3",
-)
-
-create_new_plot_form_content = fl.plot_name_input_row
-
-next_button =  html.Div(dbc.Button("Next",  id="create_new_plot_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-
-cancel_button =  html.Div(dbc.Button("Cancel",  id="create_new_plot_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-
-#cancel_button =  dbc.Col(dbc.Button("Cancel", color="secondary"), width="auto")
-
-create_new_plot_form = html.Div(
-    [dcc.Location(id="url", refresh=True),
-     create_new_plot_form_title,
-     create_new_plot_form_content,
-     next_button, cancel_button],
-    className = "NOPADDING_CONTENT CENTRE_FORM"
-)
-
-new_plot_row = create_new_plot_form
-
-layout = new_plot_row
 
 @callback(
-    Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
-    [
-    Input("next_buttonid", "n_clicks"),
-    Input("cancel_buttonid", "n_clicks")
-        ],
+    Output('url_create_new_plot', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    Input(page_name + '_print_' + 'button_id', "n_clicks"),
+    Input(page_name + '_create_' + 'button_id', "n_clicks"),
+    Input(page_name + '_cancel_' + 'button_id', "n_clicks"),
+    State("plot_name_form_field_id", "value"),
         prevent_initial_call=True
 )
-def button_click(button1,button2):
+def button_click_create_new_plot(button0,button1,button2,plot_name_input):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+    print("create new plot >> prop id >>  " ,prop_id)
     #msg = prop_id
-    if "next_buttonid" == prop_id :
-        #msg = "Button 1 was most recently clicked"
-        #href_return = dash.page_registry['pages.select_limits_to_plot']['path']
-        href_return = '/app/baseapp/select_limits_to_plot'
+    if page_name + '_print_' + 'button_id' == prop_id :
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        session_key = request.cookies.get('session')
+        print('cnp : session key >>',session_key)
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        href_return = '/app/baseapp/create_new_plot'
         return href_return
-    elif "cancel_buttonid" == prop_id:
+    elif page_name + '_create_' + 'button_id' == prop_id :
+        href_return = baseapp_prefix+ '/select_limits_to_plot'
+        return href_return
+    elif page_name + '_cancel_' + 'button_id' == prop_id:
         #msg = "Button 2 was most recently clicked"
-        #href_return = dash.page_registry['pages.home']['path']
-        href_return = '/app/baseapp/homepage'
+        #href_return = dash.page_registry['pages.edit_existing_plot']['path']
+        href_return = baseapp_prefix+ '/plot_menu'
         return href_return
     else:
-        #href_return = dash.page_registry['pages.home']['path']
-        href_return = '/app/baseapp/homepage'
+        href_return = baseapp_prefix + '/create_new_plot'
         return href_return
         
