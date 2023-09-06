@@ -1,3 +1,29 @@
+from sqlalchemy import create_engine
+import pandas as pd
+from dash import dash_table
+
+import os
+from os import environ, path
+
+from dotenv import load_dotenv
+
+load_dotenv(".env")
+
+import mariadb
+
+#MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+#MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+#MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+#MARIADB_DATABASE = 'data'
+#MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+
+#MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
+#                    MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
+#                    + MARIADB_DATABASE
+
+#import psycopg2
+#engine = create_engine(MARIADB_URI)
+
 class CrudTables():
 
     #import psycopg2
