@@ -99,15 +99,17 @@ class Middleware:
         except:
             print('no session')
         
-        if ('wsgi' not in request.path and 'session_app' not in request.path and 'baseapp' not in request.path ) :
-            print('wsgi and session_app and baseapp not in path')
-            return self.wsgi(environ,start_response)       
-        elif ('wsgi' in request.path or 'session_app' in request.path or 'baseapp' in request.path) and (dmtool_authorised==True) :
-            return self.wsgi(environ,start_response)
+        #if ('wsgi' not in request.path and 'session_app' not in request.path and 'baseapp' not in request.path ) :
+        #    print('wsgi and session_app and baseapp not in path')
+        #    return self.wsgi(environ,start_response)       
+        #elif ('wsgi' in request.path or 'session_app' in request.path or 'baseapp' in request.path) and (dmtool_authorised==True) :
+        #    return self.wsgi(environ,start_response)
         
-        else:
-            unauthorised_response = self.render_template('unauthorised.html')
-        return unauthorised_response(environ, start_response)
+        #else:
+        #    unauthorised_response = self.render_template('unauthorised.html')
+        #return unauthorised_response(environ, start_response)
+        return self.wsgi(environ,start_response)
+        
 
 application = DispatcherMiddleware(app, {
     #'/app/wsgi_app0': app0.server,  
