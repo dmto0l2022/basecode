@@ -138,7 +138,7 @@ limits_table = dash_table.DataTable(
     #row_selectable='multi',
     #selected_rows=[],
 
-    style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
+    style_cell={'textAlign': 'left','padding': '0px','font_size': '5px',
                     'overflow': 'hidden',
                     'textOverflow': 'ellipsis',
                     'border': '1px solid black',
