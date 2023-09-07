@@ -57,6 +57,7 @@ class ExperimentCreate(ExperimentBase):
 #    style
 #    created_at
 #    updated_at
+#    ceased_at
 
 class Limit_displayBase(SQLModel):
     name: str = Field(default=None)
@@ -72,6 +73,7 @@ class Limit_displayBase(SQLModel):
     style :  str = Field(default=None)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
 class Limit_display(Limit_displayBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
@@ -86,12 +88,14 @@ class Limit_displayCreate(Limit_displayBase):
 # limit_id
 # created_at
 # updated_at
+# ceased_at
 
 class Limit_ownershipBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
     limit_id : int = Field(default=None, nullable=False, primary_key=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
 class Limit_ownership(Limit_ownershipBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
@@ -121,6 +125,7 @@ data_comment
 data_reference
 created_at
 updated_at
+ceased_at
 creator_id
 experiment
 rating
@@ -152,16 +157,17 @@ class LimitBase(SQLModel):
     data_reference : str = Field(default=None)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     creator_id : int = Field(default=None, nullable=False, primary_key=False)
     experiment :  str = Field(default=None)
     rating : int = Field(default=None, nullable=False, primary_key=False)
-    date_of_announcement : datetime = Field(default=datetime.utcnow(), nullable=False)
+    date_of_announcement : date = Field(default=datetime.date.today(), nullable=False)
     public : int = Field(default=None, nullable=False, primary_key=False) ## boolean
     official : int = Field(default=None, nullable=False, primary_key=False) ## boolean
-    date_official : datetime = Field(default=datetime.utcnow(), nullable=False)
+    date_official : datetime = Field(default=datetime.date.today(), nullable=False)
     greatest_hit : int = Field(default=None, nullable=False, primary_key=False) ## boolean
-    date_of_run_start : datetime = Field(default=datetime.utcnow(), nullable=False)
-    date_of_run_end : datetime = Field(default=datetime.utcnow(), nullable=False)
+    date_of_run_start : date = Field(default=datetime.date.today(), nullable=False)
+    date_of_run_end : date = Field(default=datetime.date.today(), nullable=False)
     year : int = Field(default=None, nullable=False, primary_key=False)
 
 class Limit(LimitBase, table=True):
@@ -178,6 +184,7 @@ user_id
 plot_id
 created_at
 updated_at
+ceased_at
 '''
 
 class Plot_ownershipBase(SQLModel):
@@ -185,6 +192,7 @@ class Plot_ownershipBase(SQLModel):
     plot_id : int = Field(default=None, nullable=False, primary_key=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
 class Plot_ownership(Plot_ownershipBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
@@ -206,6 +214,7 @@ y_units
 user_id
 created_at
 updated_at
+ceased_at
 plot_png
 legend_png
 plot_eps
@@ -224,6 +233,7 @@ class PlotBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     plot_png : str = Field(default=None)
     legend_png : str = Field(default=None)
     plot_eps : str = Field(default=None)
