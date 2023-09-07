@@ -138,17 +138,17 @@ limits_table = dash_table.DataTable(
     #row_selectable='multi',
     #selected_rows=[],
 
-    style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
+    style_cell={'textAlign': 'left','padding': '0px','font_size': '5px',
                     'overflow': 'hidden',
                     'textOverflow': 'ellipsis',
                         'border': '1px solid black'
                 },
      css=[
                 {"selector": ".Select-menu-outer", "rule": "display: block !important"},
-                {"selector": ".dash-spreadsheet tr th", "rule": "height: 5px;"},  # set height of header
-                {"selector": ".dash-spreadsheet tr td", "rule": "height: 5px;"},  # set height of body rows
-                {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: 5px; height: 5px;"},
-                {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: 5px; height: 5px;"}
+                {"selector": ".dash-spreadsheet tr th", "rule": "min-height: 5px; height: 5px;line-height: 5px;max-height: 5px;"},  # set height of header
+                {"selector": ".dash-spreadsheet tr td", "min-height: 5px; height: 5px;line-height: 5px;max-height: 5px;"},  # set height of body rows
+                {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: 5px; height: 5px;line-height: 5px;max-height: 5px;"},
+                {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: 5px; height: 5px;line-height: 5px;max-height: 5px;"}
                 ],
     style_table={'height': '75vh',},
     #style_cell_conditional=[
@@ -159,10 +159,10 @@ limits_table = dash_table.DataTable(
     #    {'if': {'column_id': 'data_label'},
     #     'width': '35%'},
     #],
-    style_data={
-        'whiteSpace': 'normal',
-        'height': 'auto',
-    },
+    #style_data={
+    #    'whiteSpace': 'normal',
+    #    'height': 'auto',
+    #},
     style_header=style_header_var,
     #tooltip_data=[
     #    {
