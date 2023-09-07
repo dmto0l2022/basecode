@@ -133,6 +133,7 @@ limits_table = dash_table.DataTable(
     data=table_data_dict_initial,
     columns=[{"name": c, "id": c} for c in column_names],
     #fixed_rows={'headers': True},
+    fixed_rows={'headers': True},
     #page_size=5,
     filter_action='none',
     #row_selectable='multi',
@@ -143,7 +144,7 @@ limits_table = dash_table.DataTable(
                     'textOverflow': 'ellipsis',
                     'border': '1px solid black',
                     #'height': 'auto'
-                    'height': '5px',
+                    'height': '12px',
                 },
      css=[
                 {"selector": ".Select-menu-outer", "rule": "display: block !important"},
