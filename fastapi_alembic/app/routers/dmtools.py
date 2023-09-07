@@ -196,7 +196,9 @@ date_of_run_end
 year
 '''
 
-@router.get("/alembic/limit", response_model=list[Limit])
+## get all limits
+
+@router.get("/alembic/limits", response_model=list[Limit])
 async def get_limit(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(Limit))
     limits = result.scalars().all()
@@ -228,6 +230,16 @@ async def get_limit(session: AsyncSession = Depends(get_session)):
                 year = limit.year)
             for limit in limits]
 
+
+## get one limit
+
+@router.get("/alembic/limit/{limit_id}", response_model=Limit)
+async def get_limit(session: AsyncSession = Depends(get_session)):
+    statement = select(Limit).where(Limit.id == limit_id)
+    limit = await session.exec(statement)
+    return limit
+
+## add one limit
 
 @router.post("/alembic/limit")
 async def add_limit(limit: LimitCreate, session: AsyncSession = Depends(get_session)):
