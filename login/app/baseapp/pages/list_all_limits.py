@@ -112,63 +112,63 @@ list_all_limits_form = html.Div(
 )
 
     
-    # limits_df = pd.read_sql_query(limits_sql, self.engine)
-    # limits_df['rowid'] = self.limits_df.index
-    
-    # limits_table_df = limits_df[['id','limit_id','spin_dependency',
-    #                         'experiment','official','greatest_hit','data_label',
-    #                         'result_type','data_reference','year']].copy()
+# limits_df = pd.read_sql_query(limits_sql, self.engine)
+# limits_df['rowid'] = self.limits_df.index
+
+# limits_table_df = limits_df[['id','limit_id','spin_dependency',
+#                         'experiment','official','greatest_hit','data_label',
+#                         'result_type','data_reference','year']].copy()
 
 
-    ###########################################################################
-    table_heights = 120
+###########################################################################
+table_heights = 120
+
+style_header_var={ 'backgroundColor': 'black','color': 'white'}
     
-    style_header_var={ 'backgroundColor': 'black','color': 'white'}
-            
-    limits_table = dash_table.DataTable(
-        id='limits_table_main',
-        data=table_data_dict_initial,
-        columns=[{"name": c, "id": c} for c in column_names],
-        #fixed_rows={'headers': True},
-        page_size=5,
-        filter_action='none',
-        #row_selectable='multi',
-        #selected_rows=[],
-        style_cell={'textAlign': 'left','padding': '0px','font_size': '9px',
-                'overflow': 'hidden',
-                'textOverflow': 'ellipsis',
-            },
-        css=[{
-            'selector': '.dash-spreadsheet td div',
-            'rule': '''
-                line-height: 11px;
-                max-height: 45px; min-height:30px; height: 30px;
-                display: block;
-                overflow-y: hidden;
-            '''
-        }],
-        style_table={'height': '75vh',},
-        #style_cell_conditional=[
-        #    {'if': {'column_id': 'id'},
-        #     'width': '5%'},
-        #    {'if': {'column_id': 'data_reference'},
-        #     'width': '20%'},
-        #    {'if': {'column_id': 'data_label'},
-        #     'width': '35%'},
-        #],
-        style_data={
-            'whiteSpace': 'normal',
-            'height': 'auto',
+limits_table = dash_table.DataTable(
+    id='limits_table_main',
+    data=table_data_dict_initial,
+    columns=[{"name": c, "id": c} for c in column_names],
+    #fixed_rows={'headers': True},
+    page_size=5,
+    filter_action='none',
+    #row_selectable='multi',
+    #selected_rows=[],
+    style_cell={'textAlign': 'left','padding': '0px','font_size': '9px',
+            'overflow': 'hidden',
+            'textOverflow': 'ellipsis',
         },
-        style_header=style_header_var,
-        #tooltip_data=[
-        #    {
-        #        column: {'value': str(value), 'type': 'markdown'}
-        #        for column, value in row.items()
-        #    } for row in data
-        #],
-        tooltip_duration=None,
-        )
+    css=[{
+        'selector': '.dash-spreadsheet td div',
+        'rule': '''
+            line-height: 11px;
+            max-height: 45px; min-height:30px; height: 30px;
+            display: block;
+            overflow-y: hidden;
+        '''
+    }],
+    style_table={'height': '75vh',},
+    #style_cell_conditional=[
+    #    {'if': {'column_id': 'id'},
+    #     'width': '5%'},
+    #    {'if': {'column_id': 'data_reference'},
+    #     'width': '20%'},
+    #    {'if': {'column_id': 'data_label'},
+    #     'width': '35%'},
+    #],
+    style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+    },
+    style_header=style_header_var,
+    #tooltip_data=[
+    #    {
+    #        column: {'value': str(value), 'type': 'markdown'}
+    #        for column, value in row.items()
+    #    } for row in data
+    #],
+    tooltip_duration=None,
+    )
 
 
 
