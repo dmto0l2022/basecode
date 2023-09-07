@@ -145,7 +145,7 @@ limits_table = dash_table.DataTable(
         'selector': '.dash-spreadsheet td div',
         'rule': '''
             line-height: 11px;
-            max-height: 13px; min-height:12px; height: 12px;
+            max-height: 11px; min-height:11px; height: 11px;
             display: block;
             overflow-y: hidden;
         '''
@@ -159,10 +159,10 @@ limits_table = dash_table.DataTable(
     #    {'if': {'column_id': 'data_label'},
     #     'width': '35%'},
     #],
-    #style_data={
-    #    'whiteSpace': 'normal',
-    #    'height': 'auto',
-    #},
+    style_data={
+        'whiteSpace': 'normal',
+        'height': 'auto',
+    },
     style_header=style_header_var,
     #tooltip_data=[
     #    {
