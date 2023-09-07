@@ -145,7 +145,7 @@ limits_table = dash_table.DataTable(
         'selector': '.dash-spreadsheet td div',
         'rule': '''
             line-height: 11px;
-            max-height: 45px; min-height:30px; height: 30px;
+            max-height: 13px; min-height:12px; height: 12px;
             display: block;
             overflow-y: hidden;
         '''
