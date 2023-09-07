@@ -138,7 +138,7 @@ limits_table = dash_table.DataTable(
     #row_selectable='multi',
     #selected_rows=[],
 
-    style_cell={'textAlign': 'left','padding': '0px','font_size': '5px',
+    style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
                     'overflow': 'hidden',
                     'textOverflow': 'ellipsis',
                         'border': '1px solid black'
@@ -146,8 +146,8 @@ limits_table = dash_table.DataTable(
     css=[{
         'selector': '.dash-spreadsheet td div',
         'rule': '''
-            line-height: 6px;
-            max-height: 6px; min-height: 6px; height: 6px;
+            line-height: 12px;
+            max-height: 12px; min-height: 12px; height: 12px;
             display: block;
             overflow-y: hidden;
         '''
