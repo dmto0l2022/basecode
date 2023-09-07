@@ -138,12 +138,12 @@ limits_table = dash_table.DataTable(
     #row_selectable='multi',
     #selected_rows=[],
 
-    style_cell={'textAlign': 'left','padding': '0px','font_size': '5px',
+    style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
                     'overflow': 'hidden',
                     'textOverflow': 'ellipsis',
                     'border': '1px solid black',
                     #'height': 'auto'
-                    #'height': '5px'
+                    'height': '5px',
                 },
      css=[
                 {"selector": ".Select-menu-outer", "rule": "display: block !important"},
