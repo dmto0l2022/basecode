@@ -159,10 +159,10 @@ limits_table = dash_table.DataTable(
     #    {'if': {'column_id': 'data_label'},
     #     'width': '35%'},
     #],
-    style_data={
-        'whiteSpace': 'normal',
-        'height': 'auto',
-    },
+    #style_data={
+    #    'whiteSpace': 'normal',
+    #    'height': 'auto',
+    #},
     style_header=style_header_var,
     #tooltip_data=[
     #    {
