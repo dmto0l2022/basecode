@@ -141,7 +141,9 @@ limits_table = dash_table.DataTable(
     style_cell={'textAlign': 'left','padding': '0px','font_size': '5px',
                     'overflow': 'hidden',
                     'textOverflow': 'ellipsis',
-                        'border': '1px solid black'
+                    'border': '1px solid black',
+                    #'height': 'auto'
+                    'height': 5px
                 },
      css=[
                 {"selector": ".Select-menu-outer", "rule": "display: block !important"},
