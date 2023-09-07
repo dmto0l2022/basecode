@@ -133,7 +133,7 @@ limits_table = dash_table.DataTable(
     data=table_data_dict_initial,
     columns=[{"name": c, "id": c} for c in column_names],
     #fixed_rows={'headers': True},
-    page_size=5,
+    #page_size=5,
     filter_action='none',
     #row_selectable='multi',
     #selected_rows=[],
@@ -142,8 +142,8 @@ limits_table = dash_table.DataTable(
                     'overflow': 'hidden',
                     'textOverflow': 'ellipsis',
                     'border': '1px solid black',
-                    #'height': 'auto'
-                    'height': '5px'
+                    'height': 'auto'
+                    #'height': '5px'
                 },
      css=[
                 {"selector": ".Select-menu-outer", "rule": "display: block !important"},
@@ -152,7 +152,7 @@ limits_table = dash_table.DataTable(
                 {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: 5px; height: 5px;line-height: 5px;max-height: 5px;"},
                 {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: 5px; height: 5px;line-height: 5px;max-height: 5px;"}
                 ],
-    style_table={'height': '75vh',},
+    #style_table={'height': '75vh',},
     #style_cell_conditional=[
     #    {'if': {'column_id': 'id'},
     #     'width': '5%'},
