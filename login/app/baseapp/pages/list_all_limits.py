@@ -15,9 +15,8 @@ from app.baseapp.libraries import formlibrary as fl
 import requests
 import json
 
-fastapi_orm_url = "http://container_fastapi_orm_1:8008"
-#fastapi_orm_url = "http://35.214.16.124:8008"
-fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
+fastapi_url_limits = "http://container_fastapi_alembic_1:8014/alembic/limits" ## multiple limit operations
+fastapi_url_limit = "http://container_fastapi_alembic_1:8014/alembic/limit" ## single limit operations
 
 dash.register_page(__name__, path='/list_all_limits')
 baseapp_prefix = '/login/baseapp'
@@ -67,12 +66,11 @@ class MakeApiCall():
 ###
 
 def DeleteRow(limit_in):
-    url = fastapi_orm_url_api + "/limit/"
-    delete_url = fastapi_orm_url_api + "/limit/" + str(limit_in)
+    delete_url = fastapi_url_limit + "/" + str(limit_in)
     requests.delete(delete_url)
 
 def RefreshTableData():
-    url = fastapi_orm_url_api + "/limit/"
+    url = fastapi_url_limits
     column_names=['id','experiment','data_comment','create', 'read', 'update', 'delete']
     response_data_frame = pd.DataFrame()
     try:
@@ -98,14 +96,6 @@ def RefreshTableData():
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     return updated_data_dict_ret, updated_data_frame_ret, column_names
 
-
-##data_request = requests.get('/plots/getall')
-#url = "http://10.154.0.20:8004/plots/getall/"
-#url = "http://localhost:8002/todo/list/1"
-#data_request = requests.get(url="http://0.0.0.0:8002/todo/list/1")
-##url = "http://dev4.dmtools.info:8002/todo/list/1"
-#url = "http://10.154.0.20:8004/todo/list/1"
-##10.154.0.20
 
 table_data_dict_initial, table_data_frame_initial, column_names = RefreshTableData()
 initial_active_cell = {"row": 0, "column": 0, "column_id": "id", "row_id": 0}
