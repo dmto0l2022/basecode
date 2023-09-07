@@ -165,7 +165,7 @@ class LimitBase(SQLModel):
     date_of_announcement : date = Field(default=date.today(), nullable=False)
     public : int = Field(default=None, nullable=False, primary_key=False) ## boolean
     official : int = Field(default=None, nullable=False, primary_key=False) ## boolean
-    date_official : datetime = Field(default=date.today(), nullable=False)
+    date_official : date = Field(default=date.today(), nullable=False)
     greatest_hit : int = Field(default=None, nullable=False, primary_key=False) ## boolean
     date_of_run_start : date = Field(default=date.today(), nullable=False)
     date_of_run_end : date = Field(default=date.today(), nullable=False)
