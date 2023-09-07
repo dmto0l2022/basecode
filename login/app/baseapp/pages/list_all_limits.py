@@ -76,7 +76,10 @@ def RefreshTableData():
     try:
         r = requests.get(url)
         response_data = r.json()
-        #print(response_data)
+        print('response data')
+        print('===================')
+        print(response_data)
+        print('===================')
         response_data_frame = pd.DataFrame(response_data)
     except:
         a = 1
