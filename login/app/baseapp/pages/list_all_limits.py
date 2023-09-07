@@ -138,15 +138,16 @@ limits_table = dash_table.DataTable(
     #row_selectable='multi',
     #selected_rows=[],
 
-    style_cell={'textAlign': 'left','padding': '0px','font_size': '5px',
+    style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
                     'overflow': 'hidden',
                     'textOverflow': 'ellipsis',
                     'border': '1px solid black',
-                    'height': 'auto'
+                    #'height': 'auto'
                     #'height': '5px'
                 },
      css=[
                 {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                {"selector"="p", rule="margin: 0px; padding:0px"},
                 {"selector": ".dash-spreadsheet tr th", "rule": "min-height: 5px; height: 5px;line-height: 5px;max-height: 5px;"},  # set height of header
                 {"selector": ".dash-spreadsheet tr td", "rule": "min-height: 5px; height: 5px;line-height: 5px;max-height: 5px;"},  # set height of body rows
                 {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: 5px; height: 5px;line-height: 5px;max-height: 5px;"},
