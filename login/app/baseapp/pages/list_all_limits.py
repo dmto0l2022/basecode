@@ -145,7 +145,7 @@ limits_table = dash_table.DataTable(
                 },
     css=[
          {'selector': '.dash-table-container tr', 
-         'rule':'max-height': '6px'; 'height': '6px';}
+         'rule':'''max-height: 6px; height: 6px;'''}
         ],
     style_table={'height': '75vh',},
     #style_cell_conditional=[
