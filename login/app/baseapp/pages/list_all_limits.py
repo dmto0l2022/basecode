@@ -143,10 +143,11 @@ limits_table = dash_table.DataTable(
                     'textOverflow': 'ellipsis',
                         'border': '1px solid black'
                 },
-    css=[
-         {'selector': '.dash-table-container tr', 
-         'rule':'''max-height: 6px; height: 6px;'''}
-        ],
+     css=[
+                {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                {"selector": ".dash-spreadsheet tr th", "rule": "height: 5px;"},  # set height of header
+                {"selector": ".dash-spreadsheet tr td", "rule": "height: 5px;"}  # set height of body rows
+                ],
     style_table={'height': '75vh',},
     #style_cell_conditional=[
     #    {'if': {'column_id': 'id'},
