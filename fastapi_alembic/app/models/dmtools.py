@@ -2,6 +2,7 @@ from sqlmodel import SQLModel, Field
 from typing import Optional
 
 from datetime import datetime
+from datetime import date
 
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -161,13 +162,13 @@ class LimitBase(SQLModel):
     creator_id : int = Field(default=None, nullable=False, primary_key=False)
     experiment :  str = Field(default=None)
     rating : int = Field(default=None, nullable=False, primary_key=False)
-    date_of_announcement : date = Field(default=datetime.date.today(), nullable=False)
+    date_of_announcement : date = Field(default=date.today(), nullable=False)
     public : int = Field(default=None, nullable=False, primary_key=False) ## boolean
     official : int = Field(default=None, nullable=False, primary_key=False) ## boolean
-    date_official : datetime = Field(default=datetime.date.today(), nullable=False)
+    date_official : datetime = Field(default=date.today(), nullable=False)
     greatest_hit : int = Field(default=None, nullable=False, primary_key=False) ## boolean
-    date_of_run_start : date = Field(default=datetime.date.today(), nullable=False)
-    date_of_run_end : date = Field(default=datetime.date.today(), nullable=False)
+    date_of_run_start : date = Field(default=date.today(), nullable=False)
+    date_of_run_end : date = Field(default=date.today(), nullable=False)
     year : int = Field(default=None, nullable=False, primary_key=False)
 
 class Limit(LimitBase, table=True):
