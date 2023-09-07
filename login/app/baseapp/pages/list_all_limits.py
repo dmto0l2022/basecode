@@ -151,7 +151,10 @@ limits_table = dash_table.DataTable(
             display: block;
             overflow-y: hidden;
         '''
-    }],
+    },
+         {'selector': '.dash-table-container tr', 
+         'rule':'''max-height: 12px; height: 12px; '''}
+        ],
     style_table={'height': '75vh',},
     #style_cell_conditional=[
     #    {'if': {'column_id': 'id'},
