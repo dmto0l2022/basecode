@@ -143,17 +143,9 @@ limits_table = dash_table.DataTable(
                     'textOverflow': 'ellipsis',
                         'border': '1px solid black'
                 },
-    css=[{
-        'selector': '.dash-spreadsheet td div',
-        'rule': '''
-            line-height: 12px;
-            max-height: 12px; min-height: 12px; height: 12px;
-            display: block;
-            overflow-y: hidden;
-        '''
-    },
+    css=[
          {'selector': '.dash-table-container tr', 
-         'rule':'''max-height: 12px; height: 12px; '''}
+         'rule':'max-height': '6px'; 'height': '6px';}
         ],
     style_table={'height': '75vh',},
     #style_cell_conditional=[
@@ -178,7 +170,16 @@ limits_table = dash_table.DataTable(
     tooltip_duration=None,
     )
 
-
+##########################
+#{
+#        'selector': '.dash-spreadsheet td div',
+#        'rule': '''
+#            line-height: 12px;
+#            max-height: 12px; min-height: 12px; height: 12px;
+#            display: block;
+#            overflow-y: hidden;
+#        '''
+#    },
 
 ##########################
 
