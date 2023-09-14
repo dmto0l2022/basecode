@@ -1,8 +1,8 @@
 :root {
-  --header_height: 6vh;
-  --footer_height: 5vh;
-  --sidebar_width: 5vw;
-  --adbar_width: 5vw;
+  --header_height: 18px;## 6vh;
+  --footer_height: 12px; ##5vh;
+  --sidebar_width: 25px; ##5vw;
+  --adbar_width: 25px; ##5vw;
   --content_width: 90vw;
   --half_content_width: 45vw;
   --half_content_height: 44vw;
