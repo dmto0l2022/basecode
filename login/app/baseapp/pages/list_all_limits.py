@@ -125,7 +125,7 @@ list_all_limits_form = html.Div(
 ###########################################################################
 table_heights = 120
 row_height = '10px'
-font_size '9px'
+font_size = '9px'
 
 style_header_var={ 'backgroundColor': 'black','color': 'white'}
     
