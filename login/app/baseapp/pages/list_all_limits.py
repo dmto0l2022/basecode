@@ -75,7 +75,8 @@ def DeleteRow(limit_in):
 
 def RefreshTableData():
     url = fastapi_url_limits
-    column_names=['id','experiment','data_comment','create', 'read', 'update', 'delete']
+    #column_names=['id','experiment','data_comment','create', 'read', 'update', 'delete']
+    column_names=['id','experiment','data_comment','edit', 'delete']
     response_data_frame = pd.DataFrame()
     try:
         r = requests.get(url)
