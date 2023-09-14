@@ -154,7 +154,6 @@ limits_table = dash_table.DataTable(
                 {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: 5px; height: 5px;line-height: 5px;max-height: 5px;"}
                 ],
 
-    .dash-table-container .dash-spreadsheet-container 
     #style_table={'height': '75vh',},
     #style_cell_conditional=[
     #    {'if': {'column_id': 'id'},
