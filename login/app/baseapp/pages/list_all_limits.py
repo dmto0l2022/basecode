@@ -90,8 +90,8 @@ def RefreshTableData():
         a = 1
     
     if response_data_frame.empty:
-        #empty_data = [['id','experiment','data_comment','create', 'read', 'update', 'delete']]
-        empty_data = [['id','experiment','data_comment','edit', 'delete']]
+        #empty_data = [['id','experiment','data_comment','data_label', 'data_reference', 'create', 'read', 'update', 'delete']]
+        empty_data = [['id','experiment','data_comment', 'data_label', 'data_reference', 'edit', 'delete']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
@@ -165,10 +165,14 @@ limits_table = dash_table.DataTable(
     #style_table={'height': '75vh',},
     style_cell_conditional=[
         {'if': {'column_id': 'id'},
-         'width': '2%'},
+         'width': '5%'},
         {'if': {'column_id': 'experiment'},
          'width': '10%'},
         {'if': {'column_id': 'data_comment'},
+         'width': '25%'},
+        {'if': {'column_id': 'data_label'},
+         'width': '25%'},
+        {'if': {'column_id': 'data_reference'},
          'width': '25%'},
         #{'if': {'column_id': 'create'},
         # 'width': '5%'},
