@@ -96,8 +96,7 @@ def RefreshTableData():
         lst = ['id','experiment','data_comment']
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
-        #updated_data_frame_ret['create'] = "create"
-        updated_data_frame_ret['create'] = html.Div('&#9989;')
+        updated_data_frame_ret['create'] = "create"
         updated_data_frame_ret['read'] = "read"
         updated_data_frame_ret['update'] = "update"
         updated_data_frame_ret['delete'] = "delete"
@@ -162,14 +161,22 @@ limits_table = dash_table.DataTable(
                 ],
     
     #style_table={'height': '75vh',},
-    #style_cell_conditional=[
-    #    {'if': {'column_id': 'id'},
-    #     'width': '5%'},
-    #    {'if': {'column_id': 'data_reference'},
-    #     'width': '20%'},
-    #    {'if': {'column_id': 'data_label'},
-    #     'width': '35%'},
-    #],
+    style_cell_conditional=[
+        {'if': {'column_id': 'id'},
+         'width': '5%'},
+        {'if': {'column_id': 'data_reference'},
+         'width': '20%'},
+        {'if': {'column_id': 'data_label'},
+         'width': '35%'},
+        {'if': {'column_id': 'create'},
+         'width': '5%'},
+        {'if': {'column_id': 'read'},
+         'width': '5%'},
+        {'if': {'column_id': 'update'},
+         'width': '5%'},
+        {'if': {'column_id': 'update'},
+         'width': '5%'},
+    ],
     #style_data={
     #    'whiteSpace': 'normal',
     #    'height': 'auto',
