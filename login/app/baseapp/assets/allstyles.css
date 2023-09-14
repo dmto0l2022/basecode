@@ -1,8 +1,8 @@
 :root {
-  --header_height: 18px;## 6vh;
-  --footer_height: 12px; ##5vh;
-  --sidebar_width: 25px; ##5vw;
-  --adbar_width: 25px; ##5vw;
+  --header_height: 18px;
+  --footer_height: 12px;
+  --sidebar_width: 25px;
+  --adbar_width: 25px;
   --content_width: 90vw;
   --half_content_width: 45vw;
   --half_content_height: 44vw;
@@ -14,6 +14,13 @@
   --form_width: 40vw;
   --form_height: 40vh;
 }
+
+/**
+--header_height: 18px;## 6vh;
+  --footer_height: 12px; ##5vh;
+  --sidebar_width: 25px; ##5vw;
+  --adbar_width: 25px; ##5vw;
+**/
 
 .center {
   text-align: center;
