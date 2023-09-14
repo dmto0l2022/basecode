@@ -47,6 +47,10 @@ cancel_button =  html.Div(dbc.Button("Cancel",  id="list_all_limits_cancel_butto
 
 ##########################################################
 
+table_heights = 120
+row_height = '10px'
+font_size = '9px'
+
 '''
 class MakeApiCall():
 
@@ -124,9 +128,7 @@ list_all_limits_form = html.Div(
 
 
 ###########################################################################
-table_heights = 120
-row_height = '10px'
-font_size = '9px'
+
 
 style_header_var={ 'backgroundColor': 'black','color': 'white'}
     
