@@ -99,7 +99,7 @@ def RefreshTableData():
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
         #updated_data_frame_ret['create'] = "create"
-        updated_data_frame_ret['read'] = "edit"
+        updated_data_frame_ret['edit'] = "edit"
         #updated_data_frame_ret['update'] = "update"
         updated_data_frame_ret['delete'] = "delete"
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
@@ -166,9 +166,9 @@ limits_table = dash_table.DataTable(
     style_cell_conditional=[
         {'if': {'column_id': 'id'},
          'width': '5%'},
-        {'if': {'column_id': 'data_reference'},
+        {'if': {'column_id': 'experiment'},
          'width': '20%'},
-        {'if': {'column_id': 'data_label'},
+        {'if': {'column_id': 'data_comment'},
          'width': '35%'},
         #{'if': {'column_id': 'create'},
         # 'width': '5%'},
