@@ -106,7 +106,6 @@ initial_active_cell = {"row": 0, "column": 0, "column_id": "id", "row_id": 0}
 ###########################################################
 
 list_all_limits_form = html.Div(
-    #[newplot_title,newplot_input3],
     [dcc.Location(id="url", refresh=True),
      list_all_limits_form_title,
      list_all_limits_form_content,
@@ -229,8 +228,10 @@ table_layout = html.Div(
 )
 
 
-layout = table_layout
+#layout = table_layout
+layout = list_all_limits_form
 
+'''
 @callback(
     [Output("output-div", "children"), Output('limits_table_main','data')], Input("limits_table_main", "active_cell"),
 )
@@ -284,6 +285,7 @@ def cell_clicked(active_cell):
     return return_data, updated_data_dict
 
 ##json.dumps(list(active_cell))
+'''
 
 '''
 
