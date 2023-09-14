@@ -89,16 +89,17 @@ def RefreshTableData():
         a = 1
     
     if response_data_frame.empty:
-        empty_data = [['id','experiment','data_comment','create', 'read', 'update', 'delete']]
+        #empty_data = [['id','experiment','data_comment','create', 'read', 'update', 'delete']]
+        empty_data = [['id','experiment','data_comment','edit', 'delete']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
         lst = ['id','experiment','data_comment']
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
-        updated_data_frame_ret['create'] = "create"
-        updated_data_frame_ret['read'] = "read"
-        updated_data_frame_ret['update'] = "update"
+        #updated_data_frame_ret['create'] = "create"
+        updated_data_frame_ret['read'] = "edit"
+        #updated_data_frame_ret['update'] = "update"
         updated_data_frame_ret['delete'] = "delete"
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     return updated_data_dict_ret, updated_data_frame_ret, column_names
@@ -168,13 +169,13 @@ limits_table = dash_table.DataTable(
          'width': '20%'},
         {'if': {'column_id': 'data_label'},
          'width': '35%'},
-        {'if': {'column_id': 'create'},
+        #{'if': {'column_id': 'create'},
+        # 'width': '5%'},
+        {'if': {'column_id': 'edit'},
          'width': '5%'},
-        {'if': {'column_id': 'read'},
-         'width': '5%'},
-        {'if': {'column_id': 'update'},
-         'width': '5%'},
-        {'if': {'column_id': 'update'},
+        #{'if': {'column_id': 'update'},
+       #  'width': '5%'},
+        {'if': {'column_id': 'delete'},
          'width': '5%'},
     ],
     #style_data={
