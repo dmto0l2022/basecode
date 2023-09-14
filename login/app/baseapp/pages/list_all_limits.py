@@ -166,7 +166,7 @@ limits_table = dash_table.DataTable(
     #    'whiteSpace': 'normal',
     #    'height': 'auto',
     #},
-    style_header=style_header_var,
+    #style_header=style_header_var,
     #tooltip_data=[
     #    {
     #        column: {'value': str(value), 'type': 'markdown'}
@@ -219,8 +219,7 @@ table_layout = html.Div(
             [
                 limits_table
             ],
-            style={"margin": 50},
-            className="five columns"
+            className="NOPADDING_CONTENT"
         ),
         html.Div(id="output-div", className="six columns"),
     ],
@@ -228,8 +227,8 @@ table_layout = html.Div(
 )
 
 
-#layout = table_layout
-layout = list_all_limits_form
+layout = table_layout
+#layout = list_all_limits_form
 
 '''
 @callback(
