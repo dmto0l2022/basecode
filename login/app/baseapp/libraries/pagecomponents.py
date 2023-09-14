@@ -9,6 +9,8 @@ import dash_bootstrap_components as dbc
 
 baseapp_prefix = '/login/baseapp'
 
+## https://github.com/facultyai/dash-bootstrap-components/blob/main/examples/advanced-component-usage/navbars.py
+
 '''
 
 "margin": "0px", "position": "absolute","top": "50%", "left": "50%", "transform": "translate(-50%, -50%)"
