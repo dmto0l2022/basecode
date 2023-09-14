@@ -227,9 +227,12 @@ table_layout = html.Div(
     className="row"
 )
 
+no_output = html.Div([limits_table], className="NOPADDING_CONTENT")
 
-layout = table_layout
+#layout = table_layout
 #layout = list_all_limits_form
+
+layout = no_output
 
 '''
 @callback(
