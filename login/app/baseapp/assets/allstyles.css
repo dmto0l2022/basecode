@@ -192,26 +192,26 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 33%;
+    height: 12px;
     background-color: Gray;
     }
 
 
 .PAGE_HEADER_1 {
     position: fixed;
-    top: 2vh;
+    top: 12px;
     left: 0;
     right: 0;
-    height: 33%;
+    height: 12px;
     background-color: Gray;
     }
 
 .PAGE_HEADER_2 {
     position: fixed;
-    top: 4vh;
+    top: 24px;
     left: 0;
     right: 0;
-    height: 33%;
+    height: 12px;
     background-color: Gray;
     }
 
