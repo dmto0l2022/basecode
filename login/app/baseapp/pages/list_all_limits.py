@@ -92,7 +92,8 @@ def RefreshTableData():
         lst = ['id','experiment','data_comment']
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
-        updated_data_frame_ret['create'] = "create"
+        #updated_data_frame_ret['create'] = "create"
+        updated_data_frame_ret['create'] = html.Div('&#9989;', style={font_size=font_size)}
         updated_data_frame_ret['read'] = "read"
         updated_data_frame_ret['update'] = "update"
         updated_data_frame_ret['delete'] = "delete"
