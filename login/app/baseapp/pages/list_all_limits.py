@@ -246,7 +246,7 @@ table_layout = html.Div(
         html.Div(children="Debug Output", className="NOPADDING_CONTENT"),
         html.Div(id="output-div", className="six columns"),
     ],
-    className="row"
+    className="row NOPADDING_CONTENT"
 )
 
 no_output = html.Div([limits_table], className="NOPADDING_CONTENT")
