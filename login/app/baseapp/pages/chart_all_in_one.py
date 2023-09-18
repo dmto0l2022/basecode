@@ -184,7 +184,7 @@ row_height = '13px'
 
 def GetLimitsTable():
 
-    limits_table_ret = dash_table.DataTable(
+    limits_table_raw = dash_table.DataTable(
             id='limits_table_select',
             data=GetLimitDict()[0],
             columns=[{"name": c, "id": c} for c in GetLimitDict()[1]],
@@ -199,7 +199,6 @@ def GetLimitsTable():
                             'overflow': 'hidden',
                             'textOverflow': 'ellipsis',
                             'border': '1px solid black',
-                            #'height': 'auto'
                             'height': row_height,
                         },
              css=[
@@ -213,7 +212,7 @@ def GetLimitsTable():
                         {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
                         ],
             
-            style_table={'height': '40vh',},
+            style_table={'height': '30vh',},
             style_cell_conditional=[
                 {'if': {'column_id': 'id'},
                  'width': '2%'},
@@ -235,6 +234,15 @@ def GetLimitsTable():
             #],
             tooltip_duration=None,
             )
+            
+        limits_table_ret = html.Div(
+            children=[limits_table_raw],
+            style={
+                "text-align": "center",
+                'width': '100%',
+                'display': 'inline-block',
+                'height': '35%'}
+    }
     
     return limits_table_ret
 
@@ -250,10 +258,13 @@ add_limits_div = html.Div(
     ],
     style={
         "text-align": "center",
+        'width': '100%',
+        'display': 'inline-block',
+        'height': '5%'}
     }
 )
 
-plot_container_div = html.Div(id="limit-plot-container")
+plot_container_div = html.Div(id="limit-plot-container", style={'width': '100%', 'display': 'inline-block', 'height': '60%'})
 
 def serve_layout():
     layout_out = html.Div(
@@ -262,7 +273,7 @@ def serve_layout():
             add_limits_div,
             plot_container_div,
         ]
-    )
+    style={'width': '100%', 'display': 'inline-block', 'height': '100%'})
     return layout_out
 
 layout = serve_layout
