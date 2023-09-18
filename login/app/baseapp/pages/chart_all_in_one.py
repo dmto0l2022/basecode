@@ -81,12 +81,13 @@ def parse_series_and_values(limits_dataframe_in):
     return limit_list_df_out, trace_list_df_out, limit_data_df_out
        
 
-fastapi_orm_url = "http://container_fastapi_orm_1:8008"
-#fastapi_orm_url = "http://35.214.16.124:8008"
-fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
+fastapi_url_limits = "http://container_fastapi_alembic_1:8014/alembic/limits" ## multiple limit operations
+fastapi_url_limit = "http://container_fastapi_alembic_1:8014/alembic/limit/" ## single limit operations
+
+
 
 def GetLimit(limit_id_in):
-    url = fastapi_orm_url_api + "/limit/" + str(limit_id_in)
+    url = fastapi_url_limit + str(limit_id_in)
     r = requests.get(url)
     response_data = r.json()
     #print(response_data)
@@ -123,7 +124,7 @@ def GetLimit(limit_id_in):
     return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
 
 def GetLimits():
-    url = fastapi_orm_url_api + "/limit/"
+    url = fastapi_url_limits
     r = requests.get(url)
     response_data = r.json()
     #print(response_data)
