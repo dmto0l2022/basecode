@@ -235,14 +235,14 @@ def GetLimitsTable():
             tooltip_duration=None,
             )
             
-        limits_table_ret = html.Div(
-            children=[limits_table_raw],
-            style={
-                "text-align": "center",
-                'width': '100%',
-                'display': 'inline-block',
-                'height': '35%'}
-    }
+    limits_table_ret = html.Div(
+        children=[limits_table_raw],
+        style={
+            "text-align": "center",
+            'width': '100%',
+            'display': 'inline-block',
+            'height': '35%'}
+    )
     
     return limits_table_ret
 
