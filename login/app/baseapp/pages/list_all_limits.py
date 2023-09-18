@@ -107,11 +107,12 @@ def RefreshTableData():
     return updated_data_dict_ret, updated_data_frame_ret, column_names
 
 
-table_data_dict_initial, table_data_frame_initial, column_names = RefreshTableData()
+#table_data_dict_initial, table_data_frame_initial, column_names = RefreshTableData()
 initial_active_cell = {"row": 0, "column": 0, "column_id": "id", "row_id": 0}
 
 ###########################################################
 
+'''
 list_all_limits_form = html.Div(
     [dcc.Location(id="url", refresh=True),
      list_all_limits_form_title,
@@ -119,7 +120,7 @@ list_all_limits_form = html.Div(
      edit_button, cancel_button],
     className = "NOPADDING_CONTENT CENTRE_FORM"
 )
-
+'''
     
 # limits_df = pd.read_sql_query(limits_sql, self.engine)
 # limits_df['rowid'] = self.limits_df.index
