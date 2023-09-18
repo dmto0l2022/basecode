@@ -275,7 +275,7 @@ layout = serve_layout
 @callback(
     Output(component_id="limit-plot-container", component_property="children"),
     Input(component_id="add-button", component_property="n_clicks"),
-    State(component_id="limits-table", component_property="selected_rows"),
+    State(component_id="limits_table_select", component_property="selected_rows"),
 )
 def add_limits(n_clicks, selected_rows):
     x_title_text = r"$\text{WIMP Mass [GeV}/c^{2}]$"
