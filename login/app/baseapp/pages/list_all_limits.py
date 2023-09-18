@@ -243,7 +243,7 @@ table_layout = html.Div(
             ],
             className="NOPADDING_CONTENT"
         ),
-        html.Div(children="Debug Output", className="NOPADDING_CONTENT"),
+        html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
         html.Div(id="output-div", className="six columns"),
     ],
     className="row NOPADDING_CONTENT"
