@@ -261,7 +261,6 @@ add_limits_div = html.Div(
         'width': '100%',
         'display': 'inline-block',
         'height': '5%'}
-    }
 )
 
 plot_container_div = html.Div(id="limit-plot-container", style={'width': '100%', 'display': 'inline-block', 'height': '60%'})
