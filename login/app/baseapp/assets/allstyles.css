@@ -1,17 +1,17 @@
 :root {
-  --header_height: 18px;
-  --footer_height: 12px;
-  --sidebar_width: 25px;
-  --adbar_width: 25px;
-  --content_width: 90vw;
-  --half_content_width: 45vw;
-  --half_content_height: 44vw;
-  --content_height: 89vh;
-  --graph_content_height:80vh;
-  --graph_content_width:90vh;
-  --graph_width: 45vw;
-  --graph_height: 80vh;
-  --form_width: 40vw;
+  --header_height: 60px;
+  --footer_height: 20px;
+  --sidebar_width: 0px;
+  --adbar_width: 0px;
+  --content_width: 100vw;
+  --half_content_width: 50vw;
+  --half_content_height: 40vw;
+  --content_height: 80vh;
+  --graph_content_height:75vh;
+  --graph_content_width:100vh;
+  --graph_width: 50vw;
+  --graph_height: 75vh;
+  --form_width: 50vw;
   --form_height: 40vh;
 }
 
@@ -192,26 +192,26 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 12px;
+    height: 20px;
     background-color: Gray;
     }
 
 
 .PAGE_HEADER_1 {
     position: fixed;
-    top: 12px;
+    top: 20px;
     left: 0;
     right: 0;
-    height: 12px;
+    height: 20px;
     background-color: Gray;
     }
 
 .PAGE_HEADER_2 {
     position: fixed;
-    top: 24px;
+    top: 40px;
     left: 0;
     right: 0;
-    height: 12px;
+    height: 20px;
     background-color: Gray;
     }
 
