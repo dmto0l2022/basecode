@@ -121,7 +121,7 @@ def GetLimit(limit_id_in):
         limit_data_df_ret = limit_data_df_resp
         limit_list_dict_ret = limit_list_df_ret.to_dict('records')
 
-    return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
+    return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret, limit_columns, limit_data_columns, trace_columns
 
 def GetLimits():
     url = fastapi_url_limits
@@ -161,7 +161,7 @@ def GetLimits():
         limit_data_df_ret = limit_data_df_resp
         limit_list_dict_ret = limit_list_df_ret.to_dict('records')
 
-    return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
+    return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret, limit_columns, limit_data_columns, trace_columns
 
 
 LIMIT_COLUMNS = [
@@ -177,37 +177,63 @@ LIMIT_COLUMNS = [
 #limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
 
 def GetLimitDict():
-    limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
-    return limit_list_dict
+    limit_list_df, trace_list_df, limit_data_df, limit_list_dict, limit_columns, limit_data_columns, trace_columns = GetLimits()
+    return limit_list_dict, limit_columns
 
 # The css is needed to maintain a fixed column width after filtering
 
 limits_table = dash_table.DataTable(
-    id='limits-table',
-    data=GetLimitDict(),
-    columns=LIMIT_COLUMNS,
-    row_selectable="multi",
-    cell_selectable=False,
-    filter_action="native",
-    #page_size=LIMIT_TABLE_PAGE_SIZE,
-    page_size=12,
-    css=[{"selector": "table", "rule": "table-layout: fixed"}],
-    style_table={
-        "height": "300px",
-        "overflowY": "auto",
-    },
-    style_header={
-        "fontWeight": "bold",
-        "textAlign": "left"
-    },
-    style_cell={
-    	"width": f"{column_width}",
-        "maxWidth": f"{column_width}",
-        "overflow": "hidden",
-        "textAlign": "left",
-        "textOverflow": "ellipsis",
-    },
-)
+        id='limits_table_select',
+        data=GetLimitDict()[0],
+        columns=[{"name": c, "id": c} for c in GetLimitDict()[1]],
+        fixed_rows={'headers': True},
+        #fixed_rows={'headers': True},
+        #page_size=5,
+        filter_action='none',
+        #row_selectable='multi',
+        #selected_rows=[],
+    
+        style_cell={'textAlign': 'left','padding': '0px','font_size': font_size,
+                        'overflow': 'hidden',
+                        'textOverflow': 'ellipsis',
+                        'border': '1px solid black',
+                        #'height': 'auto'
+                        'height': row_height,
+                    },
+         css=[
+                    {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
+                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
+                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
+                    ],
+        
+        #style_table={'height': '75vh',},
+        style_cell_conditional=[
+            {'if': {'column_id': 'id'},
+             'width': '2%'},
+            {'if': {'column_id': 'data_label'},
+             'width': '25%'},
+            {'if': {'column_id': 'data_reference'},
+             'width': '25%'},
+        ],
+        #style_data={
+        #    'whiteSpace': 'normal',
+        #    'height': 'auto',
+        #},
+        #style_header=style_header_var,
+        #tooltip_data=[
+        #    {
+        #        column: {'value': str(value), 'type': 'markdown'}
+        #        for column, value in row.items()
+        #    } for row in data
+        #],
+        tooltip_duration=None,
+        )
+    
 
 
 add_limits_div = html.Div(
@@ -233,16 +259,15 @@ def serve_layout():
             #limits_table,
             dash_table.DataTable(
                 id='limits-table',
-                data=GetLimitDict(),
-                columns=LIMIT_COLUMNS,
+                data=GetLimitDict()[0],
+                columns=[{"name": c, "id": c} for c in GetLimitDict()[1]],
                 row_selectable="multi",
                 cell_selectable=False,
                 filter_action="native",
-                #page_size=LIMIT_TABLE_PAGE_SIZE,
                 page_size=12,
                 css=[{"selector": "table", "rule": "table-layout: fixed"}],
                 style_table={
-                    "height": "600px",
+                    "height": "40vh",
                     "overflowY": "auto",
                 },
                 style_header={
@@ -250,12 +275,18 @@ def serve_layout():
                     "textAlign": "left"
                 },
                 style_cell={
-                	"width": f"{column_width}",
-                    "maxWidth": f"{column_width}",
                     "overflow": "hidden",
                     "textAlign": "left",
                     "textOverflow": "ellipsis",
                 },
+                style_cell_conditional=[
+                    {'if': {'column_id': 'id'},
+                     'width': '2%'},
+                    {'if': {'column_id': 'data_label'},
+                     'width': '25%'},
+                    {'if': {'column_id': 'data_reference'},
+                     'width': '25%'},
+        ],
             ),
             add_limits_div,
             plot_container_div,
