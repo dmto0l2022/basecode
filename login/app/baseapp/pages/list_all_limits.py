@@ -131,130 +131,129 @@ list_all_limits_form = html.Div(
 
 ###########################################################################
 
+def get_layout():
 
-style_header_var={ 'backgroundColor': 'black','color': 'white'}
+    style_header_var={ 'backgroundColor': 'black','color': 'white'}
+        
+    limits_table = dash_table.DataTable(
+        id='limits_table_main',
+        data=table_data_dict_initial,
+        columns=[{"name": c, "id": c} for c in column_names],
+        fixed_rows={'headers': True},
+        #fixed_rows={'headers': True},
+        #page_size=5,
+        filter_action='none',
+        #row_selectable='multi',
+        #selected_rows=[],
     
-limits_table = dash_table.DataTable(
-    id='limits_table_main',
-    data=table_data_dict_initial,
-    columns=[{"name": c, "id": c} for c in column_names],
-    fixed_rows={'headers': True},
-    #fixed_rows={'headers': True},
-    #page_size=5,
-    filter_action='none',
-    #row_selectable='multi',
-    #selected_rows=[],
-
-    style_cell={'textAlign': 'left','padding': '0px','font_size': font_size,
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                    'border': '1px solid black',
-                    #'height': 'auto'
-                    'height': row_height,
-                },
-     css=[
-                {"selector": ".Select-menu-outer", "rule": "display: block !important"},
-                {"selector": "p", "rule" :"margin: 0px; padding:0px"},
-                {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
-                {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
+        style_cell={'textAlign': 'left','padding': '0px','font_size': font_size,
+                        'overflow': 'hidden',
+                        'textOverflow': 'ellipsis',
+                        'border': '1px solid black',
+                        #'height': 'auto'
+                        'height': row_height,
+                    },
+         css=[
+                    {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
+                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
+                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
+                    ],
+        
+        #style_table={'height': '75vh',},
+        style_cell_conditional=[
+            {'if': {'column_id': 'id'},
+             'width': '2%'},
+            {'if': {'column_id': 'experiment'},
+             'width': '10%'},
+            {'if': {'column_id': 'data_comment'},
+             'width': '25%'},
+            {'if': {'column_id': 'data_label'},
+             'width': '25%'},
+            {'if': {'column_id': 'data_reference'},
+             'width': '25%'},
+            #{'if': {'column_id': 'create'},
+            # 'width': '5%'},
+            {'if': {'column_id': 'edit'},
+             'width': '2%'},
+            #{'if': {'column_id': 'update'},
+           #  'width': '5%'},
+            {'if': {'column_id': 'delete'},
+             'width': '2%'},
+        ],
+        #style_data={
+        #    'whiteSpace': 'normal',
+        #    'height': 'auto',
+        #},
+        #style_header=style_header_var,
+        #tooltip_data=[
+        #    {
+        #        column: {'value': str(value), 'type': 'markdown'}
+        #        for column, value in row.items()
+        #    } for row in data
+        #],
+        tooltip_duration=None,
+        )
+    
+    ##########################
+    #{
+    #        'selector': '.dash-spreadsheet td div',
+    #        'rule': '''
+    #            line-height: 12px;
+    #            max-height: 12px; min-height: 12px; height: 12px;
+    #            display: block;
+    #            overflow-y: hidden;
+    #        '''
+    #    },
+    
+    ##########################
+    
+    
+    '''
+    table_layout = html.Div(
+        [
+            html.Div(
+                [
+                    dash_table.DataTable(
+                        id="table",
+                        columns=[{"name": c, "id": c} for c in column_names],
+                        data=table_data_frame_initial.to_dict("records"),
+                        page_size=10,
+                        sort_action="native",
+                        active_cell=initial_active_cell,
+                    ),
                 ],
+                style={"margin": 50},
+                className="five columns"
+            ),
+            html.Div(id="output-div", className="six columns"),
+        ],
+        className="row"
+    )
+    '''
     
-    #style_table={'height': '75vh',},
-    style_cell_conditional=[
-        {'if': {'column_id': 'id'},
-         'width': '2%'},
-        {'if': {'column_id': 'experiment'},
-         'width': '10%'},
-        {'if': {'column_id': 'data_comment'},
-         'width': '25%'},
-        {'if': {'column_id': 'data_label'},
-         'width': '25%'},
-        {'if': {'column_id': 'data_reference'},
-         'width': '25%'},
-        #{'if': {'column_id': 'create'},
-        # 'width': '5%'},
-        {'if': {'column_id': 'edit'},
-         'width': '2%'},
-        #{'if': {'column_id': 'update'},
-       #  'width': '5%'},
-        {'if': {'column_id': 'delete'},
-         'width': '2%'},
-    ],
-    #style_data={
-    #    'whiteSpace': 'normal',
-    #    'height': 'auto',
-    #},
-    #style_header=style_header_var,
-    #tooltip_data=[
-    #    {
-    #        column: {'value': str(value), 'type': 'markdown'}
-    #        for column, value in row.items()
-    #    } for row in data
-    #],
-    tooltip_duration=None,
+    table_layout = html.Div(
+        [
+            html.Div(children="Table Title", className="NOPADDING_CONTENT TABLE_TITLE"),
+            html.Div(
+                [
+                    limits_table
+                ],
+                className="NOPADDING_CONTENT"
+            ),
+            html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
+            html.Div(id="output-div", children="Debug Output Here", className="NOPADDING_CONTENT"),
+        ],
+        className="row NOPADDING_CONTENT"
     )
 
-##########################
-#{
-#        'selector': '.dash-spreadsheet td div',
-#        'rule': '''
-#            line-height: 12px;
-#            max-height: 12px; min-height: 12px; height: 12px;
-#            display: block;
-#            overflow-y: hidden;
-#        '''
-#    },
-
-##########################
-
-
-'''
-table_layout = html.Div(
-    [
-        html.Div(
-            [
-                dash_table.DataTable(
-                    id="table",
-                    columns=[{"name": c, "id": c} for c in column_names],
-                    data=table_data_frame_initial.to_dict("records"),
-                    page_size=10,
-                    sort_action="native",
-                    active_cell=initial_active_cell,
-                ),
-            ],
-            style={"margin": 50},
-            className="five columns"
-        ),
-        html.Div(id="output-div", className="six columns"),
-    ],
-    className="row"
-)
-'''
-
-table_layout = html.Div(
-    [
-        html.Div(children="Table Title", className="NOPADDING_CONTENT TABLE_TITLE"),
-        html.Div(
-            [
-                limits_table
-            ],
-            className="NOPADDING_CONTENT"
-        ),
-        html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
-        html.Div(id="output-div", children="Debug Output Here", className="NOPADDING_CONTENT"),
-    ],
-    className="row NOPADDING_CONTENT"
-)
-
-no_output = html.Div([limits_table], className="NOPADDING_CONTENT")
-
-def get_layout():
-    layout_out = html.Div(id=page_name+'content',children=[table_layout],className="NOPADDING_CONTENT")
-    return layout_out
+    return table_layout
+    
+#no_output = html.Div([limits_table], className="NOPADDING_CONTENT")
         
 ##className="PAGE_CONTENT",)
 
