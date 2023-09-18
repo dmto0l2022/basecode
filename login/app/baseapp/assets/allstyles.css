@@ -1,6 +1,6 @@
 :root {
-  --header_height: 60px;
-  --footer_height: 5px;
+  --header_height: 63px;
+  --footer_height: 21px;
   --sidebar_width: 0px;
   --adbar_width: 0px;
   --content_width: 100vw;
@@ -192,26 +192,26 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 20px;
+    height: 21px;
     background-color: Gray;
     }
 
 
 .PAGE_HEADER_1 {
     position: fixed;
-    top: 20px;
+    top: 21px;
     left: 0;
     right: 0;
-    height: 20px;
+    height: 21px;
     background-color: Gray;
     }
 
 .PAGE_HEADER_2 {
     position: fixed;
-    top: 40px;
+    top: 42px;
     left: 0;
     right: 0;
-    height: 20px;
+    height: 21px;
     background-color: Gray;
     }
 
