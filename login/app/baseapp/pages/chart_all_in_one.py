@@ -175,7 +175,12 @@ LIMIT_COLUMNS = [
 
 def GetLimitDict():
     limit_list_df, trace_list_df, limit_data_df, limit_list_dict, limit_columns, limit_data_columns, trace_columns = GetLimits()
-    return limit_list_dict, limit_columns
+    return limit_list_dict
+
+def GetLimitColumns():
+    limit_list_df, trace_list_df, limit_data_df, limit_list_dict, limit_columns, limit_data_columns, trace_columns = GetLimits()
+    return limit_columns
+
 
 # The css is needed to maintain a fixed column width after filtering
 
@@ -186,8 +191,8 @@ def GetLimitsTable():
 
     limits_table_raw = dash_table.DataTable(
             id='limits_table_select',
-            data=GetLimitDict()[0],
-            columns=[{"name": c, "id": c} for c in GetLimitDict()[1]],
+            data=GetLimitDict(),
+            columns=[{"name": c, "id": c} for c in GetLimitColumns()],
             fixed_rows={'headers': True},
             #fixed_rows={'headers': True},
             #page_size=5,
