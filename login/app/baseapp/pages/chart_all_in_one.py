@@ -179,6 +179,9 @@ def GetLimitDict():
 
 # The css is needed to maintain a fixed column width after filtering
 
+font_size = '12px'
+row_height = '13px'
+
 limits_table = dash_table.DataTable(
         id='limits_table_select',
         data=GetLimitDict()[0],
