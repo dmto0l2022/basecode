@@ -211,14 +211,14 @@ limits_table = dash_table.DataTable(
                     {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
                     ],
         
-        #style_table={'height': '75vh',},
+        style_table={'height': '40vh',},
         style_cell_conditional=[
             {'if': {'column_id': 'id'},
              'width': '2%'},
+            {'if': {'column_id': 'limit_id'},
+             'width': '10%'},
             {'if': {'column_id': 'data_label'},
-             'width': '25%'},
-            {'if': {'column_id': 'data_reference'},
-             'width': '25%'},
+             'width': '50%'},
         ],
         #style_data={
         #    'whiteSpace': 'normal',
@@ -279,14 +279,14 @@ def serve_layout():
                     "textAlign": "left",
                     "textOverflow": "ellipsis",
                 },
-                style_cell_conditional=[
+                 style_cell_conditional=[
                     {'if': {'column_id': 'id'},
                      'width': '2%'},
+                    {'if': {'column_id': 'limit_id'},
+                     'width': '10%'},
                     {'if': {'column_id': 'data_label'},
-                     'width': '25%'},
-                    {'if': {'column_id': 'data_reference'},
-                     'width': '25%'},
-        ],
+                     'width': '50%'},
+                        ],
             ),
             add_limits_div,
             plot_container_div,
