@@ -192,8 +192,8 @@ def GetLimitsTable():
             #fixed_rows={'headers': True},
             #page_size=5,
             filter_action='none',
-            #row_selectable='multi',
-            #selected_rows=[],
+            row_selectable='multi',
+            selected_rows=[],
         
             style_cell={'textAlign': 'left','padding': '0px','font_size': font_size,
                             'overflow': 'hidden',
