@@ -323,6 +323,7 @@
     width : var(--content_width);
     left: var(--sidebar_width);
     background-color: lightgray;
+    overflow-y: scroll;
     }
 
 .PAGE_GRAPH_CONTENT {
