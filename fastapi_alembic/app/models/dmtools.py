@@ -1,3 +1,4 @@
+from sqlalchemy.dialects.mysql import LONGTEXT
 from sqlmodel import SQLModel, Field
 from typing import Optional
 
@@ -151,7 +152,7 @@ class LimitBase(SQLModel):
     y_rescale : str = Field(default=None)
     default_color : str = Field(default=None)
     default_style : str = Field(default=None) 
-    data_values : str = Field(default=None)
+    data_values : str = Field(sa_column=Column(LONGTEXT), default=None)
     data_label : str = Field(default=None)
     file_name : str = Field(default=None)
     data_comment : str = Field(default=None)
