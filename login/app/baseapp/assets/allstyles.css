@@ -320,7 +320,7 @@
 .PAGE_CONTENT {
     position: fixed;
     top: var(--header_height);
-    height: var(calc(100vw - (63px + 21px));
+    height:  calc(100% - 80px);
     width : var(--content_width);
     left: var(--sidebar_width);
     background-color: lightgray;
