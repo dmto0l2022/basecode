@@ -256,7 +256,7 @@ layout = table_layout
 
 #layout = no_output
 
-'''
+
 @callback(
     [Output("output-div", "children"), Output('limits_table_main','data')], Input("limits_table_main", "active_cell"),
 )
@@ -310,7 +310,7 @@ def cell_clicked(active_cell):
     return return_data, updated_data_dict
 
 ##json.dumps(list(active_cell))
-'''
+
 
 '''
 
