@@ -1,5 +1,6 @@
 :root {
   --header_height: 63px;
+  --header_rows_heights:21px;
   --footer_height: 21px;
   --sidebar_width: 0px;
   --adbar_width: 0px;
@@ -319,7 +320,7 @@
 .PAGE_CONTENT {
     position: fixed;
     top: var(--header_height);
-    height: var(--content_height);
+    height: var(calc(100vw - (63px + 21px));
     width : var(--content_width);
     left: var(--sidebar_width);
     background-color: lightgray;
