@@ -132,6 +132,9 @@ def GetLimits():
     print(response_data_frame)
     limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
     column_names=['id','data_label','data_comment','data_values']
+    limit_columns = ['id','limit_id','data_label']
+    trace_columns = ['id','limit_id','data_label','trace_id','trace_color_default']
+    limit_data_columns = ['id','limit_id','data_label','trace_id','raw_x','raw_y','trace_color','masses','cross_sections']
 
     #print('limit_list_df >>', limit_list_df_resp)
     #print('trace_list_df >>', trace_list_df_resp)
@@ -139,15 +142,11 @@ def GetLimits():
 
     
     if response_data_frame.empty:
-        limit_columns = ['id','limit_id','data_label']
+       
         limit_empty_data = [['id','limit_id','data_label']]
-        trace_columns = ['id','limit_id','data_label','trace_id','trace_color_default']
         trace_empty_data = [['id','limit_id','data_label','trace_id','trace_color_default']]
-        limit_data_columns = ['id','limit_id','data_label','trace_id','raw_x','raw_y','trace_color','masses','cross_sections']
         limit_data_empty_data = [['id','limit_id','data_label','trace_id','raw_x','raw_y','trace_color','masses','cross_sections']]
-        #limit_list_df_ret = pd.DataFrame(data=limit_empty_data, columns=limit_columns)
-        #trace_list_df_ret = pd.DataFrame(data=trace_empty_data, columns=trace_columns)
-        #limit_data_df_ret = pd.DataFrame(data=limit_data_empty_data, columns=limit_data_columns)
+        
         limit_list_df_ret = pd.DataFrame(columns=limit_columns)
         trace_list_df_ret = pd.DataFrame(columns=trace_columns)
         limit_data_df_ret = pd.DataFrame(columns=limit_data_columns)
