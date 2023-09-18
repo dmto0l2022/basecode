@@ -266,12 +266,11 @@ add_limits_div = html.Div(
 plot_container_div = html.Div(id="limit-plot-container", style={'width': '100%', 'display': 'inline-block', 'height': '60%'})
 
 def serve_layout():
-    layout_out = html.Div(
-        [
+    layout_out = html.Div(children=[
             GetLimitsTable(),
             add_limits_div,
             plot_container_div,
-        ]
+        ],
     style={'width': '100%', 'display': 'inline-block', 'height': '100%'})
     return layout_out
 
