@@ -134,11 +134,13 @@ list_all_limits_form = html.Div(
 def get_layout():
 
     style_header_var={ 'backgroundColor': 'black','color': 'white'}
-        
+
+    table_data_dict, table_data_frame, table_column_names = RefreshTableData()
+    
     limits_table = dash_table.DataTable(
         id='limits_table_main',
-        data=table_data_dict_initial,
-        columns=[{"name": c, "id": c} for c in column_names],
+        data=table_data_dict,
+        columns=[{"name": c, "id": c} for c in table_column_names],
         fixed_rows={'headers': True},
         #fixed_rows={'headers': True},
         #page_size=5,
