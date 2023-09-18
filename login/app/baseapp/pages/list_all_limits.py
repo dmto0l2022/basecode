@@ -165,7 +165,7 @@ limits_table = dash_table.DataTable(
     #style_table={'height': '75vh',},
     style_cell_conditional=[
         {'if': {'column_id': 'id'},
-         'width': '5%'},
+         'width': '2%'},
         {'if': {'column_id': 'experiment'},
          'width': '10%'},
         {'if': {'column_id': 'data_comment'},
@@ -177,11 +177,11 @@ limits_table = dash_table.DataTable(
         #{'if': {'column_id': 'create'},
         # 'width': '5%'},
         {'if': {'column_id': 'edit'},
-         'width': '5%'},
+         'width': '2%'},
         #{'if': {'column_id': 'update'},
        #  'width': '5%'},
         {'if': {'column_id': 'delete'},
-         'width': '5%'},
+         'width': '2%'},
     ],
     #style_data={
     #    'whiteSpace': 'normal',
