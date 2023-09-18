@@ -236,12 +236,14 @@ table_layout = html.Div(
 
 table_layout = html.Div(
     [
+        html.Div(children="Table Title", className="NOPADDING_CONTENT"),
         html.Div(
             [
                 limits_table
             ],
             className="NOPADDING_CONTENT"
         ),
+        html.Div(children="Debug Output", className="NOPADDING_CONTENT"),
         html.Div(id="output-div", className="six columns"),
     ],
     className="row"
@@ -249,10 +251,10 @@ table_layout = html.Div(
 
 no_output = html.Div([limits_table], className="NOPADDING_CONTENT")
 
-#layout = table_layout
+layout = table_layout
 #layout = list_all_limits_form
 
-layout = no_output
+#layout = no_output
 
 '''
 @callback(
