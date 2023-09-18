@@ -171,8 +171,8 @@ LIMIT_COLUMNS = [
     {"id": "data_reference", "name": "Reference"}
 ]
 
-LIMIT_TABLE_PAGE_SIZE = 100
-column_width = f"{100/len(LIMIT_COLUMNS)}%"
+#LIMIT_TABLE_PAGE_SIZE = 100
+#column_width = f"{100/len(LIMIT_COLUMNS)}%"
 
 #limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
 
@@ -193,7 +193,7 @@ limits_table = dash_table.DataTable(
     page_size=12,
     css=[{"selector": "table", "rule": "table-layout: fixed"}],
     style_table={
-        "height": "600px",
+        "height": "300px",
         "overflowY": "auto",
     },
     style_header={
