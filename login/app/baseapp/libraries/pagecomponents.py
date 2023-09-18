@@ -63,6 +63,7 @@ page_header_0 = dbc.Row(
 
 # here's how you can recreate the same thing using Navbar
 # (see also required callback at the end of the file)
+'''
 navbar_0 = dbc.Navbar(
     dbc.Container(
         [
@@ -79,7 +80,7 @@ navbar_0 = dbc.Navbar(
     ),
     className="mb-5",
 )
-
+'''
 
 
 ##header1 = html.Div(
