@@ -260,7 +260,7 @@ def get_layout():
         
 ##className="PAGE_CONTENT",)
 
-layout = get_layout()
+layout = get_layout
 
 
 #layout = table_layout
