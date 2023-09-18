@@ -345,7 +345,7 @@ def add_limits(n_clicks, selected_rows):
 
         results = []
 
-        limit_all_df, trace_all_df, limit_data_all_df, limit_all_dict = GetLimits()
+        limit_all_df, trace_all_df, limit_data_all_df, limit_all_dict ,limit_columns, limit_data_columns, trace_columns = GetLimits()
     
         for row in selected_rows:
             limit_id = limit_all_df.iloc[row]["limit_id"]
