@@ -127,7 +127,8 @@ def GetLimits():
     url = fastapi_url_limits
     r = requests.get(url)
     response_data = r.json()
-    #print(response_data)
+    print("+++++++++ response data ++++++++++++")
+    print(response_data)
     response_data_frame = pd.DataFrame(response_data)
     print("+++++++++++ response_data_frame ++++++++++++")
     print(response_data_frame)
