@@ -19,6 +19,7 @@ fastapi_url_limits = "http://container_fastapi_alembic_1:8014/alembic/limits" ##
 fastapi_url_limit = "http://container_fastapi_alembic_1:8014/alembic/limit" ## single limit operations
 
 dash.register_page(__name__, path='/list_all_limits')
+page_name = "list_all_limits"
 baseapp_prefix = '/login/baseapp'
 
 #### list all limits
@@ -251,7 +252,16 @@ table_layout = html.Div(
 
 no_output = html.Div([limits_table], className="NOPADDING_CONTENT")
 
-layout = table_layout
+def get_layout():
+    layout_out = html.Div(id=page_name+'content',children=[table_layout],className="NOPADDING_CONTENT")
+    return layout_out
+        
+##className="PAGE_CONTENT",)
+
+layout = get_layout()
+
+
+#layout = table_layout
 #layout = list_all_limits_form
 
 #layout = no_output
