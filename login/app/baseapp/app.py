@@ -33,8 +33,8 @@ ALL_STYLES = "/login/baseapp/allstyles.css"
 #external_stylesheets=[dbc.themes.BOOTSTRAP, PAGES_STYLE, CONTENT_STYLES]
 
 
-COMPONENT_STYLE = "/login/baseapp/forms.css"
-external_stylesheets=[dbc.themes.BOOTSTRAP, ALL_STYLES, COMPONENT_STYLE]
+#COMPONENT_STYLE = "/login/baseapp/forms.css"
+external_stylesheets=[dbc.themes.BOOTSTRAP, ALL_STYLES]
 
 # import libraries.formlibrary as fl
 
