@@ -37,6 +37,10 @@ async def add_process_time_header(request: Request, call_next):
     print("#################### alembic request headers ##############")
     print(request.headers)
     print("#######################################################")
+
+    print("#################### alembic request 'x-forwarded-for' ##############")
+    print(request.headers['x-forwarded-for'])
+    print("#######################################################")
     start_time = time.time()
     response = await call_next(request)
     process_time = time.time() - start_time
