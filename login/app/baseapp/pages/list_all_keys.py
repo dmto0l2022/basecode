@@ -15,22 +15,22 @@ from app.baseapp.libraries import formlibrary as fl
 import requests
 import json
 
-fastapi_url_limits = "http://container_fastapi_alembic_1:8014/alembic/limits" ## multiple limit operations
-fastapi_url_limit = "http://container_fastapi_alembic_1:8014/alembic/limit" ## single limit operations
+fastapi_url_all = "http://container_fastapi_alembic_1:8014/alembic/user_api_keys" ## multiple limit operations
+fastapi_url_one = "http://container_fastapi_alembic_1:8014/alembic/user_api_key" ## single limit operations
 
-dash.register_page(__name__, path='/list_all_limits')
-page_name = "list_all_limits"
+dash.register_page(__name__, path='/list_all_keys')
+page_name = "list_all_keys"
 baseapp_prefix = '/login/baseapp'
 
-#### list all limits
+#### list all keys
 
-list_all_limits_form_title = html.Div(html.P(children='List All Limits', className = "NOPADDING_CONTENT FORM_TITLE"))
+list_all_keys_form_title = html.Div(html.P(children='List All Keys', className = "NOPADDING_CONTENT FORM_TITLE"))
 
-list_all_limits_form_content  = dbc.Row(
+list_all_keys_form_content  = dbc.Row(
     [
         dbc.Col(
             [
-                html.P(children='List All Limits', className = "NOPADDING_CONTENT FORM_TITLE")
+                html.P(children='List All Keys', className = "NOPADDING_CONTENT FORM_TITLE")
             ],
             width=6,
         )
@@ -40,9 +40,9 @@ list_all_limits_form_content  = dbc.Row(
 
 #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
-edit_button =  html.Div(dbc.Button("Edit", id="list_all_limits_edit_button_id", color="primary"), className = "FORM_SUBMIT_BUTN")
+#edit_button =  html.Div(dbc.Button("Edit", id="list_all_limits_edit_button_id", color="primary"), className = "FORM_SUBMIT_BUTN")
 
-cancel_button =  html.Div(dbc.Button("Cancel",  id="list_all_limits_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+#cancel_button =  html.Div(dbc.Button("Cancel",  id="list_all_limits_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
 #cancel_button =  dbc.Col(dbc.Button("Cancel", color="secondary"), width="auto")
 
@@ -70,14 +70,13 @@ class MakeApiCall():
 '''
 ###
 
-def DeleteRow(limit_in):
-    delete_url = fastapi_url_limit + "/" + str(limit_in)
+def DeleteRow(user_api_key_in):
+    delete_url = fastapi_url_one + "/" + str(user_api_key_in)
     requests.delete(delete_url)
 
 def RefreshTableData():
-    url = fastapi_url_limits
-    #column_names=['id','experiment','data_comment','create', 'read', 'update', 'delete']
-    column_names=['id','experiment','data_comment','data_label', 'data_reference','edit', 'delete']
+    url = fastapi_url_all
+    column_names=['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at','edit', 'delete']
     response_data_frame = pd.DataFrame()
     try:
         r = requests.get(url)
@@ -92,11 +91,11 @@ def RefreshTableData():
     
     if response_data_frame.empty:
         #empty_data = [['id','experiment','data_comment','data_label', 'data_reference', 'create', 'read', 'update', 'delete']]
-        empty_data = [['id','experiment','data_comment', 'data_label', 'data_reference', 'edit', 'delete']]
+        empty_data = [['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at','edit', 'delete']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
-        lst = ['id','experiment','data_comment','data_label', 'data_reference', ]
+        lst = ['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at']
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
         #updated_data_frame_ret['create'] = "create"
@@ -138,8 +137,8 @@ def get_layout():
 
     table_data_dict, table_data_frame, table_column_names = RefreshTableData()
     
-    limits_table = dash_table.DataTable(
-        id='limits_table_main',
+    user_api_keys_table = dash_table.DataTable(
+        id='user_api_keys_table_main',
         data=table_data_dict,
         columns=[{"name": c, "id": c} for c in table_column_names],
         fixed_rows={'headers': True},
@@ -168,23 +167,24 @@ def get_layout():
                     ],
         
         #style_table={'height': '75vh',},
+        ## 'user_id','secret_key','public_key', 'created_at','modified_at','ceased_at'
         style_cell_conditional=[
             {'if': {'column_id': 'id'},
              'width': '2%'},
-            {'if': {'column_id': 'experiment'},
-             'width': '10%'},
-            {'if': {'column_id': 'data_comment'},
+            {'if': {'column_id': 'user_id'},
+             'width': '2%'},
+            {'if': {'column_id': 'secret_key'},
              'width': '25%'},
-            {'if': {'column_id': 'data_label'},
+            {'if': {'column_id': 'public_key'},
              'width': '25%'},
-            {'if': {'column_id': 'data_reference'},
-             'width': '25%'},
-            #{'if': {'column_id': 'create'},
-            # 'width': '5%'},
+            {'if': {'column_id': 'created_at'},
+             'width': '5%'},
+            {'if': {'column_id': 'modified_at'},
+             'width': '5%'},
+            {'if': {'column_id': 'ceased_at'},
+             'width': '5%'},
             {'if': {'column_id': 'edit'},
              'width': '2%'},
-            #{'if': {'column_id': 'update'},
-           #  'width': '5%'},
             {'if': {'column_id': 'delete'},
              'width': '2%'},
         ],
@@ -244,7 +244,7 @@ def get_layout():
             html.Div(children="Table Title", className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
-                    limits_table
+                    user_api_keys_table
                 ],
                 className="NOPADDING_CONTENT"
             ),
