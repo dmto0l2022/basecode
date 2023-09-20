@@ -27,6 +27,14 @@ import dash_daq as daq
 from datetime import date
 import pandas as pd
 
+from dotenv import load_dotenv
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
+## requests_pathname_prefix
+REQUESTS_PATHNAME_PREFIX = environ.get("REQUESTS_PATHNAME_PREFIX")
+FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
+
+
 #PAGES_STYLE = "/assets/pagesstyles.css"
 #CONTENT_STYLES = "/assets/content.css"
 ALL_STYLES = "/login/baseapp/allstyles.css"
@@ -54,16 +62,11 @@ from app.baseapp.libraries import create_test_data
 #app = Dash(__name__, use_pages=True,requests_pathname_prefix='/app/multipage/')
 app = Dash(__name__,
             use_pages=True,
-            requests_pathname_prefix='/login/baseapp/',
+            requests_pathname_prefix=REQUESTS_PATHNAME_PREFIX,#  '/login/baseapp/',
             external_stylesheets=external_stylesheets,
             meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}],
             ##suppress_callback_exceptions=True,
 	  )
-
-from dotenv import load_dotenv
-BASE_DIR = path.abspath(path.dirname(__file__))
-load_dotenv(path.join(BASE_DIR, ".env"))
-FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
 
 
 server = app.server
