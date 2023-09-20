@@ -1,3 +1,5 @@
+import time
+
 from fastapi import Depends, FastAPI
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
