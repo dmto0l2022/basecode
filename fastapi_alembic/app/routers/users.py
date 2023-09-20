@@ -134,7 +134,8 @@ async def get_user_api_keys(session: AsyncSession = Depends(get_session)):
 @router.get("/alembic/user_api_key/{user_id}", response_model=User_api_key)
 async def get_user_api_key(session: AsyncSession = Depends(get_session)):
     statement = select(User_api_key).where(User_api_key.user_id == user_id)
-    user_api_key = await session.exec(statement)
+    user_api_keys = await session.exec(statement)
+    user_api_key = user_api_key.one()
     return user_api_key
 
 ## add one api key for user
