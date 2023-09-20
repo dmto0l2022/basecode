@@ -48,8 +48,12 @@ async def add_process_time_header(request: Request, call_next):
     print("#################### alembic request headers ##############")
     print(request.headers)
     print("#######################################################")
-    print("#################### alembic request 'x-forwarded-for' ##############")
-    print(request.headers['x-forwarded-for'])
+    try:  
+        print("#################### alembic request 'x-forwarded-for' ##############")
+        print(request.headers['x-forwarded-for'])
+    except:
+        print("no request.headers['x-forwarded-for']")
+    
     print("#################### alembic request url path ##############")
     print(request.url.path)
     print("#######################################################")
