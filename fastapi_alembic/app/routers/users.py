@@ -116,7 +116,7 @@ async def delete_user_permission(user_permission_id: int, session: AsyncSession 
 # modified_at
 # ceased_at
 
-@router.get("/alembic/user_api_key", response_model=list[User_api_key])
+@router.get("/alembic/user_api_keys", response_model=list[User_api_key])
 async def get_user_api_key(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(User_api_key))
     user_api_keys = result.scalars().all()
