@@ -2,7 +2,7 @@ podman stop container_fastapi_alembic_1
 podman rm container_fastapi_alembic_1
 podman rmi fastapi_alembic_1
 
-cd /opt/dmtools/code/basecode/fastapi_orm
+cd /opt/dmtools/code/basecode/fastapi_alembic
 
 uid=1001
 gid=1002
