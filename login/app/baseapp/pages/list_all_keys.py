@@ -249,7 +249,7 @@ def get_layout():
                 className="NOPADDING_CONTENT"
             ),
             html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
-            html.Div(id="output-div", children="Debug Output Here", className="NOPADDING_CONTENT"),
+            html.Div(id=page_name+"output-div", children="Debug Output Here", className="NOPADDING_CONTENT"),
         ],
         className="row NOPADDING_CONTENT"
     )
@@ -270,7 +270,7 @@ layout = get_layout
 
 
 @callback(
-    [Output("output-div", "children"), Output('limits_table_main','data')], Input("limits_table_main", "active_cell"),
+    [Output(page_name+"output-div", "children"), Output('user_api_keys_table_main','data')], Input("user_api_keys_table_main", "active_cell"),
 )
 def cell_clicked(active_cell):
     
