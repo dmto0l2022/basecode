@@ -32,6 +32,17 @@ app.include_router(metadata.router)
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 
+from starlette.concurrency import iterate_in_threadpool
+
+@app.middleware("http")
+async def some_middleware(request: Request, call_next):
+    response = await call_next(request)
+    response_body = [chunk async for chunk in response.body_iterator]
+    response.body_iterator = iterate_in_threadpool(iter(response_body))
+    print(f"response_body={response_body[0].decode()}")
+    return response
+
+
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     print("#################### alembic request headers ##############")
@@ -46,13 +57,16 @@ async def add_process_time_header(request: Request, call_next):
     response = await call_next(request)
     process_time = time.time() - start_time
     response.headers["X-Process-Time"] = str(process_time)
-    print("#################### alembic response headers ##############")
-    print(response.headers)
+    #print("#################### alembic response headers ##############")
+    #print(response.headers)
     #print("#################### alembic response json() ##############")
     #print(response.json())
-    print("#################### alembic response content ##############")
-    print(response.content)
-    print("######################################################")
-    content
+    #print("#################### alembic response content ##############")
+    #print(response.content)
+    #print("######################################################")
+    response_body = [chunk async for chunk in response.body_iterator]
+    response.body_iterator = iterate_in_threadpool(iter(response_body))
+    print(f"response_body={response_body[0].decode()}")
+  
     return response
 
