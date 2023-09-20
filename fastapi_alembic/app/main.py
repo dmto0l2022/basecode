@@ -47,6 +47,9 @@ async def add_process_time_header(request: Request, call_next):
     response.headers["X-Process-Time"] = str(process_time)
     print("#################### alembic response headers ##############")
     print(response.headers)
+    print("#################### alembic response body ##############")
+    print(response.body)
     print("######################################################")
+  
     return response
 
