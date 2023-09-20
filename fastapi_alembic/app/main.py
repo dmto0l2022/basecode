@@ -33,7 +33,7 @@ from starlette.responses import JSONResponse
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     print("#################### alembic request.content ##############")
-    print(request.content)
+    print(request)
     print("#######################################################")
     start_time = time.time()
     response = await call_next(request)
