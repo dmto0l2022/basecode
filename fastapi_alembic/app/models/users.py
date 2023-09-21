@@ -13,7 +13,7 @@ from datetime import datetime
 
 datetime_origin_str = '01/01/1980 00:00:00'
 
-datetime_origin = datetime.strptime(datetime_origin_str, '%m/%d/%y %H:%M:%S')
+datetime_origin = datetime.strptime(datetime_origin_str, '%m/%d/%Y %H:%M:%S')
 
 
 # Declarative base object
