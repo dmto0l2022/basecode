@@ -14,6 +14,8 @@ from models.users import User, UserCreate
 from models.users import User_permission, User_permissionCreate
 from models.users import User_api_key, User_api_keyCreate
 
+from datetime import datetime
+
 # Users
 
 ## Fields
@@ -164,7 +166,7 @@ async def delete_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
     await session.commit()
     return {"deleted": user_api_key}
 
-## update record
+## cease record
 
 @router.put("/alembic/user_api_key/{user_api_key_id}", response_model=User_api_key)
 async def update_user_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session)):
@@ -178,7 +180,7 @@ async def update_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
                         public_key = user_api_key.public_key,
                         created_at = user_api_key.created_at,
                         modified_at = user_api_key.modified_at,
-                        ceased_at = '')
+                        ceased_at = datetime.utcnow())
     session.add(user_api_key)
     await session.commit()
     await session.refresh(user_api_key)
