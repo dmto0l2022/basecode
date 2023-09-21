@@ -164,3 +164,25 @@ async def delete_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
     await session.commit()
     return {"deleted": user_api_key}
 
+## update record
+
+@router.put("/alembic/user_api_key/{user_api_key_id}", response_model=User_api_key)
+async def update_user_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session)):
+    statement = select(User_api_key).where(User_api_key.id == user_api_key_id)
+    results = await session.exec(statement)
+    user_api_key = results.one()
+    await session.delete(user_api_key)
+    await session.commit()
+    user_api_key = User_api_key(user_id = user_api_key.user_id,
+                        secret_key = user_api_key.secret_key,
+                        public_key = user_api_key.public_key,
+                        created_at = user_api_key.created_at,
+                        modified_at = user_api_key.modified_at,
+                        ceased_at = '')
+    session.add(user_api_key)
+    await session.commit()
+    await session.refresh(user_api_key)
+    return user_api_key
+    
+
+
