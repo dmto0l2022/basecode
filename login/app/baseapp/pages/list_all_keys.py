@@ -74,6 +74,11 @@ def DeleteRow(user_api_key_in):
     delete_url = fastapi_url_one + "/" + str(user_api_key_in)
     requests.delete(delete_url)
 
+def CeaseRow(user_api_key_in):
+    cease_url = fastapi_url_one + "/" + str(user_api_key_in)
+    requests.put(delete_url)
+
+
 def RefreshTableData():
     url = fastapi_url_all
     column_names=['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']
@@ -318,6 +323,10 @@ def cell_clicked(active_cell):
     
     if cell_value == 'delete':
         DeleteRow(id)
+        updated_data_dict, updated_data_frame, column_names = RefreshTableData()
+
+    if cell_value == 'cease':
+        CeaseRow(id)
         updated_data_dict, updated_data_frame, column_names = RefreshTableData()
             
     ##http://127.0.0.1:5000/query-example?plotid=Python
