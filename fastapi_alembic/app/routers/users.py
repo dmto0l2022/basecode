@@ -12,7 +12,7 @@ from db import get_session
 #from models.models import Song, SongCreate
 from models.users import User, UserCreate
 from models.users import User_permission, User_permissionCreate
-from models.users import User_api_key, User_api_keyCreate
+from models.users import User_api_key, User_api_keyCreate, User_api_keyUpdate
 
 from datetime import datetime
 
