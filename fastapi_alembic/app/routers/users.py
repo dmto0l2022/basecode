@@ -17,6 +17,7 @@ from models.users import User_permission, User_permissionCreate
 from models.users import User_api_key, User_api_keyCreate, User_api_keyUpdate
 
 from datetime import datetime
+import rsa
 
 # Users
 
@@ -146,13 +147,16 @@ async def get_user_api_key(session: AsyncSession = Depends(get_session)):
 
 @router.post("/alembic/user_api_key")
 async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSession = Depends(get_session)):
+    public_key_gen, private_key_gen = rsa.newkeys(512)
+    api_key = uuid.uuid1()
+    encrypted_api_key = rsa.encrypt(api_key.encode(),public_key_gen)
     user_api_key = User_api_key(user_id = user_api_key.user_id,
-                        #secret_key = user_api_key.secret_key,
-                        #public_key = user_api_key.public_key,
-                        secret_key = uuid.uuid4(),
-                        public_key = uuid.uuid4(),
-                        created_at = user_api_key.created_at,
-                        modified_at = user_api_key.modified_at,
+                        api_key = api_key,
+                        encrypted_api_key = encrypted_api_key,
+                        public_key = public_key_gen,
+                        private_key = private_key_gen,
+                        created_at = datetime.utcnow(),
+                        modified_at = datetime.utcnow(),
                         ceased_at = user_api_key.ceased_at)
     session.add(user_api_key)
     await session.commit()
