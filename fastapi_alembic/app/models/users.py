@@ -100,6 +100,17 @@ class User_api_key(User_api_keyBase, table=True):
 class User_api_keyCreate(User_api_keyBase):
     pass
 
+class User_api_keyUpdate(SQLModel):
+    #name: Optional[str] = None
+    #secret_name: Optional[str] = None
+    #age: Optional[int] = None
+    user_id : Optional[int]= None
+    secret_key : Optional[str] = None 
+    public_key : Optional[str] = None
+    created_at : Optional[datetime] = None
+    modified_at : Optional[datetime] = None
+    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+
 '''
 class Users(models.Model):
     """
