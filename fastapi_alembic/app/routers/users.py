@@ -187,17 +187,17 @@ async def update_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
     return user_api_key
     
 
-@app.patch("/heroes/{hero_id}", response_model=HeroRead)
-def update_hero(hero_id: int, hero: HeroUpdate):
-    with Session(engine) as session:
-        db_hero = session.get(Hero, hero_id)
-        if not db_hero:
-            raise HTTPException(status_code=404, detail="Hero not found")
-        hero_data = hero.dict(exclude_unset=True)
-        for key, value in hero_data.items():
-            setattr(db_hero, key, value)
-        session.add(db_hero)
-        session.commit()
-        session.refresh(db_hero)
-        return db_hero
+@router.patch("/alembic/user_api_key/{user_api_key_id}", response_model=User_api_key)
+async def cease_api_key(user_api_key_id: int, user_api_key_in: User_api_keyUpdate, session: AsyncSession = Depends(get_session))):
+    statement = select(User_api_key).where(User_api_key.id == user_api_key_id)
+    results = await session.exec(statement)
+    user_api_key_result = results.one()
+    if not user_api_key_result:
+        raise HTTPException(status_code=404, detail="Key not found")
+    user_api_key_data = user_api_key_in.dict(exclude_unset=True)
+    for key, value in user_api_key_data.items():
+        setattr(user_api_key_result, key, value)
+    session.add(user_api_key_result)
+    session.commit()
+    session.refresh(user_api_key_result)
 
