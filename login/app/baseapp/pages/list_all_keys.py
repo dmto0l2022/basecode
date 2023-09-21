@@ -76,7 +76,8 @@ def DeleteRow(user_api_key_in):
 
 def CeaseRow(user_api_key_in):
     cease_url = fastapi_url_one + "/" + str(user_api_key_in)
-    requests.put(delete_url)
+    print('cease >>' + user_api_key_in)
+    requests.put(cease_url)
 
 
 def RefreshTableData():
