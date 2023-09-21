@@ -4,3 +4,4 @@ sqlmodel==0.0.8
 uvicorn==0.22.0
 asyncio
 aiomysql
+rsa
