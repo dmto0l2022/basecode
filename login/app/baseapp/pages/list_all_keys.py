@@ -76,7 +76,7 @@ def DeleteRow(user_api_key_in):
 
 def RefreshTableData():
     url = fastapi_url_all
-    column_names=['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at','edit', 'delete']
+    column_names=['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']
     response_data_frame = pd.DataFrame()
     try:
         r = requests.get(url)
@@ -91,7 +91,7 @@ def RefreshTableData():
     
     if response_data_frame.empty:
         #empty_data = [['id','experiment','data_comment','data_label', 'data_reference', 'create', 'read', 'update', 'delete']]
-        empty_data = [['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at','edit', 'delete']]
+        empty_data = [['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
@@ -100,6 +100,7 @@ def RefreshTableData():
         updated_data_frame_ret = updated_data_frame_ret[lst]
         #updated_data_frame_ret['create'] = "create"
         updated_data_frame_ret['edit'] = "edit"
+        updated_data_frame_ret['edit'] = "cease"
         #updated_data_frame_ret['update'] = "update"
         updated_data_frame_ret['delete'] = "delete"
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
@@ -184,6 +185,8 @@ def get_layout():
             {'if': {'column_id': 'ceased_at'},
              'width': '5%'},
             {'if': {'column_id': 'edit'},
+             'width': '2%'},
+            {'if': {'column_id': 'cease'},
              'width': '2%'},
             {'if': {'column_id': 'delete'},
              'width': '2%'},
