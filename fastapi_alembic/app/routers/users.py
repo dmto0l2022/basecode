@@ -188,7 +188,7 @@ async def update_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
     
 
 @router.patch("/alembic/user_api_key/{user_api_key_id}", response_model=User_api_key)
-async def cease_api_key(user_api_key_id: int, user_api_key_in: User_api_keyUpdate, session: AsyncSession = Depends(get_session))):
+async def cease_api_key(user_api_key_id: int, user_api_key_in: User_api_keyUpdate, session: AsyncSession = Depends(get_session)):
     statement = select(User_api_key).where(User_api_key.id == user_api_key_id)
     results = await session.exec(statement)
     user_api_key_result = results.one()
