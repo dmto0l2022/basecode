@@ -105,12 +105,11 @@ class User_api_keyCreate(User_api_keyBase):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
 
 class User_api_keyUpdate(SQLModel):
-    #name: Optional[str] = None
-    #secret_name: Optional[str] = None
-    #age: Optional[int] = None
     user_id : Optional[int]= None
-    secret_key : Optional[str] = None 
+    api_key : Optional[int]= None
+    encrypted_api_key : Optional[int]= None
     public_key : Optional[str] = None
+    private_key : Optional[str] = None
     created_at : Optional[datetime] = None
     modified_at : Optional[datetime] = None
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
