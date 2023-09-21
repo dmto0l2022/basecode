@@ -11,6 +11,11 @@ from sqlalchemy import String
 
 from datetime import datetime
 
+datetime_origin_str = '01/01/1980 00:00:00'
+
+datetime_origin = datetime.strptime(datetime_str, '%m/%d/%y %H:%M:%S')
+
+
 # Declarative base object
 #Base = declarative_base()
 #SQLModel.metadata = Base.metadata
@@ -42,7 +47,7 @@ class UserBase(SQLModel):
     authlib_provider : str = Field(default=None)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime_origin, nullable=False)
 
 
 class User(UserBase, table=True):
@@ -64,7 +69,7 @@ class User_permissionBase(SQLModel):
     authorised : int = Field(default=None, nullable=False, primary_key=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime_origin, nullable=False)
 
 class User_permission(User_permissionBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
@@ -87,7 +92,7 @@ class User_api_keyBase(SQLModel):
     public_key : str = Field(default=None)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime_origin, nullable=False)
 
 class User_api_key(User_api_keyBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
