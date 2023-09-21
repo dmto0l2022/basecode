@@ -91,7 +91,7 @@ class User_permissionCreate(User_permissionBase):
 class User_api_keyBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
     api_key : str = Field(default=uuid.uuid1())
-    encrypted_key : str = Field(default=uuid.uuid1())
+    encrypted_api_key : str = Field(default=uuid.uuid1())
     public_key : str = Field(default=uuid.uuid1())
     private_key : str = Field(default=uuid.uuid1())
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
