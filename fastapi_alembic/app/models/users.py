@@ -9,6 +9,8 @@ from typing import Optional
 from sqlmodel import Field, SQLModel
 from sqlalchemy import String
 
+import uuid
+
 from datetime import datetime
 
 datetime_origin_str = '01/01/1980 00:00:00'
@@ -88,8 +90,8 @@ class User_permissionCreate(User_permissionBase):
 
 class User_api_keyBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
-    secret_key : str = Field(default=None)
-    public_key : str = Field(default=None)
+    secret_key : str = Field(default=uuid.uuid4())
+    public_key : str = Field(default=uuid.uuid4())
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime_origin, nullable=False)
@@ -98,7 +100,7 @@ class User_api_key(User_api_keyBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 class User_api_keyCreate(User_api_keyBase):
-    pass
+    user_id : int = Field(default=None, nullable=False, primary_key=False)
 
 class User_api_keyUpdate(SQLModel):
     #name: Optional[str] = None
