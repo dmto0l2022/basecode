@@ -2,6 +2,8 @@ from fastapi import Depends, FastAPI
 from sqlmodel import select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 
+import uuid
+
 from fastapi import APIRouter
 router = APIRouter()
 
@@ -145,8 +147,10 @@ async def get_user_api_key(session: AsyncSession = Depends(get_session)):
 @router.post("/alembic/user_api_key")
 async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSession = Depends(get_session)):
     user_api_key = User_api_key(user_id = user_api_key.user_id,
-                        secret_key = user_api_key.secret_key,
-                        public_key = user_api_key.public_key,
+                        #secret_key = user_api_key.secret_key,
+                        #public_key = user_api_key.public_key,
+                        secret_key = uuid.uuid4(),
+                        public_key = uuid.uuid4(),
                         created_at = user_api_key.created_at,
                         modified_at = user_api_key.modified_at,
                         ceased_at = user_api_key.ceased_at)
