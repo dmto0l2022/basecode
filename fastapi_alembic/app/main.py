@@ -98,13 +98,24 @@ async def login(request: Request):
 @app.get(api_base_url + 'auth')
 async def auth(request: Request):
     try:
-        token = await oauth.google.authorize_access_token(request)
+        access_token = await oauth.google.authorize_access_token(request)
     except OAuthError as error:
         return HTMLResponse(f'<h1>{error.error}</h1>')
-    user = token.get('userinfo')
-    if user:
-        request.session['user'] = dict(user)
+
+    user_data = await oauth.google.parse_id_token(access_token, None) ## undocumented solution
+    #userinfo = access_token['userinfo']
+    print('user >>>>>', user_data)
+    print('email >>>>>', user_data['email'])
+    print('access_token >>>>>>' , access_token)
+    #print('user >>>>>>' , user)
+    ##if profile_data:
+    ##    request.session['profile_data'] = profile_data
+    request.session['user_login'] = 'user_login'
+    request.session['email'] = user_data['email']
+    request.session['authenticated'] = 'yes'
+  
     return RedirectResponse(url=api_base_url)
+
 
 
 @app.get(api_base_url + 'logout')
