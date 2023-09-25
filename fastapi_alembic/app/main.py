@@ -151,12 +151,15 @@ async def add_process_time_header(request: Request, call_next):
     #print(response.headers)
     #print("#################### alembic response json() ##############")
     #print(response.json())
-    #print("#################### alembic response content ##############")
+    print("#################### alembic response content ##############")
     #print(response.content)
-    #print("######################################################")
-    response_body = [chunk async for chunk in response.body_iterator]
-    response.body_iterator = iterate_in_threadpool(iter(response_body))
-    print(f"response_body={response_body[0].decode()}")
+    print("######################################################")
+    try:  
+        response_body = [chunk async for chunk in response.body_iterator]
+        #response.body_iterator = iterate_in_threadpool(iter(response_body))
+        #print(f"response_body={response_body[0].decode()}")
+    except:
+        print("no async content")
   
     return response
 
