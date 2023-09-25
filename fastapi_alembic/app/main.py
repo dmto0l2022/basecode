@@ -1,6 +1,19 @@
 import time
 
 from fastapi import Depends, FastAPI
+
+from starlette.requests import Request
+from starlette.responses import JSONResponse
+
+from starlette.config import Config
+from starlette.middleware.sessions import SessionMiddleware
+from starlette.responses import HTMLResponse, RedirectResponse
+from authlib.integrations.starlette_client import OAuth, OAuthError
+
+from starlette.concurrency import iterate_in_threadpool
+
+import json
+
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
@@ -11,6 +24,9 @@ from routers import songs
 from routers import users
 from routers import dmtools
 from routers import metadata
+
+## https://github.com/authlib/demo-oauth-client/blob/master/fastapi-google-login/app.py
+
 
 app = FastAPI(title="DMTOOL API Server - Alembic",
               ##servers=[
@@ -23,16 +39,64 @@ app = FastAPI(title="DMTOOL API Server - Alembic",
               ##root_path_in_servers=False,
              )
 
+app.add_middleware(SessionMiddleware, secret_key="!secret")
+
+config = Config('.env')
+oauth = OAuth(config)
+
+CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
+oauth.register(
+    name='google',
+    server_metadata_url=CONF_URL,
+    client_kwargs={
+        'scope': 'openid email profile'
+    }
+)
+
 app.include_router(routers.router)
 app.include_router(songs.router)
 app.include_router(users.router)
 app.include_router(dmtools.router)
 app.include_router(metadata.router)
 
-from starlette.requests import Request
-from starlette.responses import JSONResponse
+api_base_url = '/dmtool/fastapi/'
 
-from starlette.concurrency import iterate_in_threadpool
+@app.get(api_base_url)
+async def homepage(request: Request):
+    user = request.session.get('user')
+    if user:
+        data = json.dumps(user)
+        html = (
+            f'<pre>{data}</pre>'
+            '<a href="/logout">logout</a>'
+        )
+        return HTMLResponse(html)
+    return HTMLResponse('<a href="/login">login</a>')
+
+
+@app.get(api_base_url + 'login')
+async def login(request: Request):
+    redirect_uri = request.url_for('auth')
+    return await oauth.google.authorize_redirect(request, redirect_uri)
+
+
+@app.get(api_base_url + 'auth')
+async def auth(request: Request):
+    try:
+        token = await oauth.google.authorize_access_token(request)
+    except OAuthError as error:
+        return HTMLResponse(f'<h1>{error.error}</h1>')
+    user = token.get('userinfo')
+    if user:
+        request.session['user'] = dict(user)
+    return RedirectResponse(url=api_base_url)
+
+
+@app.get(api_base_url + 'logout')
+async def logout(request: Request):
+    request.session.pop('user', None)
+    return RedirectResponse(url=api_base_url)
+
 
 @app.middleware("http")
 async def some_middleware(request: Request, call_next):
