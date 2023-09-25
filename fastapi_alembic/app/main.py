@@ -50,7 +50,7 @@ app = FastAPI(title="DMTOOL API Server - Alembic",
               ##root_path_in_servers=False,
              )
 
-#app.add_middleware(SessionMiddleware, secret_key="!secret")
+app.add_middleware(SessionMiddleware, secret_key="!secret")
 
 
 redisserver = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
