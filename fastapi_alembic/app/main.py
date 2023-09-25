@@ -136,7 +136,6 @@ async def auth(request: Request):
 
 @app.get(api_base_url + 'logout')
 async def logout(request: Request):
-    response = await call_next(request)
     session = request.cookies.get('session')
     ##request.session.pop('email', None)
     if session:
