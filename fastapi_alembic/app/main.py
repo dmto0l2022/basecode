@@ -29,14 +29,15 @@ from routers import metadata
 
 ## https://github.com/authlib/demo-oauth-client/blob/master/fastapi-google-login/app.py
 
+api_base_url = '/dmtool/fastapi/'
 
 app = FastAPI(title="DMTOOL API Server - Alembic",
               ##servers=[
         ##{"url": "http://dev1.dmtool.info", "description": "Dev environment"}
               ##],
               ##root_path="/apiorm/",
-              openapi_url="/alembic/openapi.json",
-              docs_url="/alembic/docs",
+              openapi_url= api_base_url + "openapi.json",
+              docs_url= api_base_url + "docs",
               ##redoc_url=None,
               ##root_path_in_servers=False,
              )
@@ -64,7 +65,7 @@ app.include_router(users.router)
 app.include_router(dmtools.router)
 app.include_router(metadata.router)
 
-api_base_url = '/dmtool/fastapi/'
+
 
 @app.get(api_base_url)
 async def homepage(request: Request):
