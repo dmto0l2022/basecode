@@ -5,3 +5,4 @@ uvicorn==0.22.0
 asyncio
 aiomysql
 rsa
+redis
