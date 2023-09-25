@@ -136,7 +136,11 @@ async def auth(request: Request):
 
 @app.get(api_base_url + 'logout')
 async def logout(request: Request):
-    request.session.pop('email', None)
+    response = await call_next(request)
+    session = request.cookies.get('session')
+    ##request.session.pop('email', None)
+    if session:
+        response.delete_cookie("session")
     return RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login")
 
 
