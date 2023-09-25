@@ -82,10 +82,10 @@ async def homepage(request: Request):
         data = json.dumps(user)
         html = (
             f'<pre>{data}</pre>'
-            '<a href="/logout">logout</a>'
+            '<a href="https://dev1.dmtool.info/dmtool/fastapi/logout">logout</a>'
         )
         return HTMLResponse(html)
-    return HTMLResponse('<a href="/login">login</a>')
+    return HTMLResponse('<a href="https://dev1.dmtool.info/dmtool/fastapi/login">login</a>')
 
 
 @app.get(api_base_url + 'login')
@@ -110,7 +110,7 @@ async def auth(request: Request):
 @app.get(api_base_url + 'logout')
 async def logout(request: Request):
     request.session.pop('user', None)
-    return RedirectResponse(url=api_base_url)
+    return RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login")
 
 '''
 
