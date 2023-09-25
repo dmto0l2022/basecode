@@ -122,7 +122,7 @@ async def some_middleware(request: Request, call_next):
     print(f"response_body={response_body[0].decode()}")
     return response
 
-
+'''
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     print("#################### alembic request headers ##############")
@@ -133,7 +133,13 @@ async def add_process_time_header(request: Request, call_next):
         print(request.headers['x-forwarded-for'])
     except:
         print("no request.headers['x-forwarded-for']")
-    
+
+    print("#################### alembic request user ##############")
+    try:
+        print(request.session['user'])
+    except:
+        print("no user")
+  
     print("#################### alembic request url path ##############")
     print(request.url.path)
     print("#######################################################")
@@ -154,4 +160,3 @@ async def add_process_time_header(request: Request, call_next):
   
     return response
 
-'''
