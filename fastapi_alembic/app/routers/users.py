@@ -129,7 +129,9 @@ async def get_user_api_keys(session: AsyncSession = Depends(get_session)):
     user_api_keys = result.scalars().all()
     return [User_api_key(id = user_api_key.id,
                         user_id = user_api_key.user_id,
-                        secret_key = user_api_key.secret_key,
+                        api_key= user_api_key.api_key,
+                        encrypted_api_key= user_api_key.encrypted_api_key,
+                        private_key = user_api_key.private_key,
                         public_key = user_api_key.public_key,
                         created_at = user_api_key.created_at,
                         modified_at = user_api_key.modified_at,
@@ -188,7 +190,9 @@ async def update_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
     await session.delete(user_api_key)
     await session.commit()
     user_api_key = User_api_key(user_id = user_api_key.user_id,
-                        secret_key = user_api_key.secret_key,
+                        api_key= user_api_key.api_key,
+                        encrypted_api_key= user_api_key.encrypted_api_key,
+                        private_key = user_api_key.private_key,
                         public_key = user_api_key.public_key,
                         created_at = user_api_key.created_at,
                         modified_at = user_api_key.modified_at,
