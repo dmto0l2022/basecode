@@ -1,12 +1,7 @@
-#cp ./.env ../
 # remember to paste the .env file into create before running this
 
 cp ./.env ../mariadb/.env
-cp ./.env ../api/app/.env
-cp ./.env ../fastapi/app/.env
-cp ./.env ../fastapi_orm/app/.env
-cp ./.env ../fastapi_aerich/app/.env
-cp ./.env ../frontend/app/.env
+cp ./.fastapi_env ../fastapi_alembic/app/.env
 cp ./.env ../login/app/.env
 cp ./.env ../login/app/baseapp/.env
 ## set the variables for the mariadb 
