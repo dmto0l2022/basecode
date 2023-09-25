@@ -77,9 +77,9 @@ redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi/auth'
 
 @app.get(api_base_url)
 async def homepage(request: Request):
-    user = request.session.get('user')
-    if user:
-        data = json.dumps(user)
+    email = request.session.get('email')
+    if email:
+        data = json.dumps(email)
         html = (
             f'<pre>{data}</pre>'
             '<a href="https://dev1.dmtool.info/dmtool/fastapi/logout">logout</a>'
@@ -120,7 +120,7 @@ async def auth(request: Request):
 
 @app.get(api_base_url + 'logout')
 async def logout(request: Request):
-    request.session.pop('user', None)
+    request.session.pop('email', None)
     return RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login")
 
 '''
@@ -147,7 +147,8 @@ async def add_process_time_header(request: Request, call_next):
 
     print("#################### alembic request email address ##############")
     try:
-        print(request.session['email'])
+        email = request.session.get('email')
+        print(email)
     except:
         print("no email")
   
