@@ -39,17 +39,20 @@ app = FastAPI(title="DMTOOL API Server - Alembic",
               ##root_path_in_servers=False,
              )
 
-app.add_middleware(SessionMiddleware, secret_key="!secret")
+#app.add_middleware(SessionMiddleware, secret_key="!secret")
 
-config = Config('.env')
-oauth = OAuth(config)
 
-CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
+redisserver = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+
+oauth = OAuth()
+
 oauth.register(
     name='google',
-    server_metadata_url=CONF_URL,
+    server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
+    client_id=environ['FASTAPI_CLIENT_ID'],
+    client_secret=environ['FASTAPI_CLIENT_SECRET'],
     client_kwargs={
-        'scope': 'openid email profile'
+        'scope': "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
     }
 )
 
