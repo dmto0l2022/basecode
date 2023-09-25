@@ -6,6 +6,7 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse
 
 from starlette.config import Config
+from starlette.config import environ
 from starlette.middleware.sessions import SessionMiddleware
 from starlette.responses import HTMLResponse, RedirectResponse
 from authlib.integrations.starlette_client import OAuth, OAuthError
@@ -28,6 +29,11 @@ from routers import dmtools
 from routers import metadata
 
 ## https://github.com/authlib/demo-oauth-client/blob/master/fastapi-google-login/app.py
+
+from dotenv import load_dotenv
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
 
 api_base_url = '/dmtool/fastapi/'
 
