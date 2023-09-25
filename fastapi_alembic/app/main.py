@@ -139,7 +139,7 @@ async def logout(request: Request):
     session = request.cookies.get('session')
     ##request.session.pop('email', None)
     if session:
-        response.delete_cookie("session")
+        request.delete_cookie("session")
     return RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login")
 
 
