@@ -5,6 +5,9 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from fastapi import APIRouter
 router = APIRouter()
 
+api_base_url = "/dmtool/api/"
+
+
 from typing import List
 
 from db import get_session
