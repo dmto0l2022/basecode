@@ -53,6 +53,10 @@ app = FastAPI(title="DMTOOL API Server - Alembic",
 app.add_middleware(SessionMiddleware, secret_key="!secret")
 
 
+from fastapi import FastAPI, Request
+from starlette.middleware.sessions import SessionMiddleware
+
+
 redisserver = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 
 oauth = OAuth()
@@ -93,7 +97,19 @@ async def login(request: Request):
     redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi/auth'
     #redirect_uri = request.url_for('auth')
     return await oauth.google.authorize_redirect(request, redirect_uri)
+'''
+@app.get("/a")
+def func_a(request: Request):
+    request.session["my_var"] = "1234"
+    print(request.cookies.get('session'))
+    return 'OK'
 
+@app.get("/b")
+def func_b(request: Request):
+    my_var = request.session.get("my_var", None)
+    print(request.cookies.get('session'))
+    return my_var
+'''
 
 @app.get(api_base_url + 'auth')
 async def auth(request: Request):
@@ -123,6 +139,22 @@ async def logout(request: Request):
     request.session.pop('email', None)
     return RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login")
 
+
+@app.middleware("http")
+async def some_middleware(request: Request, call_next):
+    response = await call_next(request)
+    session = request.cookies.get('session')
+    print("#################### session email address ##############")
+    try:
+        email = request.session.get("email", None)
+        print(request.cookies.get('session'))
+        print(email)
+    except:
+        print("no email")
+    if session:
+        response.set_cookie(key='session', value=request.cookies.get('session'), httponly=True)
+    return response
+
 '''
 
 @app.middleware("http")
@@ -133,7 +165,7 @@ async def some_middleware(request: Request, call_next):
     print(f"response_body={response_body[0].decode()}")
     return response
 
-'''
+
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     print("#################### alembic request headers ##############")
