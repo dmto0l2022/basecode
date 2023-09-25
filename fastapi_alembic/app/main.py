@@ -147,7 +147,7 @@ async def some_middleware(request: Request, call_next):
     print("#################### session email address ##############")
     try:
         email = request.session.get("email", None)
-        print(request.cookies.get('session'))
+        #print(request.cookies.get('session'))
         print(email)
     except:
         print("no email")
