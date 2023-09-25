@@ -13,6 +13,8 @@ from authlib.integrations.starlette_client import OAuth, OAuthError
 from starlette.concurrency import iterate_in_threadpool
 
 import json
+import redis
+from redis import Redis
 
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
