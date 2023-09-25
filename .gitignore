@@ -103,6 +103,7 @@ celerybeat.pid
 
 # Environments
 .env
+.fastapi_env
 .venv
 env/
 venv/
