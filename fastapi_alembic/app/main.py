@@ -141,12 +141,28 @@ async def logout(request: Request):
     if session:
         request.delete_cookie("session")
     return RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login")
-'''
+
 @app.get(api_base_url + 'logout')
 async def logout(response: Response,):
     response.delete_cookie("session")
     return {"status":"success"}
+'''
 
+@app.get(api_base_url + 'logout')
+async def logout(response: Response,):
+    response = RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login", status_code= 302)
+    try:  
+        response.delete_cookie(key = 'access_token')
+        print('session cookie deleted')
+    except:
+        a = 0
+
+    try:  
+        response.delete_cookie(key = 'session')
+        print('access token cookie deleted')
+    except:
+        a = 0
+    return response
 
 
 
