@@ -73,7 +73,7 @@ app.include_router(users.router)
 app.include_router(dmtools.router)
 app.include_router(metadata.router)
 
-
+redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi/auth'
 
 @app.get(api_base_url)
 async def homepage(request: Request):
@@ -90,7 +90,8 @@ async def homepage(request: Request):
 
 @app.get(api_base_url + 'login')
 async def login(request: Request):
-    redirect_uri = request.url_for('auth')
+    redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi/auth'
+    #redirect_uri = request.url_for('auth')
     return await oauth.google.authorize_redirect(request, redirect_uri)
 
 
