@@ -5,8 +5,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from fastapi import APIRouter
 router = APIRouter()
 
-api_base_url = "/dmtool/api/"
-
+api_base_url = '/dmtool/fastapi/'
 
 from typing import List
 
@@ -23,7 +22,7 @@ from models.metadata import Dropdown_valuepair, Dropdown_valuepairCreate
 #value
 #data_type
 
-@router.get("/alembic/dropdown_valuepair", response_model=list[Dropdown_valuepair])
+@router.get(api_base_url + "dropdown_valuepair", response_model=list[Dropdown_valuepair])
 async def get_dropdown_valuepairs(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(Dropdown_valuepair))
     dropdown_valuepairs = result.scalars().all()
@@ -35,7 +34,7 @@ async def get_dropdown_valuepairs(session: AsyncSession = Depends(get_session)):
                               ) for dropdown_valuepair in dropdown_valuepairs]
 
 
-@router.post("/alembic/dropdown_valuepair")
+@router.post(api_base_url + "dropdown_valuepair")
 async def add_dropdown_valuepair(dropdown_valuepair: Dropdown_valuepairCreate, session: AsyncSession = Depends(get_session)):
     dropdown_valuepair = Dropdown_valuepair(
                                             variable=dropdown_valuepair.variable,
@@ -48,7 +47,7 @@ async def add_dropdown_valuepair(dropdown_valuepair: Dropdown_valuepairCreate, s
     await session.refresh(dropdown_valuepair)
     return dropdown_valuepair
 
-@router.delete("/alembic/dropdown_valuepair/{dropdown_valuepair_id}")
+@router.delete(api_base_url + "dropdown_valuepair/{dropdown_valuepair_id}")
 async def delete_dropdown_valuepair(dropdown_valuepair_id: int, session: AsyncSession = Depends(get_session)):
     statement = select(Dropdown_valuepair).where(Dropdown_valuepair.id == dropdown_valuepair_id)
     results = await session.exec(statement)
