@@ -7,6 +7,8 @@ import uuid
 from fastapi import APIRouter
 router = APIRouter()
 
+api_base_url = '/dmtool/fastapi/'
+
 from typing import List
 
 from db import get_session
@@ -30,7 +32,7 @@ import rsa
 
 # User CRUD
 
-@router.get("/alembic/user", response_model=list[User])
+@router.get(api_base_url + "user", response_model=list[User])
 async def get_users(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(User))
     users = result.scalars().all()
@@ -42,7 +44,7 @@ async def get_users(session: AsyncSession = Depends(get_session)):
                 ceased_at=user.ceased_at) for user in users]
 
 
-@router.post("/alembic/user")
+@router.post(api_base_url + "user")
 async def add_user(user: UserCreate, session: AsyncSession = Depends(get_session)):
     user = User(authlib_id=user.authlib_id,
                 authlib_provider=user.authlib_provider,
@@ -54,7 +56,7 @@ async def add_user(user: UserCreate, session: AsyncSession = Depends(get_session
     await session.refresh(user)
     return user
 
-@router.delete("/alembic/user/{user_id}")
+@router.delete(api_base_url + "user/{user_id}")
 async def delete_user(user_id: int, session: AsyncSession = Depends(get_session)):
     statement = select(User).where(User.id == user_id)
     results = await session.exec(statement)
@@ -74,7 +76,7 @@ async def delete_user(user_id: int, session: AsyncSession = Depends(get_session)
 # modified_at
 # ceased_at
 
-@router.get("/alembic/user_permission", response_model=list[User])
+@router.get(api_base_url + "user_permission", response_model=list[User])
 async def get_user_permission(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(User_permission))
     user_permissions = result.scalars().all()
@@ -88,7 +90,7 @@ async def get_user_permission(session: AsyncSession = Depends(get_session)):
     ) for user_permission in user_permissions]
 
 
-@router.post("/alembic/user_permission")
+@router.post(api_base_url + "user_permission")
 async def add_user_permission(user_permission: User_permissionCreate, session: AsyncSession = Depends(get_session)):
     user_permission = User_permission(user_id = user_permission.user_id,
         authorised = user_permission.authorised,
@@ -100,7 +102,7 @@ async def add_user_permission(user_permission: User_permissionCreate, session: A
     await session.refresh(user_permission)
     return user_permission
 
-@router.delete("/alembic/user_permission/{user_permission_id}")
+@router.delete(api_base_url + "user_permission/{user_permission_id}")
 async def delete_user_permission(user_permission_id: int, session: AsyncSession = Depends(get_session)):
     statement = select(User_permission).where(User_permission.id == user_permission_id)
     results = await session.exec(statement)
@@ -121,7 +123,7 @@ async def delete_user_permission(user_permission_id: int, session: AsyncSession 
 # modified_at
 # ceased_at
 
-@router.get("/alembic/user_api_keys", response_model=list[User_api_key])
+@router.get(api_base_url + "user_api_keys", response_model=list[User_api_key])
 async def get_user_api_keys(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(User_api_key))
     user_api_keys = result.scalars().all()
@@ -136,7 +138,7 @@ async def get_user_api_keys(session: AsyncSession = Depends(get_session)):
 
 ## get one api key for user
 
-@router.get("/alembic/user_api_key/{user_id}", response_model=User_api_key)
+@router.get(api_base_url + "user_api_key/{user_id}", response_model=User_api_key)
 async def get_user_api_key(session: AsyncSession = Depends(get_session)):
     statement = select(User_api_key).where(User_api_key.user_id == user_id)
     user_api_keys = await session.exec(statement)
@@ -145,7 +147,7 @@ async def get_user_api_key(session: AsyncSession = Depends(get_session)):
 
 ## add one api key for user
 
-@router.post("/alembic/user_api_key")
+@router.post(api_base_url + "user_api_key")
 async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSession = Depends(get_session)):
     public_key_gen, private_key_gen = rsa.newkeys(512)
     print('public_key_gen  >>>' ,public_key_gen)
@@ -167,7 +169,7 @@ async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSessi
 
 ## delete one api key
 
-@router.delete("/alembic/user_api_key/{user_api_key_id}")
+@router.delete(api_base_url + "user_api_key/{user_api_key_id}")
 async def delete_user_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session)):
     statement = select(User_api_key).where(User_api_key.id == user_api_key_id)
     results = await session.exec(statement)
@@ -178,7 +180,7 @@ async def delete_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
 
 ## cease record
 
-@router.put("/alembic/user_api_key/{user_api_key_id}", response_model=User_api_key)
+@router.put(api_base_url + "user_api_key/{user_api_key_id}", response_model=User_api_key)
 async def update_user_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session)):
     statement = select(User_api_key).where(User_api_key.id == user_api_key_id)
     results = await session.exec(statement)
@@ -197,7 +199,7 @@ async def update_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
     return user_api_key
     
 
-@router.patch("/alembic/user_api_key/{user_api_key_id}", response_model=User_api_key)
+@router.patch(api_base_url + "user_api_key/{user_api_key_id}", response_model=User_api_key)
 async def cease_api_key(user_api_key_id: int, user_api_key_in: User_api_keyUpdate, session: AsyncSession = Depends(get_session)):
     statement = select(User_api_key).where(User_api_key.id == user_api_key_id)
     results = await session.exec(statement)
