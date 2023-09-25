@@ -145,11 +145,11 @@ async def add_process_time_header(request: Request, call_next):
     except:
         print("no request.headers['x-forwarded-for']")
 
-    print("#################### alembic request user ##############")
+    print("#################### alembic request email address ##############")
     try:
-        print(request.session['user'])
+        print(request.session['email'])
     except:
-        print("no user")
+        print("no email")
   
     print("#################### alembic request url path ##############")
     print(request.url.path)
