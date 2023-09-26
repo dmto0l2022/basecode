@@ -153,6 +153,8 @@ async def logout(response: Response,):
 async def logout(response: Response,):
     #response.delete_cookie("session")
     #response.delete_cookie("session_vars")
+    request.session['email'] = 'no email'
+    request.session['authenticated'] = 'no'
     response.set_cookie('session', expires=0, max_age=0, secure=True, samesite='none')
     response.set_cookie('session_vars', expires=0, max_age=0, secure=True, samesite='none')
     return {"ok": True}
