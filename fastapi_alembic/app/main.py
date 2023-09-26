@@ -151,8 +151,10 @@ async def logout(response: Response,):
 
 @app.get(api_base_url + 'logout')
 async def logout(response: Response,):
-    response.delete_cookie("session")
-    response.delete_cookie("session_vars")
+    #response.delete_cookie("session")
+    #response.delete_cookie("session_vars")
+    response.set_cookie('session', expires=0, max_age=0, secure=True, samesite='none')
+    response.set_cookie('session_vars', expires=0, max_age=0, secure=True, samesite='none')
     return {"ok": True}
 
 '''
