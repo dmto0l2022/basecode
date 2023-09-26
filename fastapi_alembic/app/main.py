@@ -229,6 +229,24 @@ async def add_process_time_header(request: Request, call_next):
     print("#################### alembic request headers ##############")
     print(request.headers)
     print("#######################################################")
+
+    try:  
+        print("#################### alembic request host ##############")
+        host = request.headers['host']
+        print(host)
+        if host = "container_fastapi_alembic_1:8014":
+            print("internal request")
+        else:
+            print("request from internet")
+            try:
+                email = request.session['email']
+                print("from user " , email)
+            except:
+              print("unknown requester")
+          
+    except:
+        print("no request.headers['host']")
+  
     try:  
         print("#################### alembic request 'x-forwarded-for' ##############")
         print(request.headers['x-forwarded-for'])
