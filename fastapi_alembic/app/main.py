@@ -234,7 +234,7 @@ async def add_process_time_header(request: Request, call_next):
         print("#################### alembic request host ##############")
         host = request.headers['host']
         print(host)
-        if host = "container_fastapi_alembic_1:8014":
+        if host == "container_fastapi_alembic_1:8014":
             print("internal request")
         else:
             print("request from internet")
