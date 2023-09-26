@@ -141,13 +141,15 @@ async def logout(request: Request):
     if session:
         request.delete_cookie("session")
     return RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login")
-
-@app.get(api_base_url + 'logout')
-async def logout(response: Response,):
-    response.delete_cookie("session")
-    return {"status":"success"}
 '''
 
+@app.get(api_base_url + 'logout')
+async def logout(request: Request):
+    request.session.clear()
+    return {"session":"cleared"}
+
+
+'''
 @app.get(api_base_url + 'logout')
 async def logout(request: Request,call_next):
     #response.delete_cookie("session")
@@ -158,7 +160,7 @@ async def logout(request: Request,call_next):
     response.set_cookie('session', expires=0, max_age=0, secure=True, samesite='none')
     response.set_cookie('session_vars', expires=0, max_age=0, secure=True, samesite='none')
     return response
-
+'''
 
 '''
 @app.get(api_base_url + 'logout')
