@@ -149,14 +149,15 @@ async def logout(response: Response,):
 '''
 
 @app.get(api_base_url + 'logout')
-async def logout(request: Request,):
+async def logout(request: Request,call_next):
     #response.delete_cookie("session")
     #response.delete_cookie("session_vars")
     request.session['email'] = 'no email'
     request.session['authenticated'] = 'no'
-    request.set_cookie('session', expires=0, max_age=0, secure=True, samesite='none')
-    request.set_cookie('session_vars', expires=0, max_age=0, secure=True, samesite='none')
-    return {"ok": True}
+    response = await call_next(request)
+    response.set_cookie('session', expires=0, max_age=0, secure=True, samesite='none')
+    response.set_cookie('session_vars', expires=0, max_age=0, secure=True, samesite='none')
+    return response
 
 
 '''
