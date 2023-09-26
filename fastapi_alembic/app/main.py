@@ -148,7 +148,18 @@ async def logout(response: Response,):
     return {"status":"success"}
 '''
 
+@app.get(api_base_url + 'logout')
+async def logout(request: Request,):
+    #response.delete_cookie("session")
+    #response.delete_cookie("session_vars")
+    request.session['email'] = 'no email'
+    request.session['authenticated'] = 'no'
+    request.set_cookie('session', expires=0, max_age=0, secure=True, samesite='none')
+    request.set_cookie('session_vars', expires=0, max_age=0, secure=True, samesite='none')
+    return {"ok": True}
 
+
+'''
 @app.get(api_base_url + 'logout')
 async def logout(response: Response,):
     #response.delete_cookie("session")
@@ -158,6 +169,7 @@ async def logout(response: Response,):
     response.set_cookie('session', expires=0, max_age=0, secure=True, samesite='none')
     response.set_cookie('session_vars', expires=0, max_age=0, secure=True, samesite='none')
     return {"ok": True}
+'''
 
 '''
 @app.get(api_base_url + 'logout')
