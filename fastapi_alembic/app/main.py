@@ -229,7 +229,7 @@ async def add_process_time_header(request: Request, call_next):
     print("#################### alembic request headers ##############")
     print(request.headers)
     print("#######################################################")
-
+    session = request.cookies.get('session_var')
     try:  
         print("#################### alembic request host ##############")
         host = request.headers['host']
@@ -239,7 +239,7 @@ async def add_process_time_header(request: Request, call_next):
         else:
             print("request from internet")
             try:
-                email = request.session.get('email')
+                email = session.get('email')
                 print("from user " , email)
             except:
               print("unknown requester")
@@ -255,7 +255,7 @@ async def add_process_time_header(request: Request, call_next):
 
     print("#################### alembic request email address ##############")
     try:
-        email = request.session.get('email')
+        email = session.get('email')
         #email = request.session['email']
         print(email)
     except:
