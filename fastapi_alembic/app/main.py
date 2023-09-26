@@ -51,9 +51,6 @@ app = FastAPI(title="DMTOOL API Server - Alembic",
              )
 
 
-
-app.add_middleware(SessionMiddleware,secret_key = "123456", session_cookie="session_vars")
-
 redisserver = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 
 oauth = OAuth()
@@ -284,3 +281,4 @@ async def add_process_time_header(request: Request, call_next):
   
     return response
 
+app.add_middleware(SessionMiddleware,secret_key = "123456", session_cookie="session_vars")
