@@ -50,7 +50,7 @@ app = FastAPI(title="DMTOOL API Server - Alembic",
               ##root_path_in_servers=False,
              )
 
-app.add_middleware(SessionMiddleware, secret_key="!secret")
+app.add_middleware(SessionMiddleware, secret_key="!secret", session_cookie="session_vars")
 
 
 from fastapi import FastAPI, Request
@@ -148,6 +148,14 @@ async def logout(response: Response,):
     return {"status":"success"}
 '''
 
+
+@app.get(api_base_url + 'logout')
+async def logout(response: Response,):
+    response.delete_cookie("session")
+    response.delete_cookie("session_vars")
+    return {"ok": True}
+
+'''
 @app.get(api_base_url + 'logout')
 async def logout(response: HTMLResponse,):
     #response = RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login", status_code= 302)
@@ -166,9 +174,10 @@ async def logout(response: HTMLResponse,):
     response = HTMLResponse('<a href="https://dev1.dmtool.info/dmtool/fastapi/login">login</a>')
 
     return response
+'''
 
 
-
+'''
 @app.middleware("http")
 async def some_middleware(request: Request, call_next):
     response = await call_next(request)
@@ -183,6 +192,7 @@ async def some_middleware(request: Request, call_next):
     if session:
         response.set_cookie(key='session', value=request.cookies.get('session'), httponly=True)
     return response
+'''
 
 '''
 
@@ -194,7 +204,7 @@ async def some_middleware(request: Request, call_next):
     print(f"response_body={response_body[0].decode()}")
     return response
 
-
+'''
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     print("#################### alembic request headers ##############")
@@ -208,7 +218,8 @@ async def add_process_time_header(request: Request, call_next):
 
     print("#################### alembic request email address ##############")
     try:
-        email = request.session.get('email')
+        #email = request.session.get('email')
+        email = request.session['email']
         print(email)
     except:
         print("no email")
@@ -235,6 +246,6 @@ async def add_process_time_header(request: Request, call_next):
     #    print("no async content")
   
     return response
-'''
+
 
 
