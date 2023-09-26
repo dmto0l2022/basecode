@@ -50,7 +50,7 @@ app = FastAPI(title="DMTOOL API Server - Alembic",
               ##root_path_in_servers=False,
              )
 
-app.add_middleware(SessionMiddleware,session_cookie="session_vars")
+app.add_middleware(SessionMiddleware,secret_key = "123456", session_cookie="session_vars")
 
 
 from fastapi import FastAPI, Request
@@ -78,6 +78,69 @@ app.include_router(dmtools.router)
 app.include_router(metadata.router)
 
 redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi/auth'
+
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    print("#################### alembic request headers ##############")
+    print(request.headers)
+    print("#######################################################")
+    session = request.cookies.get('session_var')
+    print("##########  print session #############################################")
+    print(request.session)
+    try:  
+        print("#################### alembic request host ##############")
+        host = request.headers['host']
+        print(host)
+        if host == "container_fastapi_alembic_1:8014":
+            print("internal request")
+        else:
+            print("request from internet")
+            try:
+                email = session.get('email')
+                print("from user " , email)
+            except:
+              print("unknown requester")
+          
+    except:
+        print("no request.headers['host']")
+  
+    try:  
+        print("#################### alembic request 'x-forwarded-for' ##############")
+        print(request.headers['x-forwarded-for'])
+    except:
+        print("no request.headers['x-forwarded-for']")
+
+    print("#################### alembic request email address ##############")
+    try:
+        email = session.get('email')
+        #email = request.session['email']
+        print(email)
+    except:
+        print("no email")
+  
+    print("#################### alembic request url path ##############")
+    print(request.url.path)
+    print("#######################################################")
+    start_time = time.time()
+    response = await call_next(request)
+    process_time = time.time() - start_time
+    response.headers["X-Process-Time"] = str(process_time)
+    #print("#################### alembic response headers ##############")
+    #print(response.headers)
+    #print("#################### alembic response json() ##############")
+    #print(response.json())
+    print("#################### alembic response content ##############")
+    #print(response.content)
+    print("######################################################")
+    #try:  
+    #    response_body = [chunk async for chunk in response.body_iterator]
+    #    #response.body_iterator = iterate_in_threadpool(iter(response_body))
+    #    #print(f"response_body={response_body[0].decode()}")
+    #except:
+    #    print("no async content")
+  
+    return response
+
 
 @app.get(api_base_url)
 async def homepage(request: Request):
@@ -224,65 +287,6 @@ async def some_middleware(request: Request, call_next):
     return response
 
 '''
-@app.middleware("http")
-async def add_process_time_header(request: Request, call_next):
-    print("#################### alembic request headers ##############")
-    print(request.headers)
-    print("#######################################################")
-    session = request.cookies.get('session_var')
-    try:  
-        print("#################### alembic request host ##############")
-        host = request.headers['host']
-        print(host)
-        if host == "container_fastapi_alembic_1:8014":
-            print("internal request")
-        else:
-            print("request from internet")
-            try:
-                email = session.get('email')
-                print("from user " , email)
-            except:
-              print("unknown requester")
-          
-    except:
-        print("no request.headers['host']")
-  
-    try:  
-        print("#################### alembic request 'x-forwarded-for' ##############")
-        print(request.headers['x-forwarded-for'])
-    except:
-        print("no request.headers['x-forwarded-for']")
-
-    print("#################### alembic request email address ##############")
-    try:
-        email = session.get('email')
-        #email = request.session['email']
-        print(email)
-    except:
-        print("no email")
-  
-    print("#################### alembic request url path ##############")
-    print(request.url.path)
-    print("#######################################################")
-    start_time = time.time()
-    response = await call_next(request)
-    process_time = time.time() - start_time
-    response.headers["X-Process-Time"] = str(process_time)
-    #print("#################### alembic response headers ##############")
-    #print(response.headers)
-    #print("#################### alembic response json() ##############")
-    #print(response.json())
-    print("#################### alembic response content ##############")
-    #print(response.content)
-    print("######################################################")
-    #try:  
-    #    response_body = [chunk async for chunk in response.body_iterator]
-    #    #response.body_iterator = iterate_in_threadpool(iter(response_body))
-    #    #print(f"response_body={response_body[0].decode()}")
-    #except:
-    #    print("no async content")
-  
-    return response
 
 
 
