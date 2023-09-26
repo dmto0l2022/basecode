@@ -50,7 +50,7 @@ app = FastAPI(title="DMTOOL API Server - Alembic",
               ##root_path_in_servers=False,
              )
 
-app.add_middleware(SessionMiddleware, secret_key="!secret", session_cookie="session_vars")
+app.add_middleware(SessionMiddleware,session_cookie="session_vars")
 
 
 from fastapi import FastAPI, Request
