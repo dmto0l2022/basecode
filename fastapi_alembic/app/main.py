@@ -11,6 +11,7 @@ from starlette.config import Config
 ## from starlette.config import environ
 from starlette.middleware.sessions import SessionMiddleware
 from starlette.responses import HTMLResponse, RedirectResponse
+from starlette.datastructures import MutableHeaders
 from authlib.integrations.starlette_client import OAuth, OAuthError
 
 from starlette.concurrency import iterate_in_threadpool
@@ -195,17 +196,22 @@ async def some_middleware(request: Request, call_next):
     response = await call_next(request)
     session = request.cookies.get('session')
     print("#################### session email address ##############")
+    email = ""
     try:
-        email = request.session.get("email", None)
+        get_email = request.session.get("email", None)
         #print(request.cookies.get('session'))
-        print(email)
+        email = get_email
     except:
-        print("no email")
+        email = "no email"
     if session:
         response.set_cookie(key='session', value=request.cookies.get('session'), httponly=True)
+
+    new_header = MutableHeaders(request._headers)
+    new_header["email"]= email
+    request._headers = new_header
+    request.scope.update(headers=request.headers.raw)
     
-    
-    print("#################### alembic request headers ##############")
+    print("#################### alembic updated request headers ##############")
     print(request.headers)
     print("#################### alembic request url path ##############")
     print(request.url.path)
