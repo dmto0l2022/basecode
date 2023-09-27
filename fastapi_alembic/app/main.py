@@ -190,7 +190,6 @@ async def logout(response: HTMLResponse,):
 '''
 
 
-'''
 @app.middleware("http")
 async def some_middleware(request: Request, call_next):
     response = await call_next(request)
@@ -205,7 +204,7 @@ async def some_middleware(request: Request, call_next):
     if session:
         response.set_cookie(key='session', value=request.cookies.get('session'), httponly=True)
     return response
-'''
+
 
 '''
 
@@ -217,14 +216,14 @@ async def some_middleware(request: Request, call_next):
     print(f"response_body={response_body[0].decode()}")
     return response
 
-'''
+
 
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     print("#################### alembic request headers ##############")
     print(request.headers)
     print("#######################################################")
-    session = request.cookies.get('session_var')
+    session = request.cookies.get('session')
     print("##########  print session #############################################")
     print(request.session)
     try:  
@@ -280,5 +279,6 @@ async def add_process_time_header(request: Request, call_next):
     #    print("no async content")
   
     return response
+'''
 
-app.add_middleware(SessionMiddleware,secret_key = "123456", session_cookie="session_vars")
+app.add_middleware(SessionMiddleware, secret_key = "123456", session_cookie="session")
