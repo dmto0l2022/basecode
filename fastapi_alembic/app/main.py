@@ -209,7 +209,7 @@ async def some_middleware(request: Request, call_next):
     new_header = MutableHeaders(request._headers)
     new_header["email"]= email
     request._headers = new_header
-    request.scope.update(headers=request.headers.raw)
+    request.scope.update(headers=request._headers.raw)
     
     print("#################### alembic updated request headers ##############")
     print(request.headers)
