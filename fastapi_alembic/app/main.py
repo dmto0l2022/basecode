@@ -210,7 +210,9 @@ async def some_middleware(request: Request, call_next):
     new_header["email"]= email
     request._headers = new_header
     request.scope.update(headers=request._headers.raw)
-    
+
+    response.headers['email'] = email
+  
     print("#################### alembic updated request headers ##############")
     print(request.headers)
     print("#################### alembic request url path ##############")
