@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI, Request
+from fastapi import Depends, FastAPI, Request, Response
 from sqlmodel import select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 
@@ -32,11 +32,15 @@ import rsa
 
 ## who are you
 
-@router.get(api_base_url + "whoareyou")
+@router.get(api_base_url + "whoareyou_request")
 async def whoareyou(request: Request):
     my_header = request.headers
     return {"message": my_header}
 
+@router.get(api_base_url + "whoareyou_response")
+async def whoareyou(response: Response):
+    my_header = response.headers
+    return {"message": my_header}
 
 # User CRUD
 
