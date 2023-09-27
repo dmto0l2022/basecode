@@ -42,13 +42,15 @@ async def whoareyou(request: Request):
 async def whoareyou(response: Response):
     my_header = response.headers
     return {"message": my_header}
-'''
+
 
 @router.get(api_base_url + "whoareyou_response")
 async def some_middleware(request: Request, call_next):
     response = await call_next(request)
     my_header = response.headers
     return {"message": my_header}
+
+'''
 
 # User CRUD
 
