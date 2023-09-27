@@ -211,9 +211,9 @@ async def some_middleware(request: Request, call_next):
     print("#################### alembic request url path ##############")
     print(request.url.path)
     print("#######################################################")
-    print("#################### alembic response content ##############")
-    print(response.content)
-    print("######################################################")
+    #print("#################### alembic response content ##############")
+    #print(response.content)
+    #print("######################################################")
     #try:  
     #    response_body = [chunk async for chunk in response.body_iterator]
     #    #response.body_iterator = iterate_in_threadpool(iter(response_body))
