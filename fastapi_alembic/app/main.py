@@ -199,10 +199,29 @@ async def some_middleware(request: Request, call_next):
         email = request.session.get("email", None)
         #print(request.cookies.get('session'))
         print(email)
+        request.headers['email'] = email
     except:
         print("no email")
     if session:
         response.set_cookie(key='session', value=request.cookies.get('session'), httponly=True)
+    
+    
+    print("#################### alembic request headers ##############")
+    print(request.headers)
+    print("#################### alembic request url path ##############")
+    print(request.url.path)
+    print("#######################################################")
+    print("#################### alembic response content ##############")
+    print(response.content)
+    print("######################################################")
+    #try:  
+    #    response_body = [chunk async for chunk in response.body_iterator]
+    #    #response.body_iterator = iterate_in_threadpool(iter(response_body))
+    #    print(f"response_body={response_body[0].decode()}")
+    #except:
+    #    print("no async content")
+
+  
     return response
 
 
