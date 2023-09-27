@@ -30,7 +30,17 @@ import rsa
 #modified_at
 #ceased_at
 
+## who are you
+
+@router.get(api_base_url + "whoareyou")
+async def whoareyou(request: Request):
+    my_header = request.headers
+    return {"message": my_header}
+
+
 # User CRUD
+
+
 
 @router.get(api_base_url + "user", response_model=list[User])
 async def get_users(session: AsyncSession = Depends(get_session)):
