@@ -18,9 +18,6 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 RUN chown $USER_UID:$USER_GID /workdir
 
-#RUN mkdir /workdir/login
-#RUN chown $USER_UID:$USER_GID /workdir/login
-
 RUN mkdir /env
 RUN chown $USER_UID:$USER_GID /env
 
@@ -43,5 +40,5 @@ RUN /env/bin/pip3 freeze
 #COPY . /workdir/.
 ##RUN ls -R /workdir/
 
-WORKDIR /workdir/login
+WORKDIR /workdir/application
 CMD ["gunicorn"  , "--bind", "0.0.0.0:8010", "wsgi:application"]
