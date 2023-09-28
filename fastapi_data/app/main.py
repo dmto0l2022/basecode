@@ -27,7 +27,6 @@ from db import get_session, init_db
 
 from routers import routers
 from routers import songs
-from routers import users
 from routers import dmtools
 from routers import metadata
 
@@ -38,9 +37,9 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
-api_base_url = '/dmtool/fastapi/'
+api_base_url = '/dmtool/fastapi_data/'
 
-app = FastAPI(title="DMTOOL API Server - Alembic",
+app = FastAPI(title="DMTOOL API Server - Data",
               ##servers=[
         ##{"url": "http://dev1.dmtool.info", "description": "Dev environment"}
               ##],
@@ -68,7 +67,6 @@ oauth.register(
 
 app.include_router(routers.router)
 app.include_router(songs.router)
-app.include_router(users.router)
 app.include_router(dmtools.router)
 app.include_router(metadata.router)
 
