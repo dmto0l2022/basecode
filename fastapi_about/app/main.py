@@ -50,8 +50,3 @@ app.include_router(routers.router)
 app.include_router(songs.router)
 app.include_router(users.router)
 
-  
-    return response
-'''
-
-app.add_middleware(SessionMiddleware, secret_key = "123456", session_cookie="session")
