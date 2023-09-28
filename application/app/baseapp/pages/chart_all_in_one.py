@@ -15,8 +15,8 @@ from dash import Input, Output, State
 
 from itertools import cycle
 
-fastapi_url_limits = "http://container_fastapi_alembic_1:8014/dmtool/fastapi/limits" ## multiple limit operations
-fastapi_url_limit = "http://container_fastapi_alembic_1:8014/dmtool/fastapi/limit/" ## single limit operations
+fastapi_url_limits = "http://container_fastapi_data_1:8014/dmtool/fastapi/limits" ## multiple limit operations
+fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi/limit/" ## single limit operations
 
 # colors
 palette = cycle(px.colors.qualitative.Bold)
