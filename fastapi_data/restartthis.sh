@@ -1,2 +1,2 @@
-podman stop container_fastapi_alembic_1
-podman start container_fastapi_alembic_1
+podman stop container_fastapi_data_1
+podman start container_fastapi_data_1
