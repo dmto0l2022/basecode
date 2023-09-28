@@ -6,14 +6,18 @@ from app.baseapp.libraries import formlibrary as fl
 
 dash.register_page(__name__, path='/homepage')
 
+page_name = 'homepage'
+
+page_prefix_url = '/application/baseapp/'
+
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
-    dcc.Location(id="url", refresh=True), ## important to allow redirects
-    html.Button('Create New Plot', id='create_new_plot_button_id', n_clicks=0),
-    html.Button('Edit Existing Plot', id='edit_existing_plot_button_id', n_clicks=0),
-    html.Button('Create New Limit', id='create_new_limit_button', n_clicks=0),
-    html.Button('Edit Existing Limit', id='edit_existing_limit_button', n_clicks=0),
-    html.Div('No Button Pressed', id="whatbutton"),
+    dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
+    html.Button('Create New Plot', id=page_name + 'create_new_plot_button_id', n_clicks=0),
+    html.Button('Edit Existing Plot', id=page_name + 'edit_existing_plot_button_id', n_clicks=0),
+    html.Button('Create New Limit', id=page_name + 'create_new_limit_button', n_clicks=0),
+    html.Button('Edit Existing Limit', id=page_name + 'edit_existing_limit_button', n_clicks=0),
+    html.Div('No Button Pressed', id=page_name + "whatbutton"),
     dcc.Link(html.Button('LOGIN'),
                            href='/app/applogin')])
 
@@ -43,12 +47,12 @@ app.layout = html.Div(
 '''
 
 @callback(
-    Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    Output(page_name + 'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
-    Input("create_new_plot_button_id", "n_clicks"),
-    Input("edit_existing_plot_button_id", "n_clicks"),
-    Input("create_new_limit_button", "n_clicks"),
-    Input("edit_existing_limit_button", "n_clicks"),
+    Input(page_name + "create_new_plot_button_id", "n_clicks"),
+    Input(page_name + "edit_existing_plot_button_id", "n_clicks"),
+    Input(page_name + "create_new_limit_button", "n_clicks"),
+    Input(page_name + "edit_existing_limit_button", "n_clicks"),
         ],
         prevent_initial_call=True
 )
@@ -56,26 +60,26 @@ def button_click(button1,button2,button3,button4):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     #msg = prop_id
-    if "create_new_plot_button_id" == prop_id :
+    if page_name + "create_new_plot_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
-        href_return = '/app/baseapp/create_new_plot'
+        href_return = page_prefix_url + 'create_new_plot'
         return href_return
-    elif "edit_existing_plot_button_id" == prop_id:
+    elif page_name + "edit_existing_plot_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.edit_existing_plot']['path']
-        href_return = '/app/baseapp/edit_existing_plot'
+        href_return = page_prefix_url + 'edit_existing_plot'
         return href_return
-    elif "create_new_limit_button" == prop_id:
+    elif page_name + "create_new_limit_button" == prop_id:
         #msg = "Button 2 was most recently clicked"
-        href_return = '/app/baseapp/create_new_limit'
+        href_return = page_prefix_url + 'create_new_limit'
         return href_return
-    elif "edit_existing_limit_button" == prop_id:
+    elif page_name + "edit_existing_limit_button" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.edit_existing_limit']['path']
-        href_return = '/app/baseapp/edit_existing_limit'
+        href_return = page_prefix_url + 'edit_existing_limit'
         return href_return
     else:
-        href_return = '/baseapp/homepage'
+        href_return = page_prefix_url + 'homepage'
         return href_return
         
 
