@@ -9,7 +9,7 @@ from typing import List
 
 from db import get_session
 
-@router.get("/alembic/ping")
+@router.get("/dmtool/fastapi_data/ping")
 async def pong():
     return {"ping": "pong!"}
 
