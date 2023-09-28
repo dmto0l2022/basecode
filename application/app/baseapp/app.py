@@ -50,7 +50,7 @@ from app.baseapp.libraries import formlibrary as fl
 
 from app.baseapp.libraries import pagecomponents as pc
 
-#from app.baseapp.libraries import create_test_data
+from app.baseapp.libraries import create_test_data
 
 #app = JupyterDash(__name__,
 #                  ##requests_pathname_prefix= "/",
