@@ -160,100 +160,51 @@ localhost/mariadb_1:latest
 
 ##### --env MARIADB_USER=${ENV_MARIADB_USER} --env MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD} --env MARIADB_ROOT_PASSWORD=${ENV_MARIADB_PASSWORD} \
 
-#cd /opt/dmtools/code/basecode/api
+## fastapi data api
 
-#podman rmi api_1
-#podman rmi base_api_1
-#podman build -f Dockerfile_apibase -t base_api_1
-#podman build -f Dockerfile_api -t api_1 .
+cd /opt/dmtools/code/basecode/fastapi_data
 
-##-v /HOST-DIR:/CONTAINER-DIR
-
-#podman run -dt \
-#--name container_api_1 \
-#--pod pod_main_backend \
-#--user $uid:$gid \
-#-v /opt/dmtools/code/basecode:/workdir \
-#localhost/api_1:latest
-
-###
-
-#cd /opt/dmtools/code/basecode/fastapi
-
-#podman rmi fastapi_1
-#podman build -f Dockerfile -t fastapi_1
-
-##-v /HOST-DIR:/CONTAINER-DIR
-
-#podman run -dt \
-#--name container_fastapi_1 \
-#--pod pod_main_backend \
-#--user $uid:$gid \
-#-v /opt/dmtools/code/basecode:/workdir \
-#localhost/fastapi_1:latest
-
-####
-
-#cd /opt/dmtools/code/basecode/fastapi_orm
-
-#podman rmi fastapi_orm_1
-#podman build -f Dockerfile -t fastapi_orm_1
-
-##-v /HOST-DIR:/CONTAINER-DIR
-
-#podman run -dt \
-#--name container_fastapi_orm_1 \
-#--pod pod_main_backend \
-#--user $uid:$gid \
-#-v /opt/dmtools/code/basecode:/workdir \
-#localhost/fastapi_orm_1:latest
-
-####
-
-cd /opt/dmtools/code/basecode/fastapi_alembic
-
-podman rmi fastapi_orm_1
-podman build -f Dockerfile -t fastapi_alembic_1
+podman rmi fastapi_data_1
+podman build -f Dockerfile -t fastapi_data_1
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name container_fastapi_alembic_1 \
+--name container_fastapi_data_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
-localhost/fastapi_alembic_1:latest
+localhost/fastapi_data_1:latest
 
-###
+## fast api about - the data and app
 
-#cd /opt/dmtools/code/basecode/frontend
+cd /opt/dmtools/code/basecode/fastapi_about
 
-#podman rmi frontend_1:latest
-#podman build -f Dockerfile_frontendbase -t base_frontend_1 .
-#podman build -f Dockerfile_frontend -t frontend_1 .
-
-##-v /HOST-DIR:/CONTAINER-DIR
-
-#podman run -dt \
-#--name container_frontend_1 \
-#--pod pod_main_backend \
-#--user $uid:$gid \
-#-v /opt/dmtools/code/basecode:/workdir \
-#localhost/frontend_1:latest
-
-## login
-
-cd /opt/dmtools/code/basecode/login
-
-podman rmi login_1:latest
-podman build -f Dockerfile -t login_1 .
+podman rmi fastapi_about_1
+podman build -f Dockerfile -t fastapi_about_1
 
 ##-v /HOST-DIR:/CONTAINER-DIR
 
 podman run -dt \
---name container_login_1 \
+--name container_fastapi_about_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
-localhost/login_1:latest
+localhost/fastapi_about_1:latest
+
+## application
+
+cd /opt/dmtools/code/basecode/application
+
+podman rmi application_1:latest
+podman build -f Dockerfile -t application_1 .
+
+##-v /HOST-DIR:/CONTAINER-DIR
+
+podman run -dt \
+--name container_application_1 \
+--pod pod_main_backend \
+--user $uid:$gid \
+-v /opt/dmtools/code/basecode:/workdir \
+localhost/application_1:latest
 
