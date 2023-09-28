@@ -6,7 +6,7 @@ from app.baseapp.libraries import formlibrary as fl
 
 dash.register_page(__name__, path='/limit_menu')
 page_name = 'limit_menu'
-baseapp_prefix = '/login/baseapp'
+baseapp_prefix = '/application/baseapp'
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
