@@ -15,12 +15,12 @@ from app.baseapp.libraries import formlibrary as fl
 import requests
 import json
 
-fastapi_url_all = "http://container_fastapi_alembic_1:8014/alembic/user_api_keys" ## multiple limit operations
-fastapi_url_one = "http://container_fastapi_alembic_1:8014/alembic/user_api_key" ## single limit operations
+fastapi_url_all = "http://container_fastapi_about_1:8016/fastapi_about/user_api_keys" ## multiple limit operations
+fastapi_url_one = "http://container_fastapi_about_1:8014/fastapi_about/user_api_key" ## single limit operations
 
 dash.register_page(__name__, path='/list_all_keys')
 page_name = "list_all_keys"
-baseapp_prefix = '/login/baseapp'
+baseapp_prefix = '/application/baseapp'
 
 #### list all keys
 
