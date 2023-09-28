@@ -24,7 +24,6 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 # target_metadata = None
 from models.dmtools import Experiment, Limit_display, Limit_ownership, Limit, Plot_ownership, Plot
-from models.users import User, User_permission, User_api_key
 from models.metadata import Dropdown_valuepair
 from models.base import Base
 target_metadata = Base.metadata
