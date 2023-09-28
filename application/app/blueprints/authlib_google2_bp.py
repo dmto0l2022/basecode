@@ -36,7 +36,7 @@ from http.cookies import SimpleCookie
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
-fastapi_url = environ.get("FASTAPI_URL")
+fastapi_about_url = environ.get("FASTAPI_ABOUT_URL")
 
 print('BASE_DIR')
 print(BASE_DIR)
@@ -181,7 +181,7 @@ def callback():
     google = OAuth2Session(client_id, token=token)
     profile_data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
     google_id = profile_data['id']
-    #url_get = fastapi_url + "/apiorm/authlibuser/google/" + google_id
+    url_get = fastapi_about_url + "/apiorm/authlibuser/google/" + google_id
     #print("url_get >>>" , url_get)
     #google_req = requests.get(url_get)
     #print("google user status code >>>> " , google_req.status_code)
