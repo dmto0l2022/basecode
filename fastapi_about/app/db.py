@@ -6,7 +6,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession, AsyncEngine
 from sqlalchemy.orm import sessionmaker
 
 config = {
-    "connections": {"default": "mysql://pythonuser:pythonuser@container_mariadb:3306/dev"},
+    "connections": {"default": "mysql://pythonuser:pythonuser@container_mariadb:3306/about"},
     "apps": {
         "models": {
             "models": ["models.models","models.users", "models.metadata", "models.dmtools", "aerich.models"],
@@ -16,7 +16,7 @@ config = {
 }
 
 #DATABASE_URL = os.environ.get("DATABASE_URL")
-DATABASE_URL = "mysql+aiomysql://pythonuser:pythonuser@container_mariadb:3306/dev"
+DATABASE_URL = "mysql+aiomysql://pythonuser:pythonuser@container_mariadb:3306/about"
 
 engine = AsyncEngine(create_engine(DATABASE_URL, echo=True, future=True))
 
