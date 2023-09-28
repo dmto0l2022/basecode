@@ -58,7 +58,7 @@ class DashDataAndTables():
         self.MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
         self.MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
         #MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
-        self.MARIADB_DATABASE = 'data'
+        self.MARIADB_DATABASE = 'test'
         self.MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
 
         self.MARIADB_URI = "mariadb+mariadbconnector://" + self.MARIADB_USERNAME + ":" + \
@@ -116,7 +116,7 @@ class DashDataAndTables():
         y_rescale, default_color, default_style, data_label, file_name, data_comment,
         data_reference, created_at, updated_at, creator_id, experiment, rating, date_of_announcement,
         public, official, date_official, greatest_hit, date_of_run_start, date_of_run_end, `year`
-        FROM data.limits_metadata;'''
+        FROM test.limits_metadata;'''
         
         self.limits_df = pd.read_sql_query(limits_sql, self.engine)
         #self.limits_df['rowid'] = self.limits_df.index
@@ -133,14 +133,14 @@ class DashDataAndTables():
                                 created_at, updated_at, creator_id, experiment, rating,
                                 date_of_announcement, public, official, date_official, greatest_hit,
                                 date_of_run_start, date_of_run_end, `year` FROM
-                                `data`.limits_metadata;'''
+                                `test`.limits_metadata;'''
 
         self.limits_metadata_df = pd.read_sql_query(limits_metadata_sql, self.engine)
         self.limits_metadata_df['rowid'] = self.limits_metadata_df.index
 
         #####
 
-        limits_traces_sql = '''SELECT distinct limit_id, trace_id, trace_name FROM `data`.limits_data;;'''
+        limits_traces_sql = '''SELECT distinct limit_id, trace_id, trace_name FROM `test`.limits_data;;'''
         self.limits_traces_df = pd.read_sql_query(limits_traces_sql, self.engine)
         #self.limits_traces_df['rowid'] = self.limits_traces_df.index
         self.limits_traces_df['line_color'] = 'black'
@@ -149,7 +149,7 @@ class DashDataAndTables():
         self.limits_traces_df['symbol'] = 'square'
         self.limits_traces_df['symbol_color'] = 'blue'
 
-        limits_data_sql = '''SELECT id, limit_id, trace_id, trace_name, x, y FROM `data`.limits_data;'''
+        limits_data_sql = '''SELECT id, limit_id, trace_id, trace_name, x, y FROM `test`.limits_data;'''
 
         self.limits_data_df = pd.read_sql_query(limits_data_sql, self.engine)
         #self.limits_data_df['rowid'] = self.limits_data_df.index
