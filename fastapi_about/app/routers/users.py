@@ -54,6 +54,14 @@ async def some_middleware(request: Request, call_next):
 
 # User CRUD
 
+## get one user with email
+
+@router.get(api_base_url + "user/{email}", response_model=User)
+async def get_user_by_email(session: AsyncSession = Depends(get_session)):
+    statement = select(User).where(User.email == email)
+    users = await session.exec(statement)
+    user = users.one()
+    return user
 
 
 @router.get(api_base_url + "user", response_model=list[User])
@@ -63,6 +71,7 @@ async def get_users(session: AsyncSession = Depends(get_session)):
     return [User(id=user.id,
                 authlib_id=user.authlib_id,
                 authlib_provider=user.authlib_provider,
+                email=user.email,
                 created_at=user.created_at,
                 modified_at=user.modified_at,
                 ceased_at=user.ceased_at) for user in users]
@@ -72,6 +81,7 @@ async def get_users(session: AsyncSession = Depends(get_session)):
 async def add_user(user: UserCreate, session: AsyncSession = Depends(get_session)):
     user = User(authlib_id=user.authlib_id,
                 authlib_provider=user.authlib_provider,
+                email=user.email,
                 created_at=user.created_at,
                 modified_at=user.modified_at,
                 ceased_at=user.ceased_at)
