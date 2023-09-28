@@ -40,6 +40,7 @@ SQLModel.metadata = Base.metadata
 # Fields
 #authlib_id
 #authlib_provider
+#email
 #created_at
 #modified_at
 #ceased_at
@@ -47,6 +48,7 @@ SQLModel.metadata = Base.metadata
 class UserBase(SQLModel):
     authlib_id : str = Field(default=None)
     authlib_provider : str = Field(default=None)
+    email : str = Field(default=None)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime_origin, nullable=False)
