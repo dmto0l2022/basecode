@@ -7,8 +7,6 @@ echo "CREATE USER '${MARIADB_USERNAME}'@'localhost' IDENTIFIED BY '${MARIADB_PAS
 
 echo "CREATE DATABASE dev;" >> ../mariadb/init.sql
 
-echo "CREATE DATABASE data;" >> ../mariadb/init.sql
-
 echo "CREATE DATABASE about;" >> ../mariadb/init.sql
 
 echo "CREATE DATABASE systemdata;" >> ../mariadb/init.sql
