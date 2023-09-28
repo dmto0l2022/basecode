@@ -16,7 +16,7 @@ from models.dmtools import Limit, LimitCreate
 from models.dmtools import Plot_ownership, Plot_ownershipCreate
 from models.dmtools import Plot, PlotCreate
 
-api_base_url = '/dmtool/fastapi/'
+api_base_url = '/dmtool/fastapi_data/'
 
 # Experiment CRUD
 
