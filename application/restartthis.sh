@@ -1,2 +1,2 @@
-podman stop container_login_1
-podman start container_login_1
+podman stop container_application_1
+podman start container_application_1
