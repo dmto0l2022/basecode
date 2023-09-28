@@ -48,14 +48,14 @@ df.index.name='id'
 #print(df)
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='replace', index_label='id')
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='test', if_exists='replace', index_label='id')
 
 with engine.connect() as con:
     
-    query = 'alter table data.dropdown_valuepairs drop id;'
+    query = 'alter table test.dropdown_valuepairs drop id;'
     con.execute(text(query))
     #con.execute('alter table data.meta_valuepair add id serial primary key')
-    query ='ALTER TABLE data.dropdown_valuepairs ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    query ='ALTER TABLE test.dropdown_valuepairs ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
     con.execute(text(query))
     
     
@@ -73,7 +73,7 @@ for l in range_values:
 df = pd.DataFrame(data=dropdown_values, columns=['variable','label','value','data_type'])
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='test', if_exists='append', index=False)
 
 ## Result Type
 
@@ -84,7 +84,7 @@ df = pd.DataFrame({
     'data_type' : ['text', 'text','text']})
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='test', if_exists='append', index=False)
     
 ## Spin Dependence
 
@@ -96,7 +96,7 @@ df = pd.DataFrame({
 })
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='test', if_exists='append', index=False)
 
 ## Greatest Hits
 
@@ -108,7 +108,7 @@ df = pd.DataFrame({
 })
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='test', if_exists='append', index=False)
 
 ## Experiments
 '''
@@ -148,7 +148,7 @@ df = pd.DataFrame({
 
 
 with engine.begin() as connection:
-    df.to_sql(name='dropdown_valuepairs', con=connection,schema='data', if_exists='append', index=False)
+    df.to_sql(name='dropdown_valuepairs', con=connection,schema='test', if_exists='append', index=False)
 
 
 #all_dropdown_pairs = pd.read_sql('SELECT variable,label, value FROM dropdown_valuepairs', con=engine)
@@ -283,21 +283,21 @@ with engine.connect() as con:
     #query ='ALTER TABLE data.dropdown_valuepairs MODIFY id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
     #con.execute(text(query))
     
-    query='alter table data.limits_data drop id;'
+    query='alter table test.limits_data drop id;'
     con.execute(text(query))
     #con.execute('alter table data.meta_valuepair add id serial primary key')
-    query='ALTER TABLE data.limits_data ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    query='ALTER TABLE test.limits_data ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
     con.execute(text(query))  
     
-    query='alter table data.limits_metadata drop id;'
+    query='alter table test.limits_metadata drop id;'
     con.execute(text(query))  
     #con.execute('alter table data.meta_valuepair add id serial primary key') 
-    query='ALTER TABLE data.limits_metadata ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    query='ALTER TABLE test.limits_metadata ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
     con.execute(text(query))    
     
-    query='alter table data.meta_valuepair drop id;'
+    query='alter table test.meta_valuepair drop id;'
     con.execute(text(query))
-    query='ALTER TABLE data.meta_valuepair ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
+    query='ALTER TABLE test.meta_valuepair ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY;'
     #con.execute('alter table data.meta_valuepair add id serial primary key') 
     con.execute(text(query))
     
