@@ -7,7 +7,7 @@ from dash import dash_table
 
 import dash_bootstrap_components as dbc
 
-baseapp_prefix = '/login/baseapp'
+baseapp_prefix = '/application/baseapp'
 
 ## https://github.com/facultyai/dash-bootstrap-components/blob/main/examples/advanced-component-usage/navbars.py
 ## https://getbootstrap.com/docs/4.0/components/navbar/
