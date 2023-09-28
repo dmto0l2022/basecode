@@ -10,7 +10,7 @@ from typing import List
 from db import get_session
 
 
-api_base_url = '/dmtool/fastapi/'
+api_base_url = '/dmtool/fastapi_data/'
 
 from models.songs import Song, SongCreate
 
