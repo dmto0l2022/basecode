@@ -7,7 +7,7 @@ import uuid
 from fastapi import APIRouter
 router = APIRouter()
 
-api_base_url = '/dmtool/fastapi/'
+api_base_url = '/dmtool/fastapi_about/'
 
 from typing import List
 
