@@ -115,8 +115,8 @@ application = DispatcherMiddleware(app, {
     #'/app/wsgi_app0': app0.server,  
     #'/app/wsgi_app1': app1.server,
     #'/app/wsgi_app2': app2.server,
-    '/login/session_app': app3.server,
-    '/login/baseapp': app4.server,
+    '/application/session_app': app3.server,
+    '/application/baseapp': app4.server,
 })  
 
 application = Middleware(application)
