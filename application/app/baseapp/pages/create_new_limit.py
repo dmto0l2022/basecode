@@ -13,11 +13,11 @@ from app.baseapp.libraries import formlibrary as fl
 
 import xml.etree.ElementTree as ET
 
-baseapp_prefix = '/login/baseapp'
+baseapp_prefix = '/application/baseapp'
 
 dash.register_page(__name__, path='/create_new_limit')
 
-fastapi_url = "http://container_fastapi_alembic_1:8014/dmtool/fastapi/limit"
+fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi/limit"
 
 '''
 ID List
