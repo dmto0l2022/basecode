@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI, Request, Response
+from fastapi import Depends, FastAPI, Request, Response, HTTPException
 from sqlmodel import select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 
