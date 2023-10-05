@@ -206,6 +206,7 @@ async def some_middleware(request: Request, call_next):
     if session:
         response.set_cookie(key='session', value=request.cookies.get('session'), httponly=True)
 
+    print('session email >>>>>', email)
     #new_header = MutableHeaders(request._headers)
     #new_header["email"]= email
     #request._headers = new_header
