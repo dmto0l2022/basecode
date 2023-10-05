@@ -56,11 +56,18 @@ async def some_middleware(request: Request, call_next):
 
 ## get one user with email
 
-@router.get(email_in: str, api_base_url + "user/{email_in}", response_model=User)
-async def get_user_by_email(session: AsyncSession = Depends(get_session)):
+@router.get(api_base_url + "user/{email_in}", response_model=User)
+async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_session)):
     statement = select(User).where(User.email == email_in)
-    users = await session.exec(statement)
-    user = users.one()
+    user = "user unknown"
+    try:
+        users = await session.exec(statement)
+        user = users.one()
+    except:
+        user = "user unknown"
+    
+    if user =  "user unknown":
+       raise HTTPException(status_code=404, detail="User not found")
     return user
 
 
