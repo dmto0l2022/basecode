@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI, Request, Response, HTTPException
+from fastapi import Depends, FastAPI, Request, Response, HTTPException, Header
 from sqlmodel import select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 
@@ -80,7 +80,7 @@ async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_s
     return user
 
 
-@router.get(api_base_url + "user", response_model=list[User])
+@router.get(api_base_url + "user", response_model=list[User], dmtool_userid: Optional[str] = Header(None), dmtool_apikey: Optional[str] = Header(None))
 async def get_users(session: AsyncSession = Depends(get_session)):
     result = await session.execute(select(User))
     users = result.scalars().all()
