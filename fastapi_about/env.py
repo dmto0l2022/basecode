@@ -76,7 +76,7 @@ def run_migrations_offline() -> None:
         url=DATABASE_URL,
         target_metadata=target_metadata,
         literal_binds=True,
-        as_sql=True,
+        as_sql=False,
         compare_type=True,
         dialect_opts={"paramstyle": "named"},
     )
