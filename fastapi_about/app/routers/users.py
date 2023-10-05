@@ -56,9 +56,9 @@ async def some_middleware(request: Request, call_next):
 
 ## get one user with email
 
-@router.get(api_base_url + "user/{email}", response_model=User)
+@router.get(email_in: str, api_base_url + "user/{email_in}", response_model=User)
 async def get_user_by_email(session: AsyncSession = Depends(get_session)):
-    statement = select(User).where(User.email == email)
+    statement = select(User).where(User.email == email_in)
     users = await session.exec(statement)
     user = users.one()
     return user
