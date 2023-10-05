@@ -46,17 +46,49 @@ def run_migrations_offline() -> None:
     script output.
 
     """
+
+    ## https://github.com/sqlalchemy/alembic/discussions/1149
+    
+    from sqlalchemy import create_engine
+    import re
+    import os
+
+    url_tokens = {
+        "MARIADB_USERNAME": os.getenv("MARIADB_USERNAME", ""),
+        "MARIADB_PASSWORD": os.getenv("MARIADB_PASSWORD", ""),
+        "MARIADB_CONTAINER": os.getenv("MARIADB_CONTAINER", ""),
+        "MARIADB_DATABASE": os.getenv("MARIADB_DATABASE", "")
+    }
+
     url = config.get_main_option("sqlalchemy.url")
-    context.configure(
-        url=url,
-        target_metadata=target_metadata,
-        literal_binds=True,
-        compare_type=True,
-        dialect_opts={"paramstyle": "named"},
-    )
+
+    url = re.sub(r"\${(.+?)}", lambda m: url_tokens[m.group(1)], url)
+
+    connectable = create_engine(url)
+
+    with connectable.connect() as connection:
+        context.configure(
+            connection=connection,
+            target_metadata=target_metadata,
+            compare_type=True,
+            compare_server_default=True,
+        )
 
     with context.begin_transaction():
         context.run_migrations()
+
+    
+    #url = config.get_main_option("sqlalchemy.url")
+    #context.configure(
+    #    url=url,
+    #    target_metadata=target_metadata,
+    #    literal_binds=True,
+    #    compare_type=True,
+    #    dialect_opts={"paramstyle": "named"},
+    #)
+
+    #with context.begin_transaction():
+    #    context.run_migrations()
 
 
 def do_run_migrations(connection: Connection) -> None:
