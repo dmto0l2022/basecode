@@ -10,6 +10,7 @@ router = APIRouter()
 api_base_url = '/dmtool/fastapi_about/'
 
 from typing import List
+from typing import Annotated
 
 from db import get_session
 
