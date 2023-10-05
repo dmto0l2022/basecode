@@ -2,8 +2,6 @@ from fastapi import Depends, FastAPI, Request, Response, HTTPException
 from sqlmodel import select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 
-import requests
-
 import uuid
 
 from fastapi import APIRouter
