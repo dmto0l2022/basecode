@@ -2,6 +2,8 @@ from fastapi import Depends, FastAPI, Request, Response, HTTPException
 from sqlmodel import select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 
+import requests
+
 import uuid
 
 from fastapi import APIRouter
@@ -64,10 +66,19 @@ async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_s
         users = await session.exec(statement)
         user = users.one()
     except:
-        user = "user unknown"
+        if user ==  "user unknown":
+            user = User(authlib_id="google",
+                    authlib_provider="google",
+                    email=email_in)
+            session.add(user)
+            await session.commit()
+            await session.refresh(user)
+            try:
+                users = await session.exec(statement)
+                user = users.one()
+            except:
+                user = "user unknown"
     
-    if user ==  "user unknown":
-       raise HTTPException(status_code=404, detail="User not found")
     return user
 
 
