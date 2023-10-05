@@ -70,7 +70,9 @@ app.include_router(songs.router)
 app.include_router(dmtools.router)
 app.include_router(metadata.router)
 
-redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi/auth'
+## https://console.cloud.google.com/apis/
+
+redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi_data/auth'
 
 @app.get(api_base_url)
 async def homepage(request: Request):
@@ -79,15 +81,15 @@ async def homepage(request: Request):
         data = json.dumps(email)
         html = (
             f'<pre>{data}</pre>'
-            '<a href="https://dev1.dmtool.info/dmtool/fastapi/logout">logout</a>'
+            '<a href="https://dev1.dmtool.info/dmtool/fastapi_data/logout">logout</a>'
         )
         return HTMLResponse(html)
-    return HTMLResponse('<a href="https://dev1.dmtool.info/dmtool/fastapi/login">login</a>')
+    return HTMLResponse('<a href="https://dev1.dmtool.info/dmtool/fastapi_data/login">login</a>')
 
 
 @app.get(api_base_url + 'login')
 async def login(request: Request):
-    redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi/auth'
+    redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi_data/auth'
     #redirect_uri = request.url_for('auth')
     return await oauth.google.authorize_redirect(request, redirect_uri)
 '''
