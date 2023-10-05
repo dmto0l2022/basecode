@@ -80,8 +80,12 @@ async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_s
     return user
 
 
-@router.get(api_base_url + "user", response_model=list[User], dmtool_userid: Optional[str] = Header(None), dmtool_apikey: Optional[str] = Header(None))
-async def get_users(session: AsyncSession = Depends(get_session)):
+@router.get(api_base_url + "user",
+            response_model=list[User]
+            )
+async def get_users(session: AsyncSession = Depends(get_session),
+                    dmtool_userid: Annotated[str | None, Header()] = None,
+                    dmtool_apikey: Annotated[str | None, Header()] = None):
     result = await session.execute(select(User))
     users = result.scalars().all()
     return [User(id=user.id,
