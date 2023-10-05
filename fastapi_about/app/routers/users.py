@@ -66,7 +66,7 @@ async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_s
     except:
         user = "user unknown"
     
-    if user =  "user unknown":
+    if user ==  "user unknown":
        raise HTTPException(status_code=404, detail="User not found")
     return user
 
