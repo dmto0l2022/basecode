@@ -75,8 +75,7 @@ def run_migrations_offline() -> None:
     context.configure(
         url=DATABASE_URL,
         target_metadata=target_metadata,
-        literal_binds=False,
-        as_sql=False,
+        literal_binds=True,
         compare_type=True,
         dialect_opts={"paramstyle": "named"},
     )
@@ -91,7 +90,7 @@ def do_run_migrations(connection: Connection) -> None:
     with context.begin_transaction():
         context.run_migrations()
 
-'''
+
 async def run_async_migrations() -> None:
     """In this scenario we need to create an Engine
     and associate a connection with the context.
@@ -114,9 +113,9 @@ def run_migrations_online() -> None:
     """Run migrations in 'online' mode."""
 
     asyncio.run(run_async_migrations())
-'''
 
-#if context.is_offline_mode():
-run_migrations_offline()
-#else:
-#run_migrations_online()
+
+if context.is_offline_mode():
+    run_migrations_offline()
+else:
+    run_migrations_online()
