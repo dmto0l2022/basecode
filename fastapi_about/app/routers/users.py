@@ -87,15 +87,23 @@ async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_s
 async def get_users(session: AsyncSession = Depends(get_session),
                     dmtool_userid: Annotated[str | None, Header()] = None,
                     dmtool_apikey: Annotated[str | None, Header()] = None):
-    result = await session.execute(select(User))
-    users = result.scalars().all()
-    return [User(id=user.id,
-                authlib_id=user.authlib_id,
-                authlib_provider=user.authlib_provider,
-                email=user.email,
-                created_at=user.created_at,
-                modified_at=user.modified_at,
-                ceased_at=user.ceased_at) for user in users]
+
+    statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid and User_api_key.api_key == dmtool_apikey)
+    try:
+        user_api_key = await session.exec(statement)
+        user_api_key = user_api_key.one()
+        result = await session.execute(select(User))
+        users = result.scalars().all()
+        return [User(id=user.id,
+                    authlib_id=user.authlib_id,
+                    authlib_provider=user.authlib_provider,
+                    email=user.email,
+                    created_at=user.created_at,
+                    modified_at=user.modified_at,
+                    ceased_at=user.ceased_at) for user in users]
+    except:
+        raise HTTPException(status_code=404, detail="Unauthorised Request")
+    
 
 
 @router.post(api_base_url + "user")
