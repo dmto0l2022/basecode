@@ -89,12 +89,12 @@ async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_s
             response_model=list[User]
             )
 async def get_users(session: AsyncSession = Depends(get_session),
-                    dmtool_userid: Annotated[str | None, Header()] = None,
+                    dmtool_userid: Annotated[int | None, Header()] = None,
                     dmtool_apikey: Annotated[str | None, Header()] = None):
 
     ## check api key existence
-    dmtool_user_int = int(dmtool_userid)
-    statement = select(User_api_key).where(User_api_key.user_id == dmtool_user_int).where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
+    #dmtool_user_int = int(dmtool_userid)
+    statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid) ### .where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
     print("statement >>>>>>>>>>>>>>>>" , statement)
     try:
         user_api_keys = await session.exec(statement)
