@@ -215,7 +215,7 @@ async def get_user_api_keys(session: AsyncSession = Depends(get_session)):
 async def get_user_api_key(user_id: int, session: AsyncSession = Depends(get_session)):
     statement = select(User_api_key).where(User_api_key.user_id == user_id)
     user_api_keys = await session.exec(statement)
-    user_api_key = user_api_key.one()
+    user_api_key = user_api_keys.one()
     return user_api_key
 
 ## add one api key for user
