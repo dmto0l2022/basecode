@@ -94,14 +94,14 @@ async def get_users(session: AsyncSession = Depends(get_session),
 
     ## check api key existence
     #dmtool_user_int = int(dmtool_userid)
-    statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid) ### .where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
+    statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
     print("statement >>>>>>>>>>>>>>>>" , str(statement))
     try:
         user_api_keys = await session.exec(statement)
-        user_api_key = user_api_key.one()
+        user_api_key = user_api_keys.one()
     except:
-        #raise HTTPException(status_code=404, detail="Unauthorised Request")
-        a = 1
+        raise HTTPException(status_code=404, detail="Unauthorised Request")
+        #a = 1
     
     result = await session.execute(select(User))
     users = result.scalars().all()
