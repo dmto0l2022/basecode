@@ -20,6 +20,7 @@ from models.users import User_permission, User_permissionCreate
 from models.users import User_api_key, User_api_keyCreate, User_api_keyUpdate
 
 from datetime import datetime
+#1980-01-01 00:00:00.000
 unceased_datetime_str = '01/01/1980 00:00:00'
 unceased_datetime_object = datetime.strptime(unceased_datetime_str, '%d/%m/%Y %H:%M:%S')
 
@@ -92,7 +93,8 @@ async def get_users(session: AsyncSession = Depends(get_session),
                     dmtool_apikey: Annotated[str | None, Header()] = None):
 
     ## check api key existence
-    statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid and User_api_key.api_key == dmtool_apikey and User_api_key.ceased_at==unceased_datetime_object)
+    statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid and User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
+    print("statement >>>>>>>>>>>>>>>>" , statement)
     try:
         user_api_keys = await session.exec(statement)
         user_api_key = user_api_key.one()
