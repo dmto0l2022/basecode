@@ -21,7 +21,7 @@ from models.users import User_api_key, User_api_keyCreate, User_api_keyUpdate
 
 from datetime import datetime
 unceased_datetime_str = '01/01/1980 00:00:00'
-unceased_datetime_object = datetime.strptime(datetime_str, '%d/%m/%Y %H:%M:%S')
+unceased_datetime_object = datetime.strptime(unceased_datetime_str, '%d/%m/%Y %H:%M:%S')
 
 import rsa
 
