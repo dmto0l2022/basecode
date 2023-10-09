@@ -85,10 +85,10 @@ async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_s
     return user
 
 
-async def check_api_key(user_id,api_key):
+async def check_api_key(user_id_in,api_key_in):
     ## check api key existence
     #dmtool_user_int = int(dmtool_userid)
-    statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
+    statement = select(User_api_key).where(User_api_key.user_id == user_id_in).where(User_api_key.api_key == api_key_in) ## and User_api_key.ceased_at==unceased_datetime_object)
     # print("statement >>>>>>>>>>>>>>>>" , str(statement))
     try:
         user_api_keys = await session.exec(statement)
@@ -97,9 +97,7 @@ async def check_api_key(user_id,api_key):
     except:
         return False
         #raise HTTPException(status_code=404, detail="Unauthorised Request")
-        #a = 1
-
-    return 
+        #a = 1 
 
 @router.get(api_base_url + "users",
             response_model=list[User]
