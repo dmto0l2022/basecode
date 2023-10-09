@@ -291,22 +291,3 @@ async def update_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
     await session.refresh(user_api_key)
     return user_api_key
     
-
-@router.patch(api_base_url + "user_api_key/{user_api_key_id}", response_model=User_api_key)
-async def cease_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session)):
-    statement = select(User_api_key).where(User_api_key.id == user_api_key_id)
-    results = await session.exec(statement)
-    user_api_key_result = results.one()
-    if not user_api_key_result:
-        raise HTTPException(status_code=404, detail="Key not found")
-    user_api_key_data = user_api_key_in.dict(exclude_unset=True)
-    for key, value in user_api_key_data.items():
-        setattr(user_api_key_result, key, value)
-    session.add(user_api_key_result)
-    session.commit()
-    session.refresh(user_api_key_result)
-    results = await session.exec(statement)
-    user_api_key_result = results.one()
-
-    return user_api_key_result
-
