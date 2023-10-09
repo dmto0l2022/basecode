@@ -269,6 +269,8 @@ async def delete_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
     await session.commit()
     return {"deleted": user_api_key}
 
+'''
+
 ## cease record
 
 @router.put(api_base_url + "user_api_key/{user_api_key_id}", response_model=User_api_key)
@@ -290,4 +292,43 @@ async def update_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
     await session.commit()
     await session.refresh(user_api_key)
     return user_api_key
-    
+
+@router.get(api_base_url + "users",
+            response_model=list[User]
+            )
+async def get_users(session: AsyncSession = Depends(get_session),
+                    dmtool_userid: Annotated[int | None, Header()] = None,
+                    dmtool_apikey: Annotated[str | None, Header()] = None):
+
+'''
+
+
+
+
+## update and cease record
+
+@router.post(api_base_url + "user")
+async def cease_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session),
+                        dmtool_userid: Annotated[int | None, Header()] = None,
+                        dmtool_apikey: Annotated[str | None, Header()] = None):
+
+    #statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey).where(User_api_key.ceased_at==unceased_datetime_object)
+    # print("statement >>>>>>>>>>>>>>>>" , str(statement))
+    try:
+        #user_api_keys = await session.exec(statement)
+        #user_api_key = user_api_keys.one()
+        
+        statement = select(User_api_key).where(User_api_key.id == user_api_key_id).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey).where(User_api_key.ceased_at==unceased_datetime_object)
+        results = session.exec(statement)
+        user_api = results.one()
+        user_api.ceased_at =  datetime.utcnow()
+        await session.add(user_api)
+        await session.commit()
+        await session.refresh(user_api)
+        return user_api
+    except:
+        raise HTTPException(status_code=404, detail="Unauthorised Request")
+
+        
+                            
+
