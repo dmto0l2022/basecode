@@ -56,6 +56,19 @@ async def some_middleware(request: Request, call_next):
     return {"message": my_header}
 
 '''
+def check_api_key_outer(f):
+    async def check_api_key():
+        ## check api key existence
+        #dmtool_user_int = int(dmtool_userid)
+        statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
+        # print("statement >>>>>>>>>>>>>>>>" , str(statement))
+        try:
+            user_api_keys = await session.exec(statement)
+            user_api_key = user_api_keys.one()
+            return check_api_key
+        except:
+            raise HTTPException(status_code=404, detail="Unauthorised Request")
+
 
 '''
 def decor(f):
@@ -115,7 +128,10 @@ Lily is 12 yrs old and Ola is 15 yrs old
 ## get one user with email
 
 @router.get(api_base_url + "user/{email_in}", response_model=User)
-async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_session)):
+@check_api_key_outer
+async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None,
+                            dmtool_apikey: Annotated[str | None, Header()] = None):
     statement = select(User).where(User.email == email_in)
     user = "user unknown"
     try:
@@ -138,7 +154,7 @@ async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_s
     return user
 
 '''
-async def check_api_key(user_id_in,api_key_in):
+async def check_api_key(dmtool_userid: Annotated[int | None, Header()] = None,dmtool_apikey: Annotated[str | None, Header()] = None):
     ## check api key existence
     #dmtool_user_int = int(dmtool_userid)
     statement = select(User_api_key).where(User_api_key.user_id == user_id_in).where(User_api_key.api_key == api_key_in) ## and User_api_key.ceased_at==unceased_datetime_object)
