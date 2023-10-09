@@ -127,8 +127,8 @@ Lily is 12 yrs old and Ola is 15 yrs old
 
 ## get one user with email
 
-@router.get(api_base_url + "user/{email_in}", response_model=User)
 @check_api_key_outer
+@router.get(api_base_url + "user/{email_in}", response_model=User)
 async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None,
                             dmtool_apikey: Annotated[str | None, Header()] = None):
