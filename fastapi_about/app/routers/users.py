@@ -136,7 +136,7 @@ async def root(request: Request, payload: SampleModel):
     return {"message": "Hello World", "payload": payload}
 
 '''
-async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = Header(), response_model=User_api_key):
+async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = Header()):
     print("hello from decorator")
     ## check api key existence
     #dmtool_user_int = int(dmtool_userid)
@@ -145,7 +145,7 @@ async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = 
     #try:
     user_api_keys = await session.exec(statement)
     user_api_key = user_api_keys.one()
-    return user_api_key
+    return True
     #except:
     #    raise HTTPException(status_code=400, detail="unauthorised request")
 
