@@ -93,10 +93,13 @@ async def check_api_key(user_id,api_key):
     try:
         user_api_keys = await session.exec(statement)
         user_api_key = user_api_keys.one()
+        return True
     except:
-        raise HTTPException(status_code=404, detail="Unauthorised Request")
+        return False
+        #raise HTTPException(status_code=404, detail="Unauthorised Request")
         #a = 1
-    
+
+    return 
 
 @router.get(api_base_url + "users",
             response_model=list[User]
@@ -107,7 +110,7 @@ async def get_users(session: AsyncSession = Depends(get_session),
 
     ## check api key existence
     #dmtool_user_int = int(dmtool_userid)
-    statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
+    #statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
     # print("statement >>>>>>>>>>>>>>>>" , str(statement))
     #try:
     #    user_api_keys = await session.exec(statement)
@@ -115,18 +118,18 @@ async def get_users(session: AsyncSession = Depends(get_session),
     #except:
     #    raise HTTPException(status_code=404, detail="Unauthorised Request")
     #    #a = 1
-
-    check_api_key(dmtool_userid,dmtool_apikey)
-                        
-    result = await session.execute(select(User))
-    users = result.scalars().all()
-    return [User(id=user.id,
-                    authlib_id=user.authlib_id,
-                    authlib_provider=user.authlib_provider,
-                    email=user.email,
-                    created_at=user.created_at,
-                    modified_at=user.modified_at,
-                    ceased_at=user.ceased_at) for user in users]
+    if check_api_key(dmtool_userid,dmtool_apikey):        
+        result = await session.execute(select(User))
+        users = result.scalars().all()
+        return [User(id=user.id,
+                        authlib_id=user.authlib_id,
+                        authlib_provider=user.authlib_provider,
+                        email=user.email,
+                        created_at=user.created_at,
+                        modified_at=user.modified_at,
+                        ceased_at=user.ceased_at) for user in users]
+    else:
+        raise HTTPException(status_code=404, detail="Unauthorised Request")
 
 
 @router.post(api_base_url + "user")
