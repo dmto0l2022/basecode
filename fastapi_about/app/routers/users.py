@@ -3,6 +3,7 @@ from sqlmodel import select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from functools import wraps
+import fastapi_wraps
 
 import uuid
 
@@ -138,7 +139,7 @@ async def root(request: Request, payload: SampleModel):
 '''
 
 def check_api_key_outer(f):
-    @wraps(f)
+    @fastapi_wraps(f)
     async def check_api_key():
         print("hello from decorator")
         ## check api key existence
