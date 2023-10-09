@@ -58,6 +58,7 @@ async def some_middleware(request: Request, call_next):
 '''
 def check_api_key_outer(f):
     async def check_api_key():
+        print("hello from decorator")
         ## check api key existence
         #dmtool_user_int = int(dmtool_userid)
         statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
