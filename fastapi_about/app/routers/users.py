@@ -57,6 +57,59 @@ async def some_middleware(request: Request, call_next):
 
 '''
 
+'''
+def decor(f):
+    async def _fn():
+        starttime = time.time()
+        await f()
+        print(
+            "child function run time is ",
+            (time.time() - starttime) * 1000,
+            "ms",
+        )
+
+    return _fn
+
+https://www.sitepoint.com/understanding-python-decorators/
+
+def multiply_numbers(func):
+    def multiply_two_numbers(num1, num2):
+        print("we're multiplying two number {} and {}".format(num1, num2))
+        return func(num1, num2)
+        
+    return multiply_two_numbers
+
+@multiply_numbers
+def multiply_two_given_numbers(num1, num2):
+    return f'{num1} * {num2} = {num1 * num2}'
+    
+print(multiply_two_given_numbers(3, 4))
+ >>>
+we're multiplying two number 3 and 4
+3 * 4 = 12
+
+--------------------------------------
+
+
+def decorator_func(decorated_func):
+    def wrapper_func(*args, **kwargs):
+        print(f'there are {len(args)} positional arguments and {len(kwargs)} keyword arguments')
+        return decorated_func(*args, **kwargs)
+        
+    return wrapper_func
+
+@decorator_func
+def names_and_age(age1, age2, name1='Ben', name2='Harry'):
+    return f'{name1} is {age1} yrs old and {name2} is {age2} yrs old'
+    
+print(names_and_age(12, 15, name1="Lily", name2="Ola"))
+>>>
+There are 2 positional arguments and 2 keyword arguments
+Lily is 12 yrs old and Ola is 15 yrs old
+
+'''
+
+
 # User CRUD
 
 ## get one user with email
