@@ -85,7 +85,7 @@ async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_s
     return user
 
 
-async def check_api_key(user_id_in,api_key_in):
+def check_api_key(user_id_in,api_key_in):
     ## check api key existence
     #dmtool_user_int = int(dmtool_userid)
     statement = select(User_api_key).where(User_api_key.user_id == user_id_in).where(User_api_key.api_key == api_key_in) ## and User_api_key.ceased_at==unceased_datetime_object)
