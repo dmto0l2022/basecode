@@ -90,13 +90,13 @@ async def check_api_key(user_id_in,api_key_in):
     #dmtool_user_int = int(dmtool_userid)
     statement = select(User_api_key).where(User_api_key.user_id == user_id_in).where(User_api_key.api_key == api_key_in) ## and User_api_key.ceased_at==unceased_datetime_object)
     # print("statement >>>>>>>>>>>>>>>>" , str(statement))
-    #try:
-    user_api_keys = await session.exec(statement)
-    user_api_key = user_api_keys.one()
-    return False
-    #except:
-    #    return False
-    #    #raise HTTPException(status_code=404, detail="Unauthorised Request")
+    try:
+        user_api_keys = await session.exec(statement)
+        user_api_key = user_api_keys.one()
+        return True
+    except:
+        return False
+        #raise HTTPException(status_code=404, detail="Unauthorised Request")
     #    #a = 1 
 
 @router.get(api_base_url + "users",
