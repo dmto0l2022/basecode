@@ -142,12 +142,12 @@ async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = 
     #dmtool_user_int = int(dmtool_userid)
     statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
     # print("statement >>>>>>>>>>>>>>>>" , str(statement))
-    #try:
-    user_api_keys = await session.exec(statement)
-    user_api_key = user_api_keys.one()
-    return True
-    #except:
-    #    raise HTTPException(status_code=400, detail="unauthorised request")
+    try:
+        user_api_keys = await session.exec(statement)
+        user_api_key = user_api_keys.one()
+        return True
+    except:
+        raise HTTPException(status_code=400, detail="unauthorised request")
 
 '''
 
