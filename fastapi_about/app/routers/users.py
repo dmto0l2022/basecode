@@ -276,7 +276,7 @@ async def delete_user_api_key(user_api_key_id: int, session: AsyncSession = Depe
 @router.put(api_base_url + "user_api_key/{user_api_key_id}", response_model=User_api_key)
 async def update_user_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session)):
     statement = select(User_api_key).where(User_api_key.id == user_api_key_id)
-    results = await session.exec(statement)
+    results = session.exec(statement)
     user_api_key = results.one()
     await session.delete(user_api_key)
     await session.commit()
@@ -320,7 +320,7 @@ async def cease_api_key(user_api_key_id: int, session: AsyncSession = Depends(ge
     
     statement = select(User_api_key).where(User_api_key.id == user_api_key_id).where(User_api_key.user_id == dmtool_userid).where(User_api_key.ceased_at==unceased_datetime_object)
     results = await session.exec(statement)
-    user_api = await results.one()
+    user_api = results.one()
     user_api.ceased_at =  datetime.utcnow()
     await session.add(user_api)
     await session.commit()
@@ -329,6 +329,4 @@ async def cease_api_key(user_api_key_id: int, session: AsyncSession = Depends(ge
     #except:
     #    raise HTTPException(status_code=404, detail="Unauthorised Request")
 
-        
-                            
 
