@@ -2,6 +2,8 @@ from fastapi import Depends, FastAPI, Request, Response, HTTPException, Header
 from sqlmodel import select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 
+from functools import wraps
+
 import uuid
 
 from fastapi import APIRouter
@@ -57,6 +59,7 @@ async def some_middleware(request: Request, call_next):
 
 '''
 def check_api_key_outer(f):
+    @wraps(f)
     async def check_api_key():
         print("hello from decorator")
         ## check api key existence
@@ -121,6 +124,32 @@ print(names_and_age(12, 15, name1="Lily", name2="Ola"))
 There are 2 positional arguments and 2 keyword arguments
 Lily is 12 yrs old and Ola is 15 yrs old
 
+
+def auth_required(func):
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        return await func(*args, **kwargs)
+
+    return wrapper
+
+
+@app.post("/")
+@auth_required # Custom decorator
+async def root(payload: SampleModel):
+    return {"message": "Hello World", "payload": payload}
+
+The main caveat of this method is that you can't access the request object in the wrapper and I assume it is your primary intention.
+
+If you need to access the request, you must add the argument to the router function as,
+
+from fastapi import Request
+
+
+@app.post("/")
+@auth_required  # Custom decorator
+async def root(request: Request, payload: SampleModel):
+    return {"message": "Hello World", "payload": payload}
+
 '''
 
 
@@ -128,8 +157,9 @@ Lily is 12 yrs old and Ola is 15 yrs old
 
 ## get one user with email
 
-@check_api_key_outer
+
 @router.get(api_base_url + "user/{email_in}", response_model=User)
+@check_api_key_outer
 async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None,
                             dmtool_apikey: Annotated[str | None, Header()] = None):
