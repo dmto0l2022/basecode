@@ -229,9 +229,7 @@ async def check_api_key(dmtool_userid: Annotated[int | None, Header()] = None,dm
     #    #a = 1 
 '''
 
-@router.get(api_base_url + "users",
-            response_model=list[User]
-            )
+@router.get(api_base_url + "users",response_model=list[User], dependencies=[Depends(verify_api_token)])
 async def get_users(session: AsyncSession = Depends(get_session),
                     dmtool_userid: Annotated[int | None, Header()] = None,
                     dmtool_apikey: Annotated[str | None, Header()] = None):
@@ -261,8 +259,10 @@ async def get_users(session: AsyncSession = Depends(get_session),
         raise HTTPException(status_code=404, detail="Unauthorised Request")
 
 
-@router.post(api_base_url + "user")
-async def add_user(user: UserCreate, session: AsyncSession = Depends(get_session)):
+@router.post(api_base_url + "user", dependencies=[Depends(verify_api_token)])
+async def add_user(user: UserCreate, session: AsyncSession = Depends(get_session),
+                    dmtool_userid: Annotated[int | None, Header()] = None,
+                    dmtool_apikey: Annotated[str | None, Header()] = None):
     user = User(authlib_id=user.authlib_id,
                 authlib_provider=user.authlib_provider,
                 email=user.email,
@@ -274,8 +274,10 @@ async def add_user(user: UserCreate, session: AsyncSession = Depends(get_session
     await session.refresh(user)
     return user
 
-@router.delete(api_base_url + "user/{user_id}")
-async def delete_user(user_id: int, session: AsyncSession = Depends(get_session)):
+@router.delete(api_base_url + "user/{user_id}", dependencies=[Depends(verify_api_token)])
+async def delete_user(user_id: int, session: AsyncSession = Depends(get_session),
+                    dmtool_userid: Annotated[int | None, Header()] = None,
+                    dmtool_apikey: Annotated[str | None, Header()] = None):
     statement = select(User).where(User.id == user_id)
     results = await session.exec(statement)
     user = results.one()
@@ -294,8 +296,10 @@ async def delete_user(user_id: int, session: AsyncSession = Depends(get_session)
 # modified_at
 # ceased_at
 
-@router.get(api_base_url + "user_permission", response_model=list[User])
-async def get_user_permission(session: AsyncSession = Depends(get_session)):
+@router.get(api_base_url + "user_permission", response_model=list[User], dependencies=[Depends(verify_api_token)])
+async def get_user_permission(session: AsyncSession = Depends(get_session),
+                    dmtool_userid: Annotated[int | None, Header()] = None,
+                    dmtool_apikey: Annotated[str | None, Header()] = None):
     result = await session.execute(select(User_permission))
     user_permissions = result.scalars().all()
     return [User_permission(
@@ -308,8 +312,10 @@ async def get_user_permission(session: AsyncSession = Depends(get_session)):
     ) for user_permission in user_permissions]
 
 
-@router.post(api_base_url + "user_permission")
-async def add_user_permission(user_permission: User_permissionCreate, session: AsyncSession = Depends(get_session)):
+@router.post(api_base_url + "user_permission", dependencies=[Depends(verify_api_token)])
+async def add_user_permission(user_permission: User_permissionCreate, session: AsyncSession = Depends(get_session),
+                    dmtool_userid: Annotated[int | None, Header()] = None,
+                    dmtool_apikey: Annotated[str | None, Header()] = None):
     user_permission = User_permission(user_id = user_permission.user_id,
         authorised = user_permission.authorised,
         created_at = user_permission.created_at,
@@ -320,8 +326,10 @@ async def add_user_permission(user_permission: User_permissionCreate, session: A
     await session.refresh(user_permission)
     return user_permission
 
-@router.delete(api_base_url + "user_permission/{user_permission_id}")
-async def delete_user_permission(user_permission_id: int, session: AsyncSession = Depends(get_session)):
+@router.delete(api_base_url + "user_permission/{user_permission_id}", dependencies=[Depends(verify_api_token)])
+async def delete_user_permission(user_permission_id: int, session: AsyncSession = Depends(get_session),
+                    dmtool_userid: Annotated[int | None, Header()] = None,
+                    dmtool_apikey: Annotated[str | None, Header()] = None):
     statement = select(User_permission).where(User_permission.id == user_permission_id)
     results = await session.exec(statement)
     user_permission = results.one()
@@ -341,8 +349,10 @@ async def delete_user_permission(user_permission_id: int, session: AsyncSession 
 # modified_at
 # ceased_at
 
-@router.get(api_base_url + "user_api_keys", response_model=list[User_api_key])
-async def get_user_api_keys(session: AsyncSession = Depends(get_session)):
+@router.get(api_base_url + "user_api_keys", response_model=list[User_api_key], dependencies=[Depends(verify_api_token)])
+async def get_user_api_keys(session: AsyncSession = Depends(get_session),
+                    dmtool_userid: Annotated[int | None, Header()] = None,
+                    dmtool_apikey: Annotated[str | None, Header()] = None):
     result = await session.execute(select(User_api_key))
     user_api_keys = result.scalars().all()
     return [User_api_key(id = user_api_key.id,
@@ -358,8 +368,10 @@ async def get_user_api_keys(session: AsyncSession = Depends(get_session)):
 
 ## get one api key for user
 
-@router.get(api_base_url + "user_api_key/{user_id}", response_model=User_api_key)
-async def get_user_api_key(user_id: int, session: AsyncSession = Depends(get_session)):
+@router.get(api_base_url + "user_api_key/{user_id}", response_model=User_api_key, dependencies=[Depends(verify_api_token)])
+async def get_user_api_key(user_id: int, session: AsyncSession = Depends(get_session),
+                    dmtool_userid: Annotated[int | None, Header()] = None,
+                    dmtool_apikey: Annotated[str | None, Header()] = None):
     statement = select(User_api_key).where(User_api_key.user_id == user_id)
     user_api_keys = await session.exec(statement)
     user_api_key = user_api_keys.one()
@@ -367,8 +379,10 @@ async def get_user_api_key(user_id: int, session: AsyncSession = Depends(get_ses
 
 ## add one api key for user
 
-@router.post(api_base_url + "user_api_key")
-async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSession = Depends(get_session)):
+@router.post(api_base_url + "user_api_key", dependencies=[Depends(verify_api_token)])
+async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSession = Depends(get_session),
+                    dmtool_userid: Annotated[int | None, Header()] = None,
+                    dmtool_apikey: Annotated[str | None, Header()] = None):
     public_key_gen, private_key_gen = rsa.newkeys(512)
     print('public_key_gen  >>>' ,public_key_gen)
     print('private_key_gen  >>>' ,private_key_gen)
@@ -389,8 +403,10 @@ async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSessi
 
 ## delete one api key
 
-@router.delete(api_base_url + "user_api_key/{user_api_key_id}")
-async def delete_user_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session)):
+@router.delete(api_base_url + "user_api_key/{user_api_key_id}", dependencies=[Depends(verify_api_token)])
+async def delete_user_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session),
+                    dmtool_userid: Annotated[int | None, Header()] = None,
+                    dmtool_apikey: Annotated[str | None, Header()] = None):
     statement = select(User_api_key).where(User_api_key.id == user_api_key_id)
     results = await session.exec(statement)
     user_api_key = results.one()
@@ -436,7 +452,7 @@ async def get_users(session: AsyncSession = Depends(get_session),
 
 ## update and cease record
 
-@router.post(api_base_url + "user_api_key/{user_api_key_id}", response_model=User_api_key)
+@router.post(api_base_url + "user_api_key/{user_api_key_id}", response_model=User_api_key,dependencies=[Depends(verify_api_token)])
 async def cease_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session),
                         dmtool_userid: Annotated[int | None, Header()] = None,
                         dmtool_apikey: Annotated[str | None, Header()] = None):
