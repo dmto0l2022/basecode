@@ -137,7 +137,37 @@ async def root(request: Request, payload: SampleModel):
     return {"message": "Hello World", "payload": payload}
 
 '''
+async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = Header()):
+    print("hello from decorator")
+    ## check api key existence
+    #dmtool_user_int = int(dmtool_userid)
+    statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
+    # print("statement >>>>>>>>>>>>>>>>" , str(statement))
+    try:
+        user_api_keys = await session.exec(statement)
+        user_api_key = user_api_keys.one()
+        return True
+    except:
+        raise HTTPException(status_code=400, detail="unauthorised request")
 
+'''
+
+async def check_api_key():
+        print("hello from decorator")
+        ## check api key existence
+        #dmtool_user_int = int(dmtool_userid)
+        statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
+        # print("statement >>>>>>>>>>>>>>>>" , str(statement))
+        #try:
+        user_api_keys = await session.exec(statement)
+        user_api_key = user_api_keys.one()
+        return check_api_key
+        #except:
+        #    raise HTTPException(status_code=404, detail="Unauthorised Request")
+
+'''
+
+'''
 def check_api_key_outer(f):
     @fastapi_wraps(f)
     async def check_api_key():
@@ -152,14 +182,14 @@ def check_api_key_outer(f):
         return check_api_key
         #except:
         #    raise HTTPException(status_code=404, detail="Unauthorised Request")
+'''
 
 # User CRUD
 
 ## get one user with email
 
 
-@router.get(api_base_url + "user/{email_in}", response_model=User)
-@check_api_key_outer
+@router.get(api_base_url + "user/{email_in}", response_model=User, dependencies=[Depends(verify_api_token)])
 async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None,
                             dmtool_apikey: Annotated[str | None, Header()] = None):
