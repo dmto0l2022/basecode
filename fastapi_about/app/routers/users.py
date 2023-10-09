@@ -305,4 +305,5 @@ async def cease_api_key(user_api_key_id: int, user_api_key_in: User_api_keyUpdat
     session.add(user_api_key_result)
     session.commit()
     session.refresh(user_api_key_result)
+    return user_api_key_result
 
