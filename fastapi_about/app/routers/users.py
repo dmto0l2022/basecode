@@ -85,7 +85,7 @@ async def get_user_by_email(email_in: str, session: AsyncSession = Depends(get_s
     return user
 
 
-def check_api_key(user_id_in,api_key_in):
+async def check_api_key(user_id_in,api_key_in):
     ## check api key existence
     #dmtool_user_int = int(dmtool_userid)
     statement = select(User_api_key).where(User_api_key.user_id == user_id_in).where(User_api_key.api_key == api_key_in) ## and User_api_key.ceased_at==unceased_datetime_object)
@@ -116,7 +116,7 @@ async def get_users(session: AsyncSession = Depends(get_session),
     #except:
     #    raise HTTPException(status_code=404, detail="Unauthorised Request")
     #    #a = 1
-    if check_api_key(dmtool_userid,dmtool_apikey):        
+    if check_api_key(dmtool_userid,dmtool_apikey) == True:
         result = await session.execute(select(User))
         users = result.scalars().all()
         return [User(id=user.id,
