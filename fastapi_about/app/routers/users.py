@@ -318,7 +318,7 @@ async def cease_api_key(user_api_key_id: int, session: AsyncSession = Depends(ge
     #user_api_keys = await session.exec(statement)
     #user_api_key = user_api_keys.one()
     
-    statement = select(User_api_key).where(User_api_key.id == user_api_key_id).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey).where(User_api_key.ceased_at==unceased_datetime_object)
+    statement = select(User_api_key).where(User_api_key.id == user_api_key_id).where(User_api_key.user_id == dmtool_userid).where(User_api_key.ceased_at==unceased_datetime_object)
     results = session.exec(statement)
     user_api = results.one()
     user_api.ceased_at =  datetime.utcnow()
