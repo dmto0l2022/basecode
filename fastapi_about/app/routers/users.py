@@ -307,7 +307,7 @@ async def get_users(session: AsyncSession = Depends(get_session),
 
 ## update and cease record
 
-@router.post(api_base_url + "user")
+@router.post(api_base_url + "user_api_key")
 async def cease_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session),
                         dmtool_userid: Annotated[int | None, Header()] = None,
                         dmtool_apikey: Annotated[str | None, Header()] = None):
