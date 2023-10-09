@@ -3,7 +3,7 @@ from sqlmodel import select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from functools import wraps
-import fastapi_wraps
+from fastapi_wraps import fastapi_wraps, get_request
 
 import uuid
 
