@@ -322,7 +322,7 @@ async def cease_api_key(user_api_key_id: int, session: AsyncSession = Depends(ge
     results = await session.exec(statement)
     user_api = results.one()
     user_api.ceased_at =  datetime.utcnow()
-    await session.add(user_api)
+    session.add(user_api)
     await session.commit()
     await session.refresh(user_api)
     return user_api
