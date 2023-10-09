@@ -136,7 +136,7 @@ async def root(request: Request, payload: SampleModel):
     return {"message": "Hello World", "payload": payload}
 
 '''
-async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = Header()):
+async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = Header(), session: AsyncSession = Depends(get_session)):
     print("hello from decorator")
     ## check api key existence
     #dmtool_user_int = int(dmtool_userid)
