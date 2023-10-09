@@ -62,12 +62,12 @@ def check_api_key_outer(f):
         #dmtool_user_int = int(dmtool_userid)
         statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.api_key == dmtool_apikey) ## and User_api_key.ceased_at==unceased_datetime_object)
         # print("statement >>>>>>>>>>>>>>>>" , str(statement))
-        try:
-            user_api_keys = await session.exec(statement)
-            user_api_key = user_api_keys.one()
-            return check_api_key
-        except:
-            raise HTTPException(status_code=404, detail="Unauthorised Request")
+        #try:
+        user_api_keys = await session.exec(statement)
+        user_api_key = user_api_keys.one()
+        return check_api_key
+        #except:
+        #    raise HTTPException(status_code=404, detail="Unauthorised Request")
 
 
 '''
