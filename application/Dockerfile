@@ -19,11 +19,6 @@ RUN apt-get install -y libmariadb-dev
 
 WORKDIR /workdir
 
-ARG USERNAME=agaitske
-ARG USER_UID=1001
-ARG USER_GID=1002 ## dm group
-
-
 RUN echo groupadd --gid ${ENV_USER_GID} ${ENV_USER_GROUPNAME}
 RUN groupadd --gid ${ENV_USER_GID} ${ENV_USER_GROUPNAME}
 RUN echo useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
