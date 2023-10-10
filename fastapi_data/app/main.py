@@ -231,13 +231,13 @@ async def some_middleware(request: Request, call_next):
 
     login_response = HTMLResponse('<a href="https://dev1.dmtool.info/dmtool/fastapi_data/login">login</a>')
 
-    if 'login' in request.url.path  and email == 'no email':
+    if 'login' in request.url.path  and (email == 'no email' or email==None):
         return response
-    elif 'public' in request.url.path  and email == 'no email':
+    elif 'public' in request.url.path  and (email == 'no email' or email==None):
         return response
-    elif 'public' in request.url.path  and email != 'no email':
+    elif 'public' in request.url.path  and (email == 'no email' or email==None):
         return response
-    elif 'public' not in request.url.path  and email != 'no email':
+    elif 'public' not in request.url.path  and (email == 'no email' or email==None):
         return response
     else:
         return login_response
