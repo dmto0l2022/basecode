@@ -229,8 +229,18 @@ async def some_middleware(request: Request, call_next):
     except:
         print("no async content")
 
-  
-    return response
+    login_response = HTMLResponse('<a href="https://dev1.dmtool.info/dmtool/fastapi_data/login">login</a>')
+
+    if 'login' in request.url.path  and email == 'no email':
+        return response
+    elif 'public' in request.url.path  and email == 'no email':
+        return response
+    elif 'public' in request.url.path  and email != 'no email':
+        return response
+    elif 'public' not in request.url.path  and email != 'no email':
+        return response
+    else:
+        return login_response
 
 
 '''
