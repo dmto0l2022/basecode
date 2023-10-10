@@ -240,7 +240,7 @@ async def some_middleware(request: Request, call_next):
     elif 'public' not in request.url.path  and (email == 'no email' or email==None):
         return login_response
     else:
-        return login_response
+        return response
 
 
 '''
