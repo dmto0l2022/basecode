@@ -1,6 +1,19 @@
 # pull official base image
 FROM python:3.11.4-bullseye
 
+
+ARG BUILD_ENV_USERNAME
+ARG BUILD_ENV_UID
+ARG BUILD_ENV_GID 
+ARG BUILD_ENV_GROUPNAME
+
+###
+
+ENV ENV_USERNAME=$BUILD_ENV_USERNAME
+ENV ENV_USER_UID=$BUILD_ENV_UID
+ENV ENV_USER_GID=$BUILD_ENV_GID 
+ENV ENV_USER_GROUPNAME=$BUILD_ENV_GROUPNAME
+
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -14,30 +27,18 @@ RUN apt-get install -y libmariadb-dev
 
 WORKDIR /workdir/fastapi_about/app
 
-#WORKDIR /app
+RUN echo groupadd --gid ${ENV_USER_GID} ${ENV_USER_GROUPNAME}
+RUN groupadd --gid ${ENV_USER_GID} ${ENV_USER_GROUPNAME}
+RUN echo useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
+RUN useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 
-ARG USERNAME=agaitske
-ARG USER_UID=1001
-ARG USER_GID=1002 ## dm group
-
-# Create the user
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
-
-
-#RUN chmod g+s /app
+RUN chown -R ${ENV_USER_UID}:${ENV_USER_GID} /workdir
 
 RUN mkdir /env
-RUN chown $USER_UID:$USER_GID /env
+RUN chown ${ENV_USER_UID}:${ENV_USER_GID} /env
 RUN chmod g+s /env
 
-#COPY app/ /app/
-
-#RUN chown -R $USER_UID:$USER_GID /app
-
-#RUN ls -la /app/*
-
-USER $USERNAME
+USER ${ENV_USERNAME}
 
 ENV VIRTUAL_ENV=/env
 RUN python3 -m venv $VIRTUAL_ENV
