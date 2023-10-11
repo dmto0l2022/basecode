@@ -23,9 +23,9 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 
 from db import get_session, init_db
 
-#from routers import routers
-#from routers import songs
-#from routers import users
+from routers import routers
+from routers import songs
+from routers import users
 
 from dotenv import load_dotenv
 
