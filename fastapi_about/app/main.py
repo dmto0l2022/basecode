@@ -38,7 +38,7 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 #api_base_url = '/dmtool/fastapi_about/'
 redirect_url = environ.get("FASTAPI_ABOUT_REDIRECT_URL")
 fastapi_url= environ.get("FASTAPI_ABOUT_URL")
-
+print("about url >>>>>>>>>>", fastapi_url)
 app = FastAPI(title="DMTOOL API Server - About",
               ##root_path="/apiorm/",
               openapi_url= fastapi_url + "openapi.json",
