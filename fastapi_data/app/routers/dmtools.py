@@ -47,7 +47,7 @@ async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = 
 
 async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = Header(), session: AsyncSession = Depends(get_session)):
     print("hello from decorator")
-    url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/checkapikey"
+    url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/check_api_key"
     headers={"dmtool-userid":dmtool_userid, "dmtool-apikey" : dmtool_apikey }
     r=requests.get(url, headers=headers)
     print("request r:>>>>" ,r, "   ", r.text)
