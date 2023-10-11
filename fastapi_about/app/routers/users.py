@@ -150,7 +150,7 @@ async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = 
         raise HTTPException(status_code=400, detail="unauthorised request")
 
 
-@router.get(api_base_url + "checkapikey", dependencies=[Depends(verify_api_token)])
+@router.get(api_base_url + "check_api_key", dependencies=[Depends(verify_api_token)])
 async def check_apikey(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None,
                             dmtool_apikey: Annotated[str | None, Header()] = None):
@@ -159,9 +159,9 @@ async def check_apikey(session: AsyncSession = Depends(get_session),
     try:
         user_api_keys = await session.exec(statement)
         user_api_key = user_api_keys.one()
-        return True
+        return 1
     except:
-        raise False
+        raise 0
 '''
 
 async def check_api_key():
