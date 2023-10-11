@@ -50,6 +50,7 @@ async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = 
     url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/checkapikey"
     headers={"dmtool-userid":dmtool_userid, "dmtool-apikey" : dmtool_apikey }
     r=requests.get(url, headers=headers)
+    print("request r:>>>>" ,r, "   ", r.text)
     # print("statement >>>>>>>>>>>>>>>>" , str(statement))
     if r == 1:
         return True
