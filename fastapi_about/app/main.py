@@ -41,8 +41,8 @@ fastapi_url= environ.get("FASTAPI_ABOUT_URL")
 
 app = FastAPI(title="DMTOOL API Server - About",
               ##root_path="/apiorm/",
-              openapi_url= fastapi_url + "/openapi.json",
-              docs_url= fastapi_url + "/docs",
+              openapi_url= fastapi_url + "openapi.json",
+              docs_url= fastapi_url + "docs",
               ##redoc_url=None,
               ##root_path_in_servers=False,
              )
