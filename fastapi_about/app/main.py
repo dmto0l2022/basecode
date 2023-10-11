@@ -39,6 +39,7 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 
 redirect_url = environ.get("FASTAPI_ABOUT_REDIRECT_URL")
 fastapi_url= environ.get("FASTAPI_ABOUT_URL")
+data_server_internal_url= environ.get("FASTAPI_DATA_INTERNAL_SERVER")
 api_base_url =  '/dmtool/fastapi_about/'
 print("about url >>>>>>>>>>", fastapi_url)
 print(fastapi_url + "openapi.json")
@@ -229,8 +230,9 @@ async def some_middleware(request: Request, call_next):
         print("no async content")
 
     login_response = HTMLResponse('<a href="' + fastapi_url + '/login">login</a>')
-
-    if 'login' in request.url.path  and (email == 'no email' or email==None):
+    if request.headers['host'] == '10.154.0.21:8014': ## request from data server
+        return response
+    elif 'login' in request.url.path  and (email == 'no email' or email==None):
         return response
     elif 'public' in request.url.path  and (email == 'no email' or email==None):
         return response
