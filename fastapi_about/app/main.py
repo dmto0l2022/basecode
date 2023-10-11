@@ -23,9 +23,9 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 
 from db import get_session, init_db
 
-from routers import routers
-from routers import songs
-from routers import users
+#from routers import routers
+#from routers import songs
+#from routers import users
 
 from dotenv import load_dotenv
 
@@ -36,6 +36,7 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 #MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
 #redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi_about/auth'
 #api_base_url = '/dmtool/fastapi_about/'
+
 redirect_url = environ.get("FASTAPI_ABOUT_REDIRECT_URL")
 fastapi_url= environ.get("FASTAPI_ABOUT_URL")
 print("about url >>>>>>>>>>", fastapi_url)
