@@ -74,13 +74,13 @@ async def homepage(request: Request):
         data = json.dumps(email)
         html = (
             f'<pre>{data}</pre>'
-            '<a href="' + fastapi_url + '"/logout">logout</a>'
+            '<a href="' + fastapi_url + '"logout">logout</a>'
         )
         return HTMLResponse(html)
-    return HTMLResponse('<a href="' + fastapi_url + '/login">login</a>')
+    return HTMLResponse('<a href="' + fastapi_url + 'login">login</a>')
 
 
-@app.get(api_base_url + 'login')
+@app.get(fastapi_url + 'login')
 async def login(request: Request):
     #redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi_about/auth'
     #redirect_uri = request.url_for('auth')
@@ -99,7 +99,7 @@ def func_b(request: Request):
     return my_var
 '''
 
-@app.get(api_base_url + 'auth')
+@app.get(redirect_url)
 async def auth(request: Request):
     try:
         access_token = await oauth.google.authorize_access_token(request)
@@ -131,7 +131,7 @@ async def logout(request: Request):
     return RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login")
 '''
 
-@app.get(api_base_url + 'logout')
+@app.get(fastapi_url + 'logout')
 async def logout(request: Request):
     request.session.clear()
     return {"session":"cleared"}
