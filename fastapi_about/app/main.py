@@ -231,7 +231,10 @@ async def some_middleware(request: Request, call_next):
         print("no async content")
 
     login_response = HTMLResponse('<a href="' + fastapi_url + '/login">login</a>')
-    if request.headers['host'] == data_server_internal_url: ## request from data server
+    if request.client.host == '127.0.0.1':
+        print("internal request")
+        return response      
+    elif request.headers['host'] == data_server_internal_url: ## request from data server
         print("internal request")
         return response
     elif 'login' in request.url.path  and (email == 'no email' or email==None):
