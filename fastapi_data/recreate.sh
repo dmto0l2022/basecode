@@ -1,6 +1,9 @@
 uid=${ENV_UID} ##1001
 gid=${ENV_GID} ##1002
 
+podman stop container_fastapi_data_1
+podman rm container_fastapi_data_1
+
 subuidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.UIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 subgidSize=$(( $(podman info --format "{{ range \
