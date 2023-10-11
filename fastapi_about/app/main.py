@@ -40,6 +40,7 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 redirect_url = environ.get("FASTAPI_ABOUT_REDIRECT_URL")
 fastapi_url= environ.get("FASTAPI_ABOUT_URL")
 print("about url >>>>>>>>>>", fastapi_url)
+print(fastapi_url + "openapi.json")
 app = FastAPI(title="DMTOOL API Server - About")
 '''
 app = FastAPI(title="DMTOOL API Server - About",
