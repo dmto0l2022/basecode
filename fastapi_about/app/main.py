@@ -41,16 +41,13 @@ redirect_url = environ.get("FASTAPI_ABOUT_REDIRECT_URL")
 fastapi_url= environ.get("FASTAPI_ABOUT_URL")
 print("about url >>>>>>>>>>", fastapi_url)
 print(fastapi_url + "openapi.json")
-app = FastAPI(title="DMTOOL API Server - About")
-'''
+##app = FastAPI(title="DMTOOL API Server - About")
+
 app = FastAPI(title="DMTOOL API Server - About",
-              ##root_path="/apiorm/",
               openapi_url= fastapi_url + "openapi.json",
-              docs_url= fastapi_url + "docs",
-              ##redoc_url=None,
-              ##root_path_in_servers=False,
+              docs_url= fastapi_url + "docs"
              )
-'''
+
 
 '''
 app.include_router(routers.router)
