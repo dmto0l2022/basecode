@@ -47,7 +47,7 @@ app = FastAPI(title="DMTOOL API Server - About",
               ##root_path_in_servers=False,
              )
 
-
+'''
 app.include_router(routers.router)
 app.include_router(songs.router)
 app.include_router(users.router)
@@ -86,6 +86,8 @@ async def login(request: Request):
     #redirect_uri = request.url_for('auth')
     return await oauth.google.authorize_redirect(request, redirect_url)
 '''
+
+''' rem
 @app.get("/a")
 def func_a(request: Request):
     request.session["my_var"] = "1234"
@@ -97,8 +99,9 @@ def func_b(request: Request):
     my_var = request.session.get("my_var", None)
     print(request.cookies.get('session'))
     return my_var
-'''
+rem '''
 
+'''
 @app.get(redirect_url)
 async def auth(request: Request):
     try:
@@ -119,9 +122,9 @@ async def auth(request: Request):
     request.session['authenticated'] = 'yes'
   
     return RedirectResponse(url=api_base_url)
-
-
 '''
+
+''' rem
 @app.get(api_base_url + 'logout')
 async def logout(request: Request):
     session = request.cookies.get('session')
@@ -129,13 +132,14 @@ async def logout(request: Request):
     if session:
         request.delete_cookie("session")
     return RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login")
-'''
+rem '''
 
+'''
 @app.get(fastapi_url + 'logout')
 async def logout(request: Request):
     request.session.clear()
     return {"session":"cleared"}
-
+'''
 
 '''
 @app.get(api_base_url + 'logout')
@@ -183,7 +187,7 @@ async def logout(response: HTMLResponse,):
     return response
 '''
 
-
+'''
 @app.middleware("http")
 async def some_middleware(request: Request, call_next):
     response = await call_next(request)
@@ -234,9 +238,9 @@ async def some_middleware(request: Request, call_next):
         return login_response
     else:
         return response
-
-
 '''
+
+''' rem
 
 @app.middleware("http")
 async def some_middleware(request: Request, call_next):
@@ -309,6 +313,6 @@ async def add_process_time_header(request: Request, call_next):
     #    print("no async content")
   
     return response
-'''
+rem '''
 
-app.add_middleware(SessionMiddleware, secret_key = "123456", session_cookie="session")
+## app.add_middleware(SessionMiddleware, secret_key = "123456", session_cookie="session")
