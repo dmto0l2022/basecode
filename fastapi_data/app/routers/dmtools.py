@@ -30,6 +30,7 @@ api_base_url = '/dmtool/fastapi_data/'
 from typing import List
 from typing import Annotated
 
+'''
 async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = Header(), session: AsyncSession = Depends(get_session)):
     print("hello from decorator")
     ## check api key existence
@@ -42,7 +43,20 @@ async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = 
         return True
     except:
         raise HTTPException(status_code=400, detail="unauthorised request")
+'''
 
+async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = Header(), session: AsyncSession = Depends(get_session)):
+    print("hello from decorator")
+    url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/checkapikey"
+    headers={"dmtool-userid":dmtool_userid, "dmtool-apikey" : dmtool_apikey }
+    r=requests.get(url, headers=headers)
+    # print("statement >>>>>>>>>>>>>>>>" , str(statement))
+    if r == 1:
+        return True
+    else:
+        raise HTTPException(status_code=400, detail="unauthorised request")
+        
+    return r
 
 # Experiment CRUD
 
