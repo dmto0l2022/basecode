@@ -39,17 +39,17 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 
 redirect_url = environ.get("FASTAPI_ABOUT_REDIRECT_URL")
 fastapi_url= environ.get("FASTAPI_ABOUT_URL")
+api_base_url =  '/dmtool/fastapi_about/'
 print("about url >>>>>>>>>>", fastapi_url)
 print(fastapi_url + "openapi.json")
 ##app = FastAPI(title="DMTOOL API Server - About")
 
 app = FastAPI(title="DMTOOL API Server - About",
-              openapi_url= fastapi_url + "openapi.json",
-              docs_url= fastapi_url + "docs"
+              openapi_url = api_base_url + "openapi.json",
+              docs_url = api_base_url + "docs"
              )
 
 
-'''
 app.include_router(routers.router)
 app.include_router(songs.router)
 app.include_router(users.router)
@@ -69,7 +69,7 @@ oauth.register(
 )
 
 
-@app.get(fastapi_url)
+@app.get(api_base_url)
 async def homepage(request: Request):
     email = request.session.get('email')
     if email:
@@ -82,12 +82,12 @@ async def homepage(request: Request):
     return HTMLResponse('<a href="' + fastapi_url + 'login">login</a>')
 
 
-@app.get(fastapi_url + 'login')
+@app.get(api_base_url + 'login')
 async def login(request: Request):
     #redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi_about/auth'
     #redirect_uri = request.url_for('auth')
     return await oauth.google.authorize_redirect(request, redirect_url)
-'''
+
 
 ''' rem
 @app.get("/a")
@@ -103,8 +103,8 @@ def func_b(request: Request):
     return my_var
 rem '''
 
-'''
-@app.get(redirect_url)
+
+@app.get(api_base_url + 'auth')
 async def auth(request: Request):
     try:
         access_token = await oauth.google.authorize_access_token(request)
@@ -124,7 +124,7 @@ async def auth(request: Request):
     request.session['authenticated'] = 'yes'
   
     return RedirectResponse(url=api_base_url)
-'''
+
 
 ''' rem
 @app.get(api_base_url + 'logout')
@@ -136,12 +136,12 @@ async def logout(request: Request):
     return RedirectResponse(url="https://dev1.dmtool.info/dmtool/fastapi/login")
 rem '''
 
-'''
-@app.get(fastapi_url + 'logout')
+
+@app.get(api_base_url + 'logout')
 async def logout(request: Request):
     request.session.clear()
     return {"session":"cleared"}
-'''
+
 
 '''
 @app.get(api_base_url + 'logout')
@@ -189,7 +189,7 @@ async def logout(response: HTMLResponse,):
     return response
 '''
 
-'''
+
 @app.middleware("http")
 async def some_middleware(request: Request, call_next):
     response = await call_next(request)
@@ -240,7 +240,7 @@ async def some_middleware(request: Request, call_next):
         return login_response
     else:
         return response
-'''
+
 
 ''' rem
 
@@ -317,4 +317,4 @@ async def add_process_time_header(request: Request, call_next):
     return response
 rem '''
 
-## app.add_middleware(SessionMiddleware, secret_key = "123456", session_cookie="session")
+app.add_middleware(SessionMiddleware, secret_key = "123456", session_cookie="session")
