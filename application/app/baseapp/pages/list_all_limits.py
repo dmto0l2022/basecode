@@ -15,8 +15,8 @@ from app.baseapp.libraries import formlibrary as fl
 import requests
 import json
 
-fastapi_url_limits = "http://container_fastapi_data_1:8014/dmtool/fastapi_about/internal/data/limits" ## multiple limit operations
-fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi_about/internal/data/limit" ## single limit operations
+fastapi_url_limits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limits" ## multiple limit operations
+fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limit" ## single limit operations
 
 dash.register_page(__name__, path='/list_all_limits')
 page_name = "list_all_limits"
