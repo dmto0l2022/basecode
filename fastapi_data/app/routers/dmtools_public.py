@@ -6,7 +6,7 @@ import requests
 from fastapi import APIRouter
 router = APIRouter()
 
-from typing import List
+from typing import List, Optional
 
 from db import get_session
 
@@ -52,7 +52,7 @@ async def user():
    return {"message": "You are eligible"}
 '''
 
-async def verify_api_token(dmtool_userid: str = Header() | None = None,  dmtool_apikey: str = Header() | None = None, session: AsyncSession = Depends(get_session)):
+async def verify_api_token(dmtool_userid: Optional[str] = Header(default=None) ,  dmtool_apikey: Optional[str] = Header(default=None) , session: AsyncSession = Depends(get_session)):
     print("hello from decorator")
     url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/check_api_key"
     headers={"dmtool-userid":dmtool_userid, "dmtool-apikey" : dmtool_apikey }
