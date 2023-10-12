@@ -17,7 +17,7 @@ baseapp_prefix = '/application/baseapp'
 
 dash.register_page(__name__, path='/create_new_limit')
 
-fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/public/limit"
+fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_about/internal/data/limit"
 
 '''
 ID List
@@ -460,7 +460,8 @@ def button_click(
         new_limit_json = json.dumps(new_limit_txt)
         
         #x = requests.post(fastapi_url, json = post_data)
-        x = requests.post(fastapi_url, json = new_limit_txt)
+        headers={"dmtool-userid":'1'}
+        x = requests.post(fastapi_url, json = new_limit_txt, headers=headers)
         
         #print("post data")
         #print("================")
