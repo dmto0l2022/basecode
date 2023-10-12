@@ -2,7 +2,6 @@
 from fastapi import Depends, FastAPI, Request, Response, HTTPException, Header
 from sqlmodel import select, delete
 from sqlmodel.ext.asyncio.session import AsyncSession
-import requests
 
 from fastapi import APIRouter
 router = APIRouter()
