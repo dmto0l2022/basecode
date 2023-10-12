@@ -24,7 +24,7 @@ from datetime import datetime
 unceased_datetime_str = '01/01/1980 00:00:00'
 unceased_datetime_object = datetime.strptime(unceased_datetime_str, '%d/%m/%Y %H:%M:%S')
 
-api_base_url = '/dmtool/fastapi_data/'
+api_base_url = '/dmtool/fastapi_data/public/'
 
 
 from typing import List
@@ -52,7 +52,7 @@ async def user():
    return {"message": "You are eligible"}
 '''
 
-async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = Header(), session: AsyncSession = Depends(get_session)):
+async def verify_api_token(dmtool_userid: str = Header() | None = None,  dmtool_apikey: str = Header() | None = None, session: AsyncSession = Depends(get_session)):
     print("hello from decorator")
     url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/check_api_key"
     headers={"dmtool-userid":dmtool_userid, "dmtool-apikey" : dmtool_apikey }
