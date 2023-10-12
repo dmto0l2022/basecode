@@ -235,7 +235,7 @@ async def some_middleware(request: Request, call_next):
 
     login_response = HTMLResponse('<a href="https://dev1.dmtool.info/dmtool/fastapi_data/login">login</a>')
 
-    if 'internal' in request.url.path and request.client.host = '127.0.0.1':
+    if 'internal' in request.url.path and request.client.host == '127.0.0.1':
         return response
     elif 'internal' in request.url.path and request.client.host != '127.0.0.1':
         return login_response
