@@ -57,9 +57,9 @@ async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = 
     url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/check_api_key"
     headers={"dmtool-userid":dmtool_userid, "dmtool-apikey" : dmtool_apikey }
     r=requests.get(url, headers=headers)
-    print("request r:>>>>" ,r, "   ", r.text)
+    print("request r:>>>>" ,r, ">>>>", r.text, "<<<<")
     # print("statement >>>>>>>>>>>>>>>>" , str(statement))
-    if r.text != 1:
+    if r.text != '1':
         raise HTTPException(status_code=400, detail="unauthorised request")
         
 # Experiment CRUD
