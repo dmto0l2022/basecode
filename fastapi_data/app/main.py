@@ -226,12 +226,12 @@ async def some_middleware(request: Request, call_next):
     #print("#################### alembic response content ##############")
     #print(response.content)
     #print("######################################################")
-    try:  
-        response_body = [chunk async for chunk in response.body_iterator]
-        response.body_iterator = iterate_in_threadpool(iter(response_body))
-        print(f"response_body={response_body[0].decode()}")
-    except:
-        print("no async content")
+    #try:  
+    #    response_body = [chunk async for chunk in response.body_iterator]
+    #    response.body_iterator = iterate_in_threadpool(iter(response_body))
+    #    print(f"response_body={response_body[0].decode()}")
+    #except:
+    #    print("no async content")
 
     login_response = HTMLResponse('<a href="https://dev1.dmtool.info/dmtool/fastapi_data/login">login</a>')
 
