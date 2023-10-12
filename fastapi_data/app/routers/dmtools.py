@@ -255,7 +255,8 @@ year
 
 ## get all limits
 
-@router.get(api_base_url + "limits", response_model=list[Limit], dependencies=[Depends(verify_api_token)])
+#@router.get(api_base_url + "limits", response_model=list[Limit], dependencies=[Depends(verify_api_token)])
+@router.get(api_base_url + "limits", response_model=list[Limit])
 async def get_limit(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None,
                             dmtool_apikey: Annotated[str | None, Header()] = None):
