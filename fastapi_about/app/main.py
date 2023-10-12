@@ -252,7 +252,8 @@ async def some_middleware(request: Request, call_next):
     elif 'public' in request.url.path  and (email != 'no email' and email !=None):
         return response
     else:
-        return login_response
+        print("request.url.path >>>>>>>>>>>" , request.url.path)
+        return response
 
 ''' rem
 
