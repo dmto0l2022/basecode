@@ -26,6 +26,7 @@ from db import get_session, init_db
 from routers import routers
 from routers import songs
 from routers import users
+from routers import users_internal
 
 from dotenv import load_dotenv
 
@@ -54,6 +55,7 @@ app = FastAPI(title="DMTOOL API Server - About",
 app.include_router(routers.router)
 app.include_router(songs.router)
 app.include_router(users.router)
+app.include_router(users_internal.router)
 
 ########
 
