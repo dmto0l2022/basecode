@@ -18,8 +18,6 @@ from models.dmtools import Limit, LimitCreate
 from models.dmtools import Plot_ownership, Plot_ownershipCreate
 from models.dmtools import Plot, PlotCreate
 
-from models.users import User_api_key
-
 from datetime import datetime
 #1980-01-01 00:00:00.000
 unceased_datetime_str = '01/01/1980 00:00:00'
