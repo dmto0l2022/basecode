@@ -8,7 +8,7 @@ from app.baseapp.libraries import formlibrary as fl
 
 dash.register_page(__name__, path='/create_new_plot')
 page_name = 'create_new_plot'
-baseapp_prefix = '/login/baseapp'
+baseapp_prefix = '/application/baseapp'
 
 ## id='plot_name_form_field_id',
 
@@ -42,7 +42,7 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         session_key = request.cookies.get('session')
         print('cnp : session key >>',session_key)
         print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-        href_return = '/app/baseapp/create_new_plot'
+        href_return = '/application/baseapp/create_new_plot'
         return href_return
     elif page_name + '_create_' + 'button_id' == prop_id :
         href_return = baseapp_prefix+ '/select_limits_to_plot'
