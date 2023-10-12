@@ -237,6 +237,8 @@ async def some_middleware(request: Request, call_next):
 
     if 'internal' in request.url.path and request.client.host == '127.0.0.1':
         return response
+    elif 'docs' in request.url.path:
+        return response
     elif 'internal' in request.url.path and request.client.host != '127.0.0.1':
         return login_response
     elif 'login' in request.url.path  and (email == 'no email' or email==None):
