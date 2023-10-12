@@ -43,6 +43,13 @@ async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = 
         return True
     except:
         raise HTTPException(status_code=400, detail="unauthorised request")
+
+async def validate(dep: dependency = Depends(dependency)):
+   if dep.age > 18:
+      raise HTTPException(status_code=400, detail="You are not eligible")
+@app.get("/user/", dependencies=[Depends(validate)])
+async def user():
+   return {"message": "You are eligible"}
 '''
 
 async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = Header(), session: AsyncSession = Depends(get_session)):
@@ -52,7 +59,7 @@ async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = 
     r=requests.get(url, headers=headers)
     print("request r:>>>>" ,r, "   ", r.text)
     # print("statement >>>>>>>>>>>>>>>>" , str(statement))
-    if r != 1:
+    if r.text != 1:
         raise HTTPException(status_code=400, detail="unauthorised request")
         
 # Experiment CRUD
