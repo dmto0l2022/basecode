@@ -262,8 +262,8 @@ year
 
 ## get all limits
 
-#@router.get(api_base_url + "limits", response_model=list[Limit], dependencies=[Depends(verify_api_token)])
-@router.get(api_base_url + "limits", response_model=list[Limit])
+@router.get(api_base_url + "limits", response_model=list[Limit], dependencies=[Depends(verify_api_token)])
+#@router.get(api_base_url + "limits", response_model=list[Limit])
 async def get_limit(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None,
                             dmtool_apikey: Annotated[str | None, Header()] = None):
@@ -304,7 +304,7 @@ async def get_limit(session: AsyncSession = Depends(get_session),
 ## get one limit
 
 @router.get(api_base_url + "limit/{limit_id}", response_model=Limit, dependencies=[Depends(verify_api_token)])
-async def get_limit(session: AsyncSession = Depends(get_session),
+async def get_limit(limit_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None,
                             dmtool_apikey: Annotated[str | None, Header()] = None):
     statement = select(Limit).where(Limit.id == limit_id)
@@ -313,8 +313,8 @@ async def get_limit(session: AsyncSession = Depends(get_session),
 
 ## add one limit
 
-#@router.post(api_base_url + "limit", dependencies=[Depends(verify_api_token)])
-@router.post(api_base_url + "limit")
+@router.post(api_base_url + "limit", dependencies=[Depends(verify_api_token)])
+#@router.post(api_base_url + "limit")
 async def add_limit(limit: LimitCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None,
                             dmtool_apikey: Annotated[str | None, Header()] = None):
