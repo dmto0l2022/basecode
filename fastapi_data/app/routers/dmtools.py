@@ -52,7 +52,7 @@ async def verify_api_token(dmtool_userid: str = Header(),  dmtool_apikey: str = 
     r=requests.get(url, headers=headers)
     print("request r:>>>>" ,r, "   ", r.text)
     # print("statement >>>>>>>>>>>>>>>>" , str(statement))
-    if r == 1:
+    if r == '1':
         return True
     else:
         raise HTTPException(status_code=400, detail="unauthorised request")
