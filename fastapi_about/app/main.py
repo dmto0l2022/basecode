@@ -245,7 +245,7 @@ async def some_middleware(request: Request, call_next):
         return response
     elif 'login' in request.url.path  and (email == 'no email' or email==None):
         return response
-    elif 'auth?state' in request.url.path  and (email == 'no email' or email==None):
+    elif 'auth' in request.url.path  and (email == 'no email' or email==None):
         return response
     elif 'public' in request.url.path  and (email == 'no email' or email==None):
         return response
