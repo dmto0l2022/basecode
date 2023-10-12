@@ -203,8 +203,8 @@ async def some_middleware(request: Request, call_next):
         email = get_email
     except:
         email = "no email"
-    if session:
-        response.set_cookie(key='session', value=request.cookies.get('session'), httponly=True)
+    #if session:
+    #    response.set_cookie(key='session', value=request.cookies.get('session'), httponly=True)
 
     print('session email >>>>>', email)
     #new_header = MutableHeaders(request._headers)
@@ -218,36 +218,35 @@ async def some_middleware(request: Request, call_next):
     print(request.headers)
     print("#################### alembic request url path ##############")
     print(request.url.path)
-    ###print("#######################request client host ################################")
+    print("#################### alembic request client host ##############")
     print(request.client.host)
+    print("#######################################################")
     #print("#################### alembic response content ##############")
     #print(response.content)
     #print("######################################################")
-    try:  
-        response_body = [chunk async for chunk in response.body_iterator]
-        response.body_iterator = iterate_in_threadpool(iter(response_body))
-        print(f"response_body={response_body[0].decode()}")
-    except:
-        print("no async content")
+    #try:  
+    #    response_body = [chunk async for chunk in response.body_iterator]
+    #    response.body_iterator = iterate_in_threadpool(iter(response_body))
+    #    print(f"response_body={response_body[0].decode()}")
+    #except:
+    #    print("no async content")
+    
+    login_response = HTMLResponse('<a href="https://dev1.dmtool.info/dmtool/fastapi_data/login">login</a>')
 
-    login_response = HTMLResponse('<a href="' + fastapi_url + '/login">login</a>')
-    if request.client.host == '127.0.0.1' and 'internal' in request.url.path:
-        print("internal request")
-        return response      
-    elif request.headers['host'] == data_server_internal_url: ## request from data server
-        print("data server request")
+    if 'internal' in request.url.path and request.client.host == '127.0.0.1':
         return response
+    elif 'docs' in request.url.path or 'openapi.json' in request.url.path:
+        return response
+    elif 'internal' in request.url.path and request.client.host != '127.0.0.1':
+        return login_response
     elif 'login' in request.url.path  and (email == 'no email' or email==None):
         return response
     elif 'public' in request.url.path  and (email == 'no email' or email==None):
         return response
-    elif 'public' in request.url.path  and (email == 'no email' or email==None):
+    elif 'public' in request.url.path  and (email != 'no email' and email !=None):
         return response
-    elif 'public' not in request.url.path  and (email == 'no email' or email==None):
-        return login_response
     else:
-        return response
-
+        return login_response
 
 ''' rem
 
