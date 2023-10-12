@@ -306,7 +306,8 @@ async def get_limit(session: AsyncSession = Depends(get_session),
 
 ## add one limit
 
-@router.post(api_base_url + "limit", dependencies=[Depends(verify_api_token)])
+#@router.post(api_base_url + "limit", dependencies=[Depends(verify_api_token)])
+@router.post(api_base_url + "limit")
 async def add_limit(limit: LimitCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None,
                             dmtool_apikey: Annotated[str | None, Header()] = None):
