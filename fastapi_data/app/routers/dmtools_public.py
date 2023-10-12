@@ -24,7 +24,7 @@ from datetime import datetime
 unceased_datetime_str = '01/01/1980 00:00:00'
 unceased_datetime_object = datetime.strptime(unceased_datetime_str, '%d/%m/%Y %H:%M:%S')
 
-api_base_url = '/dmtool/fastapi_data/public/'
+api_base_url = '/dmtool/fastapi_data/public/data/'
 
 
 from typing import List
