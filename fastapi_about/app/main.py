@@ -26,6 +26,7 @@ from db import get_session, init_db
 from routers import routers
 from routers import songs
 from routers import users
+from routers import dmtools_internal
 
 from dotenv import load_dotenv
 
@@ -54,6 +55,7 @@ app = FastAPI(title="DMTOOL API Server - About",
 app.include_router(routers.router)
 app.include_router(songs.router)
 app.include_router(users.router)
+app.include_router(dmtools_internal.router)
 
 ########
 
@@ -231,11 +233,11 @@ async def some_middleware(request: Request, call_next):
         print("no async content")
 
     login_response = HTMLResponse('<a href="' + fastapi_url + '/login">login</a>')
-    if request.client.host == '127.0.0.1':
+    if request.client.host == '127.0.0.1' and 'internal' in request.url.path:
         print("internal request")
         return response      
     elif request.headers['host'] == data_server_internal_url: ## request from data server
-        print("internal request")
+        print("data server request")
         return response
     elif 'login' in request.url.path  and (email == 'no email' or email==None):
         return response
