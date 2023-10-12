@@ -218,6 +218,8 @@ async def some_middleware(request: Request, call_next):
     print(request.headers)
     print("#################### alembic request url path ##############")
     print(request.url.path)
+    print("#################### alembic request client host ##############")
+    print(request.client.host)
     print("#######################################################")
     #print("#################### alembic response content ##############")
     #print(response.content)
