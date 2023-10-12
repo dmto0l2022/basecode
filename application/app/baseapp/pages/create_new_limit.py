@@ -17,7 +17,7 @@ baseapp_prefix = '/application/baseapp'
 
 dash.register_page(__name__, path='/create_new_limit')
 
-fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_about/internal/data/limit"
+fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limit"
 
 '''
 ID List
