@@ -23,7 +23,7 @@ page_name = 'login'
 ## login_frame = html.Iframe(src="/application/login/google",style={"height": "80vh", "width": "80vw"})
 
 login_link = html.Div([
-    dcc.Link(href='/application/login/google', title='google login')
+    dcc.Link(href='/application/login/google', title='google login',  target='_blank')
 ])
 
 layout = html.Div(children=[login_link],style={"height": "80vh", "width": "80vw"})
