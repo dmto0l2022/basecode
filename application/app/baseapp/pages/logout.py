@@ -3,12 +3,23 @@ import dash_bootstrap_components as dbc
 from dash import Input, Output, callback
 from dash import html, dcc
 
-dash.register_page(__name__)
+import json
+import requests
+
+import base64
+
+import pandas as pd
+
+from app.baseapp.libraries import formlibrary as fl
+
+import xml.etree.ElementTree as ET
+
+baseapp_prefix = '/application/baseapp'
+
+dash.register_page(__name__, path='/logout')
+
 page_name = 'logout'
 
-import dash_bootstrap_components as dbc
-from dash import Input, Output
+logout_frame = html.Iframe(src="/app/logout",style={"height": "80vh", "width": "80vw"})
 
-login_frame = html.Iframe(src="/app/logout",style={"height": "80vh", "width": "80vw"})
-
-layout = html.Div(children=[login_frame],style={"height": "80vh", "width": "80vw"})
+layout = html.Div(children=[logout_frame],style={"height": "80vh", "width": "80vw"})
