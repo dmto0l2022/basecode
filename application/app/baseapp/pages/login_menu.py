@@ -20,7 +20,7 @@ layout = html.Div([
 
 
 @callback(
-    Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    Output(page_name + 'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
     Input(page_name + '_login_' + 'button_id', "n_clicks"),
     Input(page_name + '_logout_' + 'button_id', "n_clicks"),
