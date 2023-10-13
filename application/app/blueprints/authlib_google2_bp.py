@@ -41,8 +41,9 @@ fastapi_about_url = environ.get("FASTAPI_ABOUT_URL")
 print('BASE_DIR')
 print(BASE_DIR)
 
-GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
-GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
+GOOGLE_CLIENT_ID = environ.get("FLASK_GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = environ.get("FLASK_GOOGLE_CLIENT_SECRET")
+GOOGLE_CLIENT_CALLBACK = environ.get("FLASK_GOOGLE_CLIENT_CALLBACK")
 
 oauth = OAuth(current_app)
 
@@ -53,8 +54,8 @@ authlib_google2_bp = Blueprint('authlib_google2_bp', __name__,url_prefix='/appli
 # application at https://code.google.com/apis/console
 client_id = GOOGLE_CLIENT_ID
 client_secret = GOOGLE_CLIENT_SECRET
-
-redirect_uri = 'https://dev1.dmtool.info/application/login/google/callback'
+redirect_uri = GOOGLE_CLIENT_CALLBACK
+#redirect_uri = 'https://dev1.dmtool.info/application/login/google/callback'
 
 # Uncomment for detailed oauthlib logs
 #import logging
@@ -225,10 +226,10 @@ def menu():
     <h1>Congratulations, you have obtained an OAuth 2 token!</h1>
     <h2>What would you like to do next?</h2>
     <ul>
-        <li><a href="/app/login/google2/profile"> Get account profile</a></li>
-        <li><a href="/app/login/google2/automatic_refresh"> Implicitly refresh the token</a></li>
-        <li><a href="/app/login/google2/manual_refresh"> Explicitly refresh the token</a></li>
-        <li><a href="/app/login/google2/validate"> Validate the token</a></li>
+        <li><a href="/application/login/google/profile"> Get account profile</a></li>
+        <li><a href="/application/login/google/automatic_refresh"> Implicitly refresh the token</a></li>
+        <li><a href="/application/login/google/manual_refresh"> Explicitly refresh the token</a></li>
+        <li><a href="/application/login/google/validate"> Validate the token</a></li>
     </ul>
 
     <pre>
