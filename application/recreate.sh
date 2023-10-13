@@ -29,15 +29,3 @@ podman run -dt \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/application_1:latest
 
-podman build -f Dockerfile -t application_1 .
-
-##-v /HOST-DIR:/CONTAINER-DIR
-
-podman run -dt \
---name container_application_1 \
---pod pod_main_backend \
---user $uid:$gid \
--v /opt/dmtools/code/basecode:/workdir \
-localhost/application_1:latest
-
-
