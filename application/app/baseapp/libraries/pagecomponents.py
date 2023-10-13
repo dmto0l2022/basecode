@@ -120,19 +120,24 @@ page_header_2 = dbc.Row(
                 dbc.Col(
                     #html.P("Plots", className="HEADER_TEXT"),
                     dcc.Link('Plots', id='plots_link_1', href= baseapp_prefix + '/plot_menu',className="HEADER_TEXT"),
-                    width=4,
+                    width=3,
                     className = "HEADER_COLUMN",
                 ),
                 dbc.Col(
                     #html.P("Data",  className="HEADER_TEXT"),
                     dcc.Link('Data',id='data_link_1', href= baseapp_prefix + '/limit_menu',className="HEADER_TEXT"),
-                    width=4,
+                    width=3,
                     className = "HEADER_COLUMN",
                 ),
-                 dbc.Col(
+               dbc.Col(
+                    dcc.Link('Admin',id='admin_link_1', href= baseapp_prefix + '/admin_menu',className="HEADER_TEXT"),
+                    width=3,
+                    className = "HEADER_COLUMN",
+                 ),
+              dbc.Col(
                     #html.P("Logged in as pauser (log out)", className="HEADER_TEXT"),
-                    dcc.Link('Login',id='login_link_1', href= baseapp_prefix + '/login',className="HEADER_TEXT"),
-                    width=4,
+                    dcc.Link('Login',id='login_link_1', href= baseapp_prefix + '/login_menu',className="HEADER_TEXT"),
+                    width=3,
                     className = "HEADER_COLUMN",
                  ),
             ],
