@@ -49,4 +49,4 @@ RUN /env/bin/pip3 freeze
 ##RUN ls -R /workdir/
 
 WORKDIR /workdir/application
-CMD ["gunicorn"  , "--bind", "0.0.0.0:8010", "wsgi:application"  "--reload"]
+CMD ["gunicorn"  , "--bind", "0.0.0.0:8010", "wsgi:application" , "--reload"]
