@@ -467,17 +467,17 @@ def button_click(
         #print("================")
         #print(post_data)
 
-        print("new_limit_txt")
-        print("================")
-        print(new_limit_txt)
+        #print("new_limit_txt")
+        #print("================")
+        #print(new_limit_txt)
 
-        print("request text")
-        print("================")
-        print(x.text)
+        #print("request text")
+        #print("================")
+        #print(x.text)
         
         
-        ## href_return = baseapp_prefix + '/list_all_limits'
-        href_return = baseapp_prefix + '/homepage'
+        href_return = baseapp_prefix + '/list_all_limits'
+        ##href_return = baseapp_prefix + '/homepage'
         
         return href_return
     
