@@ -43,7 +43,7 @@ def button_click(button1,button2,button3):
         return href_return
     elif page_name + '_admin_' + 'button_id' == prop_id:
         #msg = "Button 2 was most recently clicked"
-        href_return = baseapp_prefix +'/login_menu'
+        href_return = baseapp_prefix +'/admin_menu'
         return href_return
     else:
         href_return = baseapp_prefix + '/login_menu'
