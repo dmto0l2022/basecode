@@ -20,7 +20,7 @@ dash.register_page(__name__, path='/login')
 
 page_name = 'login'
 
-login_frame = html.Iframe(src="/app/login",style={"height": "80vh", "width": "80vw"})
+login_frame = html.Iframe(src="/application/login/google",style={"height": "80vh", "width": "80vw"})
 
 layout = html.Div(children=[login_frame],style={"height": "80vh", "width": "80vw"})
 
