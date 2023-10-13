@@ -312,3 +312,7 @@ def validate():
     # No OAuth2Session is needed, just a plain GET request
     return jsonify(requests.get(validate_url).json())
 
+@authlib_google2_bp.route('/logout')
+def logout():
+    session.pop('oauth_token')
+    return redirect(url_for('index'))
