@@ -107,10 +107,11 @@ def RefreshTableData():
         response_data_frame = pd.DataFrame(response_data)
     except:
         a = 1
-    
+
+    all_table_column_names = table_column_names+['edit','cease','delete']
+  
     if response_data_frame.empty:
         empty_data = [table_column_names+['edit','cease','delete']]
-        all_table_column_names = table_column_names+['edit','cease','delete']
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=all_table_column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
@@ -123,7 +124,7 @@ def RefreshTableData():
         #updated_data_frame_ret['update'] = "update"
         updated_data_frame_ret['delete'] = "delete"
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
-    return updated_data_dict_ret, updated_data_frame_ret, column_names
+    return updated_data_dict_ret, updated_data_frame_ret, all_table_column_names
 
 
 #table_data_dict_initial, table_data_frame_initial, column_names = RefreshTableData()
