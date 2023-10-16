@@ -83,7 +83,7 @@ def CeaseRow(user_api_key_in):
 
 def RefreshTableData():
     url = fastapi_url_all
-    column_names=['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']
+    column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']
     response_data_frame = pd.DataFrame()
     try:
         r = requests.get(url, headers=internal_header)
@@ -98,11 +98,11 @@ def RefreshTableData():
     
     if response_data_frame.empty:
         #empty_data = [['id','experiment','data_comment','data_label', 'data_reference', 'create', 'read', 'update', 'delete']]
-        empty_data = [['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']]
+        empty_data = [['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
-        lst = ['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at']
+        lst = ['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at']
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
         #updated_data_frame_ret['create'] = "create"
@@ -181,7 +181,7 @@ def get_layout():
              'width': '2%'},
             {'if': {'column_id': 'user_id'},
              'width': '2%'},
-            {'if': {'column_id': 'secret_key'},
+            {'if': {'column_id': 'api_key'},
              'width': '25%'},
             {'if': {'column_id': 'public_key'},
              'width': '25%'},
