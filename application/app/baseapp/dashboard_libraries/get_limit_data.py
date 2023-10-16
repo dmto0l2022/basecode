@@ -10,6 +10,7 @@ palette = cycle(px.colors.qualitative.Bold)
 
 fastapi_url_limits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limits" ## multiple limit operations
 fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limit/" ## single limit operations
+internal_header = {'dmtool-userid'='999'}
 
 def parse_series_and_values(limits_dataframe_in):
     limit_data = []
@@ -104,7 +105,7 @@ def GetLimit(limit_id_in):
     limit_url = fastapi_url_limit+limit_id_in
     response_data_frame = pd.DataFrame()
     try:
-        r = requests.get(limit_url)
+        r = requests.get(limit_url,headers=internal_header)
         response_data = r.json()
         #print(response_data)
         response_data_frame = pd.DataFrame(response_data)
@@ -147,7 +148,7 @@ def GetLimits():
     limits_url = fastapi_url_limits
     response_data_frame = pd.DataFrame()
     try:
-        r = requests.get(limits_url)
+        r = requests.get(limits_url, headers=internal_header)
         response_data = r.json()
         #print(response_data)
         response_data_frame = pd.DataFrame(response_data)
