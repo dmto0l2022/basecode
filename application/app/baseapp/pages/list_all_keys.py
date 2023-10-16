@@ -21,23 +21,36 @@ internal_header={'dmtool-userid':'999'}
 
 dash.register_page(__name__, path='/list_all_keys')
 page_name = "list_all_keys"
+page_title = 'List All Keys'
 baseapp_prefix = '/application/baseapp'
 
+### table data
+table_column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']
+main_table_id = 'user_api_keys_table_main'
+
+## table_format
+conditional_column_widths = [{'if': {'column_id': 'id'},
+             'width': '2%'},
+            {'if': {'column_id': 'user_id'},
+             'width': '2%'},
+            {'if': {'column_id': 'api_key'},
+             'width': '25%'},
+            {'if': {'column_id': 'public_key'},
+             'width': '25%'},
+            {'if': {'column_id': 'created_at'},
+             'width': '5%'},
+            {'if': {'column_id': 'modified_at'},
+             'width': '5%'},
+            {'if': {'column_id': 'ceased_at'},
+             'width': '5%'},
+            {'if': {'column_id': 'edit'},
+             'width': '2%'},
+            {'if': {'column_id': 'cease'},
+             'width': '2%'},
+            {'if': {'column_id': 'delete'},
+             'width': '2'}]
+
 #### list all keys
-
-list_all_keys_form_title = html.Div(html.P(children='List All Keys', className = "NOPADDING_CONTENT FORM_TITLE"))
-
-list_all_keys_form_content  = dbc.Row(
-    [
-        dbc.Col(
-            [
-                html.P(children='List All Keys', className = "NOPADDING_CONTENT FORM_TITLE")
-            ],
-            width=6,
-        )
-    ],
-    className="g-3",
-)
 
 #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
@@ -71,19 +84,19 @@ class MakeApiCall():
 '''
 ###
 
-def DeleteRow(user_api_key_in):
-    delete_url = fastapi_url_one + str(user_api_key_in)
+def DeleteRow(key_in):
+    delete_url = fastapi_url_one + str(key_in)
     requests.delete(delete_url, headers=internal_header)
 
-def CeaseRow(user_api_key_in):
-    cease_url = fastapi_url_one + str(user_api_key_in)
-    print('cease >>' + str(user_api_key_in))
+def CeaseRow(key_in):
+    cease_url = fastapi_url_one + str(key_in)
+    print('cease >>' + str(key_in))
     requests.put(cease_url, headers=internal_header)
 
 
 def RefreshTableData():
     url = fastapi_url_all
-    column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']
+    column_names = table_column_names
     response_data_frame = pd.DataFrame()
     try:
         r = requests.get(url, headers=internal_header)
@@ -97,12 +110,11 @@ def RefreshTableData():
         a = 1
     
     if response_data_frame.empty:
-        #empty_data = [['id','experiment','data_comment','data_label', 'data_reference', 'create', 'read', 'update', 'delete']]
-        empty_data = [['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']]
+        empty_data = [[table_column_names]]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
-        lst = ['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at']
+        lst = table_column_names
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
         #updated_data_frame_ret['create'] = "create"
@@ -146,7 +158,7 @@ def get_layout():
     table_data_dict, table_data_frame, table_column_names = RefreshTableData()
     
     user_api_keys_table = dash_table.DataTable(
-        id='user_api_keys_table_main',
+        id= main_table_id,
         data=table_data_dict,
         columns=[{"name": c, "id": c} for c in table_column_names],
         fixed_rows={'headers': True},
@@ -176,28 +188,7 @@ def get_layout():
         
         #style_table={'height': '75vh',},
         ## 'user_id','secret_key','public_key', 'created_at','modified_at','ceased_at'
-        style_cell_conditional=[
-            {'if': {'column_id': 'id'},
-             'width': '2%'},
-            {'if': {'column_id': 'user_id'},
-             'width': '2%'},
-            {'if': {'column_id': 'api_key'},
-             'width': '25%'},
-            {'if': {'column_id': 'public_key'},
-             'width': '25%'},
-            {'if': {'column_id': 'created_at'},
-             'width': '5%'},
-            {'if': {'column_id': 'modified_at'},
-             'width': '5%'},
-            {'if': {'column_id': 'ceased_at'},
-             'width': '5%'},
-            {'if': {'column_id': 'edit'},
-             'width': '2%'},
-            {'if': {'column_id': 'cease'},
-             'width': '2%'},
-            {'if': {'column_id': 'delete'},
-             'width': '2%'},
-        ],
+        style_cell_conditional=conditional_column_widths,
         #style_data={
         #    'whiteSpace': 'normal',
         #    'height': 'auto',
