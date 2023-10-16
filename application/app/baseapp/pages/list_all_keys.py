@@ -15,8 +15,9 @@ from app.baseapp.libraries import formlibrary as fl
 import requests
 import json
 
-fastapi_url_all = "http://container_fastapi_about_1:8016/fastapi_about/user_api_keys" ## multiple limit operations
-fastapi_url_one = "http://container_fastapi_about_1:8016/fastapi_about/user_api_key" ## single limit operations
+fastapi_url_all = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_keys" ## multiple limit operations
+fastapi_url_one = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_key/" ## single limit operations
+internal_header={'dmtool-userid'='999'}
 
 dash.register_page(__name__, path='/list_all_keys')
 page_name = "list_all_keys"
@@ -71,13 +72,13 @@ class MakeApiCall():
 ###
 
 def DeleteRow(user_api_key_in):
-    delete_url = fastapi_url_one + "/" + str(user_api_key_in)
-    requests.delete(delete_url)
+    delete_url = fastapi_url_one + str(user_api_key_in)
+    requests.delete(delete_url, headers=internal_header)
 
 def CeaseRow(user_api_key_in):
-    cease_url = fastapi_url_one + "/" + str(user_api_key_in)
+    cease_url = fastapi_url_one + str(user_api_key_in)
     print('cease >>' + str(user_api_key_in))
-    requests.put(cease_url)
+    requests.put(cease_url, headers=internal_header)
 
 
 def RefreshTableData():
@@ -85,7 +86,7 @@ def RefreshTableData():
     column_names=['id','user_id','secret_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']
     response_data_frame = pd.DataFrame()
     try:
-        r = requests.get(url)
+        r = requests.get(url, headers=internal_header)
         response_data = r.json()
         print('response data')
         print('===================')
