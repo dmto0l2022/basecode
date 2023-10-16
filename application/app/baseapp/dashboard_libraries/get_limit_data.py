@@ -8,6 +8,9 @@ from itertools import cycle
 # colors
 palette = cycle(px.colors.qualitative.Bold)
 
+fastapi_url_limits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/limits" ## multiple limit operations
+fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/limit/" ## single limit operations
+
 def parse_series_and_values(limits_dataframe_in):
     limit_data = []
     for index, row in limits_dataframe_in.iterrows():
@@ -98,13 +101,10 @@ def parse_series_and_values(limits_dataframe_in):
 
 
 def GetLimit(limit_id_in):
-    fastapi_orm_url = "container_fastapi_orm_1:8008"
-    #fastapi_orm_url = "http://35.214.16.124:8008"
-    fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
-    url = fastapi_orm_url_api + "/limit/" + str(limit_id_in)
+    limit_url = fastapi_url_limit+limit_id_in
     response_data_frame = pd.DataFrame()
     try:
-        r = requests.get(url)
+        r = requests.get(limit_url)
         response_data = r.json()
         #print(response_data)
         response_data_frame = pd.DataFrame(response_data)
@@ -144,14 +144,10 @@ def GetLimit(limit_id_in):
     return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
 
 def GetLimits():
-    #api_container = "container_fastapi_orm_1:8008"
-    fastapi_orm_url = "http://container_fastapi_orm_1:8008"
-    #fastapi_orm_url = "http://35.214.16.124:8008"
-    fastapi_orm_url_api = fastapi_orm_url +"/apiorm"
-    url = fastapi_orm_url_api + "/limit/"
+    limits_url = fastapi_url_limits
     response_data_frame = pd.DataFrame()
     try:
-        r = requests.get(url)
+        r = requests.get(limits_url)
         response_data = r.json()
         #print(response_data)
         response_data_frame = pd.DataFrame(response_data)
