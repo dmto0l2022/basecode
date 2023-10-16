@@ -96,7 +96,6 @@ def CeaseRow(key_in):
 
 def RefreshTableData():
     url = fastapi_url_all
-    column_names = table_column_names
     response_data_frame = pd.DataFrame()
     try:
         r = requests.get(url, headers=internal_header)
@@ -110,8 +109,8 @@ def RefreshTableData():
         a = 1
     
     if response_data_frame.empty:
-        empty_data = [[table_column_names]]
-        updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
+        empty_data = [table_column_names]
+        updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=table_column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
         lst = table_column_names
