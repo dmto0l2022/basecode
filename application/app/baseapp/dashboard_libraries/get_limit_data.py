@@ -8,8 +8,8 @@ from itertools import cycle
 # colors
 palette = cycle(px.colors.qualitative.Bold)
 
-fastapi_url_limits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/limits" ## multiple limit operations
-fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/limit/" ## single limit operations
+fastapi_url_limits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/limits" ## multiple limit operations
+fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/limit/" ## single limit operations
 
 def parse_series_and_values(limits_dataframe_in):
     limit_data = []
