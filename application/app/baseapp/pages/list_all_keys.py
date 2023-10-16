@@ -246,7 +246,7 @@ def get_layout():
             html.Div(children="Table Title", className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
-                    user_api_keys_table
+                    main_table
                 ],
                 className="NOPADDING_CONTENT"
             ),
