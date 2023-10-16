@@ -25,7 +25,7 @@ page_title = 'List All Keys'
 baseapp_prefix = '/application/baseapp'
 
 ### table data
-table_column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at','edit','cease','delete']
+table_column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at']
 main_table_id = 'user_api_keys_table_main'
 
 ## table_format
@@ -109,8 +109,9 @@ def RefreshTableData():
         a = 1
     
     if response_data_frame.empty:
-        empty_data = [table_column_names]
-        updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=table_column_names)
+        empty_data = [table_column_names+['edit','cease','delete']]
+        all_table_column_names = table_column_names+['edit','cease','delete']
+        updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=all_table_column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
         lst = table_column_names
@@ -156,7 +157,7 @@ def get_layout():
 
     table_data_dict, table_data_frame, table_column_names = RefreshTableData()
     
-    user_api_keys_table = dash_table.DataTable(
+    main_table = dash_table.DataTable(
         id= main_table_id,
         data=table_data_dict,
         columns=[{"name": c, "id": c} for c in table_column_names],
