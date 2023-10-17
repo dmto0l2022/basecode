@@ -31,26 +31,35 @@ main_table_id = 'user_api_keys_table_main'
 ### table columns
 table_meta_data_columns = ['name', 'width']
 
-table_meta_data_data = [['id', '2%'],
-['user_id', '2%'],
-['api_key', '25%'],
-['public_key', '25%'],
-['created_at', '5%'],
-['modified_at', '5%'],
-['edit', '2%'],
-['ceased', '2%'],
-['delete', '2%']]
+table_meta_data_data = [
+                        ['id', '2%'],
+                        ['user_id', '2%'],
+                        ['api_key', '25%'],
+                        ['public_key', '25%'],
+                        ['created_at', '5%'],
+                        ['modified_at', '5%']
+                       ]
 
-table_meta_data_df = pd.DataFrame(data=table_meta_data_data, columns=table_meta_data_columns)
+button_meta_data_data =[
+                        ['edit', '2%'],
+                        ['ceased', '2%'],
+                        ['delete', '2%']
+                        ]
+
+all_table_meta_data_data = table_meta_data_data + button_meta_data_data
+
+table_meta_data_df = pd.DataFrame(data=all_table_meta_data_data, columns=table_meta_data_columns)
 
 conditional_column_widths = []
-table_column_names = []
+table_column_names_data = []
 
-for index, row in table_meta_data_df.iterrows():
+for index, row in all_table_meta_data_data.iterrows():
     #print(row['name'], row['age'])
     add_dict = {'if': {'column_id': row['name'] },'width':row['width']}
     conditional_column_widths.append(add_dict)
-    table_column_names = table_column_names + [row['name']]
+
+for index, row in table_meta_data_data.iterrows():    
+    table_column_names_data = table_column_names_data + [row['name']]
 
 print("table_column_names>>>>>>>>>>>>", table_column_names)
 print("conditional_column_widths>>>>>>>>>>>>", conditional_column_widths)
@@ -137,14 +146,14 @@ def RefreshTableData():
     except:
         a = 1
 
-    all_table_column_names = table_column_names+['edit','cease','delete']
+    all_table_column_names = table_column_names_data+['edit','cease','delete']
   
     if response_data_frame.empty:
-        empty_data = [table_column_names+['edit','cease','delete']]
+        empty_data = [table_column_names_data+['edit','cease','delete']]
         updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=all_table_column_names)
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
     else:
-        lst = table_column_names
+        lst = table_column_names_data
         updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
         updated_data_frame_ret = updated_data_frame_ret[lst]
         #updated_data_frame_ret['create'] = "create"
