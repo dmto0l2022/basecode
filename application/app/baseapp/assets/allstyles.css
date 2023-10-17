@@ -37,6 +37,13 @@
   color: black;
   font-size:14px;
   font-weight: bold;
+  position: fixed;
+  top: 63px;
+  left: 0;
+  right: 0;
+  height: 21px;
+  width:100vw;
+  background-color: Gray;
 }
 
 .OUTPUT_CELL {
@@ -371,7 +378,7 @@
 
 .PAGE_FULL_TABLE_CONTENT {
     position: fixed;
-    bottom: calc(var(--footer_height)* 5);
+    top: 84px;
     height: var(--full_table_height);
     width : var(--full_table_width);
     left: var(--sidebar_width);
