@@ -280,7 +280,8 @@ def get_layout():
                 className="NOPADDING_CONTENT"
             ),
             html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
-            html.Div(id=page_name+"output-div", children="Debug Output Here", className="NOPADDING_CONTENT"),
+            html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT"),
+            html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT"),
             html.Div(id=page_name+"page_buttons", children=[save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
         ],
         className="row NOPADDING_CONTENT"
@@ -302,7 +303,7 @@ layout = get_layout
 
 
 @callback(
-    [Output(page_name+"output-div", "children"), Output('user_api_keys_table_main','data')], Input("user_api_keys_table_main", "active_cell"),
+    [Output(page_name+"cell-output-div", "children"), Output('user_api_keys_table_main','data')], Input("user_api_keys_table_main", "active_cell"),
 )
 def cell_clicked(active_cell):
     
@@ -364,7 +365,7 @@ def cell_clicked(active_cell):
 
 @callback(
     #Output(page_name + "url", 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
-    Output(page_name+"output-div", "children"),
+    Output(page_name+"button-output-div", "children"),
     [
     Input(page_name + "save_button_id", "n_clicks"),
     Input(page_name + "cancel_button_id", "n_clicks"),
