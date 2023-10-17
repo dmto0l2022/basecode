@@ -256,7 +256,7 @@ def get_layout():
     html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0),
     '''
     
-    button_styling = {'font-size': '12px', 'width': '70px', 'display': 'inline-block', 'margin-bottom': '0px', 'margin-right': '0px', 'height':'16px', 'verticalAlign': 'top'}
+    button_styling = {'font-size': '12px', 'width': '70px', 'display': 'inline-block', 'margin-bottom': '0px', 'margin-right': '0px', 'height':'21px', 'verticalAlign': 'center'}
   
     #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
