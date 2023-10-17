@@ -255,16 +255,18 @@ def get_layout():
     html.Button('Edit Existing', id=page_name + '_edit_existing_' + 'button_id', n_clicks=0),
     html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0),
     '''
-
+    
+    button_styling = {'font-size': '12px', 'width': '140px', 'display': 'inline-block', 'margin-bottom': '0px', 'margin-right': '0px', 'height':'14px', 'verticalAlign': 'top'}
   
     #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
-    save_button =  dbc.Button("Save", id= page_name + "edit_button_id", color="primary")
+    save_button =  dbc.Button("Save", id= page_name + "edit_button_id", color="primary", style=button_styling)
 
-    cancel_button =  dbc.Button("Cancel",  id=page_name + "cancel_button_id", color="secondary")
+    cancel_button =  dbc.Button("Cancel",  id=page_name + "cancel_button_id", color="secondary", style=button_styling)
 
-    home_button =  dbc.Button("Home",  id=page_name + "home_button_id", color="secondary")
-  
+    home_button =  dbc.Button("Home",  id=page_name + "home_button_id", color="secondary", style=button_styling)
+
+   
     table_layout = html.Div(
         [
             dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
