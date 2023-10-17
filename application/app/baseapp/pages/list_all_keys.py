@@ -262,7 +262,7 @@ def get_layout():
   
     #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
-    save_button =  html.Button("Save", id= page_name + "edit_button_id", style=button_styling)
+    save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling)
 
     cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling)
 
@@ -360,29 +360,39 @@ def cell_clicked(active_cell):
 ##json.dumps(list(active_cell))
 
 
-'''
+
 
 @callback(
-    Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    #Output(page_name + "url", 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    Output(page_name+"output-div", "children"),
     [
-    Input("list_all_limits_edit_button_id", "n_clicks"),
-    Input("list_all_limits_cancel_button_id", "n_clicks")
+    Input(page_name + "save_button_id", "n_clicks"),
+    Input(page_name + "cancel_button_id", "n_clicks"),
+    Input(page_name + "home_button_id", "n_clicks"),
         ],
         prevent_initial_call=True
 )
-def button_click(button1,button2):
+def button_click(savebutton,cancelbutton,homebutton):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     #msg = prop_id
-    if "list_all_limits_edit_button_id" == prop_id :
-        #msg = "Button 1 was most recently clicked"
-        href_return = dash.page_registry['pages.show_limit']['path']
-        return href_return
-    elif "list_all_limits_cancel_button_id" == prop_id:
-        #msg = "Button 2 was most recently clicked"
-        href_return = dash.page_registry['pages.home']['path']
-        return href_return
+    if page_name + "save_button_id" == prop_id :
+        msg = "Save Button was most recently clicked"
+        #href_return = dash.page_registry['pages.show_limit']['path']
+        #return href_return
+        return msg
+    elif page_name + "cancel_button_id" == prop_id:
+        msg = "Cancel Button was most recently clicked"
+        #href_return = dash.page_registry['pages.home']['path']
+        #return href_return
+        return msg
+    elif page_name + "home_button_id" == prop_id:
+        msg = "Home Button was most recently clicked"
+        #href_return = dash.page_registry['pages.home']['path']
+        #return href_return
+        return msg
     else:
         href_return = dash.page_registry['pages.home']['path']
-        return href_return
+        msg = "No Button Clicked"
+        return msg
 '''
