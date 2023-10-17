@@ -48,7 +48,8 @@ button_meta_data_data =[
 
 all_table_meta_data_data = table_meta_data_data + button_meta_data_data
 
-table_meta_data_df = pd.DataFrame(data=all_table_meta_data_data, columns=table_meta_data_columns)
+table_meta_data_all_df = pd.DataFrame(data=all_table_meta_data_data, columns=table_meta_data_columns)
+table_meta_data_data_df = pd.DataFrame(data=table_meta_data_data, columns=table_meta_data_columns)
 
 conditional_column_widths = []
 table_column_names_data = []
@@ -58,7 +59,7 @@ for index, row in table_meta_data_df.iterrows():
     add_dict = {'if': {'column_id': row['name'] },'width':row['width']}
     conditional_column_widths.append(add_dict)
 
-for index, row in table_meta_data_data.iterrows():    
+for index, row in table_meta_data_data_df.iterrows():  
     table_column_names_data = table_column_names_data + [row['name']]
 
 print("table_column_names>>>>>>>>>>>>", table_column_names)
