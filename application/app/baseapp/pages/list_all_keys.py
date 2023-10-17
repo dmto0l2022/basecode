@@ -159,7 +159,7 @@ def RefreshTableData():
         updated_data_frame_ret = updated_data_frame_ret[lst]
         #updated_data_frame_ret['create'] = "create"
         updated_data_frame_ret['edit'] = "edit"
-        updated_data_frame_ret['cease'] = "cease"
+        updated_data_frame_ret['ceased'] = "ceased"
         #updated_data_frame_ret['update'] = "update"
         updated_data_frame_ret['delete'] = "delete"
         updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
