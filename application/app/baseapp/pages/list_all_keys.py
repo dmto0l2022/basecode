@@ -28,6 +28,34 @@ baseapp_prefix = '/application/baseapp'
 table_column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at']
 main_table_id = 'user_api_keys_table_main'
 
+### table columns
+table_meta_data_columns = ['name', 'width']
+
+table_meta_data_data = [['id', '2%'],
+['user_id', '2%'],
+['api_key', '25%'],
+['public_key', '25%'],
+['created_at', '5%'],
+['modified_at', '5%'],
+['edit', '2%'],
+['ceased', '2%'],
+['delete', '2%']]
+
+table_meta_data_df = pd.DataFrame(data=meta_data_data, columns=meta_data_columns)
+
+conditional_column_widths = []
+table_column_names = []
+
+for index, row in table_meta_data_df.iterrows():
+    #print(row['name'], row['age'])
+    add_dict = "{'if': {'column_id':" + "'" + row['name'] +"'},'width':'"+  row['name']+"'}"
+    conditional_column_widths = conditional_column_widths + add_dict
+    table_column_names = table_column_names + row['name']
+
+print("table_column_names>>>>>>>>>>>>", table_column_names)
+print("conditional_column_widths>>>>>>>>>>>>", conditional_column_widths)
+
+'''
 ## table_format
 conditional_column_widths = [{'if': {'column_id': 'id'},
              'width': '2%'},
@@ -49,6 +77,7 @@ conditional_column_widths = [{'if': {'column_id': 'id'},
              'width': '2%'},
             {'if': {'column_id': 'delete'},
              'width': '2'}]
+'''
 
 #### list all keys
 
