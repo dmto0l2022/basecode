@@ -25,7 +25,7 @@ page_title = 'List All Keys'
 baseapp_prefix = '/application/baseapp'
 
 ### table data
-table_column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at']
+#table_column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at']
 main_table_id = 'user_api_keys_table_main'
 
 ### table columns
@@ -41,7 +41,7 @@ table_meta_data_data = [['id', '2%'],
 ['ceased', '2%'],
 ['delete', '2%']]
 
-table_meta_data_df = pd.DataFrame(data=meta_data_data, columns=meta_data_columns)
+table_meta_data_df = pd.DataFrame(data=table_meta_data_data, columns=table_meta_data_columns)
 
 conditional_column_widths = []
 table_column_names = []
