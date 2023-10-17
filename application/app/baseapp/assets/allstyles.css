@@ -46,6 +46,15 @@
   background-color: Gray;
 }
 
+.OUTPUT_CELL_TITLE {
+  text-align: center;
+  color: black;
+  font-size:12px;
+  font-weight: bold;
+  height: 21px;
+  background-color: Gray;
+}
+  
 .OUTPUT_CELL {
   text-align: center;
   color: black;
