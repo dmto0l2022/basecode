@@ -71,7 +71,6 @@ print("conditional_column_widths>>>>>>>>>>>>", conditional_column_widths)
 
 ### table configurations
 
-table_heights = 120
 row_height = '13px'
 font_size = '12px'
 
@@ -163,29 +162,7 @@ initial_active_cell = {"row": 0, "column": 0, "column_id": "id", "row_id": 0}
 
 ###########################################################
 
-'''
-list_all_limits_form = html.Div(
-    [dcc.Location(id="url", refresh=True),
-     list_all_limits_form_title,
-     list_all_limits_form_content,
-     edit_button, cancel_button],
-    className = "NOPADDING_CONTENT CENTRE_FORM"
-)
-'''
-    
-# limits_df = pd.read_sql_query(limits_sql, self.engine)
-# limits_df['rowid'] = self.limits_df.index
-
-# limits_table_df = limits_df[['id','limit_id','spin_dependency',
-#                         'experiment','official','greatest_hit','data_label',
-#                         'result_type','data_reference','year']].copy()
-
-
-###########################################################################
-
 def get_layout():
-
-    style_header_var={ 'backgroundColor': 'black','color': 'white'}
 
     table_data_dict, table_data_frame, table_column_names = RefreshTableData()
     
@@ -211,7 +188,11 @@ def get_layout():
 
     home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling)
 
-   
+    debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
+            html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT"),
+            html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT")])
+
+  
     table_layout = html.Div(
         [
             dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
@@ -222,9 +203,7 @@ def get_layout():
                 ],
                 className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
             ),
-            html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
-            html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT"),
-            html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT"),
+            debug_output,
             html.Div(id=page_name+"page_buttons", children=[save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
         ],
         className="row NOPADDING_CONTENT"
@@ -232,9 +211,6 @@ def get_layout():
 
     return table_layout
     
-#no_output = html.Div([limits_table], className="NOPADDING_CONTENT")
-        
-##className="PAGE_CONTENT",)
 
 layout = get_layout
 
@@ -246,7 +222,7 @@ layout = get_layout
 
 
 @callback(
-    [Output(page_name+"cell-output-div", "children"), Output('user_api_keys_table_main','data')], Input("user_api_keys_table_main", "active_cell"),
+    [Output(page_name+"cell-output-div", "children"), Output(main_table_id,'data')], Input(main_table_id, "active_cell"),
 )
 def cell_clicked(active_cell):
     
@@ -297,11 +273,8 @@ def cell_clicked(active_cell):
         CeaseRow(id)
         updated_data_dict, updated_data_frame, column_names = RefreshTableData()
             
-    ##http://127.0.0.1:5000/query-example?plotid=Python
     return_data = row, " ", column, " ",cell_value, " ", id
     return return_data, updated_data_dict
-
-##json.dumps(list(active_cell))
 
 
 
