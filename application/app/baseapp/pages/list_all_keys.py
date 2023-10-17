@@ -220,7 +220,7 @@ def get_layout():
                 [
                     main_table
                 ],
-                className="NOPADDING_CONTENT"
+                className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
             ),
             html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT"),
