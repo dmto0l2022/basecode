@@ -16,6 +16,7 @@
   --form_height: 40vh;
   --full_table_width: 100vw;
   --full_table_height: 75vh;
+  --debug_section_height: 63px;
 }
 
 /**
@@ -362,8 +363,17 @@
 
 .PAGE_FULL_TABLE_CONTENT {
     position: fixed;
-    bottom: calc(var(--footer_height)* 2);
+    bottom: calc(var(--footer_height)* 5);
     height: var(--full_table_height);
+    width : var(--full_table_width);
+    left: var(--sidebar_width);
+    background-color: lightgray;
+    }
+
+.PAGE_DEBUG_CONTENT {
+    position: fixed;
+    bottom: calc(var(--footer_height)* 2);
+    height: var(--debug_section_height);
     width : var(--full_table_width);
     left: var(--sidebar_width);
     background-color: lightgray;
