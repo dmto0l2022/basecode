@@ -50,7 +50,7 @@ for index, row in table_meta_data_df.iterrows():
     #print(row['name'], row['age'])
     add_dict = {'if': {'column_id': row['name'] },'width':row['width']}
     conditional_column_widths = conditional_column_widths.append(add_dict)
-    table_column_names = table_column_names + row['name']
+    table_column_names = table_column_names + [row['name']]
 
 print("table_column_names>>>>>>>>>>>>", table_column_names)
 print("conditional_column_widths>>>>>>>>>>>>", conditional_column_widths)
