@@ -69,9 +69,33 @@ print("conditional_column_widths>>>>>>>>>>>>", conditional_column_widths)
 
 ##########################################################
 
+### table configurations
+
 table_heights = 120
 row_height = '13px'
 font_size = '12px'
+
+table_cell_styles = {'textAlign': 'left','padding': '0px','font_size': font_size,
+                        'overflow': 'hidden',
+                        'textOverflow': 'ellipsis',
+                        'border': '1px solid black',
+                        'height': row_height,
+                    }
+
+css_row_heights = [
+                    {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
+                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
+                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
+                    ]
+
+button_styling = {'font-size': '12px', 'width': '70px', 'display': 'inline-block', 
+                      'margin-bottom': '1px', 'margin-right': '0px','margin-top': '1px', 'height':'19px',
+                      'verticalAlign': 'center'}
 
 '''
 class MakeApiCall():
@@ -166,99 +190,18 @@ def get_layout():
     table_data_dict, table_data_frame, table_column_names = RefreshTableData()
     
     main_table = dash_table.DataTable(
-        id= main_table_id,
-        data=table_data_dict,
+        id = main_table_id,
+        data = table_data_dict,
         columns=[{"name": c, "id": c} for c in table_column_names],
         fixed_rows={'headers': True},
-        #fixed_rows={'headers': True},
-        #page_size=5,
         filter_action='none',
-        #row_selectable='multi',
-        #selected_rows=[],
-    
-        style_cell={'textAlign': 'left','padding': '0px','font_size': font_size,
-                        'overflow': 'hidden',
-                        'textOverflow': 'ellipsis',
-                        'border': '1px solid black',
-                        #'height': 'auto'
-                        'height': row_height,
-                    },
-         css=[
-                    {"selector": ".Select-menu-outer", "rule": "display: block !important"},
-                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
-                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
-                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
-                    ],
-        
-        #style_table={'height': '75vh',},
-        ## 'user_id','secret_key','public_key', 'created_at','modified_at','ceased_at'
+        style_cell=table_cell_styles,
+        css=css_row_heights,
         style_cell_conditional=conditional_column_widths,
-        #style_data={
-        #    'whiteSpace': 'normal',
-        #    'height': 'auto',
-        #},
-        #style_header=style_header_var,
-        #tooltip_data=[
-        #    {
-        #        column: {'value': str(value), 'type': 'markdown'}
-        #        for column, value in row.items()
-        #    } for row in data
-        #],
         tooltip_duration=None,
         )
     
-    ##########################
-    #{
-    #        'selector': '.dash-spreadsheet td div',
-    #        'rule': '''
-    #            line-height: 12px;
-    #            max-height: 12px; min-height: 12px; height: 12px;
-    #            display: block;
-    #            overflow-y: hidden;
-    #        '''
-    #    },
     
-    ##########################
-    
-    
-    '''
-    table_layout = html.Div(
-        [
-            html.Div(
-                [
-                    dash_table.DataTable(
-                        id="table",
-                        columns=[{"name": c, "id": c} for c in column_names],
-                        data=table_data_frame_initial.to_dict("records"),
-                        page_size=10,
-                        sort_action="native",
-                        active_cell=initial_active_cell,
-                    ),
-                ],
-                style={"margin": 50},
-                className="five columns"
-            ),
-            html.Div(id="output-div", className="six columns"),
-        ],
-        className="row"
-    )
-    '''
-
-    '''
-    dcc.Location(id="url", refresh=True), ## important to allow redirects
-    html.Div("Limit Menu"),
-    html.Button('Create New', id=page_name + '_create_new_' + 'button_id', n_clicks=0),
-    html.Button('Edit Existing', id=page_name + '_edit_existing_' + 'button_id', n_clicks=0),
-    html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0),
-    '''
-    
-    button_styling = {'font-size': '12px', 'width': '70px', 'display': 'inline-block', 
-                      'margin-bottom': '1px', 'margin-right': '0px','margin-top': '1px', 'height':'19px',
-                      'verticalAlign': 'center'}
   
     #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
