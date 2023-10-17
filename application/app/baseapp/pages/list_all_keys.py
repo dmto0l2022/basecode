@@ -281,7 +281,7 @@ def get_layout():
             ),
             html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(id=page_name+"output-div", children="Debug Output Here", className="NOPADDING_CONTENT"),
-            html.Div(id=page_name+"page_buttons", children=[save_button,cancel_button,home_button], className="NOPADDING_CONTENT PAGE_FOOTER_BUTTONS"),
+            html.Div(id=page_name+"page_buttons", children=[save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
         ],
         className="row NOPADDING_CONTENT"
     )
