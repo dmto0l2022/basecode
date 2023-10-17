@@ -248,6 +248,15 @@ def get_layout():
     )
     '''
 
+    '''
+    dcc.Location(id="url", refresh=True), ## important to allow redirects
+    html.Div("Limit Menu"),
+    html.Button('Create New', id=page_name + '_create_new_' + 'button_id', n_clicks=0),
+    html.Button('Edit Existing', id=page_name + '_edit_existing_' + 'button_id', n_clicks=0),
+    html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0),
+    '''
+
+  
     #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
     save_button =  html.Div(dbc.Button("Save", id= page_name + "edit_button_id", color="primary"), className = "FORM_SAVE_BUTN")
@@ -258,7 +267,8 @@ def get_layout():
   
     table_layout = html.Div(
         [
-            html.Div(children="Table Title", className="NOPADDING_CONTENT TABLE_TITLE"),
+            dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
+            html.Div(children=page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
                     main_table
@@ -267,6 +277,7 @@ def get_layout():
             ),
             html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(id=page_name+"output-div", children="Debug Output Here", className="NOPADDING_CONTENT"),
+            html.Div(id=page_name+"page_buttons", children=[save_button,cancel_button,home_button], className="NOPADDING_CONTENT"),
         ],
         className="row NOPADDING_CONTENT"
     )
