@@ -66,39 +66,6 @@ for index, row in table_meta_data_data_df.iterrows():
 print("table_column_names>>>>>>>>>>>>", table_column_names_data)
 print("conditional_column_widths>>>>>>>>>>>>", conditional_column_widths)
 
-'''
-## table_format
-conditional_column_widths = [{'if': {'column_id': 'id'},
-             'width': '2%'},
-            {'if': {'column_id': 'user_id'},
-             'width': '2%'},
-            {'if': {'column_id': 'api_key'},
-             'width': '25%'},
-            {'if': {'column_id': 'public_key'},
-             'width': '25%'},
-            {'if': {'column_id': 'created_at'},
-             'width': '5%'},
-            {'if': {'column_id': 'modified_at'},
-             'width': '5%'},
-            {'if': {'column_id': 'ceased_at'},
-             'width': '5%'},
-            {'if': {'column_id': 'edit'},
-             'width': '2%'},
-            {'if': {'column_id': 'cease'},
-             'width': '2%'},
-            {'if': {'column_id': 'delete'},
-             'width': '2'}]
-'''
-
-#### list all keys
-
-#submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
-
-#edit_button =  html.Div(dbc.Button("Edit", id="list_all_limits_edit_button_id", color="primary"), className = "FORM_SUBMIT_BUTN")
-
-#cancel_button =  html.Div(dbc.Button("Cancel",  id="list_all_limits_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-
-#cancel_button =  dbc.Col(dbc.Button("Cancel", color="secondary"), width="auto")
 
 ##########################################################
 
@@ -280,7 +247,15 @@ def get_layout():
         className="row"
     )
     '''
-    
+
+    #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
+
+    save_button =  html.Div(dbc.Button("Save", id= page_name + "edit_button_id", color="primary"), className = "FORM_SAVE_BUTN")
+
+    cancel_button =  html.Div(dbc.Button("Cancel",  id=page_name + "cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+
+    home_button =  html.Div(dbc.Button("Home",  id=page_name + "home_button_id", color="secondary"), className = "FORM_HOME_BUTN")
+  
     table_layout = html.Div(
         [
             html.Div(children="Table Title", className="NOPADDING_CONTENT TABLE_TITLE"),
