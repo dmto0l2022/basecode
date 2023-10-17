@@ -324,6 +324,14 @@
     background-color: gray;
     }
 
+.PAGE_FOOTER_BUTTONS {
+    position: fixed;
+    bottom: var(--footer_height);
+    left: 0;
+    right: 0;
+    height: var(--footer_height);
+    background-color: gray;
+    }
 
 .PAGE_CONTENT {
     position: fixed;
