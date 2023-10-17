@@ -62,7 +62,7 @@ for index, row in table_meta_data_all_df.iterrows():
 for index, row in table_meta_data_data_df.iterrows():  
     table_column_names_data = table_column_names_data + [row['name']]
 
-print("table_column_names>>>>>>>>>>>>", table_column_names)
+print("table_column_names>>>>>>>>>>>>", table_column_names_data)
 print("conditional_column_widths>>>>>>>>>>>>", conditional_column_widths)
 
 '''
