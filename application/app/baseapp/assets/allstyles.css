@@ -39,6 +39,14 @@
   font-weight: bold;
 }
 
+.OUTPUT_CELL {
+  text-align: center;
+  color: black;
+  font-size:12px;
+  font-weight: normal;
+  height: 21px;
+}
+
 
 .COLUMN_DIV {
     height:100%;
