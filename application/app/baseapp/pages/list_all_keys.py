@@ -53,7 +53,7 @@ table_meta_data_df = pd.DataFrame(data=all_table_meta_data_data, columns=table_m
 conditional_column_widths = []
 table_column_names_data = []
 
-for index, row in all_table_meta_data_data.iterrows():
+for index, row in table_meta_data_df.iterrows():
     #print(row['name'], row['age'])
     add_dict = {'if': {'column_id': row['name'] },'width':row['width']}
     conditional_column_widths.append(add_dict)
