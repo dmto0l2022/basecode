@@ -259,11 +259,11 @@ def get_layout():
   
     #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
-    save_button =  html.Div(dbc.Button("Save", id= page_name + "edit_button_id", color="primary"), className = "FORM_SAVE_BUTN")
+    save_button =  dbc.Button("Save", id= page_name + "edit_button_id", color="primary")
 
-    cancel_button =  html.Div(dbc.Button("Cancel",  id=page_name + "cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+    cancel_button =  dbc.Button("Cancel",  id=page_name + "cancel_button_id", color="secondary")
 
-    home_button =  html.Div(dbc.Button("Home",  id=page_name + "home_button_id", color="secondary"), className = "FORM_HOME_BUTN")
+    home_button =  dbc.Button("Home",  id=page_name + "home_button_id", color="secondary")
   
     table_layout = html.Div(
         [
