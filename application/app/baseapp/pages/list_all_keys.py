@@ -189,8 +189,9 @@ def get_layout():
     home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling)
 
     debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
-            html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT"),
-            html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT")])
+                                      html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT"),
+                                      html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT")],
+                                      className="PAGE_DEBUG_CONTENT")
 
   
     table_layout = html.Div(
