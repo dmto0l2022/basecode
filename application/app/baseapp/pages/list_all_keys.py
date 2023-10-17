@@ -34,10 +34,11 @@ table_meta_data_columns = ['name', 'width']
 table_meta_data_data = [
                         ['id', '2%'],
                         ['user_id', '2%'],
-                        ['api_key', '25%'],
-                        ['public_key', '25%'],
+                        ['api_key', '18%'],
+                        ['public_key', '18%'],
                         ['created_at', '5%'],
-                        ['modified_at', '5%']
+                        ['modified_at', '5%'],
+                        ['ceased_at', '5%']
                        ]
 
 button_meta_data_data =[
