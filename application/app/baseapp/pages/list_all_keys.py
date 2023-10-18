@@ -77,6 +77,7 @@ class get_main_table:
         self.table_font_size = table_font_size_in
         self.fastapi_url_all = fastapi_url_all_in
         self.fastapi_url_one = fastapi_url_one_in
+        self.internal_header = {'dmtool-userid':'999'}
         self.table_meta_data_columns = ['name', 'width']
         self.button_meta_data_data =[
                             ['edit', '2%'],
@@ -86,66 +87,67 @@ class get_main_table:
         self.all_table_meta_data_data = self.table_meta_data_data + self.button_meta_data_data
         self.table_meta_data_all_df = pd.DataFrame(data=self.all_table_meta_data_data, columns=self.table_meta_data_columns)
         self.table_meta_data_data_df = pd.DataFrame(data=self.table_meta_data_data, columns=self.table_meta_data_columns)
-        self.conditional_column_widths = []
-        self.table_column_names_data = []
-        self.get_conditional_column_widths()
-        self.get_all_column_names():
 
-    def get_conditional_column_widths(self):
-            
-        for index, row in table_meta_data_all_df.iterrows():
-            #print(row['name'], row['age'])
-            add_dict = {'if': {'column_id': row['name'] },'width':row['width']}
-            self.conditional_column_widths.append(add_dict)
-        print("conditional_column_widths>>>>>>>>>>>>", self.conditional_column_widths)
-
-    def get_all_column_names():
-        for index, row in table_meta_data_data_df.iterrows():  
-            self.table_column_names_data = self.table_column_names_data + [row['name']]
-        print("table_column_names>>>>>>>>>>>>", self.table_column_names_data)
-        
-   
-    def get_dash_table():
-        table_cell_styles = {'textAlign': 'left','padding': '0px','font_size': self.table_font_size,
+        self.table_cell_styles = {'textAlign': 'left','padding': '0px','font_size': self.table_font_size,
                             'overflow': 'hidden',
                             'textOverflow': 'ellipsis',
                             'border': '1px solid black',
                             'height': row_height_in,
                         }
 
-        css_row_heights = [
+        self.css_row_heights = [
                             {"selector": ".Select-menu-outer", "rule": "display: block !important"},
                             {"selector": "p", "rule" :"margin: 0px; padding:0px"},
-                            {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height_in + "; height: " + row_height_in + ";line-height: " + row_height_in + ";max-height: " + row_height_in + ";"},  # set height of header
-                            {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height_in + "; height: " + row_height_in + ";line-height: " + row_height_in + ";max-height: " + row_height_in + ";"},
-                            {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height_in + "; height: " + row_height_in + ";line-height: " + row_height_in + ";max-height: " + row_height_in + ";"},  # set height of body rows
-                            {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height_in + "; height: " + row_height_in + ";line-height: " + row_height_in + ";max-height: " + row_height_in + ";"},  # set height of header
-                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height_in + "; height: " + row_height_in + ";line-height: " + row_height_in + ";max-height: " + row_height_in + ";"},
-                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height_in + "; height: " + row_height_in + ";line-height: " + row_height_in + ";max-height: " + row_height_in + ";"}
+                            {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                            {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                            {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of body rows
+                            {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"}
                             ]
     
-        button_styling = {'font-size': '12px', 'width': '70px', 'display': 'inline-block', 
-                          'margin-bottom': '1px', 'margin-right': '0px','margin-top': '1px', 'height':'19px',
-                          'verticalAlign': 'center'}
+        self.button_styling = {'font-size': '12px', 'width': '70px', 'display': 'inline-block', 
+                              'margin-bottom': '1px', 'margin-right': '0px','margin-top': '1px', 'height':'19px',
+                              'verticalAlign': 'center'}
+        
+        self.conditional_column_widths = []
+        self.table_column_names_data = []
+        self.get_conditional_column_widths()
+        self.get_data_column_names()
+        self.all_table_column_names = self.table_column_names_data+['edit','ceased','delete']
 
+    def get_conditional_column_widths(self):
+            
+        for index, row in self.table_meta_data_all_df.iterrows():
+            #print(row['name'], row['age'])
+            add_dict = {'if': {'column_id': row['name'] },'width':row['width']}
+            self.conditional_column_widths.append(add_dict)
+        print("conditional_column_widths>>>>>>>>>>>>", self.conditional_column_widths)
 
+    def get_data_column_names():
+        for index, row in self.table_meta_data_data_df.iterrows():  
+            self.table_column_names_data = self.table_column_names_data + [row['name']]
+        print("table_column_names_data>>>>>>>>>>>>", self.table_column_names_data)
+        
+   
+    
     ###
     
     def DeleteRow(key_in):
-        delete_url = fastapi_url_one_in + str(key_in)
-        requests.delete(delete_url, headers=internal_header)
+        delete_url = self.fastapi_url_one + str(key_in)
+        requests.delete(delete_url, headers=self.internal_header)
     
     def CeaseRow(key_in):
-        cease_url = fastapi_url_one_in + str(key_in)
+        cease_url = self.fastapi_url_one + str(key_in)
         print('cease >>' + str(key_in))
-        requests.put(cease_url, headers=internal_header)
+        requests.put(cease_url, headers=self.internal_header)
     
     
     def RefreshTableData():
-        url = fastapi_url_all_in
+        #url = fastapi_url_all_in
         response_data_frame = pd.DataFrame()
         try:
-            r = requests.get(url, headers=internal_header)
+            r = requests.get(self.fastapi_url_all, headers = self.internal_header)
             response_data = r.json()
             print('response data')
             print('===================')
@@ -155,10 +157,11 @@ class get_main_table:
         except:
             a = 1
     
-        all_table_column_names = table_column_names_data+['edit','ceased','delete']
+        #all_table_column_names = table_column_names_data+['edit','ceased','delete']
       
         if response_data_frame.empty:
-            empty_data = [table_column_names_data+['edit','ceased','delete']]
+            #empty_data = [table_column_names_data+['edit','ceased','delete']]
+            empty_data = self.table_column_names_data+['edit','ceased','delete']
             updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=all_table_column_names)
             updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
         else:
@@ -171,31 +174,31 @@ class get_main_table:
             #updated_data_frame_ret['update'] = "update"
             updated_data_frame_ret['delete'] = "delete"
             updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
-        return updated_data_dict_ret, updated_data_frame_ret, all_table_column_names
+        
+        selfupdated_data_dict_ret, updated_data_frame_ret, all_table_column_names
     
+    def get_dash_table():
+        
+        table_data_dict, table_data_frame, table_column_names = self.RefreshTableData()
+    
+        self.dash_table_main = dash_table.DataTable(
+            id = self.main_table_id,
+            data = table_data_dict,
+            columns=[{"name": c, "id": c} for c in table_column_names],
+            fixed_rows={'headers': True},
+            filter_action='none',
+            style_cell=self.table_cell_styles,
+            css=self.css_row_heights,
+            style_cell_conditional=self.conditional_column_widths,
+            tooltip_duration=None,
+            )
     
     #table_data_dict_initial, table_data_frame_initial, column_names = RefreshTableData()
     initial_active_cell = {"row": 0, "column": 0, "column_id": "id", "row_id": 0}
 
 ###########################################################
 
-def get_layout():
-
-    table_data_dict, table_data_frame, table_column_names = RefreshTableData()
-    
-    main_table = dash_table.DataTable(
-        id = main_table_id,
-        data = table_data_dict,
-        columns=[{"name": c, "id": c} for c in table_column_names],
-        fixed_rows={'headers': True},
-        filter_action='none',
-        style_cell=table_cell_styles,
-        css=css_row_heights,
-        style_cell_conditional=conditional_column_widths,
-        tooltip_duration=None,
-        )
-    
-    
+def get_layout():    
   
     #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
