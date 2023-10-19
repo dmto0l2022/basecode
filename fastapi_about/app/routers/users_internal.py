@@ -346,16 +346,19 @@ async def get_user_api_key(user_id: int, session: AsyncSession = Depends(get_ses
 @router.post(api_base_url + "user_api_key")
 async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSession = Depends(get_session),
                     dmtool_userid: Annotated[int | None, Header()] = None):
-    public_key_gen, private_key_gen = rsa.newkeys(512)
-    print('public_key_gen  >>>' ,public_key_gen)
-    print('private_key_gen  >>>' ,private_key_gen)
+    #public_key_gen, private_key_gen = rsa.newkeys(512)
+    #print('public_key_gen  >>>' ,public_key_gen)
+    #print('private_key_gen  >>>' ,private_key_gen)
     api_key_str = str(uuid.uuid1())
-    encrypted_api_key = rsa.encrypt(api_key_str.encode(),public_key_gen)
+    encrypted_api_key_str = str(uuid.uuid1())
+    public_key_gen_str = str(uuid.uuid1())
+    private_key_gen_str = str(uuid.uuid1())              
+    #encrypted_api_key = rsa.encrypt(api_key_str.encode(),public_key_gen)
     user_api_key = User_api_key(user_id = user_api_key.user_id,
                         api_key = api_key_str,
-                        encrypted_api_key = encrypted_api_key,
-                        public_key = public_key_gen,
-                        private_key = private_key_gen,
+                        encrypted_api_key = encrypted_api_key_str,
+                        public_key = public_key_gen_str,
+                        private_key = private_key_gen_str,
                         created_at = datetime.utcnow(),
                         modified_at = datetime.utcnow(),
                         ceased_at = user_api_key.ceased_at)
