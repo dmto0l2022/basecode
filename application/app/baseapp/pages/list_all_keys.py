@@ -97,14 +97,14 @@ class get_main_table:
         
         self.conditional_column_widths = []
         self.table_column_names_data = []
-        self.get_conditional_column_widths(self)
-        self.get_data_column_names(self)
+        self.get_conditional_column_widths()
+        self.get_data_column_names()
         self.all_table_column_names = self.table_column_names_data+['edit','ceased','delete']
         self.main_table_data_dict = {}
         self.main_table_data_frame = pd.DataFrame()
-        self.RefreshTableData(self)
+        self.RefreshTableData()
         self.dash_table_main = dash_table.DataTable()
-        self.get_dash_table(self)
+        self.get_dash_table()
         
         
 
