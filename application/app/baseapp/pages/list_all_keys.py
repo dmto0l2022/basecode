@@ -306,7 +306,7 @@ layout = get_layout
     prevent_initial_call=True
 )
 def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
-    active_cell_reset = {"row": 0, "column": 0, "column_id": "id", "row_id": 0}
+    active_cell_reset = None
     main_table_1.RefreshTableData()
     return_cell_msg = "No cells clicked yet"
     button_press_msg = "None of the buttons have been clicked yet"
@@ -315,7 +315,7 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     print("list all keys : active_cell >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_in)
     print("list all keys : active_cell reset  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_reset)
     
-    if active_cell_in != active_cell_reset:
+    if active_cell_in:
 
         #row = active_cell["row_id"]
         row_id = active_cell_in["row_id"]
