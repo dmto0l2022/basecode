@@ -192,6 +192,15 @@ page_name = "list_all_keys"
 page_title = 'List All Keys'
 baseapp_prefix = '/application/baseapp'
 
+button_styling_1 = {'font-size': '12px',
+                  'width': '70px',
+                  'display': 'inline-block', 
+                  'margin-bottom': '1px',
+                  'margin-right': '0px',
+                  'margin-top': '1px',
+                  'height':'19px',
+                  'verticalAlign': 'center'}
+
 ### table data
 #table_column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at']
 
@@ -227,11 +236,11 @@ def get_layout():
   
     #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
-    save_button =  html.Button("Save", id= page_name + "save_button_id", style=main_table_1.button_styling)
+    save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
 
-    cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=main_table_1.button_styling)
+    cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
 
-    home_button =  html.Button("Home",  id=page_name + "home_button_id", style=main_table_1.button_styling)
+    home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling_1)
 
     debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
                                       html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
@@ -266,13 +275,13 @@ layout = get_layout
 
 #layout = no_output
 
-'''
+
 @callback(
     [Output(page_name+"cell-output-div", "children"), Output(main_table_id,'data')], Input(main_table_id, "active_cell"),
 )
 def cell_clicked(active_cell):
     
-    updated_data_dict, updated_data_frame, column_names = RefreshTableData()
+    main_table_1.RefreshTableData()
     
     if active_cell is None:
         return no_update
@@ -290,7 +299,7 @@ def cell_clicked(active_cell):
 
     #country = df.at[row, "country"]
     #print(country)
-    id = updated_data_frame.at[row, "id"]
+    id = main_table_1.main_table_data_frame.at[row, "id"]
     #print("id >> ", id)
 
     column = active_cell["column"]
@@ -312,15 +321,15 @@ def cell_clicked(active_cell):
 
     
     if cell_value == 'delete':
-        DeleteRow(id)
-        updated_data_dict, updated_data_frame, column_names = RefreshTableData()
+        main_table_1.DeleteRow(id)
+        main_table_1.RefreshTableData()
 
     if cell_value == 'cease':
-        CeaseRow(id)
-        updated_data_dict, updated_data_frame, column_names = RefreshTableData()
+        main_table_1.CeaseRow(id)
+        main_table_1.RefreshTableData()
             
     return_data = row, " ", column, " ",cell_value, " ", id
-    return return_data, updated_data_dict
+    return return_data, main_table_1.main_table_data_dict
 
 
 
@@ -359,5 +368,4 @@ def button_click(savebutton,cancelbutton,homebutton):
         msg = "No Button Clicked"
         return msg
 
-'''
 
