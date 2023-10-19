@@ -236,6 +236,8 @@ def get_layout():
   
     #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
+    new_button =  html.Button("New", id= page_name + "new_button_id", style=button_styling_1)
+
     save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
 
     cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
@@ -267,7 +269,7 @@ def get_layout():
                 className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
             ),
             debug_output,
-            html.Div(id= page_name + "page_buttons", children=[save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
+            html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
         ],
         className="row NOPADDING_CONTENT"
     )
@@ -346,17 +348,23 @@ def cell_clicked(active_cell):
     #Output(page_name + "url", 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     Output(page_name+"button-output-div", "children"),
     [
+    Input(page_name + "new_button_id", "n_clicks"),
     Input(page_name + "save_button_id", "n_clicks"),
     Input(page_name + "cancel_button_id", "n_clicks"),
     Input(page_name + "home_button_id", "n_clicks"),
         ],
         prevent_initial_call=True
 )
-def button_click(savebutton,cancelbutton,homebutton):
+def button_click(newbutton,savebutton,cancelbutton,homebutton):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     #msg = prop_id
-    if page_name + "save_button_id" == prop_id :
+    if page_name + "new_button_id" == prop_id :
+        msg = "New Button was most recently clicked"
+        #href_return = dash.page_registry['pages.show_limit']['path']
+        #return href_return
+        return msg
+    elif page_name + "save_button_id" == prop_id :
         msg = "Save Button was most recently clicked"
         #href_return = dash.page_registry['pages.show_limit']['path']
         #return href_return
