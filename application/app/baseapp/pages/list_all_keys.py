@@ -247,7 +247,15 @@ def get_layout():
                                       html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
                                       className="PAGE_DEBUG_CONTENT")
 
-  
+
+    main_table_1 = get_main_table(page_title,
+                 main_table_id,
+                 table_meta_data_data,
+                 row_height,
+                 table_font_size,
+                 fastapi_url_all,
+                 fastapi_url_one)
+    
     table_layout = html.Div(
         [
             dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
