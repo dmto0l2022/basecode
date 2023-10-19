@@ -363,9 +363,11 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
         return  return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
     
     else:
-            
+
+        print("Button has been pressed")
         button_press_msg = "None of the buttons have been clicked yet"
         prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+        print("prop_id >>>>>>>>>>>" , prop_id)
         #msg = prop_id
         if page_name + "new_button_id" == prop_id :
             button_press_msg = "New Button was most recently clicked"
