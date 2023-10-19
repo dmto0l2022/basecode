@@ -97,14 +97,14 @@ class get_main_table:
         
         self.conditional_column_widths = []
         self.table_column_names_data = []
-        self.get_conditional_column_widths()
-        self.get_data_column_names()
+        self.get_conditional_column_widths(self)
+        self.get_data_column_names(self)
         self.all_table_column_names = self.table_column_names_data+['edit','ceased','delete']
         self.main_table_data_dict = {}
         self.main_table_data_frame = pd.DataFrame()
-        self.RefreshTableData()
+        self.RefreshTableData(self)
         self.dash_table_main = dash_table.DataTable()
-        self.get_dash_table()
+        self.get_dash_table(self)
         
         
 
@@ -116,7 +116,7 @@ class get_main_table:
             self.conditional_column_widths.append(add_dict)
         print("conditional_column_widths>>>>>>>>>>>>", self.conditional_column_widths)
 
-    def get_data_column_names():
+    def get_data_column_names(self):
         for index, row in self.table_meta_data_data_df.iterrows():  
             self.table_column_names_data = self.table_column_names_data + [row['name']]
         print("table_column_names_data>>>>>>>>>>>>", self.table_column_names_data)
@@ -125,17 +125,17 @@ class get_main_table:
     
     ###
     
-    def DeleteRow(key_in):
+    def DeleteRow(self,key_in):
         delete_url = self.fastapi_url_one + str(key_in)
         requests.delete(delete_url, headers=self.internal_header)
     
-    def CeaseRow(key_in):
+    def CeaseRow(self,key_in):
         cease_url = self.fastapi_url_one + str(key_in)
         print('cease >>' + str(key_in))
         requests.put(cease_url, headers=self.internal_header)
     
     
-    def RefreshTableData():
+    def RefreshTableData(self):
         #url = fastapi_url_all_in
         response_data_frame = pd.DataFrame()
         try:
@@ -169,7 +169,7 @@ class get_main_table:
         
         
     
-    def get_dash_table():
+    def get_dash_table(self):
     
         self.dash_table_main = dash_table.DataTable(
             id = self.main_table_id,
