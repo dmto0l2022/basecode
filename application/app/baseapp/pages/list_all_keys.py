@@ -132,6 +132,7 @@ class get_main_table:
     def CeaseRow(self,key_in):
         cease_url = self.fastapi_url_one + str(key_in)
         print('cease >>' + str(key_in))
+        print('cease url >>' + str(cease_url))
         requests.post(cease_url, headers=self.internal_header)
 
     def NewRow(self,dmtool_user_in):
