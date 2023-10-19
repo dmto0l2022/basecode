@@ -133,6 +133,11 @@ class get_main_table:
         cease_url = self.fastapi_url_one + str(key_in)
         print('cease >>' + str(key_in))
         requests.put(cease_url, headers=self.internal_header)
+
+    def NewRow(self,key_in):
+        cease_url = self.fastapi_url_one + str(key_in)
+        print('cease >>' + str(key_in))
+        requests.put(cease_url, headers=self.internal_header)
     
     
     def RefreshTableData(self):
