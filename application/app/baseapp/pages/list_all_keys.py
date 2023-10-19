@@ -69,7 +69,14 @@ class Person:
 '''
 
 class get_main_table:
-    def __init__(self, page_title_in, main_table_id_in,table_meta_data_data_in,row_height_in, table_font_size_in, fastapi_url_all_in, fastapi_url_one_in):
+    def __init__(self, page_title_in,
+                 main_table_id_in,
+                 table_meta_data_data_in,
+                 row_height_in,
+                 table_font_size_in,
+                 fastapi_url_all_in,
+                 fastapi_url_one_in):
+
         self.page_title = page_title_in
         self.main_table_id = main_table_id_in
         self.table_meta_data_data = table_meta_data_data_in
@@ -110,11 +117,19 @@ class get_main_table:
                               'margin-bottom': '1px', 'margin-right': '0px','margin-top': '1px', 'height':'19px',
                               'verticalAlign': 'center'}
         
+        self.initial_active_cell = {"row": 0, "column": 0, "column_id": "id", "row_id": 0}
+
+        
         self.conditional_column_widths = []
         self.table_column_names_data = []
         self.get_conditional_column_widths()
         self.get_data_column_names()
         self.all_table_column_names = self.table_column_names_data+['edit','ceased','delete']
+        self.updated_data_dict_ret = {}
+        self.updated_data_frame_ret = pd.DataFrame()
+        self.RefreshTableData()
+        self.dash_table_main = dash_table.DataTable()
+        
 
     def get_conditional_column_widths(self):
             
@@ -153,7 +168,7 @@ class get_main_table:
             print('===================')
             print(response_data)
             print('===================')
-            response_data_frame = pd.DataFrame(response_data)
+            self.response_data_frame = pd.DataFrame(response_data)
         except:
             a = 1
     
@@ -162,28 +177,26 @@ class get_main_table:
         if response_data_frame.empty:
             #empty_data = [table_column_names_data+['edit','ceased','delete']]
             empty_data = self.table_column_names_data+['edit','ceased','delete']
-            updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=all_table_column_names)
-            updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
+            self.main_table_data_frame = pd.DataFrame(data = empty_data, columns = self.all_table_column_names)
+            self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
         else:
-            lst = table_column_names_data
-            updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
-            updated_data_frame_ret = updated_data_frame_ret[lst]
+            lst = self.table_column_names_data
+            self.main_table_data_frame = self.response_data_frame[self.response_data_frame.columns.intersection(lst)]
+            self.main_table_data_frame = self.main_table_data_frame[lst]
             #updated_data_frame_ret['create'] = "create"
-            updated_data_frame_ret['edit'] = "edit"
-            updated_data_frame_ret['ceased'] = "ceased"
+            self.main_table_data_frame['edit'] = "edit"
+            self.main_table_data_frame['ceased'] = "ceased"
             #updated_data_frame_ret['update'] = "update"
-            updated_data_frame_ret['delete'] = "delete"
-            updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
+            self.main_table_data_frame['delete'] = "delete"
+            self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
         
-        selfupdated_data_dict_ret, updated_data_frame_ret, all_table_column_names
+        
     
     def get_dash_table():
-        
-        table_data_dict, table_data_frame, table_column_names = self.RefreshTableData()
     
         self.dash_table_main = dash_table.DataTable(
             id = self.main_table_id,
-            data = table_data_dict,
+            data = self.main_table_data_dict,
             columns=[{"name": c, "id": c} for c in table_column_names],
             fixed_rows={'headers': True},
             filter_action='none',
@@ -193,9 +206,7 @@ class get_main_table:
             tooltip_duration=None,
             )
     
-    #table_data_dict_initial, table_data_frame_initial, column_names = RefreshTableData()
-    initial_active_cell = {"row": 0, "column": 0, "column_id": "id", "row_id": 0}
-
+    
 ###########################################################
 
 def get_layout():    
