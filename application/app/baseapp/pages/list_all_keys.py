@@ -306,7 +306,7 @@ def cell_clicked(active_cell):
     #print(f"column: {column}")
     #print("---------------------")
     
-    cell_value = updated_data_frame.iat[active_cell['row'], active_cell['column']]
+    cell_value = main_table_1.main_table_data_frame.iat[active_cell['row'], active_cell['column']]
 
     #print("cell_value > ", cell_value)
 
