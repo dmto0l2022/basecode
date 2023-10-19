@@ -186,26 +186,29 @@ def callback():
     internal_header = {'dmtool-userid': '999'}
     fastapi_about_url = "http://container_fastapi_about_1:8016/
     get_user_api = "dmtool/fastapi_about/internal/about/user/"
-    get_or_create_user = fastapi_about_url + get_user_api + email
-    google_req = requests.get(fastapi_about_url,headers=internal_header)
+    get_or_create_user_url = fastapi_about_url + get_user_api + email
+    google_req = requests.get(get_or_create_user_url,headers=internal_header)
+    
+    print("get_or_create_user_url >>>" , get_or_create_user_url)
+    #google_req = requests.get(url_get)
+    print("google user status code >>>> " , google_req.status_code)
+    
+    if google_req.status_code == 404:
+        url = fastapi_url + "/dmtool/fastapi_about/internal/about/user"
+        #json={"key": "value"}
+        json = {
+          "email" : email,
+          "authlib_id": 999,
+          "authlib_provider": "google"
+        }
+        post_request = requests.post(url, json=json, headers=internal_header)
+        print('new google user request status code >>> ' ,post_request.status_code)
+
+
     dmtool_userid = google_req.json()['id']
     print('dmtool_userid >>>>>>', dmtool_userid)
     #print(google_req.json())
     session['dmtool_userid'] = dmtool_userid
-    
-    #print("url_get >>>" , url_get)
-    #google_req = requests.get(url_get)
-    #print("google user status code >>>> " , google_req.status_code)
-    #if google_req.status_code == 404:
-    #    url = fastapi_url + "/apiorm/authlibuser/google/"
-    #    #json={"key": "value"}
-    #    json = {
-    #      "authlib_id": google_id,
-    #      "authlib_provider": "google"
-    #    }
-    #    post_request = requests.post(url, json=json)
-    #    print('post request status code >>> ' ,post_request.status_code)
-   
     #google_req = requests.get(url_get)
     #dmtool_userid = google_req.json()['id']
     #print('dmtool_userid >>>>>>', dmtool_userid)
@@ -213,17 +216,23 @@ def callback():
 
     #session['dmtool_userid'] = dmtool_userid
 
-    permissions_url = fastapi_about_url + "/apiorm/authlibuser/permissions/"
-    #request_permissions = url + str(dmtool_userid)
-    #print('request_permissions >>>>', request_permissions)
+    permissions_url = fastapi_about_url + "/dmtool/fastapi_about/internal/about/user_permission/"
     
-    #authorisation_check = requests.get(request_permissions)
-    #if authorisation_check.status_code == 404:
-    #    session['dmtool_authorised'] = False
-    #else:
-    #    session['dmtool_authorised'] = True
+    request_permissions = permissions_url + str(dmtool_userid)
+    print('request_permissions >>>>', request_permissions)
     
-    #print('authorisation_check.json() >>>>>>', authorisation_check.json())
+    authorisation_check = requests.get(request_permissions,headers=internal_header)
+
+    ## leaving this code in case we need to block an email address
+    
+    if authorisation_check.status_code == 404:
+        authorisation_create = requests.post(request_permissions,headers=internal_header)
+        #session['dmtool_authorised'] = 0
+        session['dmtool_authorised'] = 1
+    else:
+        session['dmtool_authorised'] = 1
+    
+    print('authorisation_check.json() >>>>>>', authorisation_check.json())
     #session['dmtool_authorised'] = authorisation_check.json()['authorised']
     
     return redirect(url_for('.menu'))
