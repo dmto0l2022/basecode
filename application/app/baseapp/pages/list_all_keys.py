@@ -297,33 +297,34 @@ layout = get_layout
 @callback(
     [Output(page_name+"cell-output-div", "children"),
      Output(page_name+"button-output-div", "children"),
-     Output(main_table_id,'data')],
+     Output(main_table_id,'data'),
+     Output(main_table_id, "active_cell")],
     [Input(main_table_id, "active_cell"),Input(page_name + "new_button_id", "n_clicks"),
     Input(page_name + "save_button_id", "n_clicks"),
     Input(page_name + "cancel_button_id", "n_clicks"),
     Input(page_name + "home_button_id", "n_clicks")],
     prevent_initial_call=True
 )
-def action_taken(active_cell,newbutton,savebutton,cancelbutton,homebutton):
-    
+def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
+    active_cell_reset = {"row": 0, "column": 0, "column_id": "id", "row_id": 0}
     main_table_1.RefreshTableData()
     return_cell_msg = ""
     button_press_msg = ""
     return_data_dict = main_table_1.main_table_data_dict
     print('------------------------------- call back triggered -------------------------')
-    print("list all keys : active_cell >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell)
+    print("list all keys : active_cell >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_in)
     
-    if active_cell is not None:
+    if active_cell_in is not active_cell_reset:
 
         #row = active_cell["row_id"]
-        row_id = active_cell["row_id"]
+        row_id = active_cell_in["row_id"]
         #print(f"row_id: {row_id}")
         
         #row = active_cell["row_id"]
-        column_id = active_cell["column_id"]
+        column_id = active_cell_in["column_id"]
         #print(f"column_id: {column_id}")
         
-        row = active_cell["row"]
+        row = active_cell_in["row"]
         #print(f"row: {row}")
     
         #country = df.at[row, "country"]
@@ -331,11 +332,11 @@ def action_taken(active_cell,newbutton,savebutton,cancelbutton,homebutton):
         id = main_table_1.main_table_data_frame.at[row, "id"]
         #print("id >> ", id)
     
-        column = active_cell["column"]
+        column = active_cell_in["column"]
         #print(f"column: {column}")
         #print("---------------------")
         
-        cell_value = main_table_1.main_table_data_frame.iat[active_cell['row'], active_cell['column']]
+        cell_value = main_table_1.main_table_data_frame.iat[active_cell_in['row'], active_cell_in['column']]
     
         #print("cell_value > ", cell_value)
     
@@ -359,7 +360,7 @@ def action_taken(active_cell,newbutton,savebutton,cancelbutton,homebutton):
                 
         return_cell_msg = row, " ", column, " ",cell_value, " ", id
         
-        return  return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+        return  return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
     
     else:
             
@@ -372,26 +373,26 @@ def action_taken(active_cell,newbutton,savebutton,cancelbutton,homebutton):
             main_table_1.RefreshTableData()
             #href_return = dash.page_registry['pages.show_limit']['path']
             #return href_return
-            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         elif page_name + "save_button_id" == prop_id :
             msg = "Save Button was most recently clicked"
             #href_return = dash.page_registry['pages.show_limit']['path']
             #return href_return
-            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         elif page_name + "cancel_button_id" == prop_id:
             msg = "Cancel Button was most recently clicked"
             #href_return = dash.page_registry['pages.home']['path']
             #return href_return
-            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         elif page_name + "home_button_id" == prop_id:
             msg = "Home Button was most recently clicked"
             #href_return = dash.page_registry['pages.home']['path']
             #return href_return
-            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         else:
             href_return = dash.page_registry['pages.home']['path']
             msg = "No Button Clicked"
-            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
 
 
 
