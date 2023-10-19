@@ -151,8 +151,7 @@ class get_main_table:
     
         #all_table_column_names = table_column_names_data+['edit','ceased','delete']
       
-        if response_data_frame.empty:
-            #empty_data = [table_column_names_data+['edit','ceased','delete']]
+        if self.response_data_frame.empty:
             empty_data = self.table_column_names_data+['edit','ceased','delete']
             print("RefreshTableData >> empty_data >>>>>>", empty_data)
             print("RefreshTableData >> all_table_column_names>>>>>>>>>>", self.all_table_column_names)
