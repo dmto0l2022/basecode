@@ -33,31 +33,6 @@ class MakeApiCall():
 '''
 
 
-fastapi_url_all = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_keys" ## multiple limit operations
-fastapi_url_one = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_key/" ## single limit operations
-internal_header={'dmtool-userid':'999'}
-
-dash.register_page(__name__, path='/list_all_keys')
-page_name = "list_all_keys"
-page_title = 'List All Keys'
-baseapp_prefix = '/application/baseapp'
-
-### table data
-#table_column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at']
-
-main_table_id = 'user_api_keys_table_main'
-table_meta_data_data = [
-                        ['id', '2%'],
-                        ['user_id', '2%'],
-                        ['api_key', '18%'],
-                        ['public_key', '18%'],
-                        ['created_at', '5%'],
-                        ['modified_at', '5%'],
-                        ['ceased_at', '5%']
-                       ]
-
-row_height = '13px'
-font_size = '12px'
 '''
 class Person:
   def __init__(self, name, age):
@@ -125,10 +100,12 @@ class get_main_table:
         self.get_conditional_column_widths()
         self.get_data_column_names()
         self.all_table_column_names = self.table_column_names_data+['edit','ceased','delete']
-        self.updated_data_dict_ret = {}
-        self.updated_data_frame_ret = pd.DataFrame()
+        self.main_table_data_dict = {}
+        self.main_table_data_frame = pd.DataFrame()
         self.RefreshTableData()
         self.dash_table_main = dash_table.DataTable()
+        self.get_dash_table()
+        
         
 
     def get_conditional_column_widths(self):
@@ -209,6 +186,42 @@ class get_main_table:
     
 ###########################################################
 
+dash.register_page(__name__, path='/list_all_keys')
+page_name = "list_all_keys"
+page_title = 'List All Keys'
+baseapp_prefix = '/application/baseapp'
+
+### table data
+#table_column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at']
+
+main_table_id = 'user_api_keys_table_main'
+table_meta_data_data = [
+                        ['id', '2%'],
+                        ['user_id', '2%'],
+                        ['api_key', '18%'],
+                        ['public_key', '18%'],
+                        ['created_at', '5%'],
+                        ['modified_at', '5%'],
+                        ['ceased_at', '5%']
+                       ]
+
+row_height = '13px'
+table_font_size = '12px'
+
+fastapi_url_all = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_keys" ## multiple limit operations
+fastapi_url_one = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_key/" ## single limit operations
+internal_header={'dmtool-userid':'999'}
+
+main_table_1 = get_main_table(page_title,
+                 main_table_id,
+                 table_meta_data_data,
+                 row_height,
+                 table_font_size,
+                 fastapi_url_all,
+                 fastapi_url_one)
+
+######################################################
+
 def get_layout():    
   
     #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
@@ -231,7 +244,7 @@ def get_layout():
             html.Div(children=page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
-                    main_table
+                    main_table_1.dash_table_main
                 ],
                 className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
             ),
@@ -252,7 +265,7 @@ layout = get_layout
 
 #layout = no_output
 
-
+'''
 @callback(
     [Output(page_name+"cell-output-div", "children"), Output(main_table_id,'data')], Input(main_table_id, "active_cell"),
 )
@@ -344,4 +357,6 @@ def button_click(savebutton,cancelbutton,homebutton):
         href_return = dash.page_registry['pages.home']['path']
         msg = "No Button Clicked"
         return msg
+
+'''
 
