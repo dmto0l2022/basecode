@@ -308,8 +308,8 @@ layout = get_layout
 def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     active_cell_reset = {"row": 0, "column": 0, "column_id": "id", "row_id": 0}
     main_table_1.RefreshTableData()
-    return_cell_msg = ""
-    button_press_msg = ""
+    return_cell_msg = "No cells clicked yet"
+    button_press_msg = "None of the buttons have been clicked yet"
     return_data_dict = main_table_1.main_table_data_dict
     print('------------------------------- call back triggered -------------------------')
     print("list all keys : active_cell >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_in)
@@ -364,34 +364,34 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     
     else:
             
-        #msg = "None of the buttons have been clicked yet"
+        button_press_msg = "None of the buttons have been clicked yet"
         prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
         #msg = prop_id
         if page_name + "new_button_id" == prop_id :
-            msg = "New Button was most recently clicked"
+            button_press_msg = "New Button was most recently clicked"
             main_table_1.NewRow('1')
             main_table_1.RefreshTableData()
             #href_return = dash.page_registry['pages.show_limit']['path']
             #return href_return
             return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         elif page_name + "save_button_id" == prop_id :
-            msg = "Save Button was most recently clicked"
+            button_press_msg = "Save Button was most recently clicked"
             #href_return = dash.page_registry['pages.show_limit']['path']
             #return href_return
             return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         elif page_name + "cancel_button_id" == prop_id:
-            msg = "Cancel Button was most recently clicked"
+            button_press_msg = "Cancel Button was most recently clicked"
             #href_return = dash.page_registry['pages.home']['path']
             #return href_return
             return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         elif page_name + "home_button_id" == prop_id:
-            msg = "Home Button was most recently clicked"
+            button_press_msg = "Home Button was most recently clicked"
             #href_return = dash.page_registry['pages.home']['path']
             #return href_return
             return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         else:
             href_return = dash.page_registry['pages.home']['path']
-            msg = "No Button Clicked"
+            button_press_msg = "No Button Clicked"
             return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
 
 
