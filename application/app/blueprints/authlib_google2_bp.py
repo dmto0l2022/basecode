@@ -184,7 +184,7 @@ def callback():
     google_id = profile_data['id']
     email = profile_data['email']
     internal_header = {'dmtool-userid': '999'}
-    fastapi_about_url = "http://container_fastapi_about_1:8016/
+    fastapi_about_url = "http://container_fastapi_about_1:8016/"
     get_user_api = "dmtool/fastapi_about/internal/about/user/"
     get_or_create_user_url = fastapi_about_url + get_user_api + email
     google_req = requests.get(get_or_create_user_url,headers=internal_header)
