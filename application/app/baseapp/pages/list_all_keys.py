@@ -295,7 +295,110 @@ layout = get_layout
 
 
 @callback(
-    [Output(page_name+"cell-output-div", "children"), Output(main_table_id,'data')], Input(main_table_id, "active_cell"),
+    [Output(page_name+"cell-output-div", "children"),
+     Output(page_name+"button-output-div", "children"),
+     Output(main_table_id,'data')],
+    [Input(main_table_id, "active_cell"),Input(page_name + "new_button_id", "n_clicks"),
+    Input(page_name + "save_button_id", "n_clicks"),
+    Input(page_name + "cancel_button_id", "n_clicks"),
+    Input(page_name + "home_button_id", "n_clicks")],
+    prevent_initial_call=True
+)
+def action_taken(active_cell,newbutton,savebutton,cancelbutton,homebutton):
+    
+    main_table_1.RefreshTableData()
+    return_cell_msg = ""
+    button_press_msg = ""
+    return_data_dict = main_table_1.main_table_data_dict
+    
+    if active_cell is not None:
+
+        #row = active_cell["row_id"]
+        row_id = active_cell["row_id"]
+        #print(f"row_id: {row_id}")
+        
+        #row = active_cell["row_id"]
+        column_id = active_cell["column_id"]
+        #print(f"column_id: {column_id}")
+        
+        row = active_cell["row"]
+        #print(f"row: {row}")
+    
+        #country = df.at[row, "country"]
+        #print(country)
+        id = main_table_1.main_table_data_frame.at[row, "id"]
+        #print("id >> ", id)
+    
+        column = active_cell["column"]
+        #print(f"column: {column}")
+        #print("---------------------")
+        
+        cell_value = main_table_1.main_table_data_frame.iat[active_cell['row'], active_cell['column']]
+    
+        #print("cell_value > ", cell_value)
+    
+        #print("---------------------")
+    
+        #print("table data frame")
+        #print("---------------------")
+    
+        #print(updated_data_frame)
+    
+        #print("---------------------")
+    
+        
+        if cell_value == 'delete':
+            main_table_1.DeleteRow(id)
+            main_table_1.RefreshTableData()
+    
+        if cell_value == 'cease':
+            main_table_1.CeaseRow(id)
+            main_table_1.RefreshTableData()
+                
+        return_cell_msg = row, " ", column, " ",cell_value, " ", id
+        
+        return  return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+    
+    else:
+            
+        #msg = "None of the buttons have been clicked yet"
+        prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+        #msg = prop_id
+        if page_name + "new_button_id" == prop_id :
+            msg = "New Button was most recently clicked"
+            main_table_1.NewRow('1')
+            main_table_1.RefreshTableData()
+            #href_return = dash.page_registry['pages.show_limit']['path']
+            #return href_return
+            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+        elif page_name + "save_button_id" == prop_id :
+            msg = "Save Button was most recently clicked"
+            #href_return = dash.page_registry['pages.show_limit']['path']
+            #return href_return
+            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+        elif page_name + "cancel_button_id" == prop_id:
+            msg = "Cancel Button was most recently clicked"
+            #href_return = dash.page_registry['pages.home']['path']
+            #return href_return
+            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+        elif page_name + "home_button_id" == prop_id:
+            msg = "Home Button was most recently clicked"
+            #href_return = dash.page_registry['pages.home']['path']
+            #return href_return
+            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+        else:
+            href_return = dash.page_registry['pages.home']['path']
+            msg = "No Button Clicked"
+            return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict
+
+
+
+
+'''
+@callback(
+    [Output(page_name+"cell-output-div", "children"),
+     Output(main_table_id,'data')],
+    Input(main_table_id, "active_cell"),
 )
 def cell_clicked(active_cell):
     
@@ -394,4 +497,4 @@ def button_click(newbutton,savebutton,cancelbutton,homebutton):
         msg = "No Button Clicked"
         return [msg, main_table_1.main_table_data_dict]
 
-
+'''
