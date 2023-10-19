@@ -154,6 +154,8 @@ class get_main_table:
         if response_data_frame.empty:
             #empty_data = [table_column_names_data+['edit','ceased','delete']]
             empty_data = self.table_column_names_data+['edit','ceased','delete']
+            print("RefreshTableData >> empty_data >>>>>>", empty_data)
+            print("RefreshTableData >> all_table_column_names>>>>>>>>>>", self.all_table_column_names)
             self.main_table_data_frame = pd.DataFrame(data = empty_data, columns = self.all_table_column_names)
             self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
         else:
