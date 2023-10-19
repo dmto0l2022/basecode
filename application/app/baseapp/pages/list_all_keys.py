@@ -313,8 +313,9 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     return_data_dict = main_table_1.main_table_data_dict
     print('------------------------------- call back triggered -------------------------')
     print("list all keys : active_cell >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_in)
+    print("list all keys : active_cell reset  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_reset)
     
-    if active_cell_in is not active_cell_reset:
+    if active_cell_in != active_cell_reset:
 
         #row = active_cell["row_id"]
         row_id = active_cell_in["row_id"]
