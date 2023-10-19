@@ -356,7 +356,7 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
             main_table_1.DeleteRow(id)
             main_table_1.RefreshTableData()
     
-        if cell_value == 'cease':
+        if cell_value == 'ceased':
             main_table_1.CeaseRow(id)
             main_table_1.RefreshTableData()
                 
