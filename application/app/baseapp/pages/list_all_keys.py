@@ -228,11 +228,11 @@ def get_layout():
   
     #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
 
-    save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling)
+    save_button =  html.Button("Save", id= page_name + "save_button_id", style=main_table_1.button_styling)
 
-    cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling)
+    cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=main_table_1.button_styling)
 
-    home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling)
+    home_button =  html.Button("Home",  id=page_name + "home_button_id", style=main_table_1.button_styling)
 
     debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
                                       html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
@@ -242,8 +242,8 @@ def get_layout():
   
     table_layout = html.Div(
         [
-            dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
-            html.Div(children=page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
+            dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
+            html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
                     main_table_1.dash_table_main
@@ -251,7 +251,7 @@ def get_layout():
                 className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
             ),
             debug_output,
-            html.Div(id=page_name+"page_buttons", children=[save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
+            html.Div(id= page_name + "page_buttons", children=[save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
         ],
         className="row NOPADDING_CONTENT"
     )
