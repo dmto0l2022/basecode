@@ -311,7 +311,7 @@ def action_taken(active_cell,newbutton,savebutton,cancelbutton,homebutton):
     button_press_msg = ""
     return_data_dict = main_table_1.main_table_data_dict
 
-    print("list all keys : active_cell >>>>>>>>>>>" ,active_cell)
+    print("list all keys : active_cell >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell)
     
     if active_cell is not None:
 
