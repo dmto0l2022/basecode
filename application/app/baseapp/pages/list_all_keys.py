@@ -176,7 +176,7 @@ class get_main_table:
         self.dash_table_main = dash_table.DataTable(
             id = self.main_table_id,
             data = self.main_table_data_dict,
-            columns=[{"name": c, "id": c} for c in table_column_names],
+            columns=[{"name": c, "id": c} for c in self.all_table_column_names],
             fixed_rows={'headers': True},
             filter_action='none',
             style_cell=self.table_cell_styles,
