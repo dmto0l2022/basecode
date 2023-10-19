@@ -134,10 +134,11 @@ class get_main_table:
         print('cease >>' + str(key_in))
         requests.put(cease_url, headers=self.internal_header)
 
-    def NewRow(self,key_in):
-        cease_url = self.fastapi_url_one + str(key_in)
-        print('cease >>' + str(key_in))
-        requests.put(cease_url, headers=self.internal_header)
+    def NewRow(self,dmtool_user_in):
+        new_url = self.fastapi_url_one + str(dmtool_user_in)
+        print('new api key >>' + str(dmtool_user_in))
+        dmtooluser_header = {'dmtool-userid':'1'}
+        requests.post(new_url, headers=dmtooluser_header)
     
     
     def RefreshTableData(self):
@@ -225,6 +226,8 @@ table_font_size = '12px'
 
 fastapi_url_all = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_keys" ## multiple limit operations
 fastapi_url_one = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_key/" ## single limit operations
+
+
 internal_header={'dmtool-userid':'999'}
 
 main_table_1 = get_main_table(page_title,
@@ -351,7 +354,7 @@ def cell_clicked(active_cell):
 
 @callback(
     #Output(page_name + "url", 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
-    Output(page_name+"button-output-div", "children"),
+    [Output(page_name+"button-output-div", "children"), Output(main_table_id,'data')],
     [
     Input(page_name + "new_button_id", "n_clicks"),
     Input(page_name + "save_button_id", "n_clicks"),
@@ -366,27 +369,29 @@ def button_click(newbutton,savebutton,cancelbutton,homebutton):
     #msg = prop_id
     if page_name + "new_button_id" == prop_id :
         msg = "New Button was most recently clicked"
+        main_table_1.NewRow('1')
+        main_table_1.RefreshTableData()
         #href_return = dash.page_registry['pages.show_limit']['path']
         #return href_return
-        return msg
+        return [msg, main_table_1.main_table_data_dict]
     elif page_name + "save_button_id" == prop_id :
         msg = "Save Button was most recently clicked"
         #href_return = dash.page_registry['pages.show_limit']['path']
         #return href_return
-        return msg
+        return [msg, main_table_1.main_table_data_dict]
     elif page_name + "cancel_button_id" == prop_id:
         msg = "Cancel Button was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         #return href_return
-        return msg
+        return [msg, main_table_1.main_table_data_dict]
     elif page_name + "home_button_id" == prop_id:
         msg = "Home Button was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         #return href_return
-        return msg
+        return [msg, main_table_1.main_table_data_dict]
     else:
         href_return = dash.page_registry['pages.home']['path']
         msg = "No Button Clicked"
-        return msg
+        return [msg, main_table_1.main_table_data_dict]
 
 
