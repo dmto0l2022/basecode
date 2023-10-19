@@ -183,6 +183,14 @@ def callback():
     profile_data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
     google_id = profile_data['id']
     url_get = fastapi_about_url + "/apiorm/authlibuser/google/" + google_id
+    internal_header = {'dmtool-userid': '999'}
+    fastapi_about_url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user"
+    google_req = requests.get(fastapi_about_url,headers=internal_header)
+    dmtool_userid = google_req.json()['id']
+    print('dmtool_userid >>>>>>', dmtool_userid)
+    #print(google_req.json())
+    session['dmtool_userid'] = dmtool_userid
+    
     #print("url_get >>>" , url_get)
     #google_req = requests.get(url_get)
     #print("google user status code >>>> " , google_req.status_code)
