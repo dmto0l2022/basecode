@@ -135,10 +135,11 @@ class get_main_table:
         requests.put(cease_url, headers=self.internal_header)
 
     def NewRow(self,dmtool_user_in):
-        new_url = self.fastapi_url_one + str(dmtool_user_in)
+        new_url = self.fastapi_url_one
         print('new api key >>' + str(dmtool_user_in))
+        data = {"user_id": 1}
         dmtooluser_header = {'dmtool-userid':'1'}
-        requests.post(new_url, headers=dmtooluser_header)
+        requests.post(new_url,json=data, headers=dmtooluser_header)
     
     
     def RefreshTableData(self):
