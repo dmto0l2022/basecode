@@ -182,9 +182,11 @@ def callback():
     google = OAuth2Session(client_id, token=token)
     profile_data = google.get('https://www.googleapis.com/oauth2/v1/userinfo').json()
     google_id = profile_data['id']
-    url_get = fastapi_about_url + "/apiorm/authlibuser/google/" + google_id
+    email = profile_data['email']
     internal_header = {'dmtool-userid': '999'}
-    fastapi_about_url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user"
+    fastapi_about_url = "http://container_fastapi_about_1:8016/
+    get_user_api = "dmtool/fastapi_about/internal/about/user/"
+    get_or_create_user = fastapi_about_url + get_user_api + email
     google_req = requests.get(fastapi_about_url,headers=internal_header)
     dmtool_userid = google_req.json()['id']
     print('dmtool_userid >>>>>>', dmtool_userid)
@@ -211,7 +213,7 @@ def callback():
 
     #session['dmtool_userid'] = dmtool_userid
 
-    #url = fastapi_url + "/apiorm/authlibuser/permissions/"
+    permissions_url = fastapi_about_url + "/apiorm/authlibuser/permissions/"
     #request_permissions = url + str(dmtool_userid)
     #print('request_permissions >>>>', request_permissions)
     
