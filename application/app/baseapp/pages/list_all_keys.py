@@ -356,6 +356,9 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     decoded_val = pickle.loads(session_data)
     print(decoded_val)
     print('--------- list all keys -- decoded val------------------------------')
+
+    dmtool_userid = decoded_val['dmtool_userid']
+    print('lal : dmtool_userid >>>>>>>>>>>>' , dmtool_userid)
     
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH TO HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     
