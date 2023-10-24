@@ -352,7 +352,10 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
         print('=======================================')
 
     session_data = r.get(redis_session_key)
-    
+    print('--------- list all keys -- decoded val------------------------------')
+    decoded_val = pickle.loads(session_data)
+    print(decoded_val)
+    print('--------- list all keys -- decoded val------------------------------')
     
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH TO HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     
