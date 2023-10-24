@@ -332,10 +332,10 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     #print('list all keys : current user >>', dmtool_userid)
     #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
 
-    #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-
     print('Flask session object >>>>>>>>>>>>>>>>>>>>', session)
     print('Flask session dmtool id >>>>>>>>>>>>>>>', session['dmtool_userid'])
+    
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     
     r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
     all_keys = r.keys('*')
