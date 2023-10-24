@@ -332,8 +332,8 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     #print('list all keys : current user >>', dmtool_userid)
     #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
 
-    print('Flask session object >>>>>>>>>>>>>>>>>>>>', session)
-    print('Flask session dmtool id >>>>>>>>>>>>>>>', session['dmtool_userid'])
+    #print('Flask session object >>>>>>>>>>>>>>>>>>>>', session)
+    #print('Flask session dmtool id >>>>>>>>>>>>>>>', session['dmtool_userid'])
     
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     
