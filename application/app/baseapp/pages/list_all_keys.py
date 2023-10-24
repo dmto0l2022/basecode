@@ -15,7 +15,7 @@ from flask import request, session
 
 from app.baseapp.libraries import formlibrary as fl
 from app.baseapp.libraries import main_table as mt
-from app.baseapp.libraries import get_dmtool_user as gdu
+## from app.baseapp.libraries import get_dmtool_user as gdu
 
 import requests
 import json
@@ -90,7 +90,8 @@ def get_layout():
                                       html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
                                       className="PAGE_DEBUG_CONTENT")
 
-    dmtool_user_id = gdu.dmtool_userid
+    ##dmtool_user_id = gdu.dmtool_userid
+    dmtool_user_id = '999'
     internal_header={'dmtool-userid':'999'}
 
 
