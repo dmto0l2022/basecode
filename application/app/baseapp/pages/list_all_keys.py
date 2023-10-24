@@ -15,6 +15,7 @@ from flask import request, session
 
 from app.baseapp.libraries import formlibrary as fl
 from app.baseapp.libraries import main_table as mt
+from app.baseapp.libraries import get_dmtool_user as gdu
 
 import requests
 import json
@@ -57,30 +58,9 @@ table_font_size = '12px'
 fastapi_url_all = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_keys" ## multiple limit operations
 fastapi_url_one = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_key/" ## single limit operations
 
- r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-    all_keys = r.keys('*')
-    print("redis all keys >>>>>", all_keys)
-    print("redis all keys >>>>>", type(all_keys))
-    print("redis get session data")
-    for k in all_keys:
-        val = r.get(k)
-        print("k>>>>" , k)
-        print('---------------------------------------')
-        print("val>>>>", val)
-        print('=======================================')
+dmtool_user_id = gdu.dmtool_userid
 
-    session_data = r.get(redis_session_key)
-    print('--------- list all keys -- decoded val------------------------------')
-    decoded_val = pickle.loads(session_data)
-    print(decoded_val)
-    print('--------- list all keys -- decoded val------------------------------')
-
-    dmtool_userid = decoded_val['dmtool_userid']
-    print('lal : dmtool_userid >>>>>>>>>>>>' , dmtool_userid)
-
-dmtool_user_id = '2'
-
-#internal_header={'dmtool-userid':'999'}
+internal_header={'dmtool-userid':'999'}
 
 main_table_1 = mt.get_main_table(page_title,
                 main_table_id,
