@@ -324,7 +324,6 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     #print('list all keys : session key >>',session_key)
     #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXlist all keys current session object XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     current_session = requests.Session()
-    print("current session URL >>>>>>>>>>>>", current_session.get(URL))
     print("current session ID >>>>> ",current_session.cookies['sessionid'])
     #dmtool_userid = current_session['dmtool_userid']
     #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
