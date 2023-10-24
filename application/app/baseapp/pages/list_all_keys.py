@@ -8,6 +8,7 @@ import pandas as pd
 import plotly.express as px
 import json
 import requests
+import pickle
 import dash_bootstrap_components as dbc
 
 from flask import request, session
@@ -324,6 +325,7 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     session_key = request.cookies.get('session')
     print('list all keys : session key >>',session_key)
+    redis_session_key = "session:"+session_key
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXlist all keys current session object XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     #current_session = requests.Session()
     #print("current session ID >>>>> ",current_session.cookies['sessionid'])
@@ -349,6 +351,9 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
         print("val>>>>", val)
         print('=======================================')
 
+    session_data = r.get(redis_session_key)
+    
+    
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH TO HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     
     #first = all_keys[0]
