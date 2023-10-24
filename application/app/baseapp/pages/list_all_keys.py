@@ -57,7 +57,7 @@ table_font_size = '12px'
 
 fastapi_url_all = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_keys" ## multiple limit operations
 fastapi_url_one = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_key/" ## single limit operations
-
+'''
 dmtool_user_id = gdu.dmtool_userid
 
 internal_header={'dmtool-userid':'999'}
@@ -70,7 +70,7 @@ main_table_1 = mt.get_main_table(page_title,
                 fastapi_url_all,
                 fastapi_url_one,
                 dmtool_user_id)
-
+'''
 ######################################################
 
 def get_layout():    
@@ -89,6 +89,9 @@ def get_layout():
                                       html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
                                       html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
                                       className="PAGE_DEBUG_CONTENT")
+
+    dmtool_user_id = gdu.dmtool_userid
+    internal_header={'dmtool-userid':'999'}
 
 
     main_table_1 = mt.get_main_table(page_title,
