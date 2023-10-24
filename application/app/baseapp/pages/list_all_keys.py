@@ -141,7 +141,7 @@ layout = get_layout
     Input(page_name + "save_button_id", "n_clicks"),
     Input(page_name + "cancel_button_id", "n_clicks"),
     Input(page_name + "home_button_id", "n_clicks")],
-    prevent_initial_call=True
+    ##prevent_initial_call=True
 )
 def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     active_cell_reset = None
