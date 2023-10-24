@@ -149,7 +149,6 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     active_cell_reset = None
     return_cell_msg = "No cells clicked yet"
     button_press_msg = "None of the buttons have been clicked yet"
-    return_data_dict = main_table_1.main_table_data_dict
     print('------------------------------- call back triggered -------------------------')
     print("list all keys : active_cell >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_in)
     print("list all keys : active_cell reset  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_reset)
@@ -208,7 +207,8 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
                                      fastapi_url_one,
                                      dmtool_user_id)
     main_table_1.RefreshTableData()
-    
+    ##return_data_dict = main_table_1.main_table_data_dict
+  
     if active_cell_in:
 
         #row = active_cell["row_id"]
