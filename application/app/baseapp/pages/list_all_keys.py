@@ -71,6 +71,8 @@ main_table_1 = mt.get_main_table(page_title,
                 fastapi_url_one,
                 dmtool_user_id)
 '''
+
+main_table_1 = dash_table.DataTable()
 ######################################################
 
 def get_layout():    
@@ -145,7 +147,6 @@ layout = get_layout
 )
 def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     active_cell_reset = None
-    main_table_1.RefreshTableData()
     return_cell_msg = "No cells clicked yet"
     button_press_msg = "None of the buttons have been clicked yet"
     return_data_dict = main_table_1.main_table_data_dict
@@ -198,6 +199,15 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     #current_session_data = r.get(session_cookie)
     #print('current session google2 cookie >>>>>>>', current_session_data)
 
+    main_table_1 = mt.get_main_table(page_title,
+                                     main_table_id,
+                                     table_meta_data_data,
+                                     row_height,
+                                     table_font_size,
+                                     fastapi_url_all,
+                                     fastapi_url_one,
+                                     dmtool_user_id)
+    main_table_1.RefreshTableData()
     
     if active_cell_in:
 
