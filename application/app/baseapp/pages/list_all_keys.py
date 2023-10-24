@@ -14,6 +14,7 @@ from app.baseapp.libraries import formlibrary as fl
 
 import requests
 import json
+import redis
 
 '''
 class MakeApiCall():
@@ -322,11 +323,31 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     #session_key = request.cookies.get('session')
     #print('list all keys : session key >>',session_key)
     #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    current_session = requests.Session()
-    dmtool_userid = current_session['dmtool_userid']
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    print('list all keys : current user >>', dmtool_userid)
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    #current_session = requests.Session()
+    #dmtool_userid = current_session['dmtool_userid']
+    #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    #print('list all keys : current user >>', dmtool_userid)
+    #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+    all_keys = r.keys('*')
+    print(all_keys)
+    print(type(all_keys))
+    for k in all_keys:
+        val = r.get(k)
+        print(k)
+        print('---------------------------------------')
+        print(val)
+        print('=======================================')
+
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH TO HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    
+    #first = all_keys[0]
+    #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
+    #current_session_data = r.get(session_cookie)
+    #print('current session google2 cookie >>>>>>>', current_session_data)
+
     
     if active_cell_in:
 
