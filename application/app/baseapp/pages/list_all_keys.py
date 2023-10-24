@@ -10,6 +10,8 @@ import json
 import requests
 import dash_bootstrap_components as dbc
 
+from flask import request, session
+
 from app.baseapp.libraries import formlibrary as fl
 
 import requests
@@ -323,14 +325,18 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     #session_key = request.cookies.get('session')
     #print('list all keys : session key >>',session_key)
     #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXlist all keys current session object XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    current_session = requests.Session()
-    print("current session ID >>>>> ",current_session.cookies['sessionid'])
+    #current_session = requests.Session()
+    #print("current session ID >>>>> ",current_session.cookies['sessionid'])
     #dmtool_userid = current_session['dmtool_userid']
     #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     #print('list all keys : current user >>', dmtool_userid)
     #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
 
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+
+    print('Flask session object >>>>>>>>>>>>>>>>>>>>', session)
+    print('Flask session dmtool id >>>>>>>>>>>>>>>', session['dmtool_userid'])
+    
     r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
     all_keys = r.keys('*')
     print(all_keys)
