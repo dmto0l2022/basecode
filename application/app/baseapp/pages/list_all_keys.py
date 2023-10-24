@@ -321,10 +321,10 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     print("list all keys : active_cell >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_in)
     print("list all keys : active_cell reset  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_reset)
 
-    #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    #session_key = request.cookies.get('session')
-    #print('list all keys : session key >>',session_key)
-    #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXlist all keys current session object XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    session_key = request.cookies.get('session')
+    print('list all keys : session key >>',session_key)
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXlist all keys current session object XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     #current_session = requests.Session()
     #print("current session ID >>>>> ",current_session.cookies['sessionid'])
     #dmtool_userid = current_session['dmtool_userid']
