@@ -323,8 +323,9 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     #print('list all keys : session key >>',session_key)
     #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     current_session = requests.Session()
+    dmtool_userid = current_session['dmtool_userid']
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    print('list all keys : current session >>',current_session)
+    print('list all keys : current user >>', dmtool_userid)
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     
     if active_cell_in:
