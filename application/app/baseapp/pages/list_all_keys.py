@@ -339,13 +339,14 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     
     r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
     all_keys = r.keys('*')
-    print(all_keys)
-    print(type(all_keys))
+    print("redis all keys >>>>>", all_keys)
+    print("redis all keys >>>>>", type(all_keys))
+    print("redis get session data")
     for k in all_keys:
         val = r.get(k)
-        print(k)
+        print("k>>>>" , k)
         print('---------------------------------------')
-        print(val)
+        print("val>>>>", val)
         print('=======================================')
 
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH TO HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
