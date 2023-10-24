@@ -189,7 +189,7 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     print('--------- list all keys -- decoded val------------------------------')
 
     dmtool_user_id = decoded_val['dmtool_userid']
-    print('lal : dmtool_userid >>>>>>>>>>>>' , dmtool_userid)
+    print('lal : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
     
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH TO HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     
