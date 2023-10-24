@@ -14,6 +14,7 @@ import dash_bootstrap_components as dbc
 from flask import request, session
 
 from app.baseapp.libraries import formlibrary as fl
+from app.baseapp.libraries import main_table as mt
 
 import requests
 import json
@@ -46,7 +47,7 @@ class Person:
   def myfunc(self):
     print("Hello my name is " + self.name)
 '''
-
+'''
 class get_main_table:
     def __init__(self, page_title_in,
                  main_table_id_in,
@@ -127,7 +128,6 @@ class get_main_table:
         
    
     
-    ###
     
     def DeleteRow(self,key_in):
         delete_url = self.fastapi_url_one + str(key_in)
@@ -197,7 +197,7 @@ class get_main_table:
             tooltip_duration=None,
             )
     
-    
+'''    
 ###########################################################
 
 dash.register_page(__name__, path='/list_all_keys')
@@ -234,16 +234,18 @@ table_font_size = '12px'
 fastapi_url_all = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_keys" ## multiple limit operations
 fastapi_url_one = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_key/" ## single limit operations
 
+dmtool_user_id = '2'
 
-internal_header={'dmtool-userid':'999'}
+#internal_header={'dmtool-userid':'999'}
 
-main_table_1 = get_main_table(page_title,
-                 main_table_id,
-                 table_meta_data_data,
-                 row_height,
-                 table_font_size,
-                 fastapi_url_all,
-                 fastapi_url_one)
+main_table_1 = mt.get_main_table(page_title,
+                main_table_id,
+                table_meta_data_data,
+                row_height,
+                table_font_size,
+                fastapi_url_all,
+                fastapi_url_one,
+                dmtool_user_id)
 
 ######################################################
 
@@ -265,13 +267,14 @@ def get_layout():
                                       className="PAGE_DEBUG_CONTENT")
 
 
-    main_table_1 = get_main_table(page_title,
-                 main_table_id,
-                 table_meta_data_data,
-                 row_height,
-                 table_font_size,
-                 fastapi_url_all,
-                 fastapi_url_one)
+    main_table_1 = mt.get_main_table(page_title,
+                                     main_table_id,
+                                     table_meta_data_data,
+                                     row_height,
+                                     table_font_size,
+                                     fastapi_url_all,
+                                     fastapi_url_one,
+                                     dmtool_user_id)
     
     table_layout = html.Div(
         [
