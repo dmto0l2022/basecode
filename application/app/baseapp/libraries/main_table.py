@@ -66,7 +66,7 @@ class get_main_table:
         self.fastapi_url_all = fastapi_url_all_in
         self.fastapi_url_one = fastapi_url_one_in
         self.dmtool_userid = dmtool_userid_in
-        self.dmtool_user_header = {'dmtool-userid':self.dmtool_userid}
+        self.dmtool_user_header = {'dmtool-userid':str(self.dmtool_userid)}
         self.internal_header = {'dmtool-userid':'999'}
         self.table_meta_data_columns = ['name', 'width']
         self.button_meta_data_data =[
