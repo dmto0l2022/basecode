@@ -318,7 +318,7 @@ async def delete_user_permission(user_permission_id: int, session: AsyncSession 
 @router.get(api_base_url + "user_api_keys", response_model=list[User_api_key])
 async def get_user_api_keys(session: AsyncSession = Depends(get_session),
                     dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(User_api_key).where(User_api_key.user_id == dmtool_userid)   )
+    result = await session.execute(select(User_api_key).where(User_api_key.user_id == dmtool_userid))
     user_api_keys = result.scalars().all()
     return [User_api_key(id = user_api_key.id,
                         user_id = user_api_key.user_id,
@@ -336,7 +336,7 @@ async def get_user_api_keys(session: AsyncSession = Depends(get_session),
 @router.get(api_base_url + "user_api_key/{user_id}", response_model=User_api_key)
 async def get_user_api_key(user_id: int, session: AsyncSession = Depends(get_session),
                     dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(User_api_key).where(User_api_key.user_id == user_id)
+    statement = select(User_api_key).where(User_api_key.user_id == user_id).where(User_api_key.ceased_at==unceased_datetime_object)
     user_api_keys = await session.exec(statement)
     user_api_key = user_api_keys.one()
     return user_api_key
