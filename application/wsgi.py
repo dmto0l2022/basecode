@@ -57,7 +57,7 @@ class Middleware:
         self.wsgi = wsgi
         self.redisserver = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
         self.SESSION_COOKIE_NAME = "session"
-        self.template_path = path.join(BASE_DIR, "/workdir/application/werkzeug/templates")
+        self.template_path = path.join(BASE_DIR, "/workdir/application/app/templates")
         #print('template path')
         #print(template_path)
         self.jinja_env = Environment(loader=FileSystemLoader(self.template_path),
@@ -106,7 +106,7 @@ class Middleware:
             return self.wsgi(environ,start_response)
         
         else:
-            unauthorised_response = self.render_template('unauthorised.html')
+            unauthorised_response = self.render_template('unauthorized.html')
             return unauthorised_response(environ, start_response)
         #return self.wsgi(environ,start_response)
         
