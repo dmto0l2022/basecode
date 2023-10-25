@@ -335,4 +335,4 @@ def validate():
 @authlib_google2_bp.route('/logout')
 def logout():
     session.pop('oauth_token')
-    return redirect('/application/baseapp/')
+    return redirect('/')
