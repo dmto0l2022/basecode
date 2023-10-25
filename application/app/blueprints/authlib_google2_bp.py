@@ -205,6 +205,7 @@ def callback():
         print('new google user request status code >>> ' ,post_request.status_code)
 
 
+    print("new google user request json >>>>>>>>>>>>>>" , google_req.json())
     dmtool_userid = google_req.json()['id']
     print('dmtool_userid >>>>>>', dmtool_userid)
     #print(google_req.json())
