@@ -298,8 +298,8 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
             button_press_msg = "No Button Clicked"
             prop_id = None
             return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
-  else:
-      return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
+    else:
+        return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
 
 
 
