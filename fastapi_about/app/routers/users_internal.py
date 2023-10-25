@@ -339,10 +339,10 @@ async def get_user_api_keys(session: AsyncSession = Depends(get_session),
 
 ## get one api key for user
 
-@router.get(api_base_url + "user_api_key/{user_id}", response_model=User_api_key)
-async def get_user_api_key(user_id: int, session: AsyncSession = Depends(get_session),
+@router.get(api_base_url + "user_api_key", response_model=User_api_key)
+async def get_user_api_key(session: AsyncSession = Depends(get_session),
                     dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(User_api_key).where(User_api_key.user_id == user_id).where(User_api_key.ceased_at==unceased_datetime_object)
+    statement = select(User_api_key).where(User_api_key.user_id == dmtool_userid).where(User_api_key.ceased_at==unceased_datetime_object)
     user_api_keys = await session.exec(statement)
     user_api_key = user_api_keys.first()
     return user_api_key
