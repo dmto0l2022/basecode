@@ -27,7 +27,7 @@ DATABASE_URL = "mysql+aiomysql://" + MARIADB_USERNAME + ":" + \
 print(DATABASE_URL)
 
 
-engine = AsyncEngine(create_engine(DATABASE_URL, echo=True, future=True),  pool_pre_ping=True)
+engine = AsyncEngine(create_engine(DATABASE_URL, echo=True, future=True, pool_pre_ping=True))
 
 async def init_db():
     async with engine.begin() as conn:
