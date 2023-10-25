@@ -39,7 +39,8 @@ def button_click(button1,button2,button3):
     elif page_name + '_logout_' + 'button_id' == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.edit_existing_plot']['path']
-        href_return = baseapp_prefix + '/logout'
+        #href_return = baseapp_prefix + '/logout'
+        href_return = = "/application/baseapp/logout"
         return href_return
     elif page_name + '_admin_' + 'button_id' == prop_id:
         #msg = "Button 2 was most recently clicked"
