@@ -72,7 +72,7 @@ main_table_1 = mt.get_main_table(page_title,
                 dmtool_user_id)
 '''
 
-empty_dash_table = dash_table.DataTable()
+empty_dash_table = dash_table.DataTable(id=main_table_id)
 ######################################################
 
 def get_layout():    
@@ -96,7 +96,6 @@ def get_layout():
     dmtool_user_id = '999'
     internal_header={'dmtool-userid':'999'}
 
-    '''
     main_table_1 = mt.get_main_table(page_title,
                                      main_table_id,
                                      table_meta_data_data,
@@ -105,7 +104,7 @@ def get_layout():
                                      fastapi_url_all,
                                      fastapi_url_one,
                                      dmtool_user_id)
-    '''
+    
   
     table_layout = html.Div(
         [
@@ -113,7 +112,7 @@ def get_layout():
             html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
-                    empty_dash_table
+                    main_table_1
                 ],
                 className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
             ),
