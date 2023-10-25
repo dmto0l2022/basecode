@@ -112,7 +112,7 @@ def get_layout():
             html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
-                    main_table_1
+                    main_table_1.dash_table_main
                 ],
                 className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
             ),
