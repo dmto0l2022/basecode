@@ -318,7 +318,7 @@ async def delete_user_permission(user_permission_id: int, session: AsyncSession 
 @router.get(api_base_url + "user_api_keys", response_model=list[User_api_key])
 async def get_user_api_keys(session: AsyncSession = Depends(get_session),
                     dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(User_api_key))
+    result = await session.execute(select(User_api_key).where(User_api_key.user_id == dmtool_userid)   )
     user_api_keys = result.scalars().all()
     return [User_api_key(id = user_api_key.id,
                         user_id = user_api_key.user_id,
@@ -354,7 +354,7 @@ async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSessi
     public_key_gen_str = str(uuid.uuid1())
     private_key_gen_str = str(uuid.uuid1())              
     #encrypted_api_key = rsa.encrypt(api_key_str.encode(),public_key_gen)
-    user_api_key = User_api_key(user_id = user_api_key.user_id,
+    user_api_key = User_api_key(user_id = dmtool_userid,
                         api_key = api_key_str,
                         encrypted_api_key = encrypted_api_key_str,
                         public_key = public_key_gen_str,
@@ -372,7 +372,7 @@ async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSessi
 @router.delete(api_base_url + "user_api_key/{user_api_key_id}")
 async def delete_user_api_key(user_api_key_id: int, session: AsyncSession = Depends(get_session),
                     dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(User_api_key).where(User_api_key.id == user_api_key_id)
+    statement = select(User_api_key).where(User_api_key.id == user_api_key_id).where(User_api_key.user_id == dmtool_userid)
     results = await session.exec(statement)
     user_api_key = results.one()
     await session.delete(user_api_key)
