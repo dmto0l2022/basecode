@@ -152,47 +152,50 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
     print('------------------------------- call back triggered -------------------------')
     print("list all keys : active_cell >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_in)
     print("list all keys : active_cell reset  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" ,active_cell_reset)
-
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    session_key = request.cookies.get('session')
-    print('list all keys : session key >>',session_key)
-    redis_session_key = "session:"+session_key
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXlist all keys current session object XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    #current_session = requests.Session()
-    #print("current session ID >>>>> ",current_session.cookies['sessionid'])
-    #dmtool_userid = current_session['dmtool_userid']
-    #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    #print('list all keys : current user >>', dmtool_userid)
-    #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-
-    #print('Flask session object >>>>>>>>>>>>>>>>>>>>', session)
-    #print('Flask session dmtool id >>>>>>>>>>>>>>>', session['dmtool_userid'])
+    dmtool_user_id = '999'
+    try:
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        session_key = request.cookies.get('session')
+        print('list all keys : session key >>',session_key)
+        redis_session_key = "session:"+session_key
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXlist all keys current session object XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        #current_session = requests.Session()
+        #print("current session ID >>>>> ",current_session.cookies['sessionid'])
+        #dmtool_userid = current_session['dmtool_userid']
+        #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        #print('list all keys : current user >>', dmtool_userid)
+        #print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        #print('Flask session object >>>>>>>>>>>>>>>>>>>>', session)
+        #print('Flask session dmtool id >>>>>>>>>>>>>>>', session['dmtool_userid'])
+        
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+        
+        r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+        all_keys = r.keys('*')
+        print("redis all keys >>>>>", all_keys)
+        print("redis all keys >>>>>", type(all_keys))
+        print("redis get session data")
+        for k in all_keys:
+            val = r.get(k)
+            print("k>>>>" , k)
+            print('---------------------------------------')
+            print("val>>>>", val)
+            print('=======================================')
     
-    r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-    all_keys = r.keys('*')
-    print("redis all keys >>>>>", all_keys)
-    print("redis all keys >>>>>", type(all_keys))
-    print("redis get session data")
-    for k in all_keys:
-        val = r.get(k)
-        print("k>>>>" , k)
-        print('---------------------------------------')
-        print("val>>>>", val)
-        print('=======================================')
-
-    session_data = r.get(redis_session_key)
-    print('--------- list all keys -- decoded val------------------------------')
-    decoded_val = pickle.loads(session_data)
-    print(decoded_val)
-    print('--------- list all keys -- decoded val------------------------------')
-
-    dmtool_user_id = decoded_val['dmtool_userid']
-    print('lal : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
+        session_data = r.get(redis_session_key)
+        print('--------- list all keys -- decoded val------------------------------')
+        decoded_val = pickle.loads(session_data)
+        print(decoded_val)
+        print('--------- list all keys -- decoded val------------------------------')
     
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH TO HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    
+        dmtool_user_id = decoded_val['dmtool_userid']
+        print('lal : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
+        
+        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH TO HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    except:
+        print('No session in >>>>>', page_name)
+        dmtool_user_id = '999'
     #first = all_keys[0]
     #val = r.get('session:3d6eaeb7-c227-4444-ac90-208da7732203')
     #current_session_data = r.get(session_cookie)
