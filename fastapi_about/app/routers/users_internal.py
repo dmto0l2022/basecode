@@ -249,10 +249,13 @@ async def delete_user(user_id: int, session: AsyncSession = Depends(get_session)
                     dmtool_userid: Annotated[int | None, Header()] = None):
     statement = select(User).where(User.id == user_id)
     results = await session.exec(statement)
-    user = results.one()
-    await session.delete(user)
-    await session.commit()
-    return {"deleted": user}
+    try:
+        user = results.one()
+        await session.delete(user)
+        await session.commit()
+        return {"deleted": user}
+    except:
+        return {"deleted": "unable to delete as multiple users"}
 
 # User_permission CRUD
 ## User_permission, User_permissionCreate
@@ -298,10 +301,13 @@ async def delete_user_permission(user_permission_id: int, session: AsyncSession 
                     dmtool_userid: Annotated[int | None, Header()] = None):
     statement = select(User_permission).where(User_permission.id == user_permission_id)
     results = await session.exec(statement)
-    user_permission = results.one()
-    await session.delete(user_permission)
-    await session.commit()
-    return {"deleted": user_permission}
+    try:
+        user_permission = results.one()
+        await session.delete(user_permission)
+        await session.commit()
+        return {"deleted": user_permission}
+    except:
+        return {"deleted": "unable to delete as multiple permissions"}
 
 
 # User_api_key
@@ -338,7 +344,7 @@ async def get_user_api_key(user_id: int, session: AsyncSession = Depends(get_ses
                     dmtool_userid: Annotated[int | None, Header()] = None):
     statement = select(User_api_key).where(User_api_key.user_id == user_id).where(User_api_key.ceased_at==unceased_datetime_object)
     user_api_keys = await session.exec(statement)
-    user_api_key = user_api_keys.one()
+    user_api_key = user_api_keys.first()
     return user_api_key
 
 ## add one api key for user
@@ -429,11 +435,13 @@ async def cease_api_key(user_api_key_id: int, session: AsyncSession = Depends(ge
     
     statement = select(User_api_key).where(User_api_key.id == user_api_key_id).where(User_api_key.user_id == dmtool_userid).where(User_api_key.ceased_at==unceased_datetime_object)
     results = await session.exec(statement)
-    user_api = results.one()
-    user_api.ceased_at =  datetime.utcnow()
-    session.add(user_api)
-    await session.commit()
-    await session.refresh(user_api)
-    return user_api
-    #except:
+    try:
+        user_api = results.one()
+        user_api.ceased_at =  datetime.utcnow()
+        session.add(user_api)
+        await session.commit()
+        await session.refresh(user_api)
+        return {"result": "apikey ceased"}
+    except:
+        return {"result": "unable to cease apikey"}
     #    raise HTTPException(status_code=404, detail="Unauthorised Request")
