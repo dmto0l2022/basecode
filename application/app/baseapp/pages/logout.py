@@ -20,6 +20,6 @@ dash.register_page(__name__, path='/logout')
 
 page_name = 'logout'
 
-logout_frame = html.Iframe(src="/app/logout",style={"height": "80vh", "width": "80vw"})
+##logout_frame = html.Iframe(src="/app/logout",style={"height": "80vh", "width": "80vw"})
 
-layout = html.Div(children=[logout_frame],style={"height": "80vh", "width": "80vw"})
+layout = html.Div(children="Now logged out",style={"height": "80vh", "width": "80vw"})
