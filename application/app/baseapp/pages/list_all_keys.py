@@ -72,7 +72,7 @@ main_table_1 = mt.get_main_table(page_title,
                 dmtool_user_id)
 '''
 
-main_table_1 = dash_table.DataTable()
+empty_dash_table = dash_table.DataTable()
 ######################################################
 
 def get_layout():    
@@ -96,7 +96,7 @@ def get_layout():
     dmtool_user_id = '999'
     internal_header={'dmtool-userid':'999'}
 
-
+    '''
     main_table_1 = mt.get_main_table(page_title,
                                      main_table_id,
                                      table_meta_data_data,
@@ -105,14 +105,15 @@ def get_layout():
                                      fastapi_url_all,
                                      fastapi_url_one,
                                      dmtool_user_id)
-    
+    '''
+  
     table_layout = html.Div(
         [
             dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
             html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
-                    main_table_1.dash_table_main
+                    empty_dash_table
                 ],
                 className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
             ),
@@ -208,6 +209,8 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
                                      dmtool_user_id)
     main_table_1.RefreshTableData()
     ##return_data_dict = main_table_1.main_table_data_dict
+
+    prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
   
     if active_cell_in:
 
@@ -257,7 +260,7 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
         
         return  return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
     
-    else:
+    elif prop_id:
 
         print("Button has been pressed")
         button_press_msg = "None of the buttons have been clicked yet"
@@ -268,28 +271,35 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
             button_press_msg = "New Button was most recently clicked"
             main_table_1.NewRow('1')
             main_table_1.RefreshTableData()
+            prop_id = None
             #href_return = dash.page_registry['pages.show_limit']['path']
             #return href_return
             return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         elif page_name + "save_button_id" == prop_id :
             button_press_msg = "Save Button was most recently clicked"
+            prop_id = None
             #href_return = dash.page_registry['pages.show_limit']['path']
             #return href_return
             return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         elif page_name + "cancel_button_id" == prop_id:
             button_press_msg = "Cancel Button was most recently clicked"
+            prop_id = None
             #href_return = dash.page_registry['pages.home']['path']
             #return href_return
             return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         elif page_name + "home_button_id" == prop_id:
             button_press_msg = "Home Button was most recently clicked"
+            prop_id = None
             #href_return = dash.page_registry['pages.home']['path']
             #return href_return
             return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
         else:
             href_return = dash.page_registry['pages.home']['path']
             button_press_msg = "No Button Clicked"
+            prop_id = None
             return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
+  else:
+      return return_cell_msg, button_press_msg, main_table_1.main_table_data_dict, active_cell_reset
 
 
 
