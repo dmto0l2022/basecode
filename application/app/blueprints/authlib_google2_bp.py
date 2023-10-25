@@ -334,5 +334,7 @@ def validate():
 
 @authlib_google2_bp.route('/logout')
 def logout():
+    session['dmtool_userid'] = '0'
+    session['dmtool_authorised'] = 0
     session.clear()
-    return redirect('https://dev1.dmtool.info/application/baseapp/')
+    return redirect('https://dev1.dmtool.info/')
