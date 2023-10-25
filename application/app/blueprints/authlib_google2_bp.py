@@ -235,7 +235,8 @@ def callback():
     print('authorisation_check.json() >>>>>>', authorisation_check.json())
     #session['dmtool_authorised'] = authorisation_check.json()['authorised']
     
-    return redirect(url_for('.menu'))
+    #return redirect(url_for('.menu'))
+    return redirect('/application/baseapp/')
 
 
 @authlib_google2_bp.route("/menu", methods=["GET"])
@@ -334,4 +335,4 @@ def validate():
 @authlib_google2_bp.route('/logout')
 def logout():
     session.pop('oauth_token')
-    return redirect(url_for('index'))
+    return redirect('/application/baseapp/')
