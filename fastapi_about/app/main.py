@@ -241,8 +241,8 @@ async def some_middleware(request: Request, call_next):
         return response
     #elif 'internal' in request.url.path and request.client.host != '127.0.0.1':
     #    return login_response
-    elif 'internal' in request.url.path and request.client.host != '127.0.0.1':
-        return login_response
+    elif 'internal' in request.url.path and request.client.host != '127.0.0.1': ## for testing only
+        return response
     elif 'login' in request.url.path  and (email == 'no email' or email==None):
         return response
     elif 'auth' in request.url.path  and (email == 'no email' or email==None):
