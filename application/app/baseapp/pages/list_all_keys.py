@@ -1,4 +1,9 @@
-'''
+#####################################################
+## Full Table Page to Edit Tables
+#####################################################
+## Version Journal
+#####################################################
+
 import dash
 
 from dash import Dash
@@ -21,28 +26,13 @@ from app.baseapp.libraries import main_table as mt
 import requests
 import json
 import redis
-'''
+
 
 ###########################################################
+# Should only need to change the following:
 
-dash.register_page(__name__, path='/list_all_keys')
 page_name = "list_all_keys"
 page_title = 'List All Keys'
-baseapp_prefix = '/application/baseapp'
-
-button_styling_1 = {'font-size': '12px',
-                  'width': '70px',
-                  'display': 'inline-block', 
-                  'margin-bottom': '1px',
-                  'margin-right': '0px',
-                  'margin-top': '1px',
-                  'height':'19px',
-                  'verticalAlign': 'center'}
-
-### table data
-#table_column_names=['id','user_id','api_key','public_key', 'created_at','modified_at','ceased_at']
-
-main_table_id = 'user_api_keys_table_main'
 table_meta_data_data = [
                         ['id', '2%'],
                         ['user_id', '2%'],
@@ -53,25 +43,32 @@ table_meta_data_data = [
                         ['ceased_at', '5%']
                        ]
 
+single_api = 'user_api_key'
+multiple_api = 'user_api_keys'
+
+##########################################################
+baseapp_prefix = '/application/baseapp'
+main_table_id = page_name + '_table_main'
+dash.register_page(__name__, path='/'+page_name)
+
+fastapi_url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/"
+fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
+fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
+
+button_styling_1 = {'font-size': '12px',
+                  'width': '70px',
+                  'display': 'inline-block', 
+                  'margin-bottom': '1px',
+                  'margin-right': '0px',
+                  'margin-top': '1px',
+                  'height':'19px',
+                  'verticalAlign': 'center'}
+
+
 row_height = '13px'
 table_font_size = '12px'
 
-fastapi_url_all = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_keys" ## multiple limit operations
-fastapi_url_one = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/user_api_key/" ## single limit operations
-'''
-dmtool_user_id = gdu.dmtool_userid
 
-internal_header={'dmtool-userid':'999'}
-
-main_table_1 = mt.get_main_table(page_title,
-                main_table_id,
-                table_meta_data_data,
-                row_height,
-                table_font_size,
-                fastapi_url_all,
-                fastapi_url_one,
-                dmtool_user_id)
-'''
 
 empty_dash_table = dash_table.DataTable(id=main_table_id)
 ######################################################
@@ -94,9 +91,11 @@ def get_layout():
                                       className="PAGE_DEBUG_CONTENT")
 
     ##dmtool_user_id = gdu.dmtool_userid
-    dmtool_user_id = '999'
-    internal_header={'dmtool-userid':'999'}
+    ## the callback triggers first time the page opens and the actual user is retrieved from the header
+    dmtool_user_id = '0' ### default - no user should be given 0
+    internal_header={'dmtool-userid':'0'}
 
+    ## create an empty table to be refreshed by the callback
     main_table_1 = mt.get_main_table(page_title,
                                      main_table_id,
                                      table_meta_data_data,
@@ -127,12 +126,6 @@ def get_layout():
     
 
 layout = get_layout
-
-
-#layout = table_layout
-#layout = list_all_limits_form
-
-#layout = no_output
 
 
 @callback(
@@ -173,16 +166,16 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
         print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         
         r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-        all_keys = r.keys('*')
-        print("redis all keys >>>>>", all_keys)
-        print("redis all keys >>>>>", type(all_keys))
-        print("redis get session data")
-        for k in all_keys:
-            val = r.get(k)
-            print("k>>>>" , k)
-            print('---------------------------------------')
-            print("val>>>>", val)
-            print('=======================================')
+        #all_keys = r.keys('*')
+        #print("redis all keys >>>>>", all_keys)
+        #print("redis all keys >>>>>", type(all_keys))
+        #print("redis get session data")
+        #for k in all_keys:
+        #    val = r.get(k)
+        #    print("k>>>>" , k)
+        #    print('---------------------------------------')
+        #    print("val>>>>", val)
+        #    print('=======================================')
     
         session_data = r.get(redis_session_key)
         print('--------- list all keys -- decoded val------------------------------')
@@ -191,7 +184,7 @@ def action_taken(active_cell_in,newbutton,savebutton,cancelbutton,homebutton):
         print('--------- list all keys -- decoded val------------------------------')
     
         dmtool_user_id = decoded_val['dmtool_userid']
-        print('lal : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
+        print('lak : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
         
         print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXREDIS INSIDE PAGES DASH TO HERE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     except:
