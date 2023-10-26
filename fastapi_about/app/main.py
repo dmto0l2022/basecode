@@ -241,7 +241,7 @@ async def some_middleware(request: Request, call_next):
         return response
     elif 'docs' in request.url.path or 'openapi.json' in request.url.path:
         return response
-    elif request.referer == 'https://dev1.dmtool.info/dmtool/fastapi_about/docs': ## for testing
+    elif request.headers['referer'] == 'https://dev1.dmtool.info/dmtool/fastapi_about/docs': ## for testing
         return response
     #elif 'internal' in request.url.path and request.client.host != '127.0.0.1':
     #    return login_response
