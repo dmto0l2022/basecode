@@ -232,12 +232,16 @@ async def some_middleware(request: Request, call_next):
     #    print(f"response_body={response_body[0].decode()}")
     #except:
     #    print("no async content")
+
+    request.referer: 'https://dev1.dmtool.info/dmtool/fastapi_about/docs'
     
     login_response = HTMLResponse('<a href="https://dev1.dmtool.info/dmtool/fastapi_data/login">login</a>')
 
     if 'internal' in request.url.path and request.client.host == '127.0.0.1':
         return response
     elif 'docs' in request.url.path or 'openapi.json' in request.url.path:
+        return response
+    elif request.referer == 'https://dev1.dmtool.info/dmtool/fastapi_about/docs': ## for testing
         return response
     #elif 'internal' in request.url.path and request.client.host != '127.0.0.1':
     #    return login_response
