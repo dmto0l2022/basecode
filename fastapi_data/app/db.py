@@ -18,7 +18,7 @@ config = {
 #DATABASE_URL = os.environ.get("DATABASE_URL")
 DATABASE_URL = "mysql+aiomysql://pythonuser:pythonuser@container_mariadb:3306/data"
 
-engine = AsyncEngine(create_engine(DATABASE_URL, echo=True, future=True))
+engine = AsyncEngine(create_engine(DATABASE_URL, echo=True, future=True, pool_pre_ping=True))
 
 async def init_db():
     async with engine.begin() as conn:
