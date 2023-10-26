@@ -1,4 +1,9 @@
 import os
+from os import environ, path
+from dotenv import load_dotenv
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+load_dotenv(path.join(BASE_DIR, ".env"))
 
 from sqlmodel import SQLModel, create_engine
 from sqlmodel.ext.asyncio.session import AsyncSession, AsyncEngine
@@ -15,8 +20,21 @@ config = {
     },
 }
 
+MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+
+
+print(MARIADB_USERNAME)
+print(MARIADB_CONTAINER)
+print(MARIADB_PASSWORD)
+print(MARIADB_DATABASE)
+
+DATABASE_URL = "mysql+aiomysql://" + MARIADB_USERNAME + ':' + MARIADB_PASSWORD + '@' + MARIADB_CONTAINER + ':3306/' + MARIADB_DATABASE
+
 #DATABASE_URL = os.environ.get("DATABASE_URL")
-DATABASE_URL = "mysql+aiomysql://pythonuser:pythonuser@container_mariadb:3306/data"
+#DATABASE_URL = "mysql+aiomysql://pythonuser:pythonuser@container_mariadb:3306/data"
 
 engine = AsyncEngine(create_engine(DATABASE_URL, echo=True, future=True, pool_pre_ping=True))
 
