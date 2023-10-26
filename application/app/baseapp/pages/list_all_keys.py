@@ -1,3 +1,4 @@
+'''
 import dash
 
 from dash import Dash
@@ -20,7 +21,7 @@ from app.baseapp.libraries import main_table as mt
 import requests
 import json
 import redis
-
+'''
 
 ###########################################################
 
