@@ -38,10 +38,10 @@ load_dotenv(path.join(BASE_DIR, ".env"))
 #redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi_about/auth'
 #api_base_url = '/dmtool/fastapi_about/'
 
-data_server_external_url = environ.get("FASTAPI_DATA_EXTERNAL_SERVER")
+about_server_external_url = environ.get("FASTAPI_ABOUT_EXTERNAL_SERVER")
 redirect_url = environ.get("FASTAPI_ABOUT_REDIRECT_URL")
 fastapi_url= environ.get("FASTAPI_ABOUT_URL")
-data_server_internal_url= environ.get("FASTAPI_DATA_INTERNAL_SERVER")
+about_server_internal_url= environ.get("FASTAPI_ABOUT_INTERNAL_SERVER")
 api_base_url =  '/dmtool/fastapi_about/'
 print("about url >>>>>>>>>>", fastapi_url)
 print(fastapi_url + "openapi.json")
