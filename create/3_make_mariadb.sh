@@ -10,8 +10,11 @@ subuidSize=$(( $(podman info --format "{{ range \
 subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
+cp /home/dmtools/download_file/20211104_dmtools_backup.sql /opt/dmtools/code/basecode/mariadb/20211104_dmtools_backup.sql
+
 cd /opt/dmtools/code/basecode/mariadb
 podman rmi mariadb_1
+podman rm container_mariadb
 
 podman build \
 --build-arg=BUILD_ENV_UID=${ENV_UID} \
