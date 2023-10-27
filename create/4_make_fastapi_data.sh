@@ -26,3 +26,6 @@ podman run -dt \
 --user $uid:$gid \
 -v /opt/dmtools/code/basecode:/workdir \
 localhost/fastapi_data_1:latest
+
+cd /opt/dmtools/code/basecode/create
+
