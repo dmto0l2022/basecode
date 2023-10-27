@@ -32,3 +32,5 @@ podman run -dt \
 localhost/redis_1:latest
 
 ##--volume /opt/dmtools/redis-data:/data \
+
+cd /opt/dmtools/code/basecode/create
