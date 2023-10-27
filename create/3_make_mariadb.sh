@@ -10,7 +10,8 @@ subuidSize=$(( $(podman info --format "{{ range \
 subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
-cp /home/dmtools/download_file/20211104_dmtools_backup.sql /opt/dmtools/code/basecode/mariadb/20211104_dmtools_backup.sql
+## added x to name so it is executed after init.sql
+cp /home/dmtools/download_file/20211104_dmtools_backup.sql /opt/dmtools/code/basecode/mariadb/x_20211104_dmtools_backup.sql
 
 cd /opt/dmtools/code/basecode/mariadb
 podman rmi mariadb_1
