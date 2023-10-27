@@ -10,19 +10,8 @@ subuidSize=$(( $(podman info --format "{{ range \
 subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
-
+cd /opt/dmtools/code/basecode/mariadb
 podman rmi mariadb_1
-
-#podman build \
-#--build-arg=BUILD_ENV_MARIADB_USER=${ENV_MARIADB_USER} \
-#--build-arg=BUILD_ENV_MARIADB_PASSWORD=${ENV_MARIADB_PASSWORD} \
-#--build-arg=BUILD_ENV_MARIADB_ROOT_PASSWORD=${ENV_MARIADB_ROOT_PASSWORD} \
-#--build-arg=BUILD_ENV_MARIADB_DATABASE=${ENV_MARIADB_DATABASE} \
-#-t mariadb_1 .
-
-#podman build -t mariadb_1 .
-
-# https://www.baeldung.com/ops/dockerfile-env-variable
 
 podman build \
 --build-arg=BUILD_ENV_UID=${ENV_UID} \
