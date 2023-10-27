@@ -70,6 +70,8 @@ RUN chown -R ${ENV_USER_UID}:${ENV_USER_GID} /var/lib/mysql
 COPY world-db.zip /var/www/html/world-db.zip
 RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
 
+COPY /home/dmtools/download_file/20211104_dmtools_backup.sql /docker-entrypoint-initdb.d
+
 #RUN unzip -j /var/www/html/world-db.zip -d /
 
 ### COPY x_backup.sql /docker-entrypoint-initdb.d
