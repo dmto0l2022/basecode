@@ -5,7 +5,7 @@ echo "CREATE USER '${MARIADB_USERNAME}'@'localhost' IDENTIFIED BY '${MARIADB_PAS
 
 ##echo "CREATE USER '${MARIADB_USERNAME}'@'127.0.0.1' IDENTIFIED BY '${MARIADB_PASSWORD}';" > ../mariadb/init.sql
 
-echo "CREATE DATABASE backup;" >> ../mariadb/init.sql
+echo "CREATE DATABASE RubyDB;" >> ../mariadb/init.sql
 
 echo "CREATE DATABASE test;" >> ../mariadb/init.sql
 
