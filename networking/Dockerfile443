@@ -10,8 +10,7 @@ RUN mkdir /etc/pki/nginx
 ## RUN mkdir /var/log/nginx
 
 COPY conf443server.conf /etc/nginx/conf.d/conf443server.conf
-#COPY conf443.conf /etc/nginx/conf.d/conf443.conf
-COPY index443.html /var/www/html/index.html
+COPY dmtool_index_production.html /var/www/html/index.html
 
 EXPOSE 443
 CMD ["nginx", "-g", "daemon off;"]
