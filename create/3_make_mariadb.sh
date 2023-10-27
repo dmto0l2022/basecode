@@ -14,6 +14,7 @@ cp /home/dmtools/download_file/20211104_dmtools_backup.sql /opt/dmtools/code/bas
 
 cd /opt/dmtools/code/basecode/mariadb
 podman rmi mariadb_1
+podman stop container_mariadb
 podman rm container_mariadb
 
 podman build \
