@@ -10,10 +10,6 @@ import requests
 import json
 import redis
 
-
-session_key = request.cookies.get('session')
-print('list all keys : session key >>',session_key)
-redis_session_key = "session:"+session_key
 r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 
 session_data = r.get(redis_session_key)
@@ -23,7 +19,7 @@ print(decoded_val)
 print('--------- list all keys -- decoded val------------------------------')
 
 dmtool_user_id = decoded_val['dmtool_userid']
-print('lak : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
+print('cnp : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
 
 
 dash.register_page(__name__, path='/create_new_plot')
