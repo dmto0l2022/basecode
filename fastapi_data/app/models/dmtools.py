@@ -243,7 +243,7 @@ class PlotBase(SQLModel):
     no_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
 
 class Plot(PlotBase, table=True):
-    __table_args__ = (UniqueConstraint("user_id", "name"),)
+    __table_args__ = (UniqueConstraint("user_id", "name", name="Constraint : Unique user id and plot name"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 class PlotCreate(PlotBase):
