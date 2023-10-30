@@ -93,7 +93,7 @@ async def request_validation_exception_handler(request: Request, exc: RequestVal
 
 ##@app.http_exception_handler(HTTPException)
 
-async def http_validation_exception_handler(request: Request, exc: HTTPException):
+async def http_exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content=jsonable_encoder({"detail": exc.errors(), "body": exc.body}),
@@ -114,6 +114,10 @@ async def unhandled_exception_handler(request: Request, exc: Exception):
     )
 
 '''
+
+request_validation_exception_handler
+http_validation_exception_handler
+unhandled_exception_handler
 
 async def unhandled_exception_handler(request: Request, exc: Exception) -> PlainTextResponse:
     """
@@ -270,6 +274,9 @@ async def logout(response: HTMLResponse,):
 
     return response
 '''
+
+
+
 
 @app.add_exception_handler(RequestValidationError, request_validation_exception_handler)
 @app.add_exception_handler(HTTPException, http_exception_handler)
