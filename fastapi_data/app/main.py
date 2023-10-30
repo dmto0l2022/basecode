@@ -4,6 +4,8 @@ from os import environ, path
 
 from fastapi import Depends, FastAPI
 
+from fastapi.exceptions import RequestValidationError
+
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 
@@ -13,6 +15,7 @@ from starlette.middleware.sessions import SessionMiddleware
 from starlette.responses import HTMLResponse, RedirectResponse
 from starlette.datastructures import MutableHeaders
 from authlib.integrations.starlette_client import OAuth, OAuthError
+
 
 from starlette.concurrency import iterate_in_threadpool
 
@@ -73,6 +76,13 @@ app.include_router(dmtools_internal.router)
 app.include_router(metadata.router)
 
 ## https://console.cloud.google.com/apis/
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    return JSONResponse(
+        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        content=jsonable_encoder({"detail": exc.errors(), "body": exc.body}),
+    )
 
 redirect_uri = 'https://dev1.dmtool.info/dmtool/fastapi_data/auth'
 
