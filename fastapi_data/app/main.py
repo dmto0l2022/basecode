@@ -82,21 +82,26 @@ app.include_router(metadata.router)
 
 ## https://console.cloud.google.com/apis/
 
-@app.request_validation_exception_handler(RequestValidationError)
+##@app.request_validation_exception_handler(RequestValidationError)
+
+
 async def request_validation_exception_handler(request: Request, exc: RequestValidationError):
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content=jsonable_encoder({"detail": exc.errors(), "body": exc.body}),
     )
 
-@app.http_exception_handler(HTTPException)
+##@app.http_exception_handler(HTTPException)
+
 async def http_validation_exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
         content=jsonable_encoder({"detail": exc.errors(), "body": exc.body}),
     )
 
-@app.unhandled_exception_handler(Exception)
+##@app.unhandled_exception_handler(Exception)
+
+
 async def unhandled_exception_handler(request: Request, exc: Exception):
     host = getattr(getattr(request, "client", None), "host", None)
     port = getattr(getattr(request, "client", None), "port", None)
@@ -266,6 +271,9 @@ async def logout(response: HTMLResponse,):
     return response
 '''
 
+@app.add_exception_handler(RequestValidationError, request_validation_exception_handler)
+@app.add_exception_handler(HTTPException, http_exception_handler)
+@app.add_exception_handler(Exception, unhandled_exception_handler)
 
 @app.middleware("http")
 async def some_middleware(request: Request, call_next):
