@@ -57,6 +57,7 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         session_data = {"user_id": 123, "name": "John Doe", "age": 30}
         r.hmset("session:abc123", session_data)
         r.expire("session:abc123", 1800)
+        r.hmset(redis_session_key, session_data)
         
         #r.hset(redis_session_key["plot_name"]="My First Plot")
         #r.set(redis_session_key,"plot_name","My First Plot")
