@@ -63,7 +63,7 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         print('--------- create new plot-- decoded val------------------------------')
     
         #dmtool_user_id = decoded_val['dmtool_userid']
-        dmtool_user_id = session['dmtool_userid']
+        #dmtool_user_id = session['dmtool_userid']
         print('lak : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
         #allkeys = r.hgetall(redis_session_key)
         #print('--------- create new plot -- h get all values -- from here------------------------------')
