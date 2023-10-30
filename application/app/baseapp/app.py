@@ -96,10 +96,10 @@ server.config['FLASK_DEBUG'] = 0
 #server.config['SESSION_COOKIE_PATH'] =  '/'
 
 ## setup session data
-#server.config['SESSION_TYPE'] = 'redis'
-#server.config['SESSION_REDIS'] = redis.from_url('redis://container_redis_1:6379')
-#server_session = Session()
-#server_session.init_app(server)
+server.config['SESSION_TYPE'] = 'redis'
+server.config['SESSION_REDIS'] = redis.from_url('redis://container_redis_1:6379')
+server_session = Session()
+server_session.init_app(server)
 
 headertext = 'Dark Matter Tool'
 footertext = 'ACG'
