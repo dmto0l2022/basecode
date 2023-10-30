@@ -1,6 +1,6 @@
 import os
 from os import environ, path
-from flask_session import Session
+#from flask_session import Session
 from flask import request, session
 import redis
 
@@ -95,11 +95,11 @@ server.config['FLASK_DEBUG'] = 0
 
 #server.config['SESSION_COOKIE_PATH'] =  '/'
 
-## setup session data
-server.config['SESSION_TYPE'] = 'redis'
-server.config['SESSION_REDIS'] = redis.from_url('redis://container_redis_1:6379')
-server_session = Session()
-server_session.init_app(server)
+## setup session data ## this created a new session
+#server.config['SESSION_TYPE'] = 'redis'
+#server.config['SESSION_REDIS'] = redis.from_url('redis://container_redis_1:6379')
+#server_session = Session()
+#server_session.init_app(server)
 
 headertext = 'Dark Matter Tool'
 footertext = 'ACG'
