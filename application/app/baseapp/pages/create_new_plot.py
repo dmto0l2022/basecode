@@ -1,6 +1,6 @@
 import dash
 from dash import html, dcc, callback, Output, Input, State
-#from flask import session
+from flask import session
 from flask import request
 
 #import libraries.formlibrary as fl
@@ -55,18 +55,21 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         #return href_return
     
         #r.hset(redis_session_key["plot_name"]="My First Plot")
+        session["plot_name"]="My First Plot"
         session_data = r.get(redis_session_key)
         print('--------- create new plot -- decoded val------------------------------')
         decoded_val = pickle.loads(session_data)
         print(decoded_val)
         print('--------- create new plot-- decoded val------------------------------')
     
-        dmtool_user_id = decoded_val['dmtool_userid']
+        #dmtool_user_id = decoded_val['dmtool_userid']
+        dmtool_user_id = session['dmtool_userid']
         print('lak : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
-        allkeys = r.hgetall(redis_session_key)
-        print('--------- create new plot -- h get all values -- from here------------------------------')
-        print(allkeys)
-        print('--------- create new plot -- h get all values -- to here ----------------------------')
+        #allkeys = r.hgetall(redis_session_key)
+        #print('--------- create new plot -- h get all values -- from here------------------------------')
+        #print(allkeys)
+        #print('--------- create new plot -- h get all values -- to here ----------------------------')
+        
         href_return = baseapp_prefix + '/create_new_plot'
         return href_return
     elif page_name + '_create_' + 'button_id' == prop_id :
