@@ -226,24 +226,24 @@ no_id
 
 class PlotBase(SQLModel):
     name : str = Field(default=None,nullable=False, primary_key=False) ## Unique??
-    x_min : str = Field(default=None)
-    x_max : str = Field(default=None)
-    y_min : str = Field(default=None)
-    y_max : str = Field(default=None)
-    x_units : str = Field(default=None)
-    y_units : str = Field(default=None)
+    x_min : Optional[str] = Field(default=None)
+    x_max : Optional[str] = Field(default=None)
+    y_min : Optional[str] = Field(default=None)
+    y_max : Optional[str] = Field(default=None)
+    x_units : Optional[str] = Field(default=None)
+    y_units : Optional[str] = Field(default=None)
     user_id : int = Field(default=None, nullable=False, primary_key=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    plot_png : str = Field(default=None)
-    legend_png : str = Field(default=None)
-    plot_eps : str = Field(default=None)
-    legend_eps : str = Field(default=None)
-    no_id : int = Field(default=None, nullable=False, primary_key=False)
+    plot_png : Optional[str] = Field(default=None)
+    legend_png : Optional[str] = Field(default=None)
+    plot_eps : Optional[str] = Field(default=None)
+    legend_eps : Optional[str] = Field(default=None)
+    no_id : Optional[int] = Field(default=None, nullable=False, primary_key=False)
 
 class Plot(PlotBase, table=True):
-    __table_args__ = (UniqueConstraint("name"),)
+    __table_args__ = (UniqueConstraint("user_id", "name"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 class PlotCreate(PlotBase):
