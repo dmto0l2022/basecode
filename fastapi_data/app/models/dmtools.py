@@ -240,7 +240,7 @@ class PlotBase(SQLModel):
     legend_png : Optional[str] = Field(default=None)
     plot_eps : Optional[str] = Field(default=None)
     legend_eps : Optional[str] = Field(default=None)
-    no_id : Optional[int] = Field(default=None, nullable=False, primary_key=False)
+    no_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
 
 class Plot(PlotBase, table=True):
     __table_args__ = (UniqueConstraint("user_id", "name"),)
