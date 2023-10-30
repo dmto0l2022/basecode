@@ -6,6 +6,26 @@ from flask import request
 #import libraries.formlibrary as fl
 from app.baseapp.libraries import formlibrary as fl
 
+import requests
+import json
+import redis
+
+
+session_key = request.cookies.get('session')
+print('list all keys : session key >>',session_key)
+redis_session_key = "session:"+session_key
+r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+
+session_data = r.get(redis_session_key)
+print('--------- list all keys -- decoded val------------------------------')
+decoded_val = pickle.loads(session_data)
+print(decoded_val)
+print('--------- list all keys -- decoded val------------------------------')
+
+dmtool_user_id = decoded_val['dmtool_userid']
+print('lak : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
+
+
 dash.register_page(__name__, path='/create_new_plot')
 page_name = 'create_new_plot'
 baseapp_prefix = '/application/baseapp'
@@ -43,6 +63,25 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         print('cnp : session key >>',session_key)
         print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         href_return = '/application/baseapp/create_new_plot'
+        return href_return
+    
+        r.hset(redis_session_key, mapping={
+                'name': 'John',
+                "surname": 'Smith',
+                "company": 'Redis',
+                "age": 29
+            })
+        session_data = r.get(redis_session_key)
+        print('--------- list all keys -- decoded val------------------------------')
+        decoded_val = pickle.loads(session_data)
+        print(decoded_val)
+        print('--------- list all keys -- decoded val------------------------------')
+    
+        dmtool_user_id = decoded_val['dmtool_userid']
+        print('lak : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
+        allkeys = r.hgetall(redis_session_key)
+        print(allkeys)
+        href_return = baseapp_prefix + '/create_new_plot'
         return href_return
     elif page_name + '_create_' + 'button_id' == prop_id :
         href_return = baseapp_prefix+ '/select_limits_to_plot'
