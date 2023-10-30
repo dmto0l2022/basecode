@@ -53,11 +53,13 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
     if page_name + '_print_' + 'button_id' == prop_id :
         #href_return = '/application/baseapp/create_new_plot'
         #return href_return
-
+        session_id = "session:abc123"
+        print("session simple type >>>>>>>>>>>", type(session_id))
+        print("session complicated type >>>>>>>>>>>",type(redis_session_key))
         session_data = {"user_id": 123, "name": "John Doe", "age": 30}
-        r.hmset("session:abc123", session_data)
-        r.expire("session:abc123", 1800)
-        r.hmset(redis_session_key, session_data)
+        r.hmset(session_id, session_data)
+        r.expire(session_id, 1800)
+        #r.hmset(redis_session_key, session_data)
         
         #r.hset(redis_session_key["plot_name"]="My First Plot")
         #r.set(redis_session_key,"plot_name","My First Plot")
