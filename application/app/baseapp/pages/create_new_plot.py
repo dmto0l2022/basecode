@@ -12,15 +12,6 @@ import redis
 
 r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 
-session_data = r.get(redis_session_key)
-print('--------- list all keys -- decoded val------------------------------')
-decoded_val = pickle.loads(session_data)
-print(decoded_val)
-print('--------- list all keys -- decoded val------------------------------')
-
-dmtool_user_id = decoded_val['dmtool_userid']
-print('cnp : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
-
 
 dash.register_page(__name__, path='/create_new_plot')
 page_name = 'create_new_plot'
@@ -52,13 +43,13 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     print("create new plot >> prop id >>  " ,prop_id)
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    session_key = request.cookies.get('session')
+    print('create new plot : session key >>',session_key)
+    redis_session_key = "session:"+session_key
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     #msg = prop_id
     if page_name + '_print_' + 'button_id' == prop_id :
-        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-        session_key = request.cookies.get('session')
-        print('cnp : session key >>',session_key)
-        redis_session_key = "session:"+session_key
-        print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
         #href_return = '/application/baseapp/create_new_plot'
         #return href_return
     
