@@ -9,6 +9,7 @@ from app.baseapp.libraries import formlibrary as fl
 import requests
 import json
 import redis
+import pickle
 
 r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 
