@@ -112,7 +112,12 @@ async def integrity_error_handler(request: Request, exc: Exception):
     #message = str(exception_type) + " | " + str(exception_value) + " | " + str(exception_traceback)
     message = "Integrity Error"
     exception_traceback_str = str(exception_traceback)
-    return JSONResponse(status_code=500, content=jsonable_encoder({"code": 500, "msg": message, "exception_type_str": str(exception_type), "exception_value_str": str(exception_value) ,"exception_traceback":exception_traceback_str }))
+    return JSONResponse(status_code=500,
+                        content=jsonable_encoder({"code": 500, "msg": message,
+                                                  "exception_type_str": str(exception_type),
+                                                  "exception_value_str": str(exception_value),
+                                                  "exception_value": exception_value,
+                                                  "exception_traceback":exception_traceback_str }))
 
 #@app.exception_handler(500)
 #async def internal_exception_handler(request: Request, exc: Exception):
