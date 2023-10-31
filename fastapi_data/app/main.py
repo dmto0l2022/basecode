@@ -109,8 +109,9 @@ async def validation_exception_handler(request, exc):
 async def integrity_error_handler(request: Request, exc: Exception):
     print("exception details >>>>>>>>>>>" , sys.exc_info())
     exception_type, exception_value, exception_traceback = sys.exc_info()
-    message = str(exception_type) + " | " + str(exception_value) + " | " + str(exception_traceback)
-    return JSONResponse(status_code=500, content=jsonable_encoder({"code": 500, "msg": message }))
+    #message = str(exception_type) + " | " + str(exception_value) + " | " + str(exception_traceback)
+    message = "Integrity Error"
+    return JSONResponse(status_code=500, content=jsonable_encoder({"code": 500, "msg": message, "exception_type": exception_type, "exception_value": exception_value ,"exception_traceback":exception_traceback }))
 
 #@app.exception_handler(500)
 #async def internal_exception_handler(request: Request, exc: Exception):
