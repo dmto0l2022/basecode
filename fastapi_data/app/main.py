@@ -115,9 +115,14 @@ async def integrity_error_handler(request: Request, exc: Exception):
     exception_value_list = exception_value_str.split(') (')
     error_message_working = exception_value_list[1]
     error_message_raw = error_message_working.split("\n[SQL")[0]
-    error_message_1 = error_message_raw.replace("(", "")
-    error_message_2 = error_message_1.replace('"', '')
-    error_message = error_message_2.replace("\\", "")
+    #error_message_1 = error_message_raw.replace("(", "")
+    #error_message_2 = error_message_1.replace('"', '')
+    #error_message = error_message_2.replace("\\", "")
+    replace_these = ["(", ")", '"', "\\"]
+    error_message = error_message_raw
+    for replace_char in replace_these:
+        error_message = error_message.replace(replace_char)
+    
     exception_traceback_str = str(exception_traceback)
     return JSONResponse(status_code=500,
                         content=jsonable_encoder({"code": 500, "msg": message,
