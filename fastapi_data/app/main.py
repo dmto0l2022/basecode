@@ -111,11 +111,16 @@ async def integrity_error_handler(request: Request, exc: Exception):
     exception_type, exception_value, exception_traceback = sys.exc_info()
     #message = str(exception_type) + " | " + str(exception_value) + " | " + str(exception_traceback)
     message = "Integrity Error"
+    exception_value_str = str(exception_value)
+    exception_value_list = exception_value_str.split(') (')
+    error_message_working = exception_value_list[1]
+    error_message = error_message_working.split("\n[SQL")[0]
     exception_traceback_str = str(exception_traceback)
     return JSONResponse(status_code=500,
                         content=jsonable_encoder({"code": 500, "msg": message,
                                                   "exception_type_str": str(exception_type),
                                                   "exception_value_str": str(exception_value),
+                                                  "error_msg": error_message,
                                                   "exception_value": exception_value,
                                                   "exception_traceback":exception_traceback_str }))
 
