@@ -121,7 +121,7 @@ async def integrity_error_handler(request: Request, exc: Exception):
     replace_these = ["(", ")", '"', "\\"]
     error_message = error_message_raw
     for replace_char in replace_these:
-        error_message = error_message.replace(replace_char)
+        error_message = error_message.replace(replace_char, "")
     
     exception_traceback_str = str(exception_traceback)
     return JSONResponse(status_code=500,
