@@ -38,6 +38,8 @@ from redis import Redis
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
+from sqlalchemy import exc
+
 from db import get_session, init_db
 
 from routers import routers
@@ -102,9 +104,16 @@ async def validation_exception_handler(request, exc):
     print(f"OMG! The client sent invalid data!: {exc}")
     return await request_validation_exception_handler(request, exc)
 
-@app.exception_handler(500)
-async def internal_exception_handler(request: Request, exc: Exception):
-    return JSONResponse(status_code=500, content=jsonable_encoder({"code": 500, "msg": "Tool Server Error"}))
+@app.exception_handler(exc.IntegrityError)
+async def integrity_error_handler(request: Request, exc: Exception):
+    print("exception details >>>>>>>>>>>" , sys.exc_info())
+    exception_type, exception_value, exception_traceback = sys.exc_info()
+    return JSONResponse(status_code=500, content=jsonable_encoder({"code": 500, "msg": exception_type}))
+
+#@app.exception_handler(500)
+#async def internal_exception_handler(request: Request, exc: Exception):
+#    return JSONResponse(status_code=500, content=jsonable_encoder({"code": 500, "msg": "Tool Server Error"}))
+
 
 '''
 @app.exception_handler(StarletteHTTPException)
