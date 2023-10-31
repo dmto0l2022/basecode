@@ -10,6 +10,12 @@ from fastapi.responses import JSONResponse
 from fastapi.responses import PlainTextResponse
 from fastapi.responses import Response
 
+from fastapi.responses import PlainTextResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
+from fastapi.exception_handlers import (
+    http_exception_handler,
+    request_validation_exception_handler,
+)
 
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
@@ -84,35 +90,28 @@ app.include_router(metadata.router)
 
 ##@app.request_validation_exception_handler(RequestValidationError)
 
-
-async def request_validation_exception_handler(request: Request, exc: RequestValidationError):
-    return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content=jsonable_encoder({"detail": exc.errors(), "body": exc.body}),
-    )
-
-##@app.http_exception_handler(HTTPException)
-
-async def http_exception_handler(request: Request, exc: HTTPException):
-    return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content=jsonable_encoder({"detail": exc.errors(), "body": exc.body}),
-    )
-
-##@app.unhandled_exception_handler(Exception)
+@app.exception_handler(StarletteHTTPException)
+async def custom_http_exception_handler(request, exc):
+    print(f"OMG! An HTTP error!: {repr(exc)}")
+    return await http_exception_handler(request, exc)
 
 
-async def unhandled_exception_handler(request: Request, exc: Exception):
-    host = getattr(getattr(request, "client", None), "host", None)
-    port = getattr(getattr(request, "client", None), "port", None)
-    url = f"{request.url.path}?{request.query_params}" if request.query_params else request.url.path
-    exception_type, exception_value, exception_traceback = sys.exc_info()
-    exception_name = getattr(exception_type, "__name__", None)
-    return JSONResponse(
-        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        content=jsonable_encoder({"detail": exception_name, "body": exception_type}),
-    )
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request, exc):
+    print(f"OMG! The client sent invalid data!: {exc}")
+    return await request_validation_exception_handler(request, exc)
 
+
+'''
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handler(request, exc):
+    return PlainTextResponse(str(exc.detail), status_code=exc.status_code)
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request, exc):
+    return PlainTextResponse(str(exc), status_code=400)
+'''
 '''
 
 request_validation_exception_handler
