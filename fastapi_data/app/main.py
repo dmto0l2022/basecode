@@ -277,8 +277,8 @@ async def logout(response: HTMLResponse,):
 
 
 
-@app.add_exception_handler(RequestValidationError, request_validation_exception_handler)
-@app.add_exception_handler(HTTPException, http_exception_handler)
+#@app.add_exception_handler(RequestValidationError, request_validation_exception_handler)
+#@app.add_exception_handler(HTTPException, http_exception_handler)
 ##@app.add_exception_handler(Exception, unhandled_exception_handler)
 
 @app.middleware("http")
