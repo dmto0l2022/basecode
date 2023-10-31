@@ -101,6 +101,9 @@ async def validation_exception_handler(request, exc):
     print(f"OMG! The client sent invalid data!: {exc}")
     return await request_validation_exception_handler(request, exc)
 
+@app.exception_handler(500)
+async def internal_exception_handler(request: Request, exc: Exception):
+    return JSONResponse(status_code=500, content=jsonable_encoder({"code": 500, "msg": "Tool Server Error"}))
 
 '''
 @app.exception_handler(StarletteHTTPException)
