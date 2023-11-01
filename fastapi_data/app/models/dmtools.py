@@ -1,5 +1,7 @@
 from sqlalchemy.dialects.mysql import LONGTEXT
 from sqlmodel import SQLModel, Field, Relationship
+## https://stackoverflow.com/questions/74273829/how-to-correctly-use-joins-with-sqlmodel
+
 from typing import Optional
 
 from datetime import datetime
