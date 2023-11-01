@@ -40,6 +40,8 @@ from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from sqlalchemy import exc
+## may need to add further Database Handling Errors - see link for types of exception
+## https://github.com/zzzeek/sqlalchemy/blob/main/lib/sqlalchemy/exc.py
 
 from db import get_session, init_db
 
