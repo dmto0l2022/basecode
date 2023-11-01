@@ -171,9 +171,9 @@ class LimitBase(SQLModel):
     date_of_run_start : date = Field(default=date.today(), nullable=False)
     date_of_run_end : date = Field(default=date.today(), nullable=False)
     year : int = Field(default=None, nullable=False, primary_key=False)
-    limit_ownership_id : int = Field(Integer, foreign_key='limit_ownership.id', nullable=True)
+    ##limit_ownership_id : int = Field(Integer, foreign_key='limit_ownership.id', nullable=True)
 
-    limit_ownership: Optional[Limit_ownership] = Relationship(back_populates="LimitBase")
+    ##limit_ownership: Optional[Limit_ownership] = Relationship(back_populates="LimitBase")
 
 
 
@@ -249,9 +249,9 @@ class PlotBase(SQLModel):
     plot_eps : Optional[str] = Field(default=None)
     legend_eps : Optional[str] = Field(default=None)
     no_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
-    ownership_id : int = Field(foreign_key="plot_ownership.id", nullable=True)
+    ##ownership_id : int = Field(foreign_key="plot_ownership.id", nullable=True)
     
-    plot_ownership: Optional[Plot_ownership] = Relationship(back_populates="PlotBase")
+    ##plot_ownership: Optional[Plot_ownership] = Relationship(back_populates="PlotBase")
 
 class Plot(PlotBase, table=True):
     __table_args__ = (UniqueConstraint("user_id", "name", name="Constraint : Unique user id and plot name"),)
