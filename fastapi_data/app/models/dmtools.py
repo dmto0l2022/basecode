@@ -99,6 +99,11 @@ class Limit_ownershipBase(SQLModel):
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
+    owned_limit_id : Optional[int] = Field(default=None, foreign_key='limit.id', nullable=True)
+
+    limits: Optional[Limit_ownership] = Relationship(back_populates="limit_ownership", sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
+                                                             )
+
 class Limit_ownership(Limit_ownershipBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
 
@@ -171,11 +176,10 @@ class LimitBase(SQLModel):
     date_of_run_start : date = Field(default=date.today(), nullable=False)
     date_of_run_end : date = Field(default=date.today(), nullable=False)
     year : int = Field(default=None, nullable=False, primary_key=False)
-    ##limit_ownership_id : int = Field(Integer, foreign_key='limit_ownership.id', nullable=True)
+    limit_ownership_id : Optional[int] = Field(default=None, foreign_key='limit_ownership.id', nullable=True)
 
-    ##limit_ownership: Optional[Limit_ownership] = Relationship(back_populates="LimitBase")
-
-
+    limit_ownership: Optional[Limit_ownership] = Relationship(back_populates="owned_limit_id", sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
+                                                             )
 
 class Limit(LimitBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
