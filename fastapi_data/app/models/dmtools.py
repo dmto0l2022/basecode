@@ -171,7 +171,7 @@ class LimitBase(SQLModel):
     date_of_run_start : date = Field(default=date.today(), nullable=False)
     date_of_run_end : date = Field(default=date.today(), nullable=False)
     year : int = Field(default=None, nullable=False, primary_key=False)
-    ownership_id : int = Field(Integer, foreign_key='limit_ownership.id', nullable=True)
+    limit_ownership_id : int = Field(Integer, foreign_key='limit_ownership.id', nullable=True)
 
     limit_ownership: Optional[Limit_ownership] = Relationship(back_populates="LimitBase")
 
@@ -183,8 +183,6 @@ class Limit(LimitBase, table=True):
 class LimitCreate(LimitBase):
     pass
 
-class LimitOutput(LimitBase):
-    owner : Limit_ownership
         
 ## Plot Ownership 
 # Fields
@@ -203,6 +201,8 @@ class Plot_ownershipBase(SQLModel):
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+
+    
 
 class Plot_ownership(Plot_ownershipBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
@@ -260,5 +260,3 @@ class Plot(PlotBase, table=True):
 class PlotCreate(PlotBase):
     pass
 
-class PlotOutput(PlotBase):
-    owner : Plot_ownership
