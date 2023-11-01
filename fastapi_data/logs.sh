@@ -1,1 +1,1 @@
-podman logs --since 10m container_application_1
+podman logs --since 10m container_fastapi_data_1
