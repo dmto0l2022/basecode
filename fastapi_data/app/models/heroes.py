@@ -24,6 +24,8 @@ SQLModel.metadata = Base.metadata
 
 from fastapi import FastAPI, Depends
 
+## classes : Team, TeamRead, Hero, HeroRead, TeamReadWithHeroes
+
 class TeamBase(SQLModel):
     name: str = Field(index=True)
 
