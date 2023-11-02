@@ -1,4 +1,6 @@
 from sqlalchemy.dialects.mysql import LONGTEXT
+from sqlalchemy import ForeignKeyConstraint
+## https://github.com/tiangolo/sqlmodel/issues/222
 from sqlmodel import SQLModel, Field, Relationship
 ## https://stackoverflow.com/questions/74273829/how-to-correctly-use-joins-with-sqlmodel
 ## https://docs.sqlalchemy.org/en/20/dialects/mysql.html
