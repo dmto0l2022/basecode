@@ -6,7 +6,6 @@ from sqlmodel import Field, Relationship, Session, SQLModel, create_engine, sele
 
 class TeamBase(SQLModel):
     name: str = Field(index=True)
-    ...
 
 
 class Team(TeamBase, table=True):
@@ -20,7 +19,6 @@ class TeamRead(TeamBase):
 
 class HeroBase(SQLModel):
     name: str = Field(index=True)
-    ...
     team_id: Optional[int] = Field(default=None, foreign_key="team.id")
 
 
