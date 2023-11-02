@@ -20,7 +20,6 @@ unceased_datetime_object = datetime.strptime(unceased_datetime_str, '%d/%m/%Y %H
 
 api_base_url = '/dmtool/fastapi_data/test/example/'
 
-
 '''
 # Experiment CRUD
 
@@ -32,7 +31,6 @@ async def get_experiment(session: AsyncSession = Depends(get_session),
     return [Experiment(name=experiment.name, id=experiment.id) for experiment in experiments]
 '''
 
-
-@app.get(api_base_url + "teams/", response_model=List[TeamReadWithHeroes])
+@router.get(api_base_url + "teams/", response_model=List[TeamReadWithHeroes])
 async def get_teams(*, session: AsyncSession = Depends(get_session)) -> List[Team]:
     return session.exec(select(Team)).all()
