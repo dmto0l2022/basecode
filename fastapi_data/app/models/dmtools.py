@@ -138,7 +138,7 @@ class Limit_ownership(Limit_ownershipBase, table=True):
     ##__tablename__= "limit_ownership"
     __table_args__= (ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_ownership_id"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
-    ##owned_limits: list["Limit"] = Relationship(back_populates="limit_ownership")
+    owned_limits: list["Limit"] = Relationship(back_populates="limit_ownership")
 
 class Limit_ownershipCreate(Limit_ownershipBase):
     pass
@@ -219,7 +219,7 @@ class Limit(LimitBase, table=True):
     ##__tablename__ = "limit"
     __table_args__ =  ({'mysql_engine':'InnoDB'})
     id: int = Field(default=None, nullable=False, primary_key=True)
-    ##limit_ownership: Optional["Limit_ownership"] = Relationship(back_populates="owned_limits", sa_relationship_kwargs=dict(lazy="selectin"))
+    limit_ownership: Optional["Limit_ownership"] = Relationship(back_populates="owned_limits", sa_relationship_kwargs=dict(lazy="selectin"))
 
 class LimitCreate(LimitBase):
     pass
