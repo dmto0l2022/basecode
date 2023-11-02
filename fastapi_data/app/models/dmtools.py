@@ -103,10 +103,8 @@ class Limit_ownershipBase(SQLModel):
 
     owned_limit_id : Optional[int] = Field(default=None, foreign_key='limit.id', nullable=True)
 
-    owned_limits: list[Limit] = Relationship(back_populates="ownership")
-
-    ##limits: Optional[Limit_ownership] = Relationship(back_populates="limit_ownership", sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
-                                                             )
+    owned_limits: list[Limit] = Relationship(back_populates="limit_ownership")
+    
 '''
 class User(SQLModel, table=True):
     user_id: Optional[int] = Field(default=None, primary_key=True)
