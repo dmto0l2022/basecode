@@ -315,7 +315,7 @@ class PlotBase(SQLModel):
     ##plot_ownership: Optional[Plot_ownership] = Relationship(back_populates="PlotBase")
 
 class Plot(PlotBase, table=True):
-     __tablename__= "limit_ownership"
+    __tablename__= "limit_ownership"
     __table_args__ = (UniqueConstraint("user_id", "name", name="Constraint : Unique user id and plot name"), {'mysql_engine':'InnoDB'})
     id: int = Field(default=None, nullable=False, primary_key=True)
 
