@@ -43,7 +43,7 @@ class ExperimentBase(SQLModel):
 
 class Experiment(ExperimentBase, table=True):
     ##__tablename__= "experiment"
-    __table_args__= ({'mysql_engine':'InnoDB'})
+    ##__table_args__= ({'mysql_engine':'InnoDB'})
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 class ExperimentCreate(ExperimentBase):
@@ -86,7 +86,8 @@ class Limit_displayBase(SQLModel):
 
 class Limit_display(Limit_displayBase, table=True):
     ##__tablename__= "limit_display"
-    __table_args__=  ({'mysql_engine':'InnoDB'})
+    ##__table_args__=  ({'mysql_engine':'InnoDB'})
+    __table_args__= (ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_display_id"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 class Limit_displayCreate(Limit_displayBase):
@@ -135,7 +136,7 @@ class UserRole(SQLModel, table=True):
 
 class Limit_ownership(Limit_ownershipBase, table=True):
     ##__tablename__= "limit_ownership"
-    __table_args__= ({'mysql_engine':'InnoDB'}, ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_ownership_id"),)
+    __table_args__= (ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_ownership_id"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
     ##owned_limits: list["Limit"] = Relationship(back_populates="limit_ownership")
 
@@ -267,7 +268,8 @@ class Plot_ownershipBase(SQLModel):
 
 class Plot_ownership(Plot_ownershipBase, table=True):
     ##__tablename__= "plot_ownership"
-    __table_args__=  ({'mysql_engine':'InnoDB'})
+    ##__table_args__=  ({'mysql_engine':'InnoDB'})
+    __table_args__= (ForeignKeyConstraint(["plot_id"], ["plot.id"], name="fk_plot_ownership_id"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 class Plot_ownershipCreate(Plot_ownershipBase):
@@ -318,7 +320,7 @@ class PlotBase(SQLModel):
 
 class Plot(PlotBase, table=True):
     ##__tablename__= "limit_ownership"
-    __table_args__ = (UniqueConstraint("user_id", "name", name="Constraint : Unique user id and plot name"), {'mysql_engine':'InnoDB'})
+    __table_args__ = (UniqueConstraint("user_id", "name", name="Constraint : Unique user id and plot name"),{'mysql_engine':'InnoDB'},)
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 class PlotCreate(PlotBase):
