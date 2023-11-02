@@ -135,7 +135,7 @@ class UserRole(SQLModel, table=True):
 
 class Limit_ownership(Limit_ownershipBase, table=True):
     ##__tablename__= "limit_ownership"
-    __table_args__= ([{'mysql_engine':'InnoDB'}, ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_ownership_id"),])
+    __table_args__= ({'mysql_engine':'InnoDB'}, ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_ownership_id"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
     ##owned_limits: list["Limit"] = Relationship(back_populates="limit_ownership")
 
