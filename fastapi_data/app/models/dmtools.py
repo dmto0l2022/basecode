@@ -143,8 +143,8 @@ class Limit_ownership(Limit_ownershipBase, table=True):
 class Limit_ownershipCreate(Limit_ownershipBase):
     pass
 
-class Limit_ownershipRead(Limit_ownershipBase):
-    limit: Optional[Limit] = None
+#class Limit_ownershipRead(Limit_ownershipBase):
+#    ##limit: Optional[Limit] = None
 
 ## Limit
 
