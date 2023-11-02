@@ -202,7 +202,7 @@ class LimitBase(SQLModel):
 
 class Limit(LimitBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True, foreign_key='limit_ownership.limit_id', nullable=False)
-    limit_ownership: Optional["Limit_ownership"] = Relationship(back_populates="owned_limits", sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
+    limit_ownership: Optional["Limit_ownership"] = Relationship(back_populates="owned_limits", sa_relationship_kwargs=dict(lazy="selectin"))
 
 class LimitCreate(LimitBase):
     pass
