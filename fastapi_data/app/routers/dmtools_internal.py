@@ -163,7 +163,7 @@ async def get_limit_ownership(session: AsyncSession = Depends(get_session),
 @router.post(api_base_url + "limit_ownership")
 async def add_limit_ownership(limit_ownership: Limit_ownershipCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    limit_ownership = Limit_ownership(user_id = limit_ownership.user_id,
+    limit_ownership = Limit_ownership(user_id = dmtool_userid,
                             limit_id = limit_ownership.limit_id,
                             created_at = limit_ownership.created_at,
                             updated_at = limit_ownership.updated_at)
@@ -175,7 +175,7 @@ async def add_limit_ownership(limit_ownership: Limit_ownershipCreate, session: A
 @router.delete(api_base_url + "limit_ownership/{limit_ownership_id}")
 async def delete_limit_ownership(limit_ownership_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(Limit_ownership).where(Limit_ownership.id == limit_ownership_id)
+    statement = select(Limit_ownership).where(Limit_ownership.id == limit_ownership_id).where(Limit_ownership.user_id == dmtool_userid)
     results = await session.exec(statement)
     limit_ownership = results.one()
     await session.delete(limit_ownership)
