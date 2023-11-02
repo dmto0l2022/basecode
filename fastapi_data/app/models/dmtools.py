@@ -103,8 +103,34 @@ class Limit_ownershipBase(SQLModel):
 
     owned_limit_id : Optional[int] = Field(default=None, foreign_key='limit.id', nullable=True)
 
-    limits: Optional[Limit_ownership] = Relationship(back_populates="limit_ownership", sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
+    owned_limits: list[Limit] = Relationship(back_populates="ownership")
+
+    ##limits: Optional[Limit_ownership] = Relationship(back_populates="limit_ownership", sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
                                                              )
+'''
+class User(SQLModel, table=True):
+    user_id: Optional[int] = Field(default=None, primary_key=True)
+    username: str
+
+    role_id: Optional[int] = Field(
+        default=None,
+        foreign_key="user_role.role_id",
+    )
+    role: Optional["UserRole"] = Relationship(
+        back_populates="users",
+        sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
+    )
+
+class UserRole(SQLModel, table=True):
+    __tablename__ = "user_role"
+    role_id: Optional[int] = Field(default=None, primary_key=True)
+    role_name: str
+
+    users: list[User] = Relationship(back_populates="role")
+
+
+'''
+
 
 class Limit_ownership(Limit_ownershipBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
@@ -180,7 +206,7 @@ class LimitBase(SQLModel):
     year : int = Field(default=None, nullable=False, primary_key=False)
     limit_ownership_id : Optional[int] = Field(default=None, foreign_key='limit_ownership.id', nullable=True)
 
-    limit_ownership: Optional[Limit_ownership] = Relationship(back_populates="owned_limit_id", sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
+    limit_ownership: Optional["Limit_ownership"] = Relationship(back_populates="owned_limits", sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
                                                              )
 
 class Limit(LimitBase, table=True):
@@ -189,6 +215,27 @@ class Limit(LimitBase, table=True):
 class LimitCreate(LimitBase):
     pass
 
+
+'''
+class User(SQLModel, table=True):
+    user_id: Optional[int] = Field(default=None, primary_key=True)
+    username: str
+
+    role_id: Optional[int] = Field(
+        default=None,
+        foreign_key="user_role.role_id",
+    )
+    role: Optional["UserRole"] = Relationship(
+        back_populates="users",
+        sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
+    )
+
+class UserRole(SQLModel, table=True):
+    __tablename__ = "user_role"
+    role_id: Optional[int] = Field(default=None, primary_key=True)
+    role_name: str
+
+'''
         
 ## Plot Ownership 
 # Fields
