@@ -96,14 +96,10 @@ class Limit_displayCreate(Limit_displayBase):
 
 class Limit_ownershipBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
-    limit_id : int = Field(default=None, nullable=False, primary_key=False)
+    limit_id : int = Field(default=None, foreign_key='limit.id', nullable=True)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-
-    owned_limit_id : Optional[int] = Field(default=None, foreign_key='limit.id', nullable=True)
-
-    owned_limits: list["Limit"] = Relationship(back_populates="limit_ownership")
     
 '''
 class User(SQLModel, table=True):
@@ -132,6 +128,7 @@ class UserRole(SQLModel, table=True):
 
 class Limit_ownership(Limit_ownershipBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
+    owned_limits: list["Limit"] = Relationship(back_populates="limit_ownership")
 
 class Limit_ownershipCreate(Limit_ownershipBase):
     pass
@@ -202,13 +199,10 @@ class LimitBase(SQLModel):
     date_of_run_start : date = Field(default=date.today(), nullable=False)
     date_of_run_end : date = Field(default=date.today(), nullable=False)
     year : int = Field(default=None, nullable=False, primary_key=False)
-    limit_ownership_id : Optional[int] = Field(default=None, foreign_key='limit_ownership.id', nullable=True)
-
-    limit_ownership: Optional["Limit_ownership"] = Relationship(back_populates="owned_limits", sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
-                                                             )
 
 class Limit(LimitBase, table=True):
-    id: int = Field(default=None, nullable=False, primary_key=True)
+    id: int = Field(default=None, nullable=False, primary_key=True, foreign_key='limit_ownership.limit_id', nullable=False)
+    limit_ownership: Optional["Limit_ownership"] = Relationship(back_populates="owned_limits", sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
 
 class LimitCreate(LimitBase):
     pass
