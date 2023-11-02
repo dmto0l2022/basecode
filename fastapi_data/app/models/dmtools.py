@@ -199,9 +199,11 @@ class LimitBase(SQLModel):
     date_of_run_start : date = Field(default=date.today(), nullable=False)
     date_of_run_end : date = Field(default=date.today(), nullable=False)
     year : int = Field(default=None, nullable=False, primary_key=False)
+    ownership_id: int = Field(default=None, nullable=True, foreign_key='limit_ownership.id')
+    
 
 class Limit(LimitBase, table=True):
-    id: int = Field(default=None, nullable=False, primary_key=True, foreign_key='limit_ownership.limit_id')
+    id: int = Field(default=None, nullable=False, primary_key=True)
     limit_ownership: Optional["Limit_ownership"] = Relationship(back_populates="owned_limits", sa_relationship_kwargs=dict(lazy="selectin"))
 
 class LimitCreate(LimitBase):
