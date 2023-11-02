@@ -128,7 +128,7 @@ class UserRole(SQLModel, table=True):
 
 class Limit_ownership(Limit_ownershipBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
-    owned_limits: list["Limit"] = Relationship(back_populates="limit_ownership")
+    ##owned_limits: list["Limit"] = Relationship(back_populates="limit_ownership")
 
 class Limit_ownershipCreate(Limit_ownershipBase):
     pass
@@ -170,6 +170,7 @@ year
 '''
 
 class LimitBase(SQLModel):
+    
     spin_dependency : str = Field(default=None)
     result_type : str = Field(default=None)
     measurement_type : str = Field(default=None)
@@ -199,12 +200,11 @@ class LimitBase(SQLModel):
     date_of_run_start : date = Field(default=date.today(), nullable=False)
     date_of_run_end : date = Field(default=date.today(), nullable=False)
     year : int = Field(default=None, nullable=False, primary_key=False)
-    ownership_id: int = Field(default=None, nullable=True, foreign_key='limit_ownership.id')
+    ownership_id: int = Field(default=None, foreign_key='limit_ownership.id')
     
-
 class Limit(LimitBase, table=True):
     id: int = Field(default=None, nullable=False, primary_key=True)
-    limit_ownership: Optional["Limit_ownership"] = Relationship(back_populates="owned_limits", sa_relationship_kwargs=dict(lazy="selectin"))
+    ##limit_ownership: Optional["Limit_ownership"] = Relationship(back_populates="owned_limits", sa_relationship_kwargs=dict(lazy="selectin"))
 
 class LimitCreate(LimitBase):
     pass
