@@ -33,6 +33,9 @@ class Team(TeamBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     heroes: List["Hero"] = Relationship(back_populates="team")
 
+class TeamCreate(TeamBase):
+    pass
+
 class TeamRead(TeamBase):
     id: int
 
@@ -46,6 +49,9 @@ class Hero(HeroBase, table=True):
 
 class HeroRead(HeroBase):
     id: int
+
+class HeroCreate(HeroBase):
+    pass
 
 class TeamReadWithHeroes(TeamRead):
     heroes: List[HeroRead] = []
