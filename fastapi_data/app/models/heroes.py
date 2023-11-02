@@ -1,7 +1,28 @@
+from sqlalchemy.dialects.mysql import LONGTEXT
+from sqlalchemy import ForeignKeyConstraint
+## https://github.com/tiangolo/sqlmodel/issues/222
+from sqlmodel import SQLModel, Field, Relationship
+## https://stackoverflow.com/questions/74273829/how-to-correctly-use-joins-with-sqlmodel
+## https://docs.sqlalchemy.org/en/20/dialects/mysql.html
+
+from typing import Optional
+
+from datetime import datetime
+from datetime import date
+
+from sqlalchemy.ext.declarative import declarative_base
+
+from sqlalchemy import Column
+from sqlalchemy import Integer
 from typing import List, Optional
+from sqlmodel import Field, Relationship, Session, SQLModel, create_engine, select
+from sqlalchemy import String
+from sqlalchemy import UniqueConstraint
+
+from models.base import Base
+SQLModel.metadata = Base.metadata
 
 from fastapi import FastAPI, Depends
-from sqlmodel import Field, Relationship, Session, SQLModel, create_engine, select
 
 class TeamBase(SQLModel):
     name: str = Field(index=True)
