@@ -42,7 +42,7 @@ async def get_heroes(session: AsyncSession = Depends(get_session),
 @router.post(api_base_url + "hero")
 async def add_hero(hero: HeroCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    hero = Hero(name=hero.name)
+    hero = HeroCreate(name=hero.name, team_id = hero.team_id)
     session.add(hero)
     await session.commit()
     await session.refresh(hero)
