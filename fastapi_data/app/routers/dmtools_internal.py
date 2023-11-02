@@ -150,7 +150,7 @@ updated_at = limit_ownership.created_at
 @router.get(api_base_url + "limit_ownership", response_model=list[Limit_ownership])
 async def get_limit_ownership(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(Limit_ownership, Limit).where(Limit_ownership.limit_id = Limit.id)
+    result = await session.execute(select(Limit_ownership, Limit).where(Limit_ownership.limit_id == Limit.id)
     limit_ownerships = result.scalars().all()
     return [Limit_ownership(id = limit_ownership.id,
                             user_id = limit_ownership.user_id,
