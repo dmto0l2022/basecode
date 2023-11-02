@@ -47,6 +47,7 @@ from db import get_session, init_db
 
 from routers import routers
 from routers import songs
+from routers import heroes
 from routers import dmtools_public
 from routers import dmtools_internal
 from routers import metadata
@@ -88,6 +89,7 @@ oauth.register(
 
 app.include_router(routers.router)
 app.include_router(songs.router)
+app.include_router(heroes.router)
 app.include_router(dmtools_public.router)
 app.include_router(dmtools_internal.router)
 app.include_router(metadata.router)
