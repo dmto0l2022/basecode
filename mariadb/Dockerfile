@@ -73,6 +73,9 @@ RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
 ## copied from dmtools home drive in create script, x added to last to execute
 COPY x_20211104_dmtools_backup.sql /docker-entrypoint-initdb.d
 
+COPY y_migrate_data.sql /docker-entrypoint-initdb.d
+
+
 #RUN unzip -j /var/www/html/world-db.zip -d /
 
 ### COPY x_backup.sql /docker-entrypoint-initdb.d
