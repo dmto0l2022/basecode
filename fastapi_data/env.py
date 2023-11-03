@@ -25,7 +25,7 @@ if config.config_file_name is not None:
 # target_metadata = None
 from models.dmtools import Experiment, Limit_display, Limit_ownership, Limit, Plot_ownership, Plot
 #from models.heroes import Team, TeamRead, Hero, HeroRead, TeamReadWithHeroes
-from models.heroes import Team, Hero
+from models.heroes import Team, Hero, TeamMembers
 from models.metadata import Dropdown_valuepair
 from models.base import Base
 target_metadata = Base.metadata
