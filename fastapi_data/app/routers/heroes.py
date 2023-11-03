@@ -22,7 +22,7 @@ api_base_url = '/dmtool/fastapi_data/test/example/'
 
 @router.get(api_base_url + "teamwithheroes/", response_model=List[TeamReadWithHeroes])
 async def get_team_with_heroes(*, session: AsyncSession = Depends(get_session)) -> List[Team]:
-    result = await session.execute(select(Team, Hero).where(Team.id == Hero.team_id))
+    result = await session.execute(select(Team, Hero).join(Hero))
     teamwithheroes = result.scalars().all()
     return teamwithheroes
 
