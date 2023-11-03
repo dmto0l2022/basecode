@@ -34,7 +34,7 @@ async def get_team_with_heroes(*, team_id: int, session: AsyncSession = Depends(
     for twh in teamwithheroes:
         just_team = twh[0]
         just_hero = twh[1]
-        append_this = {"team_name" : just_team.name, "team_id" : just_team.id, "hero_name" : just_her.name}
+        append_this = {"team_name" : just_team.name, "team_id" : just_team.id, "hero_name" : just_hero.name}
         return_dict["hero"] = append_this
     #for jh in just_heros:
         
