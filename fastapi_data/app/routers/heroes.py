@@ -27,8 +27,9 @@ async def get_team_with_heroes(*, session: AsyncSession = Depends(get_session)) 
     teamwithheroes = result_teamwithheroes.all()
     print("teamwithheroes >>>>>>>>>>>>>>>", teamwithheroes)
     ## [(Hero(id=4, name='Hero 10', team_id=1), Team(id=1, name='Team 1'))]
+    ## SELECT hero.name, hero.team_id, hero.id, team.name AS name_1, team.id AS id_1 
     #resultDictionary = dict((x, y) for x, y in teamwithheroes[0])
-    return [Team(name=team_name, id=team_id) for team in teamwithheroes]
+    return [Team(name=hero.name, team_id=hero.team_id, hero_id = hero.id, team_name= name_1 ) for team in teamwithheroes]
 
 '''
 @router.get(api_base_url + "teamwithheroes/{team_id}", response_model=TeamReadWithHeroes)
