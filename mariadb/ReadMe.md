@@ -44,3 +44,9 @@ We'll have to assign variables a value when we build the Dockerfile, in this way
 docker build --build-arg UBUNTU_VERSION=20.04 .
 
 Note that Dockerfile variables are just placeholders for values. Dockerfiles do not support assignment, conditionals or loops.
+
+
+# Uploading File to Server
+
+https://unix.stackexchange.com/questions/136371/how-to-download-a-folder-from-google-drive-using-terminal
+
