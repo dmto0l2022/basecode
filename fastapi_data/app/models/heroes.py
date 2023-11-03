@@ -26,12 +26,27 @@ from fastapi import FastAPI, Depends
 
 ## classes : Team, TeamRead, Hero, HeroRead, TeamReadWithHeroes
 
+class TeamMemberBase(SQLModel):
+    name: str = Field(index=True)
+
+class TeamMembers(TeamMemberBase, table=True):
+    __tablename__= "team_members"
+    id: int = Field(default=None, primary_key=True)
+    team_id: int = Field(default=None, foreign_key="team.id")
+    hero_id: int = Field(default=None, foreign_key="hero.id")
+
+class TeamMemberAdd(TeamMemberBase, table=False):
+    team_id: Optional[int] = Field(default=None, foreign_key="team.id")
+    hero_id: Optional[int] = Field(default=None, foreign_key="hero.id")
+
+class TeamMembersRead(TeamMembers, table=False):
+    pass
+    
 class TeamBase(SQLModel):
     name: str = Field(index=True)
 
 class Team(TeamBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    heroes: list["Hero"] = Relationship(back_populates="team")
 
 class TeamCreate(TeamBase):
     pass
@@ -41,11 +56,9 @@ class TeamRead(TeamBase):
 
 class HeroBase(SQLModel):
     name: str = Field(index=True)
-    team_id: Optional[int] = Field(default=None, foreign_key="team.id")
 
 class Hero(HeroBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    team: Optional["Team"] = Relationship(back_populates="heroes")
 
 class HeroRead(HeroBase):
     id: int
@@ -53,5 +66,3 @@ class HeroRead(HeroBase):
 class HeroCreate(HeroBase):
     pass
 
-class TeamReadWithHeroes(TeamRead):
-    heroes: List[HeroRead] = []
