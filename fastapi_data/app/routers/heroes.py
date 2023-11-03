@@ -26,7 +26,7 @@ api_base_url = '/dmtool/fastapi_data/test/example/'
 async def get_team_with_heroes(*, team_id: int, session: AsyncSession = Depends(get_session)):
     ##result = await session.execute(select(Team, Hero).join(Hero))
     #result_teamwithheroes = await session.execute(select(Hero, Team).where(Hero.team_id == Team.id))
-    result_teamwithheroes = await session.execute(select(Team, Hero).join(Hero).where(Team.id == team_id))
+    result_teamwithheroes = await session.execute(select(TeamMembers,Team,Hero).joint(Team).join(Hero).where(TeamMembers.team_id == team_id))
     teamwithheroes = result_teamwithheroes.all()
     print("teamwithheroes >>>>>>>>>>>>>>>",type(teamwithheroes),  teamwithheroes)
     print("hero name  >>>>>>", teamwithheroes[0][1].name)
@@ -100,6 +100,17 @@ async def add_team_member(teammember: TeamMembers, session: AsyncSession = Depen
     await session.commit()
     await session.refresh(teammember)
     return teammember
+
+@router.delete(api_base_url + "team/{id}")
+async def remove_team_team_member(teammember_id: int, session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    statement = select(TeamMembers).where(TeamMembers.id == teammember_id)
+    results = await session.exec(statement)
+    teammember = results.one()
+    await session.delete(teammember)
+    await session.commit()
+    return {"deleted": teammember}
+
 
 @router.delete(api_base_url + "team/{id}")
 async def delete_team(team_id: int, session: AsyncSession = Depends(get_session),
