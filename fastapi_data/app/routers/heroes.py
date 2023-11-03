@@ -21,13 +21,14 @@ unceased_datetime_object = datetime.strptime(unceased_datetime_str, '%d/%m/%Y %H
 api_base_url = '/dmtool/fastapi_data/test/example/'
 
 @router.get(api_base_url + "teamwithheroes/") ##, response_model=list[TeamReadWithHeroes])
-async def get_team_with_heroes(*, session: AsyncSession = Depends(get_session)) -> List[Team]:
+async def get_team_with_heroes(*, session: AsyncSession = Depends(get_session)) -> List[TeamReadWithHeroes]:
     ##result = await session.execute(select(Team, Hero).join(Hero))
     result_teamwithheroes = await session.execute(select(Hero, Team).where(Hero.team_id == Team.id))
     teamwithheroes = result_teamwithheroes.all()
     print("teamwithheroes >>>>>>>>>>>>>>>",type(teamwithheroes),  teamwithheroes)
     print("hero name  >>>>>>", teamwithheroes[0][0].name)
     just_team = teamwithheroes[0][1]
+    just_hero = teamwithheroes[0][0]
     ## [(Hero(id=4, name='Hero 10', team_id=1), Team(id=1, name='Team 1'))]
     ## SELECT hero.name, hero.team_id, hero.id, team.name AS name_1, team.id AS id_1 
     #resultDictionary = dict((x, y) for x, y in teamwithheroes[0])
