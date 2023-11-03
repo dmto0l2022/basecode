@@ -28,7 +28,7 @@ async def get_team_with_heroes(*, session: AsyncSession = Depends(get_session)) 
     print("teamwithheroes >>>>>>>>>>>>>>>", teamwithheroes)
     ## [(Hero(id=4, name='Hero 10', team_id=1), Team(id=1, name='Team 1'))]
     #resultDictionary = dict((x, y) for x, y in teamwithheroes[0])
-    return {teamwithheroes}
+    return {teamwithheroes[0]}
 
 '''
 @router.get(api_base_url + "teamwithheroes/{team_id}", response_model=TeamReadWithHeroes)
