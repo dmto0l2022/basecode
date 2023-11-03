@@ -5,6 +5,12 @@ from sqlmodel import SQLModel, Field, Relationship
 ## https://stackoverflow.com/questions/74273829/how-to-correctly-use-joins-with-sqlmodel
 ## https://docs.sqlalchemy.org/en/20/dialects/mysql.html
 
+from datetime import datetime
+
+datetime_origin_str = '01/01/1980 00:00:00'
+
+datetime_origin = datetime.strptime(datetime_origin_str, '%m/%d/%Y %H:%M:%S')
+
 from typing import Optional
 
 from datetime import datetime
@@ -82,7 +88,7 @@ class Limit_displayBase(SQLModel):
     style :  str = Field(default=None)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime_origin, nullable=False)
 
 
 class Limit_display(Limit_displayBase, table=True):
@@ -109,8 +115,8 @@ class Limit_ownershipBase(SQLModel):
     limit_id : int = Field(default=None, foreign_key='limit.id', nullable=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-
+    ceased_at : datetime = Field(default=datetime_origin, nullable=False)
+    
 class Limit_ownership(Limit_ownershipBase, table=True):
     ##__tablename__= "limit_ownership"
     ##__table_args__= (ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_ownership_id"),)
@@ -180,7 +186,7 @@ class LimitBase(SQLModel):
     data_reference : str = Field(default=None)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime_origin, nullable=False)
     creator_id : int = Field(default=None, nullable=False, primary_key=False)
     experiment :  str = Field(default=None)
     rating : int = Field(default=None, nullable=False, primary_key=False)
@@ -218,7 +224,7 @@ class Plot_ownershipBase(SQLModel):
     plot_id : int = Field(default=None, foreign_key='plot.id', nullable=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime_origin, nullable=False)
 
     
 
@@ -264,7 +270,7 @@ class PlotBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime_origin, nullable=False)
     plot_png : Optional[str] = Field(default=None)
     legend_png : Optional[str] = Field(default=None)
     plot_eps : Optional[str] = Field(default=None)
