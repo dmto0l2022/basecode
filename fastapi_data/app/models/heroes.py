@@ -53,5 +53,5 @@ class HeroRead(HeroBase):
 class HeroCreate(HeroBase):
     pass
 
-class TeamReadWithHeroes(TeamRead):
-    heroes: List[HeroRead] = []
+class TeamReadWithHeroes(Team):
+    pass
