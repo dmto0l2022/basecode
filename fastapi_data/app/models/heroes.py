@@ -31,7 +31,7 @@ class TeamBase(SQLModel):
 
 class Team(TeamBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    heroes: List["Hero"] = Relationship(back_populates="team")
+    heroes: list["Hero"] = Relationship(back_populates="team")
 
 class TeamCreate(TeamBase):
     pass
@@ -45,7 +45,7 @@ class HeroBase(SQLModel):
 
 class Hero(HeroBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    team: Optional[Team] = Relationship(back_populates="heroes")
+    team: Optional["Team"] = Relationship(back_populates="heroes")
 
 class HeroRead(HeroBase):
     id: int
