@@ -30,7 +30,7 @@ async def get_team_with_heroes(*, session: AsyncSession = Depends(get_session)) 
     return 
 '''
 
-@api_base_url.get(api_base_url + "teamwithheroes/" + {team_id}, response_model=TeamReadWithHeroes)
+@router.get(api_base_url + "teamwithheroes/" + {team_id}, response_model=TeamReadWithHeroes)
 async def read_team(*, team_id: int, session: Session = Depends(get_session)):
     team = await session.execute(select(Team, team_id))
     if not team:
