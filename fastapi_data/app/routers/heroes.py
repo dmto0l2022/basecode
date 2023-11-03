@@ -24,7 +24,7 @@ api_base_url = '/dmtool/fastapi_data/test/example/'
 async def get_team_with_heroes(*, session: AsyncSession = Depends(get_session)) -> List[Team]:
     ##result = await session.execute(select(Team, Hero).join(Hero))
     result_teamwithheroes = await session.execute(select(Hero, Team).where(Hero.team_id == Team.id))
-    teamwithheroes = result_teamwithheroes.scalars.all()
+    teamwithheroes = result_teamwithheroes.scalars().all()
     print("teamwithheroes >>>>>>>>>>>>>>>", teamwithheroes)
     return teamwithheroes
 
