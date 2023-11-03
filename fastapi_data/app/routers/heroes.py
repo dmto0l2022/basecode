@@ -13,7 +13,7 @@ router = APIRouter()
 
 from db import get_session
 
-from models.heroes import Team, TeamCreate, Hero, HeroCreate, TeamReadWithHeroes
+from models.heroes import Team, TeamCreate, Hero, HeroCreate, TeamMembers, TeamMemberAdd
 
 from datetime import datetime
 #1980-01-01 00:00:00.000
