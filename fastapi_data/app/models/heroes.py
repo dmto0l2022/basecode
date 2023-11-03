@@ -53,5 +53,5 @@ class HeroRead(HeroBase):
 class HeroCreate(HeroBase):
     pass
 
-class TeamReadWithHeroes(Team):
+class TeamReadWithHeroes(Hero, Team):
     pass
