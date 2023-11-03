@@ -162,7 +162,7 @@ year
 '''
 
 class LimitBase(SQLModel):
-    old_limit_id : int = Field(default=None, nullable=False, primary_key=False)
+    old_limit_id : int = Field(default=None, nullable=True, primary_key=False)
     spin_dependency : str = Field(default=None)
     result_type : str = Field(default=None)
     measurement_type : str = Field(default=None)
