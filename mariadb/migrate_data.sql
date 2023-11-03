@@ -1,6 +1,6 @@
 INSERT INTO data.experiment(old_experiment_id,name)
 SELECT id as old_experiment_id, name
-FROM `RubyDB`.experiments;
+FROM RubyDB.experiments;
 
 INSERT INTO data.limit_display(old_limit_display_id,
   old_limit_id, old_plot_id, old_color,
@@ -31,7 +31,7 @@ limit_id as old_limit_id,
 created_at,
 updated_at,
 '1980-01-01 00:00:00.00000' ceased_at
-FROM `RubyDB`.limit_ownerships;
+FROM RubyDB.limit_ownerships;
 
 INSERT INTO data.plot_ownership(old_plot_ownership_id, old_user_id, old_plot_id, created_at, updated_at)
 SELECT
