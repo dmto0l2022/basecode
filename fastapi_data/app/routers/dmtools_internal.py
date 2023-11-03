@@ -227,6 +227,7 @@ async def get_limit(session: AsyncSession = Depends(get_session),
     result = await session.execute(select(Limit))
     limits = result.scalars().all()
     return [Limit(id = limit.id,
+                old_limit_id = limit.old_limit_id,
                 spin_dependency = limit.spin_dependency,
                 result_type = limit.result_type,
                 measurement_type = limit.measurement_type,
@@ -263,9 +264,13 @@ async def get_limit(session: AsyncSession = Depends(get_session),
 @router.get(api_base_url + "limit/{limit_id}", response_model=Limit)
 async def get_limit(limit_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(Limit).where(Limit.id == limit_id)
-    limit = await session.exec(statement)
-    return limit
+    statement = select(LimitOwnership,Limit).join(Limit).where(LimitOwnership.limit_id == limit_id).where(LimitOwnership.user_id == dmtool_userid)
+    raw_data = await session.exec(statement)
+    limits = raw_data.first()
+    print("limit data >>>>>>>>>>>>>>>",  limits)
+    limit_count = 0
+    just_limit = limits[1]
+    return just_limit
 
 ## add one limit
 
