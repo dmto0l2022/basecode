@@ -45,7 +45,8 @@ SQLModel.metadata = Base.metadata
 ### Experiments
 
 class ExperimentBase(SQLModel):
-    name: str
+    old_exeriment_id : int = Field(default=None, nullable=True)
+    name : str = Field(default=None, nullable=True)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime_origin, nullable=False)
@@ -79,7 +80,9 @@ class ExperimentCreate(ExperimentBase):
 
 class Limit_displayBase(SQLModel):
     name: str = Field(default=None)
+    old_limit_id : int = Field(default=None, nullable=True)
     limit_id : int = Field(default=None, foreign_key='limit.id', nullable=False)
+    old_plot_id : int = Field(default=None, nullable=True)
     plot_id : int = Field(default=None, foreign_key='plot.id', nullable=False)
     trace_id : int = Field(default=None, nullable=False, primary_key=False)
     symbol : str = Field(default=None)
@@ -116,6 +119,8 @@ class Limit_displayCreate(Limit_displayBase):
 class Limit_ownershipBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
     limit_id : int = Field(default=None, foreign_key='limit.id', nullable=False)
+    old_user_id : int = Field(default=None, nullable=True)
+    old_limit_id : int = Field(default=None, nullable=True)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime_origin, nullable=False)
@@ -224,7 +229,9 @@ ceased_at
 
 class Plot_ownershipBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
+    old_user_id : int = Field(default=None, nullable=False, primary_key=False)
     plot_id : int = Field(default=None, foreign_key='plot.id', nullable=False)
+    old_plot_id : int = Field(default=None, foreign_key='plot.id', nullable=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime_origin, nullable=False)
@@ -263,6 +270,7 @@ no_id
 '''
 
 class PlotBase(SQLModel):
+    old_plot_id : int = Field(default=None, nullable=True)
     name : str = Field(default=None,nullable=False, primary_key=False) ## Unique??
     x_min : Optional[str] = Field(default=None)
     x_max : Optional[str] = Field(default=None)
