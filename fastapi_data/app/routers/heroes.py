@@ -31,7 +31,7 @@ async def get_team_with_heroes(*, session: AsyncSession = Depends(get_session)) 
     ## [(Hero(id=4, name='Hero 10', team_id=1), Team(id=1, name='Team 1'))]
     ## SELECT hero.name, hero.team_id, hero.id, team.name AS name_1, team.id AS id_1 
     #resultDictionary = dict((x, y) for x, y in teamwithheroes[0])
-    return [just_team]
+    return [teamwithheroes]
     ##[Team(name=team.hero_name, team_id=team.team_id, hero_id = team.hero_id, team_name= team.team_name ) for team in teamwithheroes]
 
 '''
