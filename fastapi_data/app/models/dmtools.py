@@ -70,8 +70,8 @@ class ExperimentCreate(ExperimentBase):
 
 class Limit_displayBase(SQLModel):
     name: str = Field(default=None)
-    limit_id : int = Field(default=None, nullable=False, primary_key=False)
-    plot_id : int = Field(default=None, nullable=False, primary_key=False)
+    limit_id : int = Field(default=None, foreign_key='limit.id', nullable=False)
+    plot_id : int = int = Field(default=None, foreign_key='plot.id', nullable=False)
     trace_id : int = Field(default=None, nullable=False, primary_key=False)
     symbol : str = Field(default=None)
     symbol_color :  str = Field(default=None)
@@ -84,11 +84,13 @@ class Limit_displayBase(SQLModel):
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
+
 class Limit_display(Limit_displayBase, table=True):
     ##__tablename__= "limit_display"
     ##__table_args__=  ({'mysql_engine':'InnoDB'})
     __table_args__= (ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_display_id"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
+
 
 class Limit_displayCreate(Limit_displayBase):
     pass
@@ -104,41 +106,15 @@ class Limit_displayCreate(Limit_displayBase):
 
 class Limit_ownershipBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
-    limit_id : int = Field(default=None, foreign_key='limit.id', nullable=True)
+    limit_id : int = Field(default=None, foreign_key='limit.id', nullable=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    
-'''
-class User(SQLModel, table=True):
-    user_id: Optional[int] = Field(default=None, primary_key=True)
-    username: str
-
-    role_id: Optional[int] = Field(
-        default=None,
-        foreign_key="user_role.role_id",
-    )
-    role: Optional["UserRole"] = Relationship(
-        back_populates="users",
-        sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
-    )
-
-class UserRole(SQLModel, table=True):
-    __tablename__ = "user_role"
-    role_id: Optional[int] = Field(default=None, primary_key=True)
-    role_name: str
-
-    users: list[User] = Relationship(back_populates="role")
-
-
-'''
-
 
 class Limit_ownership(Limit_ownershipBase, table=True):
     ##__tablename__= "limit_ownership"
-    __table_args__= (ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_ownership_id"),)
+    ##__table_args__= (ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_ownership_id"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
-    owned_limits: list["Limit"] = Relationship(back_populates="limit_ownership")
 
 class Limit_ownershipCreate(Limit_ownershipBase):
     pass
@@ -186,7 +162,7 @@ year
 '''
 
 class LimitBase(SQLModel):
-    
+    old_limit_id : int = Field(default=None, nullable=False, primary_key=False)
     spin_dependency : str = Field(default=None)
     result_type : str = Field(default=None)
     measurement_type : str = Field(default=None)
@@ -216,38 +192,15 @@ class LimitBase(SQLModel):
     date_of_run_start : date = Field(default=date.today(), nullable=False)
     date_of_run_end : date = Field(default=date.today(), nullable=False)
     year : int = Field(default=None, nullable=False, primary_key=False)
-    ##ownership_id: int = Field(default=None, foreign_key='limit_ownership.id')
-    
+
 class Limit(LimitBase, table=True):
     ##__tablename__ = "limit"
     __table_args__ =  ({'mysql_engine':'InnoDB'})
     id: int = Field(default=None, nullable=False, primary_key=True)
-    limit_ownership: Optional["Limit_ownership"] = Relationship(back_populates="owned_limits", sa_relationship_kwargs=dict(lazy="selectin"))
 
 class LimitCreate(LimitBase):
     pass
 
-
-'''
-class User(SQLModel, table=True):
-    user_id: Optional[int] = Field(default=None, primary_key=True)
-    username: str
-
-    role_id: Optional[int] = Field(
-        default=None,
-        foreign_key="user_role.role_id",
-    )
-    role: Optional["UserRole"] = Relationship(
-        back_populates="users",
-        sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
-    )
-
-class UserRole(SQLModel, table=True):
-    __tablename__ = "user_role"
-    role_id: Optional[int] = Field(default=None, primary_key=True)
-    role_name: str
-
-'''
         
 ## Plot Ownership 
 # Fields
@@ -262,7 +215,7 @@ ceased_at
 
 class Plot_ownershipBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
-    plot_id : int = Field(default=None, nullable=False, primary_key=False)
+    plot_id : int = Field(default=None, foreign_key='plot.id', nullable=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
@@ -272,7 +225,7 @@ class Plot_ownershipBase(SQLModel):
 class Plot_ownership(Plot_ownershipBase, table=True):
     ##__tablename__= "plot_ownership"
     ##__table_args__=  ({'mysql_engine':'InnoDB'})
-    __table_args__= (ForeignKeyConstraint(["plot_id"], ["plot.id"], name="fk_plot_ownership_id"),)
+    ##__table_args__= (ForeignKeyConstraint(["plot_id"], ["plot.id"], name="fk_plot_ownership_id"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 class Plot_ownershipCreate(Plot_ownershipBase):
@@ -317,15 +270,38 @@ class PlotBase(SQLModel):
     plot_eps : Optional[str] = Field(default=None)
     legend_eps : Optional[str] = Field(default=None)
     no_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
-    ##ownership_id : int = Field(foreign_key="plot_ownership.id", nullable=True)
-    
-    ##plot_ownership: Optional[Plot_ownership] = Relationship(back_populates="PlotBase")
 
 class Plot(PlotBase, table=True):
-    ##__tablename__= "limit_ownership"
+    ##__tablename__= "plot"
     __table_args__ = (UniqueConstraint("user_id", "name", name="Constraint : Unique user id and plot name"),{'mysql_engine':'InnoDB'},)
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 class PlotCreate(PlotBase):
     pass
 
+'''
+
+class User(SQLModel, table=True):
+    user_id: Optional[int] = Field(default=None, primary_key=True)
+    username: str
+
+    role_id: Optional[int] = Field(
+        default=None,
+        foreign_key="user_role.role_id",
+    )
+    role: Optional["UserRole"] = Relationship(
+        back_populates="users",
+        sa_relationship_kwargs=dict(lazy="selectin"),  # depends on your needs
+    )
+
+
+
+class UserRole(SQLModel, table=True):
+    __tablename__ = "user_role"
+    role_id: Optional[int] = Field(default=None, primary_key=True)
+    role_name: str
+
+    users: list[User] = Relationship(back_populates="role")
+
+
+'''
