@@ -19,8 +19,8 @@ unceased_datetime_str = '01/01/1980 00:00:00'
 unceased_datetime_object = datetime.strptime(unceased_datetime_str, '%d/%m/%Y %H:%M:%S')
 
 api_base_url = '/dmtool/fastapi_data/test/example/'
-
-@router.get(api_base_url + "teamwithheroes/", response_model=list[Team])
+'''
+@router.get(api_base_url + "teamwithheroes/", response_model=list[TeamReadWithHeroes])
 async def get_team_with_heroes(*, session: AsyncSession = Depends(get_session)) -> List[Team]:
     ##result = await session.execute(select(Team, Hero).join(Hero))
     result_teamwithheroes = await session.execute(select(Hero, Team).where(Hero.team_id == Team.id))
@@ -28,6 +28,14 @@ async def get_team_with_heroes(*, session: AsyncSession = Depends(get_session)) 
     print("teamwithheroes >>>>>>>>>>>>>>>", teamwithheroes)
     ## [(Hero(id=4, name='Hero 10', team_id=1), Team(id=1, name='Team 1'))]
     return 
+'''
+
+@api_base_url.get(api_base_url + teamwithheroesteam_id}, response_model=TeamReadWithHeroes)
+def read_team(*, team_id: int, session: Session = Depends(get_session)):
+    team = session.get(Team, team_id)
+    if not team:
+        raise HTTPException(status_code=404, detail="Team not found")
+    return team
 
 @router.get(api_base_url + "teams/", response_model=list[Team])
 async def get_team(session: AsyncSession = Depends(get_session),
