@@ -1,6 +1,6 @@
 from typing import List, Optional, Annotated
 
-from sqlmodel import Field, Relationship, Session, SQLModel, create_engine, select, delete
+from sqlmodel import Field, Relationship, Session, SQLModel, create_engine, select, delete, join
 
 from fastapi import Depends, FastAPI, Request, Response, HTTPException, Header
 
