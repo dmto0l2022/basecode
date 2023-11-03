@@ -46,6 +46,9 @@ SQLModel.metadata = Base.metadata
 
 class ExperimentBase(SQLModel):
     name: str
+    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    ceased_at : datetime = Field(default=datetime_origin, nullable=False)
 
 class Experiment(ExperimentBase, table=True):
     ##__tablename__= "experiment"
