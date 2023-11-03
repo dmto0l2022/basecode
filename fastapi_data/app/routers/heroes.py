@@ -31,11 +31,13 @@ async def get_team_with_heroes(*, team_id: int, session: AsyncSession = Depends(
     print("teamwithheroes >>>>>>>>>>>>>>>",type(teamwithheroes),  teamwithheroes)
     print("hero name  >>>>>>", teamwithheroes[0][1].name)
     return_dict = dict()
+    hero_count = 0
     for twh in teamwithheroes:
         just_team = twh[0]
         just_hero = twh[1]
         append_this = {"team_name" : just_team.name, "team_id" : just_team.id, "hero_name" : just_hero.name}
-        return_dict["hero"] = append_this
+        return_dict[hero_count] = append_this
+        hero_count += 1
     #for jh in just_heros:
         
     #return_json = {"team_name" : just_team.name, "team_id" : just_team.id, "hero_id" : just_hero.id, "hero_name" : just_hero.name}
