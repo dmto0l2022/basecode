@@ -71,7 +71,7 @@ class ExperimentCreate(ExperimentBase):
 class Limit_displayBase(SQLModel):
     name: str = Field(default=None)
     limit_id : int = Field(default=None, foreign_key='limit.id', nullable=False)
-    plot_id : int = int = Field(default=None, foreign_key='plot.id', nullable=False)
+    plot_id : int = Field(default=None, foreign_key='plot.id', nullable=False)
     trace_id : int = Field(default=None, nullable=False, primary_key=False)
     symbol : str = Field(default=None)
     symbol_color :  str = Field(default=None)
