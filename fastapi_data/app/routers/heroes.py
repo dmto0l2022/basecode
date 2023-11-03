@@ -1,5 +1,7 @@
 from typing import List, Optional, Annotated
 
+import json
+
 from sqlmodel import Field, Relationship, Session, SQLModel, create_engine, select, delete, join
 
 from fastapi import Depends, FastAPI, Request, Response, HTTPException, Header
@@ -28,15 +30,21 @@ async def get_team_with_heroes(*, team_id: int, session: AsyncSession = Depends(
     teamwithheroes = result_teamwithheroes.all()
     print("teamwithheroes >>>>>>>>>>>>>>>",type(teamwithheroes),  teamwithheroes)
     print("hero name  >>>>>>", teamwithheroes[0][1].name)
-    just_team = teamwithheroes[0][0]
-    just_heros = teamwithheroes[0][1]
+    return_dict = dict()
+    for twh in teamwithheroes:
+        just_team = twh[0]
+        just_hero = twh[1]
+        append_this = {"team_name" : just_team.name, "team_id" : just_team.id, "hero_name" : just_her.name}
+        return_dict["hero"] = append_this
     #for jh in just_heros:
         
     #return_json = {"team_name" : just_team.name, "team_id" : just_team.id, "hero_id" : just_hero.id, "hero_name" : just_hero.name}
-    return_json = {"team_name" : just_team.name, "team_id" : just_team.id, "heroes" : just_heros}
+    #return_json = {"team_name" : just_team.name, "team_id" : just_team.id, "heroes" : just_heros}
     ## [(Hero(id=4, name='Hero 10', team_id=1), Team(id=1, name='Team 1'))]
+    ## [(Team(id=1, name='Team 1'), Hero(id=4, name='Hero 10', team_id=1)), (Team(id=1, name='Team 1'), Hero(id=5, name='Hero 20', team_id=1))]
     ## SELECT hero.name, hero.team_id, hero.id, team.name AS name_1, team.id AS id_1 
     #resultDictionary = dict((x, y) for x, y in teamwithheroes[0])
+    return_json = json.dumps(return_dict, indent = 4) 
     return return_json
     ##[Team(name=team.hero_name, team_id=team.team_id, hero_id = team.hero_id, team_name= team.team_name ) for team in teamwithheroes]
 
