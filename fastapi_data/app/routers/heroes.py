@@ -25,6 +25,7 @@ async def get_team_with_heroes(*, session: AsyncSession = Depends(get_session)) 
     ##result = await session.execute(select(Team, Hero).join(Hero))
     result = await session.execute(select(Hero, Team).where(Hero.team_id == Team.id))
     teamwithheroes = result.scalars().all()
+    print("teamwithheroes >>>>>>>>>>>>>>>", teamwithheroes)
     return teamwithheroes
 
 @router.get(api_base_url + "teams/", response_model=list[Team])
