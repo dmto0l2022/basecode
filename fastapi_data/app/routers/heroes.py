@@ -46,8 +46,8 @@ async def get_team_with_heroes(*, team_id: int, session: AsyncSession = Depends(
     ## [(Team(id=1, name='Team 1'), Hero(id=4, name='Hero 10', team_id=1)), (Team(id=1, name='Team 1'), Hero(id=5, name='Hero 20', team_id=1))]
     ## SELECT hero.name, hero.team_id, hero.id, team.name AS name_1, team.id AS id_1 
     #resultDictionary = dict((x, y) for x, y in teamwithheroes[0])
-    return_json = json.dumps(return_dict, indent = 4) 
-    return return_json
+    #return_json = json.dumps(return_dict, indent = 4) 
+    return return_dict
     ##[Team(name=team.hero_name, team_id=team.team_id, hero_id = team.hero_id, team_name= team.team_name ) for team in teamwithheroes]
 
 '''
