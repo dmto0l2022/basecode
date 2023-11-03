@@ -33,8 +33,8 @@ async def get_team_with_heroes(*, team_id: int, session: AsyncSession = Depends(
     return_dict = dict()
     hero_count = 0
     for twh in teamwithheroes:
-        just_team = twh[0]
-        just_hero = twh[1]
+        just_team = twh[1]
+        just_hero = twh[2]
         append_this = {"team_name" : just_team.name, "team_id" : just_team.id, "hero_name" : just_hero.name}
         return_dict[hero_count] = append_this
         hero_count += 1
@@ -44,6 +44,7 @@ async def get_team_with_heroes(*, team_id: int, session: AsyncSession = Depends(
     #return_json = {"team_name" : just_team.name, "team_id" : just_team.id, "heroes" : just_heros}
     ## [(Hero(id=4, name='Hero 10', team_id=1), Team(id=1, name='Team 1'))]
     ## [(Team(id=1, name='Team 1'), Hero(id=4, name='Hero 10', team_id=1)), (Team(id=1, name='Team 1'), Hero(id=5, name='Hero 20', team_id=1))]
+    ## [(TeamMembers(name='blah', id=2, team_id=3, hero_id=6), Team(id=3, name='Team 123'), Hero(id=6, name='Hero 123'))]
     ## SELECT hero.name, hero.team_id, hero.id, team.name AS name_1, team.id AS id_1 
     #resultDictionary = dict((x, y) for x, y in teamwithheroes[0])
     #return_json = json.dumps(return_dict, indent = 4) 
