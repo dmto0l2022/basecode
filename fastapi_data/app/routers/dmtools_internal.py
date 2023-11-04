@@ -229,10 +229,15 @@ async def read_items(q: Annotated[list[str], Query()] = ["foo", "bar"]):
 @router.get(api_base_url + "listoflimits")
 #@router.get(api_base_url + "limits", response_model=list[Limit])
 async def get_list_of_limits(session: AsyncSession = Depends(get_session),
-                            list_of_limit_ids: Annotated[list[str], Query()] = [],
+                            list_of_limits_qry: Annotated[list[str], Query()] = [],
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid).where(Limit.id.in_(list_of_limit_ids)))
+    query_items = {"q": list_of_limits_qry}
+    list_of_limit_ids = query_items["q"]                          
     print("list of limits >>>>>>>>>>>", list_of_limit_ids)
+                              
+    result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid).where(Limit.id.in_(list_of_limit_ids)))
+    
+                              
     owneroflimits = result.all()
     print("owneroflimits >>>>>>>>>>>", owneroflimits)
     return_dict = dict()
