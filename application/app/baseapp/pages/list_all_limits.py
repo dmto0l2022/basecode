@@ -83,11 +83,13 @@ def RefreshTableData():
         headers={"dmtool-userid":'16384'}
         r = requests.get(url, headers=headers)
         response_data = r.json()
-        print('response data')
-        print('===================')
-        print(response_data)
-        print('===================')
+        #print('response data')
+        #print('===================')
+        #print(response_data)
+        print('===== response data frame ==============')
         response_data_frame = pd.DataFrame(response_data)
+        print(response_data_frame)
+        print('===== response data frame ==============')
     except:
         a = 1
     
