@@ -1,6 +1,6 @@
 DELIMITER //
 
-CREATE DEFINER=`pythonuser`@`%` PROCEDURE `data`.`move_data`
+CREATE DEFINER=`pythonuser`@`%` PROCEDURE `data`.`move_data`()
 BEGIN
 
 /* RubyDB.experiments; */
