@@ -39,8 +39,8 @@ def parse_series_and_values(limits_dataframe_in):
             for i in set_list:
                 z = i.split(" ");
                 new_x = z[0].replace(",[", "")
-                try:
-                    appendthis = [row['id'],
+                #try:
+                appendthis = [row['id'],
                                   data_label,
                                   data_reference,
                                   data_comment,
@@ -59,8 +59,8 @@ def parse_series_and_values(limits_dataframe_in):
                                   next_colour,
                                   'solid',
                                   'circle']
-                except:
-                    appendthis = [row['id'],'data_label',l,0,0,'','']
+                #except:
+                #    appendthis = [row['id'],'data_label',l,0,0,'','']
                 limit_data.append(appendthis)
         #lol
     #print('parsed limit data >>>>',limit_data) 
