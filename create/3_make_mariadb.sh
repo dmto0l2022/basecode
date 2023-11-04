@@ -20,9 +20,10 @@ rm /opt/dmtools/code/basecode/mariadb/x_20211104_dmtools_backup.sql
 cp /home/dmtools/download_file/20211104_dmtools_backup.sql /opt/dmtools/code/basecode/mariadb/x_20211104_dmtools_backup.sql
 
 cd /opt/dmtools/code/basecode/mariadb
-podman rmi mariadb_1
+
 podman stop container_mariadb
 podman rm container_mariadb
+podman rmi mariadb_1
 
 podman build \
 --build-arg=BUILD_ENV_UID=${ENV_UID} \
