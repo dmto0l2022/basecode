@@ -87,7 +87,7 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         #google_req = requests.get(url_get)
         #print("google user status code >>>> " , google_req.status_code)
 
-        href_return = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+new_plot_id+'&plot_name='+new_plot_name
+        href_return = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)+'&plot_name='+new_plot_name
         #href_return = baseapp_prefix + '/create_new_plot'
         return href_return
     elif page_name + '_cancel_' + 'button_id' == prop_id:
