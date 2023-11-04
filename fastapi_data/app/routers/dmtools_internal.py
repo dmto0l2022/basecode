@@ -228,7 +228,7 @@ async def get_limit(session: AsyncSession = Depends(get_session),
     owneroflimits = result.all()
     print("owneroflimits >>>>>>>>>>>", owneroflimits)
     return_dict = dict()
-    return_list = {'limits': [{}]}
+    return_list = {'limits': []}
     #data = {'list': [{'a':'1'}]}
     #data['limits'].append({'b':'2'})
     #data
