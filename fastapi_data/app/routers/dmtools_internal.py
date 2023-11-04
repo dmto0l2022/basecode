@@ -262,8 +262,8 @@ async def get_limit(session: AsyncSession = Depends(get_session),
                 "date_of_run_end" : just_limit.date_of_run_end,
                 "year" : limit.year}
         
-            return_dict[hero_count] = append_this
-            limit_count += 1
+        return_dict[hero_count] = append_this
+        limit_count += 1
     return return_dict
 
 
