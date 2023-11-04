@@ -232,8 +232,11 @@ async def get_list_of_limits(session: AsyncSession = Depends(get_session),
                             list_of_limits_qry: Annotated[list[str], Query()] = [],
                             dmtool_userid: Annotated[int | None, Header()] = None):
     query_items = {"q": list_of_limits_qry}
-    list_of_limit_ids = query_items["q"].split(',')                      
-    print("list of limits >>>>>>>>>>>", list_of_limit_ids)
+    list_of_limit_ids = query_items["q"]
+    length = len(list_of_limit_ids)
+                              
+    print("list of limits >>>>>>>>>>>", length, list_of_limit_ids)
+    print("length of list of limits >>>>>>>>>>>", length)
                               
     result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid).where(Limit.id.in_(list_of_limit_ids)))
     
