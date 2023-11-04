@@ -196,20 +196,20 @@ class LimitBase(SQLModel):
     file_name : str = Field(default=None)
     data_comment : str = Field(default=None)
     data_reference : str = Field(default=None)
-    created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    ceased_at : datetime = Field(default=datetime_origin, nullable=False)
+    created_at : datetime = Field(default=datetime.utcnow(), nullable=True)
+    updated_at : datetime = Field(default=datetime.utcnow(), nullable=True)
+    ceased_at : datetime = Field(default=datetime_origin, nullable=True)
     creator_id : int = Field(default=None, nullable=False, primary_key=False)
     experiment :  str = Field(default=None)
-    rating : int = Field(default=None, nullable=False, primary_key=False)
+    rating : int = Field(default=None, nullable=True, primary_key=False)
     date_of_announcement : date = Field(default=date.today(), nullable=False)
-    public : int = Field(default=None, nullable=False, primary_key=False) ## boolean
-    official : int = Field(default=None, nullable=False, primary_key=False) ## boolean
-    date_official : date = Field(default=date.today(), nullable=False)
-    greatest_hit : int = Field(default=None, nullable=False, primary_key=False) ## boolean
-    date_of_run_start : date = Field(default=date.today(), nullable=False)
-    date_of_run_end : date = Field(default=date.today(), nullable=False)
-    year : int = Field(default=None, nullable=False, primary_key=False)
+    public : int = Field(default=None, nullable=True, primary_key=False) ## boolean
+    official : int = Field(default=None, nullable=True, primary_key=False) ## boolean
+    date_official : date = Field(default=date.today(), nullable=True)
+    greatest_hit : int = Field(default=None, nullable=True, primary_key=False) ## boolean
+    date_of_run_start : date = Field(default=date.today(), nullable=True)
+    date_of_run_end : date = Field(default=date.today(), nullable=True)
+    year : int = Field(default=None, nullable=True, primary_key=False)
 
 class Limit(LimitBase, table=True):
     ##__tablename__ = "limit"
