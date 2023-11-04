@@ -226,11 +226,12 @@ async def get_limit(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid))
     owneroflimits = result.scalars().all()
+    print("owneroflimits >>>>>>>>>>>", owneroflimits)
     return_dict = dict()
     limit_count = 0
     for ool in owneroflimits:
-        #just_owner = ool[0]
-        just_limit = ool[1]
+        #just_owner = ool[1]
+        just_limit = ool[2]
         append_this = {"id" :  just_limit.id,
                 "old_limit_id" :  just_limit.old_limit_id,
                 "spin_dependency" : just_limit.spin_dependency,
