@@ -224,7 +224,7 @@ year
 #@router.get(api_base_url + "limits", response_model=list[Limit])
 async def get_limit(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(Limit))
+    result = await session.execute(select(LimitOwnership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid)
     limits = result.scalars().all()
     return [Limit(id = limit.id,
                 old_limit_id = limit.old_limit_id,
