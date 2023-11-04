@@ -1,3 +1,5 @@
+DELIMITER //
+
 CREATE DEFINER=`pythonuser`@`%` PROCEDURE `data`.`migrate_data`()
 BEGIN
     
@@ -121,3 +123,5 @@ FROM RubyDB.limits ;
 	
 	
 END;
+//
+DELIMITER ;
