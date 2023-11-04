@@ -44,40 +44,29 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     print("create new plot >> prop id >>  " ,prop_id)
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXX create new plot XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     session_key = request.cookies.get('session')
     print('create new plot : session key >>',session_key)
     redis_session_key = "session:"+session_key
+
+    val = r.get(redis_session_key)
+    print(redis_key)
+    print('---------val------------------------------')
+    print(val)
+    print('--------- decoded val------------------------------')
+    decoded_val = pickle.loads(val)
+    print(decoded_val)
+    dmtool_userid = decoded_val['dmtool_userid']
+    dmtool_authorised = decoded_val['dmtool_authorised']
+    print('dmtool_userid in cnp >>>' ,decoded_val['dmtool_userid'])
+    print('=======================================')
+    
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+
     #msg = prop_id
     if page_name + '_print_' + 'button_id' == prop_id :
         #href_return = '/application/baseapp/create_new_plot'
         #return href_return
-        session_id = "session:abc123"
-        print("session simple type >>>>>>>>>>>", type(session_id))
-        print("session complicated type >>>>>>>>>>>",type(redis_session_key))
-        session_data = {"user_id": 123, "name": "John Doe", "age": 30}
-        r.hmset(session_id, session_data)
-        r.expire(session_id, 1800)
-        #r.hmset(redis_session_key, session_data)
-        
-        #r.hset(redis_session_key["plot_name"]="My First Plot")
-        #r.set(redis_session_key,"plot_name","My First Plot")
-        ##r.hmset(name, {'field1':'Hello', 'field2':'World'})
-        #session["plot_name"]="My First Plot"
-        #session_data = r.get(redis_session_key)
-        print('--------- create new plot -- decoded val------------------------------')
-        #decoded_val = pickle.loads(session_data)
-        #print(decoded_val)
-        print('--------- create new plot-- decoded val------------------------------')
-    
-        #dmtool_user_id = decoded_val['dmtool_userid']
-        #dmtool_user_id = session['dmtool_userid']
-        #print('lak : dmtool_userid >>>>>>>>>>>>' , dmtool_user_id)
-        #allkeys = r.hgetall(redis_session_key)
-        #print('--------- create new plot -- h get all values -- from here------------------------------')
-        #print(allkeys)
-        #print('--------- create new plot -- h get all values -- to here ----------------------------')
         
         href_return = baseapp_prefix + '/create_new_plot'
         return href_return
