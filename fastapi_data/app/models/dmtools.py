@@ -236,7 +236,7 @@ class Plot_ownershipBase(SQLModel):
     user_id : int = Field(default=None, nullable=True, primary_key=False)
     old_user_id : int = Field(default=None, nullable=True, primary_key=False)
     plot_id : int = Field(default=None, foreign_key='plot.id', nullable=True)
-    old_plot_id : int = Field(default=None, foreign_key='plot.id', nullable=True)
+    old_plot_id : int = Field(default=None, nullable=True)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime_origin, nullable=False)
