@@ -71,7 +71,19 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         href_return = baseapp_prefix + '/create_new_plot'
         return href_return
     elif page_name + '_create_' + 'button_id' == prop_id :
-        href_return = baseapp_prefix+ '/select_limits_to_plot'
+        request_header = {'dmtool-userid': str(dmtool_userid)}
+        fastapi_about_url = "http://container_fastapi_data_1:8016/"
+        create_plot_api = "dmtool/fastapi_data/internal/data/plot/"
+        create_new_plot_api = fastapi_about_url + create_plot_api + plot_name_input
+        google_req = requests.get(create_new_plot_api,headers=request_header)
+    
+        #print("get_or_create_user_url >>>" , get_or_create_user_url)
+        #google_req = requests.get(url_get)
+        #print("google user status code >>>> " , google_req.status_code)
+
+        
+        #href_return = baseapp_prefix+ '/select_limits_to_plot'
+        href_return = baseapp_prefix + '/create_new_plot'
         return href_return
     elif page_name + '_cancel_' + 'button_id' == prop_id:
         #msg = "Button 2 was most recently clicked"
