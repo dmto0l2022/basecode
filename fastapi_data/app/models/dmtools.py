@@ -45,7 +45,7 @@ SQLModel.metadata = Base.metadata
 ### Experiments
 
 class ExperimentBase(SQLModel):
-    old_exeriment_id : int = Field(default=None, nullable=True)
+    old_experiment_id : int = Field(default=None, nullable=True)
     name : str = Field(default=None, nullable=True)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
