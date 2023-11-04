@@ -53,7 +53,7 @@ class UserBase(SQLModel):
     old_login : str = Field(default=None)
     old_email : str = Field(default=None)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime_origin, nullable=False)
 
 
@@ -75,7 +75,7 @@ class User_permissionBase(SQLModel):
     user_id : int = Field(default=None, nullable=False, primary_key=False)
     authorised : int = Field(default=None, nullable=False, primary_key=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime_origin, nullable=False)
 
 class User_permission(User_permissionBase, table=True):
@@ -100,7 +100,7 @@ class User_api_keyBase(SQLModel):
     public_key : str = Field(default=uuid.uuid1())
     private_key : str = Field(default=uuid.uuid1())
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
-    modified_at : datetime = Field(default=datetime.utcnow(), nullable=False)
+    updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime_origin, nullable=False)
 
 class User_api_key(User_api_keyBase, table=True):
@@ -116,7 +116,7 @@ class User_api_keyUpdate(SQLModel):
     public_key : Optional[str] = None
     private_key : Optional[str] = None
     created_at : Optional[datetime] = None
-    modified_at : Optional[datetime] = None
+    updated_at : Optional[datetime] = None
     ceased_at : datetime = Field(default=datetime.utcnow(), nullable=False)
 
 '''
