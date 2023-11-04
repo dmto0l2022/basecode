@@ -301,7 +301,7 @@ layout = get_layout()
 def set_plot_name(href: str):
     f = furl(href)
     plot_name = f.args['plot_name']
-    plot_id = f.args['id']
+    plot_id = f.args['plot_id']
     return html.H1(children=plot_id + ' - ' + plot_name) 
 
 @callback(
