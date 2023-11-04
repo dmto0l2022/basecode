@@ -150,7 +150,7 @@ def GetLimit(limit_id_in):
 def GetLimits(dmtool_userid):
     print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
     limits_url = fastapi_url_limits
-    request_header = {'dmtool-userid':dmtool_userid}
+    request_header = {'dmtool-userid':str(dmtool_userid)}
     response_data_frame = pd.DataFrame()
         
     #try:
