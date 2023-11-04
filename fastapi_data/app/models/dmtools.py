@@ -276,14 +276,15 @@ no_id
 
 class PlotBase(SQLModel):
     old_plot_id : int = Field(default=None, nullable=True)
-    name : str = Field(default=None,nullable=False, primary_key=False) ## Unique??
+    name : str = Field(default=None,nullable=True, primary_key=False) ## Unique??
     x_min : Optional[str] = Field(default=None)
     x_max : Optional[str] = Field(default=None)
     y_min : Optional[str] = Field(default=None)
     y_max : Optional[str] = Field(default=None)
     x_units : Optional[str] = Field(default=None)
     y_units : Optional[str] = Field(default=None)
-    user_id : int = Field(default=None, nullable=False, primary_key=False)
+    user_id : int = Field(default=None, nullable=True, primary_key=False)
+    old_user_id : int = Field(default=None, nullable=True, primary_key=False)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=False)
     ceased_at : datetime = Field(default=datetime_origin, nullable=False)
