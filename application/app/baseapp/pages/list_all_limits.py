@@ -87,7 +87,8 @@ def RefreshTableData():
         #print('===================')
         #print(response_data)
         print('===== response data frame ==============')
-        response_data_frame = pd.DataFrame(response_data)
+        #response_data_frame = pd.DataFrame(response_data)
+        response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
         print(response_data_frame)
         print('===== response data frame ==============')
     except:
