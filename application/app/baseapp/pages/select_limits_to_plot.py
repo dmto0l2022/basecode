@@ -296,7 +296,7 @@ def get_layout():
 
 layout = get_layout()
 
-@app.callback(Output(page_name +'_plot_name_id', 'children'),
+@callback(Output(page_name +'_plot_name_id', 'children'),
               [Input(page_name +'url', 'href')])
 def set_plot_name(href: str):
     f = furl(href)
