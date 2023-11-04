@@ -144,11 +144,12 @@ def GetLimit(limit_id_in):
 
     return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
 
-def GetLimits():
+def GetLimits(dmtool_userid):
     limits_url = fastapi_url_limits
+    request_header = {'dmtool-userid':dmtool_userid}
     response_data_frame = pd.DataFrame()
     try:
-        r = requests.get(limits_url, headers=internal_header)
+        r = requests.get(limits_url, headers=request_header)
         response_data = r.json()
         #print(response_data)
         response_data_frame = pd.DataFrame(response_data)
