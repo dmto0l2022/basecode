@@ -74,6 +74,7 @@ RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
 COPY x_20211104_dmtools_backup.sql /docker-entrypoint-initdb.d
 
 COPY y_migrate_data.sql /docker-entrypoint-initdb.d
+COPY z_move_data.sql /docker-entrypoint-initdb.d
 
 
 #RUN unzip -j /var/www/html/world-db.zip -d /
