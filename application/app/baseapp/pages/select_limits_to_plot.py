@@ -12,7 +12,7 @@ import redis
 import pickle
 
 r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-dmtool_user_id = 0
+dmtool_user_id = 16384
 
 dash.register_page(__name__, path='/select_limits_to_plot')
 page_name = 'select_limits_to_plot'
