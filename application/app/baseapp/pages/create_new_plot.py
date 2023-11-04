@@ -50,7 +50,7 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
     redis_session_key = "session:"+session_key
 
     val = r.get(redis_session_key)
-    print(redis_key)
+    print(redis_session_key)
     print('---------val------------------------------')
     print(val)
     print('--------- decoded val------------------------------')
