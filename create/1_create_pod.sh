@@ -1,5 +1,8 @@
 # podman run -it --userns=keep-id registry.access.redhat.com/rhel7/rhel /bin/bash
 
+podman rmi $(podman images -qa) -f
+podman system reset
+
 podman pod stop pod_main_backend
 podman pod rm pod_main_backend
 
