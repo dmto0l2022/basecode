@@ -16,6 +16,7 @@ internal_header = {'dmtool-userid':'999'}
 def parse_series_and_values(limits_dataframe_in):
     limit_data = []
     for index, row in limits_dataframe_in.iterrows():
+        print("Parsing Row")
         #print(row['id'], row['data_values'])
         data_label = row[['data_label']].iloc[0]
         data_reference= row[['data_reference']].iloc[0]
@@ -39,28 +40,29 @@ def parse_series_and_values(limits_dataframe_in):
             for i in set_list:
                 z = i.split(" ");
                 new_x = z[0].replace(",[", "")
-                #try:
-                appendthis = [row['id'],
-                                  data_label,
-                                  data_reference,
-                                  data_comment,
-                                  l,
-                                  data_label + '_' + str(l),
-                                  year,
-                                  experiment,
-                                  spin_dependency,
-                                  result_type,
-                                  official,
-                                  greatest_hit,
-                                  new_x,
-                                  z[1],
-                                  next_colour,
-                                  next_colour,
-                                  next_colour,
-                                  'solid',
-                                  'circle']
-                #except:
-                #    appendthis = [row['id'],'data_label',l,0,0,'','']
+                try:
+                    appendthis = [row['id'],
+                                      data_label,
+                                      data_reference,
+                                      data_comment,
+                                      l,
+                                      data_label + '_' + str(l),
+                                      year,
+                                      experiment,
+                                      spin_dependency,
+                                      result_type,
+                                      official,
+                                      greatest_hit,
+                                      new_x,
+                                      z[1],
+                                      next_colour,
+                                      next_colour,
+                                      next_colour,
+                                      'solid',
+                                      'circle']
+                except:
+                    appendthis = [row['id'],'data_label',l,0,0,'','']
+                
                 limit_data.append(appendthis)
         #lol
     #print('parsed limit data >>>>',limit_data) 
@@ -167,9 +169,9 @@ def GetLimits(dmtool_userid):
         limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
         column_names=['id','data_label','data_comment','data_values']
     
-        #print('limit_list_df >>', limit_list_df_resp)
-        #print('trace_list_df >>', trace_list_df_resp)
-        #print('limit_data_df >>', limit_data_df_resp)
+        print('limit_list_df >>', limit_list_df_resp)
+        print('trace_list_df >>', trace_list_df_resp)
+        print('limit_data_df >>', limit_data_df_resp)
     except:
         a = 1
     
