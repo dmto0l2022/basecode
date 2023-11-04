@@ -74,8 +74,9 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         request_header = {'dmtool-userid': str(dmtool_userid)}
         fastapi_about_url = "http://container_fastapi_data_1:8014/"
         create_plot_api = "dmtool/fastapi_data/internal/data/plot/"
-        create_new_plot_api = fastapi_about_url + create_plot_api + plot_name_input
-        create_new_plot_response = requests.post(create_new_plot_api,headers=request_header)
+        data = {"name": plot_name_input}
+        create_new_plot_api = fastapi_about_url + create_plot_api
+        create_new_plot_response = requests.post(create_new_plot_api, json=data, headers=request_header)
         json_data = json.loads(create_new_plot_response.text)
         print("json_data cnp >>>>>>>>>", json_data)
         print("create_new_plot_req status code >>>> " , create_new_plot_response.status_code)
