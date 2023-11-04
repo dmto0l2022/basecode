@@ -117,8 +117,8 @@ class Limit_displayCreate(Limit_displayBase):
 # ceased_at
 
 class Limit_ownershipBase(SQLModel):
-    user_id : int = Field(default=None, nullable=False, primary_key=False)
-    limit_id : int = Field(default=None, foreign_key='limit.id', nullable=False)
+    user_id : int = Field(default=None, nullable=True, primary_key=False)
+    limit_id : int = Field(default=None, foreign_key='limit.id', nullable=True)
     old_user_id : int = Field(default=None, nullable=True)
     old_limit_id : int = Field(default=None, nullable=True)
     created_at : datetime = Field(default=datetime.utcnow(), nullable=False)
@@ -209,7 +209,7 @@ class LimitBase(SQLModel):
 
 class Limit(LimitBase, table=True):
     ##__tablename__ = "limit"
-    __table_args__ =  ({'mysql_engine':'InnoDB'})
+    ##__table_args__ =  ({'mysql_engine':'InnoDB'})
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 class LimitCreate(LimitBase):
