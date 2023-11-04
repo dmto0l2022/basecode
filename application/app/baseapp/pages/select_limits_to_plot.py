@@ -285,7 +285,7 @@ maincolumn = dbc.Col(
                 plot_name_div,
                 filter_row_1,
                 dbc.Row([dbc.Col(
-                    [get_limits_table(dmtool_user_id)],
+                    [get_limits_table(dmtool_userid)],
                     width=10,)],
                     className ="TABLE_ROW NOPADDING"),
                 limits_to_plot_row,
@@ -397,7 +397,7 @@ def update_graphs(
             
     # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
 
-    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_user_id) 
+    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid) 
     
     unfiltered_df = all_limit_list_df.copy()
     print('sltp : unfiltered_df >>>', unfiltered_df) 
