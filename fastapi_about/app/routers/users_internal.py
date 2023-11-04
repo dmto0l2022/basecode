@@ -34,7 +34,7 @@ import rsa
 #authlib_id
 #authlib_provider
 #created_at
-#modified_at
+#updated_at
 #ceased_at
 
 ## who are you
@@ -222,7 +222,7 @@ async def get_users(session: AsyncSession = Depends(get_session),
                         authlib_provider=user.authlib_provider,
                         email=user.email,
                         created_at=user.created_at,
-                        modified_at=user.modified_at,
+                        updated_at=user.updated_at,
                         ceased_at=user.ceased_at) for user in users]
         #else:
         #    raise HTTPException(status_code=404, detail="Unauthorised Request")
@@ -237,7 +237,7 @@ async def add_user(user: UserCreate, session: AsyncSession = Depends(get_session
                 authlib_provider=user.authlib_provider,
                 email=user.email,
                 created_at=user.created_at,
-                modified_at=user.modified_at,
+                updated_at=user.updated_at,
                 ceased_at=user.ceased_at)
     session.add(user)
     await session.commit()
@@ -278,7 +278,7 @@ async def get_user_permission(session: AsyncSession = Depends(get_session),
         user_id = user_permission.user_id,
         authorised = user_permission.authorised,
         created_at = user_permission.created_at,
-        modified_at = user_permission.modified_at,
+        updated_at = user_permission.updated_at,
         ceased_at = user_permission.ceased_at
     ) for user_permission in user_permissions]
 
@@ -289,7 +289,7 @@ async def add_user_permission(user_permission: User_permissionCreate, session: A
     user_permission = User_permission(user_id = user_permission.user_id,
         authorised = user_permission.authorised,
         created_at = user_permission.created_at,
-        modified_at = user_permission.modified_at,
+        updated_at = user_permission.updated_at,
         ceased_at = user_permission.ceased_at)
     session.add(user_permission)
     await session.commit()
@@ -333,7 +333,7 @@ async def get_user_api_keys(session: AsyncSession = Depends(get_session),
                         private_key = user_api_key.private_key,
                         public_key = user_api_key.public_key,
                         created_at = user_api_key.created_at,
-                        modified_at = user_api_key.modified_at,
+                        updated_at = user_api_key.updated_at,
                         ceased_at = user_api_key.ceased_at
                         ) for user_api_key in user_api_keys]
 
@@ -366,7 +366,7 @@ async def add_user_api_key(user_api_key: User_api_keyCreate, session: AsyncSessi
                         public_key = public_key_gen_str,
                         private_key = private_key_gen_str,
                         created_at = datetime.utcnow(),
-                        modified_at = datetime.utcnow(),
+                        updated_at = datetime.utcnow(),
                         ceased_at = user_api_key.ceased_at)
     session.add(user_api_key)
     await session.commit()
