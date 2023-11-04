@@ -78,7 +78,7 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         create_new_plot_response = requests.post(create_new_plot_api,headers=request_header)
         json_data = json.loads(create_new_plot_response.text)
         print("json_data cnp >>>>>>>>>", json_data)
-        print("create_new_plot_req status code >>>> " , create_new_plot_req.status_code)
+        print("create_new_plot_req status code >>>> " , create_new_plot_response.status_code)
         new_plot_id = json_data['id']
         print("create_new_plot_req plot id >>>> " , new_plot_id)
         #print("get_or_create_user_url >>>" , get_or_create_user_url)
