@@ -230,8 +230,8 @@ async def get_limit(session: AsyncSession = Depends(get_session),
     return_dict = dict()
     limit_count = 0
     for ool in owneroflimits:
-        #just_owner = ool[1]
-        just_limit = ool[2]
+        #just_owner = ool[0]
+        just_limit = ool[1]
         append_this = {"id" :  just_limit.id,
                 "old_limit_id" :  just_limit.old_limit_id,
                 "spin_dependency" : just_limit.spin_dependency,
