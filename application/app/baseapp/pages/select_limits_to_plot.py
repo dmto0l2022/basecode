@@ -5,6 +5,13 @@ from flask import session
 from furl import furl
 
 #import formlibrary as fl
+import requests
+import json
+import redis
+import pickle
+
+r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+dmtool_user_id = 0
 
 dash.register_page(__name__, path='/select_limits_to_plot')
 page_name = 'select_limits_to_plot'
@@ -40,9 +47,9 @@ dash.register_page(__name__, path='/select_limits_to_plot')
 
 dashdataandtables = adt.DashDataAndTables()
 
-def get_limits_table():
+def get_limits_table(dmtool_user_id_in):
 
-    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()           
+    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_user_id_in)           
 
     print('sltp >> all_limit_list_dict >>>>>>>>> ' , all_limit_list_dict)
     
@@ -277,7 +284,7 @@ maincolumn = dbc.Col(
                 plot_name_div,
                 filter_row_1,
                 dbc.Row([dbc.Col(
-                    [get_limits_table()],
+                    [get_limits_table(dmtool_user_id)],
                     width=10,)],
                     className ="TABLE_ROW NOPADDING"),
                 limits_to_plot_row,
@@ -302,6 +309,26 @@ def set_plot_name(href: str):
     f = furl(href)
     plot_name = f.args['plot_name']
     plot_id = f.args['plot_id']
+    
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXX select limits to plot XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    session_key = request.cookies.get('session')
+    print('selecf limits to plot : session key >>',session_key)
+    redis_session_key = "session:"+session_key
+
+    val = r.get(redis_session_key)
+    print(redis_session_key)
+    print('---------val------------------------------')
+    print(val)
+    print('--------- decoded val------------------------------')
+    decoded_val = pickle.loads(val)
+    print(decoded_val)
+    dmtool_userid = decoded_val['dmtool_userid']
+    dmtool_authorised = decoded_val['dmtool_authorised']
+    print('dmtool_userid in sltp >>>' ,decoded_val['dmtool_userid'])
+    print('=======================================')
+    
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    
     return html.H1(children=plot_id + ' - ' + plot_name) 
 
 @callback(
@@ -369,7 +396,7 @@ def update_graphs(
             
     # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
 
-    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits() 
+    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_user_id) 
     
     unfiltered_df = all_limit_list_df.copy()
     print('sltp : unfiltered_df >>>', unfiltered_df) 
