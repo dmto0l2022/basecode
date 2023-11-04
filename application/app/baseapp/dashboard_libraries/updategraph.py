@@ -6,10 +6,12 @@ from plotly.subplots import make_subplots
 import pandas as pd
 
 from app.baseapp.dashboard_libraries import get_limit_data as gld
-all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
+
 
 def UpdateGraph(plotseries_table_in):
     #result_ids = [1,262]
+
+    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
     
     plot_series_df = pd.DataFrame(plotseries_table_in)
     
