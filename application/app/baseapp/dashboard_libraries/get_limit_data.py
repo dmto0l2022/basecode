@@ -156,8 +156,8 @@ def GetLimits(dmtool_userid):
         response_data = r.json()
         #print(response_data)
 
-        print("gld : response_data json >>>>" , response_data)
-        response_data_frame = pd.DataFrame(response_data)
+        print("gld : response_data json >>>>" , response_data['limits'])
+        response_data_frame = pd.DataFrame(response_data['limits'])
         print("gld : library response_data_frame >>>>>" , response_data_frame)
         
         limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
