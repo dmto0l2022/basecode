@@ -261,7 +261,7 @@ async def get_limit(session: AsyncSession = Depends(get_session),
                 "greatest_hit" : just_limit.greatest_hit,
                 "date_of_run_start" : just_limit.date_of_run_start,
                 "date_of_run_end" : just_limit.date_of_run_end,
-                "year" : limit.year}
+                "year" : just_limit.year}
         
         return_dict[hero_count] = append_this
         limit_count += 1
