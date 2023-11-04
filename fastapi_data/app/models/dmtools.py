@@ -199,7 +199,7 @@ class LimitBase(SQLModel):
     created_at : datetime = Field(default=datetime.utcnow(), nullable=True)
     updated_at : datetime = Field(default=datetime.utcnow(), nullable=True)
     ceased_at : datetime = Field(default=datetime_origin, nullable=True)
-    creator_id : int = Field(default=None, nullable=False, primary_key=False)
+    creator_id : int = Field(default=None, nullable=True, primary_key=False)
     experiment :  str = Field(default=None)
     rating : int = Field(default=None, nullable=True, primary_key=False)
     date_of_announcement : date = Field(default=date.today(), nullable=False)
