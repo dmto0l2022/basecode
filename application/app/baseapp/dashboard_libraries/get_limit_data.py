@@ -159,11 +159,14 @@ def GetLimits(dmtool_userid):
         r = requests.get(limits_url, headers=request_header)
         response_data = r.json()
         #print(response_data)
-    
-        print("gld : response_data json >>>>" , response_data['limits'])
-        #response_data_frame = pd.DataFrame(response_data['limits'])
-        response_data_frame = json_normalize(response_data['limits']) 
-        #print(df2)
+
+        #print('response data')
+        #print('===================')
+        #print(response_data)
+        print('===== response data frame ==============')
+        response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+        print('===== response data frame ==============')
+        
         print("gld : library response_data_frame >>>>>" , response_data_frame)
         
         limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
