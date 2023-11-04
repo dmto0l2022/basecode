@@ -39,7 +39,7 @@ table_meta_data_data = [
                         ['api_key', '18%'],
                         ['public_key', '18%'],
                         ['created_at', '5%'],
-                        ['modified_at', '5%'],
+                        ['updated_at', '5%'],
                         ['ceased_at', '5%']
                        ]
 
