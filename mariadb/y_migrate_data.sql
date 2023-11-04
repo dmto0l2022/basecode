@@ -71,7 +71,7 @@ no_id,
 FROM RubyDB.plots;
 
 INSERT INTO about.users (
-old_limit_id,
+old_user_id,
 old_login,
 old_email)
 SELECT
