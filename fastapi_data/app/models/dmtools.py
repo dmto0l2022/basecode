@@ -79,6 +79,7 @@ class ExperimentCreate(ExperimentBase):
 #    ceased_at
 
 class Limit_displayBase(SQLModel):
+    old_limit_display_id : int = Field(default=None, nullable=True)
     name: str = Field(default=None)
     old_limit_id : int = Field(default=None, nullable=True)
     limit_id : int = Field(default=None, foreign_key='limit.id', nullable=False)
