@@ -66,5 +66,5 @@ urllib3==2.0.6
 URLObject==2.4.3
 Werkzeug==2.3.7
 WTForms==3.0.1
-furl
+furl==2.1.3
 
