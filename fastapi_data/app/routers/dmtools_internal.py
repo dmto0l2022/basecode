@@ -231,7 +231,7 @@ async def read_items(q: Annotated[list[str], Query()] = ["foo", "bar"]):
 async def get_list_of_limits(session: AsyncSession = Depends(get_session),
                             list_of_limit_ids: Annotated[list[str], Query()] = [],
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid)).where(Limit.id.in_(list_of_limit_ids))
+    result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid).where(Limit.id.in_(list_of_limit_ids)))
     owneroflimits = result.all()
     print("owneroflimits >>>>>>>>>>>", owneroflimits)
     return_dict = dict()
