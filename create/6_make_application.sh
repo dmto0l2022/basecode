@@ -10,6 +10,9 @@ subgidSize=$(( $(podman info --format "{{ range \
 
 cd /opt/dmtools/code/basecode/application
 
+podman stop container_application_1
+podman rm container_application_1
+
 podman rmi application_1:latest
 
 podman build \
