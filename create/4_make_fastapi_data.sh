@@ -10,6 +10,8 @@ subgidSize=$(( $(podman info --format "{{ range \
 
 cd /opt/dmtools/code/basecode/fastapi_data
 
+rm -rf /opt/dmtools/code/basecode/fastapi_data/app/migrations/
+
 podman rmi fastapi_data_1
 podman build \
 --build-arg=BUILD_ENV_UID=${ENV_UID} \
