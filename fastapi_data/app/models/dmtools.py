@@ -120,6 +120,7 @@ class Limit_displayCreate(Limit_displayBase):
 # ceased_at
 
 class Limit_ownershipBase(SQLModel):
+    old_ownership_id : int = Field(default=None, nullable=True, primary_key=False)
     user_id : int = Field(default=None, nullable=True, primary_key=False)
     limit_id : int = Field(default=None, foreign_key='limit.id', nullable=True)
     old_user_id : int = Field(default=None, nullable=True)
