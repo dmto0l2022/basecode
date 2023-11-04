@@ -228,6 +228,11 @@ async def get_limit(session: AsyncSession = Depends(get_session),
     owneroflimits = result.all()
     print("owneroflimits >>>>>>>>>>>", owneroflimits)
     return_dict = dict()
+    return_list = {'limits': [{}]}
+    #data = {'list': [{'a':'1'}]}
+    #data['limits'].append({'b':'2'})
+    #data
+    #{'list': [{'a': '1'}, {'b': '2'}]}
     limit_count = 0
     for ool in owneroflimits:
         #just_owner = ool[0]
@@ -263,9 +268,10 @@ async def get_limit(session: AsyncSession = Depends(get_session),
                 "date_of_run_end" : just_limit.date_of_run_end,
                 "year" : just_limit.year}
         
-        return_dict[limit_count] = append_this
+        #return_dict[limit_count] = append_this
+        return_list['limits'].append(append_this)
         limit_count += 1
-    return return_dict
+    return return_list
 
 
 ## get one limit
