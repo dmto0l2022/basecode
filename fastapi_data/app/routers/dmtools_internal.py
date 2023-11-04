@@ -225,7 +225,7 @@ year
 async def get_limit(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid))
-    owneroflimits = result.scalars().all()
+    owneroflimits = result.all()
     print("owneroflimits >>>>>>>>>>>", owneroflimits)
     return_dict = dict()
     limit_count = 0
