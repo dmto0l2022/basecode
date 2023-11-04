@@ -12,7 +12,11 @@ rm -rf /opt/dmtools/code/basecode/fastapi_about/app/migrations/
 
 cd /opt/dmtools/code/basecode/fastapi_about
 
+podman stop container_fastapi_about_1
+podman rm container_fastapi_about_1
+
 podman rmi fastapi_about_1
+
 podman build \
 --build-arg=BUILD_ENV_UID=${ENV_UID} \
 --build-arg=BUILD_ENV_USERNAME=${ENV_USERNAME} \
