@@ -3,8 +3,11 @@ DELIMITER //
 CREATE DEFINER=`pythonuser`@`%` PROCEDURE `data`.`migrate_data`()
 BEGIN
     
-INSERT INTO data.experiment(old_experiment_id,name)
-SELECT id as old_experiment_id, name
+INSERT INTO data.experiment(old_experiment_id,name,created_at,updated_at,ceased_at)
+SELECT id as old_experiment_id, name,
+'1980-01-01 00:00.00.00000' created_at,
+'1980-01-01 00:00.00.00000' updated_at,
+'1980-01-01 00:00.00.00000' ceased_at
 FROM RubyDB.experiments;
 
 INSERT INTO data.limit_display(
@@ -70,17 +73,23 @@ no_id,
 '1980-01-01 00:00.00.00000' ceased_at
 FROM RubyDB.plots;
 
-INSERT INTO about.users (
+INSERT INTO about.user (
 old_user_id,
 old_login,
-old_email)
+old_email,
+created_at,
+updated_at,
+ceased_at)
 SELECT
 id as old_user_id,
 login as old_login,
-email as old_email
+email as old_email,
+'1980-01-01 00:00.00.00000' created_at,
+'1980-01-01 00:00.00.00000' updated_at,
+'1980-01-01 00:00.00.00000' ceased_at
 FROM RubyDB.users ;
 
-INSERT INTO data.limits (
+INSERT IGNORE INTO data.limits (
 old_limit_id,
 spin_dependency,
 result_type,
@@ -120,6 +129,9 @@ date_of_run_end,
 `year`,
 '1980-01-01 00:00.00.00000' ceased_at
 FROM RubyDB.limits ;
+	
+	
+END;
 	
 	
 END;
