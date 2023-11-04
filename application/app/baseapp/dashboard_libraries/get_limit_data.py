@@ -107,8 +107,10 @@ def GetLimit(limit_id_in):
     try:
         r = requests.get(limit_url,headers=internal_header)
         response_data = r.json()
-        #print(response_data)
+        print("gld : response_data json >>>>" , response_data)
         response_data_frame = pd.DataFrame(response_data)
+        print("gld : library response_data_frame >>>>>" , response_data_frame)
+        
         limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
         column_names=['id','data_label','data_comment','data_values']
     
@@ -148,11 +150,17 @@ def GetLimits(dmtool_userid):
     limits_url = fastapi_url_limits
     request_header = {'dmtool-userid':dmtool_userid}
     response_data_frame = pd.DataFrame()
+     response_data = r.json()
+        
     try:
         r = requests.get(limits_url, headers=request_header)
         response_data = r.json()
         #print(response_data)
+
+        print("gld : response_data json >>>>" , response_data)
         response_data_frame = pd.DataFrame(response_data)
+        print("gld : library response_data_frame >>>>>" , response_data_frame)
+        
         limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
         column_names=['id','data_label','data_comment','data_values']
     
