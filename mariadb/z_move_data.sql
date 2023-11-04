@@ -58,6 +58,9 @@ SELECT * from data.users;
 
 DROP TABLE data.users;
 
+DROP TABLE data.schema_migrations;;
+DROP TABLE data.simple_captcha_data;
+
 END;
 //
 DELIMITER ;
