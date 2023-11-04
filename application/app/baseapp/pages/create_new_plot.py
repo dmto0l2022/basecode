@@ -75,8 +75,12 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         fastapi_about_url = "http://container_fastapi_data_1:8016/"
         create_plot_api = "dmtool/fastapi_data/internal/data/plot/"
         create_new_plot_api = fastapi_about_url + create_plot_api + plot_name_input
-        google_req = requests.get(create_new_plot_api,headers=request_header)
-    
+        create_new_plot_response = requests.post(create_new_plot_api,headers=request_header)
+        json_data = json.loads(create_new_plot_response.text)
+        print("json_data cnp >>>>>>>>>", json_data)
+        print("create_new_plot_req status code >>>> " , create_new_plot_req.status_code)
+        new_plot_id = json_data['id']
+        print("create_new_plot_req plot id >>>> " , new_plot_id)
         #print("get_or_create_user_url >>>" , get_or_create_user_url)
         #google_req = requests.get(url_get)
         #print("google user status code >>>> " , google_req.status_code)
