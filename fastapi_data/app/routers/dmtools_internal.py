@@ -218,6 +218,69 @@ date_of_run_end
 year
 '''
 
+## get list of limits
+'''
+@app.get("/items/")
+async def read_items(q: Annotated[list[str], Query()] = ["foo", "bar"]):
+    query_items = {"q": q}
+    return query_items
+'''  
+
+@router.get(api_base_url + "listoflimits")
+#@router.get(api_base_url + "limits", response_model=list[Limit])
+async def get_list_of_limits(session: AsyncSession = Depends(get_session),
+                            list_of_limit_ids: Annotated[list[str], Query()] = [],
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid)).where(Limit.id.in_(list_of_limit_ids))
+    owneroflimits = result.all()
+    print("owneroflimits >>>>>>>>>>>", owneroflimits)
+    return_dict = dict()
+    return_list = {'limits': []}
+    #data = {'list': [{'a':'1'}]}
+    #data['limits'].append({'b':'2'})
+    #data
+    #{'list': [{'a': '1'}, {'b': '2'}]}
+    limit_count = 0
+    for ool in owneroflimits:
+        #just_owner = ool[0]
+        just_limit = ool[1]
+        append_this = {"id" :  just_limit.id,
+                "old_limit_id" :  just_limit.old_limit_id,
+                "spin_dependency" : just_limit.spin_dependency,
+                "result_type" : just_limit.result_type,
+                "measurement_type" : just_limit.measurement_type,
+                "nomhash" : just_limit.nomhash,
+                "x_units" : just_limit.x_units,
+                "y_units" : just_limit.y_units,
+                "x_rescale" : just_limit.x_rescale,
+                "y_rescale" : just_limit.y_rescale,
+                "default_color" : just_limit.default_color,
+                "default_style" : just_limit.default_style,
+                "data_values" : just_limit.data_values,
+                "data_label" : just_limit.data_label,
+                "file_name" : just_limit.file_name,
+                "data_comment" : just_limit.data_comment,
+                "data_reference" : just_limit.data_reference,
+                "created_at" : just_limit.created_at,
+                "updated_at" : just_limit.updated_at,
+                "creator_id" : just_limit.creator_id,
+                "experiment" : just_limit.experiment,
+                "rating" : just_limit.rating,
+                "date_of_announcement" : just_limit.date_of_announcement,
+                "public" : just_limit.public,
+                "official" : just_limit.official,
+                "date_official" : just_limit.date_official,
+                "greatest_hit" : just_limit.greatest_hit,
+                "date_of_run_start" : just_limit.date_of_run_start,
+                "date_of_run_end" : just_limit.date_of_run_end,
+                "year" : just_limit.year}
+        
+        #return_dict[limit_count] = append_this
+        return_list['limits'].append(append_this)
+        limit_count += 1
+    return return_list
+
+
 ## get all limits
 
 @router.get(api_base_url + "limits")
