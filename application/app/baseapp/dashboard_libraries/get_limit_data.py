@@ -153,25 +153,25 @@ def GetLimits(dmtool_userid):
     request_header = {'dmtool-userid':str(dmtool_userid)}
     response_data_frame = pd.DataFrame()
         
-    #try:
-    r = requests.get(limits_url, headers=request_header)
-    response_data = r.json()
-    #print(response_data)
-
-    print("gld : response_data json >>>>" , response_data['limits'])
-    #response_data_frame = pd.DataFrame(response_data['limits'])
-    response_data_frame = json_normalize(response_data['limits']) 
-    #print(df2)
-    print("gld : library response_data_frame >>>>>" , response_data_frame)
+    try:
+        r = requests.get(limits_url, headers=request_header)
+        response_data = r.json()
+        #print(response_data)
     
-    limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
-    column_names=['id','data_label','data_comment','data_values']
-
-    #print('limit_list_df >>', limit_list_df_resp)
-    #print('trace_list_df >>', trace_list_df_resp)
-    #print('limit_data_df >>', limit_data_df_resp)
-    #except:
-    #    a = 1
+        print("gld : response_data json >>>>" , response_data['limits'])
+        #response_data_frame = pd.DataFrame(response_data['limits'])
+        response_data_frame = json_normalize(response_data['limits']) 
+        #print(df2)
+        print("gld : library response_data_frame >>>>>" , response_data_frame)
+        
+        limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
+        column_names=['id','data_label','data_comment','data_values']
+    
+        #print('limit_list_df >>', limit_list_df_resp)
+        #print('trace_list_df >>', trace_list_df_resp)
+        #print('limit_data_df >>', limit_data_df_resp)
+    except:
+        a = 1
     
     if response_data_frame.empty:
         limit_columns = ['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']
