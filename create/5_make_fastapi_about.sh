@@ -8,6 +8,7 @@ subgidSize=$(( $(podman info --format "{{ range \
    .Host.IDMappings.GIDMap }}+{{.Size }}{{end }}" ) - 1 ))
 
 
+rm -rf /opt/dmtools/code/basecode/fastapi_about/app/migrations/
 
 cd /opt/dmtools/code/basecode/fastapi_about
 
