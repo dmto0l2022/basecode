@@ -202,7 +202,7 @@ class LimitBase(SQLModel):
     creator_id : int = Field(default=None, nullable=True, primary_key=False)
     experiment :  str = Field(default=None)
     rating : int = Field(default=None, nullable=True, primary_key=False)
-    date_of_announcement : date = Field(default=date.today(), nullable=False)
+    date_of_announcement : date = Field(default=date.today(), nullable=True)
     public : int = Field(default=None, nullable=True, primary_key=False) ## boolean
     official : int = Field(default=None, nullable=True, primary_key=False) ## boolean
     date_official : date = Field(default=date.today(), nullable=True)
