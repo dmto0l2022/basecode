@@ -225,38 +225,54 @@ year
 async def get_limit(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid))
-    limits = result.scalars().all()
-    return [Limit(id = limit.id,
-                old_limit_id = limit.old_limit_id,
-                spin_dependency = limit.spin_dependency,
-                result_type = limit.result_type,
-                measurement_type = limit.measurement_type,
-                nomhash = limit.nomhash,
-                x_units = limit.x_units,
-                y_units = limit.y_units,
-                x_rescale = limit.x_rescale,
-                y_rescale = limit.y_rescale,
-                default_color = limit.default_color,
-                default_style = limit.default_style,
-                data_values = limit.data_values,
-                data_label = limit.data_label,
-                file_name  = limit.file_name,
-                data_comment = limit.data_comment,
-                data_reference = limit.data_reference,
-                created_at = limit.created_at,
-                updated_at = limit.updated_at,
-                creator_id = limit.creator_id,
-                experiment = limit.experiment,
-                rating = limit.rating,
-                date_of_announcement = limit.date_of_announcement,
-                public = limit.public,
-                official = limit.official,
-                date_official = limit.date_official,
-                greatest_hit = limit.greatest_hit,
-                date_of_run_start = limit.date_of_run_start,
-                date_of_run_end = limit.date_of_run_end,
-                year = limit.year)
-            for limit in limits]
+    owneroflimits = result.scalars().all()
+    print("hero name  >>>>>>", teamwithheroes[0][1].name)
+    return_dict = dict()
+    hero_count = 0
+    for ool in owneroflimits:
+        #just_owner = ool[0]
+        just_limit = ool[1]
+        append_this = {"id" : just_limit.id,
+                "old_limit_id" : juprint("hero name  >>>>>>", teamwithheroes[0][1].name)
+    return_dict = dict()
+    limit_count = 0
+    for ool in owneroflimits:
+        #just_owner = ool[0]
+        just_limit = ool[1]
+        append_this = {"id" :  just_limit.id,
+                "old_limit_id" :  just_limit.old_limit_id,
+                "spin_dependency" : just_limit.spin_dependency,
+                "result_type" : just_limit.result_type,
+                "measurement_type" : just_limit.measurement_type,
+                "nomhash" : just_limit.nomhash,
+                "x_units" : just_limit.x_units,
+                "y_units" : just_limit.y_units,
+                "x_rescale" : just_limit.x_rescale,
+                "y_rescale" : just_limit.y_rescale,
+                "default_color" : just_limit.default_color,
+                "default_style" : just_limit.default_style,
+                "data_values" : just_limit.data_values,
+                "data_label" : just_limit.data_label,
+                "file_name" : just_limit.file_name,
+                "data_comment" : just_limit.data_comment,
+                "data_reference" : just_limit.data_reference,
+                "created_at" : just_limit.created_at,
+                "updated_at" : just_limit.updated_at,
+                "creator_id" : just_limit.creator_id,
+                "experiment" : just_limit.experiment,
+                "rating" : just_limit.rating,
+                "date_of_announcement" : just_limit.date_of_announcement,
+                "public" : just_limit.public,
+                "official" : just_limit.official,
+                "date_official" : just_limit.date_official,
+                "greatest_hit" : just_limit.greatest_hit,
+                "date_of_run_start" : just_limit.date_of_run_start,
+                "date_of_run_end" : just_limit.date_of_run_end,
+                "year" : limit.year}
+        
+            return_dict[hero_count] = append_this
+            limit_count += 1
+    return return_dict
 
 
 ## get one limit
