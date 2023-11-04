@@ -85,7 +85,7 @@ class Limit_displayBase(SQLModel):
     limit_id : int = Field(default=None, foreign_key='limit.id', nullable=True)
     old_plot_id : int = Field(default=None, nullable=True)
     plot_id : int = Field(default=None, foreign_key='plot.id', nullable=True)
-    trace_id : int = Field(default=None, nullable=False, primary_key=False)
+    trace_id : int = Field(default=None, nullable=True, primary_key=False)
     symbol : str = Field(default=None)
     symbol_color :  str = Field(default=None)
     line_style : str = Field(default=None)
