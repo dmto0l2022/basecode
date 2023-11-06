@@ -104,11 +104,12 @@ def parse_series_and_values(limits_dataframe_in):
 
 
 
-def GetLimit(limit_id_in):
+def GetLimit(dmtool_userid_in, limit_id_in):
     limit_url = fastapi_url_limit+limit_id_in
     response_data_frame = pd.DataFrame()
+    user_header = {'dmtool-userid': str(dmtool_userid_in)}
     try:
-        r = requests.get(limit_url,headers=internal_header)
+        r = requests.get(limit_url,headers=user_header)
         response_data = r.json()
         print("gld : response_data json >>>>" , response_data)
         response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
