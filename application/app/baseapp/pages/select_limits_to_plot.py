@@ -332,7 +332,6 @@ table_meta_data_data = [
 
 row_height = '12px'
 table_font_size = '11px'
-dmtool_user_id = 
 single_api = 'limit'
 multiple_api = 'limits'
 dmtool_userid = 16384
