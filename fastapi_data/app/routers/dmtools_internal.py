@@ -228,6 +228,14 @@ async def read_items(q: Annotated[list[str], Query()] = ["foo", "bar"]):
 '''  
 ## ListOfLimitIDs
 
+#ListOfLimitIDs
+
+@router.post(api_base_url + "listoflimits/")
+async def read_items(q: ListOfLimitIDs):
+    return q
+
+
+'''
 @router.get(api_base_url + "listoflimits")
 #@router.get(api_base_url + "limits", response_model=list[Limit])
 async def get_list_of_limits(list_of_limits: ListOfLimitIDs, session: AsyncSession = Depends(get_session),
@@ -289,7 +297,7 @@ async def get_list_of_limits(list_of_limits: ListOfLimitIDs, session: AsyncSessi
         return_list['limits'].append(append_this)
         limit_count += 1
     return return_list
-
+'''
 
 ## get all limits
 
