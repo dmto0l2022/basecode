@@ -230,25 +230,25 @@ async def read_items(q: Annotated[list[str], Query()] = ["foo", "bar"]):
 
 #ListOfLimitIDs
 
-@router.post(api_base_url + "listoflimits/")
+@router.post(api_base_url + "listoflimits_simple/")
 async def read_items(q: ListOfLimitIDs):
     print(q.limit_ids)
     return q.limit_ids
 
 
-'''
-@router.get(api_base_url + "listoflimits")
+
+@router.post(api_base_url + "listoflimits")
 #@router.get(api_base_url + "limits", response_model=list[Limit])
 async def get_list_of_limits(list_of_limits: ListOfLimitIDs, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     #query_items = {"q": list_of_limits_qry}
     #list_of_limit_ids = query_items["q"]
-    length = len(list_of_limit_ids)
+    length = len(list_of_limits.limit_ids)
                               
-    print("list of limits >>>>>>>>>>>", length, list_of_limits)
+    print("list of limits >>>>>>>>>>>", length, list_of_limits.limit_ids)
     print("length of list of limits >>>>>>>>>>>", length)
                               
-    result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid).where(Limit.id.in_(list_of_limits)))
+    result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid).where(Limit.id.in_(list_of_limits.limit_ids)))
     
                               
     owneroflimits = result.all()
