@@ -56,6 +56,9 @@ from app.baseapp.dashboard_libraries import updategraph as ug
 
 ####################################
 
+dmtool_userid = '16384'
+
+
 def GetChart(chart_in):
 
     chartdiv = html.Div([chart_in], className="CHART_DIV NOPADDING")
@@ -100,7 +103,7 @@ dash.register_page(__name__, path='/style_plot_and_traces')
 
 def create_layout(limits_in):
 
-    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits()
+    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid)
     
     traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(limits_in)].copy()
     
