@@ -26,8 +26,8 @@ import dash_bootstrap_components as dbc
 
 from flask import request, session
 
-from app.baseapp.libraries import formlibrary as fl
-from app.baseapp.libraries import main_table as mt
+#from app.baseapp.libraries import formlibrary as fl
+#from app.baseapp.libraries import main_table as mt
 ## from app.baseapp.libraries import get_dmtool_user as gdu
 
 import redis
@@ -66,11 +66,11 @@ external_stylesheets=[dbc.themes.BOOTSTRAP, ALL_STYLES]
 
 # import libraries.formlibrary as fl
 
-from app.baseapp.libraries import formlibrary as fl
+#from app.baseapp.libraries import formlibrary as fl
 
 from app.baseapp.libraries import pagecomponents as pc
 
-from app.baseapp.libraries import create_test_data
+#from app.baseapp.libraries import create_test_data
 
 #app = JupyterDash(__name__,
 #                  ##requests_pathname_prefix= "/",
