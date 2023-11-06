@@ -67,7 +67,7 @@ cancel_button =  html.Div(dbc.Button("Cancel",  id="list_all_limits_cancel_butto
 
 table_heights = 120
 row_height = '13px'
-font_size = '12px'
+table_font_size = '12px'
 
 dmtool_user_id = '0' ### default - no user should be given 0
 internal_header={'dmtool-userid':'0'}
