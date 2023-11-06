@@ -14,7 +14,7 @@
   --graph_height: 75vh;
   --form_width: 50vw;
   --form_height: 40vh;
-  --full_table_width: 100vw;
+  --full_table_width: 100%;
   --full_table_height: 75vh;
   --debug_section_height: 63px;
 }
