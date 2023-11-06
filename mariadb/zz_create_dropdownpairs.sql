@@ -9,7 +9,7 @@ CREATE TABLE data.`dropdown_valuepairs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('official','All','0','boolean'),
 	 ('official','Official','1','boolean'),
 	 ('year','2000','2000','number'),
@@ -20,7 +20,7 @@ INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('year','2005','2005','number'),
 	 ('year','2006','2006','number'),
 	 ('year','2007','2007','number');
-INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('year','2008','2008','number'),
 	 ('year','2009','2009','number'),
 	 ('year','2010','2010','number'),
@@ -31,7 +31,7 @@ INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('year','2015','2015','number'),
 	 ('year','2016','2016','number'),
 	 ('year','2017','2017','number');
-INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('year','2018','2018','number'),
 	 ('year','2019','2019','number'),
 	 ('year','2020','2020','number'),
@@ -42,7 +42,7 @@ INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('year','2025','2025','number'),
 	 ('year','2026','2026','number'),
 	 ('year','2027','2027','number');
-INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('year','2028','2028','number'),
 	 ('year','2029','2029','number'),
 	 ('result_type','Theory','Th','text'),
@@ -53,7 +53,7 @@ INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('spin_dependency','spin-independent','SI','text'),
 	 ('greatest_hit','All','0','boolean'),
 	 ('greatest_hit','Yes','1','boolean');
-INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('experiment','CDMS I (SUF)','CDMS I (SUF)','text'),
 	 ('experiment','CDMS II (Soudan)','CDMS II (Soudan)','text'),
 	 ('experiment','SuperCDMS','SuperCDMS','text'),
@@ -64,7 +64,7 @@ INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('experiment','ZEPLIN I','ZEPLIN I','text'),
 	 ('experiment','ZEPLIN II','ZEPLIN II','text'),
 	 ('experiment','ZEPLIN III','ZEPLIN III','text');
-INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('experiment','ZEPLIN IV','ZEPLIN IV','text'),
 	 ('experiment','COSME','COSME','text'),
 	 ('experiment','CUORICINO','CUORICINO','text'),
@@ -75,7 +75,7 @@ INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('experiment','GEDEON','GEDEON','text'),
 	 ('experiment','Genius','Genius','text'),
 	 ('experiment','Genino','Genino','text');
-INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('experiment','Heidelberg','Heidelberg','text'),
 	 ('experiment','IGEX','IGEX','text'),
 	 ('experiment','KIMS','KIMS','text'),
@@ -86,7 +86,7 @@ INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('experiment','ROSEBUD','ROSEBUD','text'),
 	 ('experiment','SIMPLE','SIMPLE','text'),
 	 ('experiment','Saclay','Saclay','text');
-INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('experiment','SuperK','SuperK','text'),
 	 ('experiment','TOKYO','TOKYO','text'),
 	 ('experiment','UKDMC','UKDMC','text'),
@@ -97,7 +97,7 @@ INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('experiment','DAMA Xe','DAMA Xe','text'),
 	 ('experiment','TEXONO','TEXONO','text'),
 	 ('experiment','XMASS','XMASS','text');
-INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('experiment','IceCube','IceCube','text'),
 	 ('experiment','DMTPC','DMTPC','text'),
 	 ('experiment','DEAP CLEAN','DEAP CLEAN','text'),
@@ -108,7 +108,7 @@ INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('experiment','Fermi','Fermi','text'),
 	 ('experiment','DarkSide','DarkSide','text'),
 	 ('experiment','DAMIC','DAMIC','text');
-INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('experiment','EURECA','EURECA','text'),
 	 ('experiment','DEAP-3600','DEAP-3600','text'),
 	 ('experiment','PICO','PICO','text'),
@@ -119,5 +119,5 @@ INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('experiment','CDEX-10','CDEX-10','text'),
 	 ('experiment','NEWS-G','NEWS-G','text'),
 	 ('experiment','XENONnT','XENONnT','text');
-INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('experiment','CRESST','CRESST','text');
