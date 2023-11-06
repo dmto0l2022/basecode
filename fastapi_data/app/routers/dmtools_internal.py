@@ -13,6 +13,7 @@ from models.dmtools import Experiment, ExperimentCreate
 from models.dmtools import Limit_display, Limit_displayCreate
 from models.dmtools import Limit_ownership, Limit_ownershipCreate
 from models.dmtools import Limit, LimitCreate
+from models.dmtools import ListOfLimitIDs
 from models.dmtools import Plot_ownership, Plot_ownershipCreate
 from models.dmtools import Plot, PlotCreate
 
@@ -225,20 +226,20 @@ async def read_items(q: Annotated[list[str], Query()] = ["foo", "bar"]):
     query_items = {"q": q}
     return query_items
 '''  
+## ListOfLimitIDs
 
 @router.get(api_base_url + "listoflimits")
 #@router.get(api_base_url + "limits", response_model=list[Limit])
-async def get_list_of_limits(session: AsyncSession = Depends(get_session),
-                            list_of_limits_qry: Annotated[list[str], Query()] = [],
+async def get_list_of_limits(list_of_limits: ListOfLimitIDs, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    query_items = {"q": list_of_limits_qry}
-    list_of_limit_ids = query_items["q"]
+    #query_items = {"q": list_of_limits_qry}
+    #list_of_limit_ids = query_items["q"]
     length = len(list_of_limit_ids)
                               
-    print("list of limits >>>>>>>>>>>", length, list_of_limit_ids)
+    print("list of limits >>>>>>>>>>>", length, list_of_limits)
     print("length of list of limits >>>>>>>>>>>", length)
                               
-    result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid).where(Limit.id.in_(list_of_limit_ids)))
+    result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid).where(Limit.id.in_(list_of_limits)))
     
                               
     owneroflimits = result.all()
