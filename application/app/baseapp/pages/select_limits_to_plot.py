@@ -72,6 +72,7 @@ def get_limits_table(dmtool_user_id_in):
     table_css=[
                 {"selector": ".Select-menu-outer", "rule": "display: block !important"},
                 {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                {"selector": ".dash-cell tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
                 {"selector": ".cell-table tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
                 {"selector": ".dash-spreadsheet-men tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
                 {"selector": ".dash-spreadsheet-container tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
