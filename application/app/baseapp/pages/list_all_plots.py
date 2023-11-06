@@ -38,12 +38,12 @@ table_meta_data_data = [
                         ['user_id', '2%'],
                         ['plot_name', '18%'],
                         ['created_at', '5%'],
-                        ['modified_at', '5%'],
+                        ['updated_at', '5%'],
                         ['ceased_at', '5%']
                        ]
 
-single_api = 'user_api_key'
-multiple_api = 'user_api_keys'
+single_api = 'plot'
+multiple_api = 'plots'
 
 ##########################################################
 baseapp_prefix = '/application/baseapp'
