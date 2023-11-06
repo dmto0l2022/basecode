@@ -159,7 +159,7 @@ class DashDataAndTables():
                                      'experiment','official','greatest_hit','data_label',
                                      'result_type','data_reference','year']].copy()
 
-        self.limits_table_df['expid'] = self.limits_table_df['rowid']
+        #self.limits_table_df['expid'] = self.limits_table_df['rowid']
 
         limits_metadata_sql = '''SELECT id, spin_dependency, result_type, measurement_type,
                                 nomhash, x_units, y_units, x_rescale, y_rescale, default_color,
@@ -178,7 +178,7 @@ class DashDataAndTables():
                                 'date_of_announcement', 'public', 'official', 'date_official', 'greatest_hit',
                                 'date_of_run_start', 'date_of_run_end', 'year']].copy()
         
-        self.limits_metadata_df['rowid'] = self.limits_metadata_df.index
+        #self.limits_metadata_df['rowid'] = self.limits_metadata_df.index
 
         #####
 
