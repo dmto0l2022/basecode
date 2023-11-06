@@ -6,10 +6,10 @@
   --adbar_width: 0px;
   --content_width: 100vw;
   --half_content_width: 50vw;
-  --half_content_height: 40vw;
+  --half_content_height: 40vh;
   --content_height: 80vh;
   --graph_content_height:75vh;
-  --graph_content_width:100vh;
+  --graph_content_width:100vw;
   --graph_width: 50vw;
   --graph_height: 75vh;
   --form_width: 50vw;
