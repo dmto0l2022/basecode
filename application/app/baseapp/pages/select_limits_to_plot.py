@@ -302,7 +302,7 @@ list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", co
 limits_table = dbc.Row([dbc.Col(
                     [get_limits_table(dmtool_userid)],
                     width=12,)],
-                    className ="TABLE_ROW NOPADDING")
+                    className ="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
 
 maincolumn = dbc.Col(
             [
