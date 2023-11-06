@@ -210,7 +210,7 @@ class DashDataAndTables():
                         'height': row_height,
                     }
         
-         table_css=[
+        table_css=[
                     {"selector": ".Select-menu-outer", "rule": "display: block !important"},
                     {"selector": "p", "rule" :"margin: 0px; padding:0px"},
                     {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
