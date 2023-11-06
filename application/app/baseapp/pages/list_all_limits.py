@@ -55,13 +55,20 @@ list_all_limits_form_content  = dbc.Row(
     className="g-3",
 )
 
-#submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
+button_styling_1 = {'font-size': '12px',
+                  'width': '70px',
+                  'display': 'inline-block', 
+                  'margin-bottom': '1px',
+                  'margin-right': '0px',
+                  'margin-top': '1px',
+                  'height':'19px',
+                  'verticalAlign': 'center'}
 
-edit_button =  html.Div(dbc.Button("Edit", id="list_all_limits_edit_button_id", color="primary"), className = "FORM_SUBMIT_BUTN")
+new_button =  html.Button("New", id= page_name + "new_button_id", style=button_styling_1)
+save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
+cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
+home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling_1)
 
-cancel_button =  html.Div(dbc.Button("Cancel",  id="list_all_limits_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-
-#cancel_button =  dbc.Col(dbc.Button("Cancel", color="secondary"), width="auto")
 
 ##########################################################
 
@@ -112,6 +119,11 @@ list_all_limits_form = html.Div(
 # limits_table_df = limits_df[['id','limit_id','spin_dependency',
 #                         'experiment','official','greatest_hit','data_label',
 #                         'result_type','data_reference','year']].copy()
+
+debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
+                                      html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
+                                      html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
+                                      className="PAGE_DEBUG_CONTENT")
 
 
 ###########################################################################
