@@ -11,8 +11,9 @@ import requests
 import dash_bootstrap_components as dbc
 
 from app.baseapp.libraries import formlibrary as fl
+from app.baseapp.libraries import main_table_editor as mte
 
-from app.baseapp.dashboard_libraries import get_limit_data as gld
+#from app.baseapp.dashboard_libraries import get_limit_data as gld
 
 
 import requests
@@ -24,6 +25,19 @@ fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/in
 dash.register_page(__name__, path='/list_all_limits')
 page_name = "list_all_limits"
 baseapp_prefix = '/application/baseapp'
+
+page_name = "list_all_limits"
+page_title = 'List All Limits'
+
+table_meta_data_data = [
+                        ['id', '2%'],
+                        ['experiment', '2%'],
+                        ['data_comment', '18%'],
+                        ['data_label', '18%'],
+                       ]
+
+single_api = 'limit'
+multiple_api = 'limits'
 
 #### list all limits
 
@@ -55,69 +69,26 @@ table_heights = 120
 row_height = '13px'
 font_size = '12px'
 
-'''
-class MakeApiCall():
+dmtool_user_id = '0' ### default - no user should be given 0
+internal_header={'dmtool-userid':'0'}
 
-    def get_data(self, api):
-        response = requests.get(f"{api}")
-        if response.status_code == 200:
-            print("sucessfully fetched the data")
-            self.formatted_print(response.json())
-        else:
-            print(
-                f"Hello person, there's a {response.status_code} error with your request")
-            
-    def formatted_print(self, obj):
-        text = json.dumps(obj, sort_keys=True, indent=4)
-        print(text)
-'''
-###
+## create an empty table to be refreshed by the callback
+main_table_1 = mte.get_main_table(page_title,
+                                 main_table_id,
+                                 table_meta_data_data,
+                                 row_height,
+                                 table_font_size,
+                                 fastapi_url_all,
+                                 fastapi_url_one,
+                                 dmtool_user_id)
+
+
 
 def DeleteRow(limit_in):
     delete_url = fastapi_url_limit + "/" + str(limit_in)
     requests.delete(delete_url)
 
-def RefreshTableData():
-    url = fastapi_url_limits
-    #column_names=['id','experiment','data_comment','create', 'read', 'update', 'delete']
-    column_names=['id','experiment','data_comment','data_label', 'data_reference','edit', 'delete']
-    response_data_frame = pd.DataFrame()
-    #try:
-    #    headers={"dmtool-userid":'16384'}
-    #    r = requests.get(url, headers=headers)
-    #    response_data = r.json()
-    #    #print('response data')
-    #    #print('===================')
-    #    #print(response_data)
-    #    print('===== response data frame ==============')
-    #    #response_data_frame = pd.DataFrame(response_data)
-    #    response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
-    #    print(response_data_frame)
-    #    print('===== response data frame ==============')
-    #except:
-    #    a = 1
-    
-    dmtool_userid = 16384
-    
-    limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(dmtool_userid)
 
-    response_data_frame = limit_list_df.copy()
-    
-    if response_data_frame.empty:
-        #empty_data = [['id','experiment','data_comment','data_label', 'data_reference', 'create', 'read', 'update', 'delete']]
-        empty_data = [['id','experiment','data_comment', 'data_label', 'data_reference', 'edit', 'delete']]
-        updated_data_frame_ret = pd.DataFrame(data=empty_data, columns=column_names)
-        updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
-    else:
-        lst = ['id','experiment','data_comment','data_label', 'data_reference', ]
-        updated_data_frame_ret = response_data_frame[response_data_frame.columns.intersection(lst)]
-        updated_data_frame_ret = updated_data_frame_ret[lst]
-        #updated_data_frame_ret['create'] = "create"
-        updated_data_frame_ret['edit'] = "edit"
-        #updated_data_frame_ret['update'] = "update"
-        updated_data_frame_ret['delete'] = "delete"
-        updated_data_dict_ret = updated_data_frame_ret.to_dict('records')
-    return updated_data_dict_ret, updated_data_frame_ret, column_names
 
 
 #table_data_dict_initial, table_data_frame_initial, column_names = RefreshTableData()
@@ -149,115 +120,14 @@ def get_layout():
 
     style_header_var={ 'backgroundColor': 'black','color': 'white'}
 
-    table_data_dict, table_data_frame, table_column_names = RefreshTableData()
-    
-    limits_table = dash_table.DataTable(
-        id='limits_table_main',
-        data=table_data_dict,
-        columns=[{"name": c, "id": c} for c in table_column_names],
-        fixed_rows={'headers': True},
-        #fixed_rows={'headers': True},
-        #page_size=5,
-        filter_action='none',
-        #row_selectable='multi',
-        #selected_rows=[],
-    
-        style_cell={'textAlign': 'left','padding': '0px','font_size': font_size,
-                        'overflow': 'hidden',
-                        'textOverflow': 'ellipsis',
-                        'border': '1px solid black',
-                        #'height': 'auto'
-                        'height': row_height,
-                    },
-         css=[
-                    {"selector": ".Select-menu-outer", "rule": "display: block !important"},
-                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
-                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
-                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
-                    ],
-        
-        #style_table={'height': '75vh',},
-        style_cell_conditional=[
-            {'if': {'column_id': 'id'},
-             'width': '2%'},
-            {'if': {'column_id': 'experiment'},
-             'width': '10%'},
-            {'if': {'column_id': 'data_comment'},
-             'width': '25%'},
-            {'if': {'column_id': 'data_label'},
-             'width': '25%'},
-            {'if': {'column_id': 'data_reference'},
-             'width': '25%'},
-            #{'if': {'column_id': 'create'},
-            # 'width': '5%'},
-            {'if': {'column_id': 'edit'},
-             'width': '2%'},
-            #{'if': {'column_id': 'update'},
-           #  'width': '5%'},
-            {'if': {'column_id': 'delete'},
-             'width': '2%'},
-        ],
-        #style_data={
-        #    'whiteSpace': 'normal',
-        #    'height': 'auto',
-        #},
-        #style_header=style_header_var,
-        #tooltip_data=[
-        #    {
-        #        column: {'value': str(value), 'type': 'markdown'}
-        #        for column, value in row.items()
-        #    } for row in data
-        #],
-        tooltip_duration=None,
-        )
-    
-    ##########################
-    #{
-    #        'selector': '.dash-spreadsheet td div',
-    #        'rule': '''
-    #            line-height: 12px;
-    #            max-height: 12px; min-height: 12px; height: 12px;
-    #            display: block;
-    #            overflow-y: hidden;
-    #        '''
-    #    },
-    
-    ##########################
-    
-    
-    '''
-    table_layout = html.Div(
-        [
-            html.Div(
-                [
-                    dash_table.DataTable(
-                        id="table",
-                        columns=[{"name": c, "id": c} for c in column_names],
-                        data=table_data_frame_initial.to_dict("records"),
-                        page_size=10,
-                        sort_action="native",
-                        active_cell=initial_active_cell,
-                    ),
-                ],
-                style={"margin": 50},
-                className="five columns"
-            ),
-            html.Div(id="output-div", className="six columns"),
-        ],
-        className="row"
-    )
-    '''
+    main_table_1.RefreshTableData()
     
     table_layout = html.Div(
         [
             html.Div(children="Table Title", className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
-                    limits_table
+                    main_table_1.
                 ],
                 className="NOPADDING_CONTENT"
             ),
