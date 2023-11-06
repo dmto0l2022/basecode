@@ -316,7 +316,7 @@ maincolumn = dbc.Col(
             width=12,)
 
 def get_layout():
-    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="PAGE_GRAPH_CONTENT")
+    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
     return layout_out
         
 ##className="PAGE_CONTENT",)
