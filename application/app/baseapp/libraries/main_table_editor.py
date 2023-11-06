@@ -80,11 +80,14 @@ class get_main_table:
         self.table_meta_data_data_df = pd.DataFrame(data=self.table_meta_data_data, columns=self.table_meta_data_columns)
 
         self.table_cell_styles = {'textAlign': 'left',
-                                  'padding': '0px','font_size': self.table_font_size,
+                                  'padding': '0px',
+                                  'font_size': self.table_font_size,
                                   'overflow': 'hidden',
                                   'textOverflow': 'ellipsis',
                                   'border': '1px solid black',
                                   'height': row_height_in,
+                                  'overflow': 'hidden',
+                                  'maxWidth': 0
                                  }
 
         self.css_row_heights = [
