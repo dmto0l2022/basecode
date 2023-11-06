@@ -5,7 +5,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from fastapi import APIRouter
 router = APIRouter()
 
-api_base_url = '/dmtool/fastapi_data/internal/'
+api_base_url = '/dmtool/fastapi_data/internal/metadata/'
 
 from typing import List
 
