@@ -87,7 +87,7 @@ class get_main_table:
                                   'border': '1px solid black',
                                   'height': row_height_in,
                                   'overflow': 'hidden',
-                                  'maxWidth': 0
+                                  'maxWidth': 0 ## made things work!!
                                  }
 
         self.css_row_heights = [
