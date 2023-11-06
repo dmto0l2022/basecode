@@ -1,4 +1,6 @@
-CREATE TABLE IF NOT EXISTS data.`dropdown_valuepairs` (
+DROP TABLE IF EXISTS data.`dropdown_valuepairs`;
+
+CREATE TABLE data.`dropdown_valuepairs` (
   `variable` text DEFAULT NULL,
   `label` text DEFAULT NULL,
   `value` text DEFAULT NULL,
@@ -117,5 +119,5 @@ INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('experiment','CDEX-10','CDEX-10','text'),
 	 ('experiment','NEWS-G','NEWS-G','text'),
 	 ('experiment','XENONnT','XENONnT','text');
-INSERT INTO test.dropdown_valuepairs (variable,label,value,data_type) VALUES
+INSERT INTO data.dropdown_valuepairs (variable,label,value,data_type) VALUES
 	 ('experiment','CRESST','CRESST','text');
