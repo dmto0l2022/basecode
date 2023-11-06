@@ -24,7 +24,7 @@ from models.metadata import Dropdown_valuepair, Dropdown_valuepairCreate
 
 @router.get(api_base_url + "dropdown_valuepair", response_model=list[Dropdown_valuepair])
 async def get_dropdown_valuepairs(variable_in : str, session: AsyncSession = Depends(get_session)):
-    result = await session.execute(select(Dropdown_valuepair).where(variable==variable_in)
+    result = await session.execute(select(Dropdown_valuepair).where(variable==variable_in))
     dropdown_valuepairs = result.scalars().all()
     return [Dropdown_valuepair(variable=dropdown_valuepair.variable,
                                label=dropdown_valuepair.label,
