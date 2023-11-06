@@ -9,7 +9,8 @@ from dotenv import load_dotenv
 
 load_dotenv(".env")
 
-import mariadb
+#import mariadb
+import requests
 
 dropdown_api = 'dropdown_valuepair'
 
