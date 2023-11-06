@@ -156,6 +156,7 @@ class get_main_table:
         #url = fastapi_url_all_in
         response_data_frame = pd.DataFrame()
         try:
+            print("mt : fastapi_url_all >>>>>>>>>>>>", self.fastapi_url_all)
             r = requests.get(self.fastapi_url_all, headers = self.dmtool_user_header)
             response_data = r.json()
             print('response data')
