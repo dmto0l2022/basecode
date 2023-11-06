@@ -143,7 +143,7 @@ def get_layout():
   
     #main_table_1.RefreshTableData()
     
-    table_layout = html.Div(
+    table_layout_1 = html.Div(
         [
             dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
             html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
@@ -159,6 +159,8 @@ def get_layout():
         className="NOPADDING_CONTENT"
     )
 
+    table_layout = main_table_1.dash_table_main
+  
     return table_layout
     
 #no_output = html.Div([limits_table], className="NOPADDING_CONTENT")
