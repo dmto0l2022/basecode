@@ -16,10 +16,6 @@ dropdown_api = 'dropdown_valuepair'
 ##########################################################
 
 
-fastapi_url = "http://container_fastapi_about_1:8014/dmtool/fastapi_about/internal/data/"
-fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
-fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
-
 class DashDataAndTables():
 
     #import psycopg2
