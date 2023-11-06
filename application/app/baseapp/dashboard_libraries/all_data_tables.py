@@ -54,7 +54,7 @@ class DashDataAndTables():
         #do some parsing
         dropdown_route = 'dropdown_valuepair'
         limit_route = 'limits'
-        fastapi_url = "http://container_fastapi_about_1:8014/dmtool/fastapi_about/internal/data/"
+        fastapi_url = "http://container_fastapi_about_1:8014/dmtool/fastapi_data/internal/data/"
         fastapi_get_dropdown = fastapi_url + dropdown_route + "?variable_in="
         fastapi_get_limits = fastapi_url + limit_route
         ##  'https://dev1.dmtool.info/dmtool/fastapi_data/internal/dropdown_valuepair?variable_in=year' \
