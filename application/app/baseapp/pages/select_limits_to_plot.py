@@ -58,12 +58,15 @@ def get_limits_table(dmtool_user_id_in):
     font_size = '11px'
     row_height = '12px'
 
-    table_style_cell={'textAlign': 'left','padding': '0px','font_size': font_size,
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                    'border': '1px solid black',
-                    #'height': 'auto'
-                    'height': row_height,
+    table_style_cell={'textAlign': 'left',
+                      'padding': '0px',
+                      'font_size': font_size,
+                      'whiteSpace': 'nowrap',
+                      'overflow': 'hidden',
+                      'textOverflow': 'ellipsis',
+                      'border': '1px solid black',
+                      #'height': 'auto'
+                      'height': row_height,
                 }
     
     table_css=[
