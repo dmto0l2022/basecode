@@ -19,8 +19,8 @@ from app.baseapp.libraries import main_table_editor as mte
 import requests
 import json
 
-fastapi_url_limits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limits" ## multiple limit operations
-fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limit" ## single limit operations
+fastapi_url_all = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limits" ## multiple limit operations
+fastapi_url_one= "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limit" ## single limit operations
 
 dash.register_page(__name__, path='/list_all_limits')
 baseapp_prefix = '/application/baseapp'
@@ -32,8 +32,8 @@ main_table_id = page_name + '_main_table_id'
 table_meta_data_data = [
                         ['id', '2%'],
                         ['experiment', '2%'],
-                        ['data_comment', '18%'],
-                        ['data_label', '18%'],
+                        ['data_comment', '25%'],
+                        ['data_label', '25%'],
                        ]
 
 single_api = 'limit'
