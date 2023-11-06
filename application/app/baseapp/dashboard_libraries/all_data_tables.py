@@ -75,10 +75,11 @@ class DashDataAndTables():
         #    pd.read_sql('SELECT variable,label, value, data_type FROM dropdown_valuepairs', con=self.engine)
 
         experiments_req_url = fastapi_get_dropdown + 'experiment'
-        r = requests.get(experiments_req)
+        r = requests.get(experiments_req_url)
         experiments_response_data = r.json()
         
         self.experiments_df = pd.DataFrame.from_dict(experiments_response_data)
+        self.experiments_df.reset_index(drop=True, inplace=True)
 
         result_types_req_url = fastapi_get_dropdown + 'result_type'
         r = requests.get(result_types_req_url)
@@ -86,7 +87,7 @@ class DashDataAndTables():
         
         self.result_types_df  = pd.DataFrame.from_dict(result_types_response_data)
         
-        #self.result_types_df.reset_index(drop=True, inplace=True)
+        self.result_types_df.reset_index(drop=True, inplace=True)
 
         spin_dependency_req_url = fastapi_get_dropdown + 'spin_dependency'
         r = requests.get(spin_dependency_req_url)
@@ -94,7 +95,7 @@ class DashDataAndTables():
         
         self.spin_dependency_df  =  pd.DataFrame.from_dict(spin_dependency_response_data)
         
-        #self.spin_dependency_df.reset_index(drop=True, inplace=True)
+        self.spin_dependency_df.reset_index(drop=True, inplace=True)
 
         greatest_hit_req_url = fastapi_get_dropdown + 'greatest_hit'
         r = requests.get(greatest_hit_req_url)
