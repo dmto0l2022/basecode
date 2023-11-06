@@ -12,6 +12,9 @@ import dash_bootstrap_components as dbc
 
 from app.baseapp.libraries import formlibrary as fl
 
+from app.baseapp.dashboard_libraries import get_limit_data as gld
+
+
 import requests
 import json
 
@@ -79,20 +82,26 @@ def RefreshTableData():
     #column_names=['id','experiment','data_comment','create', 'read', 'update', 'delete']
     column_names=['id','experiment','data_comment','data_label', 'data_reference','edit', 'delete']
     response_data_frame = pd.DataFrame()
-    try:
-        headers={"dmtool-userid":'16384'}
-        r = requests.get(url, headers=headers)
-        response_data = r.json()
-        #print('response data')
-        #print('===================')
-        #print(response_data)
-        print('===== response data frame ==============')
-        #response_data_frame = pd.DataFrame(response_data)
-        response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
-        print(response_data_frame)
-        print('===== response data frame ==============')
-    except:
-        a = 1
+    #try:
+    #    headers={"dmtool-userid":'16384'}
+    #    r = requests.get(url, headers=headers)
+    #    response_data = r.json()
+    #    #print('response data')
+    #    #print('===================')
+    #    #print(response_data)
+    #    print('===== response data frame ==============')
+    #    #response_data_frame = pd.DataFrame(response_data)
+    #    response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+    #    print(response_data_frame)
+    #    print('===== response data frame ==============')
+    #except:
+    #    a = 1
+    
+    dmtool_userid = 16384
+    
+    limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(dmtool_userid)
+
+    response_data_frame = limit_data_df.copy()
     
     if response_data_frame.empty:
         #empty_data = [['id','experiment','data_comment','data_label', 'data_reference', 'create', 'read', 'update', 'delete']]
