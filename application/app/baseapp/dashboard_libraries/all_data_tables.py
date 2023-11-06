@@ -59,16 +59,16 @@ class DashDataAndTables():
         fastapi_get_limits = fastapi_url + limit_route
         ##  'https://dev1.dmtool.info/dmtool/fastapi_data/internal/dropdown_valuepair?variable_in=year' \
         
-        r = requests.get(url, headers=headers)
-        response_data = r.json()
+        #r = requests.get(url, headers=headers)
+        #response_data = r.json()
         #print('response data')
         #print('===================')
         #print(response_data)
-        print('===== response data frame ==============')
+        #print('===== response data frame ==============')
         #response_data_frame = pd.DataFrame(response_data)
-        response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
-        print(response_data_frame)
-        print('===== response data frame ==============')
+        #response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+        #print(response_data_frame)
+        #print('===== response data frame ==============')
         
         
         #self.all_dropdown_pairs = \
