@@ -135,7 +135,7 @@ class DashDataAndTables():
         #response_data_frame = pd.DataFrame(response_data)
         response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
 
-        print('limits response df : ' , response_data_frame)
+        #print('limits response df : ' , response_data_frame)
         
         limits_sql_old = '''SELECT
         id, spin_dependency, result_type, measurement_type, nomhash, x_units, y_units, x_rescale,
@@ -155,13 +155,13 @@ class DashDataAndTables():
         
         self.limits_df['rowid'] = self.limits_df.index
 
-        self.limits_table_df = self.limits_df[['id','limit_id','spin_dependency',
+        self.limits_table_df = self.limits_df[['id','spin_dependency',
                                      'experiment','official','greatest_hit','data_label',
                                      'result_type','data_reference','year']].copy()
 
         self.limits_table_df['expid'] = self.limits_table_df['rowid']
 
-        limits_metadata_sql = '''SELECT id, limit_id, spin_dependency, result_type, measurement_type,
+        limits_metadata_sql = '''SELECT id, spin_dependency, result_type, measurement_type,
                                 nomhash, x_units, y_units, x_rescale, y_rescale, default_color,
                                 default_style, data_label, file_name, data_comment, data_reference,
                                 created_at, updated_at, creator_id, experiment, rating,
@@ -171,7 +171,7 @@ class DashDataAndTables():
 
         #self.limits_metadata_df = pd.read_sql_query(limits_metadata_sql, self.engine)
         
-        self.limits_metadata_df = self.limits_df[['id', 'limit_id', 'spin_dependency', 'result_type', 'measurement_type',
+        self.limits_metadata_df = self.limits_df[['id', 'spin_dependency', 'result_type', 'measurement_type',
                                 'nomhash', 'x_units', 'y_units', 'x_rescale', 'y_rescale', 'default_color',
                                 'default_style', 'data_label', 'file_name', 'data_comment', 'data_reference',
                                 'created_at', 'updated_at', 'creator_id', 'experiment', 'rating',
