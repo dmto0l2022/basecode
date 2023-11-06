@@ -134,6 +134,8 @@ class DashDataAndTables():
         print('===== response data frame ==============')
         #response_data_frame = pd.DataFrame(response_data)
         response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+
+        print('limits response df : ' , response_data_frame)
         
         limits_sql_old = '''SELECT
         id, spin_dependency, result_type, measurement_type, nomhash, x_units, y_units, x_rescale,
