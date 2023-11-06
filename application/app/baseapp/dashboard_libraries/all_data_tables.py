@@ -200,6 +200,27 @@ class DashDataAndTables():
 
         
         table_heights = 120
+        row_height = '12px'
+
+        table_style_cell={'textAlign': 'left','padding': '0px','font_size': font_size,
+                        'overflow': 'hidden',
+                        'textOverflow': 'ellipsis',
+                        'border': '1px solid black',
+                        #'height': 'auto'
+                        'height': row_height,
+                    }
+        
+         table_css=[
+                    {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
+                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
+                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
+                    ],
+        
 
         style_header_var={ 'backgroundColor': 'black','color': 'white'}
 
@@ -217,18 +238,8 @@ class DashDataAndTables():
                 {'if': {'column_id': 'year'},
                  'width': '90%'},
             ],
-            style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                },
-            css=[{
-                'selector': '.dash-spreadsheet td div',
-                'rule': '''
-                    line-height: 12px;
-                    display: block;
-                    overflow-y: hidden;
-                '''
-            }],
+            style_cell=table_style_cell,
+            css=table_css,
             selected_rows=[],
             style_table={
                 'height': table_heights,
@@ -255,18 +266,8 @@ class DashDataAndTables():
                  'width': '90%'},
             ],
             fixed_rows={'headers': True},
-            style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                },
-            css=[{
-                'selector': '.dash-spreadsheet td div',
-                'rule': '''
-                    line-height: 12px;
-                    display: block;
-                    overflow-y: hidden;
-                '''
-            }],
+            style_cell=table_style_cell,
+            css=table_css,
             selected_rows=[],
             style_table={
                 'height': table_heights,
@@ -294,18 +295,8 @@ class DashDataAndTables():
             ],
             fixed_rows={'headers': True},
             style_table={'height': table_heights},  # defaults to 500
-            style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                },
-            css=[{
-                'selector': '.dash-spreadsheet td div',
-                'rule': '''
-                    line-height: 12px;
-                    display: block;
-                    overflow-y: hidden;
-                '''
-            }],
+            style_cell=table_style_cell,
+            css=table_css,
             selected_rows=[],
             style_header=style_header_var,
             #style_data={
@@ -328,18 +319,8 @@ class DashDataAndTables():
                 {'if': {'column_id': 'label'},
                  'width': '90%'},
             ],
-            style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                },
-            css=[{
-                'selector': '.dash-spreadsheet td div',
-                'rule': '''
-                    line-height: 12px;
-                    display: block;
-                    overflow-y: hidden;
-                '''
-            }],
+            style_cell=table_style_cell,
+            css=table_css,
             fixed_rows={'headers': True},
             selected_rows=[],
             style_table={
@@ -366,18 +347,8 @@ class DashDataAndTables():
                 {'if': {'column_id': 'label'},
                  'width': '90%'},
             ],
-            style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                },
-            css=[{
-                'selector': '.dash-spreadsheet td div',
-                'rule': '''
-                    line-height: 12px;
-                    display: block;
-                    overflow-y: hidden;
-                '''
-            }],
+            style_cell=table_style_cell,
+            css=table_css,
             fixed_rows={'headers': True},
             selected_rows=[],
             style_table={
@@ -406,19 +377,8 @@ class DashDataAndTables():
                 {'if': {'column_id': 'label'},
                  'width': '90%'},
             ],
-            style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                        'border': '1px solid black'
-                },
-            css=[{
-                'selector': '.dash-spreadsheet td div',
-                'rule': '''
-                    line-height: 12px;
-                    display: block;
-                    overflow-y: hidden;
-                '''
-            }],
+             style_cell=table_style_cell,
+            css=table_css,
             style_table={'height': table_heights,},
             style_header=style_header_var,
             #style_data={
@@ -444,19 +404,8 @@ class DashDataAndTables():
             filter_action='none',
             #row_selectable='multi',
             #selected_rows=[],
-            style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                },
-            css=[{
-                'selector': '.dash-spreadsheet td div',
-                'rule': '''
-                    line-height: 15px;
-                    max-height: 45px; min-height:30px; height: 30px;
-                    display: block;
-                    overflow-y: hidden;
-                '''
-            }],
+            style_cell=table_style_cell,
+            css=table_css,
             style_table={'height': '25vh',},
             style_cell_conditional=[
                 {'if': {'column_id': 'id'},
@@ -494,19 +443,8 @@ class DashDataAndTables():
             filter_action='none',
             #row_selectable='multi',
             #selected_rows=[],
-            style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                },
-            css=[{
-                'selector': '.dash-spreadsheet td div',
-                'rule': '''
-                    line-height: 15px;
-                    max-height: 45px; min-height:30px; height: 30px;
-                    display: block;
-                    overflow-y: hidden;
-                '''
-            }],
+            style_cell=table_style_cell,
+            css=table_css,
             style_table={'height': '25vh',},
             style_cell_conditional=[
                 {'if': {'column_id': 'variable'},
@@ -545,19 +483,8 @@ class DashDataAndTables():
                      ],
             #fixed_rows={'headers': True},
             page_size=4,
-            style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-                    'overflow': 'hidden',
-                    'textOverflow': 'ellipsis',
-                },
-            css=[{
-                'selector': '.dash-spreadsheet td div',
-                'rule': '''
-                    line-height: 15px;
-                    max-height: 45px; min-height:30px; height: 30px;
-                    display: block;
-                    overflow-y: hidden;
-                '''
-            }],
+            style_cell=table_style_cell,
+            css=table_css,
             #sort_action='native',
             #sort_mode='multi',
             #sort_as_null=['', 'No'],
