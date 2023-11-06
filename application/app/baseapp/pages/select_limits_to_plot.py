@@ -55,8 +55,8 @@ def get_limits_table(dmtool_user_id_in):
     print('sltp >> all_limit_list_dict >>>>>>>>> ' , all_limit_list_dict)
     
     table_heights = 120
-    font_size = '11px'
-    row_height = '12px'
+    font_size = '9px'
+    row_height = '10px'
 
     table_style_cell={'textAlign': 'left',
                       'padding': '0px',
