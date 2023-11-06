@@ -46,7 +46,7 @@ from app.baseapp.dashboard_libraries import get_limit_data as gld
 dash.register_page(__name__, path='/select_limits_to_plot')
 
 
-dashdataandtables = adt.DashDataAndTables()
+dashdataandtables = adt.DashDataAndTables(dmtool_userid)
 
 def get_limits_table(dmtool_user_id_in):
 
