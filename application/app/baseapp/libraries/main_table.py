@@ -14,6 +14,7 @@ import dash_bootstrap_components as dbc
 from flask import request, session
 
 from app.baseapp.libraries import formlibrary as fl
+from app.baseapp.dashboard_libraries import get_limit_data as gld
 
 import requests
 import json
@@ -154,18 +155,24 @@ class get_main_table:
     
     def RefreshTableData(self):
         #url = fastapi_url_all_in
-        response_data_frame = pd.DataFrame()
-        try:
-            print("mt : fastapi_url_all >>>>>>>>>>>>", self.fastapi_url_all)
-            r = requests.get(self.fastapi_url_all, headers = self.dmtool_user_header)
-            response_data = r.json()
-            print('response data')
-            print('===================')
-            print(response_data)
-            print('===================')
-            self.response_data_frame = pd.DataFrame(response_data)
-        except:
-            a = 1
+        dmtool_userid = 16384
+    
+        limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(dmtool_userid)
+
+        response_data_frame = limit_list_df.copy()
+        
+       
+        #try:
+        #    print("mt : fastapi_url_all >>>>>>>>>>>>", self.fastapi_url_all)
+        #    r = requests.get(self.fastapi_url_all, headers = self.dmtool_user_header)
+        #    response_data = r.json()
+        #    print('response data')
+        #    print('===================')
+        #    print(response_data)
+        #    print('===================')
+        #    self.response_data_frame = pd.DataFrame(response_data)
+        #except:
+        #    a = 1
     
         #all_table_column_names = table_column_names_data+['edit','ceased','delete']
       
