@@ -23,11 +23,11 @@ fastapi_url_limits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/i
 fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limit" ## single limit operations
 
 dash.register_page(__name__, path='/list_all_limits')
-page_name = "list_all_limits"
 baseapp_prefix = '/application/baseapp'
 
 page_name = "list_all_limits"
 page_title = 'List All Limits'
+main_table_id = page_name + '_main_table_id'
 
 table_meta_data_data = [
                         ['id', '2%'],
