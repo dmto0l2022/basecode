@@ -336,6 +336,10 @@ single_api = 'limit'
 multiple_api = 'limits'
 dmtool_userid = 16384
 main_table_id = page_name + 'main_limits'
+
+fastapi_url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/"
+fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
+fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
 main_table_1 = mt.get_main_table(page_title,
                                      main_table_id,
                                      table_meta_data_data,
