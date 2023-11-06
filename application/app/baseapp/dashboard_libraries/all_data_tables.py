@@ -11,19 +11,14 @@ load_dotenv(".env")
 
 import mariadb
 
-#MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
-#MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
-#MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
-#MARIADB_DATABASE = 'data'
-#MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+dropdown_api = 'dropdown_valuepair'
 
-#MARIADB_URI = "mariadb+mariadbconnector://" + MARIADB_USERNAME + ":" + \
-#                    MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
-#                    + MARIADB_DATABASE
+##########################################################
 
-#import psycopg2
-#engine = create_engine(MARIADB_URI)
 
+fastapi_url = "http://container_fastapi_about_1:8014/dmtool/fastapi_about/internal/data/"
+fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
+fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
 
 class DashDataAndTables():
 
@@ -55,54 +50,76 @@ class DashDataAndTables():
         self.limits_table = None
         self.plots_table = None
         
-        self.MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
-        self.MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
-        #MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
-        self.MARIADB_DATABASE = 'test'
-        self.MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
-
-        self.MARIADB_URI = "mariadb+mariadbconnector://" + self.MARIADB_USERNAME + ":" + \
-                            self.MARIADB_PASSWORD + "@" + self.MARIADB_CONTAINER + ":3306/"\
-                            + self.MARIADB_DATABASE
-        self.engine = create_engine(self.MARIADB_URI)
         self.populate_dataframes()
         
 
     def populate_dataframes(self):
         #do some parsing
+        dropdown_route = 'dropdown_valuepair'
+        fastapi_url = "http://container_fastapi_about_1:8014/dmtool/fastapi_about/internal/data/"
+        fastapi_get_dropdown = fastapi_url + dropdown_route + "?variable_in="
+        ##  'https://dev1.dmtool.info/dmtool/fastapi_data/internal/dropdown_valuepair?variable_in=year' \
+        #headers={"dmtool-userid":'16384'}
+        r = requests.get(url, headers=headers)
+        response_data = r.json()
+        #print('response data')
+        #print('===================')
+        #print(response_data)
+        print('===== response data frame ==============')
+        #response_data_frame = pd.DataFrame(response_data)
+        response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+        print(response_data_frame)
+        print('===== response data frame ==============')
         
-        self.all_dropdown_pairs = \
-            pd.read_sql('SELECT variable,label, value, data_type FROM dropdown_valuepairs', con=self.engine)
         
-        self.experiments_df = \
-            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='experiment'].copy()
+        #self.all_dropdown_pairs = \
+        #    pd.read_sql('SELECT variable,label, value, data_type FROM dropdown_valuepairs', con=self.engine)
+
+        experiments_req_url = fastapi_get_dropdown + 'experiment
+        r = requests.get(experiments_req)
+        experiments_response_data = r.json()
         
-        self.experiments_df.reset_index(drop=True, inplace=True)
+        self.experiments_df = pd.DataFrame.from_dict(experiments_response_data)
+
+        result_types_req_url = fastapi_get_dropdown + 'result_type'
+        r = requests.get(result_types_req_url)
+        result_types_response_data = r.json()
         
-        self.result_types_df  = \
-            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='result_type'].copy()
+        self.result_types_df  = pd.DataFrame.from_dict(result_types_response_data)
         
-        self.result_types_df.reset_index(drop=True, inplace=True)
+        #self.result_types_df.reset_index(drop=True, inplace=True)
+
+        spin_dependency_req_url = fastapi_get_dropdown + 'spin_dependency'
+        r = requests.get(spin_dependency_req_url)
+        spin_dependency_response_data = r.json()
         
-        self.spin_dependency_df  = \
-            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='spin_dependency'].copy()
+        self.spin_dependency_df  =  pd.DataFrame.from_dict(spin_dependency_response_data)
         
-        self.spin_dependency_df.reset_index(drop=True, inplace=True)
+        #self.spin_dependency_df.reset_index(drop=True, inplace=True)
+
+        greatest_hit_req_url = fastapi_get_dropdown + 'greatest_hit'
+        r = requests.get(greatest_hit_req_url)
+        greatest_hit_response_data = r.json()
         
-        self.greatest_hit_df = \
-            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='greatest_hit'].copy()
+        self.greatest_hit_df = pd.DataFrame.from_dict(greatest_hit_response_data)
         
-        self.greatest_hit_df.reset_index(drop=True, inplace=True)
+        #self.greatest_hit_df.reset_index(drop=True, inplace=True)
+
+        official_req_url = fastapi_get_dropdown + 'official'
+        r = requests.get(official_req_url)
+        official_response_data = r.json()
         
-        self.official_df = \
-            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='official'].copy()
+        self.official_df = pd.DataFrame.from_dict(official_response_data)
         
-        self.official_df.reset_index(drop=True, inplace=True)
+        #self.official_df.reset_index(drop=True, inplace=True)
+
+        year_req_url = fastapi_get_dropdown + 'year'
+        r = requests.get(year_req_url)
+        year_response_data = r.json()
         
-        self.years_df = \
-            self.all_dropdown_pairs[self.all_dropdown_pairs['variable']=='year'].copy()
+        self.years_df = pd.DataFrame.from_dict(year_response_data)
         
-        self.years_df.reset_index(drop=True, inplace=True)
+        #self.years_df.reset_index(drop=True, inplace=True)
         
         limits_sql_old = '''SELECT
         id, spin_dependency, result_type, measurement_type, nomhash, x_units, y_units, x_rescale,
