@@ -79,12 +79,13 @@ class get_main_table:
         self.table_meta_data_all_df = pd.DataFrame(data=self.all_table_meta_data_data, columns=self.table_meta_data_columns)
         self.table_meta_data_data_df = pd.DataFrame(data=self.table_meta_data_data, columns=self.table_meta_data_columns)
 
-        self.table_cell_styles = {'textAlign': 'left','padding': '0px','font_size': self.table_font_size,
-                            'overflow': 'hidden',
-                            'textOverflow': 'ellipsis',
-                            'border': '1px solid black',
-                            'height': row_height_in,
-                        }
+        self.table_cell_styles = {'textAlign': 'left',
+                                  'padding': '0px','font_size': self.table_font_size,
+                                  'overflow': 'hidden',
+                                  'textOverflow': 'ellipsis',
+                                  'border': '1px solid black',
+                                  'height': row_height_in,
+                                 }
 
         self.css_row_heights = [
                             {"selector": ".Select-menu-outer", "rule": "display: block !important"},
@@ -157,24 +158,24 @@ class get_main_table:
     def RefreshTableData(self):
         #url = fastapi_url_all_in
         dmtool_userid = 16384
-    
-        limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(dmtool_userid)
-
-        self.response_data_frame = limit_list_df.copy()
+        if "limit" in self.fastapi_url_all:
+            limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(dmtool_userid)
+            self.response_data_frame = limit_list_df.copy()
+        elif "api_key" in self.fastapi_url_all:
+            try:
+                print("mt : fastapi_url_all for api key >>>>>>>>>>>>", self.fastapi_url_all)
+                r = requests.get(self.fastapi_url_all, headers = self.dmtool_user_header)
+                response_data = r.json()
+                print('response data')
+                print('===================')
+                print(response_data)
+                print('===================')
+                self.response_data_frame = pd.DataFrame(response_data)
+            except:
+                a = 1
+        else:
+            self.response_data_frame = pd.DataFrame()
         
-       
-        #try:
-        #    print("mt : fastapi_url_all >>>>>>>>>>>>", self.fastapi_url_all)
-        #    r = requests.get(self.fastapi_url_all, headers = self.dmtool_user_header)
-        #    response_data = r.json()
-        #    print('response data')
-        #    print('===================')
-        #    print(response_data)
-        #    print('===================')
-        #    self.response_data_frame = pd.DataFrame(response_data)
-        #except:
-        #    a = 1
-    
         #all_table_column_names = table_column_names_data+['edit','ceased','delete']
       
         if self.response_data_frame.empty:
