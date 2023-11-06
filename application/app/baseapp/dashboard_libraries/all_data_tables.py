@@ -24,7 +24,7 @@ class DashDataAndTables():
     ##sqlquery = '''SELECT id, name FROM RubyDB.experiments;'''
 
 
-    def __init__(self):
+    def __init__(self,dmtools_userid_in):
         self.experiments_df = None
         self.result_types_df = None
         self.spin_dependency_df = None
@@ -46,7 +46,7 @@ class DashDataAndTables():
         self.limits_table = None
         self.plots_table = None
         
-        self.populate_dataframes()
+        self.populate_dataframes(dmtools_userid_in)
         
 
     def populate_dataframes(self,dmtools_userid_in):
