@@ -43,6 +43,8 @@ from app.baseapp.dashboard_libraries import all_data_tables as adt
 
 from app.baseapp.dashboard_libraries import get_limit_data as gld
 
+from app.baseapp.libraries import main_table as mt
+
 dash.register_page(__name__, path='/select_limits_to_plot')
 
 
@@ -318,9 +320,36 @@ maincolumn = dbc.Col(
             ],
             width=12,)
 
+###
+page_name = "select_limits_to_plot"
+page_title = 'Select Limits to Plot'
+table_meta_data_data = [
+                        ['id', '2%'],
+                        ['created_at', '5%'],
+                        ['updated_at', '5%'],
+                        ['ceased_at', '5%']
+                       ]
+
+row_height = '12px'
+table_font_size = '11px'
+dmtool_user_id = 
+single_api = 'limit'
+multiple_api = 'limits'
+dmtool_userid = 16384
+main_table_id = page_name + 'main_limits'
+main_table_1 = mt.get_main_table(page_title,
+                                     main_table_id,
+                                     table_meta_data_data,
+                                     row_height,
+                                     table_font_size,
+                                     fastapi_url_all,
+                                     fastapi_url_one,
+                                     dmtool_userid)
+##
+
 def get_layout():
     #layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
-    layout_out = html.Div(id=page_name+'content',children=[limits_table],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+    layout_out = html.Div(id=page_name+'content',children=[main_table_1.dash_table_main],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
     
     return layout_out
         
