@@ -200,6 +200,7 @@ class get_main_table:
     def get_dash_table(self):
     
         self.dash_table_main = dash_table.DataTable(
+            virtualization=True,
             id = self.main_table_id,
             data = self.main_table_data_dict,
             columns=[{"name": c, "id": c} for c in self.all_table_column_names],
