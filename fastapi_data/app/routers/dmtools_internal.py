@@ -232,7 +232,7 @@ async def read_items(q: Annotated[list[str], Query()] = ["foo", "bar"]):
 
 @router.post(api_base_url + "listoflimits/")
 async def read_items(q: ListOfLimitIDs):
-    return q
+    return q['limit_ids']
 
 
 '''
