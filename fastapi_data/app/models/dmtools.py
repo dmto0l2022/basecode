@@ -183,6 +183,11 @@ year
 
 ###
 
+class ListOfLimitIDs(SQLModel):
+    limit_ids: List[int]
+
+###
+
 class LimitBase(SQLModel):
     old_limit_id : int = Field(default=None, nullable=True, primary_key=False)
     spin_dependency : str = Field(default=None)
