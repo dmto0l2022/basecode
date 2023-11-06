@@ -181,13 +181,6 @@ date_of_run_end
 year
 '''
 
-class LimitIDs(SQLModel):
-    limit_id : int = Field(default=None, nullable=True, primary_key=False)
-
-class ListOfLimitIDs(SQLModel):
-    lol : List[LimitIDs]
-
-
 ###
 
 class LimitBase(SQLModel):
