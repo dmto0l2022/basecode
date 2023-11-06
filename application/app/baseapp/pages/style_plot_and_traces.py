@@ -5,7 +5,7 @@ from urllib.parse import urlparse, parse_qs
 cwd = os.getcwd()
 
 page_name = 'style_plot_and_traces'
-baseapp_prefix = '/login/baseapp'
+baseapp_prefix = '/application/baseapp'
 
 from datetime import datetime
 
@@ -34,6 +34,11 @@ from dash.exceptions import PreventUpdate
 from collections import OrderedDict
 
 from itertools import cycle
+
+import redis
+
+r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+dmtool_userid = 16384 ## testing
 
 # import formlibrary as fl
 
