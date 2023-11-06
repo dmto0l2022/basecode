@@ -111,6 +111,7 @@ class get_main_table:
         self.all_table_column_names = self.table_column_names_data+['edit','ceased','delete']
         self.main_table_data_dict = {}
         self.main_table_data_frame = pd.DataFrame()
+        self.response_data_frame = pd.DataFrame()
         self.RefreshTableData()
         self.dash_table_main = dash_table.DataTable()
         self.get_dash_table()
@@ -159,7 +160,7 @@ class get_main_table:
     
         limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(dmtool_userid)
 
-        response_data_frame = limit_list_df.copy()
+        self.response_data_frame = limit_list_df.copy()
         
        
         #try:
