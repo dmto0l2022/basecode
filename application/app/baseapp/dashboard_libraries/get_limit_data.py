@@ -111,7 +111,7 @@ def GetLimit(limit_id_in):
         r = requests.get(limit_url,headers=internal_header)
         response_data = r.json()
         print("gld : response_data json >>>>" , response_data)
-        response_data_frame = pd.DataFrame(response_data)
+        response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
         print("gld : library response_data_frame >>>>>" , response_data_frame)
         
         limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
