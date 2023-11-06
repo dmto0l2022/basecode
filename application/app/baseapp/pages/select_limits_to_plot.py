@@ -43,7 +43,7 @@ from app.baseapp.dashboard_libraries import all_data_tables as adt
 
 from app.baseapp.dashboard_libraries import get_limit_data as gld
 
-from app.baseapp.libraries import main_table as mt
+from app.baseapp.libraries import main_table_editor as mte
 
 dash.register_page(__name__, path='/select_limits_to_plot')
 
@@ -340,7 +340,7 @@ main_table_id = page_name + 'main_limits'
 fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
 fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
 fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
-main_table_1 = mt.get_main_table(page_title,
+main_table_1 = mte.get_main_table(page_title,
                                      main_table_id,
                                      table_meta_data_data,
                                      row_height,
