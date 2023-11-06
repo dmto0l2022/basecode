@@ -518,18 +518,18 @@ def button_click(button1,button2,button3,plot_table_in):
     if page_name + "_next_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
         #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
-        href_return = '/app/baseapp/style_plot_and_traces'
+        href_return = '/application/baseapp/style_plot_and_traces'
         return [href_return,'']
     elif page_name + "_cancel_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
-        href_return = '/app/baseapp/homepage'
+        href_return = '/application/baseapp/homepage'
         return  [href_return,'']
     elif page_name + "_list_button_id" == prop_id:
         #msg = "Button 3 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         #href_return = '/app/baseapp/select_limits_to_plot'
-        href_return = '/app/baseapp/style_plot_and_traces?limit_id=' + limit_ids
+        href_return = '/application/baseapp/style_plot_and_traces?limit_id=' + limit_ids
         return [href_return,limit_ids]
     else:
         href_return = '/app/baseapp/select_limits_to_plot'
