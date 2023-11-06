@@ -20,7 +20,7 @@ import dash_bootstrap_components as dbc
 from flask import request, session
 
 from app.baseapp.libraries import formlibrary as fl
-from app.baseapp.libraries import main_table as mt
+from app.baseapp.libraries import main_table_editor as mte
 ## from app.baseapp.libraries import get_dmtool_user as gdu
 
 import requests
@@ -96,7 +96,7 @@ def get_layout():
     internal_header={'dmtool-userid':'0'}
 
     ## create an empty table to be refreshed by the callback
-    main_table_1 = mt.get_main_table(page_title,
+    main_table_1 = mte.get_main_table(page_title,
                                      main_table_id,
                                      table_meta_data_data,
                                      row_height,
