@@ -127,7 +127,7 @@ def get_limits_table(dmtool_user_id_in):
                          'width': '5%'}
         ],
         style_data={
-            'whiteSpace': 'normal',
+            'whiteSpace': 'nowrap',
             'height': 'auto',
         },
         style_header=style_header_var,
