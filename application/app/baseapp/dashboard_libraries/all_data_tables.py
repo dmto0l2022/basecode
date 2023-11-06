@@ -53,13 +53,15 @@ class DashDataAndTables():
         self.populate_dataframes()
         
 
-    def populate_dataframes(self):
+    def populate_dataframes(self,dmtools_userid_in):
         #do some parsing
         dropdown_route = 'dropdown_valuepair'
+        limit_route = 'limits'
         fastapi_url = "http://container_fastapi_about_1:8014/dmtool/fastapi_about/internal/data/"
         fastapi_get_dropdown = fastapi_url + dropdown_route + "?variable_in="
+        fastapi_get_limits = fastapi_url + limit_route
         ##  'https://dev1.dmtool.info/dmtool/fastapi_data/internal/dropdown_valuepair?variable_in=year' \
-        #headers={"dmtool-userid":'16384'}
+        
         r = requests.get(url, headers=headers)
         response_data = r.json()
         #print('response data')
@@ -120,6 +122,18 @@ class DashDataAndTables():
         self.years_df = pd.DataFrame.from_dict(year_response_data)
         
         #self.years_df.reset_index(drop=True, inplace=True)
+
+        ## get limits
+        fastapi_get_limits = fastapi_url + limit_route
+        headers={"dmtool-userid":str(dmtools_userid_in)}
+        r = requests.get(fastapi_get_limits, headers=headers)
+        response_data = r.json()
+        #print('response data')
+        #print('===================')
+        #print(response_data)
+        print('===== response data frame ==============')
+        #response_data_frame = pd.DataFrame(response_data)
+        response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
         
         limits_sql_old = '''SELECT
         id, spin_dependency, result_type, measurement_type, nomhash, x_units, y_units, x_rescale,
@@ -135,14 +149,15 @@ class DashDataAndTables():
         public, official, date_official, greatest_hit, date_of_run_start, date_of_run_end, `year`
         FROM test.limits_metadata;'''
         
-        self.limits_df = pd.read_sql_query(limits_sql, self.engine)
-        #self.limits_df['rowid'] = self.limits_df.index
+        self.limits_df = response_data_frame.copy()
+        
+        self.limits_df['rowid'] = self.limits_df.index
 
         self.limits_table_df = self.limits_df[['id','limit_id','spin_dependency',
                                      'experiment','official','greatest_hit','data_label',
                                      'result_type','data_reference','year']].copy()
 
-        #self.limits_table_df['expid'] = self.limits_table_df['rowid']
+        self.limits_table_df['expid'] = self.limits_table_df['rowid']
 
         limits_metadata_sql = '''SELECT id, limit_id, spin_dependency, result_type, measurement_type,
                                 nomhash, x_units, y_units, x_rescale, y_rescale, default_color,
@@ -152,23 +167,31 @@ class DashDataAndTables():
                                 date_of_run_start, date_of_run_end, `year` FROM
                                 `test`.limits_metadata;'''
 
-        self.limits_metadata_df = pd.read_sql_query(limits_metadata_sql, self.engine)
+        #self.limits_metadata_df = pd.read_sql_query(limits_metadata_sql, self.engine)
+        
+        self.limits_metadata_df = self.limits_df[['id', 'limit_id', 'spin_dependency', 'result_type', 'measurement_type',
+                                'nomhash', 'x_units', 'y_units', 'x_rescale', 'y_rescale', 'default_color',
+                                'default_style', 'data_label', 'file_name', 'data_comment', 'data_reference',
+                                'created_at', 'updated_at', 'creator_id', 'experiment', 'rating',
+                                'date_of_announcement', 'public', 'official', 'date_official', 'greatest_hit',
+                                'date_of_run_start', 'date_of_run_end', 'year']].copy()
+        
         self.limits_metadata_df['rowid'] = self.limits_metadata_df.index
 
         #####
 
-        limits_traces_sql = '''SELECT distinct limit_id, trace_id, trace_name FROM `test`.limits_data;;'''
-        self.limits_traces_df = pd.read_sql_query(limits_traces_sql, self.engine)
+        #limits_traces_sql = '''SELECT distinct limit_id, trace_id, trace_name FROM `test`.limits_data;;'''
+        #self.limits_traces_df = pd.read_sql_query(limits_traces_sql, self.engine)
         #self.limits_traces_df['rowid'] = self.limits_traces_df.index
-        self.limits_traces_df['line_color'] = 'black'
-        self.limits_traces_df['line'] = 'solid'
-        self.limits_traces_df['fill_color'] = 'LightGrey'
-        self.limits_traces_df['symbol'] = 'square'
-        self.limits_traces_df['symbol_color'] = 'blue'
+        #self.limits_traces_df['line_color'] = 'black'
+        #self.limits_traces_df['line'] = 'solid'
+        #self.limits_traces_df['fill_color'] = 'LightGrey'
+        #self.limits_traces_df['symbol'] = 'square'
+        #self.limits_traces_df['symbol_color'] = 'blue'
 
-        limits_data_sql = '''SELECT id, limit_id, trace_id, trace_name, x, y FROM `test`.limits_data;'''
+        #limits_data_sql = '''SELECT id, limit_id, trace_id, trace_name, x, y FROM `test`.limits_data;'''
 
-        self.limits_data_df = pd.read_sql_query(limits_data_sql, self.engine)
+        #self.limits_data_df = pd.read_sql_query(limits_data_sql, self.engine)
         #self.limits_data_df['rowid'] = self.limits_data_df.index
 
         ###########################################################################
