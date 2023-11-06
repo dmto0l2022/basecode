@@ -298,16 +298,18 @@ plot_name_div = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id'
 next_button =  html.Div(dbc.Button("Next",  id=page_name + "_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 cancel_button =  html.Div(dbc.Button("Cancel",  id=page_name + "_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-    
+
+limits_table = dbc.Row([dbc.Col(
+                    [get_limits_table(dmtool_userid)],
+                    width=12,)],
+                    className ="TABLE_ROW NOPADDING")
+
 maincolumn = dbc.Col(
             [
                 dcc.Location(id=page_name+'url',refresh=True),
                 plot_name_div,
                 filter_row_1,
-                dbc.Row([dbc.Col(
-                    [get_limits_table(dmtool_userid)],
-                    width=12,)],
-                    className ="TABLE_ROW NOPADDING"),
+                limits_table,
                 limits_to_plot_row,
                 next_button,
                 cancel_button,
@@ -317,7 +319,9 @@ maincolumn = dbc.Col(
             width=12,)
 
 def get_layout():
-    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+    #layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+    layout_out = html.Div(id=page_name+'content',children=[limits_table],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+    
     return layout_out
         
 ##className="PAGE_CONTENT",)
