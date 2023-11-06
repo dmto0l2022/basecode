@@ -101,12 +101,13 @@ def get_limits_table(dmtool_user_id_in):
                  ],
         #fixed_rows={'headers': True},
         #page_size=7,
+        fixed_rows={'headers': True},
         filter_action='none',
         #row_selectable='multi',
         #selected_rows=[],
         style_cell=table_style_cell,
         css=table_css,
-        style_table={'height': '40vh',},
+        #style_table={'height': '40vh',},
         style_cell_conditional=[
                     {'if': {'column_id': 'id'},
                     'width': '5%'},
@@ -131,7 +132,7 @@ def get_limits_table(dmtool_user_id_in):
         ],
         style_data={
             'whiteSpace': 'nowrap',
-            'height': 'auto',
+            #'height': 'auto',
         },
         style_header=style_header_var,
         #tooltip_data=[
