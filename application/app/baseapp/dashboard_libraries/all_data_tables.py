@@ -77,7 +77,7 @@ class DashDataAndTables():
         #self.all_dropdown_pairs = \
         #    pd.read_sql('SELECT variable,label, value, data_type FROM dropdown_valuepairs', con=self.engine)
 
-        experiments_req_url = fastapi_get_dropdown + 'experiment
+        experiments_req_url = fastapi_get_dropdown + 'experiment'
         r = requests.get(experiments_req)
         experiments_response_data = r.json()
         
