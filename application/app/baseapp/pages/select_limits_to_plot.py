@@ -325,9 +325,9 @@ page_name = "select_limits_to_plot"
 page_title = 'Select Limits to Plot'
 table_meta_data_data = [
                         ['id', '2%'],
-                        ['created_at', '5%'],
-                        ['updated_at', '5%'],
-                        ['ceased_at', '5%']
+                        ['limit_id', '5%'],
+                        ['data_label', '5%'],
+                        ['experiment', '5%']
                        ]
 
 row_height = '12px'
