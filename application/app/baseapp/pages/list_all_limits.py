@@ -133,15 +133,16 @@ def get_layout():
     
     table_layout = html.Div(
         [
-            html.Div(children="Table Title", className="NOPADDING_CONTENT TABLE_TITLE"),
+            dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
+            html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
                     main_table_1.dash_table_main
                 ],
-                className="NOPADDING_CONTENT"
+                className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
             ),
-            html.Div(children="Debug Output", className="NOPADDING_CONTENT TABLE_TITLE"),
-            html.Div(id="output-div", children="Debug Output Here", className="NOPADDING_CONTENT"),
+            debug_output,
+            html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
         ],
         className="row NOPADDING_CONTENT"
     )
