@@ -198,7 +198,9 @@ class get_main_table:
         
     
     def get_dash_table(self):
-    
+        print("column names : " , self.table_column_names_data)
+        print("column widths : " , self.conditional_column_widths)
+        
         self.dash_table_main = dash_table.DataTable(
             virtualization=True,
             id = self.main_table_id,
