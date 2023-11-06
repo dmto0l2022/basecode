@@ -101,7 +101,7 @@ def RefreshTableData():
     
     limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(dmtool_userid)
 
-    response_data_frame = limit_data_df.copy()
+    response_data_frame = limit_list_df.copy()
     
     if response_data_frame.empty:
         #empty_data = [['id','experiment','data_comment','data_label', 'data_reference', 'create', 'read', 'update', 'delete']]
