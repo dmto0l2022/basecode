@@ -52,9 +52,9 @@ class DashDataAndTables():
 
     def populate_dataframes(self,dmtools_userid_in):
         #do some parsing
-        dropdown_route = 'dropdown_valuepair'
-        limit_route = 'limits'
-        fastapi_url = "http://container_fastapi_about_1:8014/dmtool/fastapi_data/internal/data/"
+        dropdown_route = 'metadata/dropdown_valuepair'
+        limit_route = 'data/limits'
+        fastapi_url = "http://container_fastapi_about_1:8014/dmtool/fastapi_data/internal/"
         fastapi_get_dropdown = fastapi_url + dropdown_route + "?variable_in="
         fastapi_get_limits = fastapi_url + limit_route
         ##  'https://dev1.dmtool.info/dmtool/fastapi_data/internal/dropdown_valuepair?variable_in=year' \
