@@ -243,7 +243,7 @@ def get_debug_table():
                 [
                     dashdataandtables.debug_dropdown_table
                 ],
-                width=10,),
+                width=12,),
                    ], className ="TABLE_ROW NOPADDING")
     
     #row3 = dbc.Row([dbc.Col(html.Div('List Here',id='tbl_out'),width=12,),])
@@ -298,7 +298,7 @@ maincolumn = dbc.Col(
                 filter_row_1,
                 dbc.Row([dbc.Col(
                     [get_limits_table(dmtool_userid)],
-                    width=10,)],
+                    width=12,)],
                     className ="TABLE_ROW NOPADDING"),
                 limits_to_plot_row,
                 next_button,
