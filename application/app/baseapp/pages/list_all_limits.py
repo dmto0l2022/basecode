@@ -119,15 +119,24 @@ list_all_limits_form = html.Div(
 def get_layout():
 
     style_header_var={ 'backgroundColor': 'black','color': 'white'}
-
-    main_table_1.RefreshTableData()
+    dmtool_user_id = 16384
+    main_table_1 = mte.get_main_table(page_title,
+                                 main_table_id,
+                                 table_meta_data_data,
+                                 row_height,
+                                 table_font_size,
+                                 fastapi_url_all,
+                                 fastapi_url_one,
+                                 dmtool_user_id)
+  
+    #main_table_1.RefreshTableData()
     
     table_layout = html.Div(
         [
             html.Div(children="Table Title", className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
-                    main_table_1.
+                    main_table_1.dash_table_main
                 ],
                 className="NOPADDING_CONTENT"
             ),
@@ -157,7 +166,7 @@ layout = get_layout
 )
 def cell_clicked(active_cell):
     
-    updated_data_dict, updated_data_frame, column_names = RefreshTableData()
+    main_table_1.RefreshTableData()
     
     if active_cell is None:
         return no_update
@@ -197,12 +206,11 @@ def cell_clicked(active_cell):
 
     
     if cell_value == 'delete':
-        DeleteRow(id)
-        updated_data_dict, updated_data_frame, column_names = RefreshTableData()
+        main_table_1.DeleteRow(id)
             
     ##http://127.0.0.1:5000/query-example?plotid=Python
     return_data = row, " ", column, " ",cell_value, " ", id
-    return return_data, updated_data_dict
+    return return_data, main_table_1.main_table_data_dict
 
 ##json.dumps(list(active_cell))
 
