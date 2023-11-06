@@ -200,6 +200,7 @@ class DashDataAndTables():
 
         
         table_heights = 120
+        font_size = '11px'
         row_height = '12px'
 
         table_style_cell={'textAlign': 'left','padding': '0px','font_size': font_size,
