@@ -215,7 +215,7 @@ limits_to_plot_row = dbc.Row([dbc.Col(
                 [
                      limits_to_plot_table
                 ],
-                width=10,)],
+                width=12,)],
                     className ="TABLE_ROW NOPADDING")
     
 '''
