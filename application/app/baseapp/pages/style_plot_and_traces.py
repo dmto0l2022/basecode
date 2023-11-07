@@ -180,8 +180,8 @@ layout = html.Div([
     dcc.Location(id=page_name+'url',refresh=True),
     html.Div(id=page_name+'layout-div'),
     html.Div(id=page_name+'content',children=create_layout(default_limits),className="PAGE_GRAPH_CONTENT"),
-    row_of_buttons,
-    debug_output
+    #row_of_buttons,
+    #debug_output
 ],className="PAGE_CONTENT")
 
 '''
