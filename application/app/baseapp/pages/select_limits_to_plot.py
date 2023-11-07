@@ -66,7 +66,7 @@ table_font_size = '11px'
 single_api = 'limit'
 multiple_api = 'limits'
 dmtool_userid = 16384
-main_table_id = page_name + 'main_limits'
+main_table_id = page_name + 'main_limits_table'
 dmtool_user_id = '0' ### default - no user should be given 0
 internal_header={'dmtool-userid':'0'}
 
@@ -234,9 +234,21 @@ def old_form_stuff():
 #    return plot_name_div_return
 
 plot_name_div = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id')
-next_button =  html.Div(dbc.Button("Next",  id=page_name + "_next_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-cancel_button =  html.Div(dbc.Button("Cancel",  id=page_name + "_cancel_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
-list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
+button_styling_1 = {'font-size': '12px',
+                  'width': '70px',
+                  'display': 'inline-block', 
+                  'margin-bottom': '1px',
+                  'margin-right': '0px',
+                  'margin-top': '1px',
+                  'height':'19px',
+                  'verticalAlign': 'center'}
+
+new_button =  html.Button("New", id= page_name + "new_button_id", style=button_styling_1)
+save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
+cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
+home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling_1)
+list_button =  html.Button("List",  id=page_name + "list_button_id", style=button_styling_1)
+
 
 limits_table = dbc.Row([dbc.Col(
                     [ main_limits_table.dash_table_main],
@@ -250,9 +262,7 @@ maincolumn = dbc.Col(
                 filter_row_1,
                 limits_table,
                 limits_to_plot_row,
-                next_button,
-                cancel_button,
-                list_button,
+                html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS"),
                 dbc.Row([html.P(children='List of limits appear here',id=page_name+'limit_list')]),
             ],
             width=12,)
@@ -300,7 +310,7 @@ def set_plot_name(href: str):
     return html.H1(children=plot_id + ' - ' + plot_name) 
 
 @callback(
-    Output(page_name+'limits_table_main', 'data'),
+    Output(page_name + 'main_limits_table', 'data'),
     #Output('debug_dropdown_table', 'data'),
     #Output(component_id='tbl_out', component_property='children'),
     #
