@@ -117,7 +117,7 @@ def create_layout(limits_in):
     legend_fig = cl.CreateLegendFig(limits_in,all_trace_list_df)
     
     legend_graph = dcc.Graph(figure=legend_fig,
-                             id='legend_out_id',
+                             id= page_name + 'legend_out_id',
                              style={'width': '100%', 'height': '100%'})
     
     style_and_legend_column = gsal.GetStyleAndLegendColumn(styling_data_table,legend_graph)
@@ -128,7 +128,7 @@ def create_layout(limits_in):
     graph_fig = cg.CreateGraph(limits_in, all_trace_list_df, all_limit_data_df)
     
     graph_out = dcc.Graph(figure=graph_fig,
-                                  id='graph_out_id',
+                                  id=page_name + 'graph_out_id',
                                   config=dict(responsive=True),
                                   className='GRAPH'
                                   #style={'width': '100%', 'height': '100%'}
@@ -163,9 +163,9 @@ row_of_buttons = html.Div([
   
 
 layout = html.Div([
-    dcc.Location(id='url',refresh=True),
-    html.Div(id='layout-div'),
-    html.Div(id='content',children=create_layout(default_limits),className="PAGE_GRAPH_CONTENT"),
+    dcc.Location(id=page_name+'url',refresh=True),
+    html.Div(id=page_name+'layout-div'),
+    html.Div(id=page_name+'content',children=create_layout(default_limits),className="PAGE_GRAPH_CONTENT"),
     html.Div(id=page_name+"rowofbuttons", children=[row_of_buttons], className="BUTTONS_ON_PAGE_LEFT"),
     html.Div(id=page_name+'button_presses',children='button here',className="DIV_ON_PAGE_RIGHT")
 ],className="PAGE_CONTENT")
@@ -211,7 +211,7 @@ def displayClick1_1(btn1, btn2, btn3):
     return html.Div(msg)
 
 
-@callback(Output('content', 'children'), [Input('url', 'pathname'),Input('url', 'search') ,Input('url', 'href')])
+@callback(Output('content', 'children'), [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
 def display_page(pathname,search,href):
     original_search_string = search
     just_list = original_search_string.split('=')
@@ -235,9 +235,9 @@ def display_page(pathname,search,href):
     return layout_return
 
 @callback(
-    [Output('graph_out_id','figure'),Output('legend_out_id','figure'),],
-    [Input('format_table_id', 'data')],
-    [State('format_table_id', 'data')])
+    [Output(page_name+'graph_out_id','figure'),Output(page_name+'legend_out_id','figure'),],
+    [Input(page_name+'format_table_id', 'data')],
+    [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
     print('spat : table_data_in >>>>>>>>>>',table_data_in)
     fig_out = ug.UpdateGraph(table_data_in)
