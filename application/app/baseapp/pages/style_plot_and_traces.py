@@ -168,7 +168,7 @@ new_button =  html.Button("New", id= page_name + "new_button_id", style=button_s
 save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
 cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
 home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling_1)
-row_of_buttons = html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
+row_of_buttons = html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS")
   
 debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
                                       html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
@@ -207,11 +207,6 @@ def display(btn1, btn2):
     ]) 
 '''
 
-new_button =  html.Button("New", id= page_name + "new_button_id", style=button_styling_1)
-save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
-cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
-home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling_1)
-row_of_buttons = html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
 
 @callback(
     Output(page_name+"button-output-div", 'children'),
