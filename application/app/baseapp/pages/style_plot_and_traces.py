@@ -108,13 +108,14 @@ dash.register_page(__name__, path='/style_plot_and_traces')
 
 def create_layout(limits_in):
 
-    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid)
+    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetListOfLimits(dmtool_userid, limits_in)
     
-    traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(limits_in)].copy()
+    #traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(limits_in)].copy()
+    traces = all_trace_list_df
     
     styling_data_table = ft.CreateFormatTable(page_name,traces)
     
-    legend_fig = cl.CreateLegendFig(limits_in,all_trace_list_df)
+    legend_fig = cl.CreateLegendFig(limits_in,traces)
     
     legend_graph = dcc.Graph(figure=legend_fig,
                              id= page_name + 'legend_out_id',
