@@ -511,7 +511,7 @@ def button_click(button1,button2,button3,button4,button5,plot_table_in):
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/application/baseapp/homepage'
         return  [href_return,'']
-     elif page_name + "home_button_id" == prop_id:
+    elif page_name + "home_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/application/baseapp/homepage'
