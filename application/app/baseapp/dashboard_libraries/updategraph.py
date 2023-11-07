@@ -36,6 +36,7 @@ def UpdateGraph(dmtools_userid_in, plotseries_table_in):
         fig3.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'],
                             mode='lines+markers', # 'lines' or 'markers'
                             line=dict(width=4,dash=row['line'],color=row['line_color']),
+                            log_y=True,
                             #showscale=False,
                             text=row['trace_name'],
                             fill='toself',
