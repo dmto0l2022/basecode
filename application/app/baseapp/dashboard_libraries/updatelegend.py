@@ -2,7 +2,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import pandas as pd
 
-def UpdateLegendFig(plotseries_table_in):
+def UpdateLegendFig(dmtools_userid_in, plotseries_table_in):
     #result_ids = [1,262]
     
     plot_series_df = pd.DataFrame(plotseries_table_in)
