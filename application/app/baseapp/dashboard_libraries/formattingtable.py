@@ -153,17 +153,17 @@ def CreateFormatTable(page_name_in, limits_traces_in):
                 {'if': {'column_id': 'trace_id'},
                  'width': '5%'},
                 {'if': {'column_id': 'trace_name'},
-                 'width': '50%'},
+                 'width': '40%'},
                 {'if': {'column_id': 'line_color'},
-                 'width': '8%'},
+                 'width': '10%'},
                 {'if': {'column_id': 'line'},
-                 'width': '8%'},
+                 'width': '10%'},
                 {'if': {'column_id': 'fill_color'},
-                 'width': '8%'},
+                 'width': '10%'},
                 {'if': {'column_id': 'symbol'},
-                 'width': '8%'},
+                 'width': '10%'},
                 {'if': {'column_id': 'symbol_color'},
-                 'width': '8%'}],
+                 'width': '10%'}],
         )
 
     return format_datatable_out
