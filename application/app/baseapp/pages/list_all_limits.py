@@ -178,7 +178,7 @@ layout = get_layout
 
 
 @callback(
-    [Output("output-div", "children"), Output('limits_table_main','data')], Input("limits_table_main", "active_cell"),
+    [Output(page_name+"cell-output-div", "children"), Output(main_table_id,'data')], Input(main_table_id, "active_cell"),
 )
 def cell_clicked(active_cell):
     
