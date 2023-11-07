@@ -214,8 +214,7 @@ class DashDataAndTables():
                                   'maxWidth': 0 ## made things work!!
                                  }
         
-        table_css=  = [
-                            {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+        table_css=  = [{"selector": ".Select-menu-outer", "rule": "display: block !important"},
                             {"selector": "p", "rule" :"margin: 0px; padding:0px"},
                             {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
                             {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
