@@ -205,7 +205,7 @@ class get_main_table:
         print("column widths : " , self.conditional_column_widths)
         
         self.dash_table_main = dash_table.DataTable(
-            #virtualization=True,
+            virtualization=True,
             id = self.main_table_id,
             data = self.main_table_data_dict,
             columns=[{"name": c, "id": c} for c in self.all_table_column_names],
