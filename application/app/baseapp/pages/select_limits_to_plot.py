@@ -92,17 +92,19 @@ limits_to_plot_df = pd.DataFrame(data=None, columns=['id','plot_id','limit_id','
 style_header_var={ 'backgroundColor': 'black','color': 'white'}
 
 row_height = '12px'
+table_font_size = '11px'
 
 table_cell_styles = {'textAlign': 'left',
                                   'padding': '0px',
-                                  'font_size': self.table_font_size,
+                                  'font_size': table_font_size,
                                   'overflow': 'hidden',
                                   'textOverflow': 'ellipsis',
                                   'border': '1px solid black',
-                                  'height': row_height_in,
+                                  'height': row_height,
                                   'overflow': 'hidden',
                                   'maxWidth': 0 ## made things work!!
                                  }
+
 css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !important"},
                             {"selector": "p", "rule" :"margin: 0px; padding:0px"},
                             {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
