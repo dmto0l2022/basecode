@@ -91,6 +91,27 @@ limits_to_plot_df = pd.DataFrame(data=None, columns=['id','plot_id','limit_id','
 
 style_header_var={ 'backgroundColor': 'black','color': 'white'}
 
+table_cell_styles = {'textAlign': 'left',
+                                  'padding': '0px',
+                                  'font_size': self.table_font_size,
+                                  'overflow': 'hidden',
+                                  'textOverflow': 'ellipsis',
+                                  'border': '1px solid black',
+                                  'height': row_height_in,
+                                  'overflow': 'hidden',
+                                  'maxWidth': 0 ## made things work!!
+                                 }
+css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                            {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                            {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                            {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                            {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of body rows
+                            {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"}
+                            ]
+
+
 limits_to_plot_table = dash_table.DataTable(
     id=page_name+'limits_to_plot_table',
     data=limits_to_plot_df.to_dict('records'),
@@ -101,18 +122,8 @@ limits_to_plot_table = dash_table.DataTable(
              ],
     #fixed_rows={'headers': True},
     page_size=7,
-    style_cell={'textAlign': 'left','padding': '0px','font_size': '12px',
-            'overflow': 'hidden',
-            'textOverflow': 'ellipsis',
-        },
-    css=[{
-        'selector': '.dash-spreadsheet td div',
-        'rule': '''
-            line-height: 12px
-            display: block;
-            overflow-y: hidden;
-        '''
-    }],
+    style_cell=table_cell_styles,
+    css=css_row_heights,
     #sort_action='native',
     #sort_mode='multi',
     #sort_as_null=['', 'No'],
