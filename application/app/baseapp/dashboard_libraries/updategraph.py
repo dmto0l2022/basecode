@@ -10,12 +10,15 @@ from app.baseapp.dashboard_libraries import get_limit_data as gld
 
 def UpdateGraph(dmtools_userid_in, plotseries_table_in):
     #result_ids = [1,262]
-
-    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtools_userid_in)
+    print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
+    
+    result_ids_plot = plot_series_df['limit_id'].unique().tolist()
+    
+    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetListOfLimits(dmtools_userid_in)
     
     plot_series_df = pd.DataFrame(plotseries_table_in)
     
-    result_ids_plot = plot_series_df['limit_id'].unique().tolist()
+    
     
     #plotseries_default, df_experiment_plot = CreatePlotSeries(result_ids_plot)
     #plotseries_default_plot = CreatePlotSeriesDefault(df_experiment_all_plot)
