@@ -28,7 +28,7 @@ from plotly.subplots import make_subplots
 import plotly.express as px
 
 import dash_bootstrap_components as dbc
-
+dmtools_userid_in
 from dash.exceptions import PreventUpdate
 
 from collections import OrderedDict
@@ -261,8 +261,8 @@ def display_page(pathname,search,href):
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
     print('spat : table_data_in >>>>>>>>>>',table_data_in)
-    fig_out = ug.UpdateGraph(table_data_in)
-    legend_out = ul.UpdateLegendFig(table_data_in)
+    fig_out = ug.UpdateGraph(dmtools_userid,table_data_in)
+    legend_out = ul.UpdateLegendFig(dmtools_userid, table_data_in)
     
     return fig_out, legend_out
 
