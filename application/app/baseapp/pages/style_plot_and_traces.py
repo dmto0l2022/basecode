@@ -28,7 +28,7 @@ from plotly.subplots import make_subplots
 import plotly.express as px
 
 import dash_bootstrap_components as dbc
-dmtools_userid_in
+
 from dash.exceptions import PreventUpdate
 
 from collections import OrderedDict
