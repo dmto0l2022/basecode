@@ -112,7 +112,7 @@ def create_layout(limits_in):
     
     traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(limits_in)].copy()
     
-    styling_data_table = ft.CreateFormatTable(traces)
+    styling_data_table = ft.CreateFormatTable(page_name,traces)
     
     legend_fig = cl.CreateLegendFig(limits_in,all_trace_list_df)
     
