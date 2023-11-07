@@ -209,7 +209,7 @@ class DashDataAndTables():
                                   'font_size': font_size,
                                   'overflow': 'hidden',
                                   'textOverflow': 'ellipsis',
-                                  'border': '1px solid black',
+                                  ##'border': '1px solid black',
                                   'height': self.row_height,
                                   'overflow': 'hidden',
                                   'maxWidth': 0 ## made things work!!
