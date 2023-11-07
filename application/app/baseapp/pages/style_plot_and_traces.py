@@ -229,7 +229,7 @@ def displayClick1_1(btn1, btn2, btn3, btn4):
         msg = "Button 2 was most recently clicked"
     elif page_name+'cancel_button' == prop_id:
         msg = "Button 3 was most recently clicked"
-     elif page_name+'home_button' == prop_id:
+    elif page_name+'home_button' == prop_id:
         msg = "Button 4 was most recently clicked"
     else:
         msg = "No Button Pressed"
