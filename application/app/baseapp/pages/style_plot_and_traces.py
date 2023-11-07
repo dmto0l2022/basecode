@@ -181,7 +181,7 @@ layout = html.Div([
     html.Div(id=page_name+'layout-div'),
     html.Div(id=page_name+'content',children=create_layout(default_limits),className="PAGE_GRAPH_CONTENT"),
     #row_of_buttons,
-    #debug_output
+    debug_output
 ],className="PAGE_CONTENT")
 
 '''
@@ -208,7 +208,7 @@ def display(btn1, btn2):
 '''
 
 @callback(
-    Output(page_name+'container-button-output', 'children'),
+    Output(page_name+"button-output-div", 'children'),
     Input(page_name+'btn-nclicks-1_1', 'n_clicks'),
     Input(page_name+'btn-nclicks-2_1', 'n_clicks'),
     Input(page_name+'btn-nclicks-3_1', 'n_clicks')
@@ -225,7 +225,7 @@ def displayClick1_1(btn1, btn2, btn3):
     return html.Div(msg)
 
 
-@callback(Output('content', 'children'), [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
+@callback(Output(page_name+'content', 'children'), [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
 def display_page(pathname,search,href):
     original_search_string = search
     just_list = original_search_string.split('=')
