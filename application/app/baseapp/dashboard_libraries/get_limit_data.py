@@ -232,7 +232,7 @@ def GetListOfLimits(dmtool_userid,listoflimits_in):
     try:
         listoflimits_json = {"limit_ids": listoflimits_in}
         
-        r = requests.put(fastapi_url_listoflimits,json=listoflimits_json,  headers=request_header)
+        r = requests.post(fastapi_url_listoflimits,json=listoflimits_json,  headers=request_header)
         response_data = r.json()
         print("list of limits request response >>>>>>>>>>>>>>>>>>>>> " ,response_data)
 
