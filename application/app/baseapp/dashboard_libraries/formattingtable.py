@@ -91,7 +91,7 @@ def CreateFormatTable(page_name_in, limits_traces_in):
             id=page_name_in + 'format_table_id',
             #row_deletable=True,
             # Add this line
-            fixed_rows={'headers': True},
+            #fixed_rows={'headers': True},
             style_table=style_table,  # defaults to 500
             #style_cell={'fontSize':10,'height':11} ,
             style_cell=table_style_cell,
