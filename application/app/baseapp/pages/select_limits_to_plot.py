@@ -415,13 +415,13 @@ def update_graphs(
 
 @callback(
     Output(page_name+'limits_to_plot_table', 'data'),
-    [Input(page_name+'main_limits_table', 'active_cell'),Input(page_name+'limits_to_plot_table', 'active_cell')],
+    [Input(page_name + 'main_limits_table', 'active_cell'),Input(page_name+'limits_to_plot_table', 'active_cell')],
     [State(page_name+'limits_to_plot_table', 'data')])
 def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     ctx = dash.callback_context
     triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
     #print(triggered_id)
-    if triggered_id == page_name+'limits_table_main':
+    if triggered_id == page_name + 'main_limits_table':
         all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid)  
         selected_rowid = active_cell_exp['row_id']
         selected_row = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
