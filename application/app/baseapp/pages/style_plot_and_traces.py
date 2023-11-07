@@ -154,6 +154,16 @@ def create_layout(limits_in):
 
 #layout = style_plot_and_traces_form_form
 
+button_styling_1 = {'font-size': '12px',
+                  'width': '70px',
+                  'display': 'inline-block', 
+                  'margin-bottom': '1px',
+                  'margin-right': '0px',
+                  'margin-top': '1px',
+                  'height':'19px',
+                  'verticalAlign': 'center'}
+
+
 new_button =  html.Button("New", id= page_name + "new_button_id", style=button_styling_1)
 save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
 cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
