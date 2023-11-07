@@ -261,7 +261,7 @@ def display_page(pathname,search,href):
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
     print('spat : table_data_in >>>>>>>>>>',table_data_in)
-    fig_out = ug.UpdateGraph(dmtools_userid,table_data_in)
+    fig_out = ug.UpdateGraph(dmtool_userid,table_data_in)
     legend_out = ul.UpdateLegendFig(dmtools_userid, table_data_in)
     
     return fig_out, legend_out
