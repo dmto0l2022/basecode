@@ -159,7 +159,8 @@ def get_layout():
         className="NOPADDING_CONTENT"
     )
 
-    table_layout = main_table_1.dash_table_main
+    #table_layout = main_table_1.dash_table_main
+    table_layout = table_layout_1
   
     return table_layout
     
