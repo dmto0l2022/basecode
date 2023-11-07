@@ -211,7 +211,7 @@ class get_main_table:
             columns=[{"name": c, "id": c} for c in self.all_table_column_names],
             fixed_rows={'headers': True},
             #filter_action='none',
-            style_data={'whiteSpace': 'normal', 'height': self.row_height},
+            style_data={'whiteSpace': 'nowrap', 'height': self.row_height},
             style_cell=self.table_cell_styles,
             css=self.css_row_heights,
             style_cell_conditional=self.conditional_column_widths,
