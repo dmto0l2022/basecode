@@ -154,20 +154,24 @@ def create_layout(limits_in):
 
 #layout = style_plot_and_traces_form_form
 
-row_of_buttons = html.Div([
-        html.Button('Save', id=page_name+'btn-nclicks-1_1', n_clicks=0),
-        html.Button('Revert', id=page_name+'btn-nclicks-2_1', n_clicks=0),
-        html.Button('Cancel', id=page_name+'btn-nclicks-3_1', n_clicks=0),
-        html.Div(id=page_name+'container-button-output')
-    ])
+new_button =  html.Button("New", id= page_name + "new_button_id", style=button_styling_1)
+save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
+cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
+home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling_1)
+row_of_buttons = html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
   
+debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
+                                      html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
+                                      html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
+                                      className="PAGE_DEBUG_CONTENT")
+
 
 layout = html.Div([
     dcc.Location(id=page_name+'url',refresh=True),
     html.Div(id=page_name+'layout-div'),
     html.Div(id=page_name+'content',children=create_layout(default_limits),className="PAGE_GRAPH_CONTENT"),
-    html.Div(id=page_name+"rowofbuttons", children=[row_of_buttons], className="BUTTONS_ON_PAGE_LEFT"),
-    html.Div(id=page_name+'button_presses',children='button here',className="DIV_ON_PAGE_RIGHT")
+    row_of_buttons,
+    debug_output
 ],className="PAGE_CONTENT")
 
 '''
