@@ -219,3 +219,64 @@ LIMIT_COLUMNS = [
 def GetLimitDict():
     limit_list_df, trace_list_df, limit_data_df, limit_list_dict = GetLimits()
     return limit_list_dict
+
+
+fastapi_url_listoflimits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limits" ## multiple limit operations
+
+def GetListOfLimits(dmtool_userid,listoflimits_in):
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+    limits_url = fastapi_url_limits
+    request_header = {'dmtool-userid':str(dmtool_userid)}
+    response_data_frame = pd.DataFrame()
+        
+    try:
+        listoflimits_json = {"limit_ids": listoflimits_in}
+        
+        r = requests.put(fastapi_url_listoflimits,json=listoflimits_json,  headers=request_header)
+        response_data = r.json()
+        #print(response_data)
+
+        #print('response data')
+        #print('===================')
+        #print(response_data)
+        print('===== response data frame ==============')
+        response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+        print('===== response data frame ==============')
+        
+        print("gld : library response_data_frame >>>>>" , response_data_frame)
+        
+        limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
+        column_names=['id','data_label','data_comment','data_values']
+    
+        print('limit_list_df >>', limit_list_df_resp)
+        print('trace_list_df >>', trace_list_df_resp)
+        print('limit_data_df >>', limit_data_df_resp)
+    except:
+        a = 1
+    
+    if response_data_frame.empty:
+        limit_columns = ['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']
+        limit_empty_data = [['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']]
+        trace_columns = ['id','limit_id','data_label','trace_id','trace_name',
+                         'line_color','symbol_color','fill_color','line','symbol']
+        trace_empty_data = [['id','limit_id','data_label','trace_id','trace_name',
+                             'line_color','symbol_color','fill_color','line','symbol']]
+        limit_data_columns = ['id','limit_id','data_label','trace_id','trace_name','raw_x','raw_y',
+                              'line_color','symbol_color','fill_color','line','symbol','masses','cross_sections']
+        limit_data_empty_data = [['id','limit_id','data_label','trace_id','trace_name','raw_x','raw_y',
+                                  'line_color','symbol_color','fill_color','line','symbol','masses','cross_sections']]
+        #limit_list_df_ret = pd.DataFrame(data=limit_empty_data, columns=limit_columns)
+        #trace_list_df_ret = pd.DataFrame(data=trace_empty_data, columns=trace_columns)
+        #limit_data_df_ret = pd.DataFrame(data=limit_data_empty_data, columns=limit_data_columns)
+        limit_list_df_ret = pd.DataFrame(columns=limit_columns)
+        trace_list_df_ret = pd.DataFrame(columns=trace_columns)
+        limit_data_df_ret = pd.DataFrame(columns=limit_data_columns)
+        
+        limit_list_dict_ret = limit_list_df_ret.to_dict('records')
+    else:
+        limit_list_df_ret = limit_list_df_resp
+        trace_list_df_ret = trace_list_df_resp
+        limit_data_df_ret = limit_data_df_resp
+        limit_list_dict_ret = limit_list_df_ret.to_dict('records')
+
+    return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
