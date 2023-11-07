@@ -35,7 +35,7 @@ table_css = [{"selector": ".Select-menu-outer", "rule": "display: block !importa
             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
             ]
 
-def CreateFormatTable(limits_traces_in):
+def CreateFormatTable(page_name_in, limits_traces_in):
 
     #limits_traces_copy = limits_traces_in.copy()
     print("format table : limits_traces_in.columns >> " , limits_traces_in.columns)
@@ -88,14 +88,14 @@ def CreateFormatTable(limits_traces_in):
     symbol_options=[{'label': i, 'value': i} for i in symbol_list]
     
     format_datatable_out = dash_table.DataTable(
-            id='format_table_id',
+            id=page_name_in + 'format_table_id',
             #row_deletable=True,
             # Add this line
             fixed_rows={'headers': True},
             style_table=style_table,  # defaults to 500
             #style_cell={'fontSize':10,'height':11} ,
             style_cell=table_style_cell,
-            fill_width=True,
+            #fill_width=True,
             #style_table={'overflowY': 'auto'},
             #virtualization=True
             data=colored_limits.to_dict('records'),
@@ -147,23 +147,23 @@ def CreateFormatTable(limits_traces_in):
             },
             style_cell_conditional=[
                 {'if': {'column_id': 'limit_id'},
-                 'width': '10%'},
+                 'width': '5%'},
                 #{'if': {'column_id': 'data_label'},
                 # 'width': '40%'},
                 {'if': {'column_id': 'trace_id'},
-                 'width': '10%'},
+                 'width': '5%'},
                 {'if': {'column_id': 'trace_name'},
-                 'width': '15%'},
+                 'width': '50%'},
                 {'if': {'column_id': 'line_color'},
-                 'width': '5%'},
+                 'width': '8%'},
                 {'if': {'column_id': 'line'},
-                 'width': '5%'},
+                 'width': '8%'},
                 {'if': {'column_id': 'fill_color'},
-                 'width': '5%'},
+                 'width': '8%'},
                 {'if': {'column_id': 'symbol'},
-                 'width': '5%'},
+                 'width': '8%'},
                 {'if': {'column_id': 'symbol_color'},
-                 'width': '5%'}],
+                 'width': '8%'}],
         )
 
     return format_datatable_out
