@@ -221,11 +221,11 @@ def GetLimitDict():
     return limit_list_dict
 
 
-fastapi_url_listoflimits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limits" ## multiple limit operations
+
 
 def GetListOfLimits(dmtool_userid,listoflimits_in):
-    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-    limits_url = fastapi_url_limits
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get list of limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+    fastapi_url_listoflimits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/listoflimits" ## multiple limit operations
     request_header = {'dmtool-userid':str(dmtool_userid)}
     response_data_frame = pd.DataFrame()
         
@@ -234,7 +234,7 @@ def GetListOfLimits(dmtool_userid,listoflimits_in):
         
         r = requests.put(fastapi_url_listoflimits,json=listoflimits_json,  headers=request_header)
         response_data = r.json()
-        #print(response_data)
+        print("list of limits request response >>>>>>>>>>>>>>>>>>>>> " ,response_data)
 
         #print('response data')
         #print('===================')
