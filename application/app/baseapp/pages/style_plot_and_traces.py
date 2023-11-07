@@ -173,7 +173,7 @@ row_of_buttons = html.Div(id= page_name + "page_buttons", children=[new_button,s
   
 debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
                                       html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
-                                      html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
+                                      html.Div(id=page_name+'button-output-div', children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
                                       className="PAGE_DEBUG_CONTENT")
 
 
@@ -210,7 +210,7 @@ def display(btn1, btn2):
 
 
 @callback(
-    Output(page_name+"button-output-div", 'children'),
+    Output(page_name+'button-output-div', 'children'),
     Input(page_name+'new_button', 'n_clicks'),
     Input(page_name+'save_button', 'n_clicks'),
     Input(page_name+'cancel_button', 'n_clicks'),
