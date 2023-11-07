@@ -211,21 +211,21 @@ def display(btn1, btn2):
 
 @callback(
     Output(page_name+'button-output-div', 'children'),
-    Input(page_name+'new_button', 'n_clicks'),
-    Input(page_name+'save_button', 'n_clicks'),
-    Input(page_name+'cancel_button', 'n_clicks'),
-    Input(page_name+'home_button', 'n_clicks'),
+    Input(page_name+'new_button_id', 'n_clicks'),
+    Input(page_name+'save_button_id', 'n_clicks'),
+    Input(page_name+'cancel_button_id', 'n_clicks'),
+    Input(page_name+'home_button_id', 'n_clicks'),
 )
 def displayClick1_1(btn1, btn2, btn3, btn4):
     msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
-    if page_name+'new_button' == prop_id:
+    if page_name+'new_button_id' == prop_id:
         msg = "Button 1 was most recently clicked"
-    elif page_name+'save_button' == prop_id:
+    elif page_name+'save_button_id' == prop_id:
         msg = "Button 2 was most recently clicked"
-    elif page_name+'cancel_button' == prop_id:
+    elif page_name+'cancel_button_id' == prop_id:
         msg = "Button 3 was most recently clicked"
-    elif page_name+'home_button' == prop_id:
+    elif page_name+'home_button_id' == prop_id:
         msg = "Button 4 was most recently clicked"
     else:
         msg = "No Button Pressed"
