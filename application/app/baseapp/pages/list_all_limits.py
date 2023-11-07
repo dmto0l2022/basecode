@@ -30,10 +30,10 @@ page_title = 'List All Limits'
 main_table_id = page_name + '_main_table_id'
 
 table_meta_data_data = [
-                        ['id', '2%'],
-                        ['experiment', '2%'],
-                        ['data_comment', '45%'],
-                        ['data_label', '45%'],
+                        ['id', '3%'],
+                        ['experiment', '3%'],
+                        ['data_comment', '44%'],
+                        ['data_label', '44%'],
                        ]
 
 single_api = 'limit'
