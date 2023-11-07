@@ -207,21 +207,32 @@ def display(btn1, btn2):
     ]) 
 '''
 
+new_button =  html.Button("New", id= page_name + "new_button_id", style=button_styling_1)
+save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
+cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
+home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling_1)
+row_of_buttons = html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
+
 @callback(
     Output(page_name+"button-output-div", 'children'),
-    Input(page_name+'btn-nclicks-1_1', 'n_clicks'),
-    Input(page_name+'btn-nclicks-2_1', 'n_clicks'),
-    Input(page_name+'btn-nclicks-3_1', 'n_clicks')
+    Input(page_name+'new_button', 'n_clicks'),
+    Input(page_name+'save_button', 'n_clicks'),
+    Input(page_name+'cancel_button', 'n_clicks'),
+    Input(page_name+'home_button', 'n_clicks'),
 )
-def displayClick1_1(btn1, btn2, btn3):
+def displayClick1_1(btn1, btn2, btn3, btn4):
     msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
-    if page_name+"btn-nclicks-1_1" == prop_id:
+    if page_name+'new_button' == prop_id:
         msg = "Button 1 was most recently clicked"
-    elif page_name+"btn-nclicks-2_1" == prop_id:
+    elif page_name+'save_button' == prop_id:
         msg = "Button 2 was most recently clicked"
-    elif page_name+"btn-nclicks-3_1" == prop_id:
+    elif page_name+'cancel_button' == prop_id:
         msg = "Button 3 was most recently clicked"
+     elif page_name+'home_button' == prop_id:
+        msg = "Button 4 was most recently clicked"
+    else:
+        msg = "No Button Pressed"
     return html.Div(msg)
 
 
