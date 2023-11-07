@@ -46,6 +46,7 @@ class DashDataAndTables():
         self.greatest_hit_table = None
         self.limits_table = None
         self.plots_table = None
+        self.row_height = '12px'
         
         self.populate_dataframes(dmtools_userid_in)
         
@@ -201,7 +202,7 @@ class DashDataAndTables():
         
         table_heights = 60
         font_size = '11px'
-        row_height = '12px'
+        #row_height = '12px'
 
         table_style_cell = {'textAlign': 'left',
                                   'padding': '0px',
@@ -209,7 +210,7 @@ class DashDataAndTables():
                                   'overflow': 'hidden',
                                   'textOverflow': 'ellipsis',
                                   'border': '1px solid black',
-                                  'height': row_height,
+                                  'height': self.row_height,
                                   'overflow': 'hidden',
                                   'maxWidth': 0 ## made things work!!
                                  }
