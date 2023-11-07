@@ -32,8 +32,8 @@ main_table_id = page_name + '_main_table_id'
 table_meta_data_data = [
                         ['id', '2%'],
                         ['experiment', '2%'],
-                        ['data_comment', '10%'],
-                        ['data_label', '10%'],
+                        ['data_comment', '45%'],
+                        ['data_label', '45%'],
                        ]
 
 single_api = 'limit'
