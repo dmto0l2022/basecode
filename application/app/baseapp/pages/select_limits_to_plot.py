@@ -148,8 +148,7 @@ limits_to_plot_table = dash_table.DataTable(
          'width': '55%'},
     ],
     style_data={
-        'whiteSpace': 'normal',
-        'height': 'auto',
+        'whiteSpace': 'nowrap'
     },
     style_header=style_header_var,
 ) 
