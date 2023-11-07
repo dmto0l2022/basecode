@@ -199,28 +199,31 @@ class DashDataAndTables():
         ###########################################################################
 
         
-        table_heights = 120
+        table_heights = 60
         font_size = '11px'
         row_height = '12px'
 
-        table_style_cell={'textAlign': 'left','padding': '0px','font_size': font_size,
-                        'overflow': 'hidden',
-                        'textOverflow': 'ellipsis',
-                        'border': '1px solid black',
-                        #'height': 'auto'
-                        'height': row_height,
-                    }
+        table_style_cell = {'textAlign': 'left',
+                                  'padding': '0px',
+                                  'font_size': font_size,
+                                  'overflow': 'hidden',
+                                  'textOverflow': 'ellipsis',
+                                  'border': '1px solid black',
+                                  'height': row_height,
+                                  'overflow': 'hidden',
+                                  'maxWidth': 0 ## made things work!!
+                                 }
         
-        table_css=[
-                    {"selector": ".Select-menu-outer", "rule": "display: block !important"},
-                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
-                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
-                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
-                    ],
+        table_css=  = [
+                            {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                            {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                            {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                            {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                            {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of body rows
+                            {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"}
+                            ]
         
 
         style_header_var={ 'backgroundColor': 'black','color': 'white'}
