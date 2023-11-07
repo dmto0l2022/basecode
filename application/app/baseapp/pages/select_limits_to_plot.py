@@ -49,104 +49,41 @@ dash.register_page(__name__, path='/select_limits_to_plot')
 
 
 dashdataandtables = adt.DashDataAndTables(dmtool_userid)
+#####
 
-def get_limits_table(dmtool_user_id_in):
 
-    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_user_id_in)           
+page_name = "select_limits_to_plot"
+page_title = 'Select Limits to Plot'
+table_meta_data_data = [
+                        ['id', '3%'],
+                        ['experiment', '3%'],
+                        ['data_comment', '44%'],
+                        ['data_label', '44%'],
+                       ]
 
-    print('sltp >> all_limit_list_dict >>>>>>>>> ' , all_limit_list_dict)
-    
-    table_heights = 120
-    font_size = '11px'
-    row_height = '12px'
+row_height = '12px'
+table_font_size = '11px'
+single_api = 'limit'
+multiple_api = 'limits'
+dmtool_userid = 16384
+main_table_id = page_name + 'main_limits'
+dmtool_user_id = '0' ### default - no user should be given 0
+internal_header={'dmtool-userid':'0'}
 
-    table_style_cell={'textAlign': 'left',
-                      'padding': '0px',
-                      'font_size': font_size,
-                      'whiteSpace': 'nowrap',
-                      'overflow': 'hidden',
-                      'textOverflow': 'ellipsis',
-                      'border': '1px solid black',
-                      #'height': 'auto'
-                      'height': row_height,
-                }
-    
-    table_css=[
-                {"selector": ".Select-menu-outer", "rule": "display: block !important"},
-                {"selector": "p", "rule" :"margin: 0px; padding:0px"},
-                {"selector": ".dash-cell tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                {"selector": ".cell-table tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                {"selector": ".dash-spreadsheet-men tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                {"selector": ".dash-spreadsheet-container tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
-                {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
-                ],
-    
-    style_header_var={ 'backgroundColor': 'black','color': 'white'}
-    
-    limits_table_ret = dash_table.DataTable(
-        id=page_name+'limits_table_main',
-        data=all_limit_list_dict,
-        columns=[{'name': 'id', 'id': 'id'},
-                 {'name': 'limit_id', 'id': 'limit_id'},
-                 {'name': 'data_reference', 'id': 'data_reference'},
-                 {'name': 'data_label', 'id': 'data_label'},
-                 {'name': 'experiment', 'id': 'experiment'},
-                 {'name': 'spin_dep', 'id': 'spin_dependency'},
-                 {'name': 'result_type', 'id': 'result_type'},
-                 {'name': 'year', 'id': 'year'},
-                 {'name': 'grt_hit', 'id': 'greatest_hit'},
-                 {'name': 'officl', 'id': 'official'},
-                 ],
-        #fixed_rows={'headers': True},
-        #page_size=7,
-        fixed_rows={'headers': True},
-        filter_action='none',
-        #row_selectable='multi',
-        #selected_rows=[],
-        style_cell=table_style_cell,
-        css=table_css,
-        #style_table={'height': '40vh',},
-        style_cell_conditional=[
-                    {'if': {'column_id': 'id'},
-                    'width': '5%'},
-                    {'if': {'column_id': 'limit_id'},
-                    'width': '5%'},
-                    {'if': {'column_id': 'data_reference'},
-                    'width': '20%'},
-                    {'if': {'column_id': 'data_label'},
-                    'width': '30%'},
-                    {'if': {'column_id': 'experiment'},
-                         'width': '15%'},
-                    {'if': {'column_id': 'spin_dependency'},
-                         'width': '5%'},
-                    {'if': {'column_id': 'result_type'},
-                         'width': '5%'},
-                    {'if': {'column_id': 'year'},
-                         'width': '5%'},
-                    {'if': {'column_id': 'greatest_hit'},
-                         'width': '5%'},
-                    {'if': {'column_id': 'official'},
-                         'width': '5%'}
-        ],
-        style_data={
-            'whiteSpace': 'nowrap',
-            #'height': 'auto',
-        },
-        style_header=style_header_var,
-        #tooltip_data=[
-        #    {
-        #        column: {'value': str(value), 'type': 'markdown'}
-        #        for column, value in row.items()
-        #    } for row in data
-        #],
-        tooltip_duration=None,
-    )
-    return limits_table_ret
+fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
+fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
+fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
+
+main_limits_table = mte.get_main_table(page_title,
+                                     main_table_id,
+                                     table_meta_data_data,
+                                     row_height,
+                                     table_font_size,
+                                     fastapi_url_all,
+                                     fastapi_url_one,
+                                     dmtool_userid)
+
+
 
 ## limits to plot table
 
@@ -302,7 +239,7 @@ cancel_button =  html.Div(dbc.Button("Cancel",  id=page_name + "_cancel_button_i
 list_button =  html.Div(dbc.Button("List",  id=page_name + "_list_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
 
 limits_table = dbc.Row([dbc.Col(
-                    [get_limits_table(dmtool_userid)],
+                    [ main_limits_table.dash_table_main],
                     width=12,)],
                     className ="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
 
@@ -321,38 +258,12 @@ maincolumn = dbc.Col(
             width=12,)
 
 ###
-page_name = "select_limits_to_plot"
-page_title = 'Select Limits to Plot'
-table_meta_data_data = [
-                        ['id', '2%'],
-                        ['limit_id', '5%'],
-                        ['data_label', '5%'],
-                        ['experiment', '5%']
-                       ]
 
-row_height = '12px'
-table_font_size = '11px'
-single_api = 'limit'
-multiple_api = 'limits'
-dmtool_userid = 16384
-main_table_id = page_name + 'main_limits'
-
-fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
-fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
-fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
-main_table_1 = mte.get_main_table(page_title,
-                                     main_table_id,
-                                     table_meta_data_data,
-                                     row_height,
-                                     table_font_size,
-                                     fastapi_url_all,
-                                     fastapi_url_one,
-                                     dmtool_userid)
 ##
 
 def get_layout():
-    #layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
-    layout_out = html.Div(id=page_name+'content',children=[main_table_1.dash_table_main],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+    #layout_out = html.Div(id=page_name+'content',children=[main_table_1.dash_table_main],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
     
     return layout_out
         
