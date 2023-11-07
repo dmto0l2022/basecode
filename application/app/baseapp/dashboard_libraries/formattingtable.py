@@ -12,23 +12,26 @@ style_table={
                 'minWidth': '100%',
             }
 
-# style cell
-style_cell={
-    'fontFamily': 'Open Sans',
-    'textAlign': 'center',
-    #'height': '60px',
-    #'padding': '2px 22px',
-    ##'height': '11px', ### this did not have any impact, see css in DataTable Definition
-    'padding': '0px 0px',
-    'whiteSpace': 'inherit',
-    #'overflow': 'hidden',
-    #'textOverflow': 'ellipsis',
-    "padding-left": 0,
-     "padding-right":0,
-     "margin-left":0,
-     "margin-right": 0,
-     "fontSize":10,
-}
+table_style_cell = {'textAlign': 'left',
+                                  'padding': '0px',
+                                  'font_size': font_size,
+                                  'overflow': 'hidden',
+                                  'textOverflow': 'ellipsis',
+                                  ##'border': '1px solid black',
+                                  'height': self.row_height,
+                                  'overflow': 'hidden',
+                                  'maxWidth': 0 ## made things work!!
+                                 }
+
+table_css = [{"selector": ".Select-menu-outer", "rule": "display: block !important"},
+            {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+            {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+            {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+            {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of body rows
+            {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"}
+            ]
 
 def CreateFormatTable(limits_traces_in):
 
@@ -89,7 +92,7 @@ def CreateFormatTable(limits_traces_in):
             fixed_rows={'headers': True},
             style_table=style_table,  # defaults to 500
             #style_cell={'fontSize':10,'height':11} ,
-            style_cell=style_cell,
+            style_cell=table_style_cell,
             fill_width=True,
             #style_table={'overflowY': 'auto'},
             #virtualization=True
@@ -107,13 +110,7 @@ def CreateFormatTable(limits_traces_in):
             ],
 
             editable=True,
-            css=[
-                {"selector": ".Select-menu-outer", "rule": "display: block !important"},
-                {"selector": ".dash-table-container .dropdown", "rule" : "position: static"}, # fixes  when the table dropdown doesnt drop down
-                #{"selector": ".dash-spreadsheet tr th", "rule": "height: 5px;"},  # set height of header
-                #{"selector": ".dash-spreadsheet tr td", "rule": "height: 5px;"}  # set height of body rows
-                ],
-
+            css=table_css,
             dropdown={
                 'line_color': {
                     'options': [
