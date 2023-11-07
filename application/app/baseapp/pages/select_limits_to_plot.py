@@ -415,7 +415,7 @@ def update_graphs(
 
 @callback(
     Output(page_name+'limits_to_plot_table', 'data'),
-    [Input(page_name+'limits_table_main', 'active_cell'),Input(page_name+'limits_to_plot_table', 'active_cell')],
+    [Input(page_name+'main_limits_table', 'active_cell'),Input(page_name+'limits_to_plot_table', 'active_cell')],
     [State(page_name+'limits_to_plot_table', 'data')])
 def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     ctx = dash.callback_context
@@ -463,17 +463,21 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     return data_in
 
 
+
+
 @callback(
     [Output(page_name+'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
      Output(page_name+'limit_list','children')],
     [
-    Input(page_name + "_next_button_id", "n_clicks"),
-    Input(page_name + "_cancel_button_id", "n_clicks"),
-    Input(page_name + "_list_button_id","n_clicks"),
+    Input(page_name + "new_button_id", "n_clicks"),
+    Input(page_name + "save_button_id", "n_clicks"),
+    Input(page_name + "cancel_button_id", "n_clicks"),
+    Input(page_name + "home_button_id", "n_clicks"),
+    Input(page_name + "list_button_id","n_clicks"),
         ],[State(page_name +'limits_to_plot_table', 'data')],
         prevent_initial_call=True
 )
-def button_click(button1,button2,button3,plot_table_in):
+def button_click(button1,button2,button3,button4,button5,plot_table_in):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     print('plot_table_in >>>>>>>>>>>>>>>>' ,plot_table_in)
@@ -492,17 +496,27 @@ def button_click(button1,button2,button3,plot_table_in):
     #print('limit_ids >>>>>>>>' ,limit_ids)
             
     #msg = prop_id
-    if page_name + "_next_button_id" == prop_id :
+    if page_name + "new_button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
         #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
         href_return = '/application/baseapp/style_plot_and_traces'
         return [href_return,'']
-    elif page_name + "_cancel_button_id" == prop_id:
+    elif page_name + "new_button_id" == prop_id:
+        #msg = "Button 2 was most recently clicked"
+        #href_return = dash.page_registry['pages.home']['path']
+        href_return = '/application/baseapp/create_new_plot'
+        return  [href_return,'']
+    elif page_name + "cancel_button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         href_return = '/application/baseapp/homepage'
         return  [href_return,'']
-    elif page_name + "_list_button_id" == prop_id:
+     elif page_name + "home_button_id" == prop_id:
+        #msg = "Button 2 was most recently clicked"
+        #href_return = dash.page_registry['pages.home']['path']
+        href_return = '/application/baseapp/homepage'
+        return  [href_return,'']
+    elif page_name + "list_button_id" == prop_id:
         #msg = "Button 3 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         #href_return = '/app/baseapp/select_limits_to_plot'
