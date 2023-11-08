@@ -27,6 +27,9 @@ def CreateGraph(limits_in,limits_traces_df_in,limits_data_df_in):
 
         #trace_name = str(row['id']) + str(row['series'])
         trace_name = str(row['trace_name'])
+
+        x_title_text = r"$\text{WIMP Mass [GeV}/c^{2}]$"
+        y_title_text = r"$\text{Cross Section [cm}^{2}\text{] (normalized to nucleon)}$"
         
         fig3.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'], ## scaled needs to be updated
                             mode='lines+markers', # 'lines' or 'markers'
@@ -48,6 +51,17 @@ def CreateGraph(limits_in,limits_traces_df_in,limits_data_df_in):
                                  ))
         
         fig3.update(layout_showlegend=False)
+        
+        fig3.update_xaxes(
+            title_text=x_title_text,
+            type="log"
+            #type="linear"
+        )
+        fig3.update_yaxes(
+            title_text=y_title_text,
+            #type="log"
+            type="linear"
+        )
         #fig3.add_trace(go.Scatter(x=trace2add['x'], y=trace2add['scaled_y'],
         #                   mode='markers', # 'lines' or 'markers'
         #                    marker_symbol=row['symbol'],
