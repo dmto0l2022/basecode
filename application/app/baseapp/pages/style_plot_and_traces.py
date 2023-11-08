@@ -155,12 +155,12 @@ def create_layout(limits_in):
 
     first_row_second_column =  dbc.Row(
             [
-                dbc.Col(html.Div("1st Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT"),
+                dbc.Col(html.Div("1st Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
             ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
 
     second_row_second_column = dbc.Row(
             [
-                dbc.Col(html.Div("2nd Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT")
+                dbc.Col(html.Div("2nd Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_BOTTOM_RIGHT")
             ] , style={'width': '100%', 'height': '50%', 'border': '2px solid black'})
         
     skeleton_container = html.Div(
