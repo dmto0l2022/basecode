@@ -157,8 +157,8 @@ def create_layout(limits_in):
     [
         dbc.Row(
             [
-                dbc.Col(html.Div("1st of two columns"), width = 12), ## className="col-sm-12 col-md-6 col-lg-6"),
-                dbc.Col(html.Div("2nd of two columns"),  width = 12), ##className="col-sm-12 col-md-6 col-lg-6")
+                dbc.Col(html.Div("1st of two columns"), width = 6), ## className="col-sm-12 col-md-6 col-lg-6"),
+                dbc.Col(html.Div("2nd of two columns"),  width = 6), ##className="col-sm-12 col-md-6 col-lg-6")
             ], ##className = "CONTENT_ROW"
         ),
     ], ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
@@ -195,8 +195,8 @@ debug_output = html.Div(children=[html.Div(children="Debug Output", className="N
 
 layout = html.Div([
     dcc.Location(id=page_name+'url',refresh=True),
-    html.Div(id=page_name+'layout-div'),
-    html.Div(id=page_name+'content',children=create_layout(default_limits),className="PAGE_GRAPH_CONTENT"),
+    ##html.Div(id=page_name+'layout-div'),
+    html.Div(id=page_name+'content',children=create_layout(default_limits),className="DASHBOARD_CONTAINER_STYLE"),
     row_of_buttons,
     debug_output
 ],className="PAGE_CONTENT")
