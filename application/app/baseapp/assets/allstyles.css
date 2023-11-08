@@ -376,12 +376,21 @@
     overflow-y: scroll;
     }
 
-.PAGE_TABLE_CONTENT {
+.PAGE_TABLE_CONTENT_TOP_RIGHT {
     position: fixed;
     top: var(--header_height);
     height: calc((100% - 80px)/2);
     width : var(--graph_content_width);
-    left: var(--sidebar_width);
+    right: var(--sidebar_width);
+    background-color: lightgray;
+    }
+
+.PAGE_TABLE_CONTENT_BOTTOM_RIGHT {
+    position: fixed;
+    bottom: var(--footer_height);
+    height: calc((100% - 80px)/2);
+    width : var(--graph_content_width);
+    right: var(--sidebar_width);
     background-color: lightgray;
     }
          
