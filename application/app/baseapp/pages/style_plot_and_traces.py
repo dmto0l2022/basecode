@@ -151,7 +151,19 @@ def create_layout(limits_in):
     #                   [two_columns],
     #                   className="container-fluid DASHBOARD_CONTAINER_STYLE",
     #                  )
-    layout_out = two_columns
+    #layout_out = two_columns
+
+    row = html.Div(
+    [
+        dbc.Row(
+            [
+                dbc.Col(html.Div("One of two columns"), className="PAGE_GRAPH_COLUMN_CONTENT_LEFT"),
+                dbc.Col(html.Div("One of two columns"), className="PAGE_GRAPH_COLUMN_CONTENT_RIGHT")
+            ], className = "CONTENT_ROW"
+        ),
+    ], className="container-fluid DASHBOARD_CONTAINER_STYLE"
+    )    
+    
     return layout_out
 
 
