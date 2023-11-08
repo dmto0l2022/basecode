@@ -167,7 +167,7 @@ def create_layout(limits_in):
     [
         dbc.Row(
             [
-                dbc.Col(html.Div("1st of two columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT"),
+                dbc.Col(html.Div("1st of two columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
                 dbc.Col(children=[first_row_second_column,second_row_second_column] , className="col-sm-12 col-md-6 col-lg-6")
             ], style={'height': '100%'} ##className = "CONTENT_ROW"
         ),
