@@ -34,6 +34,7 @@ table_css = [{"selector": ".Select-menu-outer", "rule": "display: block !importa
             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
             {"selector": ".dash-cell tr th td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}, 
+            {"selector": ".Select-option", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
             ]
 
 def CreateFormatTable(page_name_in, limits_traces_in):
@@ -100,7 +101,6 @@ def CreateFormatTable(page_name_in, limits_traces_in):
             #style_table={'overflowY': 'auto'},
             #virtualization=True
             data=colored_limits.to_dict('records'),
-            optionHeight='12px',
             columns=[
                 {'id': 'limit_id', 'name': 'limit_id'},
                 ##{'id': 'data_label', 'name': 'data_label'},
