@@ -40,7 +40,6 @@ def UpdateGraph(dmtools_userid_in, plotseries_table_in):
         fig3.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'],
                             mode='lines+markers', # 'lines' or 'markers'
                             line=dict(width=4,dash=row['line'],color=row['line_color']),
-                            log_y=True,
                             #showscale=False,
                             text=row['trace_name'],
                             fill='toself',
@@ -56,7 +55,8 @@ def UpdateGraph(dmtools_userid_in, plotseries_table_in):
                             legendgrouptitle_text=str(row['limit_id']),
                             name=str(row['trace_name'])
                                  ))
-        
+
+        fig3.update(xaxis_type = 'log', yaxis_type = 'log')
         fig3.update(layout_showlegend=False)
         #fig3.add_trace(go.Scatter(x=trace2add['x'], y=trace2add['scaled_y'],
         #                   mode='markers', # 'lines' or 'markers'
