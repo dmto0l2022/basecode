@@ -133,6 +133,7 @@ def create_layout(limits_in):
     graph_out = dcc.Graph(figure=graph_fig,
                                   id=page_name + 'graph_out_id',
                                   config=dict(responsive=True),
+                                  mathjax=True,
                                   #className='GRAPH'
                                   style={'width': '100%', 'height': '100%'}
                                   )
