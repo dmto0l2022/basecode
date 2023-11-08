@@ -400,7 +400,7 @@
 .PAGE_GRAPH_CONTENT {
     position: fixed;
     top: var(--header_height);
-    height: calc(100% - 80px);
+    height: calc(100% - 80px  - 83px);
     width : var(--graph_content_width);
     left: var(--sidebar_width);
     background-color: lightgray;
