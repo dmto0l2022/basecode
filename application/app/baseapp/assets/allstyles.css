@@ -379,7 +379,7 @@
 .PAGE_TABLE_CONTENT_TOP_RIGHT {
     position: fixed;
     top: var(--header_height);
-    height: calc((100% - 80px - 84px)/2);
+    height: calc((100% - 80px - 83px)/2);
     width : var(--graph_content_width);
     right: var(--sidebar_width);
     background-color: lightgray;
@@ -391,7 +391,7 @@
 .PAGE_TABLE_CONTENT_BOTTOM_RIGHT {
     position: fixed;
     bottom: calc(var(--footer_height) + 84px);
-    height: calc((100% - 80px - 84px)/2);
+    height: calc((100% - 80px - 83px)/2);
     width : var(--graph_content_width);
     right: var(--sidebar_width);
     background-color: lightgray;
