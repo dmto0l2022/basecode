@@ -159,10 +159,11 @@ def create_layout(limits_in):
             [
                 dbc.Col(html.Div("1st of two columns"), width = 6), ## className="col-sm-12 col-md-6 col-lg-6"),
                 dbc.Col(html.Div("2nd of two columns"),  width = 6), ##className="col-sm-12 col-md-6 col-lg-6")
-            ], className = "CONTENT_ROW"
+            ], ##className = "CONTENT_ROW"
         ),
-    ], className="container-fluid DASHBOARD_CONTAINER_STYLE"
+    ], ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
     )    
+    
     layout_out = skeleton_container
     
     return layout_out
