@@ -56,7 +56,6 @@ def UpdateGraph(dmtools_userid_in, plotseries_table_in):
                             name=str(row['trace_name'])
                                  ))
 
-        fig3.update(xaxis_type = 'log', yaxis_type = 'log')
         fig3.update(layout_showlegend=False)
         #fig3.add_trace(go.Scatter(x=trace2add['x'], y=trace2add['scaled_y'],
         #                   mode='markers', # 'lines' or 'markers'
