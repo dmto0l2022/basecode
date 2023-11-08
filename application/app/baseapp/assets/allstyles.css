@@ -385,9 +385,12 @@
     background-color: lightgray;
     }
 
+
+/* 84px allowing for debug fields */
+
 .PAGE_TABLE_CONTENT_BOTTOM_RIGHT {
     position: fixed;
-    bottom: var(--footer_height);
+    bottom: calc(var(--footer_height) + 84px);
     height: calc((100% - 80px - 84px)/2);
     width : var(--graph_content_width);
     right: var(--sidebar_width);
