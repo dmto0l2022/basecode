@@ -137,15 +137,15 @@ def create_layout(limits_in):
                                   #style={'width': '100%', 'height': '100%'}
                                   )
     
-    chart_in = graph_out
+    #chart_in = graph_out
     
-    column_chart = GetChart(chart_in)
+    #column_chart = GetChart(chart_in)
     
-    two_columns =  html.Div(className="row g-0 ALL_ROW NOPADDING",
-                           children=[
-                                    column_chart,
-                                    style_and_legend_column,
-                                    ],)
+    #two_columns =  html.Div(className="row g-0 ALL_ROW NOPADDING",
+    #                       children=[
+    #                                column_chart,
+    #                                style_and_legend_column,
+    #                                ],)
     
     #layout_out = html.Div(
     #                   [two_columns],
