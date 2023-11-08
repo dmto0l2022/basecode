@@ -11,12 +11,13 @@ from app.baseapp.dashboard_libraries import get_limit_data as gld
 def UpdateGraph(dmtools_userid_in, plotseries_table_in):
     #result_ids = [1,262]
     print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
+    plot_series_df = pd.DataFrame.from_dict(plotseries_table_in)
     
     result_ids_plot = plot_series_df['limit_id'].unique().tolist()
     
-    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetListOfLimits(dmtools_userid_in)
+    limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetListOfLimits(dmtools_userid_in, result_ids_plot)
     
-    plot_series_df = pd.DataFrame(plotseries_table_in)
+    #plot_series_df = pd.DataFrame(plotseries_table_in)
     
     
     
@@ -27,8 +28,8 @@ def UpdateGraph(dmtools_userid_in, plotseries_table_in):
     fig3 = go.Figure()
 
     for index, row in plot_series_df.iterrows():
-        trace_data = all_limit_data_df[(all_limit_data_df['limit_id']==row['limit_id'])
-                                        & (all_limit_data_df['trace_id']==row['trace_id'])]
+        trace_data = limit_data_df[(limit_data_df['limit_id']==row['limit_id'])
+                                        & (limit_data_df['trace_id']==row['trace_id'])]
 
         # print('trace_data>>>>', trace_data)
         
