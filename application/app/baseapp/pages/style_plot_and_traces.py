@@ -156,12 +156,12 @@ def create_layout(limits_in):
     first_row_second_column =  dbc.Row(
             [
                 dbc.Col(html.Div("1st Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6"),
-            ], ##cl
+            ])
 
     second_row_second_column = dbc.Row(
             [
                 dbc.Col(html.Div("2nd Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6")
-            ], ##cl
+            ])
         
     skeleton_container = html.Div(
     [
