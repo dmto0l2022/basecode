@@ -131,7 +131,7 @@ layout4 = html.Div([pc.page_header_0,
 		    pages_container_box,
 		    pc.page_footer_1],
                    #className="container-fluid PAGE_PARENT_CONTAINER",
-		   className="PAGE_PARENT_CONTAINER",
+		   className="container-fluid PAGE_PARENT_CONTAINER",
                   )
 
 app.layout = layout4
