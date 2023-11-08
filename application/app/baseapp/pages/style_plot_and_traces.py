@@ -123,7 +123,7 @@ def create_layout(limits_in):
                              id= page_name + 'legend_out_id',
                              style={'width': '100%', 'height': '100%'})
     
-    style_and_legend_column = gsal.GetStyleAndLegendColumn(styling_data_table,legend_graph)
+    #style_and_legend_column = gsal.GetStyleAndLegendColumn(styling_data_table,legend_graph)
     
     
     ## all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict
@@ -152,7 +152,9 @@ def create_layout(limits_in):
     #                   className="container-fluid DASHBOARD_CONTAINER_STYLE",
     #                  )
     #layout_out = two_columns
-
+    
+    ### this is to show how the page is laid out and structured
+    
     first_row_second_column =  dbc.Row(
             [
                 dbc.Col(html.Div("1st Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
@@ -174,7 +176,32 @@ def create_layout(limits_in):
     ],  style={'height': '100%'} ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
     )    
     
-    layout_out = skeleton_container
+    ##layout_out = skeleton_container
+
+    ######
+    
+    first_row_second_column =  dbc.Row(
+            [
+                dbc.Col(children=[styling_data_table], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
+            ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
+
+    second_row_second_column = dbc.Row(
+            [
+                dbc.Col(children=[legend_graph], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_BOTTOM_RIGHT")
+            ] , style={'width': '100%', 'height': '50%', 'border': '2px solid black'})
+        
+    dashboard_container = html.Div(
+    [
+        dbc.Row(
+            [
+                dbc.Col(children=[graph_out], className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
+                dbc.Col(children=[first_row_second_column,second_row_second_column] , className="col-sm-12 col-md-6 col-lg-6")
+            ], style={'height': '100%'} ##className = "CONTENT_ROW"
+        ),
+    ],  style={'height': '100%'} ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
+    )    
+    
+    layout_out = dashboard_container
     
     return layout_out
 
