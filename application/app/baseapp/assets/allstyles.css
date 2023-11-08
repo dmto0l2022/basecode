@@ -9,7 +9,7 @@
   --half_content_height: 40%;
   --content_height: 80%;
   --graph_content_height:100%;
-  --graph_content_width:50%;
+  --graph_content_width:100%;
   --graph_width: 100%;
   --graph_height: 100%;
   --form_width: 50vh;
@@ -379,7 +379,7 @@
 .PAGE_GRAPH_CONTENT {
     position: fixed;
     top: var(--header_height);
-    height: var(--graph_content_height);
+    height: calc(100% - 80px);
     width : var(--graph_content_width);
     left: var(--sidebar_width);
     background-color: lightgray;
