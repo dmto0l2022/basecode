@@ -153,7 +153,7 @@ def create_layout(limits_in):
     #                  )
     #layout_out = two_columns
 
-    row = html.Div(
+    skeleton_container = html.Div(
     [
         dbc.Row(
             [
@@ -163,6 +163,7 @@ def create_layout(limits_in):
         ),
     ], className="container-fluid DASHBOARD_CONTAINER_STYLE"
     )    
+    layout_out = skeleton_container
     
     return layout_out
 
