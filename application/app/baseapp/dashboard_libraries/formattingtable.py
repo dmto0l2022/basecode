@@ -100,6 +100,7 @@ def CreateFormatTable(page_name_in, limits_traces_in):
             #style_table={'overflowY': 'auto'},
             #virtualization=True
             data=colored_limits.to_dict('records'),
+            optionHeight='12px',
             columns=[
                 {'id': 'limit_id', 'name': 'limit_id'},
                 ##{'id': 'data_label', 'name': 'data_label'},
