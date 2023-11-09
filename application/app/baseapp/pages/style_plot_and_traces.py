@@ -113,7 +113,12 @@ dash.register_page(__name__, path='/style_plot_and_traces')
 
 class DashBoardLayout():
     def __init__(self,pagename_in, dmtools_userid_in,  listoflimits_in):
-        self.style_table={
+        self.page_name = pagename_in
+        self.data_table_id =  self.page_name + "data_table_id"
+        #self.table_meta_data_data = table_meta_data_data_in
+        self.format_data_table_row_height = '12px'
+        self.format_data_table_font_size = '11px'
+        self.format_data_table_style_table={
                 #'maxHeight': '50ex',
                 #'minHeight': '40vh',
                 ##'height': '44vh', ## does not know any detail about parent container
@@ -123,27 +128,27 @@ class DashBoardLayout():
                 'minWidth': '100%',
             }
 
-        self.table_style_cell = {'textAlign': 'left',
+        self.format_table_style_cell = {'textAlign': 'left',
                                           'padding': '0px',
                                           'font_size': font_size,
                                           'overflow': 'hidden',
                                           'textOverflow': 'ellipsis',
                                           ##'border': '1px solid black',
-                                          'height': row_height,
+                                          'height': self.row_height,
                                           'overflow': 'hidden',
                                           'maxWidth': 0 ## made things work!!
                                          }
         
-        self.table_css = [{"selector": ".Select-menu-outer", "rule": "display: block !important"},
+        self.format_table_css = [{"selector": ".Select-menu-outer", "rule": "display: block !important"},
                     {"selector": "p", "rule" :"margin: 0px; padding:0px"},
-                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
-                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                    {"selector": ".dash-cell tr th td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}, 
-                    {"selector": ".Select-option", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},  # set height of header
+                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},
+                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},  # set height of body rows
+                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},  # set height of header
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},
+                    {"selector": ".dash-cell tr th td", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"}, 
+                    {"selector": ".Select-option", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},
                     ]
 
         
@@ -156,6 +161,7 @@ class DashBoardLayout():
                           'margin-top': '1px',
                           'height':'19px',
                           'verticalAlign': 'center'}
+        
         self.new_button =  html.Button("New", id= pagename_in + "new_button_id", style=self.button_styling_1)
         self.save_button =  html.Button("Save", id= pagename_in + "save_button_id", style=self.button_styling_1)
         self.cancel_button =  html.Button("Cancel",  id=pagename_in + "cancel_button_id", style=self.button_styling_1)
@@ -178,6 +184,7 @@ class DashBoardLayout():
         self.GraphClass = None
         self.GraphOut = dcc.Graph()
         self.layout = {}
+        
         self.SetLayout()
         self.UpdateData()
         self.CreateGraph()
