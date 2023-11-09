@@ -76,31 +76,31 @@ class Middleware:
         request = Request(environ)
         try:
             session_key = request.cookies.get(self.SESSION_COOKIE_NAME)
-            print('session key >>',session_key)
+            #print('session key >>',session_key)
             redis_key = 'session:'+session_key
-            print('redis_key >>',redis_key)
+            #print('redis_key >>',redis_key)
         except:
             a = 1
         
         dmtool_authorised = 0
         try:
             val = self.redisserver.get(redis_key)
-            print(redis_key)
-            print('---------val------------------------------')
-            print(val)
-            print('--------- decoded val------------------------------')
+            #print(redis_key)
+            #print('---------val------------------------------')
+            #print(val)
+            #print('--------- decoded val------------------------------')
             decoded_val = pickle.loads(val)
-            print(decoded_val)
+            #print(decoded_val)
             dmtool_userid = decoded_val['dmtool_userid']
             dmtool_authorised = decoded_val['dmtool_authorised']
-            print('dmtool_userid >>>' ,decoded_val['dmtool_userid'])
-            print('=======================================')
+            #print('dmtool_userid >>>' ,decoded_val['dmtool_userid'])
+            #print('=======================================')
             
         except:
             print('no session')
         
         if ('wsgi' not in request.path and 'session_app' not in request.path and 'baseapp' not in request.path ) :
-            print('wsgi and session_app and baseapp not in path')
+            #print('wsgi and session_app and baseapp not in path')
             return self.wsgi(environ,start_response)       
         elif ('wsgi' in request.path or 'session_app' in request.path or 'baseapp' in request.path) and (dmtool_authorised==1) :
             return self.wsgi(environ,start_response)
