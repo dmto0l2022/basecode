@@ -1,1 +1,1 @@
-podman logs --since 10m container_application_1
+podman logs --since 1m container_application_1
