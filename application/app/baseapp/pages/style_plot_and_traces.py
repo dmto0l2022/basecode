@@ -124,7 +124,7 @@ class DashBoardLayout():
         self.save_button =  html.Button("Save", id= pagename_in + "save_button_id", style=self.button_styling_1)
         self.cancel_button =  html.Button("Cancel",  id=pagename_in + "cancel_button_id", style=self.button_styling_1)
         self.home_button =  html.Button("Home",  id=pagename_in + "home_button_id", style=self.button_styling_1)
-        self.row_of_buttons = html.Div(id= pagename_in + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS")
+        self.row_of_buttons = html.Div(id= pagename_in + "page_buttons", children=[self.new_button,self.save_button,self.cancel_button,self.home_button], className="PAGE_FOOTER_BUTTONS")
           
         self.debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
                                               html.Div(id=pagename_in+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
