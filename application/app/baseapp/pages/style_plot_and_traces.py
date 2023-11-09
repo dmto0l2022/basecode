@@ -318,8 +318,8 @@ def display_page(pathname,search,href):
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
     print('spat : table_data_in >>>>>>>>>>',table_data_in)
-    dg.UpdateGraph(dmtool_userid,table_data_in)
+    graph_class.UpdateGraph(dmtool_userid,table_data_in)
     legend_out = ul.UpdateLegendFig(dmtool_userid, table_data_in)
     
-    return dg.GraphFig, legend_out
+    return graph_class.GraphFig, legend_out
 
