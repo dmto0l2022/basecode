@@ -187,17 +187,19 @@ class DashBoardLayout():
         self.GraphClass = None
         self.DataGraph = dcc.Graph()
         self.layout = {}
-        self.UpdateData()
+        self.UpdateData([])
         self.CreateGraph()
         self.CreateFormatTable()
         self.CreateLegendFig()
-        self.CreateLayout()
 
-
-    def UpdateData(self):
-        self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, self.listoflimits)
+    def UpdateData(self, listoflimits_in):
+        self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid)
 
     def CreateLayout(self):
+        
+        self.CreateGraph()
+        self.CreateFormatTable()
+        self.CreateLegendFig()
     
         #self.limit_list_df, self.trace_list_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
         
@@ -833,9 +835,11 @@ def display_page(pathname,search,href):
     except:
         list_of_limits_int = [45]
     
-    print('spat : list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits_int)
+    print('spat callback: list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits_int)
     #list_of_limits = [33]
-    dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
+    #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
+    dbl.UpdateData(list_of_limits_int)
+    dbl.CreateLayout()
     layout_return = dbl.layout
     return layout_return
 
@@ -844,7 +848,7 @@ def display_page(pathname,search,href):
     [Input(page_name+'format_table_id', 'data')],
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
-    print('spat : table_data_in >>>>>>>>>>',table_data_in)
+    #print('spat : table_data_in >>>>>>>>>>',table_data_in)
     dbl.UpdateGraph(table_data_in)
     dbl.UpdateLegendFig(table_data_in)
     return dbl.GraphFig, dbl.LegendFig
