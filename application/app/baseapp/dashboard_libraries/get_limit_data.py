@@ -75,7 +75,7 @@ def parse_series_and_values(limits_dataframe_in):
     ## a new column was created called id
     
     limit_data_df_out = pd.DataFrame(
-        data=limit_data,columns=['id','limit_id','data_label','data_reference', 'data_comment', 'trace_id','trace_name', 'year','experiment',
+        data=limit_data,columns=['id','data_label','data_reference', 'data_comment', 'trace_id','trace_name', 'year','experiment',
                                   'spin_dependency','result_type','official','greatest_hit',
                                   'raw_x','raw_y','line_color','symbol_color',
                                   'fill_color','line', 'symbol'])
