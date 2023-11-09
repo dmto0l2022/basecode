@@ -315,13 +315,13 @@ class DashBoardLayout():
     def CreateFormatTable(self):
     
         #limits_traces_copy = limits_traces_in.copy()
-        print("format table : trace_list_df.columns >> " , self.trace_list_df.columns)
+        print("format table : limits_traces_df.columns >> " , self.limits_traces_df.columns)
         palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
         cycle_colors = itertools.cycle(palette_list)
     
         #colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
         colored_limits_list =[]
-        for index, row in self.trace_list_df.iterrows():
+        for index, row in self.limits_traces_df.iterrows():
             #print(row['c1'], row['c2'])
             copy_row = row.copy()
             color = next(cycle_colors)
