@@ -58,7 +58,7 @@ from app.baseapp.dashboard_libraries import updatelegend as ul
 from app.baseapp.dashboard_libraries import getstyleandlegend as gsal
 #from app.baseapp.dashboard_libraries import creategraph as cg
 #from app.baseapp.dashboard_libraries import updategraph as ug
-from app.baseapp.dashboard_libraries import data_graph as dg
+#from app.baseapp.dashboard_libraries import data_graph as dg
 
 ####################################
 
@@ -262,16 +262,7 @@ class DashBoardLayout():
             ]) 
         '''
     
-class DataGraph:
-    def __init__(self,dmtools_userid_in,  listoflimits_in):
-        self.dmtools_userid = dmtools_userid_in
-        self.listoflimits = listoflimits_in
-        self.limits_traces_df = pd.DataFrame()
-        self.limits_data_df = pd.DataFrame()
-        self.plot_series_df = pd.DataFrame()
-        self.GraphFig = go.Figure()
-        self.UpdateData()
-        self.CreateGraph()
+
       
     def UpdateData(self):
         self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limit_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
@@ -458,7 +449,7 @@ def display_page(pathname,search,href):
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
     print('spat : table_data_in >>>>>>>>>>',table_data_in)
-    graph_class.UpdateGraph(dmtool_userid,table_data_in)
+    dbl.UpdateGraph(dmtool_userid,table_data_in)
     legend_out = ul.UpdateLegendFig(dmtool_userid, table_data_in)
-    return graph_class.GraphFig, legend_out
+    return dbl.GraphFig, legend_out
 
