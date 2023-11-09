@@ -833,7 +833,7 @@ def display_page(pathname,search,href):
     
     print('spat : list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits_int)
     #list_of_limits = [33]
-    dbl = DashBoardLayout(pagename, dmtool_userid,  list_of_limits_int)
+    dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
     layout_return = dbl.layout
     return layout_return
 
