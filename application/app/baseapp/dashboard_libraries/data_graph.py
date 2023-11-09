@@ -26,59 +26,58 @@ class DataGraph:
         
         for index, row in self.limits_list_df.iterrows():
           
-        trace_data = self.limits_data_df[(self.limits_data_df['limit_id']==row['limit_id'])
-                                      & (self.limits_data_df['trace_id']==row['trace_id'])]
-        
-        
-        trace2add = trace_data
-        
-        #trace_name = str(row['id']) + str(row['series'])
-        trace_name = str(row['trace_name'])
-        
-        x_title_text = r"$\text{WIMP Mass [GeV}/c^{2}]$"
-        y_title_text = r"$\text{Cross Section [cm}^{2}\text{] (normalized to nucleon)}$"
-        
-        self.GraphFig.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'], ## scaled needs to be updated
-                          mode='lines+markers', # 'lines' or 'markers'
-                          line=dict(width=4,dash=row['line'],color=row['line_color']),
-                          #showscale=False,
-                          fill='toself',
-                          fillcolor = row['fill_color'],
-                          text=row['trace_name'],
-                          marker_symbol=row['symbol'],
-                              marker=dict(
-                              size=10,
-                              color=row['symbol_color'],#set color equal to a variable
-                              #colorscale='Viridis', # one of plotly colorscales
-                              showscale=False,
-                          ),
-                          legendgroup=str(row['limit_id']),  # this can be any string, not just "group"
-                          legendgrouptitle_text=str(row['limit_id']),
-                          name=str(row['trace_name'])
-                               ))
-        
-        self.GraphFig.update(layout_showlegend=False)
-        
-        self.GraphFig.update_xaxes(
-          title_text=x_title_text,
-          type="log"
-          #type="linear"
-        )
-        self.GraphFig.update_yaxes(
-          title_text=y_title_text,
-          #type="log"
-          type="linear"
-        )
-        #fig3.add_trace(go.Scatter(x=trace2add['x'], y=trace2add['scaled_y'],
-        #                   mode='markers', # 'lines' or 'markers'
-        #                    marker_symbol=row['symbol'],
-        #                         marker=dict(
-        #                        size=10,
-        #                        color=row['color'],#set color equal to a variable
-        #                        #colorscale='Viridis', # one of plotly colorscales
-        #                        showscale=False,
-        #                    ),
-        #                    name=str(row['id'])))
+            trace_data = self.limits_data_df[(self.limits_data_df['limit_id']==row['limit_id'])
+                                          & (self.limits_data_df['trace_id']==row['trace_id'])]
+            
+            trace2add = trace_data
+            
+            #trace_name = str(row['id']) + str(row['series'])
+            trace_name = str(row['trace_name'])
+            
+            x_title_text = r"$\text{WIMP Mass [GeV}/c^{2}]$"
+            y_title_text = r"$\text{Cross Section [cm}^{2}\text{] (normalized to nucleon)}$"
+            
+            self.GraphFig.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'], ## scaled needs to be updated
+                              mode='lines+markers', # 'lines' or 'markers'
+                              line=dict(width=4,dash=row['line'],color=row['line_color']),
+                              #showscale=False,
+                              fill='toself',
+                              fillcolor = row['fill_color'],
+                              text=row['trace_name'],
+                              marker_symbol=row['symbol'],
+                                  marker=dict(
+                                  size=10,
+                                  color=row['symbol_color'],#set color equal to a variable
+                                  #colorscale='Viridis', # one of plotly colorscales
+                                  showscale=False,
+                              ),
+                              legendgroup=str(row['limit_id']),  # this can be any string, not just "group"
+                              legendgrouptitle_text=str(row['limit_id']),
+                              name=str(row['trace_name'])
+                                   ))
+            
+            self.GraphFig.update(layout_showlegend=False)
+            
+            self.GraphFig.update_xaxes(
+              title_text=x_title_text,
+              type="log"
+              #type="linear"
+            )
+            self.GraphFig.update_yaxes(
+              title_text=y_title_text,
+              #type="log"
+              type="linear"
+            )
+            #fig3.add_trace(go.Scatter(x=trace2add['x'], y=trace2add['scaled_y'],
+            #                   mode='markers', # 'lines' or 'markers'
+            #                    marker_symbol=row['symbol'],
+            #                         marker=dict(
+            #                        size=10,
+            #                        color=row['color'],#set color equal to a variable
+            #                        #colorscale='Viridis', # one of plotly colorscales
+            #                        showscale=False,
+            #                    ),
+            #                    name=str(row['id'])))
   
   
     def UpdateGraph(plotseries_table_in):
