@@ -120,10 +120,10 @@ class DashBoardLayout():
                           'margin-top': '1px',
                           'height':'19px',
                           'verticalAlign': 'center'}
-        self.new_button =  html.Button("New", id= pagename_in + "new_button_id", style=button_styling_1)
-        self.save_button =  html.Button("Save", id= pagename_in + "save_button_id", style=button_styling_1)
-        self.cancel_button =  html.Button("Cancel",  id=pagename_in + "cancel_button_id", style=button_styling_1)
-        self.home_button =  html.Button("Home",  id=pagename_in + "home_button_id", style=button_styling_1)
+        self.new_button =  html.Button("New", id= pagename_in + "new_button_id", style=self.button_styling_1)
+        self.save_button =  html.Button("Save", id= pagename_in + "save_button_id", style=self.button_styling_1)
+        self.cancel_button =  html.Button("Cancel",  id=pagename_in + "cancel_button_id", style=self.button_styling_1)
+        self.home_button =  html.Button("Home",  id=pagename_in + "home_button_id", style=self.button_styling_1)
         self.row_of_buttons = html.Div(id= pagename_in + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS")
           
         self.debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
