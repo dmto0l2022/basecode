@@ -372,7 +372,7 @@ class DashBoardLayout():
                 #fixed_rows={'headers': True},
                 #style_table=style_table,  # defaults to 500
                 #style_cell={'fontSize':10,'height':11} ,
-                style_cell=table_style_cell,
+                style_cell=self.format_table_style_cell,
                 #fill_width=True,
                 #style_table={'overflowY': 'auto'},
                 #virtualization=True
@@ -390,7 +390,7 @@ class DashBoardLayout():
                 ],
     
                 editable=True,
-                css=table_css,
+                css=self.format_table_css,
                 dropdown={
                     'line_color': {
                         'options': [
