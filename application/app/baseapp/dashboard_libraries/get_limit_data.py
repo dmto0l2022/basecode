@@ -161,7 +161,7 @@ def GetLimits(dmtool_userid):
     try:
         r = requests.get(limits_url, headers=request_header)
         response_data = r.json()
-        #print(response_data)
+        print("get limits response data json >>>>>>>>>>>> ", response_data)
 
         #print('response data')
         #print('===================')
