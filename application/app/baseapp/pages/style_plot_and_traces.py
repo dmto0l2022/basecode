@@ -193,7 +193,7 @@ class DashBoardLayout():
 
 
     def UpdateData(self):
-        self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limit_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
+        self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limit_list_dict = gld.GetListOfLimits(self.dmtool_userid, self.listoflimits)
 
     def CreateLayout(self):
     
