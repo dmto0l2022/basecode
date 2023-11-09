@@ -16,7 +16,7 @@ internal_header = {'dmtool-userid':'999'}
 def parse_series_and_values(limits_dataframe_in):
     limit_data = []
     for index, row in limits_dataframe_in.iterrows():
-        print("Parsing Row")
+        #print("Parsing Row")
         #print(row['id'], row['data_values'])
         data_label = row[['data_label']].iloc[0]
         data_reference= row[['data_reference']].iloc[0]
@@ -66,7 +66,8 @@ def parse_series_and_values(limits_dataframe_in):
                 
                 limit_data.append(appendthis)
         #lol
-    print('gld : parsed limit data >>>>',limit_data) 
+    
+    #print('gld : parsed limit data >>>>',limit_data) 
     
     ## the datatable needed a unique id
     ## the id of the limit table was renamed to limit_id
@@ -112,9 +113,9 @@ def GetLimit(dmtool_userid_in, limit_id_in):
     try:
         r = requests.get(limit_url,headers=user_header)
         response_data = r.json()
-        print("gld : response_data json >>>>" , response_data)
+        #print("gld : response_data json >>>>" , response_data)
         response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
-        print("gld : library response_data_frame >>>>>" , response_data_frame)
+        #print("gld : library response_data_frame >>>>>" , response_data_frame)
         
         limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
         column_names=['id','data_label','data_comment','data_values']
@@ -235,7 +236,7 @@ def GetListOfLimits(dmtool_userid,listoflimits_in):
         
         r = requests.post(fastapi_url_listoflimits,json=listoflimits_json,  headers=request_header)
         response_data = r.json()
-        print("list of limits request response >>>>>>>>>>>>>>>>>>>>> " ,response_data)
+        #print("list of limits request response >>>>>>>>>>>>>>>>>>>>> " ,response_data)
 
         #print('response data')
         #print('===================')
