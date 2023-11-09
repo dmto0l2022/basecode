@@ -130,11 +130,11 @@ class DashBoardLayout():
 
         self.format_table_style_cell = {'textAlign': 'left',
                                           'padding': '0px',
-                                          'font_size': font_size,
+                                          'font_size': self.format_data_table_font_size,
                                           'overflow': 'hidden',
                                           'textOverflow': 'ellipsis',
                                           ##'border': '1px solid black',
-                                          'height': self.row_height,
+                                          'height': self.format_data_table_row_height,
                                           'overflow': 'hidden',
                                           'maxWidth': 0 ## made things work!!
                                          }
@@ -182,27 +182,30 @@ class DashBoardLayout():
         self.FigLegend = None
         self.FormatDataTable = dash_table.DataTable()
         self.GraphClass = None
-        self.GraphOut = dcc.Graph()
+        self.DataGraph = dcc.Graph()
         self.layout = {}
-        
-        self.SetLayout()
         self.UpdateData()
         self.CreateGraph()
         self.CreateFormatTable()
+        self.CreateLegendFig()
         self.CreateLayout()
+
+
+    def UpdateData(self):
+        self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limit_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
 
     def CreateLayout(self):
     
-        self.limit_list_df, self.trace_list_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
+        #self.limit_list_df, self.trace_list_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
         
         #traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(limits_in)].copy()
-        traces = self.trace_list_df
+        #traces = self.trace_list_df
         
-        print("traces >>>>>>", traces)
+        #print("traces >>>>>>", traces)
         
-        styling_data_table = ft.CreateFormatTable(page_name,traces)
+        #styling_data_table = self.FormatDataTable
         
-        legend_fig = cl.CreateLegendFig(limits_in,traces)
+        legend_fig = FigLegend
         
         legend_graph = dcc.Graph(figure=legend_fig,
                                  id= page_name + 'legend_out_id',
@@ -215,7 +218,7 @@ class DashBoardLayout():
     
         #self.GraphClass = dg.DataGraph(dmtool_userid, limits_in)
         
-        self.GraphOut = dcc.Graph(figure=self.GraphClass.GraphFig,
+        self.DataGraph = dcc.Graph(figure=self.GraphClass.GraphFig,
                                   id=page_name + 'graph_out_id',
                                   config=dict(responsive=True),
                                   mathjax=True,
@@ -252,7 +255,7 @@ class DashBoardLayout():
         
         first_row_second_column =  dbc.Row(
                 [
-                    dbc.Col(children=[styling_data_table], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
+                    dbc.Col(children=[self.FormatDataTable], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
                 ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
     
         second_row_second_column = dbc.Row(
@@ -264,7 +267,7 @@ class DashBoardLayout():
         [
             dbc.Row(
                 [
-                    dbc.Col(children=[self.GraphOut], className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
+                    dbc.Col(children=[self.DataGraph], className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
                     dbc.Col(children=[first_row_second_column,second_row_second_column] , className="col-sm-12 col-md-6 col-lg-6")
                 ], style={'height': '100%'} ##className = "CONTENT_ROW"
             ),
@@ -276,12 +279,10 @@ class DashBoardLayout():
         
         #layout = style_plot_and_traces_form_form
         
-        
-    def SetLayout(self):
         self.layout = html.Div([
             dcc.Location(id=page_name+'url',refresh=True),
             ##html.Div(id=page_name+'layout-div'),
-            html.Div(id=page_name+'content',children=self.CreateLayout(),className="DASHBOARD_CONTAINER_STYLE"),
+            html.Div(id=page_name+'content',children=dashboard_container,className="DASHBOARD_CONTAINER_STYLE"),
             self.row_of_buttons,
             self.debug_output
         ],className="PAGE_CONTENT")
@@ -551,9 +552,7 @@ class DashBoardLayout():
                 #y axis    
                 self.FigLegend.update_yaxes(visible=False)
       
-    def UpdateData(self):
-        self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limit_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
-
+   
     def CreateGraph(self):
       
         self.GraphFig = go.Figure()
