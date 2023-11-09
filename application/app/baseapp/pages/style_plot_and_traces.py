@@ -107,6 +107,17 @@ dash.register_page(__name__, path='/style_plot_and_traces')
 
 ## create plot series
 
+class DashBoardLayout():
+     def __init__(self,dmtools_userid_in,  listoflimits_in):
+        self.dmtools_userid = dmtools_userid_in
+        self.listoflimits = listoflimits_in
+        self.limits_traces_df = pd.DataFrame()
+        self.limits_data_df = pd.DataFrame()
+        self.plot_series_df = pd.DataFrame()
+        self.GraphFig = go.Figure()
+        self.UpdateData()
+        self.CreateGraph()
+
 def create_layout(limits_in):
 
     all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetListOfLimits(dmtool_userid, limits_in)
