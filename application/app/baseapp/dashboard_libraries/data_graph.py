@@ -80,7 +80,7 @@ class DataGraph:
             #                    name=str(row['id'])))
   
   
-    def UpdateGraph(plotseries_table_in):
+    def UpdateGraph(self, plotseries_table_in):
         #result_ids = [1,262]
         print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
         self.plot_series_df = pd.DataFrame.from_dict(plotseries_table_in)
