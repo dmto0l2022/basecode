@@ -165,12 +165,12 @@ class DashBoardLayout():
     
         self.GraphClass = dg.DataGraph(dmtool_userid, limits_in)
         
-        self.GraphOut = dcc.Graph(figure=self.GraphClass.GraphFig,                              ,
-                                      id=page_name + 'graph_out_id',
-                                      config=dict(responsive=True),
-                                      mathjax=True,
-                                      #className='GRAPH'
-                                      style={'width': '100%', 'height': '100%'}
+        self.GraphOut = dcc.Graph(figure=self.GraphClass.GraphFig,
+                                  id=page_name + 'graph_out_id',
+                                  config=dict(responsive=True),
+                                  mathjax=True,
+                                  #className='GRAPH'
+                                  style={'width': '100%', 'height': '100%'}
                                       )
         
         ### this is to show how the page is laid out and structured
