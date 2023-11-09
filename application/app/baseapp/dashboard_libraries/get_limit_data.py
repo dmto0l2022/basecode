@@ -236,7 +236,7 @@ def GetLimits(dmtool_userid):
         #print('===================')
         #print(response_data)
         #print('===== response data frame ==============')
-        #response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+        response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
         #print('===== response data frame ==============')
         
         #print("gld : library response_data_frame >>>>>" , response_data_frame)
