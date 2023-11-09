@@ -176,8 +176,10 @@ class DashBoardLayout():
          
         self.dmtool_userid = dmtool_userid_in
         self.listoflimits = listoflimits_in
+        self.limits_list_df = pd.DataFrame()
         self.limits_traces_df = pd.DataFrame()
         self.limits_data_df = pd.DataFrame()
+        self.limits_list_dict = {}
         self.plot_series_df = pd.DataFrame()
         self.FigGraph = go.Figure()
         self.FigLegend = None
@@ -193,7 +195,7 @@ class DashBoardLayout():
 
 
     def UpdateData(self):
-        self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limit_list_dict = gld.GetListOfLimits(self.dmtool_userid, self.listoflimits)
+        self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, self.listoflimits)
 
     def CreateLayout(self):
     
@@ -669,8 +671,8 @@ class DashBoardLayout():
         
         for index, row in self.limits_traces_df.iterrows():
           
-            trace_data = self.limits_traces_df[(self.limits_traces_df['limit_id']==row['limit_id'])
-                                          & (self.limits_traces_df['trace_id']==row['trace_id'])]
+            trace_data = self.limits_data_df[(self.limits_data_df['id']==row['id'])
+                                          & (self.limits_data_df['trace_id']==row['trace_id'])]
             
             trace2add = trace_data
             
