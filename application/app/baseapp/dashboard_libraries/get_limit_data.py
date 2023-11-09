@@ -248,9 +248,9 @@ def GetLimits(dmtool_userid):
         
         column_names=['id','data_label','data_comment','data_values']
     
-        #print('limit_list_df >>', limit_list_df_resp.head(1))
-        #print('trace_list_df >>', trace_list_df_resp.head(1))
-        #print('limit_data_df >>', limit_data_df_resp.head(1))
+        print('limit_list_df >>', limit_list_df_resp.head(1))
+        print('trace_list_df >>', trace_list_df_resp.head(1))
+        print('limit_data_df >>', limit_data_df_resp.head(1))
     except:
         a = 1
     
