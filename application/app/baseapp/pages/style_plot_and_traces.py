@@ -187,13 +187,13 @@ class DashBoardLayout():
         self.GraphClass = None
         self.DataGraph = dcc.Graph()
         self.layout = {}
-        self.UpdateData([])
+        self.UpdateData([1])
         self.CreateGraph()
         self.CreateFormatTable()
         self.CreateLegendFig()
 
     def UpdateData(self, listoflimits_in):
-        self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid)
+        self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, listoflimits_in)
 
     def CreateLayout(self):
         
@@ -284,13 +284,15 @@ class DashBoardLayout():
         
         #layout = style_plot_and_traces_form_form
         
-        self.layout = html.Div([
+        layout_out = html.Div([
             dcc.Location(id=page_name+'url',refresh=True),
             ##html.Div(id=page_name+'layout-div'),
             html.Div(id=page_name+'content',children=dashboard_container,className="DASHBOARD_CONTAINER_STYLE"),
             self.row_of_buttons,
             self.debug_output
         ],className="PAGE_CONTENT")
+
+        return layout_out
         
         '''
         @callback(Output('container-button-timestamp_1', 'children'),
@@ -839,8 +841,7 @@ def display_page(pathname,search,href):
     #list_of_limits = [33]
     #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
     dbl.UpdateData(list_of_limits_int)
-    dbl.CreateLayout()
-    layout_return = dbl.layout
+    layout_return = dbl.CreateLayout()
     return layout_return
 
 @callback(
