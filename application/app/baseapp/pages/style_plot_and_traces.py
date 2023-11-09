@@ -113,6 +113,41 @@ dash.register_page(__name__, path='/style_plot_and_traces')
 
 class DashBoardLayout():
     def __init__(self,pagename_in, dmtools_userid_in,  listoflimits_in):
+        self.style_table={
+                #'maxHeight': '50ex',
+                #'minHeight': '40vh',
+                ##'height': '44vh', ## does not know any detail about parent container
+                ##'overflowY': 'scroll', # 'auto'
+                ##'overflowX': 'scroll',
+                'width': '100%',
+                'minWidth': '100%',
+            }
+
+        self.table_style_cell = {'textAlign': 'left',
+                                          'padding': '0px',
+                                          'font_size': font_size,
+                                          'overflow': 'hidden',
+                                          'textOverflow': 'ellipsis',
+                                          ##'border': '1px solid black',
+                                          'height': row_height,
+                                          'overflow': 'hidden',
+                                          'maxWidth': 0 ## made things work!!
+                                         }
+        
+        self.table_css = [{"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
+                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
+                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    {"selector": ".dash-cell tr th td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}, 
+                    {"selector": ".Select-option", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
+                    ]
+
+        
+        
         self.button_styling_1 = {'font-size': '12px',
                           'width': '70px',
                           'display': 'inline-block', 
@@ -138,19 +173,23 @@ class DashBoardLayout():
         self.limits_data_df = pd.DataFrame()
         self.plot_series_df = pd.DataFrame()
         self.GraphFig = go.Figure()
+        self.FigLegend = None
+        self.FormatDataTable = dash_table.DataTable()
         self.GraphClass = None
         self.GraphOut = dcc.Graph()
         self.layout = {}
         self.SetLayout()
         self.UpdateData()
         self.CreateGraph()
+        self.CreateFormatTable()
+        self.CreateLayout()
 
     def CreateLayout(self):
     
         self.limit_list_df, self.trace_list_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
         
         #traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(limits_in)].copy()
-        traces = trace_list_df
+        traces = self.trace_list_df
         
         print("traces >>>>>>", traces)
         
@@ -167,7 +206,7 @@ class DashBoardLayout():
         
         ## all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict
     
-        self.GraphClass = dg.DataGraph(dmtool_userid, limits_in)
+        #self.GraphClass = dg.DataGraph(dmtool_userid, limits_in)
         
         self.GraphOut = dcc.Graph(figure=self.GraphClass.GraphFig,
                                   id=page_name + 'graph_out_id',
@@ -263,7 +302,247 @@ class DashBoardLayout():
             ]) 
         '''
     
+    ################
+    
+    def CreateFormatTable():
+    
+        #limits_traces_copy = limits_traces_in.copy()
+        print("format table : trace_list_df.columns >> " , self.trace_list_df.columns)
+        palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
+        cycle_colors = itertools.cycle(palette_list)
+    
+        #colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
+        colored_limits_list =[]
+        for index, row in self.trace_list_df.iterrows():
+            #print(row['c1'], row['c2'])
+            copy_row = row.copy()
+            color = next(cycle_colors)
+            copy_row['line_color'] = color
+            copy_row['symbol_color'] = color
+            copy_row['fill_color'] = color
+            append_this = [copy_row['id'], copy_row['limit_id'], copy_row['data_label'],
+                           copy_row['trace_id'],copy_row['trace_name'],
+                           copy_row['line_color'],copy_row['symbol_color'],copy_row['fill_color'],
+                           copy_row['line'],copy_row['symbol']]
+            print(append_this)
+            colored_limits_list.append(append_this)
+    
+        #Index(['id', 'limit_id', 'data_label', 'trace_id', 'trace_name', 'line_color',
+        #   'symbol_color', 'fill_color', 'line', 'symbol'],
+    
+        colored_limits = pd.DataFrame(data=colored_limits_list, columns=self.trace_list_df.columns, index=limits_traces_in.index)
+        
+      
+        print("formatting table >>>> colored_limits >>>", colored_limits)
+      
+      
+        line_color_list = palette_list
+        
+        fill_color_list = palette_list
+        
+        symbol_color_list = palette_list 
+      
+        line_color_options=[{'label': i, 'value': i} for i in line_color_list]
+        
+        fill_color_options=[{'label': i, 'value': i} for i in fill_color_list]
+        
+        symbol_color_options=[{'label': i, 'value': i} for i in symbol_color_list]
+        
+        line_styles_list = ['solid', 'dot', 'dash', 'longdash', 'dashdot', 'longdashdot']
+        
+        line_styles_options=[{'label': i, 'value': i} for i in line_styles_list]
+        
+        symbol_list = ['circle','square','diamond','cross','x','hexagon','pentagon','octagon','star','asterisk','hash']
+        
+        symbol_options=[{'label': i, 'value': i} for i in symbol_list]
+        
+        self.FormatDataTable = dash_table.DataTable(
+                id=self.page_name + 'format_table_id',
+                #row_deletable=True,
+                # Add this line
+                #fixed_rows={'headers': True},
+                #style_table=style_table,  # defaults to 500
+                #style_cell={'fontSize':10,'height':11} ,
+                style_cell=table_style_cell,
+                #fill_width=True,
+                #style_table={'overflowY': 'auto'},
+                #virtualization=True
+                data=colored_limits.to_dict('records'),
+                columns=[
+                    {'id': 'limit_id', 'name': 'limit_id'},
+                    ##{'id': 'data_label', 'name': 'data_label'},
+                    {'id': 'trace_id', 'name': 'trace_id'},
+                    {'id': 'trace_name', 'name': 'trace_name'},
+                    {'id': 'line_color', 'name': 'line_color', 'presentation': 'dropdown'},
+                    {'id': 'line', 'name': 'line', 'presentation': 'dropdown'},
+                    {'id': 'fill_color', 'name': 'fill_color', 'presentation': 'dropdown'},
+                    {'id': 'symbol', 'name': 'symbol', 'presentation': 'dropdown'},
+                    {'id': 'symbol_color', 'name': 'symbol_color', 'presentation': 'dropdown'},
+                ],
+    
+                editable=True,
+                css=table_css,
+                dropdown={
+                    'line_color': {
+                        'options': [
+                            {'label': i, 'value': i}
+                            for i in line_color_list
+                        ]
+                    },
+                    'line': {
+                         'options': [
+                            {'label': i, 'value': i}
+                            for i in line_styles_list
+                        ]
+                    },
+                    'fill_color': {
+                        'options': [
+                            {'label': i, 'value': i}
+                            for i in fill_color_list
+                        ]
+                    },
+                    'symbol': {
+                         'options': [
+                            {'label': i, 'value': i}
+                            for i in symbol_list
+                        ]
+                    },
+                     'symbol_color': {
+                         'options': [
+                            {'label': i, 'value': i}
+                            for i in symbol_color_list
+                        ]
+                    }
+                },
+                style_cell_conditional=[
+                    {'if': {'column_id': 'limit_id'},
+                     'width': '5%'},
+                    #{'if': {'column_id': 'data_label'},
+                    # 'width': '40%'},
+                    {'if': {'column_id': 'trace_id'},
+                     'width': '5%'},
+                    {'if': {'column_id': 'trace_name'},
+                     'width': '40%'},
+                    {'if': {'column_id': 'line_color'},
+                     'width': '10%'},
+                    {'if': {'column_id': 'line'},
+                     'width': '10%'},
+                    {'if': {'column_id': 'fill_color'},
+                     'width': '10%'},
+                    {'if': {'column_id': 'symbol'},
+                     'width': '10%'},
+                    {'if': {'column_id': 'symbol_color'},
+                     'width': '10%'}],
+            )
 
+    
+    def CreateLegendFig():
+    
+        #limit_id = [1]
+        
+        #legend_plotseries = self.limits_traces_df[self.limits_traces_df['limit_id'].isin(self.listoflimits)].copy()
+        
+        ##plotseries_default = CreatePlotSeries(limit_id)
+        
+        rows_list = list(range(1,6))
+        cols_list = list(range(1,6))
+        
+        table_rows=12
+        table_cols=5
+        
+        self.FigLegend = make_subplots(
+        column_titles = ['limit_id','trace_id','trace_name','line', 'symbol'],
+        rows=table_rows,
+        cols=table_cols,
+        horizontal_spacing = 0.00,
+        vertical_spacing = 0.00,
+        #subplot_titles=(titles)
+        column_widths=[0.1,0.1,0.6,0.1, 0.1],)
+        
+        
+        #fig_legend_out.update_xaxes(matches=None, showticklabels=True)
+        #fig_legend_out.update_yaxes(matches=None, showticklabels=True)
+        
+        #fig_legend_out.update_layout(xaxis_range=[1,2])
+    
+        
+        self.FigLegend.update_layout(
+        #    autosize=False,
+        #    width=800,
+        #    height=200,
+            margin=dict(
+                l=0,
+                r=0,
+                b=0,
+                t=20,
+                pad=0
+            ),
+            paper_bgcolor="LightSteelBlue",
+        )
+        
+        rowloop = 0
+    
+        for index, row in self.limits_traces_df.iterrows():
+            #print(row['c1'], row['c2'])
+            rowloop +=1
+            for c in cols_list: #enumerate here to get access to i
+                # STEP 2, notice position of arguments!
+                table_column_names = ['limit_id','trace_id','trace_name','line','symbol']
+                scatter_mode_list = ['text-number','text-number','text-text','lines','markers']
+                current_column = table_column_names[c-1]
+                current_mode = scatter_mode_list[c-1]
+                if current_mode =='lines':
+                     self.FigLegend.add_trace(go.Scatter(x=[1,2],
+                                             y=[1,1],
+                                             mode=current_mode,
+                                             #text=row[current_column],
+                                             line=dict(width=4,dash=row['line'],color=row['line_color']),
+                                            ),
+                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
+                                  col=c)
+                if current_mode =='text-text':
+                     self.FigLegend.add_trace(go.Scatter(x=[1,2], 
+                                             textposition='middle right',
+                                             y=[1,1],
+                                             mode='text',
+                                             text=[row[current_column],'']
+                                            ),
+                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
+                                  col=c)
+                
+                if current_mode =='text-number':
+                     self.FigLegend.add_trace(go.Scatter(x=[1], 
+                                             textposition='middle right',
+                                             y=[1],
+                                             mode='text',
+                                             text=row[current_column]
+                                            ),
+                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
+                                  col=c)
+                if current_mode =='markers':
+                     self.FigLegend.add_trace(go.Scatter(x=[1], 
+                                            y=[1],
+                                            mode=current_mode,
+                                            #text=row[current_column],
+                                            marker_symbol=row['symbol'],
+                                            marker=dict(
+                                            size=10,
+                                            color=row['symbol_color'],#set color equal to a variable
+                                            colorscale='Viridis', # one of plotly colorscales
+                                            showscale=False,
+                                            )
+                                            ),
+                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
+                                  col=c)
+                    
+                self.FigLegend.update_xaxes(showgrid=False)
+                self.FigLegend.update_yaxes(showgrid=False)
+                #legend
+                self.FigLegend.update_layout(showlegend=False)
+                #x axis
+                self.FigLegend.update_xaxes(visible=False)
+                #y axis    
+                self.FigLegend.update_yaxes(visible=False)
       
     def UpdateData(self):
         self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limit_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
