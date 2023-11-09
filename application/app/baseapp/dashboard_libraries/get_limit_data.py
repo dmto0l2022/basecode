@@ -165,18 +165,18 @@ def GetLimits(dmtool_userid):
         #print('response data')
         #print('===================')
         #print(response_data)
-        print('===== response data frame ==============')
-        response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
-        print('===== response data frame ==============')
+        #print('===== response data frame ==============')
+        #response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+        #print('===== response data frame ==============')
         
-        print("gld : library response_data_frame >>>>>" , response_data_frame)
+        #print("gld : library response_data_frame >>>>>" , response_data_frame)
         
         limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
         column_names=['id','data_label','data_comment','data_values']
     
-        print('limit_list_df >>', limit_list_df_resp)
-        print('trace_list_df >>', trace_list_df_resp)
-        print('limit_data_df >>', limit_data_df_resp)
+        #print('limit_list_df >>', limit_list_df_resp)
+        #print('trace_list_df >>', trace_list_df_resp)
+        #print('limit_data_df >>', limit_data_df_resp)
     except:
         a = 1
     
@@ -242,16 +242,16 @@ def GetListOfLimits(dmtool_userid,listoflimits_in):
         #print(response_data)
         print('===== response data frame ==============')
         response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
-        print('===== response data frame ==============')
+        #print('===== response data frame ==============')
         
-        print("gld : library response_data_frame >>>>>" , response_data_frame)
+        #print("gld : library response_data_frame >>>>>" , response_data_frame)
         
         limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
         column_names=['id','data_label','data_comment','data_values']
     
-        print('limit_list_df >>', limit_list_df_resp)
-        print('trace_list_df >>', trace_list_df_resp)
-        print('limit_data_df >>', limit_data_df_resp)
+        #print('limit_list_df >>', limit_list_df_resp)
+        #print('trace_list_df >>', trace_list_df_resp)
+        #print('limit_data_df >>', limit_data_df_resp)
     except:
         a = 1
     
