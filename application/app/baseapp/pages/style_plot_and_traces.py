@@ -108,7 +108,7 @@ dash.register_page(__name__, path='/style_plot_and_traces')
 ## create plot series
 
 class DashBoardLayout():
-     def __init__(self,pagename_in, dmtools_userid_in,  listoflimits_in):
+    def __init__(self,pagename_in, dmtools_userid_in,  listoflimits_in):
         self.button_styling_1 = {'font-size': '12px',
                           'width': '70px',
                           'display': 'inline-block', 
