@@ -121,9 +121,9 @@ def GetLimit(dmtool_userid_in, limit_id_in):
         limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
         column_names=['id','data_label','data_comment','data_values']
     
-        print('limit_list_df >>', limit_list_df_resp.head(5))
-        print('trace_list_df >>', trace_list_df_resp.head(5))
-        print('limit_data_df >>', limit_data_df_resp.head(5))
+        print('limit_list_df >>', limit_list_df_resp.head(1))
+        print('trace_list_df >>', trace_list_df_resp.head(1))
+        print('limit_data_df >>', limit_data_df_resp.head(1))
     except:
         a = 1
     
