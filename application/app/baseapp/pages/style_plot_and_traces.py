@@ -730,7 +730,7 @@ class DashBoardLayout():
         
         #result_ids_plot = plot_series_df['limit_id'].unique().tolist()
         
-        limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetListOfLimits(self.dmtools_userid_in, self.listoflimits)
+        limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetListOfLimits(self.dmtool_userid, self.listoflimits)
         
         #plot_series_df = pd.DataFrame(plotseries_table_in)
         
