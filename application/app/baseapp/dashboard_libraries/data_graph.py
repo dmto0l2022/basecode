@@ -13,7 +13,7 @@ class DataGraph:
         self.plot_series_df = pd.DataFrame()
         self.GraphFig = go.Figure()
         self.UpdateData()
-        self.CreatGraph()
+        self.CreateGraph()
       
     def UpdateData(self):
         self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limit_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
