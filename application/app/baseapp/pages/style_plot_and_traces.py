@@ -138,7 +138,7 @@ class DashBoardLayout():
         self.limits_data_df = pd.DataFrame()
         self.plot_series_df = pd.DataFrame()
         self.GraphFig = go.Figure()
-        self.GraphClass = dg.DataGraph()
+        self.GraphClass = None
         self.GraphOut = dcc.Graph()
         self.layout = {}
         self.SetLayout()
