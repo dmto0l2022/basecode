@@ -68,7 +68,7 @@ def parse_series_and_values(limits_dataframe_in):
                 limit_data.append(appendthis)
         #lol
     
-    print('gld : parsed limit data >>>>',limit_data) 
+    #print('gld : parsed limit data >>>>',limit_data) 
     
     ## the datatable needed a unique id
     ## the id of the limit table was renamed to limit_id
