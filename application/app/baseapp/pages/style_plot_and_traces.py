@@ -56,8 +56,9 @@ from app.baseapp.dashboard_libraries import formattingtable as ft
 from app.baseapp.dashboard_libraries import createlegend as cl
 from app.baseapp.dashboard_libraries import updatelegend as ul
 from app.baseapp.dashboard_libraries import getstyleandlegend as gsal
-from app.baseapp.dashboard_libraries import creategraph as cg
-from app.baseapp.dashboard_libraries import updategraph as ug
+#from app.baseapp.dashboard_libraries import creategraph as cg
+#from app.baseapp.dashboard_libraries import updategraph as ug
+from app.baseapp.dashboard_libraries import data_graph as dg
 
 ####################################
 
@@ -127,8 +128,10 @@ def create_layout(limits_in):
     
     
     ## all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict
+
+    graph_class = dg.DataGraph(dmtool_userid, limits_in)
     
-    graph_fig = cg.CreateGraph(limits_in, all_trace_list_df, all_limit_data_df)
+    graph_fig = graph_class.GraphFig()
     
     graph_out = dcc.Graph(figure=graph_fig,
                                   id=page_name + 'graph_out_id',
