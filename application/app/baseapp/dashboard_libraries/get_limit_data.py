@@ -46,7 +46,7 @@ def parse_series_and_values(limits_dataframe_in):
                                       data_reference,
                                       data_comment,
                                       l,
-                                      data_label + '_' + str(l),
+                                      str(l) + '_' + data_label,
                                       year,
                                       experiment,
                                       spin_dependency,
