@@ -46,7 +46,7 @@ dmtool_userid = 16384 ## testing
 
 #from app.baseapp.libraries import formlibrary as fl
 
-from app.baseapp.dashboard_libraries import all_data_tables as adt
+#from app.baseapp.dashboard_libraries import all_data_tables as adt
 #dashdataandtables = adt.DashDataAndTables()
 
 from app.baseapp.dashboard_libraries import scaling as sc
@@ -54,10 +54,10 @@ from app.baseapp.dashboard_libraries import scaling as sc
 #sf
 
 ####################################
-from app.baseapp.dashboard_libraries import formattingtable as ft
-from app.baseapp.dashboard_libraries import createlegend as cl
-from app.baseapp.dashboard_libraries import updatelegend as ul
-from app.baseapp.dashboard_libraries import getstyleandlegend as gsal
+#from app.baseapp.dashboard_libraries import formattingtable as ft
+#from app.baseapp.dashboard_libraries import createlegend as cl
+#from app.baseapp.dashboard_libraries import updatelegend as ul
+#from app.baseapp.dashboard_libraries import getstyleandlegend as gsal
 #from app.baseapp.dashboard_libraries import creategraph as cg
 #from app.baseapp.dashboard_libraries import updategraph as ug
 #from app.baseapp.dashboard_libraries import data_graph as dg
