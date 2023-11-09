@@ -179,7 +179,7 @@ class DashBoardLayout():
         self.limits_traces_df = pd.DataFrame()
         self.limits_data_df = pd.DataFrame()
         self.plot_series_df = pd.DataFrame()
-        self.GraphFig = go.Figure()
+        self.FigGraph = go.Figure()
         self.FigLegend = None
         self.FormatDataTable = dash_table.DataTable()
         self.GraphClass = None
@@ -206,10 +206,10 @@ class DashBoardLayout():
         
         #styling_data_table = self.FormatDataTable
         
-        legend_fig = FigLegend
+        #legend_fig = FigLegend
         
-        legend_graph = dcc.Graph(figure=legend_fig,
-                                 id= page_name + 'legend_out_id',
+        legend_graph = dcc.Graph(figure=self.FigLegend,
+                                 id= page_name + 'legend_id',
                                  style={'width': '100%', 'height': '100%'})
         
         #style_and_legend_column = gsal.GetStyleAndLegendColumn(styling_data_table,legend_graph)
@@ -219,8 +219,8 @@ class DashBoardLayout():
     
         #self.GraphClass = dg.DataGraph(dmtool_userid, limits_in)
         
-        self.DataGraph = dcc.Graph(figure=self.GraphClass.GraphFig,
-                                  id=page_name + 'graph_out_id',
+        self.DataGraph = dcc.Graph(figure=self.FigGraph,
+                                  id=page_name + 'graph_id',
                                   config=dict(responsive=True),
                                   mathjax=True,
                                   #className='GRAPH'
@@ -553,12 +553,119 @@ class DashBoardLayout():
                 #y axis    
                 self.FigLegend.update_yaxes(visible=False)
       
-   
+
+    def UpdateLegendFig(self, plotseries_table_in):
+        #result_ids = [1,262]
+        
+        print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
+        self.plot_series_df = pd.DataFrame.from_dict(plotseries_table_in)
+        
+        result_ids_plot = self.plot_series_df['limit_id'].unique().tolist()
+        rows_list = list(range(1,6))
+        cols_list = list(range(1,6))
+        
+        table_rows=12
+        table_cols=5
+
+        self.FigLegend = make_subplots(
+        column_titles = ['limit_id','trace_id','trace_name','line', 'symbol'],
+        rows=table_rows,
+        cols=table_cols,
+        horizontal_spacing = 0.00,
+        vertical_spacing = 0.00,
+        #subplot_titles=(titles)
+        column_widths=[0.1,0.1,0.6,0.1, 0.1],)
+        
+        
+        #fig_legend_out.update_xaxes(matches=None, showticklabels=True)
+        #fig_legend_out.update_yaxes(matches=None, showticklabels=True)
+        
+        #fig_legend_out.update_layout(xaxis_range=[1,2])
+    
+        
+        self.FigLegend.update_layout(autosize=True,
+        #    width=100%,
+        #    height=200,
+            margin=dict(
+                l=0,
+                r=0,
+                b=0,
+                t=20,
+                pad=0
+            ),
+            paper_bgcolor="LightSteelBlue",
+        )
+        
+        rowloop = 0
+    
+        for index, row in self.plot_series_df.iterrows():
+            #print(row['c1'], row['c2'])
+            rowloop +=1
+            for c in cols_list: #enumerate here to get access to i
+                # STEP 2, notice position of arguments!
+                table_column_names = ['limit_id','trace_id','trace_name','line','symbol']
+                scatter_mode_list = ['text-number','text-number','text-text','lines','markers']
+                current_column = table_column_names[c-1]
+                current_mode = scatter_mode_list[c-1]
+                if current_mode =='lines':
+                    self.FigLegend.add_trace(go.Scatter(x=[1,2],
+                                             y=[1,1],
+                                             mode=current_mode,
+                                             #text=row[current_column],
+                                             line=dict(width=4,dash=row['line'],color=row['line_color']),
+                                            ),
+                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
+                                  col=c)
+                if current_mode =='text-text':
+                    self.FigLegend.add_trace(go.Scatter(x=[1,2], 
+                                             textposition='middle right',
+                                             y=[1,1],
+                                             mode='text',
+                                             text=[row[current_column],'']
+                                            ),
+                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
+                                  col=c)
+                
+                if current_mode =='text-number':
+                    self.FigLegend.add_trace(go.Scatter(x=[1], 
+                                             textposition='middle right',
+                                             y=[1],
+                                             mode='text',
+                                             text=row[current_column]
+                                            ),
+                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
+                                  col=c)
+                if current_mode =='markers':
+                    self.FigLegend.add_trace(go.Scatter(x=[1], 
+                                            y=[1],
+                                            mode=current_mode,
+                                            #text=row[current_column],
+                                            marker_symbol=row['symbol'],
+                                            marker=dict(
+                                            size=10,
+                                            color=row['symbol_color'],#set color equal to a variable
+                                            colorscale='Viridis', # one of plotly colorscales
+                                            showscale=False,
+                                            )
+                                            ),
+                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
+                                  col=c)
+                    
+                self.FigLegend.update_xaxes(showgrid=False)
+                self.FigLegend.update_yaxes(showgrid=False)
+                #legend
+                self.FigLegend.update_layout(showlegend=False)
+                #x axis
+                self.FigLegend.update_xaxes(visible=False)
+                #y axis    
+                self.FigLegend.update_yaxes(visible=False)
+
+    
     def CreateGraph(self):
       
-        self.GraphFig = go.Figure()
+        self.FigGraph = go.Figure()
         
-        self.GraphFig.update_layout(autosize=True)
+        self.FigGraph.update_layout(autosize=True)
         
         for index, row in self.limits_list_df.iterrows():
           
@@ -573,7 +680,7 @@ class DashBoardLayout():
             x_title_text = r"$\text{WIMP Mass [GeV}/c^{2}]$"
             y_title_text = r"$\text{Cross Section [cm}^{2}\text{] (normalized to nucleon)}$"
             
-            self.GraphFig.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'], ## scaled needs to be updated
+            self.FigGraph.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'], ## scaled needs to be updated
                               mode='lines+markers', # 'lines' or 'markers'
                               line=dict(width=4,dash=row['line'],color=row['line_color']),
                               #showscale=False,
@@ -592,14 +699,14 @@ class DashBoardLayout():
                               name=str(row['trace_name'])
                                    ))
             
-            self.GraphFig.update(layout_showlegend=False)
+            self.FigGraph.update(layout_showlegend=False)
             
-            self.GraphFig.update_xaxes(
+            self.FigGraph.update_xaxes(
               title_text=x_title_text,
               type="log"
               #type="linear"
             )
-            self.GraphFig.update_yaxes(
+            self.FigGraph.update_yaxes(
               title_text=y_title_text,
               #type="log"
               type="linear"
@@ -731,12 +838,12 @@ def display_page(pathname,search,href):
     return layout_return
 
 @callback(
-    [Output(page_name+'graph_out_id','figure'),Output(page_name+'legend_out_id','figure'),],
+    [Output(page_name+'graph_id','figure'),Output(page_name+'legend_id','figure'),],
     [Input(page_name+'format_table_id', 'data')],
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
     print('spat : table_data_in >>>>>>>>>>',table_data_in)
-    dbl.UpdateGraph(dmtool_userid,table_data_in)
-    legend_out = ul.UpdateLegendFig(dmtool_userid, table_data_in)
-    return dbl.GraphFig, legend_out
+    dbl.UpdateGraph(table_data_in)
+    dbl.UpdateLegendFig(table_data_in)
+    return dbl.GraphFig, dbl.LegendFig
 
