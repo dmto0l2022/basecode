@@ -312,7 +312,7 @@ class DashBoardLayout():
     
     ################
     
-    def CreateFormatTable():
+    def CreateFormatTable(self):
     
         #limits_traces_copy = limits_traces_in.copy()
         print("format table : trace_list_df.columns >> " , self.trace_list_df.columns)
@@ -444,7 +444,7 @@ class DashBoardLayout():
             )
 
     
-    def CreateLegendFig():
+    def CreateLegendFig(self):
     
         #limit_id = [1]
         
