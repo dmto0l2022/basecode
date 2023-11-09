@@ -131,7 +131,7 @@ def create_layout(limits_in):
 
     graph_class = dg.DataGraph(dmtool_userid, limits_in)
     
-    graph_fig = graph_class.GraphFig()
+    graph_fig = graph_class.GraphFig
     
     graph_out = dcc.Graph(figure=graph_fig,
                                   id=page_name + 'graph_out_id',
