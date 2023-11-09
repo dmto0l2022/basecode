@@ -113,7 +113,7 @@ dash.register_page(__name__, path='/style_plot_and_traces')
 ## create plot series
 
 class DashBoardLayout():
-    def __init__(self,pagename_in, dmtools_userid_in,  listoflimits_in):
+    def __init__(self,pagename_in, dmtool_userid_in,  listoflimits_in):
         self.page_name = pagename_in
         self.data_table_id =  self.page_name + "data_table_id"
         #self.table_meta_data_data = table_meta_data_data_in
@@ -174,7 +174,7 @@ class DashBoardLayout():
                                               html.Div(id=pagename_in+'button-output-div', children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
                                               className="PAGE_DEBUG_CONTENT")
          
-        self.dmtools_userid = dmtools_userid_in
+        self.dmtool_userid = dmtool_userid_in
         self.listoflimits = listoflimits_in
         self.limits_traces_df = pd.DataFrame()
         self.limits_data_df = pd.DataFrame()
