@@ -227,7 +227,6 @@ class DashBoardLayout():
         #layout = style_plot_and_traces_form_form
         
         
-        
     def SetLayout(self):
         self.layout = html.Div([
             dcc.Location(id=page_name+'url',refresh=True),
