@@ -162,7 +162,7 @@ def GetLimits2Select(dmtool_userid):
     try:
         r = requests.get(limits_url, headers=request_header)
         response_data = r.json()
-        print("get limits response data json >>>>>>>>>>>> ", response_data)
+        #print("get limits response data json >>>>>>>>>>>> ", response_data)
 
         #print('response data')
         #print('===================')
@@ -230,7 +230,7 @@ def GetLimits(dmtool_userid):
     try:
         r = requests.get(limits_url, headers=request_header)
         response_data = r.json()
-        print("get limits response data json >>>>>>>>>>>> ", response_data)
+        #print("get limits response data json >>>>>>>>>>>> ", response_data)
 
         #print('response data')
         #print('===================')
@@ -244,9 +244,9 @@ def GetLimits(dmtool_userid):
         limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
         column_names=['id','data_label','data_comment','data_values']
     
-        #print('limit_list_df >>', limit_list_df_resp)
-        #print('trace_list_df >>', trace_list_df_resp)
-        #print('limit_data_df >>', limit_data_df_resp)
+        print('limit_list_df >>', limit_list_df_resp.head(1))
+        print('trace_list_df >>', trace_list_df_resp.head(1))
+        print('limit_data_df >>', limit_data_df_resp.head(1))
     except:
         a = 1
     
