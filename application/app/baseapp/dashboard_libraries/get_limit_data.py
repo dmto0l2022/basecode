@@ -40,6 +40,7 @@ def parse_series_and_values(limits_dataframe_in):
             for i in set_list:
                 z = i.split(" ");
                 new_x = z[0].replace(",[", "")
+                #limit_id = row['id']
                 try:
                     appendthis = [row['id'],
                                       data_label,
@@ -65,14 +66,14 @@ def parse_series_and_values(limits_dataframe_in):
                 
                 limit_data.append(appendthis)
         #lol
-    #print('parsed limit data >>>>',limit_data) 
+    print('gld : parsed limit data >>>>',limit_data) 
     
     ## the datatable needed a unique id
     ## the id of the limit table was renamed to limit_id
     ## a new column was created called id
     
     limit_data_df_out = pd.DataFrame(
-        data=limit_data,columns=['id','data_label','data_reference', 'data_comment', 'trace_id','trace_name', 'year','experiment',
+        data=limit_data,columns=['id','limit_id','data_label','data_reference', 'data_comment', 'trace_id','trace_name', 'year','experiment',
                                   'spin_dependency','result_type','official','greatest_hit',
                                   'raw_x','raw_y','line_color','symbol_color',
                                   'fill_color','line', 'symbol'])
