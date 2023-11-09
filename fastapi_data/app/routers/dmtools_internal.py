@@ -12,7 +12,7 @@ from db import get_session
 from models.dmtools import Experiment, ExperimentCreate
 from models.dmtools import Limit_display, Limit_displayCreate
 from models.dmtools import Limit_ownership, Limit_ownershipCreate
-from models.dmtools import Limit, LimitCreate
+from models.dmtools import Limit, LimitCreate, LimitSelect
 from models.dmtools import ListOfLimitIDs
 from models.dmtools import Plot_ownership, Plot_ownershipCreate
 from models.dmtools import Plot, PlotCreate
@@ -292,6 +292,44 @@ async def get_list_of_limits(list_of_limits: ListOfLimitIDs, session: AsyncSessi
                 "greatest_hit" : just_limit.greatest_hit,
                 "date_of_run_start" : just_limit.date_of_run_start,
                 "date_of_run_end" : just_limit.date_of_run_end,
+                "year" : just_limit.year}
+        
+        #return_dict[limit_count] = append_this
+        return_list['limits'].append(append_this)
+        limit_count += 1
+    return return_list
+
+
+## get limits to select
+
+@router.get(api_base_url + "limitstoselect")
+async def get_limit(session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid))
+    owneroflimits = result.all()
+    print("owneroflimits >>>>>>>>>>>", owneroflimits)
+    return_dict = dict()
+    return_list = {'limits': []}
+    #data = {'list': [{'a':'1'}]}
+    #data['limits'].append({'b':'2'})
+    #data
+    #{'list': [{'a': '1'}, {'b': '2'}]}
+    limit_count = 0
+    for ool in owneroflimits:
+        #just_owner = ool[0]
+        just_limit = ool[1]
+        append_this = {"id" :  just_limit.id,
+                "spin_dependency" : just_limit.spin_dependency,
+                "result_type" : just_limit.result_type,
+                "measurement_type" : just_limit.measurement_type,
+                "nomhash" : just_limit.nomhash,
+                "data_label" : just_limit.data_label,
+                "data_comment" : just_limit.data_comment,
+                "data_reference" : just_limit.data_reference,
+                "experiment" : just_limit.experiment,
+                "public" : just_limit.public,
+                "official" : just_limit.official,
+                "greatest_hit" : just_limit.greatest_hit,
                 "year" : just_limit.year}
         
         #return_dict[limit_count] = append_this
