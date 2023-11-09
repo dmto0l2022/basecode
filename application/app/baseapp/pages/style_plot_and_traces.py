@@ -392,7 +392,7 @@ class DashBoardLayout():
             self.GraphFig.update(layout_showlegend=False)
 
 
-dbl = DashBoardLayout(pagename, dmtool_userid,  listoflimits)
+dbl = DashBoardLayout(page_name, dmtool_userid,  listoflimits)
 
 layout = dbl.layout
 
