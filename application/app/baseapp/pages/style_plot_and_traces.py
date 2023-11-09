@@ -108,174 +108,163 @@ dash.register_page(__name__, path='/style_plot_and_traces')
 ## create plot series
 
 class DashBoardLayout():
-     def __init__(self,dmtools_userid_in,  listoflimits_in):
+     def __init__(self,pagename_in, dmtools_userid_in,  listoflimits_in):
+        self.button_styling_1 = {'font-size': '12px',
+                          'width': '70px',
+                          'display': 'inline-block', 
+                          'margin-bottom': '1px',
+                          'margin-right': '0px',
+                          'margin-top': '1px',
+                          'height':'19px',
+                          'verticalAlign': 'center'}
+        self.new_button =  html.Button("New", id= pagename_in + "new_button_id", style=button_styling_1)
+        self.save_button =  html.Button("Save", id= pagename_in + "save_button_id", style=button_styling_1)
+        self.cancel_button =  html.Button("Cancel",  id=pagename_in + "cancel_button_id", style=button_styling_1)
+        self.home_button =  html.Button("Home",  id=pagename_in + "home_button_id", style=button_styling_1)
+        self.row_of_buttons = html.Div(id= pagename_in + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS")
+          
+        self.debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
+                                              html.Div(id=pagename_in+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
+                                              html.Div(id=pagename_in+'button-output-div', children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
+                                              className="PAGE_DEBUG_CONTENT")
+         
         self.dmtools_userid = dmtools_userid_in
         self.listoflimits = listoflimits_in
         self.limits_traces_df = pd.DataFrame()
         self.limits_data_df = pd.DataFrame()
         self.plot_series_df = pd.DataFrame()
         self.GraphFig = go.Figure()
+        self.GraphClass = dg.DataGraph()
+        self.GraphOut = dcc.Graph()
+        self.layout = {}
+        self.SetLayout()
         self.UpdateData()
         self.CreateGraph()
 
-def create_layout(limits_in):
-
-    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetListOfLimits(dmtool_userid, limits_in)
+    def CreateLayout(self):
     
-    #traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(limits_in)].copy()
-    traces = all_trace_list_df
-    
-    print("traces >>>>>>", traces)
-    
-    styling_data_table = ft.CreateFormatTable(page_name,traces)
-    
-    legend_fig = cl.CreateLegendFig(limits_in,traces)
-    
-    legend_graph = dcc.Graph(figure=legend_fig,
-                             id= page_name + 'legend_out_id',
-                             style={'width': '100%', 'height': '100%'})
-    
-    #style_and_legend_column = gsal.GetStyleAndLegendColumn(styling_data_table,legend_graph)
-    
-    
-    ## all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict
-
-    graph_class = dg.DataGraph(dmtool_userid, limits_in)
-    
-    graph_fig = graph_class.GraphFig
-    
-    graph_out = dcc.Graph(figure=graph_fig,
-                                  id=page_name + 'graph_out_id',
-                                  config=dict(responsive=True),
-                                  mathjax=True,
-                                  #className='GRAPH'
-                                  style={'width': '100%', 'height': '100%'}
-                                  )
-    
-    #chart_in = graph_out
-    
-    #column_chart = GetChart(chart_in)
-    
-    #two_columns =  html.Div(className="row g-0 ALL_ROW NOPADDING",
-    #                       children=[
-    #                                column_chart,
-    #                                style_and_legend_column,
-    #                                ],)
-    
-    #layout_out = html.Div(
-    #                   [two_columns],
-    #                   className="container-fluid DASHBOARD_CONTAINER_STYLE",
-    #                  )
-    #layout_out = two_columns
-    
-    ### this is to show how the page is laid out and structured
-    
-    first_row_second_column =  dbc.Row(
-            [
-                dbc.Col(html.Div("1st Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
-            ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
-
-    second_row_second_column = dbc.Row(
-            [
-                dbc.Col(html.Div("2nd Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_BOTTOM_RIGHT")
-            ] , style={'width': '100%', 'height': '50%', 'border': '2px solid black'})
+        self.limit_list_df, self.trace_list_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
         
-    skeleton_container = html.Div(
-    [
-        dbc.Row(
-            [
-                dbc.Col(html.Div("1st of two columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
-                dbc.Col(children=[first_row_second_column,second_row_second_column] , className="col-sm-12 col-md-6 col-lg-6")
-            ], style={'height': '100%'} ##className = "CONTENT_ROW"
-        ),
-    ],  style={'height': '100%'} ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
-    )    
-    
-    ##layout_out = skeleton_container
-
-    ######
-    
-    first_row_second_column =  dbc.Row(
-            [
-                dbc.Col(children=[styling_data_table], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
-            ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
-
-    second_row_second_column = dbc.Row(
-            [
-                dbc.Col(children=[legend_graph], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_BOTTOM_RIGHT")
-            ] , style={'width': '100%', 'height': '50%', 'border': '2px solid black'})
+        #traces = all_trace_list_df[all_trace_list_df['limit_id'].isin(limits_in)].copy()
+        traces = trace_list_df
         
-    dashboard_container = html.Div(
-    [
-        dbc.Row(
-            [
-                dbc.Col(children=[graph_out], className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
-                dbc.Col(children=[first_row_second_column,second_row_second_column] , className="col-sm-12 col-md-6 col-lg-6")
-            ], style={'height': '100%'} ##className = "CONTENT_ROW"
-        ),
-    ],  style={'height': '100%'} ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
-    )    
+        print("traces >>>>>>", traces)
+        
+        styling_data_table = ft.CreateFormatTable(page_name,traces)
+        
+        legend_fig = cl.CreateLegendFig(limits_in,traces)
+        
+        legend_graph = dcc.Graph(figure=legend_fig,
+                                 id= page_name + 'legend_out_id',
+                                 style={'width': '100%', 'height': '100%'})
+        
+        #style_and_legend_column = gsal.GetStyleAndLegendColumn(styling_data_table,legend_graph)
+        
+        
+        ## all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict
     
-    layout_out = dashboard_container
+        self.GraphClass = dg.DataGraph(dmtool_userid, limits_in)
+        
+        self.GraphOut = dcc.Graph(figure=self.GraphClass.GraphFig,                              ,
+                                      id=page_name + 'graph_out_id',
+                                      config=dict(responsive=True),
+                                      mathjax=True,
+                                      #className='GRAPH'
+                                      style={'width': '100%', 'height': '100%'}
+                                      )
+        
+        ### this is to show how the page is laid out and structured
+        
+        first_row_second_column =  dbc.Row(
+                [
+                    dbc.Col(html.Div("1st Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
+                ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
     
-    return layout_out
+        second_row_second_column = dbc.Row(
+                [
+                    dbc.Col(html.Div("2nd Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_BOTTOM_RIGHT")
+                ] , style={'width': '100%', 'height': '50%', 'border': '2px solid black'})
+            
+        skeleton_container = html.Div(
+        [
+            dbc.Row(
+                [
+                    dbc.Col(html.Div("1st of two columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
+                    dbc.Col(children=[first_row_second_column,second_row_second_column] , className="col-sm-12 col-md-6 col-lg-6")
+                ], style={'height': '100%'} ##className = "CONTENT_ROW"
+            ),
+        ],  style={'height': '100%'} ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
+        )    
+        
+        ##layout_out = skeleton_container
+    
+        ######
+        
+        first_row_second_column =  dbc.Row(
+                [
+                    dbc.Col(children=[styling_data_table], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
+                ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
+    
+        second_row_second_column = dbc.Row(
+                [
+                    dbc.Col(children=[legend_graph], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_BOTTOM_RIGHT")
+                ] , style={'width': '100%', 'height': '50%', 'border': '2px solid black'})
+            
+        dashboard_container = html.Div(
+        [
+            dbc.Row(
+                [
+                    dbc.Col(children=[self.GraphOut], className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
+                    dbc.Col(children=[first_row_second_column,second_row_second_column] , className="col-sm-12 col-md-6 col-lg-6")
+                ], style={'height': '100%'} ##className = "CONTENT_ROW"
+            ),
+        ],  style={'height': '100%'} ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
+        )    
+        
+        #self.layout = dashboard_container
+        
+        
+        #layout = style_plot_and_traces_form_form
+        
+        
+        
+    def SetLayout(self):
+        self.layout = html.Div([
+            dcc.Location(id=page_name+'url',refresh=True),
+            ##html.Div(id=page_name+'layout-div'),
+            html.Div(id=page_name+'content',children=self.CreateLayout(),className="DASHBOARD_CONTAINER_STYLE"),
+            self.row_of_buttons,
+            self.debug_output
+        ],className="PAGE_CONTENT")
+        
+        '''
+        @callback(Output('container-button-timestamp_1', 'children'),
+            Input('btn-nclicks-1_1', 'n_clicks_timestamp'),
+            Input('btn-nclicks-2_1', 'n_clicks_timestamp'))
+        def display(btn1, btn2):
+            if btn1 == None:
+                btn1 = 0
+            if btn2 == None:
+                btn2 = 0
+            prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+            if int(btn1) > int(btn2):
+                msg = 'Save was most recently clicked  > ' + prop_id
+            elif int(btn2) > int(btn1):
+                msg = 'Cancel was most recently clicked  > ' + prop_id
+            else:
+                msg = 'None of the buttons have been clicked yet'
+            return html.Div([
+                html.Div('btn1: {}'.format(btn1)),
+                html.Div('btn2: {}'.format(btn2)),
+                html.Div(msg)
+            ]) 
+        '''
 
 
-#layout = style_plot_and_traces_form_form
 
-button_styling_1 = {'font-size': '12px',
-                  'width': '70px',
-                  'display': 'inline-block', 
-                  'margin-bottom': '1px',
-                  'margin-right': '0px',
-                  'margin-top': '1px',
-                  'height':'19px',
-                  'verticalAlign': 'center'}
+dbl = DashBoardLayout(pagename_in, dmtools_userid_in,  listoflimits_in)
 
-
-new_button =  html.Button("New", id= page_name + "new_button_id", style=button_styling_1)
-save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
-cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
-home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling_1)
-row_of_buttons = html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS")
-  
-debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
-                                      html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
-                                      html.Div(id=page_name+'button-output-div', children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
-                                      className="PAGE_DEBUG_CONTENT")
-
-
-layout = html.Div([
-    dcc.Location(id=page_name+'url',refresh=True),
-    ##html.Div(id=page_name+'layout-div'),
-    html.Div(id=page_name+'content',children=create_layout(default_limits),className="DASHBOARD_CONTAINER_STYLE"),
-    row_of_buttons,
-    debug_output
-],className="PAGE_CONTENT")
-
-'''
-@callback(Output('container-button-timestamp_1', 'children'),
-    Input('btn-nclicks-1_1', 'n_clicks_timestamp'),
-    Input('btn-nclicks-2_1', 'n_clicks_timestamp'))
-def display(btn1, btn2):
-    if btn1 == None:
-        btn1 = 0
-    if btn2 == None:
-        btn2 = 0
-    prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
-    if int(btn1) > int(btn2):
-        msg = 'Save was most recently clicked  > ' + prop_id
-    elif int(btn2) > int(btn1):
-        msg = 'Cancel was most recently clicked  > ' + prop_id
-    else:
-        msg = 'None of the buttons have been clicked yet'
-    return html.Div([
-        html.Div('btn1: {}'.format(btn1)),
-        html.Div('btn2: {}'.format(btn2)),
-        html.Div(msg)
-    ]) 
-'''
-
+layout = dbl.layout
 
 @callback(
     Output(page_name+'button-output-div', 'children'),
@@ -331,6 +320,6 @@ def update_output(table_data, table_data_in):
     print('spat : table_data_in >>>>>>>>>>',table_data_in)
     graph_class.UpdateGraph(dmtool_userid,table_data_in)
     legend_out = ul.UpdateLegendFig(dmtool_userid, table_data_in)
-    
-    return graph_class.GraphFig, legend_out
+
+return graph_class.GraphFig, legend_out
 
