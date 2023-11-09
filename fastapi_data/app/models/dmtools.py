@@ -228,6 +228,19 @@ class Limit(LimitBase, table=True):
 class LimitCreate(LimitBase):
     pass
 
+class LimitSelect(SQLModel):
+    old_limit_id : int = Field(default=None, nullable=True, primary_key=False)
+    spin_dependency : str = Field(default=None)
+    result_type : str = Field(default=None)
+    measurement_type : str = Field(default=None)
+    data_label : str = Field(default=None)
+    data_comment : str = Field(default=None)
+    data_reference : str = Field(default=None)
+    experiment :  str = Field(default=None)
+    public : int = Field(default=None, nullable=True, primary_key=False) ## boolean
+    official : int = Field(default=None, nullable=True, primary_key=False) ## boolean
+    greatest_hit : int = Field(default=None, nullable=True, primary_key=False) ## boolean
+    year : int = Field(default=None, nullable=True, primary_key=False)
         
 ## Plot Ownership 
 # Fields
