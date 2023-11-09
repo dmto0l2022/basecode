@@ -339,7 +339,7 @@ class DashBoardLayout():
         #Index(['id', 'limit_id', 'data_label', 'trace_id', 'trace_name', 'line_color',
         #   'symbol_color', 'fill_color', 'line', 'symbol'],
     
-        colored_limits = pd.DataFrame(data=colored_limits_list, columns=self.trace_list_df.columns, index=limits_traces_in.index)
+        colored_limits = pd.DataFrame(data=colored_limits_list, columns=self.limits_traces_df.columns, index=self.limits_traces_df.index)
         
       
         print("formatting table >>>> colored_limits >>>", colored_limits)
