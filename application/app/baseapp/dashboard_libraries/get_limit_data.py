@@ -17,7 +17,7 @@ internal_header = {'dmtool-userid':'999'}
 def parse_series_and_values(limits_dataframe_in):
     limit_data = []
     for index, row in limits_dataframe_in.iterrows():
-        #print("Parsing Row")
+        print("Parsing Row")
         #print(row['id'], row['data_values'])
         data_label = row[['data_label']].iloc[0]
         data_reference= row[['data_reference']].iloc[0]
@@ -68,7 +68,7 @@ def parse_series_and_values(limits_dataframe_in):
                 limit_data.append(appendthis)
         #lol
     
-    #print('gld : parsed limit data >>>>',limit_data) 
+    print('gld : parsed limit data >>>>',limit_data) 
     
     ## the datatable needed a unique id
     ## the id of the limit table was renamed to limit_id
