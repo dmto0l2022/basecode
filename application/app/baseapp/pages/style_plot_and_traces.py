@@ -669,7 +669,7 @@ class DashBoardLayout():
         
         self.FigGraph.update_layout(autosize=True)
         
-        for index, row in self.limits_traces_df.iterrows():
+        for index, row in self.limits_data_df.iterrows():
           
             trace_data = self.limits_data_df[(self.limits_data_df['id']==row['id'])
                                           & (self.limits_data_df['trace_id']==row['trace_id'])]
