@@ -66,7 +66,7 @@ from app.baseapp.dashboard_libraries import scaling as sc
 
 dmtool_userid = '16384'
 
-
+'''
 def GetChart(chart_in):
 
     chartdiv = html.Div([chart_in], className="CHART_DIV NOPADDING")
@@ -81,18 +81,21 @@ def GetChart(chart_in):
                 className="col col-lg-6 PAGE_GRAPH_COLUMN_CONTENT_LEFT",
             )
     return column_chart_out
-
+'''
 ###########
+
 from app.baseapp.dashboard_libraries import get_limit_data as gld
 
 ##############################################
+'''
 def get_plotid():
     plotid_datetime = datetime.now()
     plotid = plotid_datetime.strftime('%Y%m%d%H%M%S%f%z')
     return plotid
+'''
 
 ############
-default_limits = [45]
+## default_limits = [45]
 
 ####################################
 
@@ -261,7 +264,7 @@ class DashBoardLayout():
         
         first_row_second_column =  dbc.Row(
                 [
-                    dbc.Col(children=[self.FormatDataTable], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
+                    dbc.Col(id= self.page_name+'table_div', children=[self.FormatDataTable], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
                 ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
     
         second_row_second_column = dbc.Row(
@@ -819,8 +822,9 @@ def displayClick1_1(btn1, btn2, btn3, btn4):
     return html.Div(msg)
 
 
-@callback(Output(page_name+'graph_id','figure'), Output(page_name+ 'format_table_id', data), Output(page_name+'legend_id','figure'),, [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
+@callback(Output(page_name+'graph_id','figure'), Output(page_name+'table_div', children), Output(page_name+'legend_id','figure'),, [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
 def display_page(pathname,search,href):
+    print('spat : 3 chart call vack triggered')
     original_search_string = search
     just_list = original_search_string.split('=')
     o = urlparse(href)
@@ -844,7 +848,7 @@ def display_page(pathname,search,href):
     dbl.CreateGraph()
     dbl.CreateLegend()
     dbl.CreateTable()
-    return dbl.FigTable, dbl.FigLegend, dbl.FigTable 
+    return dbl.FigGraph, dbl.FormatDataTable, dbl.FigLegend
 
 @callback(
     [Output(page_name+'graph_id','figure'),Output(page_name+'legend_id','figure'),],
@@ -852,6 +856,7 @@ def display_page(pathname,search,href):
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
     #print('spat : table_data_in >>>>>>>>>>',table_data_in)
+    print('spat : update data call back triggered')
     dbl.UpdateGraph(table_data_in)
     dbl.UpdateLegendFig(table_data_in)
     return dbl.GraphFig, dbl.LegendFig
