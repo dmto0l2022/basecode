@@ -564,7 +564,7 @@ class DashBoardLayout():
                                  id= self.page_name + 'legend_id',
                                  style={'width': '100%', 'height': '100%'})
 
-    def UpdateLegendFig(self, plotseries_table_in):
+    def UpdateLegend(self, plotseries_table_in):
         #result_ids = [1,262]
         
         print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
@@ -758,14 +758,14 @@ class DashBoardLayout():
         #plotseries_default_plot = CreatePlotSeriesDefault(df_experiment_all_plot)
         
         # Create figure
-        self.ChartFig = go.Figure()
-        self.ChartFig.update_xaxes(
+        self.FigChart = go.Figure()
+        self.FigChart.update_xaxes(
               title_text=x_title_text,
               type="log"
               #type="linear"
           )
         
-        self.ChartFig.update_yaxes(
+        self.FigChart.update_yaxes(
               title_text=y_title_text,
               #type="log"
               type="linear"
@@ -781,7 +781,7 @@ class DashBoardLayout():
             
             trace_name = str(row['trace_name'])
             
-            self.ChartFig.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'],
+            self.FigChart.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'],
                               mode='lines+markers', # 'lines' or 'markers'
                               line=dict(width=4,dash=row['line'],color=row['line_color']),
                               #showscale=False,
@@ -800,7 +800,7 @@ class DashBoardLayout():
                               name=str(row['trace_name'])
                                    ))
             
-            self.ChartFig.update(layout_showlegend=False)
+            self.FigChart.update(layout_showlegend=False)
 
 
 dbl = DashBoardLayout(page_name, dmtool_userid,  listoflimits)
@@ -870,5 +870,5 @@ def update_output(table_data, table_data_in):
     print('spat : update data call back triggered')
     dbl.UpdateChart(table_data_in)
     dbl.UpdateLegend(table_data_in)
-    return dbl.ChartFig, dbl.LegendFig
+    return dbl.FigChart, dbl.FigLegend
 
