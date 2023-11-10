@@ -197,6 +197,7 @@ class DashBoardLayout():
         self.CreateLegend()
 
     def UpdateData(self, listoflimits_in):
+        self.listoflimits = listoflimits_in
         self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, listoflimits_in)
 
     def CreateLayout(self):
