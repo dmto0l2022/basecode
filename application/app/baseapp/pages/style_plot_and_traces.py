@@ -197,9 +197,9 @@ class DashBoardLayout():
 
     def CreateLayout(self):
         
-        self.CreateGraph()
-        self.CreateFormatTable()
-        self.CreateLegendFig()
+        #self.CreateGraph()
+        #self.CreateFormatTable()
+        #self.CreateLegendFig()
     
         #self.limit_list_df, self.trace_list_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
         
@@ -213,7 +213,7 @@ class DashBoardLayout():
         #legend_fig = FigLegend
         
         legend_graph = dcc.Graph(figure=self.FigLegend,
-                                 id= page_name + 'legend_id',
+                                 id= self.page_name + 'legend_id',
                                  style={'width': '100%', 'height': '100%'})
         
         #style_and_legend_column = gsal.GetStyleAndLegendColumn(styling_data_table,legend_graph)
@@ -224,7 +224,7 @@ class DashBoardLayout():
         #self.GraphClass = dg.DataGraph(dmtool_userid, limits_in)
         
         self.DataGraph = dcc.Graph(figure=self.FigGraph,
-                                  id=page_name + 'graph_id',
+                                  id=self.page_name + 'graph_id',
                                   config=dict(responsive=True),
                                   mathjax=True,
                                   #className='GRAPH'
@@ -319,7 +319,7 @@ class DashBoardLayout():
     
     ################
     
-    def CreateFormatTable(self):
+    def CreateTable(self):
     
         #limits_traces_copy = limits_traces_in.copy()
         print("format table : limits_traces_df.columns >> " , self.limits_traces_df.columns)
@@ -451,7 +451,7 @@ class DashBoardLayout():
             )
 
     
-    def CreateLegendFig(self):
+    def CreateLegend(self):
     
         #limit_id = [1]
         
@@ -819,7 +819,7 @@ def displayClick1_1(btn1, btn2, btn3, btn4):
     return html.Div(msg)
 
 
-@callback(Output(page_name+'content', 'children'), [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
+@callback(Output(page_name+'graph_id','figure'), Output(page_name+ 'format_table_id', data), Output(page_name+'legend_id','figure'),, [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
 def display_page(pathname,search,href):
     original_search_string = search
     just_list = original_search_string.split('=')
@@ -841,8 +841,10 @@ def display_page(pathname,search,href):
     #list_of_limits = [33]
     #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
     dbl.UpdateData(list_of_limits_int)
-    dbl.CreateLayout()
-    return dbl.layout
+    dbl.CreateGraph()
+    dbl.CreateLegend()
+    dbl.CreateTable()
+    return dbl.FigTable, dbl.FigLegend, dbl.FigTable 
 
 @callback(
     [Output(page_name+'graph_id','figure'),Output(page_name+'legend_id','figure'),],
