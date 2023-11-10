@@ -223,8 +223,8 @@ class DashBoardLayout():
     
         #self.GraphClass = dg.DataGraph(dmtool_userid, limits_in)
         
-        self.DataGraph = dcc.Graph(figure=self.FigGraph,
-                                  id=self.page_name + 'graph_id',
+        self.GraphChart = dcc.Graph(figure=self.FigChart,
+                                  id=self.page_name + 'chart_id',
                                   config=dict(responsive=True),
                                   mathjax=True,
                                   #className='GRAPH'
@@ -732,7 +732,7 @@ class DashBoardLayout():
             #                    name=str(row['id'])))
   
         self.GraphChart = dcc.Graph(figure=self.FigChart,
-                                  id=self.page_name + 'graph_id',
+                                  id=self.page_name + 'chart_id',
                                   config=dict(responsive=True),
                                   mathjax=True,
                                   #className='GRAPH'
@@ -829,7 +829,7 @@ def displayClick1_1(btn1, btn2, btn3, btn4):
     return html.Div(msg)
 
 
-@callback(Output(page_name+'graph_div','children'),
+@callback(Output(page_name+'chart_div','children'),
           Output(page_name+'table_div', 'children'),
           Output(page_name+'legend_div','children'),
           [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
@@ -861,7 +861,7 @@ def display_page(pathname,search,href):
     return dbl.DataGraph, dbl.FormatDataTable, dbl.LegendGraph
 
 @callback(
-    [Output(page_name+'graph_id','figure'),Output(page_name+'legend_id','figure'),],
+    [Output(page_name+'chart_id','figure'),Output(page_name+'legend_id','figure'),],
     [Input(page_name+'format_table_id', 'data')],
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
