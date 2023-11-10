@@ -12,7 +12,7 @@ import redis
 import pickle
 
 #r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-#dmtool_userid = 16384 ## testing
+dmtool_userid = 16384 ## testing
 
 dash.register_page(__name__, path='/select_limits_to_plot')
 page_name = 'select_limits_to_plot'
@@ -43,17 +43,17 @@ from app.baseapp.dashboard_libraries import all_data_tables as adt
 
 from app.baseapp.dashboard_libraries import get_limit_data as gld
 
-from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
+#from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
 
 from app.baseapp.libraries import main_table_editor as mte
 
 dash.register_page(__name__, path='/select_limits_to_plot')
 
-guid = gdu.GetUserID()
+#guid = gdu.GetUserID()
 
-print("guid.dmtool_userid >>>>>>>>>>>>>>>>", guid.dmtool_userid)
+#print("guid.dmtool_userid >>>>>>>>>>>>>>>>", guid.dmtool_userid)
 
-dashdataandtables = adt.DashDataAndTables(guid.dmtool_userid)
+#dashdataandtables = adt.DashDataAndTables(guid.dmtool_userid)
 
 #####
 
@@ -301,6 +301,7 @@ def get_layout():
 
 layout = get_layout()
 
+'''
 @callback(Output(page_name +'_plot_name_id', 'children'),
               [Input(page_name +'url', 'href')])
 def set_plot_name(href: str):
@@ -328,6 +329,7 @@ def set_plot_name(href: str):
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     
     return html.H1(children=plot_id + ' - ' + plot_name) 
+'''
 
 @callback(
     Output(page_name + 'main_limits_table', 'data'),
