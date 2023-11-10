@@ -185,15 +185,15 @@ class DashBoardLayout():
         self.limits_list_dict = {}
         self.plot_series_df = pd.DataFrame()
         self.FigGraph = go.Figure()
-        self.FigLegend = None
+        self.FigLegend = go.Figure()
         self.FormatDataTable = dash_table.DataTable()
         self.GraphClass = None
         self.DataGraph = dcc.Graph()
         self.layout = {}
         self.UpdateData([1])
         self.CreateGraph()
-        self.CreateFormatTable()
-        self.CreateLegendFig()
+        self.CreateTable()
+        self.CreateLegend()
 
     def UpdateData(self, listoflimits_in):
         self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, listoflimits_in)
