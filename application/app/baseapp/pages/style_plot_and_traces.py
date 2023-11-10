@@ -184,26 +184,22 @@ class DashBoardLayout():
         self.limits_data_df = pd.DataFrame()
         self.limits_list_dict = {}
         self.plot_series_df = pd.DataFrame()
-        self.FigGraph = go.Figure()
+        self.FigChart = go.Figure()
         self.FigLegend = go.Figure()
-        self.FormatDataTable = dash_table.DataTable()
+        self.TableFormat = dash_table.DataTable()
         self.GraphClass = None
-        self.DataGraph = dcc.Graph()
-        self.LegendGraph = dcc.Graph()
+        self.GraphChart = dcc.Graph()
+        self.GraphLegend = dcc.Graph()
         self.layout = {}
         self.UpdateData([1])
-        self.CreateGraph()
-        self.CreateTable()
+        self.CreateChart()
+        self.CreateFormat()
         self.CreateLegend()
 
     def UpdateData(self, listoflimits_in):
         self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, listoflimits_in)
 
     def CreateLayout(self):
-        
-        #self.CreateGraph()
-        #self.CreateFormatTable()
-        #self.CreateLegendFig()
     
         #self.limit_list_df, self.trace_list_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtools_userid, self.listoflimits)
         
@@ -323,7 +319,7 @@ class DashBoardLayout():
     
     ################
     
-    def CreateTable(self):
+    def CreateFormat(self):
     
         #limits_traces_copy = limits_traces_in.copy()
         print("format table : limits_traces_df.columns >> " , self.limits_traces_df.columns)
@@ -375,7 +371,7 @@ class DashBoardLayout():
         
         symbol_options=[{'label': i, 'value': i} for i in symbol_list]
         
-        self.FormatDataTable = dash_table.DataTable(
+        self.TableFormat = dash_table.DataTable(
                 id=self.page_name + 'format_table_id',
                 #row_deletable=True,
                 # Add this line
@@ -674,11 +670,11 @@ class DashBoardLayout():
                 self.FigLegend.update_yaxes(visible=False)
 
     
-    def CreateGraph(self):
+    def CreateChart(self):
       
-        self.FigGraph = go.Figure()
+        self.FigChart = go.Figure()
         
-        self.FigGraph.update_layout(autosize=True)
+        self.FigChart.update_layout(autosize=True)
         
         for index, row in self.limits_data_df.iterrows():
           
@@ -693,7 +689,7 @@ class DashBoardLayout():
             x_title_text = r"$\text{WIMP Mass [GeV}/c^{2}]$"
             y_title_text = r"$\text{Cross Section [cm}^{2}\text{] (normalized to nucleon)}$"
             
-            self.FigGraph.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'], ## scaled needs to be updated
+            self.FigChart.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'], ## scaled needs to be updated
                               mode='lines+markers', # 'lines' or 'markers'
                               line=dict(width=4,dash=row['line'],color=row['line_color']),
                               #showscale=False,
@@ -712,14 +708,14 @@ class DashBoardLayout():
                               name=str(row['trace_name'])
                                    ))
             
-            self.FigGraph.update(layout_showlegend=False)
+            self.FigChart.update(layout_showlegend=False)
             
-            self.FigGraph.update_xaxes(
+            self.FigChart.update_xaxes(
               title_text=x_title_text,
               type="log"
               #type="linear"
             )
-            self.FigGraph.update_yaxes(
+            self.FigChart.update_yaxes(
               title_text=y_title_text,
               #type="log"
               type="linear"
@@ -735,7 +731,7 @@ class DashBoardLayout():
             #                    ),
             #                    name=str(row['id'])))
   
-        self.DataGraph = dcc.Graph(figure=self.FigGraph,
+        self.GraphChart = dcc.Graph(figure=self.FigChart,
                                   id=self.page_name + 'graph_id',
                                   config=dict(responsive=True),
                                   mathjax=True,
@@ -743,7 +739,7 @@ class DashBoardLayout():
                                   style={'width': '100%', 'height': '100%'}
                                       )
     
-    def UpdateGraph(self, plotseries_table_in):
+    def UpdateChart(self, plotseries_table_in):
         #result_ids = [1,262]
         print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
         self.plot_series_df = pd.DataFrame.from_dict(plotseries_table_in)
@@ -761,14 +757,14 @@ class DashBoardLayout():
         #plotseries_default_plot = CreatePlotSeriesDefault(df_experiment_all_plot)
         
         # Create figure
-        self.GraphFig = go.Figure()
-        self.GraphFig.update_xaxes(
+        self.ChartFig = go.Figure()
+        self.ChartFig.update_xaxes(
               title_text=x_title_text,
               type="log"
               #type="linear"
           )
         
-        self.GraphFig.update_yaxes(
+        self.ChartFig.update_yaxes(
               title_text=y_title_text,
               #type="log"
               type="linear"
@@ -784,7 +780,7 @@ class DashBoardLayout():
             
             trace_name = str(row['trace_name'])
             
-            self.GraphFig.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'],
+            self.ChartFig.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'],
                               mode='lines+markers', # 'lines' or 'markers'
                               line=dict(width=4,dash=row['line'],color=row['line_color']),
                               #showscale=False,
@@ -803,7 +799,7 @@ class DashBoardLayout():
                               name=str(row['trace_name'])
                                    ))
             
-            self.GraphFig.update(layout_showlegend=False)
+            self.ChartFig.update(layout_showlegend=False)
 
 
 dbl = DashBoardLayout(page_name, dmtool_userid,  listoflimits)
@@ -859,9 +855,9 @@ def display_page(pathname,search,href):
     #list_of_limits = [33]
     #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
     dbl.UpdateData(list_of_limits_int)
-    dbl.CreateGraph()
+    dbl.CreateChart()
     dbl.CreateLegend()
-    dbl.CreateTable()
+    dbl.CreateFormat()
     return dbl.DataGraph, dbl.FormatDataTable, dbl.LegendGraph
 
 @callback(
@@ -871,7 +867,7 @@ def display_page(pathname,search,href):
 def update_output(table_data, table_data_in):
     #print('spat : table_data_in >>>>>>>>>>',table_data_in)
     print('spat : update data call back triggered')
-    dbl.UpdateGraph(table_data_in)
+    dbl.UpdateChart(table_data_in)
     dbl.UpdateLegendFig(table_data_in)
     return dbl.GraphFig, dbl.LegendFig
 
