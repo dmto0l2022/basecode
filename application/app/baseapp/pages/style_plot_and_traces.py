@@ -261,7 +261,7 @@ class DashBoardLayout():
         
         first_row_second_column =  dbc.Row(
                 [
-                    dbc.Col(id= self.page_name+'table_div', children=[self.FormatDataTable], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
+                    dbc.Col(id= self.page_name+'table_div', children=[self.TableFormat], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
                 ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
     
         second_row_second_column = dbc.Row(
