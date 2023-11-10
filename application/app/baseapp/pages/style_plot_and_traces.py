@@ -232,7 +232,7 @@ class DashBoardLayout():
                                       )
         
         ### this is to show how the page is laid out and structured
-        
+        '''
         first_row_second_column =  dbc.Row(
                 [
                     dbc.Col(html.Div("1st Row of Second columns"), className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_TOP_RIGHT"),
@@ -253,6 +253,7 @@ class DashBoardLayout():
             ),
         ],  style={'height': '100%'} ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
         )    
+        '''
         
         ##layout_out = skeleton_container
     
@@ -284,7 +285,7 @@ class DashBoardLayout():
         
         #layout = style_plot_and_traces_form_form
         
-        layout_out = html.Div([
+        self.layout = html.Div([
             dcc.Location(id=page_name+'url',refresh=True),
             ##html.Div(id=page_name+'layout-div'),
             html.Div(id=page_name+'content',children=dashboard_container,className="DASHBOARD_CONTAINER_STYLE"),
@@ -292,7 +293,6 @@ class DashBoardLayout():
             self.debug_output
         ],className="PAGE_CONTENT")
 
-        return layout_out
         
         '''
         @callback(Output('container-button-timestamp_1', 'children'),
@@ -793,7 +793,7 @@ class DashBoardLayout():
 
 
 dbl = DashBoardLayout(page_name, dmtool_userid,  listoflimits)
-
+dbl.CreateLayout()
 layout = dbl.layout
 
 @callback(
