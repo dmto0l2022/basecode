@@ -115,7 +115,7 @@ dash.register_page(__name__, path='/style_plot_and_traces')
 
 ## create plot series
 
-class DashBoardLayout():
+class StylePlotAndTracesDashBoardLayout():
     def __init__(self,pagename_in, dmtool_userid_in,  listoflimits_in):
         self.page_name = pagename_in
         self.data_table_id =  self.page_name + "data_table_id"
@@ -803,7 +803,7 @@ class DashBoardLayout():
             self.FigChart.update(layout_showlegend=False)
 
 
-dbl = DashBoardLayout(page_name, dmtool_userid,  listoflimits)
+dbl = StylePlotAndTracesDashBoardLayout(page_name, dmtool_userid,  listoflimits)
 dbl.CreateLayout()
 layout = dbl.layout
 
