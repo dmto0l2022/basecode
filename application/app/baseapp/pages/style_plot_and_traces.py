@@ -560,7 +560,7 @@ class DashBoardLayout():
                 #y axis    
                 self.FigLegend.update_yaxes(visible=False)
 
-        self.LegendGraph = dcc.Graph(figure=self.FigLegend,
+        self.GraphLegend = dcc.Graph(figure=self.FigLegend,
                                  id= self.page_name + 'legend_id',
                                  style={'width': '100%', 'height': '100%'})
 
@@ -859,7 +859,7 @@ def display_page(pathname,search,href):
     dbl.CreateChart()
     dbl.CreateLegend()
     dbl.CreateFormat()
-    return dbl.DataGraph, dbl.FormatDataTable, dbl.LegendGraph
+    return dbl.GraphChart, dbl.TableFormat, dbl.GraphLegend
 
 @callback(
     [Output(page_name+'chart_id','figure'),Output(page_name+'legend_id','figure'),],
@@ -869,6 +869,6 @@ def update_output(table_data, table_data_in):
     #print('spat : table_data_in >>>>>>>>>>',table_data_in)
     print('spat : update data call back triggered')
     dbl.UpdateChart(table_data_in)
-    dbl.UpdateLegendFig(table_data_in)
-    return dbl.GraphFig, dbl.LegendFig
+    dbl.UpdateLegend(table_data_in)
+    return dbl.ChartFig, dbl.LegendFig
 
