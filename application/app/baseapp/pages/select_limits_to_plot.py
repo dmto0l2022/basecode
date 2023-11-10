@@ -11,8 +11,8 @@ import json
 import redis
 import pickle
 
-r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-dmtool_userid = 16384 ## testing
+#r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+#dmtool_userid = 16384 ## testing
 
 dash.register_page(__name__, path='/select_limits_to_plot')
 page_name = 'select_limits_to_plot'
@@ -43,12 +43,18 @@ from app.baseapp.dashboard_libraries import all_data_tables as adt
 
 from app.baseapp.dashboard_libraries import get_limit_data as gld
 
+from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
+
 from app.baseapp.libraries import main_table_editor as mte
 
 dash.register_page(__name__, path='/select_limits_to_plot')
 
+guid = gdu.GetUserID()
 
-dashdataandtables = adt.DashDataAndTables(dmtool_userid)
+print("guid.dmtool_userid >>>>>>>>>>>>>>>>", guid.dmtool_userid)
+
+dashdataandtables = adt.DashDataAndTables(guid.dmtool_userid)
+
 #####
 
 
