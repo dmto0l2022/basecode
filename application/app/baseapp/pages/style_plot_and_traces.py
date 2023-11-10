@@ -841,8 +841,8 @@ def display_page(pathname,search,href):
     #list_of_limits = [33]
     #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
     dbl.UpdateData(list_of_limits_int)
-    layout_return = dbl.CreateLayout()
-    return layout_return
+    dbl.CreateLayout()
+    return dbl.layout
 
 @callback(
     [Output(page_name+'graph_id','figure'),Output(page_name+'legend_id','figure'),],
