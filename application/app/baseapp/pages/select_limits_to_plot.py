@@ -57,236 +57,214 @@ dashdataandtables = adt.DashDataAndTables(dmtool_userid)
 
 #####
 
-
-page_name = "select_limits_to_plot"
-page_title = 'Select Limits to Plot'
-table_meta_data_data = [
+class SelectLimitsToPlotDashBoardLayout():
+    def __init__(self,pagename_in, dmtool_userid_in,  listoflimits_in):
+        self.page_name = pagename_in
+        self.data_table_id =  self.page_name + "data_table_id"
+        #self.table_meta_data_data = [
                         ['id', '3%'],
                         ['experiment', '3%'],
                         ['data_comment', '44%'],
                         ['data_label', '44%'],
                        ]
+        
+        self.row_height = '12px'
+        self.table_font_size = '11px'
 
-row_height = '12px'
-table_font_size = '11px'
-single_api = 'limit'
-multiple_api = 'limits'
-dmtool_userid = 16384
-main_table_id = page_name + 'main_limits_table'
-dmtool_user_id = '0' ### default - no user should be given 0
-internal_header={'dmtool-userid':'0'}
+        self.table_cell_styles = {'textAlign': 'left',
+                                          'padding': '0px',
+                                          'font_size': self.table_font_size,
+                                          'overflow': 'hidden',
+                                          'textOverflow': 'ellipsis',
+                                          'border': '1px solid black',
+                                          'height': row_height,
+                                          'overflow': 'hidden',
+                                          'maxWidth': 0 ## made things work!!
+                                         }
+        
+        self.css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of body rows
+                                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"}
+                                    ]
 
-fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
-fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
-fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
+        self.button_styling_1 = {'font-size': '12px',
+                          'width': '70px',
+                          'display': 'inline-block', 
+                          'margin-bottom': '1px',
+                          'margin-right': '0px',
+                          'margin-top': '1px',
+                          'height':'19px',
+                          'verticalAlign': 'center'}
 
-main_limits_table = mte.get_main_table(page_title,
-                                     main_table_id,
-                                     table_meta_data_data,
-                                     row_height,
-                                     table_font_size,
-                                     fastapi_url_all,
-                                     fastapi_url_one,
-                                     dmtool_userid)
+        self.internal_header={'dmtool-userid':'0'}
 
+        self.fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
+        self.fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
+        self.fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
 
-
-## limits to plot table
-
-limits_to_plot_df = pd.DataFrame(data=None, columns=['id','plot_id','limit_id','data_reference','data_label'])
-
-style_header_var={ 'backgroundColor': 'black','color': 'white'}
-
-row_height = '12px'
-table_font_size = '11px'
-
-table_cell_styles = {'textAlign': 'left',
-                                  'padding': '0px',
-                                  'font_size': table_font_size,
-                                  'overflow': 'hidden',
-                                  'textOverflow': 'ellipsis',
-                                  'border': '1px solid black',
-                                  'height': row_height,
-                                  'overflow': 'hidden',
-                                  'maxWidth': 0 ## made things work!!
-                                 }
-
-css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !important"},
-                            {"selector": "p", "rule" :"margin: 0px; padding:0px"},
-                            {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                            {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                            {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of body rows
-                            {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},  # set height of header
-                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"},
-                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + row_height + "; height: " + row_height + ";line-height: " + row_height + ";max-height: " + row_height + ";"}
-                            ]
+        main_limits_table = mte.get_main_table(page_title,
+                                             main_table_id,
+                                             table_meta_data_data,
+                                             row_height,
+                                             table_font_size,
+                                             fastapi_url_all,
+                                             fastapi_url_one,
+                                             dmtool_userid)
 
 
-limits_to_plot_table = dash_table.DataTable(
-    id=page_name+'limits_to_plot_table',
-    data=limits_to_plot_df.to_dict('records'),
-    columns=[{'name': 'id', 'id': 'id'},
-             {'name': 'limit_id', 'id': 'limit_id'},
-             {'name': 'data_reference', 'id': 'data_reference'},
-             {'name': 'data_label', 'id': 'data_label'}
-             ],
-    #fixed_rows={'headers': True},
-    page_size=7,
-    style_cell=table_cell_styles,
-    css=css_row_heights,
-    #sort_action='native',
-    #sort_mode='multi',
-    #sort_as_null=['', 'No'],
-    #sort_by=[{'column_id': 'expid', 'direction': 'desc'}],
-    filter_action='none',
-    row_deletable=True,
-    #row_selectable='multi',
-    #selected_rows=[],
-    style_table={'height': '25vh',},
-    style_cell_conditional=[
-        {'if': {'column_id': 'id'},
-         'width': '5%'},
-        {'if': {'column_id': 'limit_id'},
-         'width': '10%'},
-        {'if': {'column_id': 'data_reference'},
-         'width': '25%'},
-        {'if': {'column_id': 'data_label'},
-         'width': '55%'},
-    ],
-    style_data={
-        'whiteSpace': 'nowrap'
-    },
-    style_header=style_header_var,
-) 
+    def CreateLimitsToPlot():
 
-filter_row_1 =  dbc.Row([
-        dbc.Col(
-            [
-                dashdataandtables.official_table
+        ## limits to plot table
+        
+        self.limits_to_plot_df = pd.DataFrame(data=None, columns=['id','plot_id','limit_id','data_reference','data_label'])
+        
+        style_header_var={ 'backgroundColor': 'black','color': 'white'}
+        
+        self.limits_to_plot_table = dash_table.DataTable(
+            id=page_name+'limits_to_plot_table',
+            data=limits_to_plot_df.to_dict('records'),
+            columns=[{'name': 'id', 'id': 'id'},
+                     {'name': 'limit_id', 'id': 'limit_id'},
+                     {'name': 'data_reference', 'id': 'data_reference'},
+                     {'name': 'data_label', 'id': 'data_label'}
+                     ],
+            #fixed_rows={'headers': True},
+            page_size=7,
+            style_cell=self.table_cell_styles,
+            css=self.css_row_heights,
+            #sort_action='native',
+            #sort_mode='multi',
+            #sort_as_null=['', 'No'],
+            #sort_by=[{'column_id': 'expid', 'direction': 'desc'}],
+            filter_action='none',
+            row_deletable=True,
+            #row_selectable='multi',
+            #selected_rows=[],
+            style_table={'height': '25vh',},
+            style_cell_conditional=[
+                {'if': {'column_id': 'id'},
+                 'width': '5%'},
+                {'if': {'column_id': 'limit_id'},
+                 'width': '10%'},
+                {'if': {'column_id': 'data_reference'},
+                 'width': '25%'},
+                {'if': {'column_id': 'data_label'},
+                 'width': '55%'},
             ],
-            width=2,
-            ),
-        dbc.Col(
-            [
-                dashdataandtables.experiments_table
-            ],
-            width=2,
-            ),
-        dbc.Col(
-            [
-                dashdataandtables.result_types_table
-            ],
-            width=2,
-            ),
-        dbc.Col(
-            [
-                dashdataandtables.spin_dependency_table
-            ],
-            width=2,
-            ),
-       dbc.Col(
-            [
-                dashdataandtables.years_table
-            ],
-            width=2,
-            ),
-       dbc.Col(
-            [
-                dashdataandtables.greatest_hit_table
-            ],
-            width=2,
-            ),
-])
-    
-def get_debug_table():
-    row2_debug_ret = dbc.Row([dbc.Col(
-                [
-                    dashdataandtables.debug_dropdown_table
-                ],
-                width=12,),
-                   ])
+            style_data={
+                'whiteSpace': 'nowrap'
+            },
+            style_header=style_header_var,
+        ) 
 
-    row3_1_debug_ret = dbc.Row([dbc.Col(
-                [
-                    dashdataandtables.debug_dropdown_table
-                ],
-                width=12,),
-                   ], className ="TABLE_ROW NOPADDING")
-    
-    #row3 = dbc.Row([dbc.Col(html.Div('List Here',id='tbl_out'),width=12,),])
-    return row2_debug_ret, row3_1_debug_ret
-
-    
-limits_to_plot_row = dbc.Row([dbc.Col(
+        self.RowLimitsToPlot = dbc.Row([dbc.Col(
                 [
                      limits_to_plot_table
                 ],
                 width=12,)],
                     className ="TABLE_ROW NOPADDING")
+
     
-'''
-def old_form_stuff():
+    def CreateFilters():
+
+        self.RowFilters =  dbc.Row([
+                dbc.Col(
+                    [
+                        dashdataandtables.official_table
+                    ],
+                    width=2,
+                    ),
+                dbc.Col(
+                    [
+                        dashdataandtables.experiments_table
+                    ],
+                    width=2,
+                    ),
+                dbc.Col(
+                    [
+                        dashdataandtables.result_types_table
+                    ],
+                    width=2,
+                    ),
+                dbc.Col(
+                    [
+                        dashdataandtables.spin_dependency_table
+                    ],
+                    width=2,
+                    ),
+               dbc.Col(
+                    [
+                        dashdataandtables.years_table
+                    ],
+                    width=2,
+                    ),
+               dbc.Col(
+                    [
+                        dashdataandtables.greatest_hit_table
+                    ],
+                    width=2,
+                    ),
+        ])
     
-    row4 = html.Div([dcc.Store(id='plot_expids')])
+    def GetDebugTable():
+        row2_debug_ret = dbc.Row([dbc.Col(
+                    [
+                        dashdataandtables.debug_dropdown_table
+                    ],
+                    width=12,),
+                       ])
     
-    row5 = dbc.Row([html.P(children='List of limits appear here',id='limit_list')])
+        row3_1_debug_ret = dbc.Row([dbc.Col(
+                    [
+                        dashdataandtables.debug_dropdown_table
+                    ],
+                    width=12,),
+                       ], className ="TABLE_ROW NOPADDING")
+        
+        #row3 = dbc.Row([dbc.Col(html.Div('List Here',id='tbl_out'),width=12,),])
+        return row2_debug_ret, row3_1_debug_ret
+
     
-    #####
-    
-    select_limits_to_plot_form_title = html.Div(html.P(children='Select Experiments to Plot', className = "NOPADDING_CONTENT FORM_TITLE"))
-    
-    select_limits_to_plot_form_content  = dbc.Row(
-        [
-            dbc.Col(
-                [
-                    html.P(children='Select Limits to Plot', className = "NOPADDING_CONTENT FORM_TITLE")
-                ],
-                width=6,
-            )
-        ],
-        className="g-3",
-    )
+    def CreateLayout():
 
-'''
-#def get_plot_name_div():
-#    current_plot_name = "current plot name is : >> " + session['dmtool_plot_name']
-#    plot_name_div_return = html.Div(children=[current_plot_name],id='current_plot_name_id')
-#    return plot_name_div_return
+        self.DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id')
+        
+        
+        
+        new_button =  html.Button("New", id= page_name + "new_button_id", style=self.button_styling_1)
+        save_button =  html.Button("Save", id= page_name + "save_button_id", style=self.button_styling_1)
+        cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=self.button_styling_1)
+        home_button =  html.Button("Home",  id=page_name + "home_button_id", style=self.button_styling_1)
+        list_button =  html.Button("List",  id=page_name + "list_button_id", style=self.button_styling_1)
+        self.DivRowOfButtons = html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS"),
+        
+        
+        self.RowLimits = dbc.Row([dbc.Col(
+                            [ main_limits_table.dash_table_main],
+                            width=12,)],
+                            className ="NOPADDING_CONTENT")
 
-plot_name_div = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id')
-button_styling_1 = {'font-size': '12px',
-                  'width': '70px',
-                  'display': 'inline-block', 
-                  'margin-bottom': '1px',
-                  'margin-right': '0px',
-                  'margin-top': '1px',
-                  'height':'19px',
-                  'verticalAlign': 'center'}
-
-new_button =  html.Button("New", id= page_name + "new_button_id", style=button_styling_1)
-save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
-cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
-home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling_1)
-list_button =  html.Button("List",  id=page_name + "list_button_id", style=button_styling_1)
-
-
-limits_table = dbc.Row([dbc.Col(
-                    [ main_limits_table.dash_table_main],
-                    width=12,)],
-                    className ="NOPADDING_CONTENT")
-
-maincolumn = dbc.Col(
-            [
-                dcc.Location(id=page_name+'url',refresh=True),
-                plot_name_div,
-                filter_row_1,
-                limits_table,
-                limits_to_plot_row,
-                html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS"),
-                dbc.Row([html.P(children='List of limits appear here',id=page_name+'limit_list')]),
-            ],
-            width=12,)
-
+        self.RowListOfLimits = dbc.Row([html.P(children='List of limits appear here',id=page_name+'limit_list')])
+        
+        maincolumn = dbc.Col(
+                    [
+                        dcc.Location(id=page_name+'url',refresh=True),
+                        self.DivPlotName,
+                        self.RowFilters,
+                        self.RowLimits,
+                        self.RowLimitsToPlot,
+                        self.DivRowOfButtons,
+                        self.RowListOfLimits
+                    ],
+                    width=12,)
+        
+        self.layout = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+        
 ###
 
 ##
@@ -298,8 +276,8 @@ def get_layout():
     return layout_out
         
 ##className="PAGE_CONTENT",)
-
-layout = get_layout()
+sltpdb = SelectLimitsToPlotDashBoardLayout()
+layout = sltpdb.layout
 
 '''
 @callback(Output(page_name +'_plot_name_id', 'children'),
