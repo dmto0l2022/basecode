@@ -273,7 +273,7 @@ class DashBoardLayout():
         [
             dbc.Row(
                 [
-                    dbc.Col(id= self.page_name+'graph_div', children=[self.GraphChart], className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
+                    dbc.Col(id= self.page_name+'chart_div', children=[self.GraphChart], className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
                     dbc.Col(children=[first_row_second_column,second_row_second_column] , className="col-sm-12 col-md-6 col-lg-6")
                 ], style={'height': '100%'} ##className = "CONTENT_ROW"
             ),
