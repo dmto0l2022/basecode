@@ -822,7 +822,10 @@ def displayClick1_1(btn1, btn2, btn3, btn4):
     return html.Div(msg)
 
 
-@callback(Output(page_name+'graph_id','figure'), Output(page_name+'table_div', children), Output(page_name+'legend_id','figure'),, [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
+@callback(Output(page_name+'graph_id','figure'),
+          Output(page_name+'table_div', children),
+          Output(page_name+'legend_id','figure'),
+          [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
 def display_page(pathname,search,href):
     print('spat : 3 chart call vack triggered')
     original_search_string = search
