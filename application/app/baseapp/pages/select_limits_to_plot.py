@@ -53,7 +53,7 @@ dash.register_page(__name__, path='/select_limits_to_plot')
 
 #print("guid.dmtool_userid >>>>>>>>>>>>>>>>", guid.dmtool_userid)
 
-#dashdataandtables = adt.DashDataAndTables(guid.dmtool_userid)
+dashdataandtables = adt.DashDataAndTables(guid.dmtool_userid)
 
 #####
 
