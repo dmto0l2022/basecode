@@ -189,6 +189,7 @@ class DashBoardLayout():
         self.FormatDataTable = dash_table.DataTable()
         self.GraphClass = None
         self.DataGraph = dcc.Graph()
+        self.LegendGraph = dcc.Graph()
         self.layout = {}
         self.UpdateData([1])
         self.CreateGraph()
@@ -269,14 +270,14 @@ class DashBoardLayout():
     
         second_row_second_column = dbc.Row(
                 [
-                    dbc.Col(children=[legend_graph], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_BOTTOM_RIGHT")
+                    dbc.Col(id= self.page_name+'legend_div', children=[legend_graph], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_BOTTOM_RIGHT")
                 ] , style={'width': '100%', 'height': '50%', 'border': '2px solid black'})
             
         dashboard_container = html.Div(
         [
             dbc.Row(
                 [
-                    dbc.Col(children=[self.DataGraph], className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
+                    dbc.Col((id= self.page_name+'graph_div', children=[self.DataGraph], className="col-sm-12 col-md-6 col-lg-6 PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
                     dbc.Col(children=[first_row_second_column,second_row_second_column] , className="col-sm-12 col-md-6 col-lg-6")
                 ], style={'height': '100%'} ##className = "CONTENT_ROW"
             ),
@@ -561,7 +562,10 @@ class DashBoardLayout():
                 self.FigLegend.update_xaxes(visible=False)
                 #y axis    
                 self.FigLegend.update_yaxes(visible=False)
-      
+
+        self.LegendGraph = dcc.Graph(figure=self.FigLegend,
+                                 id= self.page_name + 'legend_id',
+                                 style={'width': '100%', 'height': '100%'})
 
     def UpdateLegendFig(self, plotseries_table_in):
         #result_ids = [1,262]
@@ -731,7 +735,14 @@ class DashBoardLayout():
             #                    ),
             #                    name=str(row['id'])))
   
-  
+        self.DataGraph = dcc.Graph(figure=self.FigGraph,
+                                  id=self.page_name + 'graph_id',
+                                  config=dict(responsive=True),
+                                  mathjax=True,
+                                  #className='GRAPH'
+                                  style={'width': '100%', 'height': '100%'}
+                                      )
+    
     def UpdateGraph(self, plotseries_table_in):
         #result_ids = [1,262]
         print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
@@ -822,9 +833,9 @@ def displayClick1_1(btn1, btn2, btn3, btn4):
     return html.Div(msg)
 
 
-@callback(Output(page_name+'graph_id','figure'),
+@callback(Output(page_name+'graph_div','children'),
           Output(page_name+'table_div', 'children'),
-          Output(page_name+'legend_id','figure'),
+          Output(page_name+'legend_div','children'),
           [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
 def display_page(pathname,search,href):
     print('spat : 3 chart call vack triggered')
@@ -851,7 +862,7 @@ def display_page(pathname,search,href):
     dbl.CreateGraph()
     dbl.CreateLegend()
     dbl.CreateTable()
-    return dbl.FigGraph, dbl.FormatDataTable, dbl.FigLegend
+    return dbl.DataGraph, dbl.FormatDataTable, dbl.LegendGraph
 
 @callback(
     [Output(page_name+'graph_id','figure'),Output(page_name+'legend_id','figure'),],
