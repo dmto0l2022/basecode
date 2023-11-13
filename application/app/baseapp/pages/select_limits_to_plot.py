@@ -71,7 +71,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.row_height = '12px'
         self.table_font_size = '11px'
 
-        self.table_cell_styles = {'textAlign': 'left',
+        self.data_table_cell_styles = {'textAlign': 'left',
                                           'padding': '0px',
                                           'font_size': self.table_font_size,
                                           'overflow': 'hidden',
@@ -82,7 +82,28 @@ class SelectLimitsToPlotDashBoardLayout():
                                           'maxWidth': 0 ## made things work!!
                                          }
         
-        self.css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+        self.data_table_css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of body rows
+                                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"}
+                                    ]
+
+         self.limits_to_plot_table_cell_styles = {'textAlign': 'left',
+                                          'padding': '0px',
+                                          'font_size': self.table_font_size,
+                                          'overflow': 'hidden',
+                                          'textOverflow': 'ellipsis',
+                                          'border': '1px solid black',
+                                          'height': row_height,
+                                          'overflow': 'hidden',
+                                          'maxWidth': 0 ## made things work!!
+                                         }
+        
+        self.limits_to_plot_table_css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !important"},
                                     {"selector": "p", "rule" :"margin: 0px; padding:0px"},
                                     {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
                                     {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
@@ -104,10 +125,10 @@ class SelectLimitsToPlotDashBoardLayout():
         self.internal_header={'dmtool-userid':'0'}
 
         self.fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
-        self.fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
-        self.fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
-
-        main_limits_table = mte.get_main_table(page_title,
+        self.fastapi_url_all_limits = fastapi_url + multiple_api ## multiple limit operations
+        self.fastapi_url_one_limit = fastapi_url + single_api + "/" ## single limit operations
+        self.style_header_var={ 'backgroundColor': 'black','color': 'white'}
+        main_data_table = mte.get_main_table(page_title,
                                              main_table_id,
                                              table_meta_data_data,
                                              row_height,
@@ -117,9 +138,12 @@ class SelectLimitsToPlotDashBoardLayout():
                                              dmtool_userid)
 
 
+        self.limits_to_plot_df = pd.DataFrame()
+        self.RowLimitsToPlot = dbc.Row()
+
     def CreateLimitsToPlot():
 
-        ## limits to plot table
+        ## creates empty limits to plot table and sets the unique id
         
         self.limits_to_plot_df = pd.DataFrame(data=None, columns=['id','plot_id','limit_id','data_reference','data_label'])
         
@@ -135,8 +159,8 @@ class SelectLimitsToPlotDashBoardLayout():
                      ],
             #fixed_rows={'headers': True},
             page_size=7,
-            style_cell=self.table_cell_styles,
-            css=self.css_row_heights,
+            style_cell=self.limits_to_plot_table_cell_styles,
+            css=self.limits_to_plot_table_css_row_heights,
             #sort_action='native',
             #sort_mode='multi',
             #sort_as_null=['', 'No'],
