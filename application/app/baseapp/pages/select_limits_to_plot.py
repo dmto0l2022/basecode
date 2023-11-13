@@ -329,7 +329,7 @@ class SelectLimitsToPlotDashBoardLayout():
             css=self.filter_table_css_row_heights,
             selected_rows=[],
             style_table={
-                'height': table_heights,
+                'height': self.filter_table_heights,
             },
             style_header=self.style_header_var,
             #style_data={
@@ -356,6 +356,9 @@ class SelectLimitsToPlotDashBoardLayout():
             style_table={'height': table_heights},  # defaults to 500
             style_cell=self.filter_table_cell_styles,
             css=self.filter_table_css_row_heights,
+            style_table={
+                'height': self.filter_table_heights,
+            },
             selected_rows=[],
             style_header=self.style_header_var,
             #style_data={
@@ -383,7 +386,7 @@ class SelectLimitsToPlotDashBoardLayout():
             fixed_rows={'headers': True},
             selected_rows=[],
             style_table={
-                'height': table_heights,
+                'height': self.filter_table_heights,
             },
             style_header=self.style_header_var,
             #style_data={
@@ -411,7 +414,7 @@ class SelectLimitsToPlotDashBoardLayout():
             fixed_rows={'headers': True},
             selected_rows=[],
             style_table={
-                'height': table_heights,
+                'height': self.filter_table_heights,
             },
             style_header=self.style_header_var,
             #style_data={
@@ -438,7 +441,9 @@ class SelectLimitsToPlotDashBoardLayout():
             ],
              style_cell=self.filter_table_cell_styles,
             css=self.filter_table_css_row_heights,
-            style_table={'height': table_heights,},
+            style_table={
+                'height': self.filter_table_heights,
+            },
             style_header=self.style_header_var,
             #style_data={
             #    'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
