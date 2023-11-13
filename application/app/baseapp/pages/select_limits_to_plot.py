@@ -627,35 +627,19 @@ class SelectLimitsToPlotDashBoardLayout():
                     width=12,)
         
         self.layout = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
-        
-    def AddCallBacks():
-        
-    
-    class BaseBlock:
-        def __init__(self, app=None):
-            self.app = app
-    
-            if self.app is not None and hasattr(self, 'callbacks'):
-                self.callbacks(self.app)
-    
-    class LayoutBlock(BaseBlock):
-        layout = html.Div('layout for this "block".')
-    
-        def callbacks(self, app):
-    
-            @app.callback(Output('foo', 'figure'), [Input('bar')])
-            def do_things(bar):
-                return SOME_DATA
-    
-            @app.callback(Output('baz', 'figure'), [Input('boop')])
-            def do_things(boop):
-                return OTHER_DATA
 
-# creating a new MyBlock will register all callbacks
-block = MyBlock(app=app)
 
-# now insert this component into the app's layout 
-app.layout['slot'] = block.layout
+def get_layout():
+    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+    #layout_out = html.Div(id=page_name+'content',children=[main_table_1.dash_table_main],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+    
+    return layout_out
+        
+##className="PAGE_CONTENT",)
+sltpdb = SelectLimitsToPlotDashBoardLayout()
+layout = sltpdb.layout
+
+### add callbacks to layout object
 
 @callback(
     Output(page_name + 'main_limits_table', 'data'),
@@ -811,8 +795,6 @@ def trigger_fork(active_cell_exp,active_cell_plot,data_in):
     return data_in
 
 
-
-
 @callback(
     [Output(page_name+'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
      Output(page_name+'limit_list','children')],
@@ -878,15 +860,7 @@ def button_click(button1,button2,button3,button4,button5,plot_table_in):
 
 ##
 
-def get_layout():
-    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
-    #layout_out = html.Div(id=page_name+'content',children=[main_table_1.dash_table_main],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
-    
-    return layout_out
-        
-##className="PAGE_CONTENT",)
-sltpdb = SelectLimitsToPlotDashBoardLayout()
-layout = sltpdb.layout
+
 
 '''
 @callback(Output(page_name +'_plot_name_id', 'children'),
