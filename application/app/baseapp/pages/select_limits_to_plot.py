@@ -227,10 +227,10 @@ class SelectLimitsToPlotDashBoardLayout():
         
         ## experiment drop down table ##
         experiments_req_url = self.fastapi_get_dropdown + 'experiment'
-        #print(experiments_req_url)
+        print("experiments_req_url >>>>>>>>>>>>",experiments_req_url)
         r = requests.get(experiments_req_url)
         experiments_response_data = r.json()
-        print("experiments_response_data: " ,experiments_response_data)
+        print("experiments_response_data >>>>>>>>>>>>" ,experiments_response_data)
         
         self.experiments_df = pd.DataFrame.from_dict(experiments_response_data)
         self.experiments_df.reset_index(drop=True, inplace=True)
