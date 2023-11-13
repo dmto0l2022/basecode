@@ -481,7 +481,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 'whiteSpace': 'normal',
                 'height': 'auto',
             },
-            style_header=style_header_var,
+            style_header=self.style_header_var,
             #tooltip_data=[
             #    {
             #        column: {'value': str(value), 'type': 'markdown'}
