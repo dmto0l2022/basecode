@@ -12,10 +12,12 @@ import redis
 import pickle
 
 #r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-dmtool_userid = 16384 ## testing
+
 
 dash.register_page(__name__, path='/select_limits_to_plot')
+dmtool_userid = 16384 ## testing
 page_name = 'select_limits_to_plot'
+listoflimits = []
 
 #### select limits to plot
 
@@ -636,7 +638,7 @@ def get_layout():
     return layout_out
         
 ##className="PAGE_CONTENT",)
-sltpdb = SelectLimitsToPlotDashBoardLayout()
+sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, dmtool_userid,  listoflimits)
 layout = sltpdb.layout
 
 ### add callbacks to layout object
