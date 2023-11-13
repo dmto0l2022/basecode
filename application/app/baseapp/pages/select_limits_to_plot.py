@@ -62,8 +62,9 @@ dashdataandtables = adt.DashDataAndTables(dmtool_userid)
 class SelectLimitsToPlotDashBoardLayout():
     def __init__(self,pagename_in, dmtool_userid_in,  listoflimits_in):
         self.page_name = pagename_in
-        self.data_table_id =  self.page_name + "data_table_id"
-        self.table_meta_data_data = [
+        self.page_title = pagename_in
+        self.main_table_id =  self.page_name + "data_table_id"
+        self.table_meta_data_main_table = [
                                         ['id', '3%'],
                                         ['experiment', '3%'],
                                         ['data_comment', '44%'],
@@ -177,11 +178,11 @@ class SelectLimitsToPlotDashBoardLayout():
         self.style_header_var={ 'backgroundColor': 'black','color': 'white'}
         self.main_data_table = mte.get_main_table(self.page_title,
                                              self.main_table_id,
-                                             self.table_meta_data_data,
+                                             self.table_meta_data_main_table,
                                              self.row_height,
                                              self.table_font_size,
-                                             self.fastapi_url_all,
-                                             self.fastapi_url_one,
+                                             self.fastapi_url_all_limits,
+                                             self.fastapi_url_one_limit,
                                              self.dmtool_userid)
 
 
