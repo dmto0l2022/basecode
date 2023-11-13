@@ -478,7 +478,7 @@ class SelectLimitsToPlotDashBoardLayout():
             tooltip_duration=None,
         )
 
-     def CreateFilterRow(self):
+    def CreateFilterRow(self):
 
         self.RowFilters =  dbc.Row([
                 dbc.Col(
