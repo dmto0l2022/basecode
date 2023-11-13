@@ -527,7 +527,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
 
     def PopulateMainDataTable(self):
-         main_data_table = mte.get_main_table(self.page_title,
+         ClsMainDataTable = mte.get_main_table(self.page_title,
                                              self.main_table_id,
                                              self.table_meta_data_main_table,
                                              self.row_height,
@@ -535,7 +535,8 @@ class SelectLimitsToPlotDashBoardLayout():
                                              self.fastapi_url_all_limits,
                                              self.fastapi_url_one_limit,
                                              self.dmtool_userid)
-        self. = main_data_table.dash_table_main
+        
+        self.main_data_table = ClsMainDataTable.dash_table_main
 
     
     def CreateLimitsToPlot(self):
