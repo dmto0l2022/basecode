@@ -642,14 +642,14 @@ class SelectLimitsToPlotDashBoardLayout():
         self.layout = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
 
 
-def get_layout():
-    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
-    #layout_out = html.Div(id=page_name+'content',children=[main_table_1.dash_table_main],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
-    
-    return layout_out
-        
-##className="PAGE_CONTENT",)
+#def get_layout():
+#    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+#    #layout_out = html.Div(id=page_name+'content',children=[main_table_1.dash_table_main],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+#    
+#    return layout_out
+
 sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, dmtool_userid,  listoflimits)
+sltpdb.CreateLayout()
 layout = sltpdb.layout
 
 ### add callbacks to layout object
