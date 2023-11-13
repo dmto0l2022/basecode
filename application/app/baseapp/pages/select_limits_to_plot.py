@@ -621,7 +621,7 @@ class SelectLimitsToPlotDashBoardLayout():
         
         
         self.RowLimits = dbc.Row([dbc.Col(
-                            [ main_limits_table.dash_table_main],
+                            [ self.main_data_table],
                             width=12,)],
                             className ="NOPADDING_CONTENT")
 
