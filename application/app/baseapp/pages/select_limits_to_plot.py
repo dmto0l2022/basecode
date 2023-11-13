@@ -71,6 +71,27 @@ class SelectLimitsToPlotDashBoardLayout():
         self.row_height = '12px'
         self.table_font_size = '11px'
 
+        self.filter_table_cell_styles = {'textAlign': 'left',
+                                          'padding': '0px',
+                                          'font_size': self.table_font_size,
+                                          'overflow': 'hidden',
+                                          'textOverflow': 'ellipsis',
+                                          'border': '1px solid black',
+                                          'height': row_height,
+                                          'overflow': 'hidden',
+                                          'maxWidth': 0 ## made things work!!
+                                         }
+        
+        self.filter_table_css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of body rows
+                                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"}
+                                    ]
+
         self.data_table_cell_styles = {'textAlign': 'left',
                                           'padding': '0px',
                                           'font_size': self.table_font_size,
@@ -125,6 +146,32 @@ class SelectLimitsToPlotDashBoardLayout():
         self.internal_header={'dmtool-userid':'0'}
 
         self.fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
+
+        self.experiments_df = None
+        self.result_types_df = None
+        self.spin_dependency_df = None
+        self.greatest_hit_df = None
+        self.limits_df = None
+        self.limits_table_df = None
+        self.limits_metadata_df = None
+        self.limits_traces_df = None
+        self.limits_data_df = None
+        self.official_df = None
+        self.years_df = None
+        
+        self.years_table = dash_table.DataTable()
+        self.official_table = dash_table.DataTable()
+        self.experiments_table = dash_table.DataTable()
+        self.result_types_table = dash_table.DataTable()
+        self.spin_dependency_table = dash_table.DataTable()
+        self.greatest_hit_table = dash_table.DataTable()
+        self.limits_table = dash_table.DataTable()
+        self.plots_table = dash_table.DataTable()
+        self.row_height = '12px'
+        
+        self.populate_dataframes(dmtools_userid_in)
+
+        
         self.fastapi_url_all_limits = fastapi_url + multiple_api ## multiple limit operations
         self.fastapi_url_one_limit = fastapi_url + single_api + "/" ## single limit operations
         self.style_header_var={ 'backgroundColor': 'black','color': 'white'}
@@ -140,7 +187,338 @@ class SelectLimitsToPlotDashBoardLayout():
 
         self.limits_to_plot_df = pd.DataFrame()
         self.RowLimitsToPlot = dbc.Row()
+        self.PopulateFilterDataFrames()
+        self.CreateFilterTables()
+        self.CreateFilterRow()
 
+
+    def PopulateFilterDataFrames(self):
+        #do some parsing
+        dropdown_route = 'metadata/dropdown_valuepair'
+        fastapi_url = "http://container_fastapi_about_1:8014/dmtool/fastapi_data/internal/"
+        fastapi_get_dropdown = fastapi_url + dropdown_route + "?variable_in="
+        
+        ## external api route
+        ##  'https://dev1.dmtool.info/dmtool/fastapi_data/internal/dropdown_valuepair?variable_in=year' \
+
+        ## each table uses the following
+        #r = requests.get(url, headers=headers)
+        #response_data = r.json()
+        #print('response data')
+        #print('===================')
+        #print(response_data)
+        #print('===== response data frame ==============')
+        #response_data_frame = pd.DataFrame(response_data)
+        #response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+        #print(response_data_frame)
+        #print('===== response data frame ==============')
+        
+        
+        #self.all_dropdown_pairs = \
+        #    pd.read_sql('SELECT variable,label, value, data_type FROM dropdown_valuepairs', con=self.engine)
+        
+        ## experiment drop down table ##
+        experiments_req_url = fastapi_get_dropdown + 'experiment'
+        #print(experiments_req_url)
+        r = requests.get(experiments_req_url)
+        experiments_response_data = r.json()
+        #print("experiments_response_data: " ,experiments_response_data)
+        
+        self.experiments_df = pd.DataFrame.from_dict(experiments_response_data)
+        self.experiments_df.reset_index(drop=True, inplace=True)
+        
+        ## result type drop down table ##
+        
+        result_types_req_url = fastapi_get_dropdown + 'result_type'
+        r = requests.get(result_types_req_url)
+        result_types_response_data = r.json()
+        
+        self.result_types_df  = pd.DataFrame.from_dict(result_types_response_data)
+        
+        self.result_types_df.reset_index(drop=True, inplace=True)
+
+        ## spin dependency drop down table ##
+        
+        spin_dependency_req_url = fastapi_get_dropdown + 'spin_dependency'
+        r = requests.get(spin_dependency_req_url)
+        spin_dependency_response_data = r.json()
+        
+        self.spin_dependency_df  =  pd.DataFrame.from_dict(spin_dependency_response_data)
+        
+        self.spin_dependency_df.reset_index(drop=True, inplace=True)
+        
+        ## result type drop down table ##
+        
+        greatest_hit_req_url = fastapi_get_dropdown + 'greatest_hit'
+        r = requests.get(greatest_hit_req_url)
+        greatest_hit_response_data = r.json()
+        
+        self.greatest_hit_df = pd.DataFrame.from_dict(greatest_hit_response_data)
+        
+        #self.greatest_hit_df.reset_index(drop=True, inplace=True)
+
+        official_req_url = fastapi_get_dropdown + 'official'
+        r = requests.get(official_req_url)
+        official_response_data = r.json()
+        
+        self.official_df = pd.DataFrame.from_dict(official_response_data)
+        
+        #self.official_df.reset_index(drop=True, inplace=True)
+
+        year_req_url = fastapi_get_dropdown + 'year'
+        r = requests.get(year_req_url)
+        year_response_data = r.json()
+        
+        self.years_df = pd.DataFrame.from_dict(year_response_data)
+
+        ####
+    def CreateFilterTables(self):
+        
+        self.years_table = dash_table.DataTable(
+            id=self.page_name+'years_table',
+            columns=[
+                {'name': 'year', 'id': 'label', 'type': 'text'},
+            ],
+            data=self.years_df.to_dict('records'),
+            filter_action='none',
+            row_selectable='multi',
+            fixed_rows={'headers': True},
+            #page_size=3,
+            style_cell_conditional=[
+                {'if': {'column_id': 'year'},
+                 'width': '90%'},
+            ],
+            style_cell=self.filter_table_style_cell,
+            css=table_css,
+            selected_rows=[],
+            style_table={
+                'height': self.filter_table_heights,
+            },
+            style_header=style_header_var,
+            #style_data={
+            #    'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
+            #    ##'overflow': 'hidden',
+            #    ##'textOverflow': 'ellipsis',
+            #}
+        )
+
+        self.official_table = dash_table.DataTable(
+            id=self.page_name+'official_table',
+            columns=[
+                {'name': 'official', 'id': 'label', 'type': 'boolean'},
+            ],
+            data=self.official_df.to_dict('records'),
+            filter_action='none',
+            row_selectable='multi',
+            #page_size=5,
+            style_cell_conditional=[
+                {'if': {'column_id': 'label'},
+                 'width': '90%'},
+            ],
+            fixed_rows={'headers': True},
+            style_cell=table_style_cell,
+            css=table_css,
+            selected_rows=[],
+            style_table={
+                'height': table_heights,
+            },
+            style_header=style_header_var,
+            #style_data={
+             #   'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
+             #   ##'overflow': 'hidden',
+            #    ##'textOverflow': 'ellipsis',
+            #}
+        )
+
+        self.experiments_table = dash_table.DataTable(
+            id=self.page_name+'experiments_table',
+            columns=[
+                {'name': 'experiment', 'id': 'label', 'type': 'text'},
+            ],
+            data=self.experiments_df.to_dict('records'),
+           filter_action='none',
+            row_selectable='multi',
+            #page_size=5,
+            style_cell_conditional=[
+                {'if': {'column_id': 'label'},
+                 'width': '90%'},
+            ],
+            fixed_rows={'headers': True},
+            style_table={'height': table_heights},  # defaults to 500
+            style_cell=table_style_cell,
+            css=table_css,
+            selected_rows=[],
+            style_header=style_header_var,
+            #style_data={
+            #    'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
+            #    ##'overflow': 'hidden',
+            #    ##'textOverflow': 'ellipsis',
+            #}
+        )
+
+        self.result_types_table = dash_table.DataTable(
+            id=self.page_name+'result_types_table',
+            columns=[
+                {'name': 'result_type', 'id': 'label', 'type': 'text'},
+            ],
+            data=self.result_types_df.to_dict('records'),
+            filter_action='none',
+            row_selectable='multi',
+            #page_size=5,
+            style_cell_conditional=[
+                {'if': {'column_id': 'label'},
+                 'width': '90%'},
+            ],
+            style_cell=table_style_cell,
+            css=table_css,
+            fixed_rows={'headers': True},
+            selected_rows=[],
+            style_table={
+                'height': table_heights,
+            },
+            style_header=style_header_var,
+            #style_data={
+            #    'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
+            #    ##'overflow': 'hidden',
+            #    ##'textOverflow': 'ellipsis',
+            #}
+        )
+
+        self.spin_dependency_table = dash_table.DataTable(
+            id=self.page_name+'spin_dependency_table',
+            columns=[
+                {'name': 'spin_dependency', 'id': 'label', 'type': 'text'},
+            ],
+            data=self.spin_dependency_df.to_dict('records'),
+            filter_action='none',
+            row_selectable='multi',
+            #page_size=5,
+            style_cell_conditional=[
+                {'if': {'column_id': 'label'},
+                 'width': '90%'},
+            ],
+            style_cell=table_style_cell,
+            css=table_css,
+            fixed_rows={'headers': True},
+            selected_rows=[],
+            style_table={
+                'height': table_heights,
+            },
+            style_header=style_header_var,
+            #style_data={
+            #    'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
+            #    ##'overflow': 'hidden',
+            #    ##'textOverflow': 'ellipsis',
+            #}
+        )
+
+        self.greatest_hit_table = dash_table.DataTable(
+            id=self.page_name+'greatest_hit_table',
+            columns=[
+                {'name': 'greatest_hit', 'id': 'label', 'type': 'text'},
+            ],
+            data=self.greatest_hit_df.to_dict('records'),
+            #page_size=5,
+            fixed_rows={'headers': True},
+            filter_action='none',
+            row_selectable='multi',
+            selected_rows=[],
+            style_cell_conditional=[
+                {'if': {'column_id': 'label'},
+                 'width': '90%'},
+            ],
+             style_cell=table_style_cell,
+            css=table_css,
+            style_table={'height': table_heights,},
+            style_header=style_header_var,
+            #style_data={
+            #    'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
+                ##'overflow': 'hidden',
+                ##'textOverflow': 'ellipsis',
+            #}
+        )
+
+
+        self.filter_table_df = pd.DataFrame(data=[],columns=['variable','label','value'])
+        
+        self.debug_dropdown_table = dash_table.DataTable(
+            id='debug_dropdown_table',
+            data=self.filter_table_df.to_dict('records'),
+            columns=[{'name': 'variable', 'id': 'variable'},
+                     {'name': 'label', 'id': 'label'},
+                     {'name': 'value', 'id': 'value'},
+                     ],
+            #fixed_rows={'headers': True},
+            page_size=5,
+            filter_action='none',
+            #row_selectable='multi',
+            #selected_rows=[],
+            style_cell=table_style_cell,
+            css=table_css,
+            style_table={'height': '25vh',},
+            style_cell_conditional=[
+                {'if': {'column_id': 'variable'},
+                 'width': '25%'},
+                {'if': {'column_id': 'label'},
+                 'width': '25%'},
+                {'if': {'column_id': 'value'},
+                 'width': '25%'},
+            ],
+            style_data={
+                'whiteSpace': 'normal',
+                'height': 'auto',
+            },
+            style_header=style_header_var,
+            #tooltip_data=[
+            #    {
+            #        column: {'value': str(value), 'type': 'markdown'}
+            #        for column, value in row.items()
+            #    } for row in data
+            #],
+            tooltip_duration=None,
+        )
+
+     def CreateFilterRow(self):
+
+        self.RowFilters =  dbc.Row([
+                dbc.Col(
+                    [
+                        self.official_table
+                    ],
+                    width=2,
+                    ),
+                dbc.Col(
+                    [
+                        self.experiments_table
+                    ],
+                    width=2,
+                    ),
+                dbc.Col(
+                    [
+                        self.result_types_table
+                    ],
+                    width=2,
+                    ),
+                dbc.Col(
+                    [
+                        self.spin_dependency_table
+                    ],
+                    width=2,
+                    ),
+               dbc.Col(
+                    [
+                        self.years_table
+                    ],
+                    width=2,
+                    ),
+               dbc.Col(
+                    [
+                        self.greatest_hit_table
+                    ],
+                    width=2,
+                    ),
+        ])
+    
     def CreateLimitsToPlot():
 
         ## creates empty limits to plot table and sets the unique id
@@ -194,46 +572,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     className ="TABLE_ROW NOPADDING")
 
     
-    def CreateFilters():
-
-        self.RowFilters =  dbc.Row([
-                dbc.Col(
-                    [
-                        dashdataandtables.official_table
-                    ],
-                    width=2,
-                    ),
-                dbc.Col(
-                    [
-                        dashdataandtables.experiments_table
-                    ],
-                    width=2,
-                    ),
-                dbc.Col(
-                    [
-                        dashdataandtables.result_types_table
-                    ],
-                    width=2,
-                    ),
-                dbc.Col(
-                    [
-                        dashdataandtables.spin_dependency_table
-                    ],
-                    width=2,
-                    ),
-               dbc.Col(
-                    [
-                        dashdataandtables.years_table
-                    ],
-                    width=2,
-                    ),
-               dbc.Col(
-                    [
-                        dashdataandtables.greatest_hit_table
-                    ],
-                    width=2,
-                    ),
-        ])
+   
     
     def GetDebugTable():
         row2_debug_ret = dbc.Row([dbc.Col(
@@ -289,51 +628,33 @@ class SelectLimitsToPlotDashBoardLayout():
         
         self.layout = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
         
-###
 
-##
+    
+    class BaseBlock:
+        def __init__(self, app=None):
+            self.app = app
+    
+            if self.app is not None and hasattr(self, 'callbacks'):
+                self.callbacks(self.app)
+    
+    class LayoutBlock(BaseBlock):
+        layout = html.Div('layout for this "block".')
+    
+        def callbacks(self, app):
+    
+            @app.callback(Output('foo', 'figure'), [Input('bar')])
+            def do_things(bar):
+                return SOME_DATA
+    
+            @app.callback(Output('baz', 'figure'), [Input('boop')])
+            def do_things(boop):
+                return OTHER_DATA
 
-def get_layout():
-    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
-    #layout_out = html.Div(id=page_name+'content',children=[main_table_1.dash_table_main],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
-    
-    return layout_out
-        
-##className="PAGE_CONTENT",)
-sltpdb = SelectLimitsToPlotDashBoardLayout()
-layout = sltpdb.layout
+# creating a new MyBlock will register all callbacks
+block = MyBlock(app=app)
 
-'''
-@callback(Output(page_name +'_plot_name_id', 'children'),
-              [Input(page_name +'url', 'href')])
-def set_plot_name(href: str):
-    f = furl(href)
-    plot_name = f.args['plot_name']
-    plot_id = f.args['plot_id']
-    
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXX select limits to plot XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    session_key = request.cookies.get('session')
-    print('selecf limits to plot : session key >>',session_key)
-    redis_session_key = "session:"+session_key
-
-    val = r.get(redis_session_key)
-    print(redis_session_key)
-    print('---------val------------------------------')
-    print(val)
-    print('--------- decoded val------------------------------')
-    decoded_val = pickle.loads(val)
-    print(decoded_val)
-    dmtool_userid = decoded_val['dmtool_userid']
-    dmtool_authorised = decoded_val['dmtool_authorised']
-    print('dmtool_userid in sltp >>>' ,decoded_val['dmtool_userid'])
-    print('=======================================')
-    
-    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    
-    return html.H1(children=plot_id + ' - ' + plot_name) 
-'''
-## see https://github.com/plotly/dash/issues/61
-## including the call backs in the class
+# now insert this component into the app's layout 
+app.layout['slot'] = block.layout
 
 @callback(
     Output(page_name + 'main_limits_table', 'data'),
@@ -552,3 +873,48 @@ def button_click(button1,button2,button3,button4,button5,plot_table_in):
         href_return = '/app/baseapp/select_limits_to_plot'
         return href_return
 
+###
+
+##
+
+def get_layout():
+    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+    #layout_out = html.Div(id=page_name+'content',children=[main_table_1.dash_table_main],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+    
+    return layout_out
+        
+##className="PAGE_CONTENT",)
+sltpdb = SelectLimitsToPlotDashBoardLayout()
+layout = sltpdb.layout
+
+'''
+@callback(Output(page_name +'_plot_name_id', 'children'),
+              [Input(page_name +'url', 'href')])
+def set_plot_name(href: str):
+    f = furl(href)
+    plot_name = f.args['plot_name']
+    plot_id = f.args['plot_id']
+    
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXX select limits to plot XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    session_key = request.cookies.get('session')
+    print('selecf limits to plot : session key >>',session_key)
+    redis_session_key = "session:"+session_key
+
+    val = r.get(redis_session_key)
+    print(redis_session_key)
+    print('---------val------------------------------')
+    print(val)
+    print('--------- decoded val------------------------------')
+    decoded_val = pickle.loads(val)
+    print(decoded_val)
+    dmtool_userid = decoded_val['dmtool_userid']
+    dmtool_authorised = decoded_val['dmtool_authorised']
+    print('dmtool_userid in sltp >>>' ,decoded_val['dmtool_userid'])
+    print('=======================================')
+    
+    print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    
+    return html.H1(children=plot_id + ' - ' + plot_name) 
+    '''
+    ## see https://github.com/plotly/dash/issues/61
+    ## including the call backs in the class
