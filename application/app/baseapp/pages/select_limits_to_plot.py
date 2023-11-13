@@ -113,7 +113,7 @@ class SelectLimitsToPlotDashBoardLayout():
                                     {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"}
                                     ]
 
-         self.limits_to_plot_table_cell_styles = {'textAlign': 'left',
+        self.limits_to_plot_table_cell_styles = {'textAlign': 'left',
                                           'padding': '0px',
                                           'font_size': self.table_font_size,
                                           'overflow': 'hidden',
@@ -147,17 +147,17 @@ class SelectLimitsToPlotDashBoardLayout():
 
         self.fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
 
-        self.experiments_df = None
-        self.result_types_df = None
-        self.spin_dependency_df = None
-        self.greatest_hit_df = None
-        self.limits_df = None
-        self.limits_table_df = None
-        self.limits_metadata_df = None
-        self.limits_traces_df = None
-        self.limits_data_df = None
-        self.official_df = None
-        self.years_df = None
+        self.experiments_df = pd.DataFrame()
+        self.result_types_df = pd.DataFrame()
+        self.spin_dependency_df = pd.DataFrame()
+        self.greatest_hit_df = pd.DataFrame()
+        self.limits_df = pd.DataFrame()
+        self.limits_table_df = pd.DataFrame()
+        self.limits_metadata_df = pd.DataFrame()
+        self.limits_traces_df = pd.DataFrame()
+        self.limits_data_df = pd.DataFrame()
+        self.official_df = pd.DataFrame()
+        self.years_df = pd.DataFrame()
         
         self.years_table = dash_table.DataTable()
         self.official_table = dash_table.DataTable()
