@@ -290,7 +290,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 {'if': {'column_id': 'year'},
                  'width': '90%'},
             ],
-            style_cell=self.filter_table_style_cell,
+            style_cell=self.filter_table_cell_styles,
             css=table_css,
             selected_rows=[],
             style_table={
