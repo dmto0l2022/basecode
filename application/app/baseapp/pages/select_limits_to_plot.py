@@ -525,9 +525,8 @@ class SelectLimitsToPlotDashBoardLayout():
                     ),
         ])
 
-
     def PopulateMainDataTable(self):
-         ClsMainDataTable = mte.get_main_table(self.page_title,
+        ClsMainDataTable = mte.get_main_table(self.page_title,
                                              self.main_table_id,
                                              self.table_meta_data_main_table,
                                              self.row_height,
