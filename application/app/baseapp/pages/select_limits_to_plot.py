@@ -178,7 +178,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.fastapi_url_all_limits = self.fastapi_data_url + self.multiple_api ## multiple limit operations
         self.fastapi_url_one_limit = self.fastapi_data_url + self.single_api + "/" ## single limit operations
 
-        self.dropdown_route = '/dropdown_valuepair'
+        self.dropdown_route = 'dropdown_valuepair'
         self.fastapi_get_dropdown = self.fastapi_metadata_url + self.dropdown_route + "?variable_in="
         
         self.style_header_var={ 'backgroundColor': 'black','color': 'white'}
