@@ -173,12 +173,12 @@ class SelectLimitsToPlotDashBoardLayout():
         self.plots_table = dash_table.DataTable()
         self.multiple_api = 'limits'
         self.single_api = 'limit'
-        self.fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
-        self.fastapi_url_all_limits = self.fastapi_url + self.multiple_api ## multiple limit operations
-        self.fastapi_url_one_limit = self.fastapi_url + self.single_api + "/" ## single limit operations
+        self.fastapi_data_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
+        self.fastapi_url_all_limits = self.fastapi_data_url + self.multiple_api ## multiple limit operations
+        self.fastapi_url_one_limit = self.fastapi_data_url + self.single_api + "/" ## single limit operations
 
         self.dropdown_route = 'metadata/dropdown_valuepair'
-        self.fastapi_get_dropdown = fastapi_url + dropdown_route + "?variable_in="
+        self.fastapi_get_dropdown = self.fastapi_data_url + self.dropdown_route + "?variable_in="
         
         self.style_header_var={ 'backgroundColor': 'black','color': 'white'}
         
