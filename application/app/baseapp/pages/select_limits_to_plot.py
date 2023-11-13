@@ -79,7 +79,7 @@ class SelectLimitsToPlotDashBoardLayout():
                                           'overflow': 'hidden',
                                           'textOverflow': 'ellipsis',
                                           'border': '1px solid black',
-                                          'height': row_height,
+                                          'height': self.row_height,
                                           'overflow': 'hidden',
                                           'maxWidth': 0 ## made things work!!
                                          }
@@ -100,7 +100,7 @@ class SelectLimitsToPlotDashBoardLayout():
                                           'overflow': 'hidden',
                                           'textOverflow': 'ellipsis',
                                           'border': '1px solid black',
-                                          'height': row_height,
+                                          'height': self.row_height,
                                           'overflow': 'hidden',
                                           'maxWidth': 0 ## made things work!!
                                          }
@@ -121,7 +121,7 @@ class SelectLimitsToPlotDashBoardLayout():
                                           'overflow': 'hidden',
                                           'textOverflow': 'ellipsis',
                                           'border': '1px solid black',
-                                          'height': row_height,
+                                          'height': self.row_height,
                                           'overflow': 'hidden',
                                           'maxWidth': 0 ## made things work!!
                                          }
@@ -169,10 +169,6 @@ class SelectLimitsToPlotDashBoardLayout():
         self.greatest_hit_table = dash_table.DataTable()
         self.limits_table = dash_table.DataTable()
         self.plots_table = dash_table.DataTable()
-        self.row_height = '12px'
-        
-        self.populate_dataframes(dmtools_userid_in)
-
         
         self.fastapi_url_all_limits = fastapi_url + multiple_api ## multiple limit operations
         self.fastapi_url_one_limit = fastapi_url + single_api + "/" ## single limit operations
