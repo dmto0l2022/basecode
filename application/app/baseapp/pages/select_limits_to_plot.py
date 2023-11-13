@@ -653,23 +653,23 @@ layout = sltpdb.layout
     #Output('debug_dropdown_table', 'data'),
     #Output(component_id='tbl_out', component_property='children'),
     #
-    Input('years_table', 'active_cell'),
-    Input('years_table', 'derived_virtual_selected_rows'),
+    Input(page_name + 'years_table', 'active_cell'),
+    Input(page_name + 'years_table', 'derived_virtual_selected_rows'),
     #
-    Input('official_table', 'active_cell'),
-    Input('official_table', 'derived_virtual_selected_rows'),
+    Input(page_name + 'official_table', 'active_cell'),
+    Input(page_name + 'official_table', 'derived_virtual_selected_rows'),
     #
-    Input('experiments_table', 'active_cell'),
-    Input('experiments_table', 'derived_virtual_selected_rows'),
+    Input(page_name + 'experiments_table', 'active_cell'),
+    Input(page_name + 'experiments_table', 'derived_virtual_selected_rows'),
     #
-    Input('result_types_table', 'active_cell'),
-    Input('result_types_table', 'derived_virtual_selected_rows'),
+    Input(page_name + 'result_types_table', 'active_cell'),
+    Input(page_name + 'result_types_table', 'derived_virtual_selected_rows'),
     #
-    Input('spin_dependency_table', 'active_cell'),
+    Input(page_name + 'spin_dependency_table', 'active_cell'),
     Input('spin_dependency_table', 'derived_virtual_selected_rows'),
     #
-    Input('greatest_hit_table', 'active_cell'),
-    Input('greatest_hit_table', 'derived_virtual_selected_rows'),
+    Input(page_name + 'greatest_hit_table', 'active_cell'),
+    Input(page_name + 'greatest_hit_table', 'derived_virtual_selected_rows'),
     )
 def update_graphs(
     active_cell_years,
@@ -694,12 +694,12 @@ def update_graphs(
     
     try:
         dfs = [
-            dashdataandtables.years_df.loc[derived_virtual_selected_rows_years],
-            dashdataandtables.experiments_df.loc[derived_virtual_selected_rows_experiments],
-            dashdataandtables.result_types_df.loc[derived_virtual_selected_rows_result_types],
-            dashdataandtables.spin_dependency_df.loc[derived_virtual_selected_rows_spin_dependency],
-            dashdataandtables.official_df.loc[derived_virtual_selected_rows_official],
-            dashdataandtables.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit],
+            sltpdb.years_df.loc[derived_virtual_selected_rows_years],
+            sltpdb.experiments_df.loc[derived_virtual_selected_rows_experiments],
+            sltpdb.result_types_df.loc[derived_virtual_selected_rows_result_types],
+            sltpdb.spin_dependency_df.loc[derived_virtual_selected_rows_spin_dependency],
+            sltpdb.official_df.loc[derived_virtual_selected_rows_official],
+            sltpdb.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit],
         ]
         non_empty_dfs = [df for df in dfs if not df.empty]
         all_filters_df = pd.concat(non_empty_dfs)
