@@ -532,7 +532,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     ),
         ])
     
-    def CreateLimitsToPlot():
+    def CreateLimitsToPlot(self):
 
         ## creates empty limits to plot table and sets the unique id
         
@@ -606,7 +606,7 @@ class SelectLimitsToPlotDashBoardLayout():
         return row2_debug_ret, row3_1_debug_ret
 
     
-    def CreateLayout():
+    def CreateLayout(self):
 
         self.DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id')
         
