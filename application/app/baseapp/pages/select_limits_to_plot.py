@@ -183,19 +183,12 @@ class SelectLimitsToPlotDashBoardLayout():
         self.fastapi_get_dropdown = self.fastapi_metadata_url + self.dropdown_route + "?variable_in="
         
         self.style_header_var={ 'backgroundColor': 'black','color': 'white'}
-        
-        self.main_data_table = mte.get_main_table(self.page_title,
-                                             self.main_table_id,
-                                             self.table_meta_data_main_table,
-                                             self.row_height,
-                                             self.table_font_size,
-                                             self.fastapi_url_all_limits,
-                                             self.fastapi_url_one_limit,
-                                             self.dmtool_userid)
-
 
         self.limits_to_plot_df = pd.DataFrame()
         self.RowLimitsToPlot = dbc.Row()
+        
+        self.PopulateMainDataTable()
+       
         self.PopulateFilterDataFrames()
         self.CreateFilterTables()
         self.CreateFilterRow()
@@ -531,6 +524,19 @@ class SelectLimitsToPlotDashBoardLayout():
                     width=2,
                     ),
         ])
+
+
+    def PopulateMainDataTable(self):
+         main_data_table = mte.get_main_table(self.page_title,
+                                             self.main_table_id,
+                                             self.table_meta_data_main_table,
+                                             self.row_height,
+                                             self.table_font_size,
+                                             self.fastapi_url_all_limits,
+                                             self.fastapi_url_one_limit,
+                                             self.dmtool_userid)
+        self. = main_data_table.dash_table_main
+
     
     def CreateLimitsToPlot(self):
 
