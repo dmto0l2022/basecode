@@ -63,6 +63,7 @@ class SelectLimitsToPlotDashBoardLayout():
     def __init__(self,pagename_in, dmtool_userid_in,  listoflimits_in):
         self.page_name = pagename_in
         self.page_title = pagename_in
+        self.dmtool_userid = dmtool_userid_in
         self.main_table_id =  self.page_name + "data_table_id"
         self.table_meta_data_main_table = [
                                         ['id', '3%'],
