@@ -628,7 +628,8 @@ class SelectLimitsToPlotDashBoardLayout():
         
         self.layout = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
         
-
+    def AddCallBacks():
+        
     
     class BaseBlock:
         def __init__(self, app=None):
