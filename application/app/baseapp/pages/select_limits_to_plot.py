@@ -61,12 +61,12 @@ class SelectLimitsToPlotDashBoardLayout():
     def __init__(self,pagename_in, dmtool_userid_in,  listoflimits_in):
         self.page_name = pagename_in
         self.data_table_id =  self.page_name + "data_table_id"
-        #self.table_meta_data_data = [
-                        ['id', '3%'],
-                        ['experiment', '3%'],
-                        ['data_comment', '44%'],
-                        ['data_label', '44%'],
-                       ]
+        self.table_meta_data_data = [
+                                        ['id', '3%'],
+                                        ['experiment', '3%'],
+                                        ['data_comment', '44%'],
+                                        ['data_label', '44%'],
+                                    ]
         
         self.row_height = '12px'
         self.table_font_size = '11px'
