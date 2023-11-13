@@ -147,7 +147,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
         self.internal_header={'dmtool-userid':'0'}
 
-        self.fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
+        
 
         self.experiments_df = pd.DataFrame()
         self.result_types_df = pd.DataFrame()
@@ -169,18 +169,20 @@ class SelectLimitsToPlotDashBoardLayout():
         self.greatest_hit_table = dash_table.DataTable()
         self.limits_table = dash_table.DataTable()
         self.plots_table = dash_table.DataTable()
-        
-        self.fastapi_url_all_limits = fastapi_url + multiple_api ## multiple limit operations
-        self.fastapi_url_one_limit = fastapi_url + single_api + "/" ## single limit operations
+        self.multiple_api = 'limits'
+        self.single_api = 'limit'
+        self.fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
+        self.fastapi_url_all_limits = self.fastapi_url + self.multiple_api ## multiple limit operations
+        self.fastapi_url_one_limit = self.fastapi_url + self.single_api + "/" ## single limit operations
         self.style_header_var={ 'backgroundColor': 'black','color': 'white'}
-        main_data_table = mte.get_main_table(page_title,
-                                             main_table_id,
-                                             table_meta_data_data,
-                                             row_height,
-                                             table_font_size,
-                                             fastapi_url_all,
-                                             fastapi_url_one,
-                                             dmtool_userid)
+        self.main_data_table = mte.get_main_table(self.page_title,
+                                             self.main_table_id,
+                                             self.table_meta_data_data,
+                                             self.row_height,
+                                             self.table_font_size,
+                                             self.fastapi_url_all,
+                                             self.fastapi_url_one,
+                                             self.dmtool_userid)
 
 
         self.limits_to_plot_df = pd.DataFrame()
