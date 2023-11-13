@@ -176,7 +176,12 @@ class SelectLimitsToPlotDashBoardLayout():
         self.fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
         self.fastapi_url_all_limits = self.fastapi_url + self.multiple_api ## multiple limit operations
         self.fastapi_url_one_limit = self.fastapi_url + self.single_api + "/" ## single limit operations
+
+        self.dropdown_route = 'metadata/dropdown_valuepair'
+        self.fastapi_get_dropdown = fastapi_url + dropdown_route + "?variable_in="
+        
         self.style_header_var={ 'backgroundColor': 'black','color': 'white'}
+        
         self.main_data_table = mte.get_main_table(self.page_title,
                                              self.main_table_id,
                                              self.table_meta_data_main_table,
@@ -220,7 +225,7 @@ class SelectLimitsToPlotDashBoardLayout():
         #    pd.read_sql('SELECT variable,label, value, data_type FROM dropdown_valuepairs', con=self.engine)
         
         ## experiment drop down table ##
-        experiments_req_url = fastapi_get_dropdown + 'experiment'
+        experiments_req_url = self.fastapi_get_dropdown + 'experiment'
         #print(experiments_req_url)
         r = requests.get(experiments_req_url)
         experiments_response_data = r.json()
@@ -231,7 +236,7 @@ class SelectLimitsToPlotDashBoardLayout():
         
         ## result type drop down table ##
         
-        result_types_req_url = fastapi_get_dropdown + 'result_type'
+        result_types_req_url = self.fastapi_get_dropdown + 'result_type'
         r = requests.get(result_types_req_url)
         result_types_response_data = r.json()
         
@@ -241,7 +246,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
         ## spin dependency drop down table ##
         
-        spin_dependency_req_url = fastapi_get_dropdown + 'spin_dependency'
+        spin_dependency_req_url = self.fastapi_get_dropdown + 'spin_dependency'
         r = requests.get(spin_dependency_req_url)
         spin_dependency_response_data = r.json()
         
@@ -251,7 +256,7 @@ class SelectLimitsToPlotDashBoardLayout():
         
         ## result type drop down table ##
         
-        greatest_hit_req_url = fastapi_get_dropdown + 'greatest_hit'
+        greatest_hit_req_url = self.fastapi_get_dropdown + 'greatest_hit'
         r = requests.get(greatest_hit_req_url)
         greatest_hit_response_data = r.json()
         
@@ -259,7 +264,7 @@ class SelectLimitsToPlotDashBoardLayout():
         
         #self.greatest_hit_df.reset_index(drop=True, inplace=True)
 
-        official_req_url = fastapi_get_dropdown + 'official'
+        official_req_url = self.fastapi_get_dropdown + 'official'
         r = requests.get(official_req_url)
         official_response_data = r.json()
         
@@ -267,7 +272,7 @@ class SelectLimitsToPlotDashBoardLayout():
         
         #self.official_df.reset_index(drop=True, inplace=True)
 
-        year_req_url = fastapi_get_dropdown + 'year'
+        year_req_url = self.fastapi_get_dropdown + 'year'
         r = requests.get(year_req_url)
         year_response_data = r.json()
         
@@ -291,12 +296,12 @@ class SelectLimitsToPlotDashBoardLayout():
                  'width': '90%'},
             ],
             style_cell=self.filter_table_cell_styles,
-            css=table_css,
+            css=self.filter_table_css_row_heights,
             selected_rows=[],
             style_table={
                 'height': self.filter_table_heights,
             },
-            style_header=style_header_var,
+            style_header=self.style_header_var,
             #style_data={
             #    'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
             #    ##'overflow': 'hidden',
@@ -318,13 +323,13 @@ class SelectLimitsToPlotDashBoardLayout():
                  'width': '90%'},
             ],
             fixed_rows={'headers': True},
-            style_cell=table_style_cell,
-            css=table_css,
+            style_cell=self.filter_table_cell_styles,
+            css=self.filter_table_css_row_heights,
             selected_rows=[],
             style_table={
                 'height': table_heights,
             },
-            style_header=style_header_var,
+            style_header=self.style_header_var,
             #style_data={
              #   'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
              #   ##'overflow': 'hidden',
@@ -347,10 +352,10 @@ class SelectLimitsToPlotDashBoardLayout():
             ],
             fixed_rows={'headers': True},
             style_table={'height': table_heights},  # defaults to 500
-            style_cell=table_style_cell,
-            css=table_css,
+            style_cell=self.filter_table_cell_styles,
+            css=self.filter_table_css_row_heights,
             selected_rows=[],
-            style_header=style_header_var,
+            style_header=self.style_header_var,
             #style_data={
             #    'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
             #    ##'overflow': 'hidden',
@@ -371,14 +376,14 @@ class SelectLimitsToPlotDashBoardLayout():
                 {'if': {'column_id': 'label'},
                  'width': '90%'},
             ],
-            style_cell=table_style_cell,
-            css=table_css,
+            style_cell=self.filter_table_cell_styles,
+            css=self.filter_table_css_row_heights,
             fixed_rows={'headers': True},
             selected_rows=[],
             style_table={
                 'height': table_heights,
             },
-            style_header=style_header_var,
+            style_header=self.style_header_var,
             #style_data={
             #    'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
             #    ##'overflow': 'hidden',
@@ -399,14 +404,14 @@ class SelectLimitsToPlotDashBoardLayout():
                 {'if': {'column_id': 'label'},
                  'width': '90%'},
             ],
-            style_cell=table_style_cell,
-            css=table_css,
+            style_cell=self.filter_table_cell_styles,
+            css=self.filter_table_css_row_heights,
             fixed_rows={'headers': True},
             selected_rows=[],
             style_table={
                 'height': table_heights,
             },
-            style_header=style_header_var,
+            style_header=self.style_header_var,
             #style_data={
             #    'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
             #    ##'overflow': 'hidden',
@@ -429,10 +434,10 @@ class SelectLimitsToPlotDashBoardLayout():
                 {'if': {'column_id': 'label'},
                  'width': '90%'},
             ],
-             style_cell=table_style_cell,
-            css=table_css,
+             style_cell=self.filter_table_cell_styles,
+            css=self.filter_table_css_row_heights,
             style_table={'height': table_heights,},
-            style_header=style_header_var,
+            style_header=self.style_header_var,
             #style_data={
             #    'width': '25px', 'minWidth': '25px', 'maxWidth': '25px',
                 ##'overflow': 'hidden',
@@ -455,8 +460,8 @@ class SelectLimitsToPlotDashBoardLayout():
             filter_action='none',
             #row_selectable='multi',
             #selected_rows=[],
-            style_cell=table_style_cell,
-            css=table_css,
+            style_cell=self.filter_table_cell_styles,
+            css=self.filter_table_css_row_heights,
             style_table={'height': '25vh',},
             style_cell_conditional=[
                 {'if': {'column_id': 'variable'},
