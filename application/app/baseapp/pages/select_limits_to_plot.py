@@ -74,7 +74,8 @@ class SelectLimitsToPlotDashBoardLayout():
         
         self.row_height = '12px'
         self.table_font_size = '11px'
-
+        self.filter_table_heights = '60px'
+        
         self.filter_table_cell_styles = {'textAlign': 'left',
                                           'padding': '0px',
                                           'font_size': self.table_font_size,
