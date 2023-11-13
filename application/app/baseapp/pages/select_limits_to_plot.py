@@ -353,12 +353,11 @@ class SelectLimitsToPlotDashBoardLayout():
                  'width': '90%'},
             ],
             fixed_rows={'headers': True},
-            style_table={'height': table_heights},  # defaults to 500
-            style_cell=self.filter_table_cell_styles,
-            css=self.filter_table_css_row_heights,
             style_table={
                 'height': self.filter_table_heights,
             },
+            style_cell=self.filter_table_cell_styles,
+            css=self.filter_table_css_row_heights,
             selected_rows=[],
             style_header=self.style_header_var,
             #style_data={
