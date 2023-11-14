@@ -688,9 +688,9 @@ class SelectLimitsToPlotDashBoardLayout():
             derived_virtual_selected_rows_spin_dependency,
             #
             active_cell_greatest_hit,
-            derived_virtual_selected_rows_greatest_hit,
-            
-        ):
+            derived_virtual_selected_rows_greatest_hit):
+
+            print("call back triggered")
             
             try:
                 dfs = [
