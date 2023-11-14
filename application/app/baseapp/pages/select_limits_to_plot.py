@@ -646,6 +646,15 @@ class SelectLimitsToPlotDashBoardLayout():
                     width=12,)
         
         self.layout = html.Div(id=page_name+'content',children=maincolumn,className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+
+    def SetPlotNameCallback(self):
+        @callback(Output(self.page_name +'_plot_name_id', 'children'),
+              [Input(self.page_name +'url', 'href')])
+            def set_plot_name(href: str):
+                f = furl(href)
+                plot_name = f.args['plot_name']
+                plot_id = f.args['plot_id']
+                return html.H1(children=plot_id + ' - ' + plot_name) 
     
     def ApplyFiltersCallback(self):
         @callback(
@@ -871,6 +880,7 @@ class SelectLimitsToPlotDashBoardLayout():
 sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, dmtool_userid,  listoflimits)
 sltpdb.CreateLayout()
 layout = sltpdb.layout
+sltpdb.SetPlotNameCallback()
 sltpdb.ApplyFiltersCallback()
 sltpdb.MoveLimitToLimitsToPlotCallback()
 sltpdb.RespondToButtonsCallback()
