@@ -650,11 +650,11 @@ class SelectLimitsToPlotDashBoardLayout():
     def SetPlotNameCallback(self):
         @callback(Output(self.page_name +'_plot_name_id', 'children'),
               [Input(self.page_name +'url', 'href')])
-            def set_plot_name(href: str):
-                f = furl(href)
-                plot_name = f.args['plot_name']
-                plot_id = f.args['plot_id']
-                return html.H1(children=plot_id + ' - ' + plot_name) 
+        def set_plot_name(href: str):
+            f = furl(href)
+            plot_name = f.args['plot_name']
+            plot_id = f.args['plot_id']
+            return html.H1(children=plot_id + ' - ' + plot_name) 
     
     def ApplyFiltersCallback(self):
         @callback(
