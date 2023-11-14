@@ -543,7 +543,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
         ## creates empty limits to plot table and sets the unique id
         
-        self.limits_to_plot_df = pd.DataFrame(data=[['id','plot_id','limit_id','data_reference','data_label']], columns=['id','plot_id','limit_id','data_reference','data_label'])
+        self.limits_to_plot_df = pd.DataFrame(data=[], columns=['id','plot_id','limit_id','data_reference','data_label'])
         
         style_header_var={ 'backgroundColor': 'black','color': 'white'}
         
