@@ -1,4 +1,4 @@
-lfimport dash
+import dash
 from dash import Dash
 import dash_bootstrap_components as dbc
 from flask import session
