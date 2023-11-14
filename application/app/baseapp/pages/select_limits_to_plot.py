@@ -761,7 +761,7 @@ class SelectLimitsToPlotDashBoardLayout():
 sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, dmtool_userid,  listoflimits)
 sltpdb.CreateLayout()
 layout = sltpdb.layout
-sltpdb.callback1
+sltpdb.callback1()
 
 ### add callbacks to layout object
 '''
