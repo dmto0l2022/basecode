@@ -184,8 +184,8 @@ class StylePlotAndTracesDashBoardLayout():
         self.limits_data_df = pd.DataFrame()
         self.limits_list_dict = {}
         self.plot_series_df = pd.DataFrame()
-        self.FigChart = go.Figure(id=self.page_name + 'fig_chart_id')
-        self.FigLegend = go.Figure(id=self.page_name + 'fig_legend_id')
+        self.FigChart = go.Figure()
+        self.FigLegend = go.Figure()
         self.TableFormat = dash_table.DataTable()
         self.GraphClass = None
         self.GraphChart = dcc.Graph()
