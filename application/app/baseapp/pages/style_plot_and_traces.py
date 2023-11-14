@@ -835,22 +835,22 @@ def displayClick1_1(btn1, btn2, btn3, btn4):
           Output(page_name+'legend_div','children'),
           [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
 def display_page(pathname,search,href):
-    print('spat : 3 chart call vack triggered')
+    print('spat : 3 chart callback triggered')
     original_search_string = search
     just_list = original_search_string.split('=')
     o = urlparse(href)
     print('query>>>>' ,o.query)
     
-    try:
-        just_list = o.query.split('=')[1]
-        print("just_list >>>>>>",just_list)
-        list_of_limits_str = just_list.split('|')
-        list_of_limits_int = []
-        for l in list_of_limits_str:
-            list_of_limits_int.append(int(l))
+    #try:
+    just_list = o.query.split('=')[1]
+    print("just_list >>>>>>",just_list)
+    list_of_limits_str = just_list.split('|')
+    list_of_limits_int = []
+    for l in list_of_limits_str:
+        list_of_limits_int.append(int(l))
         
-    except:
-        list_of_limits_int = [45]
+    #except:
+    #    list_of_limits_int = [45]
     
     print('spat callback: list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits_int)
     #list_of_limits = [33]
