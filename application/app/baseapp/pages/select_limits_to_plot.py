@@ -192,6 +192,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.PopulateFilterDataFrames()
         self.CreateFilterTables()
         self.CreateFilterRow()
+        self.CreateLimitsToPlot()
 
 
     def PopulateFilterDataFrames(self):
