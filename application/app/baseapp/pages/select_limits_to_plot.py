@@ -645,7 +645,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     ],
                     width=12,)
         
-        self.layout = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
+        self.layout = html.Div(id=page_name+'content',children=maincolumn,className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
     
     def callback1(self):
         @callback(
