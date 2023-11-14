@@ -647,7 +647,7 @@ class SelectLimitsToPlotDashBoardLayout():
         
         self.layout = html.Div(id=page_name+'content',children=maincolumn,className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
     
-    def callback1(self):
+    def ApplyFiltersCallback(self):
         @callback(
             Output(self.page_name + 'main_limits_table', 'data'),
             #Output('debug_dropdown_table', 'data'),
@@ -751,6 +751,56 @@ class SelectLimitsToPlotDashBoardLayout():
             #list_output = str(selectedcontinent_list) if selectedcontinent_list else "Click the table"
             return data2 #, list_output
 
+    def MoveLimitToLimitsToPlotCallback(self):
+        @callback(
+            Output(self.page_name+'limits_to_plot_table', 'data'),
+            [Input(self.page_name + 'main_limits_table', 'active_cell'),Input(self.page_name+'limits_to_plot_table', 'active_cell')],
+            [State(self.page_name+'limits_to_plot_table', 'data')])
+        def trigger_fork(active_cell_exp,active_cell_plot,data_in):
+            ctx = dash.callback_context
+            triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
+            #print(triggered_id)
+            if triggered_id == self.page_name + 'main_limits_table':
+                all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid)  
+                selected_rowid = active_cell_exp['row_id']
+                selected_row = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
+                selected_row  = selected_row[['id','limit_id','data_reference','data_label']]
+                selected_row['plot_id'] = 'plot_id here'
+                #data_out=plots_todo_df.to_dict("records")
+                record=selected_row.to_dict("records")[0]
+                #print(type(record))
+                #print(record)
+                #record = {columns[i]: arg for i, arg in enumerate(list(args))}
+                # If the record (identified by user_key) already exists, update it.
+                #try:
+                #    #record_index = [record[selected_rowid] for record in data_in].index(record[selected_rowid])
+                #    record_index = [record[selected_rowid] for record in data_in].index(record[selected_rowid])
+                #    data_in[record_index] = record
+                # Otherwise, append it.
+                #except ValueError:
+                #    data_in[selected_rowid] = record
+                #dictlen = len(data_in)
+                #data_in[selected_rowid] = record
+                data_in.append(record)
+                #data_in = record
+                # Return the updated data.
+                #return data
+        
+                #selected_row = limits_table_df[limits_table_df['expid']==active_cell['row_id']]
+                #plots_todo_df= selected_row.copy()
+                #data_out=plots_todo_df.to_dict("records")
+                #data_out=selected_row.to_dict("records")
+        
+            elif triggered_id == self.page_name+'limits_to_plot_table':
+                #selected_rowid = active_cell_plot['row']
+                #print(data_in[selected_rowid])
+                #print(active_cell_plot)
+                #data_in = data_in.pop(active_cell_plot['row'])
+                #print(data_in)
+                a = 1
+            
+            return data_in
+
 
 #def get_layout():
 #    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
@@ -761,162 +811,11 @@ class SelectLimitsToPlotDashBoardLayout():
 sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, dmtool_userid,  listoflimits)
 sltpdb.CreateLayout()
 layout = sltpdb.layout
-sltpdb.callback1()
+sltpdb.ApplyFiltersCallback()
+sltpdb.MoveLimitToLimitsToPlotCallback()
 
-### add callbacks to layout object
-'''
-@callback(
-    Output(page_name + 'main_limits_table', 'data'),
-    #Output('debug_dropdown_table', 'data'),
-    #Output(component_id='tbl_out', component_property='children'),
-    #
-    Input(page_name + 'years_table', 'active_cell'),
-    Input(page_name + 'years_table', 'derived_virtual_selected_rows'),
-    #
-    Input(page_name + 'official_table', 'active_cell'),
-    Input(page_name + 'official_table', 'derived_virtual_selected_rows'),
-    #
-    Input(page_name + 'experiments_table', 'active_cell'),
-    Input(page_name + 'experiments_table', 'derived_virtual_selected_rows'),
-    #
-    Input(page_name + 'result_types_table', 'active_cell'),
-    Input(page_name + 'result_types_table', 'derived_virtual_selected_rows'),
-    #
-    Input(page_name + 'spin_dependency_table', 'active_cell'),
-    Input(page_name + 'spin_dependency_table', 'derived_virtual_selected_rows'),
-    #
-    Input(page_name + 'greatest_hit_table', 'active_cell'),
-    Input(page_name + 'greatest_hit_table', 'derived_virtual_selected_rows'),
-    )
-def update_graphs(
-    active_cell_years,
-    derived_virtual_selected_rows_years,
-    #
-    active_cell_official,
-    derived_virtual_selected_rows_official,
-    #
-    active_cell_experiments,
-    derived_virtual_selected_rows_experiments,
-    #
-    active_cell_resulttypes,
-    derived_virtual_selected_rows_result_types,
-    #
-    active_cell_spin_dependency,
-    derived_virtual_selected_rows_spin_dependency,
-    #
-    active_cell_greatest_hit,
-    derived_virtual_selected_rows_greatest_hit,
-    
-):
-    
-    try:
-        dfs = [
-            sltpdb.years_df.loc[derived_virtual_selected_rows_years],
-            sltpdb.experiments_df.loc[derived_virtual_selected_rows_experiments],
-            sltpdb.result_types_df.loc[derived_virtual_selected_rows_result_types],
-            sltpdb.spin_dependency_df.loc[derived_virtual_selected_rows_spin_dependency],
-            sltpdb.official_df.loc[derived_virtual_selected_rows_official],
-            sltpdb.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit],
-        ]
-        non_empty_dfs = [df for df in dfs if not df.empty]
-        all_filters_df = pd.concat(non_empty_dfs)
-    except:
-        all_filters_df = pd.DataFrame()
 
-    # print('sltp : all filters >>>>> ', all_filters_df)
-    ## boolean filters
-    #   dashdataandtables.official_df.loc[derived_virtual_selected_rows_official]
-    #   dashdataandtables.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit]
-            
-    # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
 
-    all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid) 
-    
-    unfiltered_df = all_limit_list_df.copy()
-    print('sltp : unfiltered_df >>>', unfiltered_df) 
-    #df.drop(df.index , inplace=True)
-    
-    filtered_df = unfiltered_df.drop(unfiltered_df.index)
-    #filtered_df
-    
-    if all_filters_df.empty:
-        filtered_df = unfiltered_df
-    else:
-        for index, row in all_filters_df.iterrows():
-            #print(row['variable'], row['value'])
-            matching_records = unfiltered_df[unfiltered_df['experiment'] == 'empty']
-            if row['data_type'] == 'number':
-                matching_records = unfiltered_df[unfiltered_df[row['variable']] == int(row['value'])]
-            elif row['data_type'] == 'text':
-                matching_records = unfiltered_df[unfiltered_df[row['variable']] == row['value']]
-            elif row['data_type'] == 'boolean':
-                if row['value'] == 1:
-                    matching_records = unfiltered_df[unfiltered_df[row['variable']] == True]
-            else:
-                    a = 1
-            filtered_df = pd.concat([filtered_df, matching_records])
-            #filtered_df = matching_records
-            #filtered_df = filtered_df[filtered_df[row['variable']] == row['value']] 
-    
-    filtered_df = filtered_df.drop_duplicates()
-    #filtered_df
-   
-    data1 = all_filters_df.to_dict("records")
-    data2 = filtered_df.to_dict("records")
-    #print(data1)
-    #data1=dff2.to_dict("records")
-    #list_output = str(selectedcontinent_list) if selectedcontinent_list else "Click the table"
-    return data2 #, list_output
-'''
-
-@callback(
-    Output(page_name+'limits_to_plot_table', 'data'),
-    [Input(page_name + 'main_limits_table', 'active_cell'),Input(page_name+'limits_to_plot_table', 'active_cell')],
-    [State(page_name+'limits_to_plot_table', 'data')])
-def trigger_fork(active_cell_exp,active_cell_plot,data_in):
-    ctx = dash.callback_context
-    triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
-    #print(triggered_id)
-    if triggered_id == page_name + 'main_limits_table':
-        all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid)  
-        selected_rowid = active_cell_exp['row_id']
-        selected_row = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
-        selected_row  = selected_row[['id','limit_id','data_reference','data_label']]
-        selected_row['plot_id'] = 'plot_id here'
-        #data_out=plots_todo_df.to_dict("records")
-        record=selected_row.to_dict("records")[0]
-        #print(type(record))
-        #print(record)
-        #record = {columns[i]: arg for i, arg in enumerate(list(args))}
-        # If the record (identified by user_key) already exists, update it.
-        #try:
-        #    #record_index = [record[selected_rowid] for record in data_in].index(record[selected_rowid])
-        #    record_index = [record[selected_rowid] for record in data_in].index(record[selected_rowid])
-        #    data_in[record_index] = record
-        # Otherwise, append it.
-        #except ValueError:
-        #    data_in[selected_rowid] = record
-        #dictlen = len(data_in)
-        #data_in[selected_rowid] = record
-        data_in.append(record)
-        #data_in = record
-        # Return the updated data.
-        #return data
-
-        #selected_row = limits_table_df[limits_table_df['expid']==active_cell['row_id']]
-        #plots_todo_df= selected_row.copy()
-        #data_out=plots_todo_df.to_dict("records")
-        #data_out=selected_row.to_dict("records")
-
-    elif triggered_id == page_name+'limits_to_plot_table':
-        #selected_rowid = active_cell_plot['row']
-        #print(data_in[selected_rowid])
-        #print(active_cell_plot)
-        #data_in = data_in.pop(active_cell_plot['row'])
-        #print(data_in)
-        a = 1
-    
-    return data_in
 
 
 @callback(
