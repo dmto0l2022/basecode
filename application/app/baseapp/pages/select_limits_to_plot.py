@@ -1,4 +1,4 @@
-import dash
+lfimport dash
 from dash import Dash
 import dash_bootstrap_components as dbc
 from flask import session
@@ -547,7 +547,7 @@ class SelectLimitsToPlotDashBoardLayout():
         style_header_var={ 'backgroundColor': 'black','color': 'white'}
         
         self.limits_to_plot_table = dash_table.DataTable(
-            id=page_name+'limits_to_plot_table',
+            id=self.page_name+'limits_to_plot_table',
             data=limits_to_plot_df.to_dict('records'),
             columns=[{'name': 'id', 'id': 'id'},
                      {'name': 'limit_id', 'id': 'limit_id'},
@@ -623,7 +623,7 @@ class SelectLimitsToPlotDashBoardLayout():
         cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=self.button_styling_1)
         home_button =  html.Button("Home",  id=page_name + "home_button_id", style=self.button_styling_1)
         list_button =  html.Button("List",  id=page_name + "list_button_id", style=self.button_styling_1)
-        self.DivRowOfButtons = html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS"),
+        self.RowOfButtons = dbc.Row(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS"),
         
         
         self.RowLimits = dbc.Row([dbc.Col(
@@ -640,7 +640,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         self.RowFilters,
                         self.RowLimits,
                         self.RowLimitsToPlot,
-                        self.DivRowOfButtons,
+                        self.RowOfButtons,
                         self.RowListOfLimits
                     ],
                     width=12,)
