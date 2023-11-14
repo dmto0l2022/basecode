@@ -800,7 +800,67 @@ class SelectLimitsToPlotDashBoardLayout():
                 a = 1
             
             return data_in
-
+    def RespondToButtonsCallback():
+        @callback(
+            [Output(self.page_name+'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+             Output(self.page_name+'limit_list','children')],
+            [
+            Input(self.page_name + "new_button_id", "n_clicks"),
+            Input(self.page_name + "save_button_id", "n_clicks"),
+            Input(self.page_name + "cancel_button_id", "n_clicks"),
+            Input(self.page_name + "home_button_id", "n_clicks"),
+            Input(self.page_name + "list_button_id","n_clicks"),
+                ],[State(self.page_name +'limits_to_plot_table', 'data')],
+                prevent_initial_call=True
+        )
+        def button_click(button1,button2,button3,button4,button5,plot_table_in):
+            #msg = "None of the buttons have been clicked yet"
+            prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+            print('plot_table_in >>>>>>>>>>>>>>>>' ,plot_table_in)
+            #plots_to_do_df = pd.DataFrame(plot_table_in)
+            plots_to_do_df = pd.DataFrame.from_dict(plot_table_in)
+            plots_to_do_df['all'] = 'all'
+            plots_to_do_df['limit_id'] = plots_to_do_df['limit_id'].astype(str)
+            limits_to_plot = plots_to_do_df[['limit_id','all']]
+            print('limits_to_plot >>>>>>', limits_to_plot)
+            
+            #limits_to_plot['limit_ids'] = limits_to_plot[['all']].groupby(['all'])['limit_id'].transform(lambda x: ','.join(x))
+            #print(limit_ids)  
+            new_df = limits_to_plot.groupby(['all'])['limit_id'].apply('|'.join).reset_index()
+            #print('new_df >>>>>>>>' ,new_df)
+            limit_ids = new_df['limit_id'].values[0]
+            #print('limit_ids >>>>>>>>' ,limit_ids)
+                    
+            #msg = prop_id
+            if page_name + "new_button_id" == prop_id :
+                #msg = "Button 1 was most recently clicked"
+                #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
+                href_return = '/application/baseapp/style_plot_and_traces'
+                return [href_return,'']
+            elif page_name + "new_button_id" == prop_id:
+                #msg = "Button 2 was most recently clicked"
+                #href_return = dash.page_registry['pages.home']['path']
+                href_return = '/application/baseapp/create_new_plot'
+                return  [href_return,'']
+            elif page_name + "cancel_button_id" == prop_id:
+                #msg = "Button 2 was most recently clicked"
+                #href_return = dash.page_registry['pages.home']['path']
+                href_return = '/application/baseapp/homepage'
+                return  [href_return,'']
+            elif page_name + "home_button_id" == prop_id:
+                #msg = "Button 2 was most recently clicked"
+                #href_return = dash.page_registry['pages.home']['path']
+                href_return = '/application/baseapp/homepage'
+                return  [href_return,'']
+            elif page_name + "list_button_id" == prop_id:
+                #msg = "Button 3 was most recently clicked"
+                #href_return = dash.page_registry['pages.home']['path']
+                #href_return = '/app/baseapp/select_limits_to_plot'
+                href_return = '/application/baseapp/style_plot_and_traces?limit_id=' + limit_ids
+                return [href_return,limit_ids]
+            else:
+                href_return = '/application/baseapp/select_limits_to_plot'
+                return href_return
 
 #def get_layout():
 #    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
@@ -818,66 +878,7 @@ sltpdb.MoveLimitToLimitsToPlotCallback()
 
 
 
-@callback(
-    [Output(page_name+'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
-     Output(page_name+'limit_list','children')],
-    [
-    Input(page_name + "new_button_id", "n_clicks"),
-    Input(page_name + "save_button_id", "n_clicks"),
-    Input(page_name + "cancel_button_id", "n_clicks"),
-    Input(page_name + "home_button_id", "n_clicks"),
-    Input(page_name + "list_button_id","n_clicks"),
-        ],[State(page_name +'limits_to_plot_table', 'data')],
-        prevent_initial_call=True
-)
-def button_click(button1,button2,button3,button4,button5,plot_table_in):
-    #msg = "None of the buttons have been clicked yet"
-    prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
-    print('plot_table_in >>>>>>>>>>>>>>>>' ,plot_table_in)
-    #plots_to_do_df = pd.DataFrame(plot_table_in)
-    plots_to_do_df = pd.DataFrame.from_dict(plot_table_in)
-    plots_to_do_df['all'] = 'all'
-    plots_to_do_df['limit_id'] = plots_to_do_df['limit_id'].astype(str)
-    limits_to_plot = plots_to_do_df[['limit_id','all']]
-    print('limits_to_plot >>>>>>', limits_to_plot)
-    
-    #limits_to_plot['limit_ids'] = limits_to_plot[['all']].groupby(['all'])['limit_id'].transform(lambda x: ','.join(x))
-    #print(limit_ids)  
-    new_df = limits_to_plot.groupby(['all'])['limit_id'].apply('|'.join).reset_index()
-    #print('new_df >>>>>>>>' ,new_df)
-    limit_ids = new_df['limit_id'].values[0]
-    #print('limit_ids >>>>>>>>' ,limit_ids)
-            
-    #msg = prop_id
-    if page_name + "new_button_id" == prop_id :
-        #msg = "Button 1 was most recently clicked"
-        #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
-        href_return = '/application/baseapp/style_plot_and_traces'
-        return [href_return,'']
-    elif page_name + "new_button_id" == prop_id:
-        #msg = "Button 2 was most recently clicked"
-        #href_return = dash.page_registry['pages.home']['path']
-        href_return = '/application/baseapp/create_new_plot'
-        return  [href_return,'']
-    elif page_name + "cancel_button_id" == prop_id:
-        #msg = "Button 2 was most recently clicked"
-        #href_return = dash.page_registry['pages.home']['path']
-        href_return = '/application/baseapp/homepage'
-        return  [href_return,'']
-    elif page_name + "home_button_id" == prop_id:
-        #msg = "Button 2 was most recently clicked"
-        #href_return = dash.page_registry['pages.home']['path']
-        href_return = '/application/baseapp/homepage'
-        return  [href_return,'']
-    elif page_name + "list_button_id" == prop_id:
-        #msg = "Button 3 was most recently clicked"
-        #href_return = dash.page_registry['pages.home']['path']
-        #href_return = '/app/baseapp/select_limits_to_plot'
-        href_return = '/application/baseapp/style_plot_and_traces?limit_id=' + limit_ids
-        return [href_return,limit_ids]
-    else:
-        href_return = '/app/baseapp/select_limits_to_plot'
-        return href_return
+
 
 ###
 
