@@ -624,7 +624,7 @@ class SelectLimitsToPlotDashBoardLayout():
         cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=self.button_styling_1)
         home_button =  html.Button("Home",  id=page_name + "home_button_id", style=self.button_styling_1)
         list_button =  html.Button("List",  id=page_name + "list_button_id", style=self.button_styling_1)
-        self.RowOfButtons = dbc.Row(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS"),
+        self.DivOfButtons = html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS"),
         
         
         self.RowLimits = dbc.Row([dbc.Col(
@@ -641,7 +641,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         self.RowFilters,
                         self.RowLimits,
                         self.RowLimitsToPlot,
-                        self.RowOfButtons,
+                        self.DivOfButtons,
                         self.RowListOfLimits
                     ],
                     width=12,)
