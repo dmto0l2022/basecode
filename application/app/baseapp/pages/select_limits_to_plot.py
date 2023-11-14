@@ -800,7 +800,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 a = 1
             
             return data_in
-    def RespondToButtonsCallback():
+    def RespondToButtonsCallback(self):
         @callback(
             [Output(self.page_name+'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
              Output(self.page_name+'limit_list','children')],
@@ -873,7 +873,7 @@ sltpdb.CreateLayout()
 layout = sltpdb.layout
 sltpdb.ApplyFiltersCallback()
 sltpdb.MoveLimitToLimitsToPlotCallback()
-
+sltpdb.RespondToButtonsCallback()
 
 
 
