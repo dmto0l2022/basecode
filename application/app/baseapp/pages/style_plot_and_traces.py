@@ -267,7 +267,7 @@ class StylePlotAndTracesDashBoardLayout():
     
         second_row_second_column = dbc.Row(
                 [
-                    dbc.Col(id= self.page_name+'legend_div', children=[legend_graph], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_BOTTOM_RIGHT")
+                    dbc.Col(id= self.page_name+'legend_div', children=[self.GraphLegend], className="col-sm-12 col-md-6 col-lg-6 PAGE_TABLE_CONTENT_BOTTOM_RIGHT")
                 ] , style={'width': '100%', 'height': '50%', 'border': '2px solid black'})
             
         dashboard_container = html.Div(
