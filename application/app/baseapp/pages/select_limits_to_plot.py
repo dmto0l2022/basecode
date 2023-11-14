@@ -647,7 +647,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     width=12,)
         
         self.layout = html.Div(id=page_name+'content',children=maincolumn,className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
-    
+    '''
     def callback1(self):
         @callback(
         Output(self.page_name + 'main_limits_table', 'data'),
@@ -751,7 +751,7 @@ class SelectLimitsToPlotDashBoardLayout():
             #data1=dff2.to_dict("records")
             #list_output = str(selectedcontinent_list) if selectedcontinent_list else "Click the table"
             return data2 #, list_output
-
+        '''
 
 #def get_layout():
 #    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
@@ -762,10 +762,10 @@ class SelectLimitsToPlotDashBoardLayout():
 sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, dmtool_userid,  listoflimits)
 sltpdb.CreateLayout()
 layout = sltpdb.layout
-sltpdb.callback1
+#sltpdb.callback1
 
 ### add callbacks to layout object
-'''
+
 @callback(
     Output(page_name + 'main_limits_table', 'data'),
     #Output('debug_dropdown_table', 'data'),
@@ -868,7 +868,7 @@ def update_graphs(
     #data1=dff2.to_dict("records")
     #list_output = str(selectedcontinent_list) if selectedcontinent_list else "Click the table"
     return data2 #, list_output
-'''
+
 
 @callback(
     Output(page_name+'limits_to_plot_table', 'data'),
