@@ -213,8 +213,8 @@ class StylePlotAndTracesDashBoardLayout():
         
         #legend_fig = FigLegend
         
-        legend_graph = dcc.Graph(figure=self.FigLegend,
-                                 id= self.page_name + 'legend_id',
+        self.GraphLegend = dcc.Graph(figure=self.FigLegend,
+                                 id= self.page_name + 'graph_legend_id',
                                  style={'width': '100%', 'height': '100%'})
         
         #style_and_legend_column = gsal.GetStyleAndLegendColumn(styling_data_table,legend_graph)
@@ -561,7 +561,7 @@ class StylePlotAndTracesDashBoardLayout():
                 self.FigLegend.update_yaxes(visible=False)
 
         self.GraphLegend = dcc.Graph(figure=self.FigLegend,
-                                 id= self.page_name + 'legend_id',
+                                 id= self.page_name + 'graph_legend_id',
                                  style={'width': '100%', 'height': '100%'})
 
     def UpdateLegend(self, plotseries_table_in):
@@ -733,7 +733,7 @@ class StylePlotAndTracesDashBoardLayout():
             #                    name=str(row['id'])))
   
         self.GraphChart = dcc.Graph(figure=self.FigChart,
-                                  id=self.page_name + 'chart_id',
+                                  id=self.page_name + 'graph_chart_id',
                                   config=dict(responsive=True),
                                   mathjax=True,
                                   #className='GRAPH'
@@ -862,7 +862,7 @@ def display_page(pathname,search,href):
     return dbl.GraphChart, dbl.TableFormat, dbl.GraphLegend
 
 @callback(
-    [Output(page_name+'chart_id','figure')],#,Output(page_name+'legend_id','figure'),],
+    [Output(page_name+'graph_chart_id','figure')],#,Output(page_name+'legend_id','figure'),],
     [Input(page_name+'format_table_id', 'data')],
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
