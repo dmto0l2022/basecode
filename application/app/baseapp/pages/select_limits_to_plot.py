@@ -641,7 +641,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         self.RowFilters,
                         self.RowLimits,
                         self.RowLimitsToPlot,
-                        #self.RowOfButtons,
+                        self.RowOfButtons,
                         self.RowListOfLimits
                     ],
                     width=12,)
