@@ -192,9 +192,10 @@ class StylePlotAndTracesDashBoardLayout():
         self.GraphLegend = dcc.Graph()
         self.layout = {}
         self.UpdateData([1])
+        self.CreateLegend()
         self.CreateChart()
         self.CreateFormat()
-        self.CreateLegend()
+        
 
     def UpdateData(self, listoflimits_in):
         self.listoflimits = listoflimits_in
@@ -332,10 +333,10 @@ class StylePlotAndTracesDashBoardLayout():
         for index, row in self.limits_traces_df.iterrows():
             #print(row['c1'], row['c2'])
             copy_row = row.copy()
-            color = next(cycle_colors)
-            copy_row['line_color'] = color
-            copy_row['symbol_color'] = color
-            copy_row['fill_color'] = color
+            #color = next(cycle_colors)
+            #copy_row['line_color'] = color
+            #copy_row['symbol_color'] = color
+            #copy_row['fill_color'] = color
             append_this = [copy_row['id'], copy_row['limit_id'], copy_row['data_label'],
                            copy_row['trace_id'],copy_row['trace_name'],
                            copy_row['line_color'],copy_row['symbol_color'],copy_row['fill_color'],
