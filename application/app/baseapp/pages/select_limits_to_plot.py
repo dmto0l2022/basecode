@@ -783,7 +783,7 @@ layout = sltpdb.layout
     Input(page_name + 'result_types_table', 'derived_virtual_selected_rows'),
     #
     Input(page_name + 'spin_dependency_table', 'active_cell'),
-    Input('spin_dependency_table', 'derived_virtual_selected_rows'),
+    Input(page_name + 'spin_dependency_table', 'derived_virtual_selected_rows'),
     #
     Input(page_name + 'greatest_hit_table', 'active_cell'),
     Input(page_name + 'greatest_hit_table', 'derived_virtual_selected_rows'),
