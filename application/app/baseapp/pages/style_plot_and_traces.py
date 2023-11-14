@@ -862,13 +862,13 @@ def display_page(pathname,search,href):
     return dbl.GraphChart, dbl.TableFormat, dbl.GraphLegend
 
 @callback(
-    [Output(page_name+'chart_id','figure'),Output(page_name+'legend_id','figure'),],
+    [Output(page_name+'chart_id','figure')],#,Output(page_name+'legend_id','figure'),],
     [Input(page_name+'format_table_id', 'data')],
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
     #print('spat : table_data_in >>>>>>>>>>',table_data_in)
     print('spat : update data call back triggered')
     dbl.UpdateChart(table_data_in)
-    dbl.UpdateLegend(table_data_in)
-    return dbl.FigChart, dbl.FigLegend
+    #dbl.UpdateLegend(table_data_in)
+    return dbl.FigChart#, dbl.FigLegend
 
