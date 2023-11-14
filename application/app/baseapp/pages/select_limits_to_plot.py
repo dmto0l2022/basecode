@@ -619,31 +619,30 @@ class SelectLimitsToPlotDashBoardLayout():
         
         
         
-        new_button =  html.Button("New", id= page_name + "new_button_id", style=self.button_styling_1)
-        save_button =  html.Button("Save", id= page_name + "save_button_id", style=self.button_styling_1)
-        cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=self.button_styling_1)
-        home_button =  html.Button("Home",  id=page_name + "home_button_id", style=self.button_styling_1)
-        list_button =  html.Button("List",  id=page_name + "list_button_id", style=self.button_styling_1)
-        self.DivOfButtons = html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS"),
+        new_button =  html.Button("New", id= self.page_name + "new_button_id", style=self.button_styling_1)
+        save_button =  html.Button("Save", id= self.page_name + "save_button_id", style=self.button_styling_1)
+        cancel_button = html.Button("Cancel",  id=self.page_name + "cancel_button_id", style=self.button_styling_1)
+        home_button =  html.Button("Home",  id=self.page_name + "home_button_id", style=self.button_styling_1)
+        list_button =  html.Button("List",  id=self.page_name + "list_button_id", style=self.button_styling_1)
+        
+        self.DivOfButtons = html.Div(id= self.page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS")
         
         
         self.RowLimits = dbc.Row([dbc.Col(
-                            [ self.main_data_table],
+                            self.main_data_table,
                             width=12,)],
                             className ="NOPADDING_CONTENT")
 
         self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'))
         
         maincolumn = dbc.Col(
-                    [
-                        dcc.Location(id=page_name+'url',refresh=True),
+                        [dcc.Location(id=page_name+'url',refresh=True),
                         self.DivPlotName,
                         self.RowFilters,
                         self.RowLimits,
                         self.RowLimitsToPlot,
                         self.DivOfButtons,
-                        self.RowListOfLimits
-                    ],
+                        self.RowListOfLimits],
                     width=12,)
         
         self.layout = html.Div(id=page_name+'content',children=maincolumn,className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
