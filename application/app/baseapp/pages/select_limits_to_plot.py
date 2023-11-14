@@ -646,7 +646,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     width=12,)
         
         self.layout = html.Div(id=page_name+'content',children=maincolumn,className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
-    '''
+    
     def callback1(self):
         @callback(
         Output(self.page_name + 'main_limits_table', 'data'),
@@ -671,86 +671,86 @@ class SelectLimitsToPlotDashBoardLayout():
         Input(self.page_name + 'greatest_hit_table', 'active_cell'),
         Input(self.page_name + 'greatest_hit_table', 'derived_virtual_selected_rows'),
         )
-        def update_graphs(
-            active_cell_years,
-            derived_virtual_selected_rows_years,
-            #
-            active_cell_official,
-            derived_virtual_selected_rows_official,
-            #
-            active_cell_experiments,
-            derived_virtual_selected_rows_experiments,
-            #
-            active_cell_resulttypes,
-            derived_virtual_selected_rows_result_types,
-            #
-            active_cell_spin_dependency,
-            derived_virtual_selected_rows_spin_dependency,
-            #
-            active_cell_greatest_hit,
-            derived_virtual_selected_rows_greatest_hit,
-            
-        ):
-            
-            try:
-                dfs = [
-                    sltpdb.years_df.loc[derived_virtual_selected_rows_years],
-                    sltpdb.experiments_df.loc[derived_virtual_selected_rows_experiments],
-                    sltpdb.result_types_df.loc[derived_virtual_selected_rows_result_types],
-                    sltpdb.spin_dependency_df.loc[derived_virtual_selected_rows_spin_dependency],
-                    sltpdb.official_df.loc[derived_virtual_selected_rows_official],
-                    sltpdb.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit],
-                ]
-                non_empty_dfs = [df for df in dfs if not df.empty]
-                all_filters_df = pd.concat(non_empty_dfs)
-            except:
-                all_filters_df = pd.DataFrame()
+    def update_graphs(
+        active_cell_years,
+        derived_virtual_selected_rows_years,
+        #
+        active_cell_official,
+        derived_virtual_selected_rows_official,
+        #
+        active_cell_experiments,
+        derived_virtual_selected_rows_experiments,
+        #
+        active_cell_resulttypes,
+        derived_virtual_selected_rows_result_types,
+        #
+        active_cell_spin_dependency,
+        derived_virtual_selected_rows_spin_dependency,
+        #
+        active_cell_greatest_hit,
+        derived_virtual_selected_rows_greatest_hit,
         
-            # print('sltp : all filters >>>>> ', all_filters_df)
-            ## boolean filters
-            #   dashdataandtables.official_df.loc[derived_virtual_selected_rows_official]
-            #   dashdataandtables.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit]
-                    
-            # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
+    ):
         
-            all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid) 
-            
-            unfiltered_df = all_limit_list_df.copy()
-            print('sltp : unfiltered_df >>>', unfiltered_df) 
-            #df.drop(df.index , inplace=True)
-            
-            filtered_df = unfiltered_df.drop(unfiltered_df.index)
-            #filtered_df
-            
-            if all_filters_df.empty:
-                filtered_df = unfiltered_df
-            else:
-                for index, row in all_filters_df.iterrows():
-                    #print(row['variable'], row['value'])
-                    matching_records = unfiltered_df[unfiltered_df['experiment'] == 'empty']
-                    if row['data_type'] == 'number':
-                        matching_records = unfiltered_df[unfiltered_df[row['variable']] == int(row['value'])]
-                    elif row['data_type'] == 'text':
-                        matching_records = unfiltered_df[unfiltered_df[row['variable']] == row['value']]
-                    elif row['data_type'] == 'boolean':
-                        if row['value'] == 1:
-                            matching_records = unfiltered_df[unfiltered_df[row['variable']] == True]
-                    else:
-                            a = 1
-                    filtered_df = pd.concat([filtered_df, matching_records])
-                    #filtered_df = matching_records
-                    #filtered_df = filtered_df[filtered_df[row['variable']] == row['value']] 
-            
-            filtered_df = filtered_df.drop_duplicates()
-            #filtered_df
-           
-            data1 = all_filters_df.to_dict("records")
-            data2 = filtered_df.to_dict("records")
-            #print(data1)
-            #data1=dff2.to_dict("records")
-            #list_output = str(selectedcontinent_list) if selectedcontinent_list else "Click the table"
-            return data2 #, list_output
-        '''
+        try:
+            dfs = [
+                self.years_df.loc[derived_virtual_selected_rows_years],
+                self.experiments_df.loc[derived_virtual_selected_rows_experiments],
+                self.result_types_df.loc[derived_virtual_selected_rows_result_types],
+                self.spin_dependency_df.loc[derived_virtual_selected_rows_spin_dependency],
+                self.official_df.loc[derived_virtual_selected_rows_official],
+                self.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit],
+            ]
+            non_empty_dfs = [df for df in dfs if not df.empty]
+            all_filters_df = pd.concat(non_empty_dfs)
+        except:
+            all_filters_df = pd.DataFrame()
+    
+        # print('sltp : all filters >>>>> ', all_filters_df)
+        ## boolean filters
+        #   dashdataandtables.official_df.loc[derived_virtual_selected_rows_official]
+        #   dashdataandtables.greatest_hit_df.loc[derived_virtual_selected_rows_greatest_hit]
+                
+        # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
+    
+        all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid) 
+        
+        unfiltered_df = all_limit_list_df.copy()
+        print('sltp : unfiltered_df >>>', unfiltered_df) 
+        #df.drop(df.index , inplace=True)
+        
+        filtered_df = unfiltered_df.drop(unfiltered_df.index)
+        #filtered_df
+        
+        if all_filters_df.empty:
+            filtered_df = unfiltered_df
+        else:
+            for index, row in all_filters_df.iterrows():
+                #print(row['variable'], row['value'])
+                matching_records = unfiltered_df[unfiltered_df['experiment'] == 'empty']
+                if row['data_type'] == 'number':
+                    matching_records = unfiltered_df[unfiltered_df[row['variable']] == int(row['value'])]
+                elif row['data_type'] == 'text':
+                    matching_records = unfiltered_df[unfiltered_df[row['variable']] == row['value']]
+                elif row['data_type'] == 'boolean':
+                    if row['value'] == 1:
+                        matching_records = unfiltered_df[unfiltered_df[row['variable']] == True]
+                else:
+                        a = 1
+                filtered_df = pd.concat([filtered_df, matching_records])
+                #filtered_df = matching_records
+                #filtered_df = filtered_df[filtered_df[row['variable']] == row['value']] 
+        
+        filtered_df = filtered_df.drop_duplicates()
+        #filtered_df
+       
+        data1 = all_filters_df.to_dict("records")
+        data2 = filtered_df.to_dict("records")
+        #print(data1)
+        #data1=dff2.to_dict("records")
+        #list_output = str(selectedcontinent_list) if selectedcontinent_list else "Click the table"
+        return data2 #, list_output
+
 
 #def get_layout():
 #    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
@@ -761,10 +761,10 @@ class SelectLimitsToPlotDashBoardLayout():
 sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, dmtool_userid,  listoflimits)
 sltpdb.CreateLayout()
 layout = sltpdb.layout
-#sltpdb.callback1
+sltpdb.callback1
 
 ### add callbacks to layout object
-
+'''
 @callback(
     Output(page_name + 'main_limits_table', 'data'),
     #Output('debug_dropdown_table', 'data'),
@@ -867,7 +867,7 @@ def update_graphs(
     #data1=dff2.to_dict("records")
     #list_output = str(selectedcontinent_list) if selectedcontinent_list else "Click the table"
     return data2 #, list_output
-
+'''
 
 @callback(
     Output(page_name+'limits_to_plot_table', 'data'),
