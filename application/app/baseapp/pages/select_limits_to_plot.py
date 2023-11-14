@@ -549,7 +549,7 @@ class SelectLimitsToPlotDashBoardLayout():
         
         self.limits_to_plot_table = dash_table.DataTable(
             id=self.page_name+'limits_to_plot_table',
-            data=limits_to_plot_df.to_dict('records'),
+            data=self.limits_to_plot_df.to_dict('records'),
             columns=[{'name': 'id', 'id': 'id'},
                      {'name': 'limit_id', 'id': 'limit_id'},
                      {'name': 'data_reference', 'id': 'data_reference'},
