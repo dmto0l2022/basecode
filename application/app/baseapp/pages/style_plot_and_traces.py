@@ -184,8 +184,8 @@ class StylePlotAndTracesDashBoardLayout():
         self.limits_data_df = pd.DataFrame()
         self.limits_list_dict = {}
         self.plot_series_df = pd.DataFrame()
-        self.FigChart = go.Figure()
-        self.FigLegend = go.Figure()
+        self.FigChart = go.Figure(id=self.page_name + 'fig_chart_id')
+        self.FigLegend = go.Figure(id=self.page_name + 'fig_legend_id')
         self.TableFormat = dash_table.DataTable()
         self.GraphClass = None
         self.GraphChart = dcc.Graph()
@@ -225,7 +225,7 @@ class StylePlotAndTracesDashBoardLayout():
         #self.GraphClass = dg.DataGraph(dmtool_userid, limits_in)
         
         self.GraphChart = dcc.Graph(figure=self.FigChart,
-                                  id=self.page_name + 'chart_id',
+                                  id=self.page_name + 'graph_chart_id',
                                   config=dict(responsive=True),
                                   mathjax=True,
                                   #className='GRAPH'
