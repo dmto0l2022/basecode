@@ -632,7 +632,7 @@ class SelectLimitsToPlotDashBoardLayout():
                             width=12,)],
                             className ="NOPADDING_CONTENT")
 
-        self.RowListOfLimits = dbc.Row(html.P(children='List of limits appear here',id=self.page_name+'limit_list'))
+        self.RowListOfLimits = dbc.Row(html.P(children=['List of limits appear here'],id=self.page_name+'limit_list'))
         
         maincolumn = dbc.Col(
                     [
