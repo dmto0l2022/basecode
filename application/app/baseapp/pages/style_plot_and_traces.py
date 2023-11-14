@@ -870,5 +870,5 @@ def update_output(table_data, table_data_in):
     print('spat : update data call back triggered')
     dbl.UpdateChart(table_data_in)
     #dbl.UpdateLegend(table_data_in)
-    return dbl.FigChart#, dbl.FigLegend
+    return [dbl.FigChart]#, dbl.FigLegend
 
