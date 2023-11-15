@@ -303,7 +303,7 @@ class PlotBase(SQLModel):
     y_max : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     x_units : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     y_units : Optional[str] = Field(default=None, nullable=True, primary_key=False)
-    user_id : Optional[int] = Field(default=None, nullable=False, primary_key=False)
+    user_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     old_user_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
