@@ -128,11 +128,7 @@ date_of_run_start,
 date_of_run_end,
 `year`,
 '1980-01-01 00:00.00.00000' ceased_at
-FROM RubyDB.limits ;
-	
-	
-END;
-	
+FROM RubyDB.limits;
 	
 END;
 //
