@@ -73,6 +73,7 @@ no_id,
 '1980-01-01 00:00.00.00000' ceased_at
 FROM RubyDB.plots;
 
+/*
 INSERT INTO about.user (
 old_user_id,
 old_login,
@@ -88,8 +89,9 @@ email as old_email,
 '1980-01-01 00:00.00.00000' updated_at,
 '1980-01-01 00:00.00.00000' ceased_at
 FROM RubyDB.users ;
+*/
 
-INSERT IGNORE INTO data.limits (
+INSERT IGNORE INTO data.limit (
 old_limit_id,
 spin_dependency,
 result_type,
