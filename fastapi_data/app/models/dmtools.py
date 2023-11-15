@@ -253,7 +253,7 @@ ceased_at
 
 class Plot_ownershipBase(SQLModel):
     old_plot_ownership_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
-    user_id : int = Field(default=None, nullable=True, primary_key=False)
+    user_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     old_user_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     plot_id : int = Field(default=None, foreign_key='plot.id', nullable=True, primary_key=False)
     old_plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
@@ -296,7 +296,7 @@ no_id
 
 class PlotBase(SQLModel):
     old_plot_id : Optional[int] = Field(default=None, nullable=True)
-    name : str = Field(default=None,nullable=True, primary_key=False) ## Unique??
+    name : Optional[str] = Field(default=None,nullable=True, primary_key=False) ## Unique??
     x_min : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     x_max : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     y_min : Optional[str] = Field(default=None, nullable=True, primary_key=False)
