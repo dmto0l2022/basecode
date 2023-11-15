@@ -5,7 +5,7 @@ FROM python:3.11.4-bullseye
 ARG BUILD_ENV_USERNAME
 ARG BUILD_ENV_UID
 ARG BUILD_ENV_GID 
-##ARG BUILD_ENV_GROUPNAME
+ARG BUILD_ENV_GROUPNAME
 
 ###
 
@@ -28,8 +28,7 @@ RUN apt-get install -y libmariadb-dev
 WORKDIR /workdir/fastapi_data/app
 
 RUN echo groupadd --gid ${ENV_USER_GID} ${ENV_USER_GROUPNAME}
-##RUN groupadd --gid ${ENV_USER_GID} ${ENV_USER_GROUPNAME}
-RUN groupadd --gid ${ENV_USER_GID}
+RUN groupadd --gid ${ENV_USER_GID} ${ENV_USER_GROUPNAME}
 RUN echo useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 RUN useradd --uid ${ENV_USER_UID} --gid ${ENV_USER_GID} -m ${ENV_USERNAME}
 
