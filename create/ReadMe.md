@@ -10,3 +10,8 @@
 8004 api
 
 8002 frontend
+
+# Running Containers
+
+podman exec -it container_fastapi_data_1 /bin/sh
+
