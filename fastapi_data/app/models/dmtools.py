@@ -255,7 +255,7 @@ class Plot_ownershipBase(SQLModel):
     old_plot_ownership_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     user_id : int = Field(default=None, nullable=True, primary_key=False)
     old_user_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
-    plot_id : int = Field(default=None, foreign_key='plot.id', nullable=True, , primary_key=False)
+    plot_id : int = Field(default=None, foreign_key='plot.id', nullable=True, primary_key=False)
     old_plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=False, primary_key=False)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=False, primary_key=False)
