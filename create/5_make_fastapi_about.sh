@@ -29,7 +29,7 @@ podman run -dt \
 --name container_fastapi_about_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
--v /opt/dmtools/code/basecode:/workdir \
+-v /opt/dmtools/code/basecode:/workdir:Z \
 localhost/fastapi_about_1:latest
 
 cd /opt/dmtools/code/basecode/create
