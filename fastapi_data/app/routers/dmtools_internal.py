@@ -31,22 +31,48 @@ from typing import Annotated
 
 # Experiment CRUD
 
-@router.get(api_base_url + "experiment", response_model=list[Experiment])
-async def get_experiment(session: AsyncSession = Depends(get_session),
-                            dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(Experiment))
-    experiments = result.scalars().all()
-    return [Experiment(name=experiment.name, id=experiment.id) for experiment in experiments]
-
-
 @router.post(api_base_url + "experiment")
-async def add_experiment(experiment: ExperimentCreate, session: AsyncSession = Depends(get_session),
+async def create_experiment(experiment: ExperimentCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     experiment = Experiment(name=experiment.name)
     session.add(experiment)
     await session.commit()
     await session.refresh(experiment)
     return experiment
+
+
+@router.get(api_base_url + "experiment", response_model=list[Experiment])
+async def read_experiment(session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    result = await session.execute(select(Experiment))
+    experiments = result.scalars().all()
+    return [Experiment(name=experiment.name, id=experiment.id) for experiment in experiments]
+
+@router.patch(api_base_url + "hero/{id}")
+async def update_experiment(experiment_id: int,
+                      record_in: ExperimentUpdate,
+                      session: AsyncSession = Depends(get_session),
+                      dmtool_userid: Annotated[int | None, Header()] = None):
+    
+    route_name = "Update Experiment"
+    record_in_data = record_in.dict(exclude_unset=True)
+    get_records_statement = select(Experiment).where(Experiment.id == experiment_id)
+    record_update_statement = (update(Experiment).where(Experiment.id == experiment_id).values(**record_in_data))
+    
+    db_records = await session.exec(get_records_statement)
+    
+    if not db_records:
+        raise HTTPException(status_code=404, detail="Record not found - "+ route_name)
+    
+    #db_record_to_update = db_records.first()
+    
+    result = await session.execute(record_update_statement)
+    await session.commit()
+    
+    updated_record = await session.exec(get_records_statement)
+    return_record = updated_record.first()
+    return {"updated": return_record}
+
 
 @router.delete(api_base_url + "experiment/{experiment_id}")
 async def delete_experiment(experiment_id: int, session: AsyncSession = Depends(get_session),
