@@ -56,7 +56,7 @@ async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get
     #records = await session.exec(get_records_statement)
     return_record = result.first()
     print("return_record >>>>>>>>>", return_record)
-    return return_record
+    return {"updated": return_record}
 
 
 @router.patch(api_base_url + "experiment/{experiment_id}")
