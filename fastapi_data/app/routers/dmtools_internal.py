@@ -1,5 +1,5 @@
 from fastapi import Depends, FastAPI, Request, Response, HTTPException, Header, Query
-from sqlmodel import select, delete
+from sqlmodel import select, delete, update
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from fastapi import APIRouter
