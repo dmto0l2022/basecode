@@ -10,12 +10,12 @@ from typing import List, Optional
 from db import get_session
 
 from models.dmtools import Experiment, ExperimentCreate, ExperimentUpdate
-from models.dmtools import Limit_display, Limit_displayCreate
-from models.dmtools import Limit_ownership, Limit_ownershipCreate
-from models.dmtools import Limit, LimitCreate, LimitSelect
+from models.dmtools import Limit_display, Limit_displayCreate, Limit_displayUpdate
+from models.dmtools import Limit_ownership, Limit_ownershipCreate, Limit_ownershipUpdate
+from models.dmtools import Limit, LimitCreate, LimitUpdate,  LimitSelect
 from models.dmtools import ListOfLimitIDs
-from models.dmtools import Plot_ownership, Plot_ownershipCreate
-from models.dmtools import Plot, PlotCreate
+from models.dmtools import Plot_ownership, Plot_ownershipCreate, Plot_ownershipUpdate
+from models.dmtools import Plot, PlotCreate, PlotUpdate
 
 from datetime import datetime
 #1980-01-01 00:00:00.000
@@ -48,7 +48,7 @@ async def read_experiment(session: AsyncSession = Depends(get_session),
     experiments = result.scalars().all()
     return [Experiment(name=experiment.name, id=experiment.id) for experiment in experiments]
 
-@router.patch(api_base_url + "hero/{id}")
+@router.patch(api_base_url + "experiment/{experiment_id}")
 async def update_experiment(experiment_id: int,
                       record_in: ExperimentUpdate,
                       session: AsyncSession = Depends(get_session),
@@ -104,8 +104,29 @@ async def delete_experiment(experiment_id: int, session: AsyncSession = Depends(
 #    created_at
 #    updated_at
 
+@router.post(api_base_url + "limit_display")
+async def create_limit_display(limit_display: Limit_displayCreate, session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    limit_display = Limit_display(name = limit_display.name,
+                        limit_id = limit_display.limit_id,
+                        plot_id = limit_display.plot_id,
+                        trace_id = limit_display.trace_id,
+                        symbol = limit_display.symbol,
+                        symbol_color = limit_display.symbol_color,
+                        line_style = limit_display.line_style,
+                        line_color = limit_display.line_color,
+                        fill_color = limit_display.fill_color,
+                        color = limit_display.color,
+                        style = limit_display.style,
+                        created_at = limit_display.created_at,
+                        updated_at = limit_display.updated_at)
+    session.add(limit_display)
+    await session.commit()
+    await session.refresh(limit_display)
+    return limit_display
+
 @router.get(api_base_url + "limit_display", response_model=list[Limit_display])
-async def get_limit_display(session: AsyncSession = Depends(get_session),
+async def read_limit_display(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Limit_display))
     limit_displays = result.scalars().all()
@@ -126,26 +147,30 @@ async def get_limit_display(session: AsyncSession = Depends(get_session),
             for limit_display in limit_displays]
 
 
-@router.post(api_base_url + "limit_display")
-async def add_limit_display(limit_display: Limit_displayCreate, session: AsyncSession = Depends(get_session),
-                            dmtool_userid: Annotated[int | None, Header()] = None):
-    limit_display = Limit_display(name = limit_display.name,
-                        limit_id = limit_display.limit_id,
-                        plot_id = limit_display.plot_id,
-                        trace_id = limit_display.trace_id,
-                        symbol = limit_display.symbol,
-                        symbol_color = limit_display.symbol_color,
-                        line_style = limit_display.line_style,
-                        line_color = limit_display.line_color,
-                        fill_color = limit_display.fill_color,
-                        color = limit_display.color,
-                        style = limit_display.style,
-                        created_at = limit_display.created_at,
-                        updated_at = limit_display.updated_at)
-    session.add(limit_display)
+@router.patch(api_base_url + "limit_display/{id}")
+async def update_limit_display(limit_display_id: int,
+                      record_in: Limit_displayUpdate,
+                      session: AsyncSession = Depends(get_session),
+                      dmtool_userid: Annotated[int | None, Header()] = None):
+    
+    route_name = "Update Limit_display"
+    record_in_data = record_in.dict(exclude_unset=True)
+    get_records_statement = select(Limit_display).where(Limit_display.id == limit_display_id)
+    record_update_statement = (update(Limit_display).where(Limit_display.id == limit_display_id).values(**record_in_data))
+    
+    db_records = await session.exec(get_records_statement)
+    
+    if not db_records:
+        raise HTTPException(status_code=404, detail="Record not found - "+ route_name)
+    
+    #db_record_to_update = db_records.first()
+    
+    result = await session.execute(record_update_statement)
     await session.commit()
-    await session.refresh(limit_display)
-    return limit_display
+    
+    updated_record = await session.exec(get_records_statement)
+    return_record = updated_record.first()
+    return {"updated": return_record}
 
 @router.delete(api_base_url + "limit_display/{limit_display_id}")
 async def delete_limit_display(limit_display_id: int, session: AsyncSession = Depends(get_session),
@@ -174,8 +199,20 @@ created_at = limit_ownership.created_at,
 updated_at = limit_ownership.created_at
 '''
 
+@router.post(api_base_url + "limit_ownership")
+async def create_limit_ownership(limit_ownership: Limit_ownershipCreate, session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    limit_ownership = Limit_ownership(user_id = dmtool_userid,
+                            limit_id = limit_ownership.limit_id,
+                            created_at = limit_ownership.created_at,
+                            updated_at = limit_ownership.updated_at)
+    session.add(limit_ownership)
+    await session.commit()
+    await session.refresh(limit_ownership)
+    return limit_ownership
+
 @router.get(api_base_url + "limit_ownership", response_model=list[Limit_ownership])
-async def get_limit_ownership(session: AsyncSession = Depends(get_session),
+async def read_limit_ownership(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Limit_ownership, Limit).where(Limit_ownership.limit_id == Limit.id))
     limit_ownerships = result.scalars().all()
@@ -187,18 +224,31 @@ async def get_limit_ownership(session: AsyncSession = Depends(get_session),
                             data_comment = limit_ownership.data_comment)
             for limit_ownership in limit_ownerships]
 
-
-@router.post(api_base_url + "limit_ownership")
-async def add_limit_ownership(limit_ownership: Limit_ownershipCreate, session: AsyncSession = Depends(get_session),
-                            dmtool_userid: Annotated[int | None, Header()] = None):
-    limit_ownership = Limit_ownership(user_id = dmtool_userid,
-                            limit_id = limit_ownership.limit_id,
-                            created_at = limit_ownership.created_at,
-                            updated_at = limit_ownership.updated_at)
-    session.add(limit_ownership)
+@router.patch(api_base_url + "limit_ownership/{id}")
+async def update_limit_display(limit_ownership_id: int,
+                      record_in: Limit_ownershipUpdate,
+                      session: AsyncSession = Depends(get_session),
+                      dmtool_userid: Annotated[int | None, Header()] = None):
+    
+    route_name = "Update Limit_ownership"
+    record_in_data = record_in.dict(exclude_unset=True)
+    get_records_statement = select(Limit_ownership).where(Limit_ownership.id == limit_ownership_id)
+    record_update_statement = (update(Limit_ownership).where(Limit_ownership.id == limit_ownership_id).values(**record_in_data))
+    
+    db_records = await session.exec(get_records_statement)
+    
+    if not db_records:
+        raise HTTPException(status_code=404, detail="Record not found - "+ route_name)
+    
+    #db_record_to_update = db_records.first()
+    
+    result = await session.execute(record_update_statement)
     await session.commit()
-    await session.refresh(limit_ownership)
-    return limit_ownership
+    
+    updated_record = await session.exec(get_records_statement)
+    return_record = updated_record.first()
+    return {"updated": return_record}
+
 
 @router.delete(api_base_url + "limit_ownership/{limit_ownership_id}")
 async def delete_limit_ownership(limit_ownership_id: int, session: AsyncSession = Depends(get_session),
@@ -264,8 +314,7 @@ async def read_items(q: ListOfLimitIDs):
 
 
 @router.post(api_base_url + "listoflimits")
-#@router.get(api_base_url + "limits", response_model=list[Limit])
-async def get_list_of_limits(list_of_limits: ListOfLimitIDs, session: AsyncSession = Depends(get_session),
+async def read_list_of_limits(list_of_limits: ListOfLimitIDs, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     #query_items = {"q": list_of_limits_qry}
     #list_of_limit_ids = query_items["q"]
@@ -368,7 +417,7 @@ async def get_limit(session: AsyncSession = Depends(get_session),
 
 @router.get(api_base_url + "limits")
 #@router.get(api_base_url + "limits", response_model=list[Limit])
-async def get_limit(session: AsyncSession = Depends(get_session),
+async def read_limits(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.user_id == dmtool_userid))
     owneroflimits = result.all()
@@ -419,25 +468,10 @@ async def get_limit(session: AsyncSession = Depends(get_session),
         limit_count += 1
     return return_list
 
-
-## get one limit
-
-@router.get(api_base_url + "limit/{limit_id}", response_model=Limit)
-async def get_limit(limit_id: int, session: AsyncSession = Depends(get_session),
-                            dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(LimitOwnership,Limit).join(Limit).where(LimitOwnership.limit_id == limit_id).where(LimitOwnership.user_id == dmtool_userid)
-    raw_data = await session.exec(statement)
-    limits = raw_data.first()
-    print("limit data >>>>>>>>>>>>>>>",  limits)
-    limit_count = 0
-    just_limit = limits[1]
-    return just_limit
-
 ## add one limit
 
 @router.post(api_base_url + "limit")
-#@router.post(api_base_url + "limit")
-async def add_limit(limit: LimitCreate, session: AsyncSession = Depends(get_session),
+async def create_limit(limit: LimitCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     limit = Limit(spin_dependency = limit.spin_dependency,
                 result_type = limit.result_type,
@@ -472,6 +506,46 @@ async def add_limit(limit: LimitCreate, session: AsyncSession = Depends(get_sess
     await session.refresh(limit)
     return limit
 
+## read one limit
+
+@router.get(api_base_url + "limit/{limit_id}", response_model=Limit)
+async def read_limit(limit_id: int, session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    statement = select(LimitOwnership,Limit).join(Limit).where(LimitOwnership.limit_id == limit_id).where(LimitOwnership.user_id == dmtool_userid)
+    raw_data = await session.exec(statement)
+    limits = raw_data.first()
+    print("limit data >>>>>>>>>>>>>>>",  limits)
+    limit_count = 0
+    just_limit = limits[1]
+    return just_limit
+
+
+@router.patch(api_base_url + "limit/{limit_id}")
+async def update_limit(limit_id: int,
+                      record_in: LimitUpdate,
+                      session: AsyncSession = Depends(get_session),
+                      dmtool_userid: Annotated[int | None, Header()] = None):
+    
+    route_name = "Update Limit"
+    record_in_data = record_in.dict(exclude_unset=True)
+    get_records_statement = select(Limit).where(Limit.id == limit_id)
+    record_update_statement = (update(Limit).where(Limit.id == limit_id).values(**record_in_data))
+    
+    db_records = await session.exec(get_records_statement)
+    
+    if not db_records:
+        raise HTTPException(status_code=404, detail="Record not found - "+ route_name)
+    
+    #db_record_to_update = db_records.first()
+    
+    result = await session.execute(record_update_statement)
+    await session.commit()
+    
+    updated_record = await session.exec(get_records_statement)
+    return_record = updated_record.first()
+    return {"updated": return_record}
+
+
 @router.delete(api_base_url + "limit/{limit_id}")
 async def delete_limit(limit_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
@@ -493,9 +567,21 @@ created_at
 updated_at
 '''
 
+@router.post(api_base_url + "plot_ownership")
+async def create_plot_ownership(plot_ownership: Plot_ownershipCreate, session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    plot_ownership = Plot_ownership(user_id = plot_ownership.user_id,
+                            plot_id = plot_ownership.plot_id,
+                            created_at = plot_ownership.created_at,
+                            updated_at = plot_ownership.updated_at)
+    session.add(plot_ownership)
+    await session.commit()
+    await session.refresh(plot_ownership)
+    return plot_ownership
+
 
 @router.get(api_base_url + "plot_ownership", response_model=list[Plot_ownership])
-async def get_plot_ownership(session: AsyncSession = Depends(get_session),
+async def read_plot_ownership(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Plot_ownership))
     plot_ownerships = result.scalars().all()
@@ -508,17 +594,30 @@ async def get_plot_ownership(session: AsyncSession = Depends(get_session),
             for plot_ownership in plot_ownerships]
 
 
-@router.post(api_base_url + "plot_ownership")
-async def add_plot_ownership(plot_ownership: Plot_ownershipCreate, session: AsyncSession = Depends(get_session),
-                            dmtool_userid: Annotated[int | None, Header()] = None):
-    plot_ownership = Plot_ownership(user_id = plot_ownership.user_id,
-                            plot_id = plot_ownership.plot_id,
-                            created_at = plot_ownership.created_at,
-                            updated_at = plot_ownership.updated_at)
-    session.add(plot_ownership)
+@router.patch(api_base_url + "plot_ownership/{plot_ownership_id}")
+async def update_plot_ownership(plot_ownership_id: int,
+                      record_in: Plot_ownershipUpdate,
+                      session: AsyncSession = Depends(get_session),
+                      dmtool_userid: Annotated[int | None, Header()] = None):
+    
+    route_name = "Update Plot_ownership"
+    record_in_data = record_in.dict(exclude_unset=True)
+    get_records_statement = select(Plot_ownership).where(Plot_ownership.id == plot_ownership_id)
+    record_update_statement = (update(Plot_ownership).where(Plot_ownership.id == plot_ownership_id).values(**record_in_data))
+    
+    db_records = await session.exec(get_records_statement)
+    
+    if not db_records:
+        raise HTTPException(status_code=404, detail="Record not found - "+ route_name)
+    
+    #db_record_to_update = db_records.first()
+    
+    result = await session.execute(record_update_statement)
     await session.commit()
-    await session.refresh(plot_ownership)
-    return plot_ownership
+    
+    updated_record = await session.exec(get_records_statement)
+    return_record = updated_record.first()
+    return {"updated": return_record}
 
 @router.delete(api_base_url + "plot_ownership/{plot_ownership_id}")
 async def delete_plot_ownership(plot_ownership_id: int, session: AsyncSession = Depends(get_session),
@@ -552,8 +651,31 @@ legend_eps
 no_id
 '''
 
+@router.post(api_base_url + "plot")
+async def create_plot(plot: PlotCreate, session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    plot = Plot(name = plot.name,
+                        x_min = plot.x_min,
+                        x_max = plot.x_max,
+                        y_min = plot.y_min,
+                        y_max = plot.y_max,
+                        x_units = plot.x_units,
+                        y_units = plot.y_units,
+                        user_id = plot.user_id,
+                        created_at = plot.created_at,
+                        updated_at = plot.updated_at,
+                        plot_png = plot.plot_png,
+                        legend_png = plot.legend_png,
+                        plot_eps = plot.plot_eps,
+                        legend_eps = plot.legend_eps,
+                        no_id = plot.no_id)
+    session.add(plot)
+    await session.commit()
+    await session.refresh(plot)
+    return plot
+
 @router.get(api_base_url + "plot", response_model=list[Plot])
-async def get_plot(session: AsyncSession = Depends(get_session),
+async def read_plot(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Plot))
     plots = result.scalars().all()
@@ -577,31 +699,33 @@ async def get_plot(session: AsyncSession = Depends(get_session),
             for plot in plots]
 
 
-@router.post(api_base_url + "plot")
-async def add_plot(plot: PlotCreate, session: AsyncSession = Depends(get_session),
-                            dmtool_userid: Annotated[int | None, Header()] = None):
-    plot = Plot(name = plot.name,
-                        x_min = plot.x_min,
-                        x_max = plot.x_max,
-                        y_min = plot.y_min,
-                        y_max = plot.y_max,
-                        x_units = plot.x_units,
-                        y_units = plot.y_units,
-                        user_id = plot.user_id,
-                        created_at = plot.created_at,
-                        updated_at = plot.updated_at,
-                        plot_png = plot.plot_png,
-                        legend_png = plot.legend_png,
-                        plot_eps = plot.plot_eps,
-                        legend_eps = plot.legend_eps,
-                        no_id = plot.no_id)
-    session.add(plot)
+@router.patch(api_base_url + "plot/{plot_id}")
+async def update_plot(plot_id: int,
+                      record_in: PlotUpdate,
+                      session: AsyncSession = Depends(get_session),
+                      dmtool_userid: Annotated[int | None, Header()] = None):
+    
+    route_name = "Update Plot"
+    record_in_data = record_in.dict(exclude_unset=True)
+    get_records_statement = select(Plot).where(Plot.id == plot_id)
+    record_update_statement = (update(Plot).where(Plot.id == plot_id).values(**record_in_data))
+    
+    db_records = await session.exec(get_records_statement)
+    
+    if not db_records:
+        raise HTTPException(status_code=404, detail="Record not found - "+ route_name)
+    
+    #db_record_to_update = db_records.first()
+    
+    result = await session.execute(record_update_statement)
     await session.commit()
-    await session.refresh(plot)
-    return plot
+    
+    updated_record = await session.exec(get_records_statement)
+    return_record = updated_record.first()
+    return {"updated": return_record}
 
 @router.delete(api_base_url + "plot/{plot_id}")
-async def delete_plot_ownership(plot_id: int, session: AsyncSession = Depends(get_session),
+async def delete_plot(plot_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     statement = select(Plot).where(Plot.id == plot_id)
     results = await session.exec(statement)
