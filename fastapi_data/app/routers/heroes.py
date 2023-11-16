@@ -163,7 +163,7 @@ async def update_hero(hero_id: int, hero_in: HeroUpdate, session: AsyncSession =
     hero_data = hero_in.dict(exclude_unset=True)
     for key, value in hero_data.items():
         setattr(db_hero, key, value)
-    session.add(db_hero)
+    session.update(db_hero)
     session.commit()
     session.refresh(db_hero)
     return {"updated": db_hero}
