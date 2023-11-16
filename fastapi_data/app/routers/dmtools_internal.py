@@ -9,7 +9,7 @@ from typing import List, Optional
 
 from db import get_session
 
-from models.dmtools import Experiment, ExperimentCreate
+from models.dmtools import Experiment, ExperimentCreate, ExperimentUpdate
 from models.dmtools import Limit_display, Limit_displayCreate
 from models.dmtools import Limit_ownership, Limit_ownershipCreate
 from models.dmtools import Limit, LimitCreate, LimitSelect
