@@ -153,8 +153,10 @@ def update_hero(hero_id: int, hero: HeroUpdate):
 '''
 
 @router.patch(api_base_url + "hero/{id}")
-async def update_hero(hero_id: int, record_in: HeroUpdate, session: AsyncSession = Depends(get_session),
-                            dmtool_userid: Annotated[int | None, Header()] = None):
+async def update_hero(hero_id: int,
+                      record_in: HeroUpdate,
+                      session: AsyncSession = Depends(get_session),
+                      dmtool_userid: Annotated[int | None, Header()] = None):
     
     route_name = "Update Hero"
     record_in_data = record_in.dict(exclude_unset=True)
