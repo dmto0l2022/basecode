@@ -153,29 +153,26 @@ def update_hero(hero_id: int, hero: HeroUpdate):
 '''
 
 @router.patch(api_base_url + "hero/{id}")
-async def update_hero(hero_id: int, hero_in: HeroUpdate, session: AsyncSession = Depends(get_session),
+async def update_hero(hero_id: int, record_in: HeroUpdate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(Hero).where(Hero.id == hero_id)
-    db_heroes = await session.exec(statement)
     
-    if not db_heroes:
-        raise HTTPException(status_code=404, detail="Hero not found")
-    ##db_hero = results.one()
-    db_hero_update = db_heroes.first()
-    hero_data = hero_in.dict(exclude_unset=True)
-    #for key, value in hero_data.items():
-    #    setattr(db_hero_update, key, value)
-    #session.add(db_hero_update)
-    update_statement = (
-            update(Hero)
-            .where(Hero.id == hero_id)
-            .values(**hero_data)
-        )
-    result = await session.execute(update_statement)
+    route_name = "Update Hero"
+    get_records_statement = select(Hero).where(Hero.id == hero_id)
+    record_update_statement = (update(Hero).where(Hero.id == hero_id).values(**hero_data))
+    
+    db_records = await session.exec(get_records_statement)
+    
+    if not db_records:
+        raise HTTPException(status_code=404, detail="Record not found - "+ route_name)
+    
+    db_record_to_update = db_records.first()
+    
+    result = await session.execute(record_update_statement)
     await session.commit()
-    updated_hero = await session.exec(statement)
-    return_hero = updated_hero.first()
-    return {"updated": return_hero}
+    
+    updated_record = await session.exec(get_records_statement)
+    return_record = updated_record.first()
+    return {"updated": return_record}
 
 
 ## https://github.com/sqlalchemy/sqlalchemy/discussions/6630
