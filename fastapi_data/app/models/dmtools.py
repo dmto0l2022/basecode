@@ -61,6 +61,10 @@ class Experiment(ExperimentBase, table=True):
 class ExperimentCreate(ExperimentBase):
     pass
 
+class ExperimentUpdate(SQLModel):
+    name : str = Field(default=None, nullable=False)
+    updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True)
+
 ## Limit Display
 
 #fields:
