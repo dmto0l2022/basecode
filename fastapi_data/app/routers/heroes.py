@@ -159,13 +159,13 @@ async def update_hero(hero_id: int, hero_in: HeroUpdate, session: AsyncSession =
     results = await session.exec(statement)
     if not results:
         raise HTTPException(status_code=404, detail="Hero not found")
-    hero = results.one()
-    hero_data = hero.dict(exclude_unset=True)
+    db_hero = results.one()
+    hero_data = hero_in.dict(exclude_unset=True)
     for key, value in hero_data.items():
-        setattr(hero, key, value)
-    session.add(hero)
+        setattr(db_hero, key, value)
+    session.add(db_hero)
     session.commit()
-    session.refresh(hero)
-    return {"updated": hero}
+    session.refresh(db_hero)
+    return {"updated": db_hero}
 
 
