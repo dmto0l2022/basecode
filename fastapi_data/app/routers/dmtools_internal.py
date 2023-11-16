@@ -41,12 +41,22 @@ async def create_experiment(experiment: ExperimentCreate, session: AsyncSession 
     return experiment
 
 
-@router.get(api_base_url + "experiment", response_model=list[Experiment])
-async def read_experiment(session: AsyncSession = Depends(get_session),
+@router.get(api_base_url + "experiments", response_model=list[Experiment])
+async def read_experiments(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Experiment))
     experiments = result.scalars().all()
     return [Experiment(name=experiment.name, id=experiment.id) for experiment in experiments]
+
+@router.get(api_base_url + "experiment", response_model=Experiment)
+async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    result = await session.execute(select(Experiment).where(Experiment.id == experiment_id))
+    #experiments = result.scalars().all()
+    #records = await session.exec(get_records_statement)
+    return_record = result.first()
+    return Experiment(name=return_record.name, id=return_record.id)
+
 
 @router.patch(api_base_url + "experiment/{experiment_id}")
 async def update_experiment(experiment_id: int,
