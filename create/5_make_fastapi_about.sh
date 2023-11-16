@@ -30,6 +30,7 @@ podman run -dt \
 --name container_fastapi_about_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
+--log-opt max-size=10mb \
 -v /opt/dmtools/code/basecode:/workdir:Z \
 localhost/fastapi_about_1:latest
 
