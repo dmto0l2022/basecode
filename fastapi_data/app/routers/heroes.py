@@ -157,8 +157,9 @@ async def update_hero(hero_id: int, record_in: HeroUpdate, session: AsyncSession
                             dmtool_userid: Annotated[int | None, Header()] = None):
     
     route_name = "Update Hero"
+    record_in_data = record_in.dict(exclude_unset=True)
     get_records_statement = select(Hero).where(Hero.id == hero_id)
-    record_update_statement = (update(Hero).where(Hero.id == hero_id).values(**record_in))
+    record_update_statement = (update(Hero).where(Hero.id == hero_id).values(**record_in_data))
     
     db_records = await session.exec(get_records_statement)
     
