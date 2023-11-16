@@ -58,7 +58,7 @@ class HeroBase(SQLModel):
     name: str = Field(index=True)
 
 class Hero(HeroBase, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
+    id: int = Field(default=None, nullable=False, primary_key=True)
 
 class HeroRead(HeroBase):
     id: int
@@ -66,3 +66,19 @@ class HeroRead(HeroBase):
 class HeroCreate(HeroBase):
     pass
 
+'''
+class ExperimentBase(SQLModel):
+    old_experiment_id : Optional[int] = Field(default=None, nullable=True)
+    name : str = Field(default=None, nullable=False)
+    created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True)
+    updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True)
+    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True)
+
+class Experiment(ExperimentBase, table=True):
+    ##__tablename__= "experiment"
+    ##__table_args__= ({'mysql_engine':'InnoDB'})
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+class ExperimentCreate(ExperimentBase):
+    pass
+'''
