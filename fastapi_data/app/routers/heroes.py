@@ -156,10 +156,10 @@ def update_hero(hero_id: int, hero: HeroUpdate):
 async def update_hero(hero_id: int, hero_in: HeroUpdate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     statement = select(Hero).where(Hero.id == hero_id)
-    results = await session.exec(statement)
-    if not results:
+    db_hero = await session.exec(statement)
+    if not db_hero:
         raise HTTPException(status_code=404, detail="Hero not found")
-    db_hero = results.one()
+    ##db_hero = results.one()
     hero_data = hero_in.dict(exclude_unset=True)
     for key, value in hero_data.items():
         setattr(db_hero, key, value)
