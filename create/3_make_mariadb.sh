@@ -44,6 +44,7 @@ podman run -dt \
 --name container_mariadb \
 --pod pod_main_backend \
 --user $uid:$gid \
+--log-opt max-size=10mb \
 --volume /data/containers/data/mysql:/var/lib/mysql:z \
 localhost/mariadb_1:latest
 
