@@ -28,7 +28,8 @@ podman run -dt \
 --name container_application_1 \
 --pod pod_main_backend \
 --user $uid:$gid \
--v /opt/dmtools/code/basecode:/workdir \
+--log-opt max-size=10mb \
+-v /opt/dmtools/code/basecode:/workdir:Z \
 localhost/application_1:latest
 
 cd /opt/dmtools/code/basecode/create
