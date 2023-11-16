@@ -13,7 +13,7 @@ router = APIRouter()
 
 from db import get_session
 
-from models.heroes import Team, TeamCreate, Hero, HeroCreate, TeamMembers, TeamMemberAdd
+from models.heroes import Team, TeamCreate, Hero, HeroCreate, HeroUpdate, TeamMembers, TeamMemberAdd
 
 from datetime import datetime
 #1980-01-01 00:00:00.000
@@ -153,7 +153,7 @@ def update_hero(hero_id: int, hero: HeroUpdate):
 
 
 @router.patch(api_base_url + "hero/{id}")
-async def update_hero(hero_id: int, session: AsyncSession = Depends(get_session),
+async def update_hero(hero_id: int, hero_in: HeroUpdate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     statement = select(Hero).where(Hero.id == hero_id)
     results = await session.exec(statement)
