@@ -55,6 +55,7 @@ async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get
     #experiments = result.scalars().all()
     #records = await session.exec(get_records_statement)
     return_record = result.first()
+    print("return_record >>>>>>>>>", return_record)
     return Experiment(name=return_record.name, id=return_record.id)
 
 
