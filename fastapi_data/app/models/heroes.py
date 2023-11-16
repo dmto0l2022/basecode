@@ -66,6 +66,9 @@ class HeroRead(HeroBase):
 class HeroCreate(HeroBase):
     pass
 
+class HeroUpdate(SQLModel):
+    name: Optional[str] = None
+
 '''
 class ExperimentBase(SQLModel):
     old_experiment_id : Optional[int] = Field(default=None, nullable=True)
