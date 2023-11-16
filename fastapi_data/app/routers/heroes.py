@@ -150,24 +150,26 @@ def update_hero(hero_id: int, hero: HeroUpdate):
         session.refresh(db_hero)
         return db_hero
 
-
+'''
 
 @router.patch(api_base_url + "hero/{id}")
 async def update_hero(hero_id: int, hero_in: HeroUpdate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     statement = select(Hero).where(Hero.id == hero_id)
-    db_hero = await session.exec(statement)
-    if not db_hero:
+    db_heroes = await session.exec(statement)
+    
+    if not db_heroes:
         raise HTTPException(status_code=404, detail="Hero not found")
     ##db_hero = results.one()
+    db_hero_update = db_heroes.scalars().first()
     hero_data = hero_in.dict(exclude_unset=True)
     for key, value in hero_data.items():
-        setattr(db_hero, key, value)
-    session.update(db_hero)
+        setattr(db_hero_update, key, value)
+    session.add(db_hero_update)
     session.commit()
-    session.refresh(db_hero)
-    return {"updated": db_hero}
-'''
+    session.refresh(db_hero_update)
+    return {"updated": db_hero_update}
+
 
 ## https://github.com/sqlalchemy/sqlalchemy/discussions/6630
 
