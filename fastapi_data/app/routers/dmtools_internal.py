@@ -543,16 +543,15 @@ async def create_limit(limit: LimitCreate, session: AsyncSession = Depends(get_s
 
 ## read one limit
 
-@router.get(api_base_url + "limit/{limit_id}", response_model=Limit)
+@router.get(api_base_url + "limit/{limit_id}")
 async def read_limit(limit_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     statement = select(LimitOwnership,Limit).join(Limit).where(LimitOwnership.limit_id == limit_id).where(LimitOwnership.user_id == dmtool_userid)
     raw_data = await session.exec(statement)
-    limits = raw_data.first()
-    print("limit data >>>>>>>>>>>>>>>",  limits)
-    limit_count = 0
-    just_limit = limits[1]
-    return just_limit
+    limit = raw_data.first()
+    #print("limit data >>>>>>>>>>>>>>>",  limits)
+    #limit_count = 0
+    return limit
 
 
 @router.patch(api_base_url + "limit/{limit_id}")
@@ -665,6 +664,7 @@ async def update_plot_ownership(plot_ownership_id: int,
     return_record = updated_record.first()
     return {"updated": return_record}
 
+
 @router.delete(api_base_url + "plot_ownership/{plot_ownership_id}")
 async def delete_plot_ownership(plot_ownership_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
@@ -676,7 +676,7 @@ async def delete_plot_ownership(plot_ownership_id: int, session: AsyncSession = 
     return {"deleted": plot_ownership}
 
 # Plot CRUD
-# Plot, PlotCreate
+# Plot, PlotCreate, PlotUpdate
 
 '''
 id
@@ -720,8 +720,8 @@ async def create_plot(plot: PlotCreate, session: AsyncSession = Depends(get_sess
     await session.refresh(plot)
     return plot
 
-@router.get(api_base_url + "plot", response_model=list[Plot])
-async def read_plot(session: AsyncSession = Depends(get_session),
+@router.get(api_base_url + "plots", response_model=list[Plot])
+async def read_plots(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Plot))
     plots = result.scalars().all()
@@ -748,7 +748,7 @@ async def read_plot(session: AsyncSession = Depends(get_session),
 ###
 
 @router.get(api_base_url + "plot")
-async def read_experiment(plot_id: int,session: AsyncSession = Depends(get_session),
+async def read_plot(plot_id: int,session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Plot).where(Plot.id == plot_id))
     return_record = result.first()
