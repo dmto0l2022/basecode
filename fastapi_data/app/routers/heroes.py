@@ -2,7 +2,7 @@ from typing import List, Optional, Annotated
 
 import json
 
-from sqlmodel import Field, Relationship, Session, SQLModel, create_engine, select, delete, join
+from sqlmodel import Field, Relationship, Session, SQLModel, create_engine, select, delete, join, update
 
 from fastapi import Depends, FastAPI, Request, Response, HTTPException, Header
 
@@ -167,11 +167,11 @@ async def update_hero(hero_id: int, hero_in: HeroUpdate, session: AsyncSession =
     #    setattr(db_hero_update, key, value)
     #session.add(db_hero_update)
     update_statement = (
-            sa.update(Hero)
+            update(Hero)
             .where(Hero.id == hero_id)
             .values(**hero_data)
         )
-    result = await db.execute(update_statement)
+    result = await session.execute(update_statement)
     session.commit()
     updated_hero = await session.exec(statement)
     return_hero = updated_hero.first()
