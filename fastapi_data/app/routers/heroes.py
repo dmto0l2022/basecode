@@ -158,14 +158,14 @@ async def update_hero(hero_id: int, record_in: HeroUpdate, session: AsyncSession
     
     route_name = "Update Hero"
     get_records_statement = select(Hero).where(Hero.id == hero_id)
-    record_update_statement = (update(Hero).where(Hero.id == hero_id).values(**hero_data))
+    record_update_statement = (update(Hero).where(Hero.id == hero_id).values(**record_in))
     
     db_records = await session.exec(get_records_statement)
     
     if not db_records:
         raise HTTPException(status_code=404, detail="Record not found - "+ route_name)
     
-    db_record_to_update = db_records.first()
+    #db_record_to_update = db_records.first()
     
     result = await session.execute(record_update_statement)
     await session.commit()
