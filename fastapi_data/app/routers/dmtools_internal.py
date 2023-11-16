@@ -48,7 +48,7 @@ async def read_experiments(session: AsyncSession = Depends(get_session),
     experiments = result.scalars().all()
     return [Experiment(name=experiment.name, id=experiment.id) for experiment in experiments]
 
-@router.get(api_base_url + "experiment", response_model=Experiment)
+@router.get(api_base_url + "experiment")
 async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Experiment).where(Experiment.id == experiment_id))
