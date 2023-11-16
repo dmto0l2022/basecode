@@ -132,3 +132,40 @@ async def delete_hero(hero_id: int, session: AsyncSession = Depends(get_session)
     await session.delete(hero)
     await session.commit()
     return {"deleted": hero}
+
+
+## update a hero record
+''' example
+@app.patch("/heroes/{hero_id}", response_model=HeroRead)
+def update_hero(hero_id: int, hero: HeroUpdate):
+    with Session(engine) as session:
+        db_hero = session.get(Hero, hero_id)
+        if not db_hero:
+            raise HTTPException(status_code=404, detail="Hero not found")
+        hero_data = hero.dict(exclude_unset=True)
+        for key, value in hero_data.items():
+            setattr(db_hero, key, value)
+        session.add(db_hero)
+        session.commit()
+        session.refresh(db_hero)
+        return db_hero
+'''
+
+
+@router.patch(api_base_url + "hero/{id}")
+async def update_hero(hero_id: int, session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    statement = select(Hero).where(Hero.id == hero_id)
+    results = await session.exec(statement)
+    if not results:
+        raise HTTPException(status_code=404, detail="Hero not found")
+    hero = results.one()
+    hero_data = hero.dict(exclude_unset=True)
+    for key, value in hero_data.items():
+        setattr(hero, key, value)
+    session.add(hero)
+    session.commit()
+    session.refresh(hero)
+    return {"updated": hero}
+
+
