@@ -136,8 +136,8 @@ async def create_limit_display(limit_display: Limit_displayCreate, session: Asyn
     await session.refresh(limit_display)
     return limit_display
 
-@router.get(api_base_url + "limit_display", response_model=list[Limit_display])
-async def read_limit_display(session: AsyncSession = Depends(get_session),
+@router.get(api_base_url + "limit_displays", response_model=list[Limit_display])
+async def read_limit_displays(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Limit_display))
     limit_displays = result.scalars().all()
@@ -158,12 +158,10 @@ async def read_limit_display(session: AsyncSession = Depends(get_session),
             for limit_display in limit_displays]
 
 ###
-@router.get(api_base_url + "experiment")
-async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get_session),
+@router.get(api_base_url + "limit_display")
+async def read_limit_display(limit_display_id: int,session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(Experiment).where(Experiment.id == experiment_id))
-    #experiments = result.scalars().all()
-    #records = await session.exec(get_records_statement)
+    result = await session.execute(select(Limit_display).where(Limit_display.id == limit_display_id))
     return_record = result.first()
     print("return_record >>>>>>>>>", return_record)
     return return_record
@@ -235,8 +233,8 @@ async def create_limit_ownership(limit_ownership: Limit_ownershipCreate, session
     await session.refresh(limit_ownership)
     return limit_ownership
 
-@router.get(api_base_url + "limit_ownership", response_model=list[Limit_ownership])
-async def read_limit_ownership(session: AsyncSession = Depends(get_session),
+@router.get(api_base_url + "limit_ownerships", response_model=list[Limit_ownership])
+async def read_limit_ownerships(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Limit_ownership, Limit).where(Limit_ownership.limit_id == Limit.id))
     limit_ownerships = result.scalars().all()
@@ -250,21 +248,19 @@ async def read_limit_ownership(session: AsyncSession = Depends(get_session),
 
 ###
 
-@router.get(api_base_url + "experiment")
-async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get_session),
+@router.get(api_base_url + "limit_ownership")
+async def read_limit_ownership(limit_ownership_id: int,session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(Experiment).where(Experiment.id == experiment_id))
-    #experiments = result.scalars().all()
-    #records = await session.exec(get_records_statement)
+    result = await session.execute(select(Limit_ownership).where(Limit_ownership.id == limit_ownership_id))
     return_record = result.first()
-    print("return_record >>>>>>>>>", return_record)
+    #print("return_record >>>>>>>>>", return_record)
     return return_record
 
 ###
 
 
 @router.patch(api_base_url + "limit_ownership/{id}")
-async def update_limit_display(limit_ownership_id: int,
+async def update_limit_ownership(limit_ownership_id: int,
                       record_in: Limit_ownershipUpdate,
                       session: AsyncSession = Depends(get_session),
                       dmtool_userid: Annotated[int | None, Header()] = None):
@@ -619,8 +615,8 @@ async def create_plot_ownership(plot_ownership: Plot_ownershipCreate, session: A
     return plot_ownership
 
 
-@router.get(api_base_url + "plot_ownership", response_model=list[Plot_ownership])
-async def read_plot_ownership(session: AsyncSession = Depends(get_session),
+@router.get(api_base_url + "plot_ownerships", response_model=list[Plot_ownership])
+async def read_plot_ownerships(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Plot_ownership))
     plot_ownerships = result.scalars().all()
@@ -634,12 +630,10 @@ async def read_plot_ownership(session: AsyncSession = Depends(get_session),
 
 ###
 
-@router.get(api_base_url + "experiment")
-async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get_session),
+@router.get(api_base_url + "plot_ownership")
+async def read_plot_ownership(plot_ownership_id: int,session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(Experiment).where(Experiment.id == experiment_id))
-    #experiments = result.scalars().all()
-    #records = await session.exec(get_records_statement)
+    result = await session.execute(select(Plot_ownership).where(Plot_ownership.id == plot_ownership_id))
     return_record = result.first()
     print("return_record >>>>>>>>>", return_record)
     return return_record
@@ -753,12 +747,10 @@ async def read_plot(session: AsyncSession = Depends(get_session),
 
 ###
 
-@router.get(api_base_url + "experiment")
-async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get_session),
+@router.get(api_base_url + "plot")
+async def read_experiment(plot_id: int,session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(Experiment).where(Experiment.id == experiment_id))
-    #experiments = result.scalars().all()
-    #records = await session.exec(get_records_statement)
+    result = await session.execute(select(Plot).where(Plot.id == plot_id))
     return_record = result.first()
     print("return_record >>>>>>>>>", return_record)
     return return_record
