@@ -149,7 +149,7 @@ def update_hero(hero_id: int, hero: HeroUpdate):
         session.commit()
         session.refresh(db_hero)
         return db_hero
-'''
+
 
 
 @router.patch(api_base_url + "hero/{id}")
@@ -167,5 +167,40 @@ async def update_hero(hero_id: int, hero_in: HeroUpdate, session: AsyncSession =
     session.commit()
     session.refresh(db_hero)
     return {"updated": db_hero}
+'''
 
+## https://github.com/sqlalchemy/sqlalchemy/discussions/6630
+
+'''
+
+async def modify(
+        self,
+        db: AsyncSession,
+        user_id: str,
+        payload: Union[UserProfile, UserPersonProfile],
+    ) -> UserProfileModel:
+        """modify user profile partially"""
+
+       # Normally when we try to update a row, we will find out if this row exists
+        query = sa.select(UserProfileModel).where(UserProfileModel.id == user_id)
+        result = await db.execute(query)
+        profile = result.scalars().first()
+        
+        # if not, raise exception
+        if not profile:
+            raise HTTPException(400, detail=["profile not found"])
+        
+        # here is my question
+        stmt = (
+            sa.update(UserProfileModel)
+            .where(UserProfileModel.id == user_id)
+            .values(**payload.dict())
+        )
+        result = await db.execute(stmt)
+        
+        # why I don't need this?
+        # db.refresh(profile)
+
+        return profile
+'''
 
