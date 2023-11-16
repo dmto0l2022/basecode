@@ -172,7 +172,7 @@ async def update_hero(hero_id: int, hero_in: HeroUpdate, session: AsyncSession =
             .values(**hero_data)
         )
     result = await session.execute(update_statement)
-    session.commit()
+    await session.commit()
     updated_hero = await session.exec(statement)
     return_hero = updated_hero.first()
     return {"updated": return_hero}
