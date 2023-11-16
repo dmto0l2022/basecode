@@ -157,6 +157,19 @@ async def read_limit_display(session: AsyncSession = Depends(get_session),
                         updated_at = limit_display.updated_at)
             for limit_display in limit_displays]
 
+###
+@router.get(api_base_url + "experiment")
+async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    result = await session.execute(select(Experiment).where(Experiment.id == experiment_id))
+    #experiments = result.scalars().all()
+    #records = await session.exec(get_records_statement)
+    return_record = result.first()
+    print("return_record >>>>>>>>>", return_record)
+    return return_record
+
+###
+
 
 @router.patch(api_base_url + "limit_display/{id}")
 async def update_limit_display(limit_display_id: int,
@@ -234,6 +247,21 @@ async def read_limit_ownership(session: AsyncSession = Depends(get_session),
                             updated_at = limit_ownership.updated_at,
                             data_comment = limit_ownership.data_comment)
             for limit_ownership in limit_ownerships]
+
+###
+
+@router.get(api_base_url + "experiment")
+async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    result = await session.execute(select(Experiment).where(Experiment.id == experiment_id))
+    #experiments = result.scalars().all()
+    #records = await session.exec(get_records_statement)
+    return_record = result.first()
+    print("return_record >>>>>>>>>", return_record)
+    return return_record
+
+###
+
 
 @router.patch(api_base_url + "limit_ownership/{id}")
 async def update_limit_display(limit_ownership_id: int,
@@ -604,6 +632,19 @@ async def read_plot_ownership(session: AsyncSession = Depends(get_session),
                          )
             for plot_ownership in plot_ownerships]
 
+###
+
+@router.get(api_base_url + "experiment")
+async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    result = await session.execute(select(Experiment).where(Experiment.id == experiment_id))
+    #experiments = result.scalars().all()
+    #records = await session.exec(get_records_statement)
+    return_record = result.first()
+    print("return_record >>>>>>>>>", return_record)
+    return return_record
+
+###
 
 @router.patch(api_base_url + "plot_ownership/{plot_ownership_id}")
 async def update_plot_ownership(plot_ownership_id: int,
@@ -709,6 +750,21 @@ async def read_plot(session: AsyncSession = Depends(get_session),
                          )
             for plot in plots]
 
+
+###
+
+@router.get(api_base_url + "experiment")
+async def read_experiment(experiment_id: int,session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    result = await session.execute(select(Experiment).where(Experiment.id == experiment_id))
+    #experiments = result.scalars().all()
+    #records = await session.exec(get_records_statement)
+    return_record = result.first()
+    print("return_record >>>>>>>>>", return_record)
+    return return_record
+
+
+###
 
 @router.patch(api_base_url + "plot/{plot_id}")
 async def update_plot(plot_id: int,
