@@ -161,14 +161,21 @@ async def update_hero(hero_id: int, hero_in: HeroUpdate, session: AsyncSession =
     if not db_heroes:
         raise HTTPException(status_code=404, detail="Hero not found")
     ##db_hero = results.one()
-    db_hero_update = db_heroes.scalars().first()
+    db_hero_update = db_heroes.first()
     hero_data = hero_in.dict(exclude_unset=True)
-    for key, value in hero_data.items():
-        setattr(db_hero_update, key, value)
-    session.add(db_hero_update)
+    #for key, value in hero_data.items():
+    #    setattr(db_hero_update, key, value)
+    #session.add(db_hero_update)
+    update_statement = (
+            sa.update(Hero)
+            .where(Hero.id == hero_id)
+            .values(**hero_data)
+        )
+    result = await db.execute(update_statement)
     session.commit()
-    session.refresh(db_hero_update)
-    return {"updated": db_hero_update}
+    updated_hero = await session.exec(statement)
+    return_hero = updated_hero.first()
+    return {"updated": return_hero}
 
 
 ## https://github.com/sqlalchemy/sqlalchemy/discussions/6630
