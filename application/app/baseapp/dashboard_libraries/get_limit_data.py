@@ -88,12 +88,16 @@ def parse_series_and_values(limits_dataframe_in):
     
     #columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
 
+    #### limit list
+    
     limit_list_df_out = limit_data_df_out[['limit_id','data_label','data_reference', 'data_comment','year','experiment','spin_dependency','result_type','official',
                                            'greatest_hit']].copy()
     limit_list_df_out.drop_duplicates(inplace=True)
     limit_list_df_out = limit_list_df_out.reset_index()
     limit_list_df_out['id'] = limit_list_df_out.index
     limit_list_df_out.set_index('id', inplace=True, drop=False)
+
+    #### trace list
     
     trace_list_df_out = limit_data_df_out[['limit_id','data_label','trace_id','trace_name',
                                            'line_color','symbol_color','fill_color','line','symbol']]
