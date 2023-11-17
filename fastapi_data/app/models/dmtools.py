@@ -110,7 +110,7 @@ class Limit_displayBase(SQLModel):
 class Limit_display(Limit_displayBase, table=True):
     ##__tablename__= "limit_display"
     ##__table_args__=  ({'mysql_engine':'InnoDB'})
-    __table_args__= (ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_display_id"),)
+    ##__table_args__= (ForeignKeyConstraint(["limit_id"], ["limit.id"], name="fk_limit_display_id"),)
     id: int = Field(default=None, nullable=False, primary_key=True)
 
 
@@ -294,6 +294,28 @@ class LimitSelect(SQLModel):
     greatest_hit : Optional[int] = Field(default=None, nullable=True, primary_key=False) ## boolean
     year : Optional[int] = Field(default=None, nullable=True, primary_key=False)
         
+class Limit_dataBase(SQLModel):
+    limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    x : Optional[float] = Field(default=None, nullable=True, primary_key=False)
+    y : Optional[float] = Field(default=None, nullable=True, primary_key=False)
+    
+class Limit_data(Limit_dataBase, table=True):
+    ##__tablename__= "limit_data"
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+class Limit_dataCreate(Limit_dataBase):
+    pass
+
+class Limit_dataUpdate(SQLModel):
+    limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    x : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    y : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+
+
 ## Plot Ownership 
 # Fields
 '''
@@ -314,8 +336,6 @@ class Plot_ownershipBase(SQLModel):
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=False, primary_key=False)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=False, primary_key=False)
     ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=False, primary_key=False)
-
-    
 
 class Plot_ownership(Plot_ownershipBase, table=True):
     ##__tablename__= "plot_ownership"
