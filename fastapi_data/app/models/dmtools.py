@@ -294,7 +294,116 @@ class LimitSelect(SQLModel):
     greatest_hit : Optional[int] = Field(default=None, nullable=True, primary_key=False) ## boolean
     year : Optional[int] = Field(default=None, nullable=True, primary_key=False)
 
+#####
 
+'''
+ limit_list_df_out = limit_data_df_out[['limit_id','data_label','data_reference', 'data_comment','year','experiment','spin_dependency','result_type','official',
+                                           'greatest_hit']].copy()
+'''
+class Data_aboutBase(SQLModel):
+    limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    data_reference : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    data_comment : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    year : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    experiment :  Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    spin_dependency : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    result_type :  Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    official : Optional[int] = Field(default=0, nullable=True, primary_key=False) ## boolean
+    greatest_hit : Optional[int] = Field(default=0, nullable=True, primary_key=False) ## boolean
+    created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
+    updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
+    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
+
+class Data_about(Data_aboutBase, table=True):
+    ##__tablename__= "data_about"
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+class Data_aboutCreate(Data_aboutBase):
+    pass
+
+class Data_aboutUpdate(SQLModel):
+    limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    data_reference : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    data_comment : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    year : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    experiment :  Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    spin_dependency : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    result_type :  Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    official : Optional[int] = Field(default=0, nullable=True, primary_key=False) ## boolean
+    greatest_hit : Optional[int] = Field(default=0, nullable=True, primary_key=False) ## boolean
+    updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
+
+
+'''
+trace_list_df_out = limit_data_df_out[['limit_id','data_label','trace_id','trace_name',
+                                           'line_color','symbol_color','fill_color','line','symbol']]
+'''
+
+class Data_appearanceBase(SQLModel):
+    limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    line_color : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    symbol_color : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    fill_color : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    line : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    symbol : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
+    updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
+    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
+
+class Data_appearance(Data_appearanceBase, table=True):
+    ##__tablename__= "data_appearance"
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+class Data_appearanceCreate(Data_appearanceBase):
+    pass
+
+class Data_appearanceUpdate(SQLModel):
+    limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    line_color : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    symbol_color : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    fill_color : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    line : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    symbol : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
+
+####
+
+class Data_dataBase(SQLModel):
+    limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    x : Optional[float] = Field(default=None, nullable=True, primary_key=False)
+    y : Optional[float] = Field(default=None, nullable=True, primary_key=False)
+    created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
+    updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
+    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
+
+class Data_data(Data_dataBase, table=True):
+    ##__tablename__= "data_data"
+    id: int = Field(default=None, nullable=False, primary_key=True)
+
+class Data_dataCreate(Data_dataBase):
+    pass
+
+class Data_dataUpdate(SQLModel):
+    limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    x : Optional[float] = Field(default=None, nullable=True, primary_key=False)
+    y : Optional[float] = Field(default=None, nullable=True, primary_key=False)
+    updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
+
+
+
+#####
 
 class Limit_dataBase(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
