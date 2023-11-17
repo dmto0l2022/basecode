@@ -293,13 +293,18 @@ class LimitSelect(SQLModel):
     official : Optional[int] = Field(default=None, nullable=True, primary_key=False) ## boolean
     greatest_hit : Optional[int] = Field(default=None, nullable=True, primary_key=False) ## boolean
     year : Optional[int] = Field(default=None, nullable=True, primary_key=False)
-        
+
+
+
 class Limit_dataBase(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     x : Optional[float] = Field(default=None, nullable=True, primary_key=False)
     y : Optional[float] = Field(default=None, nullable=True, primary_key=False)
+    created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
+    updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
+    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
     
 class Limit_data(Limit_dataBase, table=True):
     ##__tablename__= "limit_data"
@@ -314,6 +319,7 @@ class Limit_dataUpdate(SQLModel):
     trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     x : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     y : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+    updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
 
 
 ## Plot Ownership 
