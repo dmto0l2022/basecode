@@ -611,9 +611,9 @@ updated_at
 @router.post(api_base_url + "limit_data")
 async def create_limit_data(limit_data_in: Limit_dataCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    limit_data = Limit_data(limit_id = limit_data_in.user_id,
-                            trace_id = limit_data_in.plot_id,
-                            trace_name = limit_data_in.plot_id,
+    limit_data = Limit_data(limit_id = limit_data_in.limit_id,
+                            trace_id = limit_data_in.trace_id,
+                            trace_name = limit_data_in.trace_name,
                             x = limit_data_in.x,
                             y = limit_data_in.x,
                             created_at = limit_data_in.created_at,
@@ -623,6 +623,22 @@ async def create_limit_data(limit_data_in: Limit_dataCreate, session: AsyncSessi
     await session.refresh(limit_data)
     return limit_data
 
+@router.post(api_base_url + "limit_dataset")
+async def create_limit_dataset(limit_dataset_in: list[Limit_dataCreate], session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    counter = 0
+    for ll in limit_dataset_in:
+        limit_data = Limit_data(limit_id = ll.limit_id,
+                                trace_id = ll.trace_id,
+                                trace_name = ll.trace_name,
+                                x = ll.x,
+                                y = ll.y,
+                                created_at = ll.created_at,
+                                updated_at = ll.updated_at)
+        session.add(limit_data)
+        await session.commit()
+        counter += 1
+    return {'inserted' : counter}
 
 @router.get(api_base_url + "limit_data_multiple", response_model=list[Limit_data])
 async def read_limit_data_multiple(session: AsyncSession = Depends(get_session),
