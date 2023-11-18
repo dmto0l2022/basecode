@@ -216,9 +216,10 @@ class LimitData:
             #limit_data_df_resp = pd.DataFrame()
                 
             #try:
+            print("get all owned limits url >>>>>>>>>>>> " ,self.fastapi_url_limits")
             r = requests.get(self.fastapi_url_limits, headers=self.user_header)
             response_data = r.json()
-            #print("get limits response data json >>>>>>>>>>>> ", response_data)
+            print("get all owned limits response data json >>>>>>>>>>>> ", response_data)
         
             #print('response data')
             #print('===================')
@@ -232,7 +233,8 @@ class LimitData:
             
             #limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
             self.PopulateLimitList()
-            self.PoplulateTraceList()
+            self.PopulateTraceList()
+            self.PopulateLimitData()
             
             column_names=['id','data_label','data_comment','data_values']
         
