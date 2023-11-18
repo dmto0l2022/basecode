@@ -65,7 +65,7 @@ class LimitData:
             data_series = data_string.split("]")
             #print(len(data_series))
             for l in range(0,len(data_series)):
-                next_colour = next(palette)
+                next_colour = next(self.palette)
                 single_set = data_series[l]
                 set_list = single_set.split(";")
                 for i in set_list:
@@ -147,7 +147,7 @@ class LimitData:
             data_series = data_string.split("]")
             #print(len(data_series))
             for l in range(0,len(data_series)):
-                next_colour = next(palette)
+                next_colour = next(self.palette)
                 single_set = data_series[l]
                 set_list = single_set.split(";")
                 try:
