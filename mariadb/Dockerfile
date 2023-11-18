@@ -67,15 +67,21 @@ RUN chown -R ${ENV_USER_UID}:${ENV_USER_GID} /var/lib/mysql
 #ENV MYSQL_USER toto
 #ENV MYSQL_PASSWORD test123
 
+## this was just some test data
 COPY world-db.zip /var/www/html/world-db.zip
 RUN unzip -j /var/www/html/world-db.zip -d /docker-entrypoint-initdb.d
 
 ## copied from dmtools home drive in create script, x added to last to execute
 COPY x_20211104_dmtools_backup.sql /docker-entrypoint-initdb.d
 
+## create a procedure to migrate the RubyDB data into the sqlmodel data schema
 COPY y_migrate_data.sql /docker-entrypoint-initdb.d
+
+## create procedures to migrate to move the RubyDB data to RubyDB
 COPY z_move_data.sql /docker-entrypoint-initdb.d
 
+## create procedure to create the filter table data to create the limit selection filters
+COPY zz_insert_into_dropdownpair.sql /docker-entrypoint-initdb.d
 
 #RUN unzip -j /var/www/html/world-db.zip -d /
 
