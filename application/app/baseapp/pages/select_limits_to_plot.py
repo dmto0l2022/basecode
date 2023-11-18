@@ -71,7 +71,8 @@ class SelectLimitsToPlotDashBoardLayout():
                                         ['data_comment', '44%'],
                                         ['data_label', '44%'],
                                     ]
-        
+        self.table_height = '50vh',
+        self.page_size = 26,
         self.row_height = '12px'
         self.table_font_size = '11px'
         self.filter_table_heights = '60px'
@@ -530,6 +531,8 @@ class SelectLimitsToPlotDashBoardLayout():
         ClsMainDataTable = mte.get_main_table(self.page_title,
                                              self.page_name + self.main_table_id,
                                              self.table_meta_data_main_table,
+                                             self.table_height,
+                                             self.page_size,
                                              self.row_height,
                                              self.table_font_size,
                                              self.fastapi_url_all_limits,
