@@ -1198,7 +1198,7 @@ async def create_limit_dataset(data_data_dataset_in: list[Data_dataCreate], sess
 @router.get(api_base_url + "data_data_dataset", response_model=list[Data_data])
 async def read_data_data_dataset(limit_id_in: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(Data_data).where(Data_data.limit_id == limit_id_in)
+    result = await session.execute(select(Data_data).where(Data_data.limit_id == limit_id_in))
     data_data_dataset = result.scalars().all()
     return [Data_data(id = data_data.id,
                             limit_id = data_data.user_id,
