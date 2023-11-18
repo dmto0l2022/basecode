@@ -101,7 +101,7 @@ class get_main_table:
                             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
                             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
                             {"selector": ".dash-spreadsheet.dash-freeze-top, .dash-spreadsheet.dash-virtualized",  "rule": "max-height: inherit !important;" },
-                            {"selector": ".dash-table-container" ,  "rule":  "max-height: calc(100vh - 84px);"}
+                            {"selector": ".dash-table-container" ,  "rule":  "max-height: calc(100vh - 90px);"}
             ]
     
         self.button_styling = {'font-size': '12px', 'width': '70px', 'display': 'inline-block', 
