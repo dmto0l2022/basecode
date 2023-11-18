@@ -100,7 +100,7 @@ class get_main_table:
                             {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
                             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
                             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
-                            {"selector": ".dash-table-container" , "rule": "max-height: calc(100vh - 84px);"}                
+                            ##{"selector": ".dash-table-container" , "rule": "max-height: calc(100vh - 84px);"}                
             ]
     
         self.button_styling = {'font-size': '12px', 'width': '70px', 'display': 'inline-block', 
@@ -219,7 +219,7 @@ class get_main_table:
             css=self.css_row_heights,
             style_cell_conditional=self.conditional_column_widths,
             tooltip_duration=None,
-            style_table={'height': 400},##, 'overflowY': 'auto'},
+            style_table={'minHeight': '900px', 'height': '900px', 'maxHeight': '900px'},
             page_size=20
             )
     
