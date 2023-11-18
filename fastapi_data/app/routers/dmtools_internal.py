@@ -1212,8 +1212,8 @@ async def read_data_data_dataset(limit_id_in: int, session: AsyncSession = Depen
             for data_data in data_data_dataset]
 
 
-###
 
+'''
 @router.patch(api_base_url + "plot_ownership/{plot_ownership_id}")
 async def update_plot_ownership(plot_ownership_id: int,
                       record_in: Plot_ownershipUpdate,
@@ -1249,6 +1249,7 @@ async def delete_plot_ownership(plot_ownership_id: int, session: AsyncSession = 
     await session.delete(plot_ownership)
     await session.commit()
     return {"deleted": plot_ownership}
+'''
 
 
 
