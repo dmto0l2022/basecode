@@ -10,6 +10,7 @@ class LimitData:
     def __init__(self, dmtool_userid_in, limit_id_in):
         self.dmtool_userid = dmtool_userid_in
         self.limit_id = limit_id_in
+        self.list_of_limit_ids = []
         self.internal_header = {'dmtool-userid':'999'}
         self.user_header = {'dmtool-userid': str(self.dmtool_userid)}
         self.palette = cycle(px.colors.qualitative.Bold)
@@ -118,16 +119,63 @@ class LimitData:
         
         #columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
     
-        #### limit list
+    def PopulateLimitList(self):
         
-        self.limit_list_df = self.limit_data_df[['limit_id','data_label','data_reference', 'data_comment','year','experiment','spin_dependency','result_type','official',
+        self.limit_list_df = self.limits_dataframe[['limit_id','data_label','data_reference', 'data_comment','year','experiment','spin_dependency','result_type','official',
                                                'greatest_hit']].copy()
         self.limit_list_df.drop_duplicates(inplace=True)
         self.limit_list_df =  self.limit_list_df.reset_index()
         self.limit_list_df['id'] =  self.limit_list_df.index
         self.limit_list_df.set_index('id', inplace=True, drop=False)
     
+    def PopulateTraceList(self):
         #### trace list
+       
+        for index, row in self.limits_dataframe.iterrows():
+            print("Parsing Trace Rows")
+            #print(row['id'], row['data_values'])
+            data_label = row[['data_label']].iloc[0]
+            data_reference= row[['data_reference']].iloc[0]
+            data_comment = row[['data_comment']].iloc[0]
+            year = row[['year']].iloc[0]
+            experiment = row[['experiment']].iloc[0]
+            spin_dependency = row[['spin_dependency']].iloc[0]
+            result_type = row[['result_type']].iloc[0]
+            official = row[['official']].iloc[0]
+            greatest_hit = row[['greatest_hit']].iloc[0]
+            data_string = row[['data_values']].iloc[0]
+            data_string = data_string.replace("{[", "")
+            data_string = data_string.replace("]}", "")
+            #print(data_string)
+            data_series = data_string.split("]")
+            #print(len(data_series))
+            for l in range(0,len(data_series)):
+                next_colour = next(palette)
+                single_set = data_series[l]
+                set_list = single_set.split(";")
+                try:
+                   appendthis = [row['id'],
+                                          data_label,
+                                          data_reference,
+                                          data_comment,
+                                          l, ## trace_id
+                                          str(l) + '_' + data_label, ## trace_name
+                                          year,
+                                          experiment,
+                                          spin_dependency,
+                                          result_type,
+                                          official,
+                                          greatest_hit,
+                                          next_colour,
+                                          next_colour,
+                                          next_colour,
+                                          'solid',
+                                          'circle']
+                    except:
+                        appendthis = [row['id'],'data_label',l,0,0,'','']
+                    
+                    limit_data.append(appendthis)
+            #lol
         
         self.trace_list_df = self.limit_data_df[['limit_id','data_label','trace_id','trace_name',
                                                'line_color','symbol_color','fill_color','line','symbol']]
@@ -214,23 +262,19 @@ class LimitData:
     
         return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
     '''
+       
     
-   
-    
-    
-    
-    
-    def GetLimits(dmtool_userid):
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-        limits_url = fastapi_url_limits
-        request_header = {'dmtool-userid':str(dmtool_userid)}
-        response_data_frame = pd.DataFrame()
-        limit_list_df_resp = pd.DataFrame()
-        trace_list_df_resp = pd.DataFrame()
-        limit_data_df_resp = pd.DataFrame()
+    def GetAllOwnedLimits(dmtool_userid):
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get all owned limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        #limits_url = fastapi_url_limits
+        #request_header = {'dmtool-userid':str(dmtool_userid)}
+        #response_data_frame = pd.DataFrame()
+        #limit_list_df_resp = pd.DataFrame()
+        #trace_list_df_resp = pd.DataFrame()
+        #limit_data_df_resp = pd.DataFrame()
             
         try:
-            r = requests.get(limits_url, headers=request_header)
+            r = requests.get(self.fastapi_url_limits, headers=self.user_header)
             response_data = r.json()
             #print("get limits response data json >>>>>>>>>>>> ", response_data)
         
