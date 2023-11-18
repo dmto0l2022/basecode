@@ -1,14 +1,3 @@
-DROP TABLE IF EXISTS data.`dropdown_valuepairs`;
-
-CREATE TABLE data.`dropdown_valuepairs` (
-  `variable` text DEFAULT NULL,
-  `label` text DEFAULT NULL,
-  `value` text DEFAULT NULL,
-  `data_type` text DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
 INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('official','All','0','boolean'),
 	 ('official','Official','1','boolean'),
