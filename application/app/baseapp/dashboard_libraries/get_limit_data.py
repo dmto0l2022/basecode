@@ -234,29 +234,29 @@ def GetLimits(dmtool_userid):
     trace_list_df_resp = pd.DataFrame()
     limit_data_df_resp = pd.DataFrame()
         
-    try:
-        r = requests.get(limits_url, headers=request_header)
-        response_data = r.json()
-        #print("get limits response data json >>>>>>>>>>>> ", response_data)
+    #try:
+    r = requests.get(limits_url, headers=request_header)
+    response_data = r.json()
+    #print("get limits response data json >>>>>>>>>>>> ", response_data)
+
+    #print('response data')
+    #print('===================')
+    #print(response_data)
+    #print('===== response data frame ==============')
+    response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+    #print('===== response data frame ==============')
     
-        #print('response data')
-        #print('===================')
-        #print(response_data)
-        #print('===== response data frame ==============')
-        response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
-        #print('===== response data frame ==============')
-        
-        #print("gld : library response_data_frame >>>>>" , response_data_frame)
-        
-        limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
-        
-        column_names=['id','data_label','data_comment','data_values']
+    #print("gld : library response_data_frame >>>>>" , response_data_frame)
     
-        print('limit_list_df >>', limit_list_df_resp.head(1))
-        print('trace_list_df >>', trace_list_df_resp.head(1))
-        print('limit_data_df >>', limit_data_df_resp.head(1))
-    except:
-        a = 1
+    limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
+    
+    column_names=['id','data_label','data_comment','data_values']
+
+    print('limit_list_df >>', limit_list_df_resp.head(1))
+    print('trace_list_df >>', trace_list_df_resp.head(1))
+    print('limit_data_df >>', limit_data_df_resp.head(1))
+    #except:
+    #    a = 1
     
     if response_data_frame.empty:
         limit_columns = ['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']
