@@ -219,7 +219,7 @@ class get_main_table:
             css=self.css_row_heights,
             style_cell_conditional=self.conditional_column_widths,
             tooltip_duration=None,
-            style_table={'height': 500, 'overflowY': 'auto'},
+            style_table={'height': 900, 'overflowY': 'auto'},
             page_size=45
             )
     
