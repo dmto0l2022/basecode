@@ -14,7 +14,8 @@ import dash_bootstrap_components as dbc
 from flask import request, session
 
 from app.baseapp.libraries import formlibrary as fl
-from app.baseapp.dashboard_libraries import get_limit_data as gld
+#from app.baseapp.dashboard_libraries import get_limit_data as gld
+from app.baseapp.dashboard_libraries import get_limit_data_cls as gldc
 
 import requests
 import json
@@ -162,8 +163,9 @@ class get_main_table:
         #url = fastapi_url_all_in
         
         if "limit" in self.fastapi_url_all:
-            limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(self.dmtool_userid)
-            self.response_data_frame = limit_list_df.copy()
+            #limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(self.dmtool_userid)
+            self.limit_data = gldc.LimitData(dmtool_userid_in, 0, [])
+            self.response_data_frame = self.limit_data.limit_list_df.copy()
         elif "api_key" in self.fastapi_url_all:
             try:
                 print("mt : fastapi_url_all for api key >>>>>>>>>>>>", self.fastapi_url_all)
