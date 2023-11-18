@@ -115,3 +115,8 @@ INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('experiment','XENONnT','XENONnT','text');
 INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('experiment','CRESST','CRESST','text');
+
+
+END;
+//
+DELIMITER ;
