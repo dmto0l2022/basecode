@@ -72,7 +72,8 @@ home_button =  html.Button("Home",  id=page_name + "home_button_id", style=butto
 
 ##########################################################
 
-table_heights = 120
+table_heights = '100vh'
+page_size = 54 ## rows of data
 row_height = '13px'
 table_font_size = '12px'
 
@@ -83,6 +84,8 @@ internal_header={'dmtool-userid':'1'}
 main_table_1 = mte.get_main_table(page_title,
                                  main_table_id,
                                  table_meta_data_data,
+                                 table_height,
+                                 page_size,
                                  row_height,
                                  table_font_size,
                                  fastapi_url_all,
@@ -135,6 +138,8 @@ def get_layout():
     main_table_1 = mte.get_main_table(page_title,
                                  main_table_id,
                                  table_meta_data_data,
+                                 table_height,
+                                 page_size,
                                  row_height,
                                  table_font_size,
                                  fastapi_url_all,
