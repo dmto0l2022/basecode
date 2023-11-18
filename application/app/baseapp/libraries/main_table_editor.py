@@ -160,9 +160,9 @@ class get_main_table:
     
     def RefreshTableData(self):
         #url = fastapi_url_all_in
-        dmtool_userid = 16384
+        
         if "limit" in self.fastapi_url_all:
-            limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(dmtool_userid)
+            limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(self.dmtool_userid)
             self.response_data_frame = limit_list_df.copy()
         elif "api_key" in self.fastapi_url_all:
             try:
