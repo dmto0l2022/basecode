@@ -17,7 +17,7 @@ class LimitData:
         self.fastapi_url_limits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limits" ## multiple limit operations
         self.fastapi_url_limitstoselect = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limitstoselect" ## multiple limit operations
         self.fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limit/" ## single limit operations
-        self.limit_url = self.fastapi_url_limit + self.limit_id
+        self.limit_url = self.fastapi_url_limit + str(self.limit_id)
         self.LIMIT_COLUMNS = [{"id": "id", "name": "id"},
                                 {"id": "limit_id", "name": "limit_id"},
                                 {"id": "data_label", "name": "data_label"},
