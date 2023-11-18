@@ -101,7 +101,7 @@ class get_main_table:
                             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
                             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
                             {"selector": ".dash-spreadsheet.dash-freeze-top, .dash-spreadsheet.dash-virtualized",  "rule": "max-height: inherit !important;" },
-                            {"selector": ".dash-table-container" ,  "rule":  "max-height: calc(100vh - 90px);"}
+                            {"selector": ".dash-table-container" ,  "rule":  "max-height: calc(100vh - 100px);"}
             ]
     
         self.button_styling = {'font-size': '12px', 'width': '70px', 'display': 'inline-block', 
@@ -222,8 +222,8 @@ class get_main_table:
             tooltip_duration=None,
             #style_table={'minHeight': '700px', 'height': '700px', 'maxHeight': '700px'},
             #style_table={'minHeight': '100%', 'height': '100%', 'maxHeight': '100%'},
-            style_table={'height': 'calc(90vh-84px)', 'maxHeight': 'calc(90vh-84px)'},
-            page_size=45
+            ##style_table={'height': 'calc(90vh-84px)', 'maxHeight': 'calc(90vh-84px)'},
+            page_size=50
             )
     
  
