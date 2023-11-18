@@ -95,7 +95,7 @@ class LimitData:
                     except:
                         appendthis = [row['id'],'data_label',l,0,0,'','']
                     
-                    limit_data.append(appendthis)
+                    self.limit_data.append(appendthis)
             #lol
         
         #print('gld : parsed limit data >>>>',limit_data) 
@@ -107,7 +107,7 @@ class LimitData:
         ## limit data
         
         self.limit_data_df = pd.DataFrame(
-            data=limit_data,columns=['id','data_label','data_reference', 'data_comment', 'trace_id','trace_name', 'year','experiment',
+            data=self.limit_data,columns=['id','data_label','data_reference', 'data_comment', 'trace_id','trace_name', 'year','experiment',
                                       'spin_dependency','result_type','official','greatest_hit',
                                       'raw_x','raw_y','line_color','symbol_color',
                                       'fill_color','line', 'symbol'])
