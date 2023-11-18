@@ -219,8 +219,8 @@ class get_main_table:
             css=self.css_row_heights,
             style_cell_conditional=self.conditional_column_widths,
             tooltip_duration=None,
-            style_table={'minHeight': '600px', 'height': '600px', 'maxHeight': '600px'},
-            page_size=20
+            style_table={'minHeight': '700px', 'height': '700px', 'maxHeight': '700px'},
+            page_size=35
             )
     
  
