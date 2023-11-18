@@ -53,6 +53,8 @@ class get_main_table:
     def __init__(self, page_title_in,
                  main_table_id_in,
                  table_meta_data_data_in,
+                 table_height_in,
+                 page_size_in,
                  row_height_in,
                  table_font_size_in,
                  fastapi_url_all_in,
@@ -63,6 +65,8 @@ class get_main_table:
         self.page_title = page_title_in
         self.main_table_id = main_table_id_in
         self.table_meta_data_data = table_meta_data_data_in
+        self.table_height = table_height_in
+        self.page_size = page_size_in
         self.row_height = row_height_in
         self.table_font_size = table_font_size_in
         self.fastapi_url_all = fastapi_url_all_in
@@ -86,7 +90,7 @@ class get_main_table:
                                   'overflow': 'hidden',
                                   'textOverflow': 'ellipsis',
                                   'border': '1px solid black',
-                                  'height': row_height_in,
+                                  'height': self.row_height,
                                   'overflow': 'hidden',
                                   'maxWidth': 0 ## made things work!!
                                  }
@@ -101,7 +105,7 @@ class get_main_table:
                             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
                             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
                             {"selector": ".dash-spreadsheet.dash-freeze-top, .dash-spreadsheet.dash-virtualized",  "rule": "max-height: inherit !important;" },
-                            {"selector": ".dash-table-container" ,  "rule":  "max-height: calc(100vh - 100px);"}
+                            {"selector": ".dash-table-container" ,  "rule":  "max-height: calc(" + self.table_height + " - 100px);"}
             ]
     
         self.button_styling = {'font-size': '12px', 'width': '70px', 'display': 'inline-block', 
@@ -223,7 +227,7 @@ class get_main_table:
             #style_table={'minHeight': '700px', 'height': '700px', 'maxHeight': '700px'},
             #style_table={'minHeight': '100%', 'height': '100%', 'maxHeight': '100%'},
             ##style_table={'height': 'calc(90vh-84px)', 'maxHeight': 'calc(90vh-84px)'},
-            page_size=50
+            page_size=self.page_size
             )
     
  
