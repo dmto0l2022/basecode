@@ -30,11 +30,11 @@ class DashDataAndTables():
         self.result_types_df = None
         self.spin_dependency_df = None
         self.greatest_hit_df = None
-        self.limits_df = None
-        self.limits_table_df = None
-        self.limits_metadata_df = None
-        self.limits_traces_df = None
-        self.limits_data_df = None
+        #self.limits_df = None
+        #self.limits_table_df = None
+        #self.limits_metadata_df = None
+        #self.limits_traces_df = None
+        #self.limits_data_df = None
         self.official_df = None
         self.years_df = None
         
@@ -44,8 +44,8 @@ class DashDataAndTables():
         self.result_types_table = None
         self.spin_dependency_table = None
         self.greatest_hit_table = None
-        self.limits_table = None
-        self.plots_table = None
+        #self.limits_table = None
+        #self.plots_table = None
         self.row_height = '12px'
         
         self.populate_dataframes(dmtools_userid_in)
@@ -54,10 +54,10 @@ class DashDataAndTables():
     def populate_dataframes(self,dmtools_userid_in):
         #do some parsing
         dropdown_route = 'metadata/dropdown_valuepair'
-        limit_route = 'data/limits'
+        #limit_route = 'data/limits'
         fastapi_url = "http://container_fastapi_about_1:8014/dmtool/fastapi_data/internal/"
         fastapi_get_dropdown = fastapi_url + dropdown_route + "?variable_in="
-        fastapi_get_limits = fastapi_url + limit_route
+        #fastapi_get_limits = fastapi_url + limit_route
         ##  'https://dev1.dmtool.info/dmtool/fastapi_data/internal/dropdown_valuepair?variable_in=year' \
         
         #r = requests.get(url, headers=headers)
@@ -125,14 +125,14 @@ class DashDataAndTables():
         #self.years_df.reset_index(drop=True, inplace=True)
 
         ## get limits
-        fastapi_get_limits = fastapi_url + limit_route
-        headers={"dmtool-userid":str(dmtools_userid_in)}
-        r = requests.get(fastapi_get_limits, headers=headers)
-        response_data = r.json()
+        #fastapi_get_limits = fastapi_url + limit_route
+        #headers={"dmtool-userid":str(dmtools_userid_in)}
+        #r = requests.get(fastapi_get_limits, headers=headers)
+        #response_data = r.json()
         #print('response data')
         #print('===================')
         #print(response_data)
-        print('===== response data frame ==============')
+        #print('===== response data frame ==============')
         #response_data_frame = pd.DataFrame(response_data)
         response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
 
@@ -152,32 +152,32 @@ class DashDataAndTables():
         public, official, date_official, greatest_hit, date_of_run_start, date_of_run_end, `year`
         FROM test.limits_metadata;'''
         
-        self.limits_df = response_data_frame.copy()
+        #self.limits_df = response_data_frame.copy()
         
-        self.limits_df['rowid'] = self.limits_df.index
+        #self.limits_df['rowid'] = self.limits_df.index
 
-        self.limits_table_df = self.limits_df[['id','spin_dependency',
-                                     'experiment','official','greatest_hit','data_label',
-                                     'result_type','data_reference','year']].copy()
+        #self.limits_table_df = self.limits_df[['id','spin_dependency',
+        #                             'experiment','official','greatest_hit','data_label',
+        #                             'result_type','data_reference','year']].copy()
 
         #self.limits_table_df['expid'] = self.limits_table_df['rowid']
 
-        limits_metadata_sql = '''SELECT id, spin_dependency, result_type, measurement_type,
-                                nomhash, x_units, y_units, x_rescale, y_rescale, default_color,
-                                default_style, data_label, file_name, data_comment, data_reference,
-                                created_at, updated_at, creator_id, experiment, rating,
-                                date_of_announcement, public, official, date_official, greatest_hit,
-                                date_of_run_start, date_of_run_end, `year` FROM
-                                `test`.limits_metadata;'''
+        #limits_metadata_sql = '''SELECT id, spin_dependency, result_type, measurement_type,
+        #                        nomhash, x_units, y_units, x_rescale, y_rescale, default_color,
+        #                        default_style, data_label, file_name, data_comment, data_reference,
+        #                        created_at, updated_at, creator_id, experiment, rating,
+        #                        date_of_announcement, public, official, date_official, greatest_hit,
+        #                        date_of_run_start, date_of_run_end, `year` FROM
+        #                        `test`.limits_metadata;'''
 
         #self.limits_metadata_df = pd.read_sql_query(limits_metadata_sql, self.engine)
         
-        self.limits_metadata_df = self.limits_df[['id', 'spin_dependency', 'result_type', 'measurement_type',
-                                'nomhash', 'x_units', 'y_units', 'x_rescale', 'y_rescale', 'default_color',
-                                'default_style', 'data_label', 'file_name', 'data_comment', 'data_reference',
-                                'created_at', 'updated_at', 'creator_id', 'experiment', 'rating',
-                                'date_of_announcement', 'public', 'official', 'date_official', 'greatest_hit',
-                                'date_of_run_start', 'date_of_run_end', 'year']].copy()
+        #self.limits_metadata_df = self.limits_df[['id', 'spin_dependency', 'result_type', 'measurement_type',
+        #                        'nomhash', 'x_units', 'y_units', 'x_rescale', 'y_rescale', 'default_color',
+        #                        'default_style', 'data_label', 'file_name', 'data_comment', 'data_reference',
+        #                        'created_at', 'updated_at', 'creator_id', 'experiment', 'rating',
+        #                        'date_of_announcement', 'public', 'official', 'date_official', 'greatest_hit',
+        #                        'date_of_run_start', 'date_of_run_end', 'year']].copy()
         
         #self.limits_metadata_df['rowid'] = self.limits_metadata_df.index
 
@@ -392,6 +392,7 @@ class DashDataAndTables():
             #}
         )
 
+        '''
         self.limits_table = dash_table.DataTable(
             id='limits_table_main',
             data=self.limits_table_df.to_dict('records'),
@@ -432,7 +433,8 @@ class DashDataAndTables():
             #],
             tooltip_duration=None,
         )
-
+        '''
+        
         self.filter_table_df = pd.DataFrame(data=[],columns=['variable','label','value'])
         
         self.debug_dropdown_table = dash_table.DataTable(
@@ -471,7 +473,7 @@ class DashDataAndTables():
             #],
             tooltip_duration=None,
         )
-        
+        '''
         self.plots_table_df = pd.DataFrame(data=None, columns=['index','data_reference','data_label'])
         #self.plots_table_df.set_index('expid')
 
@@ -514,3 +516,4 @@ class DashDataAndTables():
             },
             style_header=style_header_var,
         )
+        '''
