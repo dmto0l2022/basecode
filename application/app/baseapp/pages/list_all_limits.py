@@ -131,7 +131,7 @@ debug_output = html.Div(children=[html.Div(children="Debug Output", className="N
 def get_layout():
 
     style_header_var={ 'backgroundColor': 'black','color': 'white'}
-    dmtool_user_id = 16384
+    dmtool_user_id = 1
     main_table_1 = mte.get_main_table(page_title,
                                  main_table_id,
                                  table_meta_data_data,
