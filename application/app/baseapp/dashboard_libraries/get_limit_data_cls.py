@@ -202,62 +202,9 @@ class LimitData:
             
             if response_data_frame.empty:
                 print("Get One Limit Data Class - No Response Data")
-                #limit_list_df = pd.DataFrame(columns=limit_columns)
-                #trace_list_df = pd.DataFrame(columns=trace_columns)
-                #limit_data_df = pd.DataFrame(columns=limit_data_columns)
-                
-                #limit_list_dict = limit_list_df.to_dict('records')
-            #else:
-            #    limit_list_df_ret = limit_list_df_resp
-            #    trace_list_df_ret = trace_list_df_resp
-            #    limit_data_df_ret = limit_data_df_resp
-            #    limit_list_dict_ret = limit_list_df_ret.to_dict('records')
         
-        '''
-        def GetLimits2Select(dmtool_userid):
-            print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            limits_url = fastapi_url_limitstoselect
-            request_header = {'dmtool-userid':str(dmtool_userid)}
-            response_data_frame = pd.DataFrame()
-                
-            try:
-                r = requests.get(limits_url, headers=request_header)
-                response_data = r.json()
-                #print("get limits response data json >>>>>>>>>>>> ", response_data)
-        
-                #print('response data')
-                #print('===================')
-                #print(response_data)
-                #print('===== response data frame ==============')
-                #response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
-                #print('===== response data frame ==============')
-                
-                #print("gld : library response_data_frame >>>>>" , response_data_frame)
-                
-                limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
-                column_names=['id','data_label','data_comment','data_values']
-            
-                #print('limit_list_df >>', limit_list_df_resp)
-                #print('trace_list_df >>', trace_list_df_resp)
-                #print('limit_data_df >>', limit_data_df_resp)
-            except:
-                a = 1
-            
-            if response_data_frame.empty:
-                self.limit_list_df = pd.DataFrame(columns=self.limit_columns)
-                self.trace_list_df = pd.DataFrame(columns=self.trace_columns)
-                self.limit_data_df = pd.DataFrame(columns=limit_data_columns)
-                self.limit_list_dict = limit_list_df_ret.to_dict('records')
-            else:
-                limit_list_df_ret = limit_list_df_resp
-                trace_list_df_ret = trace_list_df_resp
-                limit_data_df_ret = limit_data_df_resp
-                limit_list_dict_ret = limit_list_df_ret.to_dict('records')
-        
-            return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
-        '''
     
-        elif self.limit_id == 0 and self.list_of_limit_ids == []:
+        elif (self.limit_id == 0 and self.list_of_limit_ids == []):
     
             #def GetAllOwnedLimits(dmtool_userid):
             print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get all owned limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
