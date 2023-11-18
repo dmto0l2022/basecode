@@ -195,9 +195,9 @@ class LimitData:
                 self.PopulateLimitData()
                 #column_names=['id','data_label','data_comment','data_values']
             
-                print('limit_list_df >>', self.limit_list_df.head(1))
-                print('trace_list_df >>', self.trace_list_df.head(1))
-                print('limit_data_df >>', self.limit_data_df.head(1))
+                #print('limit_list_df >>', self.limit_list_df.head(1))
+                #print('trace_list_df >>', self.trace_list_df.head(1))
+                #print('limit_data_df >>', self.limit_data_df.head(1))
             except:
                 a = 1
             
@@ -216,34 +216,33 @@ class LimitData:
             #trace_list_df_resp = pd.DataFrame()
             #limit_data_df_resp = pd.DataFrame()
                 
-            #try:
-            print("get all owned limits url >>>>>>>>>>>> " ,self.fastapi_url_limits)
-            r = requests.get(self.fastapi_url_limits, headers=self.user_header)
-            response_data = r.json()
-            print("get all owned limits response data json >>>>>>>>>>>> ", response_data)
+            try:
+                print("get all owned limits url >>>>>>>>>>>> " ,self.fastapi_url_limits)
+                r = requests.get(self.fastapi_url_limits, headers=self.user_header)
+                response_data = r.json()
+                #print("get all owned limits response data json >>>>>>>>>>>> ", response_data)
+            
+                #print('response data')
+                #print('===================')
+                #print(response_data)
+                #print('===== response data frame ==============')
+                response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+                self.limits_dataframe = response_data_frame
+                #print('===== response data frame ==============')
+                
+                #print("gld : library response_data_frame >>>>>" , response_data_frame)
+                
+                #limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
+                self.PopulateLimitList()
+                self.PopulateTraceList()
+                self.PopulateLimitData()
+            
         
-            #print('response data')
-            #print('===================')
-            #print(response_data)
-            #print('===== response data frame ==============')
-            response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
-            self.limits_dataframe = response_data_frame
-            #print('===== response data frame ==============')
-            
-            #print("gld : library response_data_frame >>>>>" , response_data_frame)
-            
-            #limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
-            self.PopulateLimitList()
-            self.PopulateTraceList()
-            self.PopulateLimitData()
-            
-            column_names=['id','data_label','data_comment','data_values']
-        
-            print('limit_list_df >>', self.limit_list_df.head(1))
-            print('trace_list_df >>', self.trace_list_df.head(1))
-            #print('limit_data_df >>', limit_data_df_resp.head(1))
-            #except:
-            #    a = 1
+                #print('limit_list_df >>', self.limit_list_df.head(1))
+                #print('trace_list_df >>', self.trace_list_df.head(1))
+                #print('limit_data_df >>', limit_data_df_resp.head(1))
+            except:
+                a = 1
             
             if response_data_frame.empty:
                 print("GetAllOwnedLimits empty")
