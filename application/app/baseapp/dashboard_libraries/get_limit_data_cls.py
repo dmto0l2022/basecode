@@ -165,8 +165,8 @@ class LimitData:
                 self.trace_data.append(appendthis)
             #lol
         
-        self.trace_list_df = pd.DataFrame[data=self.trace_data, columns = ['limit_id','data_label','trace_id','trace_name',
-                                               'line_color','symbol_color','fill_color','line','symbol']]
+        self.trace_list_df = pd.DataFrame(data=self.trace_data, columns = ['limit_id','data_label','trace_id','trace_name',
+                                               'line_color','symbol_color','fill_color','line','symbol'])
         
         self.trace_list_df.drop_duplicates(inplace=True)
         self.trace_list_df = self.trace_list_df.reset_index()
