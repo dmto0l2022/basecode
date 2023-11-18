@@ -72,7 +72,7 @@ home_button =  html.Button("Home",  id=page_name + "home_button_id", style=butto
 
 ##########################################################
 
-table_heights = '100vh'
+table_height = '100vh'
 page_size = 54 ## rows of data
 row_height = '13px'
 table_font_size = '12px'
