@@ -1,3 +1,8 @@
+DELIMITER //
+
+CREATE DEFINER=`pythonuser`@`%` PROCEDURE `data`.`update_dropdownpair`()
+BEGIN
+
 INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
 	 ('official','All','0','boolean'),
 	 ('official','Official','1','boolean'),
