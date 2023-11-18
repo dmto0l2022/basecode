@@ -257,7 +257,7 @@ class LimitData:
             return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
         '''
     
-        elif self.limit_id = 0 and self.list_of_limit_ids == []:
+        elif self.limit_id == 0 and self.list_of_limit_ids == []:
     
             #def GetAllOwnedLimits(dmtool_userid):
             print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get all owned limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
