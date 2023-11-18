@@ -122,9 +122,10 @@ class LimitData:
     
     def PopulateLimitList(self):
         
-        self.limit_list_df = self.limits_dataframe[['limit_id','data_label','data_reference', 'data_comment','year','experiment','spin_dependency','result_type','official',
+        self.limit_list_df = self.limits_dataframe[['id','data_label','data_reference', 'data_comment','year','experiment','spin_dependency','result_type','official',
                                                'greatest_hit']].copy()
         self.limit_list_df.drop_duplicates(inplace=True)
+        self.limit_list_df = self.limit_list_df.rename(columns={"id": "limit_id" })
         self.limit_list_df =  self.limit_list_df.reset_index()
         self.limit_list_df['id'] =  self.limit_list_df.index
         self.limit_list_df.set_index('id', inplace=True, drop=False)
