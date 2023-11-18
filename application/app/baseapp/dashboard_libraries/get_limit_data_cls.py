@@ -39,6 +39,7 @@ class LimitData:
         self.limit_list_dict = {}
         
         self.limit_data = []
+        self.trace_data = []
         self.limits_dataframe = pd.DataFrame()
         #self.ParseLimitData()
         self.GetLimitData()
@@ -127,6 +128,8 @@ class LimitData:
         self.limit_list_df =  self.limit_list_df.reset_index()
         self.limit_list_df['id'] =  self.limit_list_df.index
         self.limit_list_df.set_index('id', inplace=True, drop=False)
+
+        self.limit_list_dict = self.limit_list_df.to_dict('records')
     
     def PopulateTraceList(self):
         #### trace list
@@ -135,13 +138,6 @@ class LimitData:
             print("Parsing Trace Rows")
             #print(row['id'], row['data_values'])
             data_label = row[['data_label']].iloc[0]
-            data_reference= row[['data_reference']].iloc[0]
-            data_comment = row[['data_comment']].iloc[0]
-            year = row[['year']].iloc[0]
-            experiment = row[['experiment']].iloc[0]
-            spin_dependency = row[['spin_dependency']].iloc[0]
-            result_type = row[['result_type']].iloc[0]
-            official = row[['official']].iloc[0]
             greatest_hit = row[['greatest_hit']].iloc[0]
             data_string = row[['data_values']].iloc[0]
             data_string = data_string.replace("{[", "")
@@ -156,16 +152,8 @@ class LimitData:
                 try:
                    appendthis = [row['id'],
                                           data_label,
-                                          data_reference,
-                                          data_comment,
                                           l, ## trace_id
                                           str(l) + '_' + data_label, ## trace_name
-                                          year,
-                                          experiment,
-                                          spin_dependency,
-                                          result_type,
-                                          official,
-                                          greatest_hit,
                                           next_colour,
                                           next_colour,
                                           next_colour,
@@ -174,10 +162,10 @@ class LimitData:
                     except:
                         appendthis = [row['id'],'data_label',l,0,0,'','']
                     
-                    limit_data.append(appendthis)
+                    self.trace_data.append(appendthis)
             #lol
         
-        self.trace_list_df = self.limit_data_df[['limit_id','data_label','trace_id','trace_name',
+        self.trace_list_df = pd.DataFrame[data=self.trace_data, columns = ['limit_id','data_label','trace_id','trace_name',
                                                'line_color','symbol_color','fill_color','line','symbol']]
         
         self.trace_list_df.drop_duplicates(inplace=True)
@@ -283,46 +271,26 @@ class LimitData:
             #print(response_data)
             #print('===== response data frame ==============')
             response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+            self.limits_dataframe = response_data_frame
             #print('===== response data frame ==============')
             
             #print("gld : library response_data_frame >>>>>" , response_data_frame)
             
-            limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
+            #limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
+            self.PopulateLimitList()
+            self.PoplulateTraceList()
             
             column_names=['id','data_label','data_comment','data_values']
         
-            print('limit_list_df >>', limit_list_df_resp.head(1))
-            print('trace_list_df >>', trace_list_df_resp.head(1))
-            print('limit_data_df >>', limit_data_df_resp.head(1))
+            print('limit_list_df >>', self.limit_list_df.head(1))
+            print('trace_list_df >>', self.trace_list_df.head(1))
+            #print('limit_data_df >>', limit_data_df_resp.head(1))
         except:
             a = 1
         
         if response_data_frame.empty:
-            limit_columns = ['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']
-            limit_empty_data = [['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']]
-            trace_columns = ['id','limit_id','data_label','trace_id','trace_name',
-                             'line_color','symbol_color','fill_color','line','symbol']
-            trace_empty_data = [['id','limit_id','data_label','trace_id','trace_name',
-                                 'line_color','symbol_color','fill_color','line','symbol']]
-            limit_data_columns = ['id','limit_id','data_label','trace_id','trace_name','raw_x','raw_y',
-                                  'line_color','symbol_color','fill_color','line','symbol','masses','cross_sections']
-            limit_data_empty_data = [['id','limit_id','data_label','trace_id','trace_name','raw_x','raw_y',
-                                      'line_color','symbol_color','fill_color','line','symbol','masses','cross_sections']]
-            #limit_list_df_ret = pd.DataFrame(data=limit_empty_data, columns=limit_columns)
-            #trace_list_df_ret = pd.DataFrame(data=trace_empty_data, columns=trace_columns)
-            #limit_data_df_ret = pd.DataFrame(data=limit_data_empty_data, columns=limit_data_columns)
-            limit_list_df_ret = pd.DataFrame(columns=limit_columns)
-            trace_list_df_ret = pd.DataFrame(columns=trace_columns)
-            limit_data_df_ret = pd.DataFrame(columns=limit_data_columns)
-            
-            limit_list_dict_ret = limit_list_df_ret.to_dict('records')
-        else:
-            limit_list_df_ret = limit_list_df_resp
-            trace_list_df_ret = trace_list_df_resp
-            limit_data_df_ret = limit_data_df_resp
-            limit_list_dict_ret = limit_list_df_ret.to_dict('records')
+            print("GetAllOwnedLimits empty")
     
-        return limit_list_df_ret, trace_list_df_ret, limit_data_df_ret, limit_list_dict_ret
     
     
     LIMIT_COLUMNS = [
