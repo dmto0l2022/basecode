@@ -15,7 +15,7 @@ import pickle
 
 
 dash.register_page(__name__, path='/select_limits_to_plot')
-dmtool_userid = 16384 ## testing
+dmtool_userid = 1 ## testing
 page_name = 'select_limits_to_plot'
 listoflimits = []
 
