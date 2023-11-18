@@ -76,7 +76,7 @@ table_heights = 120
 row_height = '13px'
 table_font_size = '12px'
 
-dmtool_user_id = '0' ### default - no user should be given 0
+dmtool_user_id = '1' ### default - no user should be given 0
 internal_header={'dmtool-userid':'1'}
 
 ## create an empty table to be refreshed by the callback
