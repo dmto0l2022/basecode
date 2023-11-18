@@ -71,8 +71,8 @@ class SelectLimitsToPlotDashBoardLayout():
                                         ['data_comment', '44%'],
                                         ['data_label', '44%'],
                                     ]
-        self.table_height = '50vh',
-        self.page_size = 26,
+        self.table_height = '50vh'
+        self.page_size = 26
         self.row_height = '12px'
         self.table_font_size = '11px'
         self.filter_table_heights = '60px'
