@@ -212,7 +212,7 @@ class get_main_table:
             id = self.main_table_id,
             data = self.main_table_data_dict,
             columns=[{"name": c, "id": c} for c in self.all_table_column_names],
-            fixed_rows={'headers': True},
+            #fixed_rows={'headers': True},
             #filter_action='none',
             style_data={'whiteSpace': 'nowrap', 'height': self.row_height},
             style_cell=self.table_cell_styles,
