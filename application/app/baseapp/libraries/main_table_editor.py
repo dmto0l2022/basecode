@@ -221,7 +221,7 @@ class get_main_table:
             tooltip_duration=None,
             #style_table={'minHeight': '700px', 'height': '700px', 'maxHeight': '700px'},
             #style_table={'minHeight': '100%', 'height': '100%', 'maxHeight': '100%'},
-            style_table={"height": "calc(90vh-84px)", "maxHeight": "calc(90vh-84px)"}
+            style_table={'height': 'calc(90vh-84px)', 'maxHeight': 'calc(90vh-84px)'},
             page_size=45
             )
     
