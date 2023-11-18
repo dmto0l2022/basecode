@@ -159,10 +159,10 @@ class LimitData:
                                           next_colour,
                                           'solid',
                                           'circle']
-                    except:
+                except:
                         appendthis = [row['id'],'data_label',l,0,0,'','']
                     
-                    self.trace_data.append(appendthis)
+                self.trace_data.append(appendthis)
             #lol
         
         self.trace_list_df = pd.DataFrame[data=self.trace_data, columns = ['limit_id','data_label','trace_id','trace_name',
