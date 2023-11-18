@@ -245,7 +245,8 @@ class LimitData:
             if response_data_frame.empty:
                 print("GetAllOwnedLimits empty")
     
-        elif self.list_of_limit_ids != []
+        elif (self.list_of_limit_ids != []):
+            
             ##def GetListOfLimits(dmtool_userid,listoflimits_in):
             print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get list of limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
             fastapi_url_listoflimits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/listoflimits" ## multiple limit operations
