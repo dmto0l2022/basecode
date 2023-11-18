@@ -164,7 +164,7 @@ class get_main_table:
         
         if "limit" in self.fastapi_url_all:
             #limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(self.dmtool_userid)
-            self.limit_data = gldc.LimitData(dmtool_userid_in, 0, [])
+            self.limit_data = gldc.LimitData(self.dmtool_userid, 0, [])
             self.response_data_frame = self.limit_data.limit_list_df.copy()
         elif "api_key" in self.fastapi_url_all:
             try:
