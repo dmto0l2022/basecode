@@ -116,7 +116,7 @@ class LimitData:
         self.limit_data_df = self.limit_data_df.rename(columns={"id": "limit_id" })
         self.limit_data_df = self.limit_data_df.reset_index()
         self.limit_data_df['id'] = self.limit_data_df.index
-        self.limit_data_df.set_index('id', inplace=True, drop=False)
+        #self.limit_data_df.set_index('id', inplace=True, drop=False)
         
         #columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
     
@@ -128,7 +128,7 @@ class LimitData:
         self.limit_list_df = self.limit_list_df.rename(columns={"id": "limit_id" })
         self.limit_list_df =  self.limit_list_df.reset_index()
         self.limit_list_df['id'] =  self.limit_list_df.index
-        self.limit_list_df.set_index('id', inplace=True, drop=False)
+        #self.limit_list_df.set_index('id', inplace=True, drop=False)
 
         self.limit_list_dict = self.limit_list_df.to_dict('records')
     
@@ -172,7 +172,7 @@ class LimitData:
         self.trace_list_df.drop_duplicates(inplace=True)
         self.trace_list_df = self.trace_list_df.reset_index()
         self.trace_list_df['id'] = self.trace_list_df.index
-        self.trace_list_df.set_index('id', inplace=True, drop=False)
+        #self.trace_list_df.set_index('id', inplace=True, drop=False)
         print("trace list data 5 >>>>>> ". self.trace_list_df.head(5))
     
     def GetLimitData(self):
