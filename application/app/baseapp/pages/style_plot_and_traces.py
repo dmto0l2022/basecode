@@ -760,8 +760,10 @@ class StylePlotAndTracesDashBoardLayout():
         
         #result_ids_plot = plot_series_df['limit_id'].unique().tolist()
         
-        limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetListOfLimits(self.dmtool_userid, self.listoflimits)
-        
+        #limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetListOfLimits(self.dmtool_userid, self.listoflimits)
+        #print("limit_list_df >>>>>", self.limit_data.limit_list_df)
+        #print("trace_list_df >>>>>",self.limit_data.trace_list_df)
+        #print("limit_data_df >>>>>", self.limit_data.limit_data_df.head(5))
         #plot_series_df = pd.DataFrame(plotseries_table_in)
         
         x_title_text = r"$\text{WIMP Mass [GeV}/c^{2}]$"
@@ -785,8 +787,8 @@ class StylePlotAndTracesDashBoardLayout():
           )
 
         for index, row in self.plot_series_df.iterrows():
-            trace_data = self.limits_data_df[(self.limits_data_df['limit_id']==row['limit_id'])
-                                          & (self.limits_data_df['trace_id']==row['trace_id'])]
+            trace_data = self.limit_data.limit_data_df[(self.limit_data.limit_data_df['limit_id']==row['limit_id'])
+                                          & (self.limit_data.limit_data_df['trace_id']==row['trace_id'])]
             
             # print('trace_data>>>>', trace_data)
             
