@@ -866,7 +866,8 @@ def display_page(pathname,search,href):
     print('spat callback: list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits_int)
     #list_of_limits = [33]
     #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
-    dbl.UpdateData(list_of_limits_int)
+    dbl.listoflimits = list_of_limits_int
+    dbl.UpdateData()
     dbl.CreateChart()
     dbl.CreateLegend()
     dbl.CreateFormat()
