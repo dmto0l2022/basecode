@@ -620,7 +620,7 @@ class StylePlotAndTracesDashBoardLayout():
         )
         
         rowloop = 0
-    
+        '''
         for index, row in self.plot_series_df.iterrows():
             #print(row['c1'], row['c2'])
             rowloop +=1
@@ -682,7 +682,7 @@ class StylePlotAndTracesDashBoardLayout():
                 self.FigLegend.update_xaxes(visible=False)
                 #y axis    
                 self.FigLegend.update_yaxes(visible=False)
-
+            '''
     
     def CreateChart(self):
       
