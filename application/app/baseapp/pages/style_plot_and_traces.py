@@ -353,6 +353,8 @@ class StylePlotAndTracesDashBoardLayout():
     
         #Index(['id', 'limit_id', 'data_label', 'trace_id', 'trace_name', 'line_color',
         #   'symbol_color', 'fill_color', 'line', 'symbol'],
+        print("append_this >>>>", append_this)
+        print("self.limit_data.trace_list_df.columns >>>>>>", self.limit_data.trace_list_df.columns)
     
         colored_limits = pd.DataFrame(data=colored_limits_list, columns=self.limit_data.trace_list_df.columns, index=self.limit_data.trace_list_df.index)
         
