@@ -212,6 +212,7 @@ class LimitData:
     
             #def GetAllOwnedLimits(dmtool_userid):
             print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get all owned limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            print("limit id >>>>" , self.limit_id, "list_of_limit_ids>>>>>> ", self.list_of_limit_ids)
             #limits_url = fastapi_url_limits
             #request_header = {'dmtool-userid':str(dmtool_userid)}
             #response_data_frame = pd.DataFrame()
