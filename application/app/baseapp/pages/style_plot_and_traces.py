@@ -203,6 +203,10 @@ class StylePlotAndTracesDashBoardLayout():
         #self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, listoflimits_in)
         self.limit_data = gldc.LimitData(self.dmtool_userid, 0, self.listoflimits)
         self.limit_data.GetLimitData()
+        print("<<<<<<<< ---------- Updating Data ---------------- >>>>>>")
+        print("limit_list_df >>>>>", self.limit_data.self.limit_list_df)
+        print("trace_list_df >>>>>",self.limit_data.trace_list_df)
+        print("limit_data_df >>>>>", self.limit_data.limit_data_df.head(5)) 
 
     def CreateLayout(self):
     
@@ -327,13 +331,13 @@ class StylePlotAndTracesDashBoardLayout():
     def CreateFormat(self):
     
         #limits_traces_copy = limits_traces_in.copy()
-        print("format table : limits_traces_df.columns >> " , self.limit_data.limits_traces_df.columns)
+        print("format table : trace_limit_df.columns >> " , self.limit_data.trace_limit_df.columns)
         palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
         cycle_colors = itertools.cycle(palette_list)
     
         #colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
         colored_limits_list =[]
-        for index, row in self.limit_data.limits_traces_df.iterrows():
+        for index, row in self.limit_data.trace_limit_df.iterrows():
             #print(row['c1'], row['c2'])
             copy_row = row.copy()
             #color = next(cycle_colors)
@@ -501,7 +505,7 @@ class StylePlotAndTracesDashBoardLayout():
         )
         
         rowloop = 0
-    
+        '''
         for index, row in self.limit_data.trace_list_df.iterrows():
             #print(row['c1'], row['c2'])
             rowloop +=1
@@ -563,7 +567,8 @@ class StylePlotAndTracesDashBoardLayout():
                 self.FigLegend.update_xaxes(visible=False)
                 #y axis    
                 self.FigLegend.update_yaxes(visible=False)
-
+        '''
+        
         self.GraphLegend = dcc.Graph(figure=self.FigLegend,
                                  id= self.page_name + 'graph_legend_id',
                                  style={'width': '100%', 'height': '100%'})
