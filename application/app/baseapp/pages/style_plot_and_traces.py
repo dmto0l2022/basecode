@@ -180,7 +180,6 @@ class StylePlotAndTracesDashBoardLayout():
                                               className="PAGE_DEBUG_CONTENT")
          
         self.dmtool_userid = dmtool_userid_in
-        self.listoflimits = listoflimits_in
         self.limits_list_df = pd.DataFrame()
         self.limits_traces_df = pd.DataFrame()
         self.limits_data_df = pd.DataFrame()
@@ -198,7 +197,7 @@ class StylePlotAndTracesDashBoardLayout():
         self.CreateFormat()
         
     def SetListOfLimits(self, listoflimits_in):
-         self.listoflimits = listoflimits_in
+        self.listoflimits = listoflimits_in
         
     def UpdateData(self):
         #self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, listoflimits_in)
