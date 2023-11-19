@@ -356,7 +356,7 @@ class StylePlotAndTracesDashBoardLayout():
         print("append_this >>>>", append_this)
         print("self.limit_data.trace_list_df.columns >>>>>>", self.limit_data.trace_list_df.columns)
     
-        colored_limits = pd.DataFrame(data=colored_limits_list, columns=self.limit_data.trace_list_df.columns, index=self.limit_data.trace_list_df.index)
+        colored_limits = pd.DataFrame(data=colored_limits_list, columns=self.limit_data.trace_list_df.columns)##, index=self.limit_data.trace_list_df.index)
         
       
         print("formatting table >>>> colored_limits >>>", colored_limits)
