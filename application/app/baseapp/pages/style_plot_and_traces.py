@@ -801,7 +801,8 @@ def display_page(pathname,search,href):
 def update_output(table_data, table_data_in):
     #print('spat : table_data_in >>>>>>>>>>',table_data_in)
     print('spat : update data call back triggered')
-    dbl.UpdateChart(table_data_in)
+    #update formats dbl.UpdateChart(table_data_in)
+    dbl.UpdateChart()
     #dbl.UpdateLegend(table_data_in)
     return [dbl.FigChart]#, dbl.FigLegend
 
