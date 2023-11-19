@@ -509,7 +509,7 @@ class StylePlotAndTracesDashBoardLayout():
         )
         
         rowloop = 0
-        '''
+        
         for index, row in self.limit_data.trace_list_df.iterrows():
             #print(row['c1'], row['c2'])
             rowloop +=1
@@ -571,7 +571,7 @@ class StylePlotAndTracesDashBoardLayout():
                 self.FigLegend.update_xaxes(visible=False)
                 #y axis    
                 self.FigLegend.update_yaxes(visible=False)
-        '''
+        
         
         self.GraphLegend = dcc.Graph(figure=self.FigLegend,
                                  id= self.page_name + 'graph_legend_id',
