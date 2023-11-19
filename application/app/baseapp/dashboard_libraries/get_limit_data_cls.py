@@ -219,7 +219,7 @@ class LimitData:
             #limit_data_df_resp = pd.DataFrame()
                 
             try:
-                print("get all owned limits url >>>>>>>>>>>> " ,self.fastapi_url_limits)
+                #print("get all owned limits url >>>>>>>>>>>> " ,self.fastapi_url_limits)
                 r = requests.get(self.fastapi_url_limits, headers=self.user_header)
                 response_data = r.json()
                 #print("get all owned limits response data json >>>>>>>>>>>> ", response_data)
