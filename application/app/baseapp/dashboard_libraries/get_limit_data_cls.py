@@ -176,7 +176,7 @@ class LimitData:
         #self.trace_list_df = self.trace_list_df.reset_index()
         self.trace_list_df['id'] = self.trace_list_df.index
         #self.trace_list_df.set_index('id', inplace=True, drop=False)
-        print("trace list data 5 >>>>>> ". self.trace_list_df.head(5))
+        print("trace list data 5 >>>>>> ", self.trace_list_df.head(5))
     
     def GetLimitData(self):
         
