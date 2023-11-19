@@ -50,7 +50,7 @@ class LimitData:
     def PopulateLimitData(self):
        
         for index, row in self.limits_dataframe.iterrows():
-            print("Parsing Row")
+            #print("Parsing Row")
             #print(row['id'], row['data_values'])
             data_label = row[['data_label']].iloc[0]
             data_reference= row[['data_reference']].iloc[0]
@@ -122,6 +122,7 @@ class LimitData:
         #self.limit_data_df.set_index('id', inplace=True, drop=False)
         
         #columns=['id','data_label','series','raw_x','raw_y','series_color','masses','cross_sections']
+        print("self.limit_data_df.head(5) >>>>>>>>>" , self.limit_data_df.head(5))
     
     def PopulateLimitList(self):
         
@@ -139,7 +140,7 @@ class LimitData:
         #### trace list
        
         for index, row in self.limits_dataframe.iterrows():
-            print("Parsing Trace Rows")
+            #print("Parsing Trace Rows")
             #print(row['id'], row['data_values'])
             data_label = row[['data_label']].iloc[0]
             greatest_hit = row[['greatest_hit']].iloc[0]
