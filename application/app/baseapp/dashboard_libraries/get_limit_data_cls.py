@@ -114,7 +114,7 @@ class LimitData:
         self.limit_data_df['masses'] = self.limit_data_df['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
         self.limit_data_df['cross_sections'] = self.limit_data_df['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
         self.limit_data_df = self.limit_data_df.rename(columns={"id": "limit_id" })
-        self.limit_data_df = self.limit_data_df.reset_index()
+        #self.limit_data_df = self.limit_data_df.reset_index()
         self.limit_data_df['id'] = self.limit_data_df.index
         #self.limit_data_df.set_index('id', inplace=True, drop=False)
         
@@ -126,7 +126,7 @@ class LimitData:
                                                'greatest_hit']].copy()
         self.limit_list_df.drop_duplicates(inplace=True)
         self.limit_list_df = self.limit_list_df.rename(columns={"id": "limit_id" })
-        self.limit_list_df =  self.limit_list_df.reset_index()
+        #self.limit_list_df =  self.limit_list_df.reset_index()
         self.limit_list_df['id'] =  self.limit_list_df.index
         #self.limit_list_df.set_index('id', inplace=True, drop=False)
 
@@ -170,7 +170,7 @@ class LimitData:
                                                'line_color','symbol_color','fill_color','line','symbol'])
         
         self.trace_list_df.drop_duplicates(inplace=True)
-        self.trace_list_df = self.trace_list_df.reset_index()
+        #self.trace_list_df = self.trace_list_df.reset_index()
         self.trace_list_df['id'] = self.trace_list_df.index
         #self.trace_list_df.set_index('id', inplace=True, drop=False)
         print("trace list data 5 >>>>>> ". self.trace_list_df.head(5))
