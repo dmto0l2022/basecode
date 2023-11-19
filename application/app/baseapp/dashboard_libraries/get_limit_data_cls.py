@@ -192,7 +192,7 @@ class LimitData:
                 
                 self.PopulateLimitList()
                 self.PopulateTraceList()
-                self.PopulateLimitData()
+                #self.PopulateLimitData()
                 #column_names=['id','data_label','data_comment','data_values']
             
                 #print('limit_list_df >>', self.limit_list_df.head(1))
