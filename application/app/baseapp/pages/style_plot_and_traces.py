@@ -735,10 +735,9 @@ class StylePlotAndTracesDashBoardLayout():
             
             self.FigChart.update(layout_showlegend=False)
 
-    def UpdateAppearances(newformats_dict):
-        #result_ids = [1,262]
-        #print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
-        self.limit_data.trace_list_df = pd.DataFrame.from_dict(newformats_dict)
+    def UpdateAppearances(self, newformats_dict):
+        self.limit_data.trace_list_df = pd.DataFrame()
+        self.limit_data.trace_list_df = pd.DataFrame.from_dict(newformats_dict).copy()
 
 dbl = StylePlotAndTracesDashBoardLayout(page_name, dmtool_userid)
 dbl.CreateLayout()
