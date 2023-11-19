@@ -253,7 +253,7 @@ class LimitData:
             ##def GetListOfLimits(dmtool_userid,listoflimits_in):
             print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get list of limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
             fastapi_url_listoflimits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/listoflimits" ## multiple limit operations
-            request_header = {'dmtool-userid':str(dmtool_userid)}
+            request_header = {'dmtool-userid':str(self.dmtool_userid)}
             response_data_frame = pd.DataFrame()
                 
             #try:
