@@ -668,10 +668,10 @@ class StylePlotAndTracesDashBoardLayout():
                                   style={'width': '100%', 'height': '100%'}
                                       )
     
-    def UpdateChart(self, plotseries_table_in):
+    def UpdateChart(self):
         #result_ids = [1,262]
-        print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
-        self.plot_series_df = pd.DataFrame.from_dict(plotseries_table_in)
+        #print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
+        #self.plot_series_df = pd.DataFrame.from_dict(plotseries_table_in)
         
         #result_ids_plot = plot_series_df['limit_id'].unique().tolist()
         
@@ -701,7 +701,7 @@ class StylePlotAndTracesDashBoardLayout():
               type="linear"
           )
 
-        for index, row in self.plot_series_df.iterrows():
+        for index, row in self.trace_data.iterrows():
             trace_data = self.limit_data.limit_data_df[(self.limit_data.limit_data_df['limit_id']==row['limit_id'])
                                           & (self.limit_data.limit_data_df['trace_id']==row['trace_id'])]
             
@@ -787,9 +787,11 @@ def display_page(pathname,search,href):
     #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
     dbl.SetListOfLimits(list_of_limits_int)
     dbl.UpdateData()
-    dbl.UpdateChart()
     dbl.UpdateLegend()
     dbl.UpdateFormat()
+    dbl.UpdateChart()
+    
+    
     return dbl.GraphChart, dbl.TableFormat, dbl.GraphLegend
 
 @callback(
