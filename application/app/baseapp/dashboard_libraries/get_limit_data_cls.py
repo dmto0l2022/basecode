@@ -5,6 +5,9 @@ from pandas import json_normalize
 
 import plotly.express as px
 from itertools import cycle
+palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
+palette = cycle(palette_list)
+
 
 class LimitData:
     def __init__(self, dmtool_userid_in, limit_id_in, list_of_limit_ids_in):
@@ -13,7 +16,8 @@ class LimitData:
         self.list_of_limit_ids = list_of_limit_ids_in
         self.internal_header = {'dmtool-userid':'999'}
         self.user_header = {'dmtool-userid': str(self.dmtool_userid)}
-        self.palette = cycle(px.colors.qualitative.Bold)
+        self.palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
+        self.palette = cycle(palette_list)
         self.fastapi_url_limits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limits" ## multiple limit operations
         self.fastapi_url_limitstoselect = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limitstoselect" ## multiple limit operations
         self.fastapi_url_limit = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limit/" ## single limit operations
