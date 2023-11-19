@@ -49,6 +49,8 @@ dmtool_userid = 16384 ## testing
 #from app.baseapp.dashboard_libraries import all_data_tables as adt
 #dashdataandtables = adt.DashDataAndTables()
 
+from app.baseapp.dashboard_libraries import get_limit_data_cls as gldc
+
 from app.baseapp.dashboard_libraries import scaling as sc
 #sf = sc.get_scale_factor('ub')
 #sf
@@ -191,15 +193,16 @@ class StylePlotAndTracesDashBoardLayout():
         self.GraphChart = dcc.Graph()
         self.GraphLegend = dcc.Graph()
         self.layout = {}
-        self.UpdateData([1])
+        self.UpdateData()
         self.CreateLegend()
         self.CreateChart()
         self.CreateFormat()
         
 
-    def UpdateData(self, listoflimits_in):
-        self.listoflimits = listoflimits_in
-        self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, listoflimits_in)
+    def UpdateData(self):
+        #self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, listoflimits_in)
+        self.limit_data = gldc.LimitData(self.dmtool_userid, 0, self.listoflimits)
+        self.limit_data.GetLimitData()
 
     def CreateLayout(self):
     
@@ -324,13 +327,13 @@ class StylePlotAndTracesDashBoardLayout():
     def CreateFormat(self):
     
         #limits_traces_copy = limits_traces_in.copy()
-        print("format table : limits_traces_df.columns >> " , self.limits_traces_df.columns)
+        print("format table : limits_traces_df.columns >> " , self.limit_data.limits_traces_df.columns)
         palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
         cycle_colors = itertools.cycle(palette_list)
     
         #colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
         colored_limits_list =[]
-        for index, row in self.limits_traces_df.iterrows():
+        for index, row in self.limit_data.limits_traces_df.iterrows():
             #print(row['c1'], row['c2'])
             copy_row = row.copy()
             #color = next(cycle_colors)
@@ -347,7 +350,7 @@ class StylePlotAndTracesDashBoardLayout():
         #Index(['id', 'limit_id', 'data_label', 'trace_id', 'trace_name', 'line_color',
         #   'symbol_color', 'fill_color', 'line', 'symbol'],
     
-        colored_limits = pd.DataFrame(data=colored_limits_list, columns=self.limits_traces_df.columns, index=self.limits_traces_df.index)
+        colored_limits = pd.DataFrame(data=colored_limits_list, columns=self.limit_data.limits_traces_df.columns, index=self.limit_data.limits_traces_df.index)
         
       
         print("formatting table >>>> colored_limits >>>", colored_limits)
@@ -499,7 +502,7 @@ class StylePlotAndTracesDashBoardLayout():
         
         rowloop = 0
     
-        for index, row in self.limits_traces_df.iterrows():
+        for index, row in self.limit_data.trace_list_df.iterrows():
             #print(row['c1'], row['c2'])
             rowloop +=1
             for c in cols_list: #enumerate here to get access to i
@@ -678,10 +681,10 @@ class StylePlotAndTracesDashBoardLayout():
         
         self.FigChart.update_layout(autosize=True)
         
-        for index, row in self.limits_data_df.iterrows():
+        for index, row in self.limit_data.limit_data_df.iterrows():
           
-            trace_data = self.limits_data_df[(self.limits_data_df['id']==row['id'])
-                                          & (self.limits_data_df['trace_id']==row['trace_id'])]
+            trace_data = self.limit_data.limit_data_df[(self.limit_data.limit_data_df['id']==row['id'])
+                                          & (self.limit_data.limit_data_df['trace_id']==row['trace_id'])]
             
             trace2add = trace_data
             
