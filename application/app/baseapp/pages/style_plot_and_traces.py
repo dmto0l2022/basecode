@@ -331,13 +331,13 @@ class StylePlotAndTracesDashBoardLayout():
     def CreateFormat(self):
     
         #limits_traces_copy = limits_traces_in.copy()
-        print("format table : trace_limit_df.columns >> " , self.limit_data.trace_limit_df.columns)
+        print("format table : trace_list_df.columns >> " , self.limit_data.trace_list_df.columns)
         palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
         cycle_colors = itertools.cycle(palette_list)
     
         #colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
         colored_limits_list =[]
-        for index, row in self.limit_data.trace_limit_df.iterrows():
+        for index, row in self.limit_data.trace_list_df.iterrows():
             #print(row['c1'], row['c2'])
             copy_row = row.copy()
             #color = next(cycle_colors)
@@ -354,7 +354,7 @@ class StylePlotAndTracesDashBoardLayout():
         #Index(['id', 'limit_id', 'data_label', 'trace_id', 'trace_name', 'line_color',
         #   'symbol_color', 'fill_color', 'line', 'symbol'],
     
-        colored_limits = pd.DataFrame(data=colored_limits_list, columns=self.limit_data.limits_traces_df.columns, index=self.limit_data.limits_traces_df.index)
+        colored_limits = pd.DataFrame(data=colored_limits_list, columns=self.limit_data.trace_list_df.columns, index=self.limit_data.trace_list_df.index)
         
       
         print("formatting table >>>> colored_limits >>>", colored_limits)
