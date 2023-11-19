@@ -701,7 +701,7 @@ class StylePlotAndTracesDashBoardLayout():
               type="linear"
           )
 
-        for index, row in self.trace_data.iterrows():
+        for index, row in self.limit_data.trace_list_df.iterrows():
             trace_data = self.limit_data.limit_data_df[(self.limit_data.limit_data_df['limit_id']==row['limit_id'])
                                           & (self.limit_data.limit_data_df['trace_id']==row['trace_id'])]
             
