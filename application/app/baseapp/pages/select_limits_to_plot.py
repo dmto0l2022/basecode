@@ -541,7 +541,7 @@ class SelectLimitsToPlotDashBoardLayout():
                                              self.fastapi_url_one_limit,
                                              self.dmtool_userid)
         
-        self.main_data_table = ClsMainDataTable.dash_table_main
+        self.main_data_table = self.ClsMainDataTable.dash_table_main
 
     
     def CreateLimitsToPlot(self):
