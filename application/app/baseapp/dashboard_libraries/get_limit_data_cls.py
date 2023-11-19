@@ -43,7 +43,10 @@ class LimitData:
         self.limits_dataframe = pd.DataFrame()
         #self.ParseLimitData()
         self.GetLimitData()
-
+        self.PopulateLimitList()
+        self.PopulateTraceList()
+        ##self.PopulateLimitData()
+        
     def PopulateLimitData(self):
        
         for index, row in self.limits_dataframe.iterrows():
@@ -131,7 +134,7 @@ class LimitData:
         #self.limit_list_df.set_index('id', inplace=True, drop=False)
 
         self.limit_list_dict = self.limit_list_df.to_dict('records')
-    
+        
     def PopulateTraceList(self):
         #### trace list
        
@@ -191,8 +194,6 @@ class LimitData:
                 self.limits_dataframe = response_data_frame
                 #print("gld : library response_data_frame >>>>>" , response_data_frame)
                 
-                self.PopulateLimitList()
-                self.PopulateTraceList()
                 #self.PopulateLimitData()
                 #column_names=['id','data_label','data_comment','data_values']
             
@@ -233,11 +234,7 @@ class LimitData:
                 
                 #print("gld : library response_data_frame >>>>>" , response_data_frame)
                 
-                #limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
-                self.PopulateLimitList()
-                self.PopulateTraceList()
-                self.PopulateLimitData()
-            
+                #limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)           
         
                 #print('limit_list_df >>', self.limit_list_df.head(1))
                 #print('trace_list_df >>', self.trace_list_df.head(1))
@@ -275,7 +272,10 @@ class LimitData:
             
             #limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
             #column_names=['id','data_label','data_comment','data_values']
-        
+
+            self.limits_dataframe = response_data_frame
+            #print('===== response data frame ==============')
+            
             #print('limit_list_df >>', limit_list_df_resp)
             #print('trace_list_df >>', trace_list_df_resp)
             #print('limit_data_df >>', limit_data_df_resp)
