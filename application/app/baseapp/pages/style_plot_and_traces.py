@@ -202,7 +202,7 @@ class StylePlotAndTracesDashBoardLayout():
     def UpdateData(self):
         #self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, listoflimits_in)
         self.limit_data = gldc.LimitData(self.dmtool_userid, 0, self.listoflimits)
-        self.limit_data.GetLimitData()
+        self.limit_data.PopulateLimitData()
         print("<<<<<<<< ---------- Updating Data ---------------- >>>>>>")
         print("limit_list_df >>>>>", self.limit_data.limit_list_df)
         print("trace_list_df >>>>>",self.limit_data.trace_list_df)
