@@ -66,7 +66,7 @@ from app.baseapp.dashboard_libraries import scaling as sc
 
 ####################################
 
-dmtool_userid = '16384'
+dmtool_userid = '1'
 
 '''
 def GetChart(chart_in):
@@ -86,7 +86,7 @@ def GetChart(chart_in):
 '''
 ###########
 
-from app.baseapp.dashboard_libraries import get_limit_data as gld
+#from app.baseapp.dashboard_libraries import get_limit_data as gld
 
 ##############################################
 '''
