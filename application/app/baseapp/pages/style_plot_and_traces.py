@@ -204,7 +204,7 @@ class StylePlotAndTracesDashBoardLayout():
         self.limit_data = gldc.LimitData(self.dmtool_userid, 0, self.listoflimits)
         self.limit_data.GetLimitData()
         print("<<<<<<<< ---------- Updating Data ---------------- >>>>>>")
-        print("limit_list_df >>>>>", self.limit_data.self.limit_list_df)
+        print("limit_list_df >>>>>", self.limit_data.limit_list_df)
         print("trace_list_df >>>>>",self.limit_data.trace_list_df)
         print("limit_data_df >>>>>", self.limit_data.limit_data_df.head(5)) 
 
