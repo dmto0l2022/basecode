@@ -802,8 +802,9 @@ def display_page(pathname,search,href):
     [Input(page_name+'format_table_id', 'data')],
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
-    #print('spat : table_data_in >>>>>>>>>>',table_data_in)
+    
     print('spat : update data call back triggered')
+    print('spat : table_data_in >>>>>>>>>>',table_data_in,"  type >> ", type(table_data_in) )
     #update formats dbl.UpdateChart(table_data_in)
     dbl.UpdateChart()
     #dbl.UpdateLegend(table_data_in)
