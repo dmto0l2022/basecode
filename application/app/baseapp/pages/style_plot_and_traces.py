@@ -118,7 +118,7 @@ dash.register_page(__name__, path='/style_plot_and_traces')
 ## create plot series
 
 class StylePlotAndTracesDashBoardLayout():
-    def __init__(self,pagename_in, dmtool_userid_in,  listoflimits_in):
+    def __init__(self,pagename_in, dmtool_userid_in):
         self.page_name = pagename_in
         self.data_table_id =  self.page_name + "data_table_id"
         #self.table_meta_data_data = table_meta_data_data_in
@@ -193,12 +193,13 @@ class StylePlotAndTracesDashBoardLayout():
         self.GraphChart = dcc.Graph()
         self.GraphLegend = dcc.Graph()
         self.layout = {}
-        self.UpdateData()
         self.CreateLegend()
         self.CreateChart()
         self.CreateFormat()
         
-
+    def SetListOfLimits(self, listoflimits_in):
+         self.listoflimits = listoflimits_in
+        
     def UpdateData(self):
         #self.limits_list_df, self.limits_traces_df, self.limits_data_df, self.limits_list_dict = gld.GetListOfLimits(self.dmtool_userid, listoflimits_in)
         self.limit_data = gldc.LimitData(self.dmtool_userid, 0, self.listoflimits)
@@ -327,8 +328,43 @@ class StylePlotAndTracesDashBoardLayout():
         '''
     
     ################
-    
+
     def CreateFormat(self):
+        self.TableFormat = dash_table.DataTable(
+                id=self.page_name + 'format_table_id',
+                columns=[
+                    {'id': 'limit_id', 'name': 'limit_id'},
+                    {'id': 'trace_id', 'name': 'trace_id'},
+                    {'id': 'trace_name', 'name': 'trace_name'},
+                    {'id': 'line_color', 'name': 'line_color', 'presentation': 'dropdown'},
+                    {'id': 'line', 'name': 'line', 'presentation': 'dropdown'},
+                    {'id': 'fill_color', 'name': 'fill_color', 'presentation': 'dropdown'},
+                    {'id': 'symbol', 'name': 'symbol', 'presentation': 'dropdown'},
+                    {'id': 'symbol_color', 'name': 'symbol_color', 'presentation': 'dropdown'},
+                ],
+                style_cell_conditional=[
+                    {'if': {'column_id': 'limit_id'},
+                     'width': '5%'},
+                    #{'if': {'column_id': 'data_label'},
+                    # 'width': '40%'},
+                    {'if': {'column_id': 'trace_id'},
+                     'width': '5%'},
+                    {'if': {'column_id': 'trace_name'},
+                     'width': '40%'},
+                    {'if': {'column_id': 'line_color'},
+                     'width': '10%'},
+                    {'if': {'column_id': 'line'},
+                     'width': '10%'},
+                    {'if': {'column_id': 'fill_color'},
+                     'width': '10%'},
+                    {'if': {'column_id': 'symbol'},
+                     'width': '10%'},
+                    {'if': {'column_id': 'symbol_color'},
+                     'width': '10%'}],
+            )
+
+    
+    def UpdateFormat(self):
     
         #limits_traces_copy = limits_traces_in.copy()
         print("format table : trace_list_df.columns >> " , self.limit_data.trace_list_df.columns)
@@ -506,72 +542,7 @@ class StylePlotAndTracesDashBoardLayout():
                 pad=0
             ),
             paper_bgcolor="LightSteelBlue",
-        )
-        
-        rowloop = 0
-        
-        for index, row in self.limit_data.trace_list_df.iterrows():
-            #print(row['c1'], row['c2'])
-            rowloop +=1
-            for c in cols_list: #enumerate here to get access to i
-                # STEP 2, notice position of arguments!
-                table_column_names = ['limit_id','trace_id','trace_name','line','symbol']
-                scatter_mode_list = ['text-number','text-number','text-text','lines','markers']
-                current_column = table_column_names[c-1]
-                current_mode = scatter_mode_list[c-1]
-                if current_mode =='lines':
-                     self.FigLegend.add_trace(go.Scatter(x=[1,2],
-                                             y=[1,1],
-                                             mode=current_mode,
-                                             #text=row[current_column],
-                                             line=dict(width=4,dash=row['line'],color=row['line_color']),
-                                            ),
-                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
-                                  col=c)
-                if current_mode =='text-text':
-                     self.FigLegend.add_trace(go.Scatter(x=[1,2], 
-                                             textposition='middle right',
-                                             y=[1,1],
-                                             mode='text',
-                                             text=[row[current_column],'']
-                                            ),
-                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
-                                  col=c)
-                
-                if current_mode =='text-number':
-                     self.FigLegend.add_trace(go.Scatter(x=[1], 
-                                             textposition='middle right',
-                                             y=[1],
-                                             mode='text',
-                                             text=row[current_column]
-                                            ),
-                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
-                                  col=c)
-                if current_mode =='markers':
-                     self.FigLegend.add_trace(go.Scatter(x=[1], 
-                                            y=[1],
-                                            mode=current_mode,
-                                            #text=row[current_column],
-                                            marker_symbol=row['symbol'],
-                                            marker=dict(
-                                            size=10,
-                                            color=row['symbol_color'],#set color equal to a variable
-                                            colorscale='Viridis', # one of plotly colorscales
-                                            showscale=False,
-                                            )
-                                            ),
-                                  row=rowloop, #index for the subplot, i+1 because plotly starts with 1
-                                  col=c)
-                    
-                self.FigLegend.update_xaxes(showgrid=False)
-                self.FigLegend.update_yaxes(showgrid=False)
-                #legend
-                self.FigLegend.update_layout(showlegend=False)
-                #x axis
-                self.FigLegend.update_xaxes(visible=False)
-                #y axis    
-                self.FigLegend.update_yaxes(visible=False)
-        
+        )        
         
         self.GraphLegend = dcc.Graph(figure=self.FigLegend,
                                  id= self.page_name + 'graph_legend_id',
@@ -690,61 +661,6 @@ class StylePlotAndTracesDashBoardLayout():
         
         self.FigChart.update_layout(autosize=True)
         
-        for index, row in self.limit_data.limit_data_df.iterrows():
-          
-            trace_data = self.limit_data.limit_data_df[(self.limit_data.limit_data_df['id']==row['id'])
-                                          & (self.limit_data.limit_data_df['trace_id']==row['trace_id'])]
-            
-            trace2add = trace_data
-            
-            #trace_name = str(row['id']) + str(row['series'])
-            trace_name = str(row['trace_name'])
-            
-            x_title_text = r"$\text{WIMP Mass [GeV}/c^{2}]$"
-            y_title_text = r"$\text{Cross Section [cm}^{2}\text{] (normalized to nucleon)}$"
-            
-            self.FigChart.add_trace(go.Scatter(x=trace2add['masses'], y=trace2add['cross_sections'], ## scaled needs to be updated
-                              mode='lines+markers', # 'lines' or 'markers'
-                              line=dict(width=4,dash=row['line'],color=row['line_color']),
-                              #showscale=False,
-                              fill='toself',
-                              fillcolor = row['fill_color'],
-                              text=row['trace_name'],
-                              marker_symbol=row['symbol'],
-                                  marker=dict(
-                                  size=10,
-                                  color=row['symbol_color'],#set color equal to a variable
-                                  #colorscale='Viridis', # one of plotly colorscales
-                                  showscale=False,
-                              ),
-                              legendgroup=str(row['limit_id']),  # this can be any string, not just "group"
-                              legendgrouptitle_text=str(row['limit_id']),
-                              name=str(row['trace_name'])
-                                   ))
-            
-            self.FigChart.update(layout_showlegend=False)
-            
-            self.FigChart.update_xaxes(
-              title_text=x_title_text,
-              type="log"
-              #type="linear"
-            )
-            self.FigChart.update_yaxes(
-              title_text=y_title_text,
-              #type="log"
-              type="linear"
-            )
-            #fig3.add_trace(go.Scatter(x=trace2add['x'], y=trace2add['scaled_y'],
-            #                   mode='markers', # 'lines' or 'markers'
-            #                    marker_symbol=row['symbol'],
-            #                         marker=dict(
-            #                        size=10,
-            #                        color=row['color'],#set color equal to a variable
-            #                        #colorscale='Viridis', # one of plotly colorscales
-            #                        showscale=False,
-            #                    ),
-            #                    name=str(row['id'])))
-  
         self.GraphChart = dcc.Graph(figure=self.FigChart,
                                   id=self.page_name + 'graph_chart_id',
                                   config=dict(responsive=True),
@@ -818,7 +734,7 @@ class StylePlotAndTracesDashBoardLayout():
             self.FigChart.update(layout_showlegend=False)
 
 
-dbl = StylePlotAndTracesDashBoardLayout(page_name, dmtool_userid,  listoflimits)
+dbl = StylePlotAndTracesDashBoardLayout(page_name, dmtool_userid)
 dbl.CreateLayout()
 layout = dbl.layout
 
@@ -870,11 +786,11 @@ def display_page(pathname,search,href):
     print('spat callback: list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits_int)
     #list_of_limits = [33]
     #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
-    dbl.listoflimits = list_of_limits_int
+    dbl.SetListOfLimits(list_of_limits_int)
     dbl.UpdateData()
-    dbl.CreateChart()
-    dbl.CreateLegend()
-    dbl.CreateFormat()
+    dbl.UpdateChart()
+    dbl.UpdateLegend()
+    dbl.UpdateFormat()
     return dbl.GraphChart, dbl.TableFormat, dbl.GraphLegend
 
 @callback(
