@@ -273,7 +273,7 @@ class LimitData:
             
             #print("gld : library response_data_frame >>>>>" , response_data_frame)
             
-            limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
+            #limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
             #column_names=['id','data_label','data_comment','data_values']
         
             #print('limit_list_df >>', limit_list_df_resp)
