@@ -652,7 +652,10 @@ class StylePlotAndTracesDashBoardLayout():
                 self.FigLegend.update_xaxes(visible=False)
                 #y axis    
                 self.FigLegend.update_yaxes(visible=False)
-
+        
+        self.GraphLegend = dcc.Graph(figure=self.FigLegend,
+                                 id= self.page_name + 'graph_legend_id',
+                                 style={'width': '100%', 'height': '100%'})
     
     def CreateChart(self):
       
