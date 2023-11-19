@@ -801,7 +801,7 @@ def display_page(pathname,search,href):
     return dbl.GraphChart, dbl.TableFormat, dbl.GraphLegend
 
 @callback(
-    [Output(page_name+'graph_chart_id','figure'), Output(page_name+'legend_id','figure')],
+    [Output(page_name+'graph_chart_id','figure'), Output(page_name+'graph_legend_id','figure')],
     [Input(page_name+'format_table_id', 'data')],
     [State(page_name+'format_table_id', 'data')])
 def update_output(table_data, table_data_in):
