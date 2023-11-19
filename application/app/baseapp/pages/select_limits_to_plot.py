@@ -187,6 +187,8 @@ class SelectLimitsToPlotDashBoardLayout():
 
         self.limits_to_plot_df = pd.DataFrame()
         self.RowLimitsToPlot = dbc.Row()
+
+        self.ClsMainDataTable = None
         
         self.PopulateMainDataTable()
        
@@ -528,7 +530,7 @@ class SelectLimitsToPlotDashBoardLayout():
         ])
 
     def PopulateMainDataTable(self):
-        ClsMainDataTable = mte.get_main_table(self.page_title,
+        self.ClsMainDataTable = mte.get_main_table(self.page_title,
                                              self.page_name + self.main_table_id,
                                              self.table_meta_data_main_table,
                                              self.table_height,
@@ -725,9 +727,9 @@ class SelectLimitsToPlotDashBoardLayout():
                     
             # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
         
-            all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid) 
+            #all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid) 
             
-            unfiltered_df = all_limit_list_df.copy()
+            unfiltered_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
             print('sltp : unfiltered_df >>>', unfiltered_df) 
             #df.drop(df.index , inplace=True)
             
@@ -773,7 +775,8 @@ class SelectLimitsToPlotDashBoardLayout():
             triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
             #print(triggered_id)
             if triggered_id == self.page_name + 'main_limits_table':
-                all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid)  
+                #all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid)
+                all_limit_list_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
                 selected_rowid = active_cell_exp['row_id']
                 selected_row = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
                 selected_row  = selected_row[['id','limit_id','data_reference','data_label']]
