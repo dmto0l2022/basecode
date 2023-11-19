@@ -332,9 +332,10 @@ class StylePlotAndTracesDashBoardLayout():
     
         #limits_traces_copy = limits_traces_in.copy()
         print("format table : trace_list_df.columns >> " , self.limit_data.trace_list_df.columns)
+        print("format table : trace_list_df 5 >> " , self.limit_data.trace_list_df.Head(5))
         palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
         cycle_colors = itertools.cycle(palette_list)
-    
+        append_this = []
         #colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
         colored_limits_list =[]
         for index, row in self.limit_data.trace_list_df.iterrows():
@@ -353,6 +354,7 @@ class StylePlotAndTracesDashBoardLayout():
     
         #Index(['id', 'limit_id', 'data_label', 'trace_id', 'trace_name', 'line_color',
         #   'symbol_color', 'fill_color', 'line', 'symbol'],
+        
         print("append_this >>>>", append_this)
         print("self.limit_data.trace_list_df.columns >>>>>>", self.limit_data.trace_list_df.columns)
     
