@@ -547,13 +547,13 @@ class StylePlotAndTracesDashBoardLayout():
                                  id= self.page_name + 'graph_legend_id',
                                  style={'width': '100%', 'height': '100%'})
 
-    def UpdateLegend(self, plotseries_table_in):
+    def UpdateLegend(self):
         #result_ids = [1,262]
         
-        print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
-        self.plot_series_df = pd.DataFrame.from_dict(plotseries_table_in)
+        #print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
+        #self.plot_series_df = pd.DataFrame.from_dict(plotseries_table_in)
         
-        result_ids_plot = self.plot_series_df['limit_id'].unique().tolist()
+        #result_ids_plot = self.plot_series_df['limit_id'].unique().tolist()
         rows_list = list(range(1,6))
         cols_list = list(range(1,6))
         
@@ -590,8 +590,8 @@ class StylePlotAndTracesDashBoardLayout():
         )
         
         rowloop = 0
-        '''
-        for index, row in self.plot_series_df.iterrows():
+        
+        for index, row in self.limit_data.trace_list_df.iterrows():
             #print(row['c1'], row['c2'])
             rowloop +=1
             for c in cols_list: #enumerate here to get access to i
@@ -652,7 +652,7 @@ class StylePlotAndTracesDashBoardLayout():
                 self.FigLegend.update_xaxes(visible=False)
                 #y axis    
                 self.FigLegend.update_yaxes(visible=False)
-            '''
+
     
     def CreateChart(self):
       
