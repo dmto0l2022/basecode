@@ -735,6 +735,10 @@ class StylePlotAndTracesDashBoardLayout():
             
             self.FigChart.update(layout_showlegend=False)
 
+    def UpdateAppearances(newformats_dict):
+        #result_ids = [1,262]
+        #print("plotseries_table_in >>>>>>>>>>>>", plotseries_table_in)
+        self.limit_data.trace_list_df = pd.DataFrame.from_dict(newformats_dict)
 
 dbl = StylePlotAndTracesDashBoardLayout(page_name, dmtool_userid)
 dbl.CreateLayout()
@@ -805,8 +809,8 @@ def update_output(table_data, table_data_in):
     
     print('spat : update data call back triggered')
     print('spat : table_data_in >>>>>>>>>>',table_data_in,"  type >> ", type(table_data_in) )
-    #update formats dbl.UpdateChart(table_data_in)
+    dbl.UpdateAppearances(table_data_in)
     dbl.UpdateChart()
-    #dbl.UpdateLegend(table_data_in)
+    dbl.UpdateLegend()
     return [dbl.FigChart]#, dbl.FigLegend
 
