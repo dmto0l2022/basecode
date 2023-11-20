@@ -45,7 +45,7 @@ from app.baseapp.dashboard_libraries import all_data_tables as adt
 
 ##from app.baseapp.dashboard_libraries import get_limit_data as gld
 
-#from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
+from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
 
 from app.baseapp.libraries import main_table_editor as mte
 
@@ -656,6 +656,10 @@ class SelectLimitsToPlotDashBoardLayout():
         @callback(Output(self.page_name +'_plot_name_id', 'children'),
               [Input(self.page_name +'url', 'href')])
         def set_plot_name(href: str):
+            ## get user id from cookie
+            dmtooluser_cls = gdu.GetUserID()
+            self.dmtool_userid = dmtooluser_cls.dmtool_userid
+            ## get plot name from url
             f = furl(href)
             plot_name = f.args['plot_name']
             plot_id = f.args['plot_id']
