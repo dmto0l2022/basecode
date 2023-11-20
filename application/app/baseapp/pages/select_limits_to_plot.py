@@ -689,7 +689,7 @@ class SelectLimitsToPlotDashBoardLayout():
             #####
 
             
-            return html.H1(children=new_plot_id + ' - ' + new_plot_name) 
+            return html.H1(children=str(new_plot_id) + ' - ' + new_plot_name) 
     
     def ApplyFiltersCallback(self):
         @callback(
