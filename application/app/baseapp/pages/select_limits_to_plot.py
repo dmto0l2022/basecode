@@ -658,7 +658,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.layout = html.Div(id=page_name+'content',children=maincolumn,className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
 
     def SetPlotNameCallback(self):
-        @callback([Output(self.page_name +'_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children')]
+        @callback([Output(self.page_name +'_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children')],
               [Input(self.page_name +'url', 'href')])
         def set_plot_name(href: str):
             ## get user id from cookie
