@@ -61,26 +61,27 @@ class LimitData:
 
     # Define scale factors
     def get_scale_factor(self, unit_in):
-        self.BARN_CM2= 1e-24
         
-        if (unit == "b"):
-            return BARN_CM
-        elif (unit == "mb"):
-            return 1e-3*BARN_CM2
-        elif (unit == "ub"):
-            return 1e-6*BARN_CM2
-        elif (unit == "nb"):
-            return 1e-9*BARN_CM2
-        elif (unit == "pb"):
-            return 1e-12*BARN_CM2
-        elif (unit == "fb"):
-            return 1e-15*BARN_CM2
-        elif (unit == "ab"):
-            return 1e-18*BARN_CM2
-        elif (unit == "zb"):
-            return 1e-21*BARN_CM2
-        elif (unit == "yb"):
-            return 1e-24*BARN_CM2
+        self.BARN_CM2 = 1e-24
+        
+        if (unit_in == "b"):
+            return self.BARN_CM2
+        elif (unit_in == "mb"):
+            return 1e-3*self.BARN_CM2
+        elif (unit_in == "ub"):
+            return 1e-6*self.BARN_CM2
+        elif (unit_in == "nb"):
+            return 1e-9*self.BARN_CM2
+        elif (unit_in == "pb"):
+            return 1e-12*self.BARN_CM2
+        elif (unit_in == "fb"):
+            return 1e-15*self.BARN_CM2
+        elif unit_inunit == "ab"):
+            return 1e-18*self.BARN_CM2
+        elif (unit_in == "zb"):
+            return 1e-21*self.BARN_CM2
+        elif (unit_in == "yb"):
+            return 1e-24*self.BARN_CM2
         else: 
             return 1
     
