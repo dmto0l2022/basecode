@@ -6,12 +6,13 @@ from flask import request
 #import libraries.formlibrary as fl
 from app.baseapp.libraries import formlibrary as fl
 
+from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
+
 import requests
 import json
 import redis
 import pickle
 
-r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 
 
 dash.register_page(__name__, path='/create_new_plot')
@@ -45,21 +46,8 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     print("create new plot >> prop id >>  " ,prop_id)
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXX create new plot XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    session_key = request.cookies.get('session')
-    print('create new plot : session key >>',session_key)
-    redis_session_key = "session:"+session_key
-
-    val = r.get(redis_session_key)
-    print(redis_session_key)
-    print('---------val------------------------------')
-    print(val)
-    print('--------- decoded val------------------------------')
-    decoded_val = pickle.loads(val)
-    print(decoded_val)
-    dmtool_userid = decoded_val['dmtool_userid']
-    dmtool_authorised = decoded_val['dmtool_authorised']
-    print('dmtool_userid in cnp >>>' ,decoded_val['dmtool_userid'])
-    print('=======================================')
+    dmtooluser_cls = gdu.GetUserID()
+    dmtool_userid = dmtooluser_cls.dmtool_userid
     
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
 
@@ -83,9 +71,6 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         new_plot_id = json_data['id']
         new_plot_name = json_data['name']
         print("create_new_plot_req plot id >>>> " , new_plot_id)
-        #print("get_or_create_user_url >>>" , get_or_create_user_url)
-        #google_req = requests.get(url_get)
-        #print("google user status code >>>> " , google_req.status_code)
 
         href_return = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)+'&plot_name='+new_plot_name
         #href_return = baseapp_prefix + '/create_new_plot'
