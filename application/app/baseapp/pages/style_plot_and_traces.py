@@ -170,15 +170,15 @@ class StylePlotAndTracesDashBoardLayout():
                           'height':'19px',
                           'verticalAlign': 'center'}
         
-        self.new_button =  html.Button("New", id= pagename_in + "new_button_id", style=self.button_styling_1)
-        self.save_button =  html.Button("Save", id= pagename_in + "save_button_id", style=self.button_styling_1)
-        self.cancel_button =  html.Button("Cancel",  id=pagename_in + "cancel_button_id", style=self.button_styling_1)
-        self.home_button =  html.Button("Home",  id=pagename_in + "home_button_id", style=self.button_styling_1)
-        self.row_of_buttons = html.Div(id= pagename_in + "page_buttons", children=[self.new_button,self.save_button,self.cancel_button,self.home_button], className="PAGE_FOOTER_BUTTONS")
+        self.new_button =  html.Button("New", id= self.page_name + "new_button_id", style=self.button_styling_1)
+        self.save_button =  html.Button("Save", id= self.page_name + "save_button_id", style=self.button_styling_1)
+        self.cancel_button =  html.Button("Cancel",  id=self.page_name + "cancel_button_id", style=self.button_styling_1)
+        self.home_button =  html.Button("Home",  id=self.page_name + "home_button_id", style=self.button_styling_1)
+        self.row_of_buttons = html.Div(id= self.page_name + "page_buttons", children=[self.new_button,self.save_button,self.cancel_button,self.home_button], className="PAGE_FOOTER_BUTTONS")
           
         self.debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
-                                              html.Div(id=pagename_in+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
-                                              html.Div(id=pagename_in+'button-output-div', children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
+                                              html.Div(id=self.page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
+                                              html.Div(id=self.page_name+'button-output-div', children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
                                               className="PAGE_DEBUG_CONTENT")
          
         self.dmtool_userid = dmtool_userid_in
@@ -752,13 +752,13 @@ class StylePlotAndTracesDashBoardLayout():
         def displayClick1_1(btn1, btn2, btn3, btn4):
             msg = "None of the buttons have been clicked yet"
             prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
-            if page_name+'new_button_id' == prop_id:
+            if self.page_name+'new_button_id' == prop_id:
                 msg = "New Button was most recently clicked"
-            elif page_name+'save_button_id' == prop_id:
+            elif self.page_name+'save_button_id' == prop_id:
                 msg = "Save Button most recently clicked"
-            elif page_name+'cancel_button_id' == prop_id:
+            elif self.page_name+'cancel_button_id' == prop_id:
                 msg = "Cancel Button was most recently clicked"
-            elif page_name+'home_button_id' == prop_id:
+            elif self.page_name+'home_button_id' == prop_id:
                 msg = "Home Button most recently clicked"
             else:
                 msg = "No Button Pressed"
