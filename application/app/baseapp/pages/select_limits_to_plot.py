@@ -847,12 +847,13 @@ class SelectLimitsToPlotDashBoardLayout():
                     }
                 '''
                 
-                json_data_1 = df_to_json.iloc[0].to_json(orient="records")
+                json_data_1 = df_to_json.to_json(orient="records")
                 #result = df.to_json(orient="records")
 
                 parsed = loads(json_data_1)
                 print("print(dumps(parsed, indent=4))")
-                print(dumps(parsed, indent=4))
+                #print(dumps(parsed, indent=4))
+                print("parsed[0]  >>>", parsed[0])
                 
                 ##df.loc[i].to_json
 
