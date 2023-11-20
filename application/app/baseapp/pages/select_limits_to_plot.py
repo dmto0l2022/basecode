@@ -804,7 +804,6 @@ class SelectLimitsToPlotDashBoardLayout():
         def trigger_fork(active_cell_exp,active_cell_plot,data_in):
             ctx = dash.callback_context
             triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
-            data_in = []
             #print(triggered_id)
             if triggered_id == self.page_name + 'main_limits_table':
                 all_limit_list_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
