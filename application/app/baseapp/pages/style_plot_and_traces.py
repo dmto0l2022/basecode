@@ -39,8 +39,10 @@ from itertools import cycle
 
 import redis
 
-r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-dmtool_userid = 16384 ## testing
+#r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
+#dmtool_userid = 16384 ## testing
+
+from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
 
 # import formlibrary as fl
 
@@ -739,77 +741,82 @@ class StylePlotAndTracesDashBoardLayout():
         self.limit_data.trace_list_df = pd.DataFrame()
         self.limit_data.trace_list_df = pd.DataFrame.from_dict(newformats_dict).copy()
 
+    def RespondToButtonCallBackSPAT(self):
+        @callback(
+            Output(page_name+'button-output-div', 'children'),
+            Input(page_name+'new_button_id', 'n_clicks'),
+            Input(page_name+'save_button_id', 'n_clicks'),
+            Input(page_name+'cancel_button_id', 'n_clicks'),
+            Input(page_name+'home_button_id', 'n_clicks'),
+        )
+        def displayClick1_1(btn1, btn2, btn3, btn4):
+            msg = "None of the buttons have been clicked yet"
+            prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
+            if page_name+'new_button_id' == prop_id:
+                msg = "Button 1 was most recently clicked"
+            elif page_name+'save_button_id' == prop_id:
+                msg = "Button 2 was most recently clicked"
+            elif page_name+'cancel_button_id' == prop_id:
+                msg = "Button 3 was most recently clicked"
+            elif page_name+'home_button_id' == prop_id:
+                msg = "Button 4 was most recently clicked"
+            else:
+                msg = "No Button Pressed"
+            return html.Div(msg)
+
+    def UpdateChartsBasedOnPipedListCallBackSPAT(self):
+        @callback(Output(page_name+'chart_div','children'),
+                  Output(page_name+'table_div', 'children'),
+                  Output(page_name+'legend_div','children'),
+                  [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
+        def display_page(pathname,search,href):
+            print('spat : 3 chart callback triggered')
+            original_search_string = search
+            just_list = original_search_string.split('=')
+            o = urlparse(href)
+            print('query>>>>' ,o.query)
+            
+            #try:
+            just_list = o.query.split('=')[1]
+            print("just_list >>>>>>",just_list)
+            list_of_limits_str = just_list.split('|')
+            list_of_limits_int = []
+            for l in list_of_limits_str:
+                list_of_limits_int.append(int(l))
+                
+            #except:
+            #    list_of_limits_int = [45]
+            
+            print('spat callback: list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits_int)
+            #list_of_limits = [33]
+            #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
+            self.SetListOfLimits(list_of_limits_int)
+            self.UpdateData()
+            self.UpdateLegend()
+            self.UpdateFormat()
+            self.UpdateChart()
+            
+            
+            return self.GraphChart, self.TableFormat, self.GraphLegend
+    
+    def UpdateChartAndLegendAppearanceCallBackSPAT(self):
+        @callback(
+            [Output(page_name+'graph_chart_id','figure'), Output(page_name+'graph_legend_id','figure')],
+            [Input(page_name+'format_table_id', 'data')],
+            [State(page_name+'format_table_id', 'data')])
+        def update_output(table_data, table_data_in):
+            
+            print('spat : update data call back triggered')
+            print('spat : table_data_in >>>>>>>>>>',table_data_in,"  type >> ", type(table_data_in) )
+            self.UpdateAppearances(table_data_in)
+            self.UpdateChart()
+            self.UpdateLegend()
+            return [self.FigChart, self.FigLegend]
+
+
 dbl = StylePlotAndTracesDashBoardLayout(page_name, dmtool_userid)
 dbl.CreateLayout()
 layout = dbl.layout
-
-@callback(
-    Output(page_name+'button-output-div', 'children'),
-    Input(page_name+'new_button_id', 'n_clicks'),
-    Input(page_name+'save_button_id', 'n_clicks'),
-    Input(page_name+'cancel_button_id', 'n_clicks'),
-    Input(page_name+'home_button_id', 'n_clicks'),
-)
-def displayClick1_1(btn1, btn2, btn3, btn4):
-    msg = "None of the buttons have been clicked yet"
-    prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
-    if page_name+'new_button_id' == prop_id:
-        msg = "Button 1 was most recently clicked"
-    elif page_name+'save_button_id' == prop_id:
-        msg = "Button 2 was most recently clicked"
-    elif page_name+'cancel_button_id' == prop_id:
-        msg = "Button 3 was most recently clicked"
-    elif page_name+'home_button_id' == prop_id:
-        msg = "Button 4 was most recently clicked"
-    else:
-        msg = "No Button Pressed"
-    return html.Div(msg)
-
-
-@callback(Output(page_name+'chart_div','children'),
-          Output(page_name+'table_div', 'children'),
-          Output(page_name+'legend_div','children'),
-          [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
-def display_page(pathname,search,href):
-    print('spat : 3 chart callback triggered')
-    original_search_string = search
-    just_list = original_search_string.split('=')
-    o = urlparse(href)
-    print('query>>>>' ,o.query)
-    
-    #try:
-    just_list = o.query.split('=')[1]
-    print("just_list >>>>>>",just_list)
-    list_of_limits_str = just_list.split('|')
-    list_of_limits_int = []
-    for l in list_of_limits_str:
-        list_of_limits_int.append(int(l))
-        
-    #except:
-    #    list_of_limits_int = [45]
-    
-    print('spat callback: list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits_int)
-    #list_of_limits = [33]
-    #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
-    dbl.SetListOfLimits(list_of_limits_int)
-    dbl.UpdateData()
-    dbl.UpdateLegend()
-    dbl.UpdateFormat()
-    dbl.UpdateChart()
-    
-    
-    return dbl.GraphChart, dbl.TableFormat, dbl.GraphLegend
-
-@callback(
-    [Output(page_name+'graph_chart_id','figure'), Output(page_name+'graph_legend_id','figure')],
-    [Input(page_name+'format_table_id', 'data')],
-    [State(page_name+'format_table_id', 'data')])
-def update_output(table_data, table_data_in):
-    
-    print('spat : update data call back triggered')
-    print('spat : table_data_in >>>>>>>>>>',table_data_in,"  type >> ", type(table_data_in) )
-    dbl.UpdateAppearances(table_data_in)
-    dbl.UpdateChart()
-    dbl.UpdateLegend()
-    return [dbl.FigChart, dbl.FigLegend]
-
+dbl.RespondToButtonCallBackSPAT()
+dbl.UpdateChartsBasedOnPipedListCallBackSPAT()
+dbl.UpdateChartAndLegendAppearanceCallBackSPAT()
