@@ -662,7 +662,7 @@ class SelectLimitsToPlotDashBoardLayout():
             self.dmtool_userid = dmtooluser_cls.dmtool_userid
             ## get plot name from url
             f = furl(href)
-            plot_name = f.args['plot_name']
+            self.plot_name = f.args['plot_name']
             self.plot_id = f.args['plot_id']
             #####
             '''
@@ -676,7 +676,7 @@ class SelectLimitsToPlotDashBoardLayout():
             request_header = {'dmtool-userid': str(self.dmtool_userid)}
             fastapi_data_url = "http://container_fastapi_data_1:8014/"
             
-            get_plot_api = "dmtool/fastapi_data/internal/data/plot?plot_id=" + plot_id
+            get_plot_api = "dmtool/fastapi_data/internal/data/plot?plot_id=" + self.plot_id
             get_plot_api_url = fastapi_data_url + get_plot_api
             
             get_plot_response = requests.get(get_plot_api_url, headers=request_header)
