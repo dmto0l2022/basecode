@@ -663,7 +663,33 @@ class SelectLimitsToPlotDashBoardLayout():
             f = furl(href)
             plot_name = f.args['plot_name']
             plot_id = f.args['plot_id']
-            return html.H1(children=plot_id + ' - ' + plot_name) 
+            #####
+            '''
+            curl -X 'GET' \
+              'https://dev1.dmtool.info/dmtool/fastapi_data/internal/data/plot?plot_id=3119' \
+              -H 'accept: application/json' \
+              -H 'dmtool-userid: 1'
+            '''
+            #####
+            
+            request_header = {'dmtool-userid': str(self.dmtool_userid)}
+            fastapi_data_url = "http://container_fastapi_data_1:8014/"
+            
+            get_plot_api = "dmtool/fastapi_data/internal/data/plot?plot_id=" + plot_id
+            get_plot_api_url = fastapi_data_url + create_plot_api
+            
+            get_plot_response = requests.get(get_plot_api_url, headers=request_header)
+            json_data = json.loads(get_plot_response.text)
+            print("json_data sltp >>>>>>>>>", json_data)
+            print("select limits to plot status code >>>> " , get_plot_response.status_code)
+            new_plot_id = json_data['Plot']['id']
+            new_plot_name = json_data['Plot']['name']
+            print("create_new_plot_req plot id from api >>>> " , new_plot_id)
+
+            #####
+
+            
+            return html.H1(children=new_plot_id + ' - ' + new_plot_name) 
     
     def ApplyFiltersCallback(self):
         @callback(
