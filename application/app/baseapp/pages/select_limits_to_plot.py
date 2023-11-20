@@ -843,6 +843,10 @@ class SelectLimitsToPlotDashBoardLayout():
                     }
 
                 ####
+
+                print(json_data)
+                
+                ####
                 
                 add_limit_to_plot_api_response = requests.post(add_limit_to_plot_api_url, json=json_data, headers=request_header)
                 json_data = json.loads(add_limit_to_plot_api_response.text)
