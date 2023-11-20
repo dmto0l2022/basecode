@@ -839,10 +839,7 @@ class SelectLimitsToPlotDashBoardLayout():
                       "spin_dependency": selected_limit["spin_dependency"].iloc[0],
                       "result_type": selected_limit["result_type"].iloc[0],
                       "official": selected_limit["official"].iloc[0],
-                      "greatest_hit": selected_limit["greatest_hit"].iloc[0],
-                      "created_at": selected_limit["created_at"].iloc[0],
-                      "updated_at": selected_limit["updated_at"].iloc[0],
-                      "ceased_at": "1980-01-01T00:00:00"
+                      "greatest_hit": selected_limit["greatest_hit"].iloc[0]
                     }
 
                 ####
