@@ -676,7 +676,7 @@ class SelectLimitsToPlotDashBoardLayout():
             fastapi_data_url = "http://container_fastapi_data_1:8014/"
             
             get_plot_api = "dmtool/fastapi_data/internal/data/plot?plot_id=" + plot_id
-            get_plot_api_url = fastapi_data_url + create_plot_api
+            get_plot_api_url = fastapi_data_url + get_plot_api
             
             get_plot_response = requests.get(get_plot_api_url, headers=request_header)
             json_data = json.loads(get_plot_response.text)
