@@ -810,7 +810,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 all_limit_list_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
                 selected_rowid = active_cell_exp['row_id']
                 selected_limit = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
-
+                print("selected limit columns >>>>>>>>>", selected_limit.columns)
                 selected_row  = selected_limit[['id','limit_id','data_reference','data_label']].copy()
                 #selected_row['plot_id'] = self.plot_id
                 #data_out=plots_todo_df.to_dict("records")
