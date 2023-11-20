@@ -148,14 +148,7 @@ class LimitData:
                     self.limit_data.append(appendthis)
             #lol
 
-        scale_factor = get_scale_factor(unit)
-
-        df_experiment['x'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
-
-        # add scale_factor here
-        df_experiment['y'] = df_experiment['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')/scale_factor
-
-        
+       
         #print('gld : parsed limit data >>>>',limit_data) 
         
         ## the datatable needed a unique id
@@ -170,8 +163,8 @@ class LimitData:
                                       'raw_x','raw_y','line_color','symbol_color',
                                       'fill_color','line', 'symbol'])
         
-        x_units = limit_data_df.iloc[0]['x_units']
-        y_units = limit_data_df.iloc[0]['y_units']
+        x_units = self.limit_data_df.iloc[0]['x_units']
+        y_units = self.limit_data_df.iloc[0]['y_units']
         x_scale_factor = self.get_scale_factor(x_units)
         y_scale_factor = self.get_scale_factor(y_units)
         
