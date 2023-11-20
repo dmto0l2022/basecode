@@ -8,6 +8,7 @@ from flask import request
 #import formlibrary as fl
 import requests
 import json
+from json import loads, dumps
 import redis
 import pickle
 
@@ -846,7 +847,12 @@ class SelectLimitsToPlotDashBoardLayout():
                     }
                 
                 
-                json_data_1 = df_to_json.to_json(orient="records")[0]
+                json_data_1 = df_to_json.to_json(orient="records")
+                #result = df.to_json(orient="records")
+
+                parsed = loads(json_data_1)
+                print("print(dumps(parsed, indent=4))")
+                print(dumps(parsed, indent=4))
                 
                 ##df.loc[i].to_json
 
