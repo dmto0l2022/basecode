@@ -63,6 +63,7 @@ class SelectLimitsToPlotDashBoardLayout():
     def __init__(self,pagename_in, dmtool_userid_in,  listoflimits_in):
         self.page_name = pagename_in
         self.page_title = pagename_in
+        self.plot_id = 0
         self.dmtool_userid = dmtool_userid_in
         self.main_table_id =  "main_limits_table"
         self.table_meta_data_main_table = [
@@ -662,7 +663,7 @@ class SelectLimitsToPlotDashBoardLayout():
             ## get plot name from url
             f = furl(href)
             plot_name = f.args['plot_name']
-            plot_id = f.args['plot_id']
+            self.plot_id = f.args['plot_id']
             #####
             '''
             curl -X 'GET' \
@@ -803,16 +804,61 @@ class SelectLimitsToPlotDashBoardLayout():
         def trigger_fork(active_cell_exp,active_cell_plot,data_in):
             ctx = dash.callback_context
             triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
+            data_in = []
             #print(triggered_id)
             if triggered_id == self.page_name + 'main_limits_table':
-                #all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid)
                 all_limit_list_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
                 selected_rowid = active_cell_exp['row_id']
-                selected_row = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
-                selected_row  = selected_row[['id','limit_id','data_reference','data_label']]
-                selected_row['plot_id'] = 'plot_id here'
+                selected_limit = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
+
+                selected_row  = selected_limit[['id','limit_id','data_reference','data_label']]
+                selected_row['plot_id'] = self.plot_id
                 #data_out=plots_todo_df.to_dict("records")
+                
                 record=selected_row.to_dict("records")[0]
+                
+                request_header = {'dmtool-userid': str(self.dmtool_userid)}
+                fastapi_data_url = "http://container_fastapi_data_1:8014/"
+            
+                add_limit_to_plot_api = "dmtool/fastapi_data/internal/data/data_about"
+                add_limit_to_plot_api_url = fastapi_data_url + add_limit_to_plot_api
+
+                ####
+                json_data = {
+                      "limit_id": 0,
+                      "plot_id": 0,
+                      "data_label": "string",
+                      "data_reference": "string",
+                      "data_comment": "string",
+                      "x_units": "string",
+                      "y_units": "string",
+                      "x_rescale": "string",
+                      "y_rescale": "string",
+                      "year": 0,
+                      "experiment": "string",
+                      "spin_dependency": "string",
+                      "result_type": "string",
+                      "official": 0,
+                      "greatest_hit": 0,
+                      "created_at": "2023-11-20T11:57:37.731082",
+                      "updated_at": "2023-11-20T11:57:37.731096",
+                      "ceased_at": "1980-01-01T00:00:00"
+                    }
+
+                ####
+                
+                add_limit_to_plot_api_response = requests.post(add_limit_to_plot_api_url, json=json_data, headers=request_header)
+                json_data = json.loads(add_limit_to_plot_api_response.text)
+                print("json_data sltp add limit to plot >>>>>>>>>", json_data)
+                print("select limits to plot - add limit to plot - status code >>>> " , get_plot_response.status_code)
+                
+                data_in.append(record)
+                
+                #data_in = record
+                # Return the updated data.
+                #return data
+
+                
                 #print(type(record))
                 #print(record)
                 #record = {columns[i]: arg for i, arg in enumerate(list(args))}
@@ -826,11 +872,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 #    data_in[selected_rowid] = record
                 #dictlen = len(data_in)
                 #data_in[selected_rowid] = record
-                data_in.append(record)
-                #data_in = record
-                # Return the updated data.
-                #return data
-        
+            
                 #selected_row = limits_table_df[limits_table_df['expid']==active_cell['row_id']]
                 #plots_todo_df= selected_row.copy()
                 #data_out=plots_todo_df.to_dict("records")
