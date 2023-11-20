@@ -76,7 +76,7 @@ class LimitData:
             return 1e-12*self.BARN_CM2
         elif (unit_in == "fb"):
             return 1e-15*self.BARN_CM2
-        elif unit_inunit == "ab"):
+        elif (unit_in == "ab"):
             return 1e-18*self.BARN_CM2
         elif (unit_in == "zb"):
             return 1e-21*self.BARN_CM2
