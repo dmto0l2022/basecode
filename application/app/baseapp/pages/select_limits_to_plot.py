@@ -822,9 +822,12 @@ class SelectLimitsToPlotDashBoardLayout():
             
                 add_limit_to_plot_api = "dmtool/fastapi_data/internal/data/data_about"
                 add_limit_to_plot_api_url = fastapi_data_url + add_limit_to_plot_api
-                df_to_json = selected_limit[["limit_id", "plot_id", "data_label", "data_reference", "data_comment", "x_units", "y_units",
+                df_to_json = selected_limit[["limit_id", "data_label", "data_reference", "data_comment", "x_units", "y_units",
                       "x_rescale", "y_rescale", "year", "experiment", "spin_dependency", "result_type", "official", "greatest_hit"]].copy()
+                
+                df_to_json["plot_id"] =  str(self.plot_id)
                 ####
+                
                 json_data = {
                       "limit_id": str(selected_limit["limit_id"].iloc[0]),
                       "plot_id": str(self.plot_id),
