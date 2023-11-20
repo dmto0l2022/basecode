@@ -689,6 +689,34 @@ class SelectLimitsToPlotDashBoardLayout():
             print("create_new_plot_req plot id from api >>>> " , new_plot_id)
 
             #####
+            ## populate data=self.limits_to_plot_df.to_dict('records'),
+            ## if the plot is in progress or being edited there will be limits already chosen
+            
+            request_header = {'dmtool-userid': str(self.dmtool_userid)}
+            fastapi_data_url = "http://container_fastapi_data_1:8014/"
+        
+            get_limits_to_plot_api = "dmtool/fastapi_data/internal/data/data_about?plot_id_in=" + str(new_plot_id)
+            
+            get_limits_to_plot_api_url = fastapi_data_url + get_limits_to_plot_api
+
+            get_limits_to_plot_response = requests.get(get_limits_to_plot_api_url, headers=request_header)
+            json_data_response = json.loads(get_limits_to_plot_response.text)
+            
+            lol = []
+            for j in json_data_response:
+                record = j['Data_about']
+                lol.append(record)
+            
+            self.limits_to_plot_df = pd.DataFrame.from_dict(lol)
+
+            print("self.limits_to_plot_df >>>>>>>>", self.limits_to_plot_df)
+            
+            #print("json_data sltp add initial limits to plot >>>>>>>>>", json_data_response)
+            #print("select limits to plot - add limit to plot - status code >>>> " , get_limits_to_plot_response.status_code)
+            
+            #self.limits_to_plot_df = pd.json_normalize(json_data_response)
+
+            #########################
 
             
             return html.H1(children=str(new_plot_id) + ' - ' + new_plot_name) 
@@ -822,6 +850,7 @@ class SelectLimitsToPlotDashBoardLayout():
             
                 add_limit_to_plot_api = "dmtool/fastapi_data/internal/data/data_about"
                 add_limit_to_plot_api_url = fastapi_data_url + add_limit_to_plot_api
+                
                 df_to_json = selected_limit[["limit_id", "data_label", "data_reference", "data_comment", "x_units", "y_units",
                       "x_rescale", "y_rescale", "year", "experiment", "spin_dependency", "result_type", "official", "greatest_hit"]].copy()
                 
