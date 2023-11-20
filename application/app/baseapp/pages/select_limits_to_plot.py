@@ -61,11 +61,11 @@ dashdataandtables = adt.DashDataAndTables(dmtool_userid)
 #####
 
 class SelectLimitsToPlotDashBoardLayout():
-    def __init__(self,pagename_in, dmtool_userid_in,  listoflimits_in):
+    def __init__(self,pagename_in,  listoflimits_in):
         self.page_name = pagename_in
         self.page_title = pagename_in
         self.plot_id = 0
-        self.dmtool_userid = dmtool_userid_in
+        self.dmtool_userid = 0
         self.main_table_id =  "main_limits_table"
         self.table_meta_data_main_table = [
                                         ['id', '3%'],
@@ -1006,10 +1006,11 @@ class SelectLimitsToPlotDashBoardLayout():
 #    
 #    return layout_out
 
-sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, dmtool_userid,  listoflimits)
+sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, listoflimits)
 sltpdb.CreateLayout()
 layout = sltpdb.layout
 sltpdb.SetPlotNameCallback()
+sltpdb.CreateLimitsToPlot() ## this populates if there is a previous plot
 sltpdb.ApplyFiltersCallback()
 sltpdb.MoveLimitToLimitsToPlotCallback()
 sltpdb.RespondToButtonsCallback()
