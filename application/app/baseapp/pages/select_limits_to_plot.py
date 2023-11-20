@@ -845,7 +845,9 @@ class SelectLimitsToPlotDashBoardLayout():
                       "greatest_hit": str(selected_limit["greatest_hit"].iloc[0])
                     }
                 
-                json_data_1 = df_to_json.loc[0].to_json(orient="records")
+                
+                json_data_1 = df_to_json.to_json(orient="records")[0]
+                
                 ##df.loc[i].to_json
 
                 ####
