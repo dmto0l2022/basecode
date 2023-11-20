@@ -850,7 +850,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 add_limit_to_plot_api_response = requests.post(add_limit_to_plot_api_url, json=json_data, headers=request_header)
                 json_data = json.loads(add_limit_to_plot_api_response.text)
                 print("json_data sltp add limit to plot >>>>>>>>>", json_data)
-                print("select limits to plot - add limit to plot - status code >>>> " , get_plot_response.status_code)
+                print("select limits to plot - add limit to plot - status code >>>> " , add_limit_to_plot_api_response.status_code)
                 
                 data_in.append(record)
                 
