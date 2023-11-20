@@ -175,7 +175,11 @@ class SelectLimitsToPlotDashBoardLayout():
         self.greatest_hit_table = dash_table.DataTable()
         self.limits_table = dash_table.DataTable()
         self.plots_table = dash_table.DataTable()
-        self.main_data_table = dash_table.DataTable()
+        
+        self.main_data_table = dash_table.DataTable(
+            id = self.page_name + self.main_table_id
+            )
+        
         self.multiple_api = 'limits'
         self.single_api = 'limit'
         self.fastapi_data_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
@@ -1009,11 +1013,11 @@ sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, listoflimits)
 sltpdb.CreateLayout()
 layout = sltpdb.layout
 sltpdb.SetPlotNameCallback() ## sets the dmtool user id
-sltpdb.CreateLimitsToPlot() ## this populates if there is a previous plot
+#sltpdb.CreateLimitsToPlot() ## this populates if there is a previous plot
 sltpdb.ApplyFiltersCallback()
 sltpdb.MoveLimitToLimitsToPlotCallback()
 sltpdb.RespondToButtonsCallback()
-sltpdb.PopulateMainDataTable()
+#sltpdb.PopulateMainDataTable()
 
 ###
 
