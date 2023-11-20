@@ -861,7 +861,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
                 #print(data_in)
                 data_in.append(json_data_1)
-                print("data_out >>>>>>>>>" data_in)
+                print("data_out >>>>>>>>>", data_in)
                 #data_in = record
                 # Return the updated data.
                 #return data
