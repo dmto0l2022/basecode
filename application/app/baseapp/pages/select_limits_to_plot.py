@@ -638,8 +638,8 @@ class SelectLimitsToPlotDashBoardLayout():
         self.DivOfButtons = html.Div(id= self.page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS")
         
         
-        self.RowLimits = dbc.Row([dbc.Col(
-                            self.main_data_table,
+        self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",
+                            children=[self.main_data_table],
                             width=12,)],
                             className ="NOPADDING_CONTENT")
 
@@ -658,7 +658,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.layout = html.Div(id=page_name+'content',children=maincolumn,className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
 
     def SetPlotNameCallback(self):
-        @callback(Output(self.page_name +'_plot_name_id', 'children'),
+        @callback([Output(self.page_name +'_plot_name_id', 'children') Output(self.page_name+"main_table_div",'children')]
               [Input(self.page_name +'url', 'href')])
         def set_plot_name(href: str):
             ## get user id from cookie
@@ -720,9 +720,9 @@ class SelectLimitsToPlotDashBoardLayout():
             #self.limits_to_plot_df = pd.json_normalize(json_data_response)
 
             #########################
-
+            self.PopulateMainDataTable()
             
-            return html.H1(children=str(new_plot_id) + ' - ' + new_plot_name) 
+            return [html.H1(children=str(new_plot_id) + ' - ' + new_plot_name) , self.main_data_table]
     
     def ApplyFiltersCallback(self):
         @callback(
@@ -791,6 +791,8 @@ class SelectLimitsToPlotDashBoardLayout():
             # https://stackoverflow.com/questions/60964165/ignore-empty-dataframe-when-merging
         
             #all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid) 
+            
+            self.PopulateMainDataTable()
             
             unfiltered_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
             print('sltp : unfiltered_df >>>', unfiltered_df) 
