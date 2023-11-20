@@ -849,7 +849,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
                 ####
 
-                print(json_data)
+                #print(json_data)
                 print(json_data_1)
                 
                 ####
@@ -858,9 +858,10 @@ class SelectLimitsToPlotDashBoardLayout():
                 json_data_response = json.loads(add_limit_to_plot_api_response.text)
                 print("json_data sltp add limit to plot >>>>>>>>>", json_data_response)
                 print("select limits to plot - add limit to plot - status code >>>> " , add_limit_to_plot_api_response.status_code)
-                
-                data_in.append([json_data_1])
-                
+
+                #print(data_in)
+                data_in.append(json_data_1)
+                print("data_out >>>>>>>>>" data_in)
                 #data_in = record
                 # Return the updated data.
                 #return data
@@ -894,6 +895,8 @@ class SelectLimitsToPlotDashBoardLayout():
                 a = 1
             
             return data_in
+    
+    
     def RespondToButtonsCallback(self):
         @callback(
             [Output(self.page_name+'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
