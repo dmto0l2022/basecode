@@ -958,6 +958,7 @@ updated_at
 async def create_data_about(data_about_in: Data_aboutCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     data_about = Data_about(limit_id = data_about_in.limit_id,
+                            plot_id = data_about_in.plot_id,
                             data_label = data_about_in.data_label,
                             data_reference = data_about_in.data_reference,
                             data_comment = data_about_in.data_comment,
@@ -1067,6 +1068,7 @@ async def create_limit_data(data_appearance_in: Data_appearanceCreate, session: 
                             dmtool_userid: Annotated[int | None, Header()] = None):
     data_appearance = Data_appearance(
                             limit_id = data_appearance_in.limit_id,
+                            plot_id = data_appearance_in.plot_id,
                             data_label = data_appearance_in.data_label,
                             trace_id = data_appearance_in.trace_id,
                             trace_name = data_appearance_in.trace_name,
@@ -1167,12 +1169,13 @@ updated_at
 async def create_limit_data(data_data_in: Data_dataCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     data_data = Data_data(limit_id = data_data_in.limit_id,
-                            trace_id = data_data_in.trace_id,
-                            trace_name = data_data_in.trace_name,
-                            x = data_data_in.x,
-                            y = data_data_in.x,
-                            created_at = data_data_in.created_at,
-                            updated_at = data_data_in.updated_at)
+                          plot_id = data_data_in.plot_id,
+                          trace_id = data_data_in.trace_id,
+                          trace_name = data_data_in.trace_name,
+                          x = data_data_in.x,
+                          y = data_data_in.x,
+                          created_at = data_data_in.created_at,
+                          updated_at = data_data_in.updated_at)
     session.add(data_data)
     await session.commit()
     await session.refresh(data_data)
@@ -1184,6 +1187,7 @@ async def create_limit_dataset(data_data_dataset_in: list[Data_dataCreate], sess
     counter = 0
     for ll in data_data_dataset_in:
         data_data = Data_data(limit_id = ll.limit_id,
+                              plot_id = ll.plot_id,
                                 trace_id = ll.trace_id,
                                 trace_name = ll.trace_name,
                                 x = ll.x,
@@ -1201,9 +1205,10 @@ async def read_data_data_dataset(limit_id_in: int, session: AsyncSession = Depen
     result = await session.execute(select(Data_data).where(Data_data.limit_id == limit_id_in))
     data_data_dataset = result.scalars().all()
     return [Data_data(id = data_data.id,
-                            limit_id = data_data.user_id,
-                            trace_id = data_data.plot_id,
-                            trace_name = data_data.plot_id,
+                            limit_id = data_data.limit_id,
+                            plot_id = data_data.plot_id,
+                            trace_id = data_data.trace_id,
+                            trace_name = data_data.trace_name,
                             x = data_data.x,
                             y = data_data.x,
                             created_at = data_data.created_at,
