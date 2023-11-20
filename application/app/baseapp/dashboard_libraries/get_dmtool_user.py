@@ -22,8 +22,8 @@ class GetUserID():
     
         session_data = self.redisserver.get(redis_session_key)
         print('--------- get dmtool user function -- decoded val------------------------------')
-        #decoded_val = pickle.loads(session_data)
-        #print(decoded_val)
+        decoded_val = pickle.loads(session_data)
+        print(decoded_val)
         
         self.dmtool_userid = decoded_val['dmtool_userid']
         print('gdu : dmtool_userid >>>>>>>>>>>>' , self.dmtool_userid)
