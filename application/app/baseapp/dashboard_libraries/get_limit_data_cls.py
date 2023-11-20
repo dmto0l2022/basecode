@@ -27,15 +27,23 @@ class LimitData:
                                 {"id": "data_label", "name": "data_label"},
                                 {"id": "data_comment", "name": "data_comment"},
                                 {"id": "data_reference", "name": "data_refererence"}]
+        '''
+        x_units: "string",
+        y_units: "string"
+        x_rescale: "string"
+        y_rescale: "string"
+
+        x_units, y_units, x_rescale, y_rescale
+        '''
         
-        self.limit_columns = ['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']
-        self.limit_empty_data = [['id','limit_id','data_label','data_reference','data_comment','year','experiment','spin_dependency','result_type','official','greatest_hit']]
+        self.limit_columns = ['id','limit_id','data_label','data_reference','data_comment','x_units', 'y_units', 'x_rescale', 'y_rescale', 'year','experiment','spin_dependency','result_type','official','greatest_hit']
+        self.limit_empty_data = [['id','limit_id','data_label','data_reference','data_comment','x_units', 'y_units', 'x_rescale', 'y_rescale','year','experiment','spin_dependency','result_type','official','greatest_hit']]
         self.trace_columns = ['id','limit_id','data_label','trace_id','trace_name',
                              'line_color','symbol_color','fill_color','line','symbol']
         self.trace_empty_data = [['id','limit_id','data_label','trace_id','trace_name','color']]
-        self.limit_data_columns = ['id','limit_id','data_label','trace_id','trace_name','raw_x','raw_y',
+        self.limit_data_columns = ['id','limit_id','data_label','trace_id','trace_name','x_units', 'y_units', 'x_rescale', 'y_rescale','raw_x','raw_y',
                                   'line_color','symbol_color','fill_color','line','symbol','masses','cross_sections']
-        self.limit_data_empty_data = [['id','limit_id','data_label','trace_id','trace_name','raw_x','raw_y',
+        self.limit_data_empty_data = [['id','limit_id','data_label','trace_id','trace_name','x_units', 'y_units', 'x_rescale', 'y_rescale', 'raw_x','raw_y',
                                       'line_color','symbol_color','fill_color','line','symbol','masses','cross_sections']]
         self.limit_list_df = pd.DataFrame(columns=self.limit_columns)
         self.trace_list_df = pd.DataFrame(columns=self.trace_columns)
@@ -50,7 +58,32 @@ class LimitData:
         self.PopulateLimitList()
         self.PopulateTraceList()
         ##self.PopulateLimitData()
+
+    # Define scale factors
+    def get_scale_factor(self, unit_in):
+        self.BARN_CM2= 1e-24
         
+        if (unit == "b"):
+            return BARN_CM
+        elif (unit == "mb"):
+            return 1e-3*BARN_CM2
+        elif (unit == "ub"):
+            return 1e-6*BARN_CM2
+        elif (unit == "nb"):
+            return 1e-9*BARN_CM2
+        elif (unit == "pb"):
+            return 1e-12*BARN_CM2
+        elif (unit == "fb"):
+            return 1e-15*BARN_CM2
+        elif (unit == "ab"):
+            return 1e-18*BARN_CM2
+        elif (unit == "zb"):
+            return 1e-21*BARN_CM2
+        elif (unit == "yb"):
+            return 1e-24*BARN_CM2
+        else: 
+            return 1
+    
     def PopulateLimitData(self):
        
         for index, row in self.limits_dataframe.iterrows():
@@ -59,6 +92,10 @@ class LimitData:
             data_label = row[['data_label']].iloc[0]
             data_reference= row[['data_reference']].iloc[0]
             data_comment = row[['data_comment']].iloc[0]
+            x_units = row[['x_units']].iloc[0]
+            y_units = row[['y_units']].iloc[0]
+            x_rescale = row[['x_rescale']].iloc[0]
+            y_rescale = row[['y_rescale']].iloc[0]
             year = row[['year']].iloc[0]
             experiment = row[['experiment']].iloc[0]
             spin_dependency = row[['spin_dependency']].iloc[0]
@@ -75,6 +112,7 @@ class LimitData:
                 next_colour = next(self.palette)
                 single_set = data_series[l]
                 set_list = single_set.split(";")
+                appendthis= []
                 for i in set_list:
                     z = i.split(" ");
                     new_x = z[0].replace(",[", "")
@@ -84,6 +122,10 @@ class LimitData:
                                           data_label,
                                           data_reference,
                                           data_comment,
+                                          x_units,
+                                          y_units,
+                                          x_rescale,
+                                          y_rescale,
                                           l,
                                           str(l) + '_' + data_label,
                                           year,
@@ -92,18 +134,27 @@ class LimitData:
                                           result_type,
                                           official,
                                           greatest_hit,
-                                          new_x,
-                                          z[1],
+                                          new_x, ## raw x
+                                          z[1], ## raw y
                                           next_colour,
                                           next_colour,
                                           next_colour,
                                           'solid',
                                           'circle']
                     except:
-                        appendthis = [row['id'],'data_label',l,0,0,'','']
+                        appendthis = [row['id'],'data_label','data_reference','data_comment','x_units','y_units','x_rescale','y_rescale',
+                                      l,str(l) + '_data_label','year','experiment','spin_dependency','result_type','official','greatest_hit',0,0,'','','','','']
                     
                     self.limit_data.append(appendthis)
             #lol
+
+        scale_factor = get_scale_factor(unit)
+
+        df_experiment['x'] = df_experiment['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
+
+        # add scale_factor here
+        df_experiment['y'] = df_experiment['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')/scale_factor
+
         
         #print('gld : parsed limit data >>>>',limit_data) 
         
@@ -114,12 +165,19 @@ class LimitData:
         ## limit data
         
         self.limit_data_df = pd.DataFrame(
-            data=self.limit_data,columns=['id','data_label','data_reference', 'data_comment', 'trace_id','trace_name', 'year','experiment',
+            data=self.limit_data,columns=['id','data_label','data_reference', 'data_comment', 'x_units', 'y_units', 'x_rescale', 'y_rescale', 'trace_id','trace_name', 'year','experiment',
                                       'spin_dependency','result_type','official','greatest_hit',
                                       'raw_x','raw_y','line_color','symbol_color',
                                       'fill_color','line', 'symbol'])
-        self.limit_data_df['masses'] = self.limit_data_df['raw_x'].astype(str).astype(dtype = float, errors = 'ignore')
-        self.limit_data_df['cross_sections'] = self.limit_data_df['raw_y'].astype(str).astype(dtype = float, errors = 'ignore')
+        
+        x_units = limit_data_df.iloc[0]['x_units']
+        y_units = limit_data_df.iloc[0]['y_units']
+        x_scale_factor = self.get_scale_factor(x_units)
+        y_scale_factor = self.get_scale_factor(y_units)
+        
+        self.limit_data_df['masses'] = self.limit_data_df['raw_x'].astype(str).astype(dtype = float, errors = 'ignore') / x_scale_factor
+        self.limit_data_df['cross_sections'] = self.limit_data_df['raw_y'].astype(str).astype(dtype = float, errors = 'ignore') / y_scale_factor
+        
         self.limit_data_df = self.limit_data_df.rename(columns={"id": "limit_id" })
         #self.limit_data_df = self.limit_data_df.reset_index()
         self.limit_data_df['id'] = self.limit_data_df.index
