@@ -182,8 +182,8 @@ class LimitData:
     
     def PopulateLimitList(self):
         
-        self.limit_list_df = self.limits_dataframe[['id','data_label','data_reference', 'data_comment','year','experiment','spin_dependency','result_type','official',
-                                               'greatest_hit']].copy()
+        self.limit_list_df = self.limits_dataframe[['id','data_label','data_reference', 'data_comment','x_units', 'y_units', 'x_rescale', 'y_rescale',
+                                                    'year','experiment','spin_dependency','result_type','official','greatest_hit']].copy()
         self.limit_list_df.drop_duplicates(inplace=True)
         self.limit_list_df = self.limit_list_df.rename(columns={"id": "limit_id" })
         #self.limit_list_df =  self.limit_list_df.reset_index()
@@ -199,7 +199,6 @@ class LimitData:
             #print("Parsing Trace Rows")
             #print(row['id'], row['data_values'])
             data_label = row[['data_label']].iloc[0]
-            greatest_hit = row[['greatest_hit']].iloc[0]
             data_string = row[['data_values']].iloc[0]
             data_string = data_string.replace("{[", "")
             data_string = data_string.replace("]}", "")
