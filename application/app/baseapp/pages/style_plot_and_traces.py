@@ -753,13 +753,13 @@ class StylePlotAndTracesDashBoardLayout():
             msg = "None of the buttons have been clicked yet"
             prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
             if page_name+'new_button_id' == prop_id:
-                msg = "Button 1 was most recently clicked"
+                msg = "New Button was most recently clicked"
             elif page_name+'save_button_id' == prop_id:
-                msg = "Button 2 was most recently clicked"
+                msg = "Save Button most recently clicked"
             elif page_name+'cancel_button_id' == prop_id:
-                msg = "Button 3 was most recently clicked"
+                msg = "Cancel Button was most recently clicked"
             elif page_name+'home_button_id' == prop_id:
-                msg = "Button 4 was most recently clicked"
+                msg = "Home Button most recently clicked"
             else:
                 msg = "No Button Pressed"
             return html.Div(msg)
