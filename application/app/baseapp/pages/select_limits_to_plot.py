@@ -860,7 +860,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 print("json_data sltp add limit to plot >>>>>>>>>", json_data_response)
                 print("select limits to plot - add limit to plot - status code >>>> " , add_limit_to_plot_api_response.status_code)
                 
-                data_in.append(record)
+                data_in.append(json_data_1)
                 
                 #data_in = record
                 # Return the updated data.
