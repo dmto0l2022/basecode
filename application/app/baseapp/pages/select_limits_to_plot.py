@@ -827,7 +827,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 
                 df_to_json["plot_id"] =  str(self.plot_id)
                 ####
-                
+                '''
                 json_data = {
                       "limit_id": str(selected_limit["limit_id"].iloc[0]),
                       "plot_id": str(self.plot_id),
@@ -845,7 +845,7 @@ class SelectLimitsToPlotDashBoardLayout():
                       "official": str(selected_limit["official"].iloc[0]),
                       "greatest_hit": str(selected_limit["greatest_hit"].iloc[0])
                     }
-                
+                '''
                 
                 json_data_1 = df_to_json.to_json(orient="records")
                 #result = df.to_json(orient="records")
