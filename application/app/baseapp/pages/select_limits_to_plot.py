@@ -860,7 +860,9 @@ class SelectLimitsToPlotDashBoardLayout():
                 print("select limits to plot - add limit to plot - status code >>>> " , add_limit_to_plot_api_response.status_code)
 
                 #print(data_in)
-                data_in.append(json_data_1)
+
+                record_data=selected_limit.to_dict("records")[0]
+                data_in.append(record_data)
                 print("data_out >>>>>>>>>", data_in)
                 #data_in = record
                 # Return the updated data.
