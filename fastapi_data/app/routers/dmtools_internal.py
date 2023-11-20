@@ -929,6 +929,10 @@ limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     data_reference : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     data_comment : Optional[str] = Field(default=None, nullable=True, primary_key=False)
+     "x_units" : just_limit.x_units,
+                "y_units" : just_limit.y_units,
+                "x_rescale" : just_limit.x_rescale,
+                "y_rescale" : just_limit.y_rescale,
     year : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     experiment :  Optional[str] = Field(default=None, nullable=True, primary_key=False)
     spin_dependency : Optional[str] = Field(default=None, nullable=True, primary_key=False)
@@ -1070,6 +1074,10 @@ async def create_limit_data(data_appearance_in: Data_appearanceCreate, session: 
                             limit_id = data_appearance_in.limit_id,
                             plot_id = data_appearance_in.plot_id,
                             data_label = data_appearance_in.data_label,
+                            x_units = data_appearance_in.x_units,
+                            y_units = data_appearance_in.y_units,
+                            x_rescale = data_appearance_in.x_rescale,
+                            y_rescale = data_appearance_in.y_rescale,
                             trace_id = data_appearance_in.trace_id,
                             trace_name = data_appearance_in.trace_name,
                             line_color = data_appearance_in.line_color,
@@ -1172,8 +1180,12 @@ async def create_limit_data(data_data_in: Data_dataCreate, session: AsyncSession
                           plot_id = data_data_in.plot_id,
                           trace_id = data_data_in.trace_id,
                           trace_name = data_data_in.trace_name,
+                          x_units = data_data_in.x_units,
+                          y_units = data_data_in.y_units,
+                          x_rescale = data_data_in.x_rescale,
+                          y_rescale = data_data_in.y_rescale,
                           x = data_data_in.x,
-                          y = data_data_in.x,
+                          y = data_data_in.y,
                           created_at = data_data_in.created_at,
                           updated_at = data_data_in.updated_at)
     session.add(data_data)
@@ -1190,6 +1202,10 @@ async def create_limit_dataset(data_data_dataset_in: list[Data_dataCreate], sess
                               plot_id = ll.plot_id,
                                 trace_id = ll.trace_id,
                                 trace_name = ll.trace_name,
+                                x_units = ll.x_units,
+                                y_units = ll.y_units,
+                                x_rescale = ll.x_rescale,
+                                y_rescale = ll.y_rescale,
                                 x = ll.x,
                                 y = ll.y,
                                 created_at = ll.created_at,
@@ -1209,6 +1225,10 @@ async def read_data_data_dataset(limit_id_in: int, session: AsyncSession = Depen
                             plot_id = data_data.plot_id,
                             trace_id = data_data.trace_id,
                             trace_name = data_data.trace_name,
+                            x_units = data_data.x_units,
+                            y_units = data_data.y_units,
+                            x_rescale = data_data.x_rescale,
+                            y_rescale = data_data.y_rescale,
                             x = data_data.x,
                             y = data_data.x,
                             created_at = data_data.created_at,
