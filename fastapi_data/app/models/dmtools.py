@@ -302,6 +302,7 @@ class LimitSelect(SQLModel):
 '''
 class Data_aboutBase(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     data_reference : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     data_comment : Optional[str] = Field(default=None, nullable=True, primary_key=False)
@@ -324,6 +325,7 @@ class Data_aboutCreate(Data_aboutBase):
 
 class Data_aboutUpdate(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     data_reference : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     data_comment : Optional[str] = Field(default=None, nullable=True, primary_key=False)
@@ -343,6 +345,7 @@ trace_list_df_out = limit_data_df_out[['limit_id','data_label','trace_id','trace
 
 class Data_appearanceBase(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
@@ -364,6 +367,7 @@ class Data_appearanceCreate(Data_appearanceBase):
 
 class Data_appearanceUpdate(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
@@ -378,6 +382,7 @@ class Data_appearanceUpdate(SQLModel):
 
 class Data_dataBase(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     x : Optional[float] = Field(default=None, nullable=True, primary_key=False)
@@ -395,6 +400,7 @@ class Data_dataCreate(Data_dataBase):
 
 class Data_dataUpdate(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     x : Optional[float] = Field(default=None, nullable=True, primary_key=False)
