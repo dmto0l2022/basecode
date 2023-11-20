@@ -175,7 +175,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.greatest_hit_table = dash_table.DataTable()
         self.limits_table = dash_table.DataTable()
         self.plots_table = dash_table.DataTable()
-        self.main_data_table = = dash_table.DataTable()
+        self.main_data_table = dash_table.DataTable()
         self.multiple_api = 'limits'
         self.single_api = 'limit'
         self.fastapi_data_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
