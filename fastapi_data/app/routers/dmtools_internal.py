@@ -982,9 +982,9 @@ async def create_data_about(data_about_in: Data_aboutCreate, session: AsyncSessi
 
 
 @router.get(api_base_url + "data_about")
-async def read_limit_data_single_limit(limit_id_in: int,session: AsyncSession = Depends(get_session),
+async def read_data_about_for_plot(plot_id_in: int,session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    results = await session.execute(select(Data_about).where(Data_about.Limit_id == limit_id_in))
+    results = await session.execute(select(Data_about).where(Data_about.plot_id == plot_id_in))
     #return_record = result.first()
     return_lol = []
     for l in results:
@@ -1095,9 +1095,9 @@ async def create_limit_data(data_appearance_in: Data_appearanceCreate, session: 
 
 
 @router.get(api_base_url + "data_appearance")
-async def read_data_appearance(limit_id_in: int,session: AsyncSession = Depends(get_session),
+async def read_data_appearance_for_plot(plot_id_in: int,session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    results = await session.execute(select(Data_appearance).where(Data_appearance.limit_id == limit_id_in))
+    results = await session.execute(select(Data_appearance).where(Data_appearance.plot_id == plot_id_in))
     #return_record = result.first()
     return_lol = []
     for l in results:
