@@ -192,8 +192,6 @@ class SelectLimitsToPlotDashBoardLayout():
 
         self.ClsMainDataTable = None
         
-        self.PopulateMainDataTable()
-       
         self.PopulateFilterDataFrames()
         self.CreateFilterTables()
         self.CreateFilterRow()
@@ -1009,16 +1007,12 @@ class SelectLimitsToPlotDashBoardLayout():
 sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, listoflimits)
 sltpdb.CreateLayout()
 layout = sltpdb.layout
-sltpdb.SetPlotNameCallback()
+sltpdb.SetPlotNameCallback() ## sets the dmtool user id
 sltpdb.CreateLimitsToPlot() ## this populates if there is a previous plot
 sltpdb.ApplyFiltersCallback()
 sltpdb.MoveLimitToLimitsToPlotCallback()
 sltpdb.RespondToButtonsCallback()
-
-
-
-
-
+sltpdb.PopulateMainDataTable()
 
 ###
 
