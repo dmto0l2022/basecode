@@ -825,16 +825,16 @@ class SelectLimitsToPlotDashBoardLayout():
 
                 ####
                 json_data = {
-                      "limit_id": selected_limit["limit_id"].iloc[0],
-                      "plot_id": self.plot_id,
+                      "limit_id": str(selected_limit["limit_id"].iloc[0]),
+                      "plot_id": str(self.plot_id),
                       "data_label": selected_limit["data_label"].iloc[0],
                       "data_reference": selected_limit["data_reference"].iloc[0],
                       "data_comment": selected_limit["data_comment"].iloc[0],
                       "x_units": selected_limit["x_units"].iloc[0],
                       "y_units": selected_limit["y_units"].iloc[0],
-                      "x_rescale": selected_limit["x_rescale"].iloc[0],
-                      "y_rescale": selected_limit["y_rescale"].iloc[0],
-                      "year": selected_limit["year"].iloc[0],
+                      "x_rescale": str(selected_limit["x_rescale"].iloc[0]),
+                      "y_rescale": str(selected_limit["y_rescale"].iloc[0]),
+                      "year": str(selected_limit["year"].iloc[0],
                       "experiment": selected_limit["experiment"].iloc[0],
                       "spin_dependency": selected_limit["spin_dependency"].iloc[0],
                       "result_type": selected_limit["result_type"].iloc[0],
