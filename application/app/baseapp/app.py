@@ -150,8 +150,7 @@ type=‘button’,
 ),
 '''
 
-dropdown_button = html.Div(children=['Drop Down Button'],
-[
+dropdown_button = html.Div(children=['Drop Down Button',
 html.Span(className='navbar-toggler-icon')
 ],
 className='btn btn-secondary dropdown-toggle',
