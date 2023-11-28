@@ -105,7 +105,7 @@ headertext = 'Dark Matter Tool'
 footertext = 'ACG'
 
 ### no drop down
-nav_menu = html.Div([
+nav_menu = html.Div(id='id 111', children=[
     html.Ul([
             html.Li([
                     dcc.Link('Page A', href='/page-a')
@@ -162,10 +162,10 @@ type='button',**{
 }
 ) 
 
-nav_menu_button = html.Div(
+nav_menu_button = html.Div(id='nav_menu_button',
+children=[
     dropdown_button,
-[
-    html.Ul([
+	html.Ul([
             html.Li([
                     dcc.Link('Page A', href='/page-a')
                     ], className=''),
