@@ -30,8 +30,8 @@ sized_square = html.Div(children=['Content'],style=full_style)
 
 two_columns = dbc.Row(
             [
-                dbc.Col(sized_square, xs=12, sm=12, md=12, lg=6, xl=6, xxl=6, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
-		dbc.Col(sized_square, xs=12, sm=12, md=12, lg=6, xl=6, xxl=6, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+                dbc.Col(sized_square, xs=12, sm=12, md=12, lg=12, xl=12, xxl=12, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+		dbc.Col(sized_square, xs=12, sm=12, md=12, lg=12, xl=12, xxl=12, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
             ],
 		className='g-0', style={'height':'100%'},
         ),
