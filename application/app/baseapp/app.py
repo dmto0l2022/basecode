@@ -184,22 +184,26 @@ type=‘button’,
 menu_icon = html.I(className="bi bi-menu-button")
 
 dropdown_button = html.Div(children=[menu_icon, ##'Drop Down Button',
-html.Span(className='navbar-toggler-icon')
-],
-className='btn btn-secondary dropdown-toggle',
-id='dropdownMenuButton1',**{
-'data-toggle': 'dropdown',
-'aria-expanded': 'false'
-}
-) 
+			html.Span(className='navbar-toggler-icon')
+			],
+			className='btn btn-secondary dropdown-toggle',
+			id='dropdownMenuButton1',**{
+			'data-toggle': 'dropdown',
+			'aria-expanded': 'false'
+			}
+			) 
 
 nav_menu_button = html.Div(id='nav_menu_button',
     children=[dropdown_button,
 	html.Ul([
             html.Li([
-                    html.A('Action 1', href='#', className='dropdown-item')]),
+                    html.A('Plot', href='#', className='dropdown-item')]),
             html.Li([
-                    html.A('Action 2', href='#', className='dropdown-item')]),
+                    html.A('Data', href='#', className='dropdown-item')]),
+	    html.Li([
+                    html.A('Admin', href='#', className='dropdown-item')]),
+	    html.Li([
+                    html.A('Help', href='#', className='dropdown-item')]),
             ], className='dropdown-menu', **{'aria-labelledby':'dropdownMenuButton1'}
                 ) ], className='dropdown')
 
