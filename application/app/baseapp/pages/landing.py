@@ -17,7 +17,7 @@ layout1 = html.Div(children=[
     html.Div(id='analytics-output'),
 ])
 
-no_padding = {'padding': '0 !important',    'padding-left': '0',    'padding-right':'0',   'margin-left':'0',    'margin-right': '0';
+no_padding = {'padding': '0 !important',    'padding-left': '0',    'padding-right':'0',   'margin-left':'0',    'margin-right': '0'}
 color_style = {'backgroundColor': 'blue', 'border' : '1px black solid'}
 size_style = {'height' : '100%', 'width' : '100%'}
 
