@@ -34,7 +34,7 @@ row = html.Div(
 		dbc.Col(sized_square, md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
                 dbc.Col(sized_square, md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
             ],
-		className='g-0',
+		className='g-0', height='80%'
         ),
         dbc.Row(
             [
