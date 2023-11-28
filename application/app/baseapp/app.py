@@ -127,6 +127,20 @@ nav_menu = html.Div(id='id 111', children=[
     <li><a class="dropdown-item" href="#">Something else here</a></li>
   </ul>
 </div>
+
+
+  <div class="dropdown">
+      <!-- Link or button to toggle dropdown -->
+        <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <li><a tabindex="-1" href="#">Action</a></li>
+        <li><a tabindex="-1" href="#">Another action</a></li>
+        <li><a tabindex="-1" href="#">Something else here</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1" href="#">Separated link</a></li>
+      </ul>
+    </div>
+
 '''
 
 ## aria help : https://community.plotly.com/t/can-data-attributes-be-created-in-dash/7222/13
@@ -155,7 +169,7 @@ html.Span(className='navbar-toggler-icon')
 ],
 className='btn btn-secondary dropdown-toggle',
 id='dropdownMenuButton1',**{
-'data-bs-toggle': 'dropdown',
+'data-toggle': 'dropdown',
 'aria-expanded': 'false'
 }
 ) 
