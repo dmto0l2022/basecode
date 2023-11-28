@@ -172,7 +172,7 @@ nav_menu_button = html.Div(
             html.Li([
                     dcc.Link('Page B', href='/page-b')
                     ], className=''),
-            ], className='dropdown-menu', **{'aria-labelledby'='dropdownMenuButton1'}
+            ], className='dropdown-menu', **{'aria-labelledby':'dropdownMenuButton1'}
                                              )
 ], className='dropdown')
 
