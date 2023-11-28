@@ -17,22 +17,23 @@ layout1 = html.Div(children=[
     html.Div(id='analytics-output'),
 ])
 
+sized_square = html.Div(style={'backgroundColor': 'blue', 'border' : '1px black solid', 'height' : '100%', 'width' : '100%'})
 
 row = html.Div(
     [
         dbc.Row(
             [
+                dbc.Col(sized_square, md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+		dbc.Col(html.Div("One of three columns"), md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
                 dbc.Col(html.Div("One of three columns"), md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
-		dbc.Col(html.Div("One of three columns"), md=4),
-                dbc.Col(html.Div("One of three columns"), md=4),
             ]
         ),
         dbc.Row(
             [
-                dbc.Col(html.Div("One of four columns"), width=6, lg=3),
-                dbc.Col(html.Div("One of four columns"), width=6, lg=3),
-                dbc.Col(html.Div("One of four columns"), width=6, lg=3),
-                dbc.Col(html.Div("One of four columns"), width=6, lg=3),
+                dbc.Col(html.Div("One of four columns"), width=6, lg=3, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+                dbc.Col(html.Div("One of four columns"), width=6, lg=3, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+                dbc.Col(html.Div("One of four columns"), width=6, lg=3, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+                dbc.Col(html.Div("One of four columns"), width=6, lg=3, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
             ]
         ),
     ]
