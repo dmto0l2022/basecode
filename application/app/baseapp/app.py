@@ -150,10 +150,11 @@ type=‘button’,
 ),
 '''
 
-dropdown_button = html.Button(
+dropdown_button = html.Div('Drop Down Button',
 [
 html.Span(className='navbar-toggler-icon')
 ],
+
 className='btn btn-secondary dropdown-toggle',
 id='dropdownMenuButton1',
 type='button',**{
@@ -170,8 +171,7 @@ nav_menu_button = html.Div(id='nav_menu_button',
             html.Li([
                     html.A('Action 2', href='#', className='dropdown-item')]),
             ], className='dropdown-menu', **{'aria-labelledby':'dropdownMenuButton1'}
-                                             )
-, className='dropdown')
+                ) , className='dropdown')
 
 
 
