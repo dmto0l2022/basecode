@@ -62,7 +62,7 @@ ALL_STYLES = "/application/baseapp/allstyles.css"
 
 
 #COMPONENT_STYLE = "/login/baseapp/forms.css"
-external_stylesheets=[dbc.themes.BOOTSTRAP, ALL_STYLES]
+external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP, ALL_STYLES]
 
 #external_scripts = [
 #    {'src': 'https://cdn.polyfill.io/v2/polyfill.min.js'},
@@ -180,7 +180,9 @@ type=‘button’,
 ),
 '''
 
-dropdown_button = html.Div(children=['Drop Down Button',
+menu_icon = html.I(ClassName="bi bi-menu-button")
+
+dropdown_button = html.Div(children=[menu_icon, ##'Drop Down Button',
 html.Span(className='navbar-toggler-icon')
 ],
 className='btn btn-secondary dropdown-toggle',
