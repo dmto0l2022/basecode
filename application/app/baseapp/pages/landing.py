@@ -17,7 +17,13 @@ layout1 = html.Div(children=[
     html.Div(id='analytics-output'),
 ])
 
-sized_square = html.Div(style={'backgroundColor': 'blue', 'border' : '1px black solid', 'height' : '100%', 'width' : '100%'})
+no_padding = {'padding': '0 !important',    'padding-left': '0',    'padding-right':'0',   'margin-left':'0',    'margin-right': '0';
+color_style = {'backgroundColor': 'blue', 'border' : '1px black solid'}
+size_style = {'height' : '100%', 'width' : '100%'}
+
+full_style = no_padding | color_style | size_style
+
+sized_square = html.Div(style=full_style)
 
 row = html.Div(
     [
