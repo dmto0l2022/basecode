@@ -32,7 +32,7 @@ row = html.Div(
                 dbc.Col(sized_square, md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
 		dbc.Col(html.Div("One of three columns"), md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
                 dbc.Col(html.Div("One of three columns"), md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
-            ]
+            ],
 		className='g-0',
         ),
         dbc.Row(
@@ -41,7 +41,7 @@ row = html.Div(
                 dbc.Col(html.Div("One of four columns"), width=6, lg=3, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
                 dbc.Col(html.Div("One of four columns"), width=6, lg=3, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
                 dbc.Col(html.Div("One of four columns"), width=6, lg=3, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
-            ]
+            ],
 		className='g-0',
         ),
     ]
