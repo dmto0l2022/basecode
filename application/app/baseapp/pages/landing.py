@@ -22,8 +22,8 @@ row = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(html.Div("One of three columns"), md=4),
-                dbc.Col(html.Div("One of three columns"), md=4),
+                dbc.Col(html.Div("One of three columns"), md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+		dbc.Col(html.Div("One of three columns"), md=4),
                 dbc.Col(html.Div("One of three columns"), md=4),
             ]
         ),
