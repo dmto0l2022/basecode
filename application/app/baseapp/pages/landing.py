@@ -1,7 +1,7 @@
 import dash
 from dash import html, dcc, callback, Input, Output
 
-dash.register_page(__name__, path='/')
+dash.register_page(__name__, path='/') ## path='/' makes it the home page for the pages app
 
 layout = html.Div(children=[
     html.H1(children='This is our Analytics page'),
