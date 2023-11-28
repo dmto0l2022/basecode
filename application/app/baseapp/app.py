@@ -167,11 +167,9 @@ children=[
     dropdown_button,
 	html.Ul([
             html.Li([
-                    dcc.Link('Page A', href='/page-a')
-                    ], className='dropdown-item'),
+                    html.A('Action 1', href='#', className='dropdown-item')],
             html.Li([
-                    dcc.Link('Page B', href='/page-b')
-                    ], className='dropdown-item'),
+                    html.A('Action 2', href='#', className='dropdown-item')],
             ], className='dropdown-menu', **{'aria-labelledby':'dropdownMenuButton1'}
                                              )
 ], className='dropdown')
