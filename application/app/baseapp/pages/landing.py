@@ -46,7 +46,7 @@ row = html.Div(
 		className='g-0',
         ),
     ],
-    style={'height':'80%'})
+    className="PAGE_CONTENT")
 
 layout = row
 
