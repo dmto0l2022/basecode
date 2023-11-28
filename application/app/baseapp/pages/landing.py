@@ -18,10 +18,11 @@ layout1 = html.Div(children=[
 ])
 
 no_padding = {'padding': '0 !important',    'padding-left': '0',    'padding-right':'0',   'margin-left':'0',    'margin-right': '0'}
-color_style = {'backgroundColor': 'blue', 'border' : '1px black solid'}
+background_color_style = {'backgroundColor': 'lightgrey', 'border' : '1px black solid'}
+font_style={'color': 'black', 'fontSize': 14}
 size_style = {'height' : '100%', 'width' : '100%'}
 
-full_style = no_padding | color_style | size_style
+full_style = no_padding | background_color_style | font_style | size_style
 
 sized_square = html.Div(children=['Content'],style=full_style)
 
@@ -30,8 +31,8 @@ row = html.Div(
         dbc.Row(
             [
                 dbc.Col(sized_square, md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
-		dbc.Col(html.Div("One of three columns"), md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
-                dbc.Col(html.Div("One of three columns"), md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+		dbc.Col(sized_square, md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+                dbc.Col(sized_square, md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
             ],
 		className='g-0',
         ),
