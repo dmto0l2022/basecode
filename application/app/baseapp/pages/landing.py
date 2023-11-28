@@ -26,10 +26,12 @@ full_style = no_padding | background_color_style | font_style | size_style
 
 sized_square = html.Div(children=['Content'],style=full_style)
 
+## xs=12, sm=12, md=12, lg=6, xl=6, xxl=6
+
 two_columns = dbc.Row(
             [
-                dbc.Col(sized_square, lg=12, md=6, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
-		dbc.Col(sized_square, lg=12, md=6, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+                dbc.Col(sized_square, xs=12, sm=12, md=12, lg=6, xl=6, xxl=6, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+		dbc.Col(sized_square, xs=12, sm=12, md=12, lg=6, xl=6, xxl=6, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
             ],
 		className='g-0', style={'height':'100%'},
         ),
@@ -39,8 +41,8 @@ row_two_columns = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(sized_square, lg=6, md=12, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
-		dbc.Col(two_columns, lg=6, md=12, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+                dbc.Col(sized_square, xs=12, sm=12, md=12, lg=6, xl=6, xxl=6, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+		dbc.Col(two_columns, xs=12, sm=12, md=12, lg=6, xl=6, xxl=6, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
             ],
 		className='g-0', style={'height':'100%'},
         ), ] , className="PAGE_CONTENT")
