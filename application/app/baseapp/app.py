@@ -163,7 +163,6 @@ type='button',**{
 ) 
 
 nav_menu_button = html.Div(id='nav_menu_button',
-children=[
     dropdown_button,
 	html.Ul([
             html.Li([
@@ -172,7 +171,7 @@ children=[
                     html.A('Action 2', href='#', className='dropdown-item')]),
             ], className='dropdown-menu', **{'aria-labelledby':'dropdownMenuButton1'}
                                              )
-], className='dropdown')
+, className='dropdown')
 
 
 
