@@ -154,8 +154,7 @@ dropdown_button = html.Div(children=['Drop Down Button',
 html.Span(className='navbar-toggler-icon')
 ],
 className='btn btn-secondary dropdown-toggle',
-id='dropdownMenuButton1',
-type='button',**{
+id='dropdownMenuButton1',**{
 'data-bs-toggle': 'dropdown',
 'aria-expanded': 'false'
 }
