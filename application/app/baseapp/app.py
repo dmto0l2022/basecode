@@ -64,6 +64,21 @@ ALL_STYLES = "/application/baseapp/allstyles.css"
 #COMPONENT_STYLE = "/login/baseapp/forms.css"
 external_stylesheets=[dbc.themes.BOOTSTRAP, ALL_STYLES]
 
+#external_scripts = [
+#    {'src': 'https://cdn.polyfill.io/v2/polyfill.min.js'},
+
+'''
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+'''
+
+external_scripts = [
+{ 'src'="https://code.jquery.com/jquery-3.3.1.slim.min.js", 'integrity'="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", 'crossorigin'="anonymous"}
+{ 'src'="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js", 'integrity'="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1", 'crossorigin'="anonymous"}
+{ 'src'="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js", 'integrity'="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM", 'crossorigin'="anonymous"}
+]
+
 # import libraries.formlibrary as fl
 
 #from app.baseapp.libraries import formlibrary as fl
@@ -84,6 +99,7 @@ app = Dash(__name__,
             use_pages=True,
             requests_pathname_prefix=REQUESTS_PATHNAME_PREFIX,#  '/login/baseapp/',
             external_stylesheets=external_stylesheets,
+	    external_scripts=external_scripts,
             meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}],
             ##suppress_callback_exceptions=True,
 	  )
