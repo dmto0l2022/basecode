@@ -180,7 +180,7 @@ type=‘button’,
 ),
 '''
 
-menu_icon = html.I(ClassName="bi bi-menu-button")
+menu_icon = html.I(className="bi bi-menu-button")
 
 dropdown_button = html.Div(children=[menu_icon, ##'Drop Down Button',
 html.Span(className='navbar-toggler-icon')
