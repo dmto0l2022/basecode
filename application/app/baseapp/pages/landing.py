@@ -26,6 +26,25 @@ full_style = no_padding | background_color_style | font_style | size_style
 
 sized_square = html.Div(children=['Content'],style=full_style)
 
+two_columns = dbc.Row(
+            [
+                dbc.Col(sized_square, lg=12, md=6, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+		dbc.Col(sized_square, lg=12, md=6, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+            ],
+		className='g-0', style={'height':'100%'},
+        ),
+
+
+row_two_columns = html.Div(
+    [
+        dbc.Row(
+            [
+                dbc.Col(sized_square, lg=6, md=12, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+		dbc.Col(two_columns, lg=6, md=12, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
+            ],
+		className='g-0', style={'height':'100%'},
+        ),
+
 row = html.Div(
     [
         dbc.Row(
@@ -34,7 +53,7 @@ row = html.Div(
 		dbc.Col(sized_square, md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
                 dbc.Col(sized_square, md=4, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
             ],
-		className='g-0', style={'height':'80%'},
+		className='g-0', style={'height':'100%'},
         ),
         dbc.Row(
             [
@@ -48,7 +67,7 @@ row = html.Div(
     ],
     className="PAGE_CONTENT")
 
-layout = row
+layout = row_two_columns
 
 '''
 @callback(
