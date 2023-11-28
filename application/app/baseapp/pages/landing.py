@@ -23,7 +23,7 @@ size_style = {'height' : '100%', 'width' : '100%'}
 
 full_style = no_padding | color_style | size_style
 
-sized_square = html.Div(style=full_style)
+sized_square = html.Div(children=['Content'],style=full_style)
 
 row = html.Div(
     [
