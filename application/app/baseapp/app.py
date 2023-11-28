@@ -104,6 +104,7 @@ server.config['FLASK_DEBUG'] = 0
 headertext = 'Dark Matter Tool'
 footertext = 'ACG'
 
+### no drop down
 nav_menu = html.Div([
     html.Ul([
             html.Li([
@@ -115,6 +116,49 @@ nav_menu = html.Div([
             ], className='nav navbar-nav')
 ], className='navbar navbar-default navbar-static-top')
 
+'''
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+'''
+
+class="bi bi-menu-button">
+
+navbar_dropdown = dbc.Navbar(
+    dbc.Container(
+        [
+            html.A(
+                # Use row and col to control vertical alignment of logo / brand
+                dbc.Row(
+                    [
+                        dbc.Col(html.I(className="bi bi-check-circle-fill me-2")),
+                        dbc.Col(dbc.NavbarBrand("Navbar", className="ms-2")),
+                    ],
+                    align="center",
+                    className="g-0",
+                ),
+                href="https://plotly.com",
+                style={"textDecoration": "none"},
+            ),
+            dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
+            dbc.Collapse(
+                search_bar,
+                id="navbar-collapse",
+                is_open=False,
+                navbar=True,
+            ),
+        ]
+    ),
+    color="dark",
+    dark=True,
+)
 
 pages_container = html.Div([
 	html.H1('Multi-page app with Dash Pages'),
@@ -137,7 +181,7 @@ pages_container_box = html.Div(children=[dash.page_container],className='PAGE_CO
 layout4 = html.Div([pc.page_header_0,
 		    pc.page_header_1,
 		    pc.page_header_2,
-		    nav_menu,
+		    navbar_dropdown,
 		    ##pc.side_bar_left,
 		    ##pc.side_bar_right,
 		    pages_container_box,
