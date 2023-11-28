@@ -43,8 +43,8 @@ row_two_columns = html.Div(
 		dbc.Col(two_columns, lg=6, md=12, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
             ],
 		className='g-0', style={'height':'100%'},
-        ),
-
+        ), ] , className="PAGE_CONTENT")
+	    
 row = html.Div(
     [
         dbc.Row(
