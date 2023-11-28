@@ -380,11 +380,12 @@
     position: fixed;
     top: var(--header_height);
     height: calc((100% - 80px - 83px)/2);
-    width : var(--graph_content_width);
+    width : 100%;
     right: var(--sidebar_width);
     background-color: lightgray;
     }
 
+/* width : var(--graph_content_width); */
 
 /* 84px allowing for debug fields */
 
@@ -392,10 +393,12 @@
     position: fixed;
     bottom: calc(var(--footer_height) + 84px);
     height: calc((100% - 80px - 83px)/2);
-    width : var(--graph_content_width);
+    width : 100%;
     right: var(--sidebar_width);
     background-color: lightgray;
     }
+
+ /*width : var(--graph_content_width);*/
          
 .PAGE_GRAPH_CONTENT {
     position: fixed;
