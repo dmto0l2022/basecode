@@ -104,6 +104,17 @@ server.config['FLASK_DEBUG'] = 0
 headertext = 'Dark Matter Tool'
 footertext = 'ACG'
 
+nav_menu = html.Div([
+    html.Ul([
+            html.Li([
+                    dcc.Link('Page A', href='/page-a')
+                    ], className=''),
+            html.Li([
+                    dcc.Link('Page B', href='/page-b')
+                    ], className=''),
+            ], className='nav navbar-nav')
+], className='navbar navbar-default navbar-static-top')
+
 
 pages_container = html.Div([
 	html.H1('Multi-page app with Dash Pages'),
@@ -126,6 +137,7 @@ pages_container_box = html.Div(children=[dash.page_container],className='PAGE_CO
 layout4 = html.Div([pc.page_header_0,
 		    pc.page_header_1,
 		    pc.page_header_2,
+		    nav_menu,
 		    ##pc.side_bar_left,
 		    ##pc.side_bar_right,
 		    pages_container_box,
