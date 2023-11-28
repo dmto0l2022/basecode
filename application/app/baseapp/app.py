@@ -129,6 +129,59 @@ nav_menu = html.Div([
 </div>
 '''
 
+## aria help : https://community.plotly.com/t/can-data-attributes-be-created-in-dash/7222/13
+'''
+html.Div(**{‘data-label’: ‘’})
+
+
+html.Button(
+[
+html.Span(className=‘navbar-toggler-icon’)
+],
+className=“navbar-toggler”,
+type=‘button’,
+**{
+‘data-toggle’: ‘collapse’,
+‘data-target’: “#navbarNav”,
+‘aria-controls’: “navbarNav”,
+‘aria-expanded’: “false”,
+‘aria-label’: “Toggle navigation”
+}
+),
+'''
+
+dropdown_button = html.Button(
+[
+html.Span(className='navbar-toggler-icon')
+],
+className='btn btn-secondary dropdown-toggle',
+id='dropdownMenuButton1',
+type='button',**{
+'data-bs-toggle': 'dropdown',
+'aria-expanded': 'false'
+}
+) 
+
+nav_menu_button = html.Div(
+    dropdown_button,
+[
+    html.Ul([
+            html.Li([
+                    dcc.Link('Page A', href='/page-a')
+                    ], className=''),
+            html.Li([
+                    dcc.Link('Page B', href='/page-b')
+                    ], className=''),
+            ], className='dropdown-menu', **{'aria-labelledby'='dropdownMenuButton1'}
+                                             )
+], className='dropdown')
+
+
+
+
+####
+
+
 navbar_dropdown = dbc.Navbar(
     dbc.Container(
         [
@@ -178,7 +231,7 @@ pages_container_box = html.Div(children=[dash.page_container],className='PAGE_CO
 layout4 = html.Div([pc.page_header_0,
 		    pc.page_header_1,
 		    pc.page_header_2,
-		    navbar_dropdown,
+		    nav_menu_button,
 		    ##pc.side_bar_left,
 		    ##pc.side_bar_right,
 		    pages_container_box,
