@@ -129,8 +129,6 @@ nav_menu = html.Div([
 </div>
 '''
 
-class="bi bi-menu-button">
-
 navbar_dropdown = dbc.Navbar(
     dbc.Container(
         [
