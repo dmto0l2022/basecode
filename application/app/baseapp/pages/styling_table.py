@@ -106,11 +106,12 @@ class StylingTable():
                    html.Span([dcc.Markdown('&#9643')]),
                    html.Span([dcc.Markdown('&#9671')]),
                    html.Span([dcc.Markdown('&#9747')]),
+                   html.Span([dcc.Markdown('&#9661')]),
                    html.Span([dcc.Markdown('&#9661')])
                   ]
        
         self.symbol_lol = []
-        for p in (range(0,5)):
+        for p in (range(0,6)):
             l = [self.symbols_label_list[p],self.symbols_value_list[p]]
             self.symbol_lol.append(l)
 
