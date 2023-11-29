@@ -45,6 +45,8 @@ class StylingTable():
 
     def __init__(self,pagename_in):
         self.page_name = pagename_in
+        self.palette_list = ['black','red','orange','yellow' 'green','blue', 'purple', 'grey', 'pink']
+        self.palette_abr = ['BK','RD','OR','YL','GN', 'BL', 'PR', 'GY', 'PK']
 
         self.data_table_id =  self.page_name + "data_table_id"
         self.format_data_table_row_height = '12px'
@@ -134,11 +136,9 @@ class StylingTable():
         trace_1 = {'limit_id' : 1, 'trace_id' : 1, 'line_color': 'black', 'symbol_color': 'black', 'fill_color': 'black', 'line': 'solid', 'symbol': 'circle', 'id': 1}
         trace_2 = {'limit_id' : 1, 'trace_id' : 2, 'line_color': 'black', 'symbol_color': 'black', 'fill_color': 'black', 'line': 'solid', 'symbol': 'circle', 'id': 2}
         trace_3 = {'limit_id' : 1, 'trace_id' : 3, 'line_color': 'black', 'symbol_color': 'black', 'fill_color': 'black', 'line': 'solid', 'symbol': 'circle', 'id': 3}
-        data = [trace_1, trace_2, trace_3]
-        data_df = pd.DataFrame.from_dict(data)
-        palette_list = ['black','red','orange','yellow' 'green','blue', 'purple', 'grey', 'pink']
-        palette_abr = ['BK','RD','OR','YL','GN', 'BL', 'PR', 'GY', 'PK']
-        cycle_colors = itertools.cycle(palette_list)
+        self.data = [trace_1, trace_2, trace_3]
+        self.data_df = pd.DataFrame.from_dict(self.data)
+        cycle_colors = itertools.cycle(self.palette_list)
         append_this = []
         #colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
         colored_limits_list =[]
