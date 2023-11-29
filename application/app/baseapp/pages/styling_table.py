@@ -89,11 +89,11 @@ class StylingTable():
                 {'id': 'limit_id', 'name': ['','limit_id']},
                 {'id': 'trace_id', 'name': ['','trace_id']},
                 {'id': 'trace_name', 'name': ['','trace_name']},
-                {'id': 'line_color', 'name': ['line','clr'], 'presentation': 'dropdown'},
-                {'id': 'line', 'name': ['line','stl'], 'presentation': 'dropdown'},
-                {'id': 'fill_color', 'name': ['fill','clr'], 'presentation': 'dropdown'},
-                {'id': 'symbol', 'name': ['symbol','sym'], 'presentation': 'dropdown'},
-                {'id': 'symbol_color', 'name': ['symbol','clr'], 'presentation': 'dropdown'},
+                {'id': 'line_color', 'name': ['line','c'], 'presentation': 'dropdown'},
+                {'id': 'line', 'name': ['line','s'], 'presentation': 'dropdown'},
+                {'id': 'fill_color', 'name': ['fill','c'], 'presentation': 'dropdown'},
+                {'id': 'symbol', 'name': ['symbol','s'], 'presentation': 'dropdown'},
+                {'id': 'symbol_color', 'name': ['symbol','c'], 'presentation': 'dropdown'},
             ]
 
         self.symbols_value_list = ['circle','square','diamond','x','triangle']
