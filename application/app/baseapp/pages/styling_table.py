@@ -98,6 +98,23 @@ class StylingTable():
                 {'id': 'symbol', 'name': ['symbol','sym'], 'presentation': 'dropdown'},
                 {'id': 'symbol_color', 'name': ['symbol','clr'], 'presentation': 'dropdown'},
             ]
+
+        self.symbols_list = ['circle','square','diamond','x','triangle']
+        self.symbols_df = pd.DataFrame({'c' : symbols_list})
+        self.labels_list = [
+                   html.Span([dcc.Markdown('&#9675')]),
+                   html.Span([dcc.Markdown('&#9643')]),
+                   html.Span([dcc.Markdown('&#9671')]),
+                   html.Span([dcc.Markdown('&#9747')]),
+                   html.Span([dcc.Markdown('&#9661')])
+                  ]
+       
+        self.symbol_lol = []
+        for p in (range(0,5)):
+            l = [self.labels_list[p],self.symbols_list[p]]
+            self.symbol_lol.append(l)
+            
+        self.symbol_options=[{'label': item[0], 'value' : item[1]} for item in self.symbol_lol]
         
         self.data = []
         self.data_df = pd.DataFrame()
@@ -192,9 +209,9 @@ class StylingTable():
         
         line_styles_options=[{'label': i, 'value': i} for i in line_styles_list]
         
-        symbol_list = ['circle','square','diamond','cross','x','hexagon','pentagon','octagon','star','asterisk','hash']
+        #symbol_list = ['circle','square','diamond','cross','x','hexagon','pentagon','octagon','star','asterisk','hash']
         
-        symbol_options=[{'label': i, 'value': i} for i in symbol_list]
+        #symbol_options=[{'label': i, 'value': i} for i in symbol_list]
         
         self.TableFormat = dash_table.DataTable(
               id=self.page_name + 'format_table_id',
@@ -231,10 +248,7 @@ class StylingTable():
                       ]
                   },
                   'symbol': {
-                       'options': [
-                          {'label': i, 'value': i}
-                          for i in symbol_list
-                      ]
+                       'options': self.symbol_options
                   },
                    'symbol_color': {
                        'options': [
