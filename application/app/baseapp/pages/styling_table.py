@@ -108,7 +108,7 @@ class StylingTable():
 
         self.palette_color_list = ['black','red','orange','yellow' 'green','blue', 'purple', 'brown']
         self.palette_color_abreviations = ['BK','RD','OR','YL','GN', 'BL', 'PR', 'BR']
-        self.palette_color_squares ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
+        self.palette_color_squares = ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
         
         self.colors_lol = []
         for p in (range(0,8)):
