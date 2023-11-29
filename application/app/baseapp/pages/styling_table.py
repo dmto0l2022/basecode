@@ -111,7 +111,7 @@ class StylingTable():
         self.palette_color_squares = ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
         
         self.colors_lol = []
-        for p in (range(0,8)):
+        for p in (range(0,7)):
             l = [self.palette_color_squares[p],self.palette_color_list[p]]
             self.colors_lol.append(l)
 
