@@ -114,7 +114,7 @@ class StylingTable():
             l = [self.symbols_label_list[p],self.symbols_value_list[p]]
             self.symbol_lol.append(l)
             
-        self.symbol_options=[{'label': item[0], 'value' : item[1]} for item in self.symbol_lol]
+        self.symbol_options=[{'label': item[1], 'value' : item[1]} for item in self.symbol_lol]
         
         self.data = []
         self.data_df = pd.DataFrame()
