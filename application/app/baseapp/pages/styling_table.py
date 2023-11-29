@@ -85,6 +85,17 @@ class StylingTable():
                     ]
 
         
+
+        self.table_columns=[
+                {'id': 'limit_id', 'name': ['','limit_id']},
+                {'id': 'trace_id', 'name': ['','trace_id']},
+                {'id': 'trace_name', 'name': ['','trace_name']},
+                {'id': 'line_color', 'name': ['line','clr'], 'presentation': 'dropdown'},
+                {'id': 'line', 'name': ['line','stl'], 'presentation': 'dropdown'},
+                {'id': 'fill_color', 'name': ['fill','clr'], 'presentation': 'dropdown'},
+                {'id': 'symbol', 'name': ['symbol','sym'], 'presentation': 'dropdown'},
+                {'id': 'symbol_color', 'name': ['symbol','clr'], 'presentation': 'dropdown'},
+            ],
         
         self.data = []
         self.data_df = pd.DataFrame()
@@ -97,16 +108,7 @@ class StylingTable():
     def Create(self):
         self.TableFormat = dash_table.DataTable(
             id=self.page_name + 'format_table_id',
-            columns=[
-                {'id': 'limit_id', 'name': 'limit_id'},
-                {'id': 'trace_id', 'name': 'trace_id'},
-                {'id': 'trace_name', 'name': 'trace_name'},
-                {'id': 'line_color', 'name': 'line_color', 'presentation': 'dropdown'},
-                {'id': 'line', 'name': 'line', 'presentation': 'dropdown'},
-                {'id': 'fill_color', 'name': 'fill_color', 'presentation': 'dropdown'},
-                {'id': 'symbol', 'name': 'symbol', 'presentation': 'dropdown'},
-                {'id': 'symbol_color', 'name': 'symbol_color', 'presentation': 'dropdown'},
-            ],
+            columns=self.table_columns,
             style_cell_conditional=[
                 {'if': {'column_id': 'limit_id'},
                  'width': '5%'},
@@ -126,6 +128,7 @@ class StylingTable():
                  'width': '10%'},
                 {'if': {'column_id': 'symbol_color'},
                  'width': '10%'}],
+            merge_duplicate_headers=True,
         )
 
     def Update(self):
@@ -201,18 +204,7 @@ class StylingTable():
               #style_table={'overflowY': 'auto'},
               #virtualization=True
               data=colored_limits.to_dict('records'),
-              columns=[
-                  {'id': 'limit_id', 'name': 'limit_id'},
-                  ##{'id': 'data_label', 'name': 'data_label'},
-                  {'id': 'trace_id', 'name': 'trace_id'},
-                  {'id': 'trace_name', 'name': 'trace_name'},
-                  {'id': 'line_color', 'name': 'line_color', 'presentation': 'dropdown'},
-                  {'id': 'line', 'name': 'line', 'presentation': 'dropdown'},
-                  {'id': 'fill_color', 'name': 'fill_color', 'presentation': 'dropdown'},
-                  {'id': 'symbol', 'name': 'symbol', 'presentation': 'dropdown'},
-                  {'id': 'symbol_color', 'name': 'symbol_color', 'presentation': 'dropdown'},
-              ],
-        
+              columns=self.table_columns,
               editable=True,
               css=self.format_table_css,
               dropdown={
@@ -266,6 +258,7 @@ class StylingTable():
                    'width': '10%'},
                   {'if': {'column_id': 'symbol_color'},
                    'width': '10%'}],
+            merge_duplicate_headers=True,
           )
 
     def Layout(self):
