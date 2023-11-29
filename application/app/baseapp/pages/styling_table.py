@@ -40,6 +40,8 @@ from itertools import cycle
 
 dash.register_page(__name__, path='/styling_table')
 
+## color abreviations from
+## https://technicallibrary.midmark.com/Global/Global-GB-00003.htm
 
 class StylingTable():
 
