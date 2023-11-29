@@ -86,7 +86,7 @@ class StylingTable():
 
         
 
-        self.table_columns=[
+        self.table_columns =[
                 {'id': 'limit_id', 'name': ['','limit_id']},
                 {'id': 'trace_id', 'name': ['','trace_id']},
                 {'id': 'trace_name', 'name': ['','trace_name']},
@@ -95,16 +95,16 @@ class StylingTable():
                 {'id': 'fill_color', 'name': ['fill','clr'], 'presentation': 'dropdown'},
                 {'id': 'symbol', 'name': ['symbol','sym'], 'presentation': 'dropdown'},
                 {'id': 'symbol_color', 'name': ['symbol','clr'], 'presentation': 'dropdown'},
-            ],
+            ]
         
         self.data = []
         self.data_df = pd.DataFrame()
         self.table_row  =  dbc.Row()
         self.layout = html.Div()
         self.ExampleTable = dash_table.DataTable()
-        #self.Create()
-        #self.Update()
-        self.Example()
+        self.Create()
+        self.Update()
+        #self.Example()
 
   
     def Create(self):
