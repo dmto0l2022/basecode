@@ -47,9 +47,6 @@ class StylingTable():
 
     def __init__(self,pagename_in):
         self.page_name = pagename_in
-        self.palette_list = ['black','red','orange','yellow' 'green','blue', 'purple', 'grey', 'pink']
-        self.palette_abr = ['BK','RD','OR','YL','GN', 'BL', 'PR', 'GY', 'PK']
-
         self.data_table_id =  self.page_name + "data_table_id"
         self.format_data_table_row_height = '12px'
         self.format_data_table_font_size = '11px'
@@ -100,19 +97,28 @@ class StylingTable():
             ]
 
         self.symbols_value_list = ['circle','square','diamond','x','triangle']
-        self.symbols_label_list = ['○','□','◇','x','△']
-        self.symbols_df = pd.DataFrame({'c' : self.symbols_value_list})
-        
-        self.symbol_lol = []
+        self.symbols_label_list = ['○','□','◇','x','△']        
+        self.symbols_lol = []
         for p in (range(0,5)):
             l = [self.symbols_label_list[p],self.symbols_value_list[p]]
-            self.symbol_lol.append(l)
-
-        print("self.symbol_lol >>>>>>>>>>>", self.symbol_lol)
-        
-        self.symbol_options=[{'label': item[0], 'value' : item[1]} for item in self.symbol_lol]
-
+            self.symbols_lol.append(l)
+        #print("self.symbols_lol >>>>>>>>>>>", self.symbols_lol)
+        self.symbol_options=[{'label': item[0], 'value' : item[1]} for item in self.symbols_lol]
         print("self.symbol_options >>>>>>>>>>>", self.symbol_options)
+
+        self.palette_color_list = ['black','red','orange','yellow' 'green','blue', 'purple', 'brown']
+        self.palette_color_abreviations = ['BK','RD','OR','YL','GN', 'BL', 'PR', 'BR']
+        self.palette_color_squares ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
+        
+        self.colors_lol = []
+        for p in (range(0,8)):
+            l = [self.palette_color_squares[p],self.palette_color_list[p]]
+            self.colors_lol.append(l)
+
+        #print("self.symbols_lol >>>>>>>>>>>", self.symbols_lol)
+        
+        self.color_options=[{'label': item[0], 'value' : item[1]} for item in self.colors_lol]
+        print("self.color_options >>>>>>>>>>>", self.color_options)
         
         self.data = []
         self.data_df = pd.DataFrame()
@@ -228,10 +234,7 @@ class StylingTable():
               css=self.format_table_css,
               dropdown={
                   'line_color': {
-                      'options': [
-                          {'label': i, 'value': i}
-                          for i in line_color_list
-                      ]
+                      'options': self.color_options
                   },
                   'line': {
                        'options': [
@@ -240,19 +243,13 @@ class StylingTable():
                       ]
                   },
                   'fill_color': {
-                      'options': [
-                          {'label': i, 'value': i}
-                          for i in fill_color_list
-                      ]
+                      'options': self.color_options
                   },
                   'symbol': {
                        'options': self.symbol_options
                   },
                    'symbol_color': {
-                       'options': [
-                          {'label': i, 'value': i}
-                          for i in symbol_color_list
-                      ]
+                       'options': self.color_options
                   }
               },
               style_cell_conditional=[
