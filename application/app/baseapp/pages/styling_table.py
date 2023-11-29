@@ -46,7 +46,11 @@ class StylingTable():
     def __init__(self,pagename_in):
         self.page_name = pagename_in
         self.data = []
-        seld.data_df = pd.DataFrame()
+        self.data_df = pd.DataFrame()
+        self.table_row  =  dbc.Row()
+        self.layout = html.Div()
+        self.Create()
+        self.Update()
 
   
     def Create(self):
@@ -225,3 +229,20 @@ class StylingTable():
                       {'if': {'column_id': 'symbol_color'},
                        'width': '10%'}],
               )
+
+    def Layout(self):
+        self.table_row  =  dbc.Row(
+                [
+                    dbc.Col(id= self.page_name+'table_div', children=[self.TableFormat], width=6, sm=12, md=12, className="PAGE_TABLE_CONTENT_TOP_RIGHT"),
+                ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
+        
+        self.layout = html.Div([
+            dcc.Location(id=page_name+'url',refresh=True),
+            html.Div(id=page_name+'content',children=self.table_row,className="DASHBOARD_CONTAINER_STYLE"),
+        ],className="PAGE_CONTENT")
+    
+
+page_name = 'styling_table'
+dbl = StylingTable(page_name)
+dbl.Layout()
+layout = dbl.layout
