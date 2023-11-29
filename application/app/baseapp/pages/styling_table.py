@@ -119,6 +119,16 @@ class StylingTable():
         
         self.color_options=[{'label': item[0], 'value' : item[1]} for item in self.colors_lol]
         print("self.color_options >>>>>>>>>>>", self.color_options)
+
+        self.line_styles_list = ['solid', 'dot', 'dash', 'longdash', 'dashdot', 'longdashdot']
+        self.line_styles_lines = ['__', '...', '---', '__ __', '_.', '__.']
+
+        self.line_styles_lol = []
+        for p in (range(0,5)):
+            l = [self.line_styles_lines[p],self.line_styles_list[p]]
+            self.line_styles_lol.append(l)
+        
+        self.line_style_options=[{'label': item[0], 'value' : item[1]} for item in self.line_styles_lol]
         
         self.data = []
         self.data_df = pd.DataFrame()
@@ -197,19 +207,20 @@ class StylingTable():
         #print("formatting table >>>> colored_limits >>>", colored_limits)
         
         
-        line_color_list = self.palette_abr
+        #line_color_list = self.palette_abr
         
-        fill_color_list = self.palette_abr
+        #fill_color_list = self.palette_abr
         
-        symbol_color_list = self.palette_abr 
+        #symbol_color_list = self.palette_abr 
         
-        line_color_options=[{'label': i, 'value': i} for i in line_color_list]
+        #line_color_options=[{'label': i, 'value': i} for i in line_color_list]
         
-        fill_color_options=[{'label': i, 'value': i} for i in fill_color_list]
+        #fill_color_options=[{'label': i, 'value': i} for i in fill_color_list]
         
-        symbol_color_options=[{'label': i, 'value': i} for i in symbol_color_list]
+        #symbol_color_options=[{'label': i, 'value': i} for i in symbol_color_list]
         
         line_styles_list = ['solid', 'dot', 'dash', 'longdash', 'dashdot', 'longdashdot']
+        line_styles_list = ['__', '...', '---', '__ __', '_._', '___ .']
         
         line_styles_options=[{'label': i, 'value': i} for i in line_styles_list]
         
@@ -237,10 +248,7 @@ class StylingTable():
                       'options': self.color_options
                   },
                   'line': {
-                       'options': [
-                          {'label': i, 'value': i}
-                          for i in line_styles_list
-                      ]
+                       'options': self.line_style_options
                   },
                   'fill_color': {
                       'options': self.color_options
