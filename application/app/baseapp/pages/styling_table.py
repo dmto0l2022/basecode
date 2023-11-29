@@ -322,3 +322,12 @@ page_name = 'styling_table'
 dbl = StylingTable(page_name)
 dbl.Layout()
 layout = dbl.layout
+
+@callback(
+    Output('page-content', 'children'),
+    [Input('url', 'pathname')])
+    def display_page(relative_pathname):
+        dbl.Layout()
+        layout_return = dbl.layout
+        return layout_return
+
