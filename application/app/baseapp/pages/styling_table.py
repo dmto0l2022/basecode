@@ -133,9 +133,9 @@ class StylingTable():
         #limits_traces_copy = limits_traces_in.copy()
         #print("format table : trace_list_df.columns >> " , self.limit_data.trace_list_df.columns)
         #print("format table : trace_list_df 5 >> " , self.limit_data.trace_list_df.head(5))
-        trace_1 = {'limit_id' : 1,'data_label' : 'data_label_1', 'trace_id' : 1, 'trace_name' : '1_trace_name','line_color': 'black', 'symbol_color': 'black', 'fill_color': 'black', 'line': 'solid', 'symbol': 'circle', 'id': 1}
-        trace_2 = {'limit_id' : 1, 'data_label' : 'data_label_1', 'trace_id' : 2, 'trace_name' : '2_trace_name','line_color': 'black', 'symbol_color': 'black', 'fill_color': 'black', 'line': 'solid', 'symbol': 'circle', 'id': 2}
-        trace_3 = {'limit_id' : 1, 'data_label' : 'data_label_1', 'trace_id' : 3, 'trace_name' : '3_trace_name','line_color': 'black', 'symbol_color': 'black', 'fill_color': 'black', 'line': 'solid', 'symbol': 'circle', 'id': 3}
+        trace_1 = {'limit_id' : 1,'data_label' : 'data_label_1', 'trace_id' : 1, 'trace_name' : '1_trace_name','line_color': 'BK', 'symbol_color': 'BK', 'fill_color': 'BK', 'line': 'solid', 'symbol': 'circle', 'id': 1}
+        trace_2 = {'limit_id' : 1, 'data_label' : 'data_label_1', 'trace_id' : 2, 'trace_name' : '2_trace_name','line_color': 'BK', 'symbol_color': 'BK', 'fill_color': 'BK', 'line': 'solid', 'symbol': 'circle', 'id': 2}
+        trace_3 = {'limit_id' : 1, 'data_label' : 'data_label_1', 'trace_id' : 3, 'trace_name' : '3_trace_name','line_color': 'BK', 'symbol_color': 'BK', 'fill_color': 'BK', 'line': 'solid', 'symbol': 'circle', 'id': 3}
         self.data = [trace_1, trace_2, trace_3]
         self.data_df = pd.DataFrame.from_dict(self.data)
         cycle_colors = itertools.cycle(self.palette_list)
