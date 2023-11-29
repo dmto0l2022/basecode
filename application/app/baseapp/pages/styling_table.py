@@ -100,7 +100,7 @@ class StylingTable():
             ]
 
         self.symbols_value_list = ['circle','square','diamond','x','triangle']
-        self.symbols_df = pd.DataFrame({'c' : self.symbols_list})
+        self.symbols_df = pd.DataFrame({'c' : self.symbols_value_list})
         self.symbols_label_list = [
                    html.Span([dcc.Markdown('&#9675')]),
                    html.Span([dcc.Markdown('&#9643')]),
