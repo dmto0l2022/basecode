@@ -99,7 +99,7 @@ class StylingTable():
                 {'id': 'symbol_color', 'name': ['symbol','clr'], 'presentation': 'dropdown'},
             ]
 
-        self.symbols_value_list = ['circle','square','diamond','x','triangle','&#8364']
+        self.symbols_value_list = ['circle','square','diamond','x','triangle','&#8364','bobble']
         self.symbols_df = pd.DataFrame({'c' : self.symbols_value_list})
         self.symbols_label_list = [
                    html.Span([dcc.Markdown('&#9675')]),
