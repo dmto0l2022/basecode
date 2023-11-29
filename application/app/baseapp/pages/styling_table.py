@@ -99,9 +99,9 @@ class StylingTable():
                 {'id': 'symbol_color', 'name': ['symbol','clr'], 'presentation': 'dropdown'},
             ]
 
-        self.symbols_list = ['circle','square','diamond','x','triangle']
-        self.symbols_df = pd.DataFrame({'c' : symbols_list})
-        self.labels_list = [
+        self.symbols_value_list = ['circle','square','diamond','x','triangle']
+        self.symbols_df = pd.DataFrame({'c' : self.symbols_list})
+        self.symbols_label_list = [
                    html.Span([dcc.Markdown('&#9675')]),
                    html.Span([dcc.Markdown('&#9643')]),
                    html.Span([dcc.Markdown('&#9671')]),
@@ -111,7 +111,7 @@ class StylingTable():
        
         self.symbol_lol = []
         for p in (range(0,5)):
-            l = [self.labels_list[p],self.symbols_list[p]]
+            l = [self.symbols_label_list[p],self.symbols_value_list[p]]
             self.symbol_lol.append(l)
             
         self.symbol_options=[{'label': item[0], 'value' : item[1]} for item in self.symbol_lol]
