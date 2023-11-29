@@ -169,11 +169,11 @@ class StylingTable():
         #print("formatting table >>>> colored_limits >>>", colored_limits)
         
         
-        line_color_list = palette_abr
+        line_color_list = self.palette_abr
         
-        fill_color_list = palette_abr
+        fill_color_list = self.palette_abr
         
-        symbol_color_list = palette_abr 
+        symbol_color_list = self.palette_abr 
         
         line_color_options=[{'label': i, 'value': i} for i in line_color_list]
         
