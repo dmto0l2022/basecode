@@ -101,8 +101,10 @@ class StylingTable():
         self.data_df = pd.DataFrame()
         self.table_row  =  dbc.Row()
         self.layout = html.Div()
-        self.Create()
-        self.Update()
+        self.ExampleTable = dash_table.DataTable()
+        #self.Create()
+        #self.Update()
+        self.Example()
 
   
     def Create(self):
@@ -261,6 +263,33 @@ class StylingTable():
             merge_duplicate_headers=True,
           )
 
+    def Example(self):
+        self.ExampleTable = dash_table.DataTable(
+            columns=[
+                {"name": ["", "Year"], "id": "year"},
+                {"name": ["City", "Montreal"], "id": "montreal"},
+                {"name": ["City", "Toronto"], "id": "toronto"},
+                {"name": ["City", "Ottawa"], "id": "ottawa"},
+                {"name": ["City", "Vancouver"], "id": "vancouver"},
+                {"name": ["Climate", "Temperature"], "id": "temp"},
+                {"name": ["Climate", "Humidity"], "id": "humidity"},
+            ],
+            data=[
+                {
+                    "year": i,
+                    "montreal": i * 10,
+                    "toronto": i * 100,
+                    "ottawa": i * -1,
+                    "vancouver": i * -10,
+                    "temp": i * -100,
+                    "humidity": i * 5,
+                }
+                for i in range(10)
+            ],
+            merge_duplicate_headers=True,
+        )
+        self.TableFormat = self.ExampleTable
+    
     def Layout(self):
         self.table_row  =  dbc.Row(
                 [
