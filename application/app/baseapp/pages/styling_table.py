@@ -166,7 +166,7 @@ class StylingTable():
         trace_3 = {'limit_id' : 1, 'data_label' : 'data_label_1', 'trace_id' : 3, 'trace_name' : '3_trace_name','line_color': 'BK', 'symbol_color': 'BK', 'fill_color': 'BK', 'line': 'solid', 'symbol': 'circle', 'id': 3}
         self.data = [trace_1, trace_2, trace_3]
         self.data_df = pd.DataFrame.from_dict(self.data)
-        cycle_colors = itertools.cycle(self.palette_list)
+        cycle_colors = itertools.cycle(self.palette_color_list)
         append_this = []
         #colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
         colored_limits_list =[]
