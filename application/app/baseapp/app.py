@@ -158,6 +158,33 @@ nav_menu = html.Div(id='id 111', children=[
       </ul>
     </div>
 
+
+<nav class="navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"></a>
+    <img src="./DMToolsLogo.png" alt="Logo" class="d-inline-block align-text-top">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/application/baseapp/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/application/login/google">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/application/testapp/landing">Public</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 '''
 
 ## aria help : https://community.plotly.com/t/can-data-attributes-be-created-in-dash/7222/13
