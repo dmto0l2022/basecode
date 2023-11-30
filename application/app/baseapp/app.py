@@ -214,10 +214,11 @@ just_nav_options = html.Ul(children=[
 
 nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light',
 		   children=[
+			navbar_brand,
+			nav_image,
 			html.Div(className="container-fluid",
 			children=[
-				html.A('App1', className="nav-item nav-link btn", href='/apps/App1'),
-		        	html.A('App2', className="nav-item nav-link active btn", href='/apps/App2') 
+				just_nav_options
 				])
 			    ])
 
