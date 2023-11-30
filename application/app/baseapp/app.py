@@ -212,11 +212,14 @@ just_nav_options = html.Ul(children=[
                     html.A('Help', href='#', className='nav-item')]),
             ], className="collapse navbar-collapse")
 
-nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light', children=[
-	html.Div(className="container-fluid",
-	children=[html.A('App1', className="nav-item nav-link btn", href='/apps/App1'),
-        html.A('App2', className="nav-item nav-link active btn", href='/apps/App2') 
-])])
+nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light',
+		   children=[
+			html.Div(className="container-fluid",
+			children=[
+				html.A('App1', className="nav-item nav-link btn", href='/apps/App1'),
+		        	html.A('App2', className="nav-item nav-link active btn", href='/apps/App2') 
+				])
+			    ])
 
 '''
 
@@ -341,6 +344,7 @@ layout4 = html.Div([pc.page_header_0,
 		    pc.page_header_1,
 		    pc.page_header_2,
 		    nav_menu_button,
+		    nav_bar,
 		    ##pc.side_bar_left,
 		    ##pc.side_bar_right,
 		    pages_container_box,
