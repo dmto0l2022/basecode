@@ -215,13 +215,16 @@ just_nav_options = html.Ul(children=[
             ], className="collapse navbar-collapse")
 
 nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light',
-		   children=[
-			navbar_brand,
-			nav_image,
-			html.Div(className="container-fluid",
-			children=[
-				just_nav_options
-				])
+		   children=[html.Div(className='container-fluid',
+			   children=[
+				navbar_brand,
+				nav_image,
+				collapse_button,
+				html.Div(className="container-fluid",
+				children=[
+					just_nav_options
+					])
+				    ])
 			    ])
 
 '''
@@ -343,9 +346,9 @@ pages_container = html.Div([
 
 pages_container_box = html.Div(children=[dash.page_container],className='PAGE_CONTENT')
 
-layout4 = html.Div([pc.page_header_0,
-		    pc.page_header_1,
-		    pc.page_header_2,
+layout4 = html.Div([##pc.page_header_0,
+		    ##pc.page_header_1,
+		    ##pc.page_header_2,
 		    nav_menu_button,
 		    nav_bar,
 		    ##pc.side_bar_left,
