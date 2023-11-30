@@ -4,6 +4,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 RUN mkdir /var/www
 RUN mkdir /var/www/html
 COPY dmtool_index.html /var/www/html/dmtool_index.html
+COPY DMToolsLogo.png /var/www/html/DMToolsLogo.png
 
 #RUN rm -rf /var/log/nginx
 #RUN mkdir /var/log/nginx
