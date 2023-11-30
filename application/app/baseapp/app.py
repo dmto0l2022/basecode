@@ -187,7 +187,9 @@ nav_menu = html.Div(id='id 111', children=[
 '''
 
 navbar_brand = html.A(className='navbar-brand', href='#')
-nav_image = html.Img(src="./DMToolsLogo.png")
+image_path = 'assets/DMToolsLogo.png'
+nav_image = html.Img(src=image_path)
+
 
 collapse_button = html.Button([html.Span(className='navbar-toggler-icon')],
 				className='navbar-toggler',
