@@ -184,11 +184,62 @@ nav_menu = html.Div(id='id 111', children=[
     </div>
   </div>
 </nav>
+'''
+
+navbar_brand = html.A(className='navbar-brand', href='#')
+nav_image = html.Img(src="./DMToolsLogo.png")
+
+collapse_button = html.Button([html.Span(className='navbar-toggler-icon')],
+				className='navbar-toggler',
+				type='button',
+				**{
+				'data-toggle': 'collapse',
+				'data-target': '#navbarNav',
+				'aria-controls': 'navbarNav',
+				'aria-expanded': 'false',
+				'aria-label': 'Toggle navigation'
+				}
+				)
+
+just_nav_options = html.Ul(children=[
+            html.Li([
+                    html.A('Plot', href='#', className='nav-item')]),
+            html.Li([
+                    html.A('Data', href='#', className='nav-item')]),
+	    html.Li([
+                    html.A('Admin', href='#', className='nav-item')]),
+	    html.Li([
+                    html.A('Help', href='#', className='nav-item')]),
+            ], className="collapse navbar-collapse")
+
+nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light', children=[
+	html.Div(className="container-fluid",
+	children=[html.A('App1', className="nav-item nav-link btn", href='/apps/App1'),
+        html.A('App2', className="nav-item nav-link active btn", href='/apps/App2') 
+])])
 
 '''
+
+just_nav_options = html.Div( className="collapse navbar-collapse", id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/application/baseapp/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/application/login/google">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/application/testapp/landing">Public</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+
 
 ## aria help : https://community.plotly.com/t/can-data-attributes-be-created-in-dash/7222/13
-'''
+
 html.Div(**{‘data-label’: ‘’})
 
 
