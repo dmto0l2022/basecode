@@ -204,7 +204,8 @@ collapse_button = html.Button([html.Span(className='navbar-toggler-icon')],
 				)
 
 just_nav_options = html.Div(className="collapse navbar-collapse", id="navbarNav",
-	children=[html.Ul(children=[
+	children=[
+		html.Ul(children=[
 		            html.Li([
 		                    html.A('Plot', href='/application/baseapp/plot_menu', className='nav-item')]),
 		            html.Li([
@@ -213,7 +214,7 @@ just_nav_options = html.Div(className="collapse navbar-collapse", id="navbarNav"
 		                    html.A('Admin', href='/application/baseapp/admin_menu', className='nav-item')]),
 			    html.Li([
 		                    html.A('Help', href='/application/baseapp/help', className='nav-item')]),
-            		]
+            			])
 			  ])
 
 nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light',
