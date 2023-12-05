@@ -214,7 +214,7 @@ just_nav_options = html.Div(className="collapse navbar-collapse", id="navbarNav"
 		                    html.A('Admin', href='/application/baseapp/admin_menu', className='nav-link')], className='nav-item' ),
 			    html.Li([
 		                    html.A('Help', href='/application/baseapp/help', className='nav-link')], className='nav-item' ),
-            			])
+            			], className='navbar-nav')
 			  ])
 
 nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light',
