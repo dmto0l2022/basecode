@@ -5,7 +5,8 @@ import dash_bootstrap_components as dbc
 #import libraries.formlibrary as fl
 from app.baseapp.libraries import formlibrary as fl
 
-dash.register_page(__name__, path='/data_menu')
+dash.register_page(__name__, path='/data_menu', title="Data Menu")
+
 page_name = 'data_menu'
 baseapp_prefix = '/application/baseapp'
 
@@ -35,7 +36,7 @@ button_row = html.Div(
                 dbc.Col(html.Button('Home', id=page_name + '_home__' + 'button_id', n_clicks=0,className="btn w-100 btn-primary btn-default", style={'margin-top':'5px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
             ]
         ),
-    ], style={'position': 'fixed','top': '51px', 'border': '3px solid green', 'width':'100%'}
+    ], style={'position': 'fixed','top': '51px', 'border': '3px solid green', 'width':'50%'}
 )
 
 layout = html.Div([
