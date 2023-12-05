@@ -24,25 +24,25 @@ cell_row = html.Div(
         ),
     ]
 )
-'''
+
 button_row = html.Div(
     [
         dbc.Row(
             [
                 dbc.Col(html.Button('New', id=page_name + '_new_' + 'button_id', n_clicks=0), xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
-                dbc.Col(tml.Button('Edit', id=page_name + '_edit_' + 'button_id', n_clicks=0),xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
-                dbc.Col(html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0),xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
-                dbc.Col(html.Button('Home', id=page_name + '_home__' + 'button_id', n_clicks=0),xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
+                dbc.Col(tml.Button('Edit', id=page_name + '_edit_' + 'button_id', n_clicks=0), xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
+                dbc.Col(html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0), xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
+                dbc.Col(html.Button('Home', id=page_name + '_home__' + 'button_id', n_clicks=0), xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
             ]
         ),
     ]
 )
-'''
+
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
     dcc.Location(id="url", refresh=True), ## important to allow redirects
     html.Div("Data Menu"),
-    cell_row,
+    button_row,
     ##html.Button('Create New', id=page_name + '_create_new_' + 'button_id', n_clicks=0),
     ##html.Button('Edit Existing', id=page_name + '_edit_existing_' + 'button_id', n_clicks=0),
     ##html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0),
