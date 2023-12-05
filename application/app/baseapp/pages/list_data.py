@@ -22,7 +22,7 @@ import json
 fastapi_url_all = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limits" ## multiple limit operations
 fastapi_url_one= "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limit" ## single limit operations
 
-dash.register_page(__name__, path='/list_all_limits')
+dash.register_page(__name__, path='/list_data')
 baseapp_prefix = '/application/baseapp'
 
 page_name = "list_all_limits"
