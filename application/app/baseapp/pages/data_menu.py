@@ -29,10 +29,10 @@ button_row = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(html.Button('New', id=page_name + '_new_' + 'button_id', n_clicks=0, className="btn btn-primary btn-block"), xs=12, sm=12, md=6, lg=2, xl=2, xxl=2, className="center"),
-                dbc.Col(html.Button('Edit', id=page_name + '_edit_' + 'button_id', n_clicks=0, className="btn btn-primary btn-block"), xs=12, sm=12, md=6, lg=2, xl=2, xxl=2, className="center"),
-                dbc.Col(html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0, className="btn btn-primary btn-block"), xs=12, sm=12, md=6, lg=2, xl=2, xxl=2, className="center"),
-                dbc.Col(html.Button('Home', id=page_name + '_home__' + 'button_id', n_clicks=0,className="btn btn-primary btn-block"), xs=12, sm=12, md=6, lg=2, xl=2, xxl=2, className="center"),
+                dbc.Col(html.Button('New', id=page_name + '_new_' + 'button_id', n_clicks=0, className="btn btn-primary btn-block"), xs=6, sm=6, md=6, lg=4, xl=4, xxl=4, className="center"),
+                dbc.Col(html.Button('Edit', id=page_name + '_edit_' + 'button_id', n_clicks=0, className="btn btn-primary btn-block"), xs=6, sm=6, md=6, lg=4, xl=4, xxl=4, className="center"),
+                dbc.Col(html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0, className="btn btn-primary btn-block"), xs=6, sm=6, md=6, lg=4, xl=4, xxl=4, className="center"),
+                dbc.Col(html.Button('Home', id=page_name + '_home__' + 'button_id', n_clicks=0,className="btn btn-primary btn-block"), xs=6, sm=6, md=6, lg=4, xl=4, xxl=4, className="center"),
             ]
         ),
     ]
