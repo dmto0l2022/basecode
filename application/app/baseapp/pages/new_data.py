@@ -148,14 +148,18 @@ class Limit_class:
         '''
     
 
+default_width = 3
 
 button_row = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(html.Button('New', id=page_name + '_save_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=2, sm=2, md=2, lg=2, xl=2, xxl=2),
-                dbc.Col(html.Button('Edit', id=page_name + '_cancel_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=2, sm=2, md=2, lg=2, xl=2, xxl=2),
-                dbc.Col(html.Button('Home', id=page_name + '_home_' + 'button_id', n_clicks=0,className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=2, sm=2, md=2, lg=2, xl=2, xxl=2),
+                dbc.Col(html.Button('Save', id=page_name + '_save_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
+                        xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
+                dbc.Col(html.Button('Cancel', id=page_name + '_cancel_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
+                        xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
+                dbc.Col(html.Button('Home', id=page_name + '_home_' + 'button_id', n_clicks=0,className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
+                        xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
             ]
         ),
     ], style={'position': 'fixed','top': '51px', 'border': '3px solid green', 'width':'50%'}
