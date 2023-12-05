@@ -35,7 +35,7 @@ button_row = html.Div(
                 dbc.Col(html.Button('Home', id=page_name + '_home__' + 'button_id', n_clicks=0,className="btn w-100 btn-primary btn-default", style={'margin-top':'10px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
             ]
         ),
-    ], style={'position': 'fixed';'top': '50px';'border': '3px solid green'}
+    ], style={'position': 'fixed','top': '50px', 'border': '3px solid green'}
 )
 
 layout = html.Div([
