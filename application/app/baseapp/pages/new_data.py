@@ -17,6 +17,8 @@ baseapp_prefix = '/application/baseapp'
 
 dash.register_page(__name__, path='/new_data', title='New Data')
 
+page_name = 'new_data'
+
 fastapi_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/limit"
 
 '''
@@ -145,7 +147,20 @@ class Limit_class:
         return json_str
         '''
     
-      
+
+
+button_row = html.Div(
+    [
+        dbc.Row(
+            [
+                dbc.Col(html.Button('New', id=page_name + '_save_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
+                dbc.Col(html.Button('Edit', id=page_name + '_cancel_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
+                dbc.Col(html.Button('Home', id=page_name + '_home_' + 'button_id', n_clicks=0,className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
+            ]
+        ),
+    ], style={'position': 'fixed','top': '51px', 'border': '3px solid green', 'width':'50%'}
+)
+
 
 save_button =  html.Div(dbc.Button("Save",  id="create_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN",
                         n_clicks_timestamp=0)
@@ -165,6 +180,7 @@ Limit = Limit_class
 load_limit_file_form = html.Div(
         [
         dcc.Location(id='url', refresh=True), ## very important for url output of callback
+        button_row,
         fl.upload_xml_file_input_row,
         fl.data_values_input_row,
         fl.data_comment_input_row,
@@ -184,8 +200,6 @@ load_limit_file_form = html.Div(
         fl.y_rescale_input_row,
         fl.y_unit_input_row,
         fl.year_input_row,
-        save_button,
-        cancel_button,
         html.Div(id='container', children='''here'''),
     ])
 
@@ -388,7 +402,7 @@ def button_click(
     year_in  >> 2008
     '''
     #msg = prop_id
-    if "create_new_limit_save_button_id" == prop_id :
+    if page_name + "_save_" + button_id" == prop_id :
         #msg = "Button 1 was most recently clicked"
         print("save button pressed")
         #href_return = dash.page_registry['pages.list_all_limits']['path']
@@ -476,15 +490,15 @@ def button_click(
         #print(x.text)
         
         
-        href_return = baseapp_prefix + '/list_all_limits'
+        href_return = baseapp_prefix + '/list_data'
         ##href_return = baseapp_prefix + '/homepage'
         
         return href_return
     
-    elif "create_new_limit_cancel_button_id" == prop_id:
+    elif page_name + '_cancel_' + button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
-        href_return = baseapp_prefix + '/homepage'
+        href_return = baseapp_prefix + '/data_menu'
         return href_return
         
 '''
