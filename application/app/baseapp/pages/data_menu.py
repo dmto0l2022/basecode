@@ -24,7 +24,7 @@ cell_row = html.Div(
         ),
     ]
 )
-
+'''
 button_row = html.Div(
     [
         dbc.Row(
@@ -37,12 +37,12 @@ button_row = html.Div(
         ),
     ]
 )
-
+'''
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
     dcc.Location(id="url", refresh=True), ## important to allow redirects
     html.Div("Data Menu"),
-    button_row,
+    cell_row,
     ##html.Button('Create New', id=page_name + '_create_new_' + 'button_id', n_clicks=0),
     ##html.Button('Edit Existing', id=page_name + '_edit_existing_' + 'button_id', n_clicks=0),
     ##html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0),
