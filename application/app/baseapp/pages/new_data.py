@@ -199,13 +199,12 @@ load_limit_file_form = html.Div(
         fl.y_unit_input_row,
         fl.year_input_row,
         html.Div(id='container', children='''here'''),
-    ])
+    ], style={'position': 'fixed','top': '85px', 'border': '3px solid blue', 'width':'100%'})
 
 page_contents = html.Div(id=page_name+'page_content',
                          children=[ load_limit_file_form,
                                     dcc.Location(id='url', refresh=True), ## very important for url output of callback
-                                    button_row],
-                        style={'position': 'fixed','top': '85px', 'border': '3px solid blue', 'width':'100%'})
+                                    button_row])
 
 def parse_contents(contents):
     content_type, content_string = contents.split(',')
