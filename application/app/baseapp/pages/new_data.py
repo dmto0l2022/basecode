@@ -199,7 +199,7 @@ load_limit_file_form = html.Div(
         fl.y_unit_input_row,
         fl.year_input_row,
         html.Div(id='container', children='''here'''),
-    ], style={'position': 'fixed','top': '88px', 'border': '3px solid blue', 'width':'100%', 'overflow-y': 'scroll', 'height': '700px'})
+    ], style={'position': 'fixed','top': '88px', 'border': '3px solid blue', 'width':'100%', 'overflow-y': 'auto', 'height': '700px'})
 
 page_contents = html.Div(id=page_name+'page_content',
                          children=[ load_limit_file_form,
