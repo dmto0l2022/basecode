@@ -205,8 +205,8 @@ page_contents = html.Div(id=page_name+'page_content',
                          children=[
                                     load_limit_file_form
                                     dcc.Location(id='url', refresh=True), ## very important for url output of callback
-                                    button_row]
-                        style={position:'fixed',)
+                                    button_row],
+                        style={'position': 'fixed','top': '65px', 'border': '3px solid blue', 'width':'100%'})
 
 def parse_contents(contents):
     content_type, content_string = contents.split(',')
@@ -249,7 +249,7 @@ create_new_limit_form = html.Div(
 layout = create_new_limit_form
 '''
 
-layout = load_limit_file_form
+layout = page_contents
 
 @callback(
             [Output('data_values_form_field_id', 'value'),
