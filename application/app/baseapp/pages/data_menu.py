@@ -42,7 +42,7 @@ button_row = html.Div(
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
     dcc.Location(id="url", refresh=True), ## important to allow redirects
-    html.Div("Data Menu"),
+    #html.Div("Data Menu"),
     button_row,
     ##html.Button('Create New', id=page_name + '_create_new_' + 'button_id', n_clicks=0),
     ##html.Button('Edit Existing', id=page_name + '_edit_existing_' + 'button_id', n_clicks=0),
@@ -65,6 +65,7 @@ def button_click(button1,button2,button3,button4):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     #msg = prop_id
+    print(msg)
     if page_name + '_new_' + 'button_id' == prop_id :
         #msg = "Button 1 was most recently clicked"
         href_return = baseapp_prefix + '/new_data'
