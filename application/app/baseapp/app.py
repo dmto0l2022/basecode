@@ -207,13 +207,13 @@ just_nav_options = html.Div(className="collapse navbar-collapse", id="navbarNav"
 	children=[
 		html.Ul(children=[
 		            html.Li([
-		                    html.A('Plot', href='/application/baseapp/plot_menu', className='nav-item')]),
+		                    html.A('Plot', href='/application/baseapp/plot_menu', className='nav-link')],className='nav-item' ),
 		            html.Li([
-		                    html.A('Data', href='/application/baseapp/data_menu', className='nav-item')]),
+		                    html.A('Data', href='/application/baseapp/data_menu', className='nav-link')], className='nav-item' ),
 			    html.Li([
-		                    html.A('Admin', href='/application/baseapp/admin_menu', className='nav-item')]),
+		                    html.A('Admin', href='/application/baseapp/admin_menu', className='nav-link')], className='nav-item' ),
 			    html.Li([
-		                    html.A('Help', href='/application/baseapp/help', className='nav-item')]),
+		                    html.A('Help', href='/application/baseapp/help', className='nav-link')], className='nav-item' ),
             			])
 			  ])
 
