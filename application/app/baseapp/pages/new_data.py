@@ -179,8 +179,6 @@ Limit = Limit_class
 
 load_limit_file_form = html.Div(
         [
-        dcc.Location(id='url', refresh=True), ## very important for url output of callback
-        button_row,
         fl.upload_xml_file_input_row,
         fl.data_values_input_row,
         fl.data_comment_input_row,
@@ -202,6 +200,13 @@ load_limit_file_form = html.Div(
         fl.year_input_row,
         html.Div(id='container', children='''here'''),
     ])
+
+page_contents = html.Div(id=page_name+'page_content',
+                         children=[
+                                    load_limit_file_form
+                                    dcc.Location(id='url', refresh=True), ## very important for url output of callback
+                                    button_row]
+                        style={position:'fixed',)
 
 def parse_contents(contents):
     content_type, content_string = contents.split(',')
