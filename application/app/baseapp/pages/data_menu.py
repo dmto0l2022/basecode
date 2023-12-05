@@ -62,9 +62,9 @@ layout = html.Div([
         prevent_initial_call=True
 )
 def button_click(button1,button2,button3,button4):
-    #msg = "None of the buttons have been clicked yet"
+    msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
-    #msg = prop_id
+    msg = prop_id
     print(msg)
     if page_name + '_new_' + 'button_id' == prop_id :
         #msg = "Button 1 was most recently clicked"
