@@ -16,9 +16,9 @@ button_row = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(html.Div("New"), md=4, lg=4, xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
-                dbc.Col(html.Div("Edit"), md=4, lg=4, xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
-                dbc.Col(html.Div("List"), md=4, lg=4, xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
+                dbc.Col(html.Div("New"), xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
+                dbc.Col(html.Div("Edit"),xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
+                dbc.Col(html.Div("List"),xs=12, sm=12, md=6, lg=2, xl=2, xxl=2),
             ]
         ),
     ]
