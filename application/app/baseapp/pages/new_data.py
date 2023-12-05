@@ -153,9 +153,9 @@ button_row = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(html.Button('New', id=page_name + '_save_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=4, xl=4, xxl=4),
-                dbc.Col(html.Button('Edit', id=page_name + '_cancel_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=4, xl=4, xxl=4),
-                dbc.Col(html.Button('Home', id=page_name + '_home_' + 'button_id', n_clicks=0,className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=4, xl=4, xxl=4),
+                dbc.Col(html.Button('New', id=page_name + '_save_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=2, sm=2, md=2, lg=2, xl=2, xxl=2),
+                dbc.Col(html.Button('Edit', id=page_name + '_cancel_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=2, sm=2, md=2, lg=2, xl=2, xxl=2),
+                dbc.Col(html.Button('Home', id=page_name + '_home_' + 'button_id', n_clicks=0,className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=2, sm=2, md=2, lg=2, xl=2, xxl=2),
             ]
         ),
     ], style={'position': 'fixed','top': '51px', 'border': '3px solid green', 'width':'50%'}
