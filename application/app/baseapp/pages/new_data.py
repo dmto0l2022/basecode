@@ -153,9 +153,9 @@ button_row = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(html.Button('New', id=page_name + '_save_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
-                dbc.Col(html.Button('Edit', id=page_name + '_cancel_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
-                dbc.Col(html.Button('Home', id=page_name + '_home_' + 'button_id', n_clicks=0,className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
+                dbc.Col(html.Button('New', id=page_name + '_save_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=4, xl=4, xxl=4),
+                dbc.Col(html.Button('Edit', id=page_name + '_cancel_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=4, xl=4, xxl=4),
+                dbc.Col(html.Button('Home', id=page_name + '_home_' + 'button_id', n_clicks=0,className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=4, xl=4, xxl=4),
             ]
         ),
     ], style={'position': 'fixed','top': '51px', 'border': '3px solid green', 'width':'50%'}
@@ -495,7 +495,7 @@ def button_click(
         
         return href_return
     
-    elif page_name + '_cancel_' + button_id" == prop_id:
+    elif page_name + '_cancel_' + "button_id" == prop_id:
         #msg = "Button 2 was most recently clicked"
         #href_return = dash.page_registry['pages.home']['path']
         href_return = baseapp_prefix + '/data_menu'
