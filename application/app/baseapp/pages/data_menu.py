@@ -30,10 +30,10 @@ button_row = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(html.Button('New', id=page_name + '_new_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default", style={'margin-top':'5px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
-                dbc.Col(html.Button('Edit', id=page_name + '_edit_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default", style={'margin-top':'5px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
-                dbc.Col(html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default", style={'margin-top':'5px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
-                dbc.Col(html.Button('Home', id=page_name + '_home__' + 'button_id', n_clicks=0,className="btn w-100 btn-primary btn-default", style={'margin-top':'5px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
+                dbc.Col(html.Button('New', id=page_name + '_new_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
+                dbc.Col(html.Button('Edit', id=page_name + '_edit_' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
+                dbc.Col(html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0, className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
+                dbc.Col(html.Button('Home', id=page_name + '_home__' + 'button_id', n_clicks=0,className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}), xs=6, sm=6, md=6, lg=3, xl=3, xxl=3),
             ]
         ),
     ], style={'position': 'fixed','top': '51px', 'border': '3px solid green', 'width':'50%'}
