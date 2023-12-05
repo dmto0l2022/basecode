@@ -202,8 +202,7 @@ load_limit_file_form = html.Div(
     ])
 
 page_contents = html.Div(id=page_name+'page_content',
-                         children=[
-                                    load_limit_file_form
+                         children=[ load_limit_file_form,
                                     dcc.Location(id='url', refresh=True), ## very important for url output of callback
                                     button_row],
                         style={'position': 'fixed','top': '65px', 'border': '3px solid blue', 'width':'100%'})
