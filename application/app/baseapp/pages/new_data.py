@@ -205,7 +205,7 @@ page_contents = html.Div(id=page_name+'page_content',
                          children=[ load_limit_file_form,
                                     dcc.Location(id='url', refresh=True), ## very important for url output of callback
                                     button_row],
-                        style={'position': 'fixed','top': '65px', 'border': '3px solid blue', 'width':'100%'})
+                        style={'position': 'fixed','top': '75px', 'border': '3px solid blue', 'width':'100%'})
 
 def parse_contents(contents):
     content_type, content_string = contents.split(',')
