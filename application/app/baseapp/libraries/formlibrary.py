@@ -17,7 +17,7 @@ fastapi_get_dropdown = fastapi_url + dropdown_route + "?variable_in="
 
 
 ## experiment drop down table ##
-experiments_req_url = self.fastapi_get_dropdown + 'experiment'
+experiments_req_url = fastapi_get_dropdown + 'experiment'
 print("experiments_req_url >>>>>>>>>>>>",experiments_req_url)
 r = requests.get(experiments_req_url)
 experiments_response_data = r.json()
