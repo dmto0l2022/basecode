@@ -9,6 +9,68 @@ from datetime import datetime
 
 #######################################################
 
+## def PopulateFilterDataFrames(self):
+#do some parsing
+dropdown_route = 'metadata/dropdown_valuepair'
+fastapi_url = "http://container_fastapi_about_1:8014/dmtool/fastapi_data/internal/"
+fastapi_get_dropdown = fastapi_url + dropdown_route + "?variable_in="
+
+
+## experiment drop down table ##
+experiments_req_url = self.fastapi_get_dropdown + 'experiment'
+print("experiments_req_url >>>>>>>>>>>>",experiments_req_url)
+r = requests.get(experiments_req_url)
+experiments_response_data = r.json()
+print("experiments_response_data >>>>>>>>>>>>" ,experiments_response_data)
+
+self.experiments_df = pd.DataFrame.from_dict(experiments_response_data)
+self.experiments_df.reset_index(drop=True, inplace=True)
+
+## result type drop down table ##
+
+result_types_req_url = self.fastapi_get_dropdown + 'result_type'
+r = requests.get(result_types_req_url)
+result_types_response_data = r.json()
+
+self.result_types_df  = pd.DataFrame.from_dict(result_types_response_data)
+
+self.result_types_df.reset_index(drop=True, inplace=True)
+
+## spin dependency drop down table ##
+
+spin_dependency_req_url = self.fastapi_get_dropdown + 'spin_dependency'
+r = requests.get(spin_dependency_req_url)
+spin_dependency_response_data = r.json()
+
+self.spin_dependency_df  =  pd.DataFrame.from_dict(spin_dependency_response_data)
+
+self.spin_dependency_df.reset_index(drop=True, inplace=True)
+
+## result type drop down table ##
+
+greatest_hit_req_url = self.fastapi_get_dropdown + 'greatest_hit'
+r = requests.get(greatest_hit_req_url)
+greatest_hit_response_data = r.json()
+
+self.greatest_hit_df = pd.DataFrame.from_dict(greatest_hit_response_data)
+
+#self.greatest_hit_df.reset_index(drop=True, inplace=True)
+
+official_req_url = self.fastapi_get_dropdown + 'official'
+r = requests.get(official_req_url)
+official_response_data = r.json()
+
+self.official_df = pd.DataFrame.from_dict(official_response_data)
+
+#self.official_df.reset_index(drop=True, inplace=True)
+
+year_req_url = self.fastapi_get_dropdown + 'year'
+r = requests.get(year_req_url)
+year_response_data = r.json()
+
+self.years_df = pd.DataFrame.from_dict(year_response_data)
+
+
 '''
 ID List
 ========
@@ -756,7 +818,7 @@ data_comment_input_row = html.Div(
 )
 
 # Experiment - Dropdown
-
+'''
 experiments_list = [
 "CDMS I (SUF)","CDMS II (Soudan)","SuperCDMS","LUX","XENON10",
 "XENON100","XENON1T","ZEPLIN I","ZEPLIN II","ZEPLIN III","ZEPLIN IV",
@@ -769,9 +831,10 @@ experiments_list = [
 "EURECA","DEAP-3600","PICO","PandaX","LHC","DRIFT","GAMBIT",
 "CDEX-10","NEWS-G","XENONnT","CRESST"
 ]
+'''
 
-experiments_df = pd.DataFrame({'c' : experiments_list})
-
+#experiments_df = pd.DataFrame({'c' : experiments_list})
+experiments_df_dict = experiments_df.to_dict('records')
 
 experiment_input_row = html.Div(
     [
@@ -785,9 +848,7 @@ experiment_input_row = html.Div(
                 dbc.Col(
                     dcc.Dropdown(
                             id='experiment_form_field_id',
-                            options=[
-                                {'label':i, 'value':i} for i in experiments_df['c'].unique()
-                            ],
+                            options=[experiments_df_dict],
                             #className='FORM_COLUMN_EXPERIMENTDROPDOWN',
                             className='FORM_COLUMN_DATA',
                         ),
