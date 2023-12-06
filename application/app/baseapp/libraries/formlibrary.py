@@ -72,6 +72,43 @@ year_response_data = r.json()
 
 years_df = pd.DataFrame.from_dict(year_response_data)
 
+====================================
+
+symbols_value_list = ['circle','square','diamond','x','triangle']
+symbols_label_list = ['○','□','◇','x','△']        
+symbols_lol = []
+for p in (range(0,5)):
+    l = [symbols_label_list[p],symbols_value_list[p]]
+    self.symbols_lol.append(l)
+#print("self.symbols_lol >>>>>>>>>>>", self.symbols_lol)
+symbol_options=[{'label': item[0], 'value' : item[1]} for item in symbols_lol]
+print("symbol_options >>>>>>>>>>>", symbol_options)
+
+palette_color_list = ['black','red','orange','yellow' 'green','blue', 'purple', 'brown']
+palette_color_abreviations = ['BK','RD','OR','YL','GN', 'BL', 'PR', 'BR']
+palette_color_squares = ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
+
+colors_lol = []
+for p in (range(0,7)):
+    l = [palette_color_squares[p],palette_color_list[p]]
+    colors_lol.append(l)
+
+#print("self.symbols_lol >>>>>>>>>>>", self.symbols_lol)
+
+color_options=[{'label': item[0], 'value' : item[1]} for item in colors_lol]
+print("color_options >>>>>>>>>>>", color_options)
+
+line_styles_list = ['solid', 'dot', 'dash', 'longdash', 'dashdot', 'longdashdot']
+line_styles_lines = ['__', '...', '---', '__ __', '_.', '__.']
+
+line_styles_lol = []
+for p in (range(0,5)):
+    l = [line_styles_lines[p],line_styles_list[p]]
+    line_styles_lol.append(l)
+
+line_style_options=[{'label': item[0], 'value' : item[1]} for item in self.line_styles_lol]
+
+===================================
 
 '''
 ID List
