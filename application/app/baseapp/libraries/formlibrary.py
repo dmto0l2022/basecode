@@ -108,7 +108,6 @@ for p in (range(0,5)):
 
 line_style_options=[{'label': item[0], 'value' : item[1]} for item in self.line_styles_lol]
 
-===================================
 
 '''
 ID List
