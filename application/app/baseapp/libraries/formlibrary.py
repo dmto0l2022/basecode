@@ -965,7 +965,7 @@ year_input_row = html.Div(
                         ],
                         #className='FORM_COLUMN_YEARDROPDOWN'
                         className='FORM_COLUMN_DATA',
-                        style={'height': '20px','width':'100%','display': 'inline-block',}
+                        style={'height': '20px','width':'100%','display': 'inline-block','padding':'0 !important','margin': '0 !important'}
                     ),
                     #className='FORM_YEARDROPDOWN_COLUMN',
                     className='FORM_DATA_COLUMN',
