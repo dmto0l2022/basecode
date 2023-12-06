@@ -1007,6 +1007,9 @@ years_list
 #years_df = pd.DataFrame({'c' : years_list})
 #years_df
 
+year_labels = year_df[['label','value']]
+year_labels_dict = year_labels.to_dict('records')
+
 '''dd = dcc.Dropdown(
         id='yearid',
         options=[
@@ -1038,7 +1041,7 @@ year_dropdown_col_1 = dbc.Col(
                      dcc.Dropdown(
                         id='year_form_field_id',
                         options=[
-                            {'label':i['label'], 'value':i['value']} for i in years_df
+                            options=[{'label': i['label'], 'value': i['value']} for i in year_labels_dict],
                         ],
                         #className='FORM_COLUMN_YEARDROPDOWN'
                         className='FORM_COLUMN_DATA',
