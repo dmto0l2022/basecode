@@ -953,7 +953,7 @@ year_dropdown_col_2 = dbc.Col(dbc.Select(options=[
     {'label': 'meeney', 'value': 'meeney'},
     {'label': 'miney', 'value': 'miney'},
     {'label': 'mo', 'value': 'mo'},
-], id='year_form_field_id_2'))
+], id='year_form_field_id_2',  style={'height': '25px','width':'100%','display': 'inline-block','padding':'0 !important','margin': '0 !important', 'border': '2px solid black'}))
 
 year_dropdown_col_1 = dbc.Col(
                      dcc.Dropdown(
