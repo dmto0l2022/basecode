@@ -964,7 +964,7 @@ year_input_row = html.Div(
                             {'label':i, 'value':i} for i in years_df['c'].unique()
                         ],
                         #className='FORM_COLUMN_YEARDROPDOWN'
-                        #className='FORM_COLUMN_DATA'
+                        className='FORM_COLUMN_DATA',
                         style={'height': '15px','width':'100%','display': 'inline-block',}
                     ),
                     #className='FORM_YEARDROPDOWN_COLUMN',
