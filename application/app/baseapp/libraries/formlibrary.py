@@ -1026,12 +1026,23 @@ dbc_select_col = dbc.Col(dbc.Select(
             ],id='year_form_field_id_3',style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
             ,width = data_column_width)
 
+
+dbc_select_col_1 = dbc.Col(dbc.Select(
+    options=[{'label': i['label'], 'value': i['value']} for i in year_labels_dict],id='year_form_field_id_3',style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
+            ,width = data_column_width)
+
 year_dropdown_col_2 = dbc.Col(dbc.Select(options=[
     {'label': 'eeney', 'value': 'eeney'},
     {'label': 'meeney', 'value': 'meeney'},
     {'label': 'miney', 'value': 'miney'},
     {'label': 'mo', 'value': 'mo'},
 ], id='year_form_field_id_2',  style={'height': '25px','width':'100%','display': 'inline-block','padding':'0 !important','margin': '0 !important', 'border': '2px solid black'}),
+                            width = data_column_width,
+                            className='FORM_DATA_COLUMN',
+                            style={'height': '100%'},
+                             )
+
+year_dropdown_col_3 = dbc.Col(dbc.Select(options=options=[{'label': i['label'], 'value': i['value']} for i in year_labels_dict], id='year_form_field_id_2',  style={'height': '25px','width':'100%','display': 'inline-block','padding':'0 !important','margin': '0 !important', 'border': '2px solid black'}),
                             width = data_column_width,
                             className='FORM_DATA_COLUMN',
                             style={'height': '100%'},
@@ -1060,7 +1071,7 @@ year_input_row = html.Div(
                     className='FORM_LABEL_COLUMN',
                     width = label_column_width
                 ),
-                dbc_select_col,
+                dbc_select_col_1,
                 dbc.Col(dcc.Input(id='year_example_field_id',
                                   type='text',
                                   value='example',
