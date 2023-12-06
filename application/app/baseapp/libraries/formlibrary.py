@@ -106,7 +106,7 @@ for p in (range(0,5)):
     l = [line_styles_lines[p],line_styles_list[p]]
     line_styles_lol.append(l)
 
-line_style_options=[{'label': item[0], 'value' : item[1]} for item in self.line_styles_lol]
+line_style_options=[{'label': item[0], 'value' : item[1]} for item in line_styles_lol]
 
 
 '''
