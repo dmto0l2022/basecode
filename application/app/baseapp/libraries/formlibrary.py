@@ -23,52 +23,52 @@ r = requests.get(experiments_req_url)
 experiments_response_data = r.json()
 print("experiments_response_data >>>>>>>>>>>>" ,experiments_response_data)
 
-self.experiments_df = pd.DataFrame.from_dict(experiments_response_data)
-self.experiments_df.reset_index(drop=True, inplace=True)
+experiments_df = pd.DataFrame.from_dict(experiments_response_data)
+experiments_df.reset_index(drop=True, inplace=True)
 
 ## result type drop down table ##
 
-result_types_req_url = self.fastapi_get_dropdown + 'result_type'
+result_types_req_url = fastapi_get_dropdown + 'result_type'
 r = requests.get(result_types_req_url)
 result_types_response_data = r.json()
 
-self.result_types_df  = pd.DataFrame.from_dict(result_types_response_data)
+result_types_df  = pd.DataFrame.from_dict(result_types_response_data)
 
-self.result_types_df.reset_index(drop=True, inplace=True)
+result_types_df.reset_index(drop=True, inplace=True)
 
 ## spin dependency drop down table ##
 
-spin_dependency_req_url = self.fastapi_get_dropdown + 'spin_dependency'
+spin_dependency_req_url = fastapi_get_dropdown + 'spin_dependency'
 r = requests.get(spin_dependency_req_url)
 spin_dependency_response_data = r.json()
 
-self.spin_dependency_df  =  pd.DataFrame.from_dict(spin_dependency_response_data)
+spin_dependency_df  =  pd.DataFrame.from_dict(spin_dependency_response_data)
 
-self.spin_dependency_df.reset_index(drop=True, inplace=True)
+spin_dependency_df.reset_index(drop=True, inplace=True)
 
 ## result type drop down table ##
 
-greatest_hit_req_url = self.fastapi_get_dropdown + 'greatest_hit'
+greatest_hit_req_url = fastapi_get_dropdown + 'greatest_hit'
 r = requests.get(greatest_hit_req_url)
 greatest_hit_response_data = r.json()
 
-self.greatest_hit_df = pd.DataFrame.from_dict(greatest_hit_response_data)
+greatest_hit_df = pd.DataFrame.from_dict(greatest_hit_response_data)
 
 #self.greatest_hit_df.reset_index(drop=True, inplace=True)
 
-official_req_url = self.fastapi_get_dropdown + 'official'
+official_req_url = fastapi_get_dropdown + 'official'
 r = requests.get(official_req_url)
 official_response_data = r.json()
 
-self.official_df = pd.DataFrame.from_dict(official_response_data)
+official_df = pd.DataFrame.from_dict(official_response_data)
 
 #self.official_df.reset_index(drop=True, inplace=True)
 
-year_req_url = self.fastapi_get_dropdown + 'year'
+year_req_url = fastapi_get_dropdown + 'year'
 r = requests.get(year_req_url)
 year_response_data = r.json()
 
-self.years_df = pd.DataFrame.from_dict(year_response_data)
+years_df = pd.DataFrame.from_dict(year_response_data)
 
 
 '''
