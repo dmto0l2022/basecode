@@ -1040,9 +1040,7 @@ year_dropdown_col_2 = dbc.Col(dbc.Select(options=[
 year_dropdown_col_1 = dbc.Col(
                      dcc.Dropdown(
                         id='year_form_field_id',
-                        options=[
-                            options=[{'label': i['label'], 'value': i['value']} for i in year_labels_dict],
-                        ],
+                        options=[{'label': i['label'], 'value': i['value']} for i in year_labels_dict],
                         #className='FORM_COLUMN_YEARDROPDOWN'
                         className='FORM_COLUMN_DATA',
                         style={'height': '25px','width':'100%','display': 'inline-block','padding':'0 !important','margin': '0 !important', 'border': '2px solid black'},
