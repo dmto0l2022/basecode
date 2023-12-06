@@ -584,9 +584,10 @@ line_style_input_row = html.Div(
 
 # Trace Fill Color - Dropdown
 
-trace_color_dropdown = dbc.Col(dbc.Select(
-                        options=[{'label': i['label'], 'value': i['value']} for i in experiments_labels_dict],id='year_form_field_id_3',
-                        style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
+trace_fill_color_dropdown = dbc.Col(dbc.Select(
+                                options=color_options,
+                                id='year_form_field_id_3',
+                                style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
                         ,width = data_column_width)
 
 trace_fill_color_input_row = html.Div(
@@ -598,19 +599,7 @@ trace_fill_color_input_row = html.Div(
                     className='FORM_LABEL_COLUMN',
                     width= label_column_width
                 ),
-                dbc.Col(
-                     dbc.Input(
-                        type="color",
-                        id="trace_fill_color_form_field_id",
-                        value="#000000",
-                     #className='FORM_COLUMN_COLOR',
-                     className='FORM_COLUMN_DATA'
-                    ),
-                    #className='FORM_COLOR_COLUMN',
-                    className='FORM_DATA_COLUMN',
-                    width = data_column_width
-                ),
-                
+                trace_fill_color_dropdown,                
                 dbc.Col(dcc.Input(id='trace_fill_color_example_field_id',
                                   type='text',
                                   value='example',
