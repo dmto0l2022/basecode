@@ -1004,8 +1004,8 @@ date_of_run_end_input_row = html.Div(
 years = range(2010,2031)
 years_list = list(years)
 years_list
-years_df = pd.DataFrame({'c' : years_list})
-years_df
+#years_df = pd.DataFrame({'c' : years_list})
+#years_df
 
 '''dd = dcc.Dropdown(
         id='yearid',
@@ -1038,7 +1038,7 @@ year_dropdown_col_1 = dbc.Col(
                      dcc.Dropdown(
                         id='year_form_field_id',
                         options=[
-                            {'label':i, 'value':i} for i in years_df['c'].unique()
+                            {'label':i['label'], 'value':i['value']} for i in years_df
                         ],
                         #className='FORM_COLUMN_YEARDROPDOWN'
                         className='FORM_COLUMN_DATA',
