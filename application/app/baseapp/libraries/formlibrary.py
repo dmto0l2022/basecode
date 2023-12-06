@@ -948,16 +948,14 @@ years_df
     )
 '''
 
-year_input_row = html.Div(
-    [
-        dbc.Row(
-            [
-                dbc.Col(
-                    html.Label('Year :',className='FORM_COLUMN_LABEL'),
-                    className='FORM_LABEL_COLUMN',
-                    width = label_column_width
-                ),
-                dbc.Col(
+year_dropdown_col_2 = dbc.Col(dbc.Select(options=[
+    {'label': 'eeney', 'value': 'eeney'},
+    {'label': 'meeney', 'value': 'meeney'},
+    {'label': 'miney', 'value': 'miney'},
+    {'label': 'mo', 'value': 'mo'},
+], id='year_form_field_id_2'))
+
+year_dropdown_col_1 = dbc.Col(
                      dcc.Dropdown(
                         id='year_form_field_id',
                         options=[
@@ -971,7 +969,18 @@ year_input_row = html.Div(
                     className='FORM_DATA_COLUMN',
                     width = data_column_width,
                     style={'height': '100%'},
+                )
+
+year_input_row = html.Div(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    html.Label('Year :',className='FORM_COLUMN_LABEL'),
+                    className='FORM_LABEL_COLUMN',
+                    width = label_column_width
                 ),
+                year_dropdown_col_2,
                 dbc.Col(dcc.Input(id='year_example_field_id',
                                   type='text',
                                   value='example',
@@ -982,10 +991,10 @@ year_input_row = html.Div(
                 
                 dbc.Popover(
                     dbc.PopoverBody('select year'),
-                    target="year_form_field_id",trigger="hover"),
+                    target="year_form_field_id_2",trigger="hover"),
                 
                 dbc.Popover(dbc.PopoverBody('2023'),
-                    target="year_example_field_id",trigger="click"), 
+                    target="year_form_field_id_2",trigger="click"), 
                 
             ],
         className='g-0 FORM_ROW'),
