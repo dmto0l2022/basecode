@@ -842,6 +842,12 @@ experiments_labels_dict = experiments_labels.to_dict('records')
 
 #options=[{'label': i['name'], 'value': i['ip']} for i in available_rpi],
 
+experiment_dropdown = dbc.Col(dbc.Select(
+                        options=[{'label': i['label'], 'value': i['value']} for i in experiments_labels_dict],id='year_form_field_id_3',
+                        style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
+                        ,width = data_column_width)
+
+
 experiment_input_row = html.Div(
     [
         dbc.Row(
@@ -851,18 +857,7 @@ experiment_input_row = html.Div(
                     className='FORM_LABEL_COLUMN',
                     width = label_column_width
                 ),
-                dbc.Col(
-                    dcc.Dropdown(
-                            id='experiment_form_field_id',
-                            options=[{'label': i['label'], 'value': i['value']} for i in experiments_labels_dict],
-                            #className='FORM_COLUMN_EXPERIMENTDROPDOWN',
-                            className='FORM_COLUMN_DATA',
-                        ),
-                    #className='FORM_EXPERIMENTDROPDOWN_COLUMN',
-                    className='FORM_DATA_COLUMN',
-                    width = data_column_width
-                ),
-                
+                experiment_dropdown,
                 dbc.Col(dcc.Input(id='experiment_example_field_id', type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
                     className='FORM_EXAMPLE_COLUMN',
