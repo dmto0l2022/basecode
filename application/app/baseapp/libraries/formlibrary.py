@@ -953,7 +953,7 @@ dbc_select_col = dbc.Col(dbc.Select(
                 {"label": "Option 1", "value": "1"},
                 {"label": "Option 2", "value": "2"},
                 {"label": "Disabled option", "value": "3", "disabled": True},
-            ],id='year_form_field_id_3',style={'width':'100%','height':'20x','font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '2px solid black'})
+            ],id='year_form_field_id_3',style={'width':'100%','height':'20px','font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '2px solid black'})
             ,width = data_column_width)
 
 year_dropdown_col_2 = dbc.Col(dbc.Select(options=[
@@ -1081,7 +1081,7 @@ y_rescale_input_row = html.Div(
                         ),
                     #className='FORM_RESCALEY_COLUMN',
                     className='FORM_DATA_COLUMN',
-                    width = data_column_widthfont-size: 40px;
+                    width = data_column_width,
                 ),
                 
                 dbc.Col(dcc.Input(id='y_rescale_example_field_id',
