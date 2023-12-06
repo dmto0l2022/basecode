@@ -948,6 +948,15 @@ years_df
     )
 '''
 
+dbc_select = dbc.Select(
+    id="select",
+    options=[
+        {"label": "Option 1", "value": "1"},
+        {"label": "Option 2", "value": "2"},
+        {"label": "Disabled option", "value": "3", "disabled": True},
+    ],
+)
+
 year_dropdown_col_2 = dbc.Col(dbc.Select(options=[
     {'label': 'eeney', 'value': 'eeney'},
     {'label': 'meeney', 'value': 'meeney'},
@@ -984,7 +993,7 @@ year_input_row = html.Div(
                     className='FORM_LABEL_COLUMN',
                     width = label_column_width
                 ),
-                year_dropdown_col_2,
+                dbc_select,
                 dbc.Col(dcc.Input(id='year_example_field_id',
                                   type='text',
                                   value='example',
