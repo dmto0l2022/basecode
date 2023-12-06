@@ -850,7 +850,7 @@ experiment_input_row = html.Div(
                 dbc.Col(
                     dcc.Dropdown(
                             id='experiment_form_field_id',
-                            options=[{'label':i, 'value':j} for i,j in experiments_df[['label','value']].unique()],
+                            options=[{'label':i, 'value':j} for i,j in experiments_df[['label','value']]],
                             #className='FORM_COLUMN_EXPERIMENTDROPDOWN',
                             className='FORM_COLUMN_DATA',
                         ),
