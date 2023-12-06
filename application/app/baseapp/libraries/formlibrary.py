@@ -837,7 +837,7 @@ experiments_list = [
 
 #experiments_df = pd.DataFrame({'c' : experiments_list})
 #experiments_df_dict = experiments_df.to_dict('records')
-experiments_labels = experiments_df[['labels','values']]
+experiments_labels = experiments_df[['label','value']]
 experiments_labels_dict = experiments_labels.to_dict('records')
 
 experiment_input_row = html.Div(
