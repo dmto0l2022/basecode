@@ -950,11 +950,11 @@ years_df
 
 dbc_select_col = dbc.Col(dbc.Select(
     options=[
-        {"label": "Option 1", "value": "1"},
-        {"label": "Option 2", "value": "2"},
-        {"label": "Disabled option", "value": "3", "disabled": True},
-    ],id='year_form_field_id_3', style={'height': '14px','width':'100%','display': 'inline-block','padding':'0 !important','margin': '0 !important', 'border': '2px solid black'}),
-),width = data_column_width)
+                {"label": "Option 1", "value": "1"},
+                {"label": "Option 2", "value": "2"},
+                {"label": "Disabled option", "value": "3", "disabled": True},
+            ],id='year_form_field_id_3', style={'height': '14px','width':'100%','display': 'inline-block','padding':'0 !important','margin': '0 !important', 'border': '2px solid black'})
+            ,width = data_column_width)
 
 year_dropdown_col_2 = dbc.Col(dbc.Select(options=[
     {'label': 'eeney', 'value': 'eeney'},
