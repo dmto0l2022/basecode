@@ -1345,7 +1345,8 @@ data_values_input_row = html.Div(
 
 resulttype_lol = [['Theory','Th'],['Project','Proj'],['Experiment','Exp']]
 resulttype_lol
-result_type_options = [{item[0]: item[1] for item in resulttype_lol}]
+
+result_type_options=[{'label': item[0], 'value' : item[1]} for item in resulttype_lol]
 
 result_type_dropdown = dbc.Col(dbc.Select(
                         options=result_type_options,
@@ -1392,6 +1393,8 @@ limit_type_lol = [['All',-1],['Official','1']]
 #limit_type,Official,"1"
 limit_typeDict = {item[0]: item[1] for item in limit_type_lol}
 
+limit_type_options=[{'label': item[0], 'value' : item[1]} for item in limit_type_lol]
+
 limit_type_input_row = html.Div(
     [
         dbc.Row(
@@ -1436,7 +1439,8 @@ limit_type_input_row = html.Div(
 # Spin Dependency - Dropdown
 
 spin_lol = [['All','All'],['spin-dependent','SD'],['spin-independent','SI']]
-spin_dependency_options = [{item[0]: item[1] for item in spin_lol}]
+
+spin_dependency_options=[{'label': item[0], 'value' : item[1]} for item in spin_lol]
 
 spin_dependency_dropdown = dbc.Col(dbc.Select(
                         options=spin_dependency_options,
@@ -1479,7 +1483,7 @@ spin_dependency_input_row = html.Div(
 measurementtype_lol = [['All','All'],['Direct','Dir']]
 measurementtypeDict = {item[0]: item[1] for item in measurementtype_lol}
 
-measurement_type_options = [{item[0]: item[1] for item in measurementtype_lol}]
+measurement_type_options=[{'label': item[0], 'value' : item[1]} for item in measurementtype_lol]
 
 measurement_type_dropdown = dbc.Col(dbc.Select(
                         options=measurement_type_options,
