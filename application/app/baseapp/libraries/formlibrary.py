@@ -949,7 +949,6 @@ years_df
 '''
 
 dbc_select_col = dbc.Col(dbc.Select(
-    id="select",
     options=[
         {"label": "Option 1", "value": "1"},
         {"label": "Option 2", "value": "2"},
