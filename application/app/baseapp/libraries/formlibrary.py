@@ -1007,7 +1007,7 @@ years_list
 #years_df = pd.DataFrame({'c' : years_list})
 #years_df
 
-year_labels = year_df[['label','value']]
+year_labels = years_df[['label','value']]
 year_labels_dict = year_labels.to_dict('records')
 
 '''dd = dcc.Dropdown(
