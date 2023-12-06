@@ -72,7 +72,7 @@ year_response_data = r.json()
 
 years_df = pd.DataFrame.from_dict(year_response_data)
 
-====================================
+########################################
 
 symbols_value_list = ['circle','square','diamond','x','triangle']
 symbols_label_list = ['○','□','◇','x','△']        
