@@ -448,7 +448,8 @@ itemDict = {item[0]: item[1] for item in lol}
 
 linestyledd = dcc.Dropdown(
         id='line_style_form_field_id',
-        options=[{'label': k, 'value': v} for k, v in itemDict.items()]
+        options=[{'label': k, 'value': v} for k, v in itemDict.items()],
+        style={'height': '14px', 'width': '100%'}
     )
 
 
