@@ -837,6 +837,8 @@ experiments_list = [
 
 #experiments_df = pd.DataFrame({'c' : experiments_list})
 #experiments_df_dict = experiments_df.to_dict('records')
+experiments_labels = experiments_df[['labels','values']]
+experiments_labels_dict = experiments_labels.to_dict('records')
 
 experiment_input_row = html.Div(
     [
@@ -850,7 +852,7 @@ experiment_input_row = html.Div(
                 dbc.Col(
                     dcc.Dropdown(
                             id='experiment_form_field_id',
-                            options=[{'label':i, 'value':j} for i,j in experiments_df['label','value']],
+                            options=[experiments_labels_dict],
                             #className='FORM_COLUMN_EXPERIMENTDROPDOWN',
                             className='FORM_COLUMN_DATA',
                         ),
