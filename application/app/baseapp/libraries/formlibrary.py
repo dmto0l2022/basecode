@@ -79,8 +79,8 @@ symbols_label_list = ['○','□','◇','x','△']
 symbols_lol = []
 for p in (range(0,5)):
     l = [symbols_label_list[p],symbols_value_list[p]]
-    self.symbols_lol.append(l)
-#print("self.symbols_lol >>>>>>>>>>>", self.symbols_lol)
+    symbols_lol.append(l)
+#print("symbols_lol >>>>>>>>>>>", symbols_lol)
 symbol_options=[{'label': item[0], 'value' : item[1]} for item in symbols_lol]
 print("symbol_options >>>>>>>>>>>", symbol_options)
 
