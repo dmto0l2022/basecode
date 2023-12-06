@@ -1028,8 +1028,9 @@ dbc_select_col = dbc.Col(dbc.Select(
 
 
 dbc_select_col_1 = dbc.Col(dbc.Select(
-    options=[{'label': i['label'], 'value': i['value']} for i in year_labels_dict],id='year_form_field_id_3',style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
-            ,width = data_column_width)
+                        options=[{'label': i['label'], 'value': i['value']} for i in year_labels_dict],id='year_form_field_id_3',
+                        style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
+                        ,width = data_column_width)
 
 year_dropdown_col_2 = dbc.Col(dbc.Select(options=[
     {'label': 'eeney', 'value': 'eeney'},
@@ -1042,7 +1043,10 @@ year_dropdown_col_2 = dbc.Col(dbc.Select(options=[
                             style={'height': '100%'},
                              )
 
-year_dropdown_col_3 = dbc.Col(dbc.Select(options=options=[{'label': i['label'], 'value': i['value']} for i in year_labels_dict], id='year_form_field_id_2',  style={'height': '25px','width':'100%','display': 'inline-block','padding':'0 !important','margin': '0 !important', 'border': '2px solid black'}),
+year_dropdown_col_3 = dbc.Col(dbc.Select(
+                                        options=[{'label': i['label'], 'value': i['value']} for i in year_labels_dict],
+                                        id='year_form_field_id_2',
+                                        style={'height': '25px','width':'100%','display': 'inline-block','padding':'0 !important','margin': '0 !important', 'border': '2px solid black'}),
                             width = data_column_width,
                             className='FORM_DATA_COLUMN',
                             style={'height': '100%'},
