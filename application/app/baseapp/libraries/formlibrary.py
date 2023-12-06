@@ -1526,7 +1526,10 @@ measurement_type_input_row = html.Div(
 </label>
 '''
 
-public_checkbox =  html.Label(className='switch', children=[dcc.Input(type="checkbox"),html.Span(className="slider round")])
+public_checkbox =  dbc.Col(html.Label(className='switch', children=[dcc.Input(type="checkbox"),html.Span(className="slider round")]),
+                               className='FORM_DATA_COLUMN',
+                               width = data_column_width
+                           )
 
 boolean = dbc.Col(
                     daq.BooleanSwitch(id='public_limit_form_field_id',
