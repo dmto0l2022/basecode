@@ -965,11 +965,12 @@ year_input_row = html.Div(
                         ],
                         #className='FORM_COLUMN_YEARDROPDOWN'
                         className='FORM_COLUMN_DATA',
-                        style={'height': '100%','width':'100%','display': 'inline-block',}
+                        style={'height': '20px','width':'100%','display': 'inline-block',}
                     ),
                     #className='FORM_YEARDROPDOWN_COLUMN',
                     className='FORM_DATA_COLUMN',
-                    width = data_column_width
+                    width = data_column_width,
+                    style={'height': '100%'},
                 ),
                 dbc.Col(dcc.Input(id='year_example_field_id',
                                   type='text',
