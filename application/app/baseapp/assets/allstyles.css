@@ -22,6 +22,12 @@
   --debug_section_height: 63px;
 }
 
+.Select--multi .Select-value {
+  background-color: #fcba03;
+  border-color: #e3a700;
+  color: #fff;
+}
+
 /**
 --header_height: 18px;## 6vh;
   --footer_height: 12px; ##5vh;
