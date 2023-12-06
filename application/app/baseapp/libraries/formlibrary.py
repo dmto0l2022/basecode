@@ -953,7 +953,7 @@ dbc_select_col = dbc.Col(dbc.Select(
                 {"label": "Option 1", "value": "1"},
                 {"label": "Option 2", "value": "2"},
                 {"label": "Disabled option", "value": "3", "disabled": True},
-            ],id='year_form_field_id_3',style={'width':'100%','height':'14px','line-height': 'normal', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
+            ],id='year_form_field_id_3',style={'width':'100%','height':'20px','line-height': 'normal', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
             ,width = data_column_width)
 
 year_dropdown_col_2 = dbc.Col(dbc.Select(options=[
