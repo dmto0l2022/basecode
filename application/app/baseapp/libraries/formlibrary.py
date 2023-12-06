@@ -1345,7 +1345,13 @@ data_values_input_row = html.Div(
 
 resulttype_lol = [['Theory','Th'],['Project','Proj'],['Experiment','Exp']]
 resulttype_lol
-resulttypeDict = {item[0]: item[1] for item in resulttype_lol}
+result_type_options = [{item[0]: item[1] for item in resulttype_lol}]
+
+result_type_dropdown = dbc.Col(dbc.Select(
+                        options=result_type_options,
+                        id='result_type_form_field_id',
+                        style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
+                        ,width = data_column_width)
 
 result_type_input_row = html.Div(
     [
@@ -1357,18 +1363,7 @@ result_type_input_row = html.Div(
                     className='FORM_LABEL_COLUMN',
                     width = label_column_width
                 ),
-                dbc.Col(
-                    dcc.Dropdown(
-                    id='result_type_form_field_id',
-                    options=[{'label': k, 'value': v} for k, v in resulttypeDict.items()],
-                        #className='FORM_COLUMN_RESULTTYPE'
-                        className='FORM_COLUMN_DATA'
-                        ),
-                    #className='FORM_RESULTTYPE_COLUMN',
-                    className='FORM_DATA_COLUMN',
-                    width = data_column_width
-                ),
-                
+                result_type_dropdown,                
                 dbc.Col(dcc.Input(id='result_type_example_field_id',
                                   type='text',
                                   value='example',
@@ -1441,7 +1436,13 @@ limit_type_input_row = html.Div(
 # Spin Dependency - Dropdown
 
 spin_lol = [['All','All'],['spin-dependent','SD'],['spin-independent','SI']]
-spinDict = {item[0]: item[1] for item in spin_lol}
+spin_dependency_options = [{item[0]: item[1] for item in spin_lol}]
+
+spin_dependency_dropdown = dbc.Col(dbc.Select(
+                        options=spin_dependency_options,
+                        id='result_type_form_field_id',
+                        style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
+                        ,width = data_column_width)
 
 spin_dependency_input_row = html.Div(
     [
@@ -1452,18 +1453,7 @@ spin_dependency_input_row = html.Div(
                     className='FORM_LABEL_COLUMN',
                     width = label_column_width
                 ),
-                dbc.Col(
-                    dcc.Dropdown(
-                    id='spin_dependency_form_field_id',
-                    options=[{'label': k, 'value': v} for k, v in spinDict.items()],
-                        #className='FORM_COLUMN_SPIN'
-                        className='FORM_COLUMN_DATA'
-                        ),
-                    #className='FORM_SPIN_COLUMN',
-                    className='FORM_DATA_COLUMN',
-                    width = data_column_width
-                ),
-                
+                spin_dependency_dropdown,
                 dbc.Col(dcc.Input(id='spin_dependency_example_field_id',
                                   type='text',
                                   value='example',
@@ -1489,6 +1479,14 @@ spin_dependency_input_row = html.Div(
 measurementtype_lol = [['All','All'],['Direct','Dir']]
 measurementtypeDict = {item[0]: item[1] for item in measurementtype_lol}
 
+measurement_type_options = [{item[0]: item[1] for item in measurementtype_lol}]
+
+measurement_type_dropdown = dbc.Col(dbc.Select(
+                        options=measurement_type_options,
+                        id='result_type_form_field_id',
+                        style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
+                        ,width = data_column_width)
+
 measurement_type_input_row = html.Div(
     [
         dbc.Row(
@@ -1498,18 +1496,7 @@ measurement_type_input_row = html.Div(
                     className='FORM_LABEL_COLUMN',
                     width = label_column_width
                 ),
-                dbc.Col(
-                    dcc.Dropdown(
-                    id='measurement_type_form_field_id',
-                    options=[{'label': k, 'value': v} for k, v in measurementtypeDict.items()],
-                        #className='FORM_COLUMN_SPIN'
-                        className='FORM_COLUMN_DATA'
-                        ),
-                    #className='FORM_SPIN_COLUMN',
-                    className='FORM_DATA_COLUMN',
-                    width = data_column_width
-                ),
-                
+                measurement_type_dropdown,
                 dbc.Col(dcc.Input(id='measurement_type_example_field_id',
                                   type='text',
                                   value='example',
@@ -1532,6 +1519,24 @@ measurement_type_input_row = html.Div(
 
 
 # Public Limit - Checkbox
+'''
+<label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+'''
+
+public_checkbox =  html.Label(className='switch', children=[html.Input(type="checkbox"),html.Span(className="slider round")])
+
+boolean = dbc.Col(
+                    daq.BooleanSwitch(id='public_limit_form_field_id',
+                                      on=False,
+                                      className='FORM_COLUMN_DATA'
+                                        ),
+                    #className='FORM_CHECKBOXINPUT_COLUMN',
+                    className='FORM_DATA_COLUMN',
+                    width = data_column_width
+                )
 
 public_limit_input_row = html.Div(
     [
@@ -1542,16 +1547,7 @@ public_limit_input_row = html.Div(
                     className='FORM_LABEL_COLUMN',
                     width= label_column_width
                 ),
-                dbc.Col(
-                    daq.BooleanSwitch(id='public_limit_form_field_id',
-                                      on=False,
-                                      className='FORM_COLUMN_DATA'
-                                        ),
-                    #className='FORM_CHECKBOXINPUT_COLUMN',
-                    className='FORM_DATA_COLUMN',
-                    width = data_column_width
-                ),
-                
+                public_checkbox,                
                 dbc.Col(dcc.Input(id='public_limit_example_field_id',
                                   type='text', value='example', readOnly=True,
                                   className='FORM_COLUMN_EXAMPLE'),
