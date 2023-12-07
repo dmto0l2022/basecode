@@ -214,7 +214,8 @@ scroll_test = html.Div(id="parent", children=[
     essentially unchanged. It was popularised in the 1960s with the release \
     of Letraset sheets containing Lorem Ipsum passages, and more recently \
     with desktop publishing software like Aldus PageMaker including versions \
-    of Lorem Ipsum."])])
+    of Lorem Ipsum."])],
+                      style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
 
 
 
@@ -252,10 +253,9 @@ inner_container = html.Div(children=[load_limit_file_form], style={'width':'500p
 ## {“maxHeight”: “400px”, “overflow”: “scroll”}
 
 page_contents = html.Div(id=page_name+'page_content',
-                         children=[ inner_container,
+                         children=[ scroll_test,
                                     dcc.Location(id='url', refresh=True), ## very important for url output of callback
-                                    button_row],
-                        style={'overflow': 'auto'})
+                                    button_row])
 
 def parse_contents(contents):
     content_type, content_string = contents.split(',')
