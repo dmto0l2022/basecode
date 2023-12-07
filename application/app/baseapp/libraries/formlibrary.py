@@ -153,8 +153,10 @@ greatest_hit_form_field_id
 #######################################################
 ## form variables
 
-label_column_width = 2
-data_column_width = 2
+label_column_width = 3
+data_column_width = 6
+example_column_width = 3
+show_example = 1
 
 ######################### fields ######################
 
@@ -177,14 +179,18 @@ plot_name_input_row = html.Div(
                     className='FORM_TEXTINPUT_COLUMN',
                     width = data_column_width
                 ),
-                dbc.Col(dcc.Input(id='plot_name_example_field_id',
-                                  type='text',
-                                  value='example',
-                                  readOnly=True,
-                                  className='FORM_COLUMN_EXAMPLE'),
-                    className='FORM_EXAMPLE_COLUMN',
-                    width=1),
-                
+                (if show_example == 1:
+                    dbc.Col(dcc.Input(id='plot_name_example_field_id',
+                                      type='text',
+                                      value='example',
+                                      readOnly=True,
+                                      className='FORM_COLUMN_EXAMPLE'),
+                        className='FORM_EXAMPLE_COLUMN',
+                        width=example_column_width)
+                else:
+                    dbc.Col(,
+                        className='FORM_EXAMPLE_COLUMN',
+                        width=example_column_width)),                
                 dbc.Popover(
                     dbc.PopoverBody('enter plot unique name'),
                     target="plot_name_example_field_id",trigger="hover"),
