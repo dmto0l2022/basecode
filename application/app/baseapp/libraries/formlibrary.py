@@ -425,7 +425,6 @@ trace_color_css = [{"selector": ".form-select", "rule": "padding':0 !important"}
 trace_color_dropdown = dbc.Col(dbc.Select(
                                 options=color_options,
                                 id='year_form_field_id_3',
-                                css= trace_color_css,
                                 style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'})
                         ,width = data_column_width)
 
