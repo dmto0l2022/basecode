@@ -341,7 +341,7 @@ pages_container = html.Div([
 	        ]
 	    ),
 		dash.page_container
-	], className='PAGE_CONTENT', style={'overflow': 'auto'})
+	], className='PAGE_CONTENT') ##, style={'overflow': 'auto'})
 
 
 pages_container_box = html.Div(children=[dash.page_container],className='PAGE_CONTENT')
