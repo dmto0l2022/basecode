@@ -1554,7 +1554,7 @@ https://getbootstrap.com/docs/5.1/forms/checks-radios/
 
 '''
 
-public_checkbox =  dbc.Col(html.Div(className='form-check form-switch', children=[dcc.Input(className="form-check-input", type="checkbox", role="switch", id="flexSwitchCheckChecked")]),
+public_checkbox =  dbc.Col(html.Div(className='form-check form-switch', children=[dcc.Input(className="form-check-input", type="checkbox", id="flexSwitchCheckChecked")]),
                                className='FORM_DATA_COLUMN',
                                width = data_column_width
                            )
