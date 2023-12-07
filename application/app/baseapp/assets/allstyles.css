@@ -51,6 +51,7 @@
 #child-2 {
   overflow: auto;
   width: 500px;
+  height: 200px;
   background-color: lightgreen;
 }
 
