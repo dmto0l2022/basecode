@@ -267,7 +267,7 @@ child_3 = html.Div(id="child-3",
     with desktop publishing software like Aldus PageMaker including versions \
     of Lorem Ipsum."])
 
-simple_mobile_container = html.Div(children=[child_3], style={}, className='container', style={'border': '3px solid blue',  'background-color': 'lightblue'})
+simple_mobile_container = html.Div(children=[child_3], className='container', style={'border': '3px solid blue',  'background-color': 'lightblue'})
 
 
 inner_container = html.Div(children=[load_limit_file_form], style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
