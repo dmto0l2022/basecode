@@ -203,9 +203,9 @@ load_limit_file_form = html.Div(
         fl.y_unit_input_row,
         fl.year_input_row,
         html.Div(id='container', children='''here'''),
-    ], style={'position': 'fixed','top': '88px', 'border': '3px solid blue', 'width':'500px', 'overflow-y': 'hide','overflow-x': 'scroll', 'height': '550px',  'white-space': 'nowrap'})
+    ], style={'position': 'fixed','top': '88px', 'border': '3px solid blue', 'width':'500px','overflow': 'scroll' , 'height': '550px',  'white-space': 'nowrap'})
 
-
+## 'overflow-y': 'hide','overflow-x': 'scroll'
 
 page_contents = html.Div(id=page_name+'page_content',
                          children=[ load_limit_file_form,
