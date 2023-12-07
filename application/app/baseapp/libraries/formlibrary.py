@@ -162,6 +162,21 @@ show_example = 1
 
 
 # Plot Name - Text
+def get_example_column(show_example_in):
+    return_val =  dbc.Col()
+    if show_example_in == 1:
+        return_val = dbc.Col(dcc.Input(id='plot_name_example_field_id',
+                                          type='text',
+                                          value='example',
+                                          readOnly=True,
+                                          className='FORM_COLUMN_EXAMPLE'),
+                            className='FORM_EXAMPLE_COLUMN',
+                            width=example_column_width)
+    else:
+        return_val = dbc.Col(className='FORM_EXAMPLE_COLUMN',width=example_column_width)
+    return return_val
+
+example_column = get_example_column(show_example)
 
 plot_name_input_row = html.Div(
     [
@@ -179,18 +194,7 @@ plot_name_input_row = html.Div(
                     className='FORM_TEXTINPUT_COLUMN',
                     width = data_column_width
                 ),
-                (if show_example == 1:
-                    dbc.Col(dcc.Input(id='plot_name_example_field_id',
-                                      type='text',
-                                      value='example',
-                                      readOnly=True,
-                                      className='FORM_COLUMN_EXAMPLE'),
-                        className='FORM_EXAMPLE_COLUMN',
-                        width=example_column_width)
-                else:
-                    dbc.Col(,
-                        className='FORM_EXAMPLE_COLUMN',
-                        width=example_column_width)),                
+                example_column,        
                 dbc.Popover(
                     dbc.PopoverBody('enter plot unique name'),
                     target="plot_name_example_field_id",trigger="hover"),
