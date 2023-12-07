@@ -30,8 +30,9 @@
 }
 
 .form-select {
-    padding: 0px;
     line-height: 1;
+    padding:0 !important;
+    margin: 0 !important;
 }
 
 /**
