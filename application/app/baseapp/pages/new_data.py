@@ -181,6 +181,46 @@ create_new_limit_form_title = html.Div(html.P(children='Create New Limit', class
 
 Limit = Limit_class
 
+
+###### scroll testing ######
+
+scroll_test = html.Div(id="parent", children=[
+  html.Div(id="child-1",children=[
+    "Lorem Ipsum is simply dummy text of the printing and typesetting \
+    industry. Lorem Ipsum has been the industry's standard dummy text ever \
+    since the 1500s, when an unknown printer took a galley of type and \
+    scrambled it to make a type specimen book. It has survived not only five \
+    centuries, but also the leap into electronic typesetting, remaining \
+    essentially unchanged. It was popularised in the 1960s with the release \
+    of Letraset sheets containing Lorem Ipsum passages, and more recently \
+    with desktop publishing software like Aldus PageMaker including versions \
+    of Lorem Ipsum."]),
+  html.Div(id="child-2",
+    children=["Lorem Ipsum is simply dummy text of the printing and typesetting \
+    industry. Lorem Ipsum has been the industry's standard dummy text ever \
+    since the 1500s, when an unknown printer took a galley of type and \
+    scrambled it to make a type specimen book. It has survived not only five \
+    centuries, but also the leap into electronic typesetting, remaining \
+    essentially unchanged. It was popularised in the 1960s with the release \
+    of Letraset sheets containing Lorem Ipsum passages, and more recently \
+    with desktop publishing software like Aldus PageMaker including versions \
+    of Lorem Ipsum."]),
+   html.Div(id="child-3",
+    children=["Lorem Ipsum is simply dummy text of the printing and typesetting \
+    industry. Lorem Ipsum has been the industry's standard dummy text ever \
+    since the 1500s, when an unknown printer took a galley of type and \
+    scrambled it to make a type specimen book. It has survived not only five \
+    centuries, but also the leap into electronic typesetting, remaining \
+    essentially unchanged. It was popularised in the 1960s with the release \
+    of Letraset sheets containing Lorem Ipsum passages, and more recently \
+    with desktop publishing software like Aldus PageMaker including versions \
+    of Lorem Ipsum."])])
+
+
+
+
+######
+
 load_limit_file_form = html.Div(
         [
         fl.upload_xml_file_input_row,
@@ -210,7 +250,7 @@ className="overflow-auto")
 ## {“maxHeight”: “400px”, “overflow”: “scroll”}
 
 page_contents = html.Div(id=page_name+'page_content',
-                         children=[ load_limit_file_form,
+                         children=[ scroll_test,
                                     dcc.Location(id='url', refresh=True), ## very important for url output of callback
                                     button_row])
 
