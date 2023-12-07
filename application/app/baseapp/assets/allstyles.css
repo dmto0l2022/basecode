@@ -61,6 +61,11 @@
   background-color: lightcoral;
 }
 
+#child-4 {
+  overflow: auto;
+  width: 400px;
+  background-color: lightcoral;
+}
 
 /**
 --header_height: 18px;## 6vh;
