@@ -207,10 +207,8 @@ load_limit_file_form = html.Div(
         fl.y_rescale_input_row,
         fl.y_unit_input_row,
         fl.year_input_row,
-        html.Div(id='container', children='''here'''),
-    ])
-
-# style={'position': 'fixed','top': '88px', 'border': '3px solid blue','width':'500px', 'maxWidth':'500px','overflow-y': 'auto' ,'overflow-x': 'auto',  'maxHeight': '550px', 'height': '550px'},
+        html.Div(id='container', children=['here']),
+    ], style={'position': 'fixed','top': '88px', 'border': '3px solid blue','width':'500px', 'maxWidth':'500px', 'maxHeight': '550px', 'height': '550px'},
 
 ###### scroll testing ######
 
