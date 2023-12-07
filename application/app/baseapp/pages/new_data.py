@@ -208,7 +208,7 @@ load_limit_file_form = html.Div(
         fl.y_unit_input_row,
         fl.year_input_row,
         html.Div(id='container', children=['here']),
-    ], style={'position': 'fixed','top': '88px', 'border': '3px solid blue','width':'500px', 'maxWidth':'500px', 'maxHeight': '550px', 'height': '550px'},
+    ], style={'position': 'fixed','top': '88px', 'border': '3px solid blue','width':'500px', 'maxWidth':'500px', 'maxHeight': '550px', 'height': '550px'})
 
 ###### scroll testing ######
 
@@ -275,7 +275,7 @@ child_5 = html.Div(id="child-5",
     with desktop publishing software like Aldus PageMaker including versions \
     of Lorem Ipsum."], style={'width': '500px', 'height': '500px','background-color': 'lightcoral'})
 
-simple_mobile_container = html.Div(children=[child_5], className='container', style={'overflow': 'auto', 'border': '3px solid blue',  'background-color': 'lightblue'})
+simple_mobile_container = html.Div(children=[load_limit_file_form], className='container', style={'overflow': 'auto', 'border': '3px solid blue',  'background-color': 'lightblue'})
 
 
 inner_container = html.Div(children=[load_limit_file_form], style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
