@@ -275,7 +275,7 @@ child_5 = html.Div(id="child-5",
     essentially unchanged. It was popularised in the 1960s with the release \
     of Letraset sheets containing Lorem Ipsum passages, and more recently \
     with desktop publishing software like Aldus PageMaker including versions \
-    of Lorem Ipsum."], style={'overflow': 'auto', 'width': '500px', 'background-color': 'lightcoral'})
+    of Lorem Ipsum."], style={'overflow': 'auto', 'width': '100%', 'background-color': 'lightcoral'})
 
 simple_mobile_container = html.Div(children=[child_5], className='container', style={'border': '3px solid blue',  'background-color': 'lightblue'})
 
