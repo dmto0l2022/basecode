@@ -29,6 +29,10 @@
   height: 10px;
 }
 
+.form-select {
+    padding: 0px;
+}
+
 /**
 --header_height: 18px;## 6vh;
   --footer_height: 12px; ##5vh;
