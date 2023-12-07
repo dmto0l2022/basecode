@@ -153,8 +153,8 @@ greatest_hit_form_field_id
 #######################################################
 ## form variables
 
-label_column_width = 3
-data_column_width = 6
+label_column_width = 4
+data_column_width = 4
 example_column_width = 3
 show_example = 1
 
