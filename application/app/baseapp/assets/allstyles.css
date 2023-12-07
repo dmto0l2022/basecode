@@ -35,6 +35,32 @@
     margin: 0 !important;
 }
 
+#parent {
+  overflow: auto;
+  height: 300px;
+  width: 300px;
+  background-color: gainsboro;
+}
+
+#child-1 {
+  overflow: auto;
+  width: 500px;
+  background-color: lightblue;
+}
+
+#child-2 {
+  overflow: auto;
+  width: 500px;
+  background-color: lightgreen;
+}
+
+#child-3 {
+  overflow: auto;
+  width: 500px;
+  background-color: lightcoral;
+}
+
+
 /**
 --header_height: 18px;## 6vh;
   --footer_height: 12px; ##5vh;
