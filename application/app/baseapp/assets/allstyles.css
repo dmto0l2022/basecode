@@ -44,13 +44,13 @@
 
 #child-1 {
   overflow: auto;
-  width: 500px;
+  width: 400px;
   background-color: lightblue;
 }
 
 #child-2 {
   overflow: auto;
-  width: 500px;
+  width: 400px;
   height: 100px;
   background-color: lightgreen;
 }
