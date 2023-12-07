@@ -249,7 +249,25 @@ scroll_test = html.Div(id="parent", children=[
              ],
                       style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
 
+'''
+ <div class="container">
+  <h1>My First Bootstrap Page</h1>
+  <p>This is some text.</p>
+</div> 
+'''
 
+child_3 = html.Div(id="child-3",
+    children=["Lorem Ipsum is simply dummy text of the printing and typesetting \
+    industry. Lorem Ipsum has been the industry's standard dummy text ever \
+    since the 1500s, when an unknown printer took a galley of type and \
+    scrambled it to make a type specimen book. It has survived not only five \
+    centuries, but also the leap into electronic typesetting, remaining \
+    essentially unchanged. It was popularised in the 1960s with the release \
+    of Letraset sheets containing Lorem Ipsum passages, and more recently \
+    with desktop publishing software like Aldus PageMaker including versions \
+    of Lorem Ipsum."])
+
+simple_mobile_container = html.Div(children=[child_3], style={}, className='container', style={'border': '3px solid blue',  'background-color': 'lightblue'})
 
 
 inner_container = html.Div(children=[load_limit_file_form], style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
@@ -258,7 +276,7 @@ inner_container = html.Div(children=[load_limit_file_form], style={'width':'500p
 ## {“maxHeight”: “400px”, “overflow”: “scroll”}
 
 page_contents = html.Div(id=page_name+'page_content',
-                         children=[ scroll_test,
+                         children=[ simple_mobile_container,
                                     dcc.Location(id='url', refresh=True), ## very important for url output of callback
                                     button_row])
 
