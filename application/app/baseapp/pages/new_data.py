@@ -182,6 +182,36 @@ create_new_limit_form_title = html.Div(html.P(children='Create New Limit', class
 Limit = Limit_class
 
 
+
+
+######
+
+load_limit_file_form = html.Div(
+        [
+        fl.upload_xml_file_input_row,
+        fl.data_values_input_row,
+        fl.data_comment_input_row,
+        fl.data_label_input_row,
+        fl.data_reference_input_row,
+        fl.date_of_announcement_input_row,
+        fl.date_of_run_start_input_row,
+        fl.date_of_run_end_input_row,
+        fl.trace_color_input_row,
+        fl.line_style_input_row,
+        fl.experiment_input_row,
+        fl.public_limit_input_row,
+        fl.result_type_input_row,
+        fl.spin_dependency_input_row,
+        fl.x_rescale_input_row,
+        fl.x_unit_input_row,
+        fl.y_rescale_input_row,
+        fl.y_unit_input_row,
+        fl.year_input_row,
+        html.Div(id='container', children='''here'''),
+    ])
+
+# style={'position': 'fixed','top': '88px', 'border': '3px solid blue','width':'500px', 'maxWidth':'500px','overflow-y': 'auto' ,'overflow-x': 'auto',  'maxHeight': '550px', 'height': '550px'},
+
 ###### scroll testing ######
 
 scroll_test = html.Div(id="parent", children=[
@@ -221,33 +251,6 @@ scroll_test = html.Div(id="parent", children=[
 
 
 
-
-######
-
-load_limit_file_form = html.Div(
-        [
-        fl.upload_xml_file_input_row,
-        fl.data_values_input_row,
-        fl.data_comment_input_row,
-        fl.data_label_input_row,
-        fl.data_reference_input_row,
-        fl.date_of_announcement_input_row,
-        fl.date_of_run_start_input_row,
-        fl.date_of_run_end_input_row,
-        fl.trace_color_input_row,
-        fl.line_style_input_row,
-        fl.experiment_input_row,
-        fl.public_limit_input_row,
-        fl.result_type_input_row,
-        fl.spin_dependency_input_row,
-        fl.x_rescale_input_row,
-        fl.x_unit_input_row,
-        fl.y_rescale_input_row,
-        fl.y_unit_input_row,
-        fl.year_input_row,
-        html.Div(id='container', children='''here'''),
-    ], style={'position': 'fixed','top': '88px', 'border': '3px solid blue','width':'500px', 'maxWidth':'500px','overflow-y': 'auto' ,'overflow-x': 'auto',  'maxHeight': '550px', 'height': '550px'},
-className="overflow-auto")
 
 inner_container = html.Div(children=[load_limit_file_form], style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
 
