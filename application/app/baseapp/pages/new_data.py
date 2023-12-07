@@ -246,13 +246,16 @@ load_limit_file_form = html.Div(
     ], style={'position': 'fixed','top': '88px', 'border': '3px solid blue','width':'500px', 'maxWidth':'500px','overflow-y': 'auto' ,'overflow-x': 'auto',  'maxHeight': '550px', 'height': '550px'},
 className="overflow-auto")
 
+inner_container = html.Div(children=[load_limit_file_form], style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
+
 ## 'overflow-y': 'overflow-y:hidden; ','overflow-x': 'scroll'
 ## {“maxHeight”: “400px”, “overflow”: “scroll”}
 
 page_contents = html.Div(id=page_name+'page_content',
-                         children=[ scroll_test,
+                         children=[ inner_container,
                                     dcc.Location(id='url', refresh=True), ## very important for url output of callback
-                                    button_row])
+                                    button_row],
+                        style={'overflow': 'auto'})
 
 def parse_contents(contents):
     content_type, content_string = contents.split(',')
