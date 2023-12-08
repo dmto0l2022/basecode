@@ -162,7 +162,7 @@ button_row = html.Div(
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
             ]
         ),
-    ], style={'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'50%'}
+    ], style={'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'600px', 'height' : '35px'}
 )
 
 
