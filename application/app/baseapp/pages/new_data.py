@@ -166,6 +166,35 @@ button_row = html.Div(
 )
 
 
+'''
+<!-- Example split danger button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Action</button>
+  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" href="#">Separated link</a></li>
+  </ul>
+</div>
+
+'''
+
+
+raw_html_buttons = html.Div(
+        [dbc.Row(children=
+            [
+    html.Button('Button 1', id='btn-1-ctx-example'),
+    html.Button('Button 2', id='btn-2-ctx-example'),
+    html.Button('Button 3', id='btn-3-ctx-example'),
+    html.Div(id='container-ctx-example')
+])],style={'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'600px', 'height' : '35px'})
+
+
 save_button =  html.Div(dbc.Button("Save",  id="create_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN",
                         n_clicks_timestamp=0)
 #save_button =  html.Div(dbc.Button("Save",  id="9876_new_limit_save_button_id", color="secondary"), className = "FORM_CANCEL_BUTN")
@@ -276,7 +305,7 @@ child_5 = html.Div(id="child-5",
     with desktop publishing software like Aldus PageMaker including versions \
     of Lorem Ipsum."], style={'width': '500px', 'height': '500px','background-color': 'lightcoral'})
 
-simple_mobile_container = html.Div(children=[load_limit_file_form, button_row], className='container', style={'overflow': 'auto', 'border': '3px solid blue',  'background-color': 'lightblue'})
+simple_mobile_container = html.Div(children=[load_limit_file_form, raw_html_buttons], className='container', style={'overflow': 'auto', 'border': '3px solid blue',  'background-color': 'lightblue'})
 
 
 inner_container = html.Div(children=[load_limit_file_form], style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
