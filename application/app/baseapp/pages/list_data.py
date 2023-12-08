@@ -31,9 +31,9 @@ main_table_id = page_name + '_main_table_id'
 
 table_meta_data_data = [
                         ['id', '3%'],
-                        ['experiment', '5%'],
-                        ['data_label', '52%'],
-                        ['data_comment', '40%']
+                        ['experiment', '10%'],
+                        ['data_label', '50%'],
+                        ['data_comment', '37%']
                        ]
 
 single_api = 'limit'
@@ -72,7 +72,7 @@ home_button =  html.Button("Home",  id=page_name + "home_button_id", style=butto
 
 ##########################################################
 
-table_height = '100vh'
+table_height = '1000px'
 page_size = 54 ## rows of data
 row_height = '13px'
 table_font_size = '12px'
