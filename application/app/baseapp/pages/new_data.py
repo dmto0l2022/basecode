@@ -166,7 +166,8 @@ button_row = html.Div(
 )
 
 
-button_style = {'font-size': '13px', 'letter-spacing': '1px' , 'line-height': '15px', 'border': '2px solid black', 'border-radius': '40px' , 'margin-top':'0px', 'margin-left': '10px','margin-right': '10px'
+button_style = {'font-size': '13px', 'letter-spacing': '1px' , 'line-height': '15px', 'border': '2px solid black', 'border-radius': '40px',
+                'margin-top':'0px', 'margin-left': '10px','margin-right': '10px'}
 
 small_button_row = html.Div(
     [
