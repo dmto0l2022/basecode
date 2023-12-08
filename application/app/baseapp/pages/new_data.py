@@ -167,17 +167,17 @@ button_row = html.Div(
 
 
 button_style = {'font-size': '13px', 'letter-spacing': '1px' , 'line-height': '15px', 'border': '2px solid black', 'border-radius': '40px',
-                'margin-top':'0px', 'margin-left': '10px','margin-right': '10px', 'background': 'lightgrey'}
+                'margin-top':'0px', 'margin-left': '10px','margin-right': '10px', 'background': 'lightgrey', 'width' : '40px'}
 
 small_button_row = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(html.Button('  Save  ', id=page_name + '_save_' + 'button_id', n_clicks=0, className="w-95 btn-sm", style=button_style),
+                dbc.Col(html.Button('Save', id=page_name + '_save_' + 'button_id', n_clicks=0, className="btn-sm", style=button_style),
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width, style={'border': '1px solid black'}, className='text-center'),
-                dbc.Col(html.Button('  Cancel  ', id=page_name + '_cancel_' + 'button_id', n_clicks=0, className="w-95 btn-sm", style=button_style),
+                dbc.Col(html.Button('Cancel', id=page_name + '_cancel_' + 'button_id', n_clicks=0, className="btn-sm", style=button_style),
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width, style={'border': '1px solid black'}, className='text-center'),
-                dbc.Col(html.Button('  Home  ', id=page_name + '_home_' + 'button_id', n_clicks=0,className="w-95 btn-sm", style=button_style),
+                dbc.Col(html.Button('Home', id=page_name + '_home_' + 'button_id', n_clicks=0,className="btn-sm", style=button_style),
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width, style={'border': '1px solid black'}, className='text-center'),
             ], className="g-0"
         ),
