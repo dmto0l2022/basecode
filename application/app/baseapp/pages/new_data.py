@@ -179,7 +179,7 @@ small_button_row = html.Div(
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width, style={'border': '1px solid black'}),
                 dbc.Col(html.Button('Home', id=page_name + '_home_' + 'button_id', n_clicks=0,className="w-100 btn-sm", style=button_style),
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width, style={'border': '1px solid black'}),
-            ]
+            ], className="g-0"
         ),
     ], style={'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'400px', 'height' : '30px'}
 )
