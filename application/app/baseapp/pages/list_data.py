@@ -25,15 +25,15 @@ fastapi_url_one= "http://container_fastapi_data_1:8014/dmtool/fastapi_data/inter
 dash.register_page(__name__, path='/list_data')
 baseapp_prefix = '/application/baseapp'
 
-page_name = "list_all_limits"
-page_title = 'List All Limits'
+page_name = "list_data"
+page_title = 'List Data'
 main_table_id = page_name + '_main_table_id'
 
 table_meta_data_data = [
                         ['id', '3%'],
-                        ['experiment', '3%'],
-                        ['data_comment', '44%'],
-                        ['data_label', '44%'],
+                        ['experiment', '5%'],
+                        ['data_label', '52%'],
+                        ['data_comment', '40%']
                        ]
 
 single_api = 'limit'
@@ -41,7 +41,7 @@ multiple_api = 'limits'
 
 #### list all limits
 
-list_all_limits_form_title = html.Div(html.P(children='List All Limits', className = "NOPADDING_CONTENT FORM_TITLE"))
+list_all_limits_form_title = html.Div(html.P(children='List Data', className = "NOPADDING_CONTENT FORM_TITLE"))
 
 list_all_limits_form_content  = dbc.Row(
     [
