@@ -165,11 +165,14 @@ button_row = html.Div(
     ], style={'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'300px', 'height' : '35px'}
 )
 
+
+button_style = {'font-size': '13px', 'letter-spacing': '1px' , 'line-height': '15px', 'border': '2px solid black', 'border-radius': '40px' , 'margin-top':'0px', 'margin-left': '10px','margin-right': '10px'
+
 small_button_row = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(html.Button('Save', id=page_name + '_save_' + 'button_id', n_clicks=0, className="w-100 btn-sm", style={'margin-top':'0px'}),
+                dbc.Col(html.Button('Save', id=page_name + '_save_' + 'button_id', n_clicks=0, className="w-100 btn-sm", style=button_style),
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
                 dbc.Col(html.Button('Cancel', id=page_name + '_cancel_' + 'button_id', n_clicks=0, className="w-100 btn-sm", style={'margin-top':'0px'}),
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
