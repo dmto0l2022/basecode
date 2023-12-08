@@ -316,7 +316,7 @@ inner_container = html.Div(children=[load_limit_file_form], style={'width':'500p
 page_contents = html.Div(id=page_name+'page_content',
                          children=[ simple_mobile_container,
                                     dcc.Location(id='url', refresh=True), ## very important for url output of callback
-                                    button_row], className='container')
+                                  ], className='container')
 
 def parse_contents(contents):
     content_type, content_string = contents.split(',')
