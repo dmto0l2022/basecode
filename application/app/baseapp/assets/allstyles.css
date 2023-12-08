@@ -7,7 +7,7 @@
   --footer_height: 21px;
   --sidebar_width: 0px;
   --adbar_width: 0px;
-  --content_width: 100vw;
+  --content_width: 100%;
   --half_content_width: 50%;
   --half_content_height: 40%;
   --content_height: 80%;
@@ -15,9 +15,9 @@
   --graph_content_width:50%;
   --graph_width: 100%;
   --graph_height: 100%;
-  --form_width: 50vh;
-  --form_height: 40vh;
-  --full_table_width: 100vw;
+  --form_width: 50%;
+  --form_height: 40%;
+  --full_table_width: 100%;
   --full_table_height: 100%;
   --debug_section_height: 63px;
 }
@@ -86,12 +86,12 @@
   color: black;
   font-size:14px;
   font-weight: bold;
-  position: fixed;
+  position: absolute;
   top: 63px;
   left: 0;
   right: 0;
   height: 21px;
-  width:100vw;
+  width:100%;
   background-color: Gray;
 }
 
