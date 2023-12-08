@@ -148,7 +148,7 @@ class Limit_class:
         '''
     
 
-default_width = 3
+default_width = 4
 
 button_row = html.Div(
     [
@@ -162,14 +162,14 @@ button_row = html.Div(
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
             ]
         ),
-    ], style={'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'600px', 'height' : '35px'}
+    ], style={'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'300px', 'height' : '35px'}
 )
 
 small_button_row = html.Div(
     [
         dbc.Row(
             [
-                dbc.Col(html.Button('Save', id=page_name + '_save_' + 'button_id', n_clicks=0, className="btn-sm", style={'margin-top':'0px'}),
+                dbc.Col(html.Button('Save', id=page_name + '_save_' + 'button_id', n_clicks=0, className="btn btn-sm", style={'margin-top':'0px'}),
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
                 dbc.Col(html.Button('Cancel', id=page_name + '_cancel_' + 'button_id', n_clicks=0, className="btn-sm", style={'margin-top':'0px'}),
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
@@ -177,7 +177,7 @@ small_button_row = html.Div(
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
             ]
         ),
-    ], style={'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'600px', 'height' : '35px'}
+    ], style={'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'300px', 'height' : '35px'}
 )
 
 
