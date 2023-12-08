@@ -162,7 +162,7 @@ button_row = html.Div(
                         xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
             ]
         ),
-    ], style={'position': 'fixed','top': '51px', 'border': '3px solid green', 'width':'50%'}
+    ], style={'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'50%'}
 )
 
 
@@ -208,7 +208,7 @@ load_limit_file_form = html.Div(
         fl.y_unit_input_row,
         fl.year_input_row,
         html.Div(id='container', children=['here']),
-    ], style={'border': '3px solid blue','width':'600px', 'maxWidth':'400px', 'maxHeight': '550px', 'height': '550px'})
+    ], style={'position': 'absolute','top': '40px', 'left': '0px', 'border': '3px solid blue','width':'600px', 'maxWidth':'400px', 'maxHeight': '550px', 'height': '550px'})
 
 ## 'position': 'fixed','top': '88px'
 ###### scroll testing ######
@@ -276,7 +276,7 @@ child_5 = html.Div(id="child-5",
     with desktop publishing software like Aldus PageMaker including versions \
     of Lorem Ipsum."], style={'width': '500px', 'height': '500px','background-color': 'lightcoral'})
 
-simple_mobile_container = html.Div(children=[load_limit_file_form], className='container', style={'overflow': 'auto', 'border': '3px solid blue',  'background-color': 'lightblue'})
+simple_mobile_container = html.Div(children=[load_limit_file_form, button_row], className='container', style={'overflow': 'auto', 'border': '3px solid blue',  'background-color': 'lightblue'})
 
 
 inner_container = html.Div(children=[load_limit_file_form], style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
