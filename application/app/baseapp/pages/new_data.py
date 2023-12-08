@@ -324,7 +324,7 @@ child_5 = html.Div(id="child-5",
     with desktop publishing software like Aldus PageMaker including versions \
     of Lorem Ipsum."], style={'width': '500px', 'height': '500px','background-color': 'lightcoral'})
 
-simple_mobile_container = html.Div(children=[load_limit_file_form, small_button_row], className='container', style={'overflow': 'auto', 'border': '3px solid blue',  'background-color': 'lightblue'})
+simple_mobile_container = html.Div(children=[load_limit_file_form, small_button_row], className='container', style={'overflow': 'auto'})
 
 
 inner_container = html.Div(children=[load_limit_file_form], style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
