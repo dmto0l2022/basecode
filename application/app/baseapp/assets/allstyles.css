@@ -263,7 +263,7 @@
 }
 
 .PAGE_HEADER {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -273,7 +273,7 @@
 
 
 .PAGE_HEADER_0 {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -283,7 +283,7 @@
 
 
 .PAGE_HEADER_1 {
-    position: fixed;
+    position: absolute;
     top: 21px;
     left: 0;
     right: 0;
@@ -292,7 +292,7 @@
     }
 
 .PAGE_HEADER_2 {
-    position: fixed;
+    position: absolute;
     top: 42px;
     left: 0;
     right: 0;
@@ -368,7 +368,7 @@
 
 
 .PAGE_SIDE_RIGHT {
-    position: fixed;
+    position: absolute;
     top: var(--header_height);
     right: 0;
     bottom: var(--footer_height);
@@ -379,7 +379,7 @@
     }
 
 .PAGE_SIDE_LEFT {
-    position: fixed;
+    position: absolute;
     top: var(--header_height);
     left: 0;
     bottom: var(--footer_height);
@@ -389,7 +389,7 @@
 
 
 .PAGE_ADBAR {
-    position: fixed;
+    position: absolute;
     top: var(--header_height);
     right: 0;
     bottom: var(--footer_height);
@@ -398,7 +398,7 @@
     }
 
 .PAGE_FOOTER {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
@@ -407,7 +407,7 @@
     }
 
 .PAGE_FOOTER_BUTTONS {
-    position: fixed;
+    position: absolute;
     bottom: var(--footer_height);
     left: 0;
     right: 0;
@@ -416,7 +416,7 @@
     }
 
 .PAGE_CONTENT {
-    position: fixed;
+    position: absolute;
     top: var(--header_height);
     height:  calc(100% - 80px);
     width : var(--content_width);
@@ -426,7 +426,7 @@
     }
 
 .PAGE_TABLE_CONTENT_TOP_RIGHT {
-    position: fixed;
+    position: absolute;
     top: var(--header_height);
     height: calc((100% - 80px - 83px)/2);
     width : 100%;
@@ -439,7 +439,7 @@
 /* 84px allowing for debug fields */
 
 .PAGE_TABLE_CONTENT_BOTTOM_RIGHT {
-    position: fixed;
+    position: absolute;
     bottom: calc(var(--footer_height) + 84px);
     height: calc((100% - 80px - 83px)/2);
     width : 100%;
@@ -450,7 +450,7 @@
  /*width : var(--graph_content_width);*/
          
 .PAGE_GRAPH_CONTENT {
-    position: fixed;
+    position: absolute;
     top: var(--header_height);
     height: calc(100% - 80px  - 83px);
     width : var(--graph_content_width);
@@ -459,7 +459,7 @@
     }
 
 .PAGE_FULL_TABLE_CONTENT {
-    position: fixed;
+    position: absolute;
     top: 84px;
     height: var(--full_table_height);
     width : var(--full_table_width);
@@ -468,7 +468,7 @@
     }
 
 .PAGE_DEBUG_CONTENT {
-    position: fixed;
+    position: absolute;
     bottom: calc(var(--footer_height)* 2);
     height: var(--debug_section_height);
     width : var(--full_table_width);
@@ -477,7 +477,7 @@
     }
 
 .PAGE_GRAPH_COLUMN_CONTENT_RIGHT {
-    position: fixed;
+    position: absolute;
     top: var(--header_height);
     height: var(--graph_height);
     width : var(--graph_width);
@@ -486,7 +486,7 @@
     }
 
 .PAGE_GRAPH_COLUMN_CONTENT_LEFT {
-    position: fixed;
+    position: absolute;
     top: var(--header_height);
     height: var(--graph_height);
     width : var(--graph_width);
@@ -495,14 +495,14 @@
     }
 
 .BUTTONS_ON_PAGE_LEFT {
-    position: fixed;
+    position: absolute;
     bottom: var(--footer_height);
     left: var(--sidebar_width);
     background-color: red;
     }
 
 .DIV_ON_PAGE_RIGHT {
-    position: fixed;
+    position: absolute;
     bottom: var(--footer_height);
     right: var(--sidebar_width);
     background-color: pink;
@@ -526,7 +526,7 @@
   background: orange;
   width: 60vw;
   height: 60vh;
-  position: fixed;
+  position: absolute;
   top: 20vh;
   left: 20vw;
   margin: 0 0 0 0;
