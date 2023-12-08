@@ -135,12 +135,12 @@ class get_main_table:
             #print(row['name'], row['age'])
             add_dict = {'if': {'column_id': row['name'] },'width':row['width']}
             self.conditional_column_widths.append(add_dict)
-        print("conditional_column_widths>>>>>>>>>>>>", self.conditional_column_widths)
+        #print("conditional_column_widths>>>>>>>>>>>>", self.conditional_column_widths)
 
     def get_data_column_names(self):
         for index, row in self.table_meta_data_data_df.iterrows():  
             self.table_column_names_data = self.table_column_names_data + [row['name']]
-        print("table_column_names_data>>>>>>>>>>>>", self.table_column_names_data)
+        #print("table_column_names_data>>>>>>>>>>>>", self.table_column_names_data)
         
    
     
@@ -159,7 +159,7 @@ class get_main_table:
 
     def NewRow(self,dmtool_user_in):
         new_url = self.fastapi_url_one
-        print('new api key >>' + str(dmtool_user_in))
+        #print('new api key >>' + str(dmtool_user_in))
         data = {"user_id": 1}
         #dmtooluser_header = {'dmtool-userid':'1'}
         requests.post(new_url,json=data, headers=self.dmtool_user_header)
@@ -177,10 +177,10 @@ class get_main_table:
                 print("mt : fastapi_url_all for api key >>>>>>>>>>>>", self.fastapi_url_all)
                 r = requests.get(self.fastapi_url_all, headers = self.dmtool_user_header)
                 response_data = r.json()
-                print('response data')
-                print('===================')
-                print(response_data)
-                print('===================')
+                #print('response data')
+                #print('===================')
+                #print(response_data)
+                #print('===================')
                 self.response_data_frame = pd.DataFrame(response_data)
             except:
                 a = 1
@@ -191,8 +191,8 @@ class get_main_table:
       
         if self.response_data_frame.empty:
             empty_data = self.table_column_names_data+['edit','ceased','delete']
-            print("RefreshTableData >> empty_data >>>>>>", empty_data)
-            print("RefreshTableData >> all_table_column_names>>>>>>>>>>", self.all_table_column_names)
+            #print("RefreshTableData >> empty_data >>>>>>", empty_data)
+            #print("RefreshTableData >> all_table_column_names>>>>>>>>>>", self.all_table_column_names)
             self.main_table_data_frame = pd.DataFrame(data = [empty_data], columns = self.all_table_column_names)
             self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
         else:
@@ -209,8 +209,8 @@ class get_main_table:
         
     
     def get_dash_table(self):
-        print("column names : " , self.table_column_names_data)
-        print("column widths : " , self.conditional_column_widths)
+        #print("column names : " , self.table_column_names_data)
+        #print("column widths : " , self.conditional_column_widths)
         
         self.dash_table_main = dash_table.DataTable(
             #virtualization=True,
