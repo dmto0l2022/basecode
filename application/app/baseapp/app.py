@@ -202,8 +202,7 @@ collapse_button = html.Button([html.Span(className='navbar-toggler-icon')],
 				'aria-controls': 'navbarNav',
 				'aria-expanded': 'false',
 				'aria-label': 'Toggle navigation'
-				}
-				,style={'height':nav_bar_height})
+				})
 
 
 
