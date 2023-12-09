@@ -186,7 +186,7 @@ nav_menu = html.Div(id='id 111', children=[
 </nav>
 '''
 
-nav_bar_height = '30px'
+nav_bar_height = '35px'
 
 navbar_brand = html.A(className='navbar-brand', href='#',style={'height':nav_bar_height})
 image_path = 'assets/DMToolsLogo.png'
