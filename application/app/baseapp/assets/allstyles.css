@@ -75,6 +75,10 @@
   --adbar_width: 25px; ##5vw;
 **/
 
+.navbar-toggler-icon{
+    font-size: 0.6em;
+}
+
 .center {
   text-align: center;
   color: red;
