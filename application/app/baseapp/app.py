@@ -205,19 +205,20 @@ collapse_button = html.Button([html.Span(className='navbar-toggler-icon')],
 				})
 
 
+no_padding_or_margins = {'padding-left':'0px',  'padding-right':'0px',  'margin-left':'0px',  'margin-right':'0px'}
 
 just_nav_options = html.Div(className="collapse navbar-collapse", id="navbarNav",
 	children=[
 		html.Ul(children=[
 		            html.Li([
-		                    html.A('Plot', href='/application/baseapp/plot_menu', className='nav-link')],className='nav-item' ),
+		                    html.A('Plot', href='/application/baseapp/plot_menu', className='nav-link',style=no_padding_or_margins)],className='nav-item' ,style=no_padding_or_margins),
 		            html.Li([
-		                    html.A('Data', href='/application/baseapp/data_menu', className='nav-link')], className='nav-item' ),
+		                    html.A('Data', href='/application/baseapp/data_menu', className='nav-link',style=no_padding_or_margins)], className='nav-item' ,style=no_padding_or_margins),
 			    html.Li([
-		                    html.A('Admin', href='/application/baseapp/admin_menu', className='nav-link')], className='nav-item' ),
+		                    html.A('Admin', href='/application/baseapp/admin_menu', className='nav-link',style=no_padding_or_margins)], className='nav-item' ,style=no_padding_or_margins),
 			    html.Li([
-		                    html.A('Help', href='/application/baseapp/help', className='nav-link')], className='nav-item' ),
-            			], className='navbar-nav')
+		                    html.A('Help', href='/application/baseapp/help', className='nav-link',style=no_padding_or_margins)], className='nav-item' ,style=no_padding_or_margins),
+            			], className='navbar-nav',style=no_padding_or_margins)
 			  ])
 
 nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light',
