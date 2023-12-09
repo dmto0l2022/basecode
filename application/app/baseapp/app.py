@@ -225,7 +225,7 @@ nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-t
 				collapse_button,
 				just_nav_options
 					])
-			    ])
+			    ],style={'height':'20px'})
 
 '''
 
@@ -344,7 +344,14 @@ pages_container = html.Div([
 	], className='PAGE_CONTENT') ##, style={'overflow': 'auto'})
 
 
-pages_container_box = html.Div(children=[dash.page_container],className='PAGE_CONTENT')
+pages_container_box = html.Div(children=[dash.page_container],
+			       style={'position': 'absolute',
+					    'top': 'var(--header_height)',
+					    'height' :  'calc(100% - 80px)',
+					    'width' : 'var(--content_width)',
+					    'left': 'var(--sidebar_width)',
+					    'background-color': 'lightgray',
+					    'overflow-y': 'scroll'})
 
 layout4 = html.Div([##pc.page_header_0,
 		    ##pc.page_header_1,
@@ -355,8 +362,7 @@ layout4 = html.Div([##pc.page_header_0,
 		    ##pc.side_bar_right,
 		    pages_container_box,
 		    pc.page_footer_1],
-                   #className="container-fluid PAGE_PARENT_CONTAINER",
-		   className="container-fluid PAGE_PARENT_CONTAINER",
+		   className="container",
                   )
 
 app.layout = layout4
