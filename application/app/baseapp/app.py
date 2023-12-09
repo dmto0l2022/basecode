@@ -205,7 +205,7 @@ collapse_button = html.Button([html.Span(className='navbar-toggler-icon')],
 				})
 
 
-no_padding_or_margins = {'padding':'0px', 'margin':'0px', 'line-height': '10px'}
+no_padding_or_margins = {'padding':'0px', 'margin':'0px', 'line-height': '20px'}
 
 just_nav_options = html.Div(className="collapse navbar-collapse", id="navbarNav",
 	children=[
