@@ -203,6 +203,8 @@ collapse_button = html.Button([html.Span(className='navbar-toggler-icon')],
 				}
 				)
 
+nav_bar_height = '30px'
+
 just_nav_options = html.Div(className="collapse navbar-collapse", id="navbarNav",
 	children=[
 		html.Ul(children=[
@@ -225,7 +227,7 @@ nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-t
 				collapse_button,
 				just_nav_options
 					])
-			    ],style={'height':'20px'})
+			    ],style={'height':nav_bar_height})
 
 '''
 
