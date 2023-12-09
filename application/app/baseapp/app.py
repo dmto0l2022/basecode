@@ -186,9 +186,11 @@ nav_menu = html.Div(id='id 111', children=[
 </nav>
 '''
 
-navbar_brand = html.A(className='navbar-brand', href='#')
+nav_bar_height = '30px'
+
+navbar_brand = html.A(className='navbar-brand', href='#',style={'height':nav_bar_height})
 image_path = 'assets/DMToolsLogo.png'
-nav_image = html.Img(src=image_path)
+nav_image = html.Img(src=image_path,style={'height':nav_bar_height})
 
 
 collapse_button = html.Button([html.Span(className='navbar-toggler-icon')],
@@ -201,9 +203,9 @@ collapse_button = html.Button([html.Span(className='navbar-toggler-icon')],
 				'aria-expanded': 'false',
 				'aria-label': 'Toggle navigation'
 				}
-				)
+				,style={'height':nav_bar_height})
 
-nav_bar_height = '30px'
+
 
 just_nav_options = html.Div(className="collapse navbar-collapse", id="navbarNav",
 	children=[
