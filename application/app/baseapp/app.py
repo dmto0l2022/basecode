@@ -229,7 +229,7 @@ nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-t
 				collapse_button,
 				just_nav_options
 					])
-			    ],style={'height':nav_bar_height}, style=no_padding_or_margins)
+			    ],style={'height':nav_bar_height} | no_padding_or_margins)
 
 '''
 
