@@ -85,12 +85,16 @@
 }
 
 .navbar-nav > li{
+  display: inline-block;
   padding-left:0px;
   padding-right:00px;
   margin-left:0px;
   margin-right:0px;
 }
 
+.menu li a{
+  display: inline-block
+} 
 
 .center {
   text-align: center;
