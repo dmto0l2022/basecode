@@ -222,14 +222,14 @@ just_nav_options = html.Div(className="collapse navbar-collapse", id="navbarNav"
 			  ])
 
 nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light',
-		   children=[html.Div(className='container-fluid',
+		   children=[html.Div(className='container',
 			   children=[
 				navbar_brand,
 				nav_image,
 				collapse_button,
 				just_nav_options
 					])
-			    ],style={'height':nav_bar_height})
+			    ],style={'height':nav_bar_height}, style=no_padding_or_margins)
 
 '''
 
