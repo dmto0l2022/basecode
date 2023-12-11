@@ -121,7 +121,7 @@ server.config['FLASK_DEBUG'] = 0
 headertext = 'Dark Matter Tool'
 footertext = 'ACG'
 
-page_header_style = {'position': 'absolute','top': '0','left': '0','right': '0','height': '21px','background-color': 'Gray'}
+page_header_style = {'position': 'absolute','top': '0','left': '0','right': '0','height': '22px','background-color': 'Gray'}
 header_colum_style = {'height':'100%','background-color': 'black','padding':'0px','margin':'0px','text-align':'center'}
 header_text =  {'color': '#a569bd','background-color': 'Black','font-size': '16px'}
 
