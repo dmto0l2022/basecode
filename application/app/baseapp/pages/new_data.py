@@ -325,7 +325,7 @@ child_5 = html.Div(id="child-5",
     essentially unchanged. It was popularised in the 1960s with the release \
     of Letraset sheets containing Lorem Ipsum passages, and more recently \
     with desktop publishing software like Aldus PageMaker including versions \
-    of Lorem Ipsum."], style={'width': '360px', 'height': '640px','background-color': 'lightcoral'})
+    of Lorem Ipsum."], style={'width': '360px', 'height': '635px','background-color': 'lightcoral'})
 
 simple_mobile_container = html.Div(children=[load_limit_file_form, small_button_row], className='container', style={'overflow': 'auto'})
 
