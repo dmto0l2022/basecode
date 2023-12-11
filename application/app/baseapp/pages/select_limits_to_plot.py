@@ -68,9 +68,9 @@ class SelectLimitsToPlotDashBoardLayout():
         self.dmtool_userid = 0
         self.main_table_id =  "main_limits_table"
         self.table_meta_data_main_table = [
-                                        ['id', '5%'],
-                                        ['experiment', '5%'],
-                                        ['data_label', '90%']
+                                        #['id', '5%'],
+                                        #['experiment', '5%'],
+                                        ['data_label', '100%']
                                     ]
         self.table_height = '50vh'
         self.page_size = 26
@@ -78,8 +78,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.table_font_size = '11px'
         self.filter_table_heights = '60px'
 
-        self.page_content_style = {'position':'absolute',
-				   'top': '0px','padding':'0','margins':'0',
+        self.page_content_style = {'top': '0px','padding':'0','margins':'0',
 				   'left': '0','background-color': 'green',
                                    'overflow-y': 'scroll'}
         
@@ -566,7 +565,7 @@ class SelectLimitsToPlotDashBoardLayout():
             data=self.limits_to_plot_df.to_dict('records'),
             columns=[{'name': 'id', 'id': 'id'},
                      {'name': 'limit_id', 'id': 'limit_id'},
-                     {'name': 'data_reference', 'id': 'data_reference'},
+                     #{'name': 'data_reference', 'id': 'data_reference'},
                      {'name': 'data_label', 'id': 'data_label'}
                      ],
             #fixed_rows={'headers': True},
@@ -587,10 +586,10 @@ class SelectLimitsToPlotDashBoardLayout():
                  'width': '5%'},
                 {'if': {'column_id': 'limit_id'},
                  'width': '10%'},
-                {'if': {'column_id': 'data_reference'},
-                 'width': '25%'},
+                #{'if': {'column_id': 'data_reference'},
+                # 'width': '25%'},
                 {'if': {'column_id': 'data_label'},
-                 'width': '55%'},
+                 'width': '85%'},
             ],
             style_data={
                 'whiteSpace': 'nowrap'
@@ -603,7 +602,7 @@ class SelectLimitsToPlotDashBoardLayout():
                      self.limits_to_plot_table
                 ],
                 width=12,)],
-                    className ="TABLE_ROW NOPADDING")
+                    className ="NOPADDING")
 
     
    
