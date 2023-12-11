@@ -424,7 +424,7 @@ layout4 = html.Div([page_header,
 		   ## page_footer
 		   ],
 		   className="container",
-		   style={'position': 'fixed',
+		   style={'position': 'absolute',
 					    'top': '0px',
 					    'height' :  '100vh',
 					    'width' : '100vw',
