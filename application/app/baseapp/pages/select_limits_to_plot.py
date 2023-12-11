@@ -78,8 +78,9 @@ class SelectLimitsToPlotDashBoardLayout():
         self.table_font_size = '11px'
         self.filter_table_heights = '60px'
 
-        self.page_content_style = {'position':'absolute', 'top': '0px','height':  '100%',
-		                            'width' : '100%','left': '0','background-color': 'green',
+        self.page_content_style = {'position':'absolute',
+				   'top': '0px','padding':'0','margins','0',
+				   'left': '0','background-color': 'green',
                                    'overflow-y': 'scroll'}
         
         self.filter_table_cell_styles = {'textAlign': 'left',
@@ -654,7 +655,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         self.RowFilters,
                         self.RowLimits,
                         self.RowLimitsToPlot,
-                        self.DivOfButtons,
+                        #self.DivOfButtons,
                         self.RowListOfLimits],
                     width=12,)
         
