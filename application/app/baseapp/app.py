@@ -121,7 +121,7 @@ server.config['FLASK_DEBUG'] = 0
 headertext = 'Dark Matter Tool'
 footertext = 'ACG'
 
-page_header_style = {'position': 'absolute','top': '0','left': '0','right': '0','height': '21px','background-color': 'Gray'}
+page_header_style = {'position': 'sticky','top': '0','left': '0','right': '0','height': '21px','background-color': 'Gray'}
 header_colum_style = {'height':'100%','background-color': 'black','padding':'0px','margin':'0px','text-align':'center'}
 header_text =  {'color': '#a569bd','background-color': 'Black','font-size': '14px'}
 
@@ -136,7 +136,7 @@ page_header = dbc.Row(
     style = page_header_style
         )
 
-page_footer_style =  {'position': 'absolute','bottom': '0','left': '0','right': '0','height': '21px','background-color': 'gray'}
+page_footer_style =  {'position': 'sticky','bottom': '0','left': '0','right': '0','height': '21px','background-color': 'gray'}
 
 footer_column_style =  {'height': '100%','background-color': 'black','padding':'0px','margin':'0px','text-align':'center'}
 
@@ -275,7 +275,7 @@ nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-t
 				collapse_button,
 				just_nav_options
 					])
-			    ],style={'position':'absolute','top': '21px','left': '0','right':'0','height':nav_bar_height} | no_padding_or_margins)
+			    ],style={'position':'absolute','sticky': '21px','left': '0','right':'0','height':nav_bar_height} | no_padding_or_margins)
 
 '''
 
