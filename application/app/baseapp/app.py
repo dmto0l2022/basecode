@@ -266,7 +266,7 @@ just_nav_options = html.Div(className="collapse navbar-collapse", id="navbarNav"
 		                    html.A('Help', href='/application/baseapp/help', className='nav-link',style=no_padding_or_margins)],
 				    className='nav-item' ,style=some_padding_and_margins),
             			], className='navbar-nav',style=no_padding_or_margins)
-			  ]), style=no_padding_or_margins)
+			  ], style=no_padding_or_margins)
 
 nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light',
 		   children=[html.Div(className='container',
