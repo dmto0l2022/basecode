@@ -503,37 +503,37 @@ class SelectLimitsToPlotDashBoardLayout():
                     [
                         self.official_table
                     ],
-                    width=2,
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
                     ),
                 dbc.Col(
                     [
                         self.experiments_table
                     ],
-                    width=2,
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
                     ),
                 dbc.Col(
                     [
                         self.result_types_table
                     ],
-                    width=2,
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
                     ),
                 dbc.Col(
                     [
                         self.spin_dependency_table
                     ],
-                    width=2,
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
                     ),
                dbc.Col(
                     [
                         self.years_table
                     ],
-                    width=2,
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
                     ),
                dbc.Col(
                     [
                         self.greatest_hit_table
                     ],
-                    width=2,
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
                     ),
         ])
 
