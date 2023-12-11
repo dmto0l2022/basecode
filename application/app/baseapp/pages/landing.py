@@ -17,6 +17,11 @@ layout1 = html.Div(children=[
     html.Div(id='analytics-output'),
 ])
 
+
+page_content_style = {'position':'absolute', 'top': '0px','height':  '100%',
+		'width' : '100%','left': '0','background-color': 'green',
+		'overflow-y': 'scroll}
+
 no_padding = {'padding': '0 !important',    'padding-left': '0',    'padding-right':'0',   'margin-left':'0',    'margin-right': '0'}
 background_color_style = {'backgroundColor': 'lightgrey', 'border' : '1px black solid'}
 font_style={'color': 'black', 'fontSize': 14}
@@ -45,7 +50,7 @@ row_two_columns = html.Div(
 		dbc.Col(two_columns, xs=12, sm=12, md=12, lg=6, xl=6, xxl=6, style={'color': 'blue', 'fontSize': 14, 'border' : '1px black solid'}),
             ],
 		className='g-0', style={'height':'100%'},
-        ), ] , className="PAGE_CONTENT")
+        ), ] , style = page_content_style)
 	    
 row = html.Div(
     [
