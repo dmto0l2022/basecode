@@ -335,7 +335,7 @@ inner_container = html.Div(children=[child_5], style={'width':'500px', 'overflow
 page_contents = html.Div(id=page_name+'page_content',
                          children=[ inner_container,
                                     dcc.Location(id='url', refresh=True), ## very important for url output of callback
-                                  ], className='container', tyle={'overflow': 'auto'})
+                                  ], className='container', style={'overflow': 'auto'})
 
 def parse_contents(contents):
     content_type, content_string = contents.split(',')
