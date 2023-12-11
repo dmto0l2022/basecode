@@ -697,8 +697,8 @@ upload_xml_file_input_row = html.Div(
                       dcc.Upload(
                           id = 'upload_xml_file_form_field_id',
                           children= [
-                                    'Drag and Drop or ',
-                                    html.A('Select a File',className='FORM_SELECTFILE')
+                                    'Drop or ',
+                                    html.A('Select',className='FORM_SELECTFILE')
                                     ],
                        #className='FORM_COLUMN_UPLOAD',
                        className='FORM_COLUMN_DATA',
