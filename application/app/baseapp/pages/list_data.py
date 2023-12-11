@@ -32,8 +32,7 @@ main_table_id = page_name + '_main_table_id'
 table_meta_data_data = [
                         ['id', '3%'],
                         ['experiment', '10%'],
-                        ['data_label', '50%'],
-                        ['data_comment', '37%']
+                        ['data_label', '87%'],
                        ]
 
 single_api = 'limit'
@@ -84,8 +83,8 @@ internal_header={'dmtool-userid':'1'}
 main_table_1 = mte.get_main_table(page_title,
                                  main_table_id,
                                  table_meta_data_data,
-                                 table_height,
-                                 page_size,
+                                 #table_height,
+                                 #page_size,
                                  row_height,
                                  table_font_size,
                                  fastapi_url_all,
@@ -138,8 +137,8 @@ def get_layout():
     main_table_1 = mte.get_main_table(page_title,
                                  main_table_id,
                                  table_meta_data_data,
-                                 table_height,
-                                 page_size,
+                                 #table_height,
+                                 #page_size,
                                  row_height,
                                  table_font_size,
                                  fastapi_url_all,
