@@ -136,7 +136,7 @@ page_header = dbc.Row(
     style = page_header_style
         )
 
-page_footer_style =  {'position': 'sticky','bottom': '0','left': '0','right': '0','height': '21px','background-color': 'gray'}
+page_footer_style =  {'position': 'fixed','bottom': '0','left': '0','right': '0','height': '21px','background-color': 'gray'}
 
 footer_column_style =  {'height': '100%','background-color': 'black','padding':'0px','margin':'0px','text-align':'center'}
 
