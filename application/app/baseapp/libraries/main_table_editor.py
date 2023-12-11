@@ -230,5 +230,12 @@ class get_main_table:
             ##style_table={'height': 'calc(90vh-84px)', 'maxHeight': 'calc(90vh-84px)'},
             #page_size=self.page_size
             )
-    
+
+style_table={'overflowX': 'auto'},
+    style_cell={
+        'height': 'auto',
+        # all three widths are needed
+        'minWidth': '180px', 'width': '180px', 'maxWidth': '180px',
+        'whiteSpace': 'normal'
+    }
  
