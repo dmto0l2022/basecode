@@ -79,7 +79,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.filter_table_heights = '60px'
 
         self.page_content_style = {'position':'absolute',
-				   'top': '0px','padding':'0','margins','0',
+				   'top': '0px','padding':'0','margins':'0',
 				   'left': '0','background-color': 'green',
                                    'overflow-y': 'scroll'}
         
