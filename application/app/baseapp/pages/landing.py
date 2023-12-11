@@ -20,7 +20,7 @@ layout1 = html.Div(children=[
 
 page_content_style = {'position':'absolute', 'top': '0px','height':  '100%',
 		'width' : '100%','left': '0','background-color': 'green',
-		'overflow-y': 'scroll}
+		'overflow-y': 'scroll'}
 
 no_padding = {'padding': '0 !important',    'padding-left': '0',    'padding-right':'0',   'margin-left':'0',    'margin-right': '0'}
 background_color_style = {'backgroundColor': 'lightgrey', 'border' : '1px black solid'}
