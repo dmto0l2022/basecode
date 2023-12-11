@@ -68,10 +68,9 @@ class SelectLimitsToPlotDashBoardLayout():
         self.dmtool_userid = 0
         self.main_table_id =  "main_limits_table"
         self.table_meta_data_main_table = [
-                                        ['id', '3%'],
-                                        ['experiment', '3%'],
-                                        ['data_comment', '44%'],
-                                        ['data_label', '44%'],
+                                        ['id', '5%'],
+                                        ['experiment', '5%'],
+                                        ['data_label', '90%']
                                     ]
         self.table_height = '50vh'
         self.page_size = 26
