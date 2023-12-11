@@ -123,14 +123,15 @@ footertext = 'ACG'
 
 page_header_style = {'position': 'absolute','top': '0','left': '0','right': '0','height': '21px','background-color': 'Gray'}
 header_colum_style = {'height':'100%','background-color': 'black','padding':'0px','margin':'0px','text-align':'center'}
+header_text =  {'color': '#a569bd';'background-color': 'Black';'font-size': '16px'}
 
 page_header_0 = dbc.Row(
             [
-                dbc.Col(html.Div("",className="HEADER_TEXT"), width=4,style=header_colum_style),
+                dbc.Col(html.Div("",style=header_text), width=4,style=header_colum_style),
                 dbc.Col(
-                    html.Div("DMTools", className="HEADER_TEXT"), width=4, style=header_colum_style
+                    html.Div("DMTools", style=header_text), width=4, style=header_colum_style
                         ),
-                dbc.Col(html.Div("", className="HEADER_TEXT"), width=4, style=header_colum_style),
+                dbc.Col(html.Div("", style=header_text), width=4, style=header_colum_style),
             ],
     style = page_header_style
         )
