@@ -685,6 +685,7 @@ remove_site_address_input_row = html.Div(
 # Upload XML File - Select File
 
 style_form_select_file = {
+    'line-height': '20px',
     'text-align': 'left',
     'color': 'purple',
     'font-size': '13px',
