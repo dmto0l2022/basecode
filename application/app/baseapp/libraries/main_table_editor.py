@@ -231,6 +231,7 @@ class get_main_table:
             #page_size=self.page_size
             )
 
+'''
 style_table={'overflowX': 'auto'},
     style_cell={
         'height': 'auto',
@@ -238,4 +239,5 @@ style_table={'overflowX': 'auto'},
         'minWidth': '180px', 'width': '180px', 'maxWidth': '180px',
         'whiteSpace': 'normal'
     }
- 
+'''
+
