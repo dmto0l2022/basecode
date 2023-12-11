@@ -72,8 +72,8 @@ class SelectLimitsToPlotDashBoardLayout():
                                         #['experiment', '5%'],
                                         ['data_label', '100%']
                                     ]
-        self.table_height = '50vh'
-        self.page_size = 26
+        #self.table_height = '50vh'
+        #self.page_size = 26
         self.row_height = '12px'
         self.table_font_size = '11px'
         self.filter_table_heights = '60px'
@@ -628,8 +628,12 @@ class SelectLimitsToPlotDashBoardLayout():
 
     
     def CreateLayout(self):
-
-        self.DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id')
+	    page_content_style_1 =  {'position':'absolute', 'top': '0px','padding':'0','margins':'0','height':'100%', 'width':'100%','left': '0','background-color': 'green','overflow-y': 'scroll'}
+        plot_name_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0','background-color':'purple','overflow-y':'scroll','height':'80%'}
+	    row_limits_style = {'position':'absolute','top': '22px','padding':'0','margins':'0','left':'0','background-color':'purple','overflow-y':'scroll','height':'80%'}
+        main_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0','background-color':'red','overflow-y':'scroll','height':'100%'}
+	    
+        self.DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id', className="container",style=plot_name_style)
         
         
         
@@ -639,15 +643,14 @@ class SelectLimitsToPlotDashBoardLayout():
         home_button =  html.Button("Home",  id=self.page_name + "home_button_id", style=self.button_styling_1)
         list_button =  html.Button("List",  id=self.page_name + "list_button_id", style=self.button_styling_1)
         
-        self.DivOfButtons = html.Div(id= self.page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS")
+        self.DivOfButtons = html.Div(id= self.page_name + "page_buttons",
+				     children=[new_button,save_button,cancel_button,home_button,list_button],
+				     className="PAGE_FOOTER_BUTTONS")
         
         #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",
         #                    children=[self.main_data_table],
         #                    width=12,)],
         #                    className ="NOPADDING_CONTENT")
-
-        row_limits_style = {'padding':'0','margins':'0','left':'0','background-color':'purple','overflow-y':'scroll','height':'80%'}
-        main_style = {'padding':'0','margins':'0','left':'0','background-color':'red','overflow-y':'scroll','height':'100%'}
 	    
         #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],className = "container",style=row_limits_style)
         
@@ -662,10 +665,11 @@ class SelectLimitsToPlotDashBoardLayout():
                         self.RowLimits,
                         #self.RowLimitsToPlot,
                         #self.DivOfButtons,
-                        self.RowListOfLimits],
+                        #self.RowListOfLimits
+			],
                     className='container', style=main_style)
         
-        self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container",style=self.page_content_style)
+        self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container",style=page_content_style_1)
 
     def SetPlotNameCallback(self):
         @callback([Output(self.page_name +'_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children')],
