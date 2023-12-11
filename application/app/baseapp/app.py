@@ -401,7 +401,7 @@ pages_container_box = html.Div(children=[dash.page_container],
 					    'background-color': 'lightgray',
 					    'overflow-y': 'scroll'})
 
-layout4 = html.Div([pc.page_header_0,
+layout4 = html.Div([page_header_0,
 		    ##pc.page_header_1,
 		    ##pc.page_header_2,
 		    #nav_menu_button,
@@ -409,7 +409,7 @@ layout4 = html.Div([pc.page_header_0,
 		    ##pc.side_bar_left,
 		    ##pc.side_bar_right,
 		    pages_container_box,
-		    pc.page_footer_1],
+		    page_footer_1],
 		   className="container",
                   )
 
