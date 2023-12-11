@@ -276,7 +276,7 @@ nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-t
 				collapse_button,
 				just_nav_options
 					])
-			    ],style={'position':'sticky','top': '21px','left': '0','right':'0','height':nav_bar_height, 'width': '100%'} | no_padding_or_margins)
+			    ],style={'position':'sticky','top': '0px','left': '0','right':'0','height':nav_bar_height, 'width': '100%'} | no_padding_or_margins)
 
 '''
 
@@ -407,13 +407,13 @@ pages_container = html.Div([
 
 pages_container_box = html.Div(children=[dash.page_container],
 			       style={'position': 'absolute',
-					    'top': '54px',
+					    'top': '33px',
 					    'height' :  'calc(100% - 75px)',
 					    'width' : '100%',
 					    'left': '0px',
 					    'background-color': 'lightblue'})
 
-layout4 = html.Div([page_header,
+layout4 = html.Div([##page_header,
 		    ##pc.page_header_1,
 		    ##pc.page_header_2,
 		    #nav_menu_button,
