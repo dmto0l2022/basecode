@@ -729,7 +729,7 @@ class SelectLimitsToPlotDashBoardLayout():
             self.PopulateMainDataTable()
             
             return [html.H1(children=str(new_plot_id) + ' - ' + new_plot_name) , self.main_data_table]
-    '''
+    
     def ApplyFiltersCallback(self):
         @callback(
             Output(self.page_name + 'main_limits_table', 'data'),
@@ -1010,7 +1010,7 @@ class SelectLimitsToPlotDashBoardLayout():
             else:
                 href_return = '/application/baseapp/select_limits_to_plot'
                 return href_return
-	'''
+	
 
 #def get_layout():
 #    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
