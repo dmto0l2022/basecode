@@ -125,7 +125,7 @@ page_header_style = {'position': 'absolute','top': '0','left': '0','right': '0',
 header_colum_style = {'height':'100%','background-color': 'black','padding':'0px','margin':'0px','text-align':'center'}
 header_text =  {'color': '#a569bd','background-color': 'Black','font-size': '6px'}
 
-page_header_0 = dbc.Row(
+page_header = dbc.Row(
             [
                 dbc.Col(html.Div("",style=header_text), width=4,style=header_colum_style),
                 dbc.Col(
@@ -401,7 +401,7 @@ pages_container_box = html.Div(children=[dash.page_container],
 					    'background-color': 'lightgray',
 					    'overflow-y': 'scroll'})
 
-layout4 = html.Div([page_header_0,
+layout4 = html.Div([page_header,
 		    ##pc.page_header_1,
 		    ##pc.page_header_2,
 		    #nav_menu_button,
@@ -409,7 +409,7 @@ layout4 = html.Div([page_header_0,
 		    ##pc.side_bar_left,
 		    ##pc.side_bar_right,
 		    pages_container_box,
-		    page_footer_1],
+		    page_footer],
 		   className="container",
                   )
 
