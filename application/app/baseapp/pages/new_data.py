@@ -230,7 +230,7 @@ create_new_limit_form_title = html.Div(html.P(children='Create New Limit', class
 Limit = Limit_class
 
 
-
+container_style = {'margin':'0px', 'padding' : '0', 'background': 'lightgrey'}
 
 ######
 
@@ -256,7 +256,7 @@ load_limit_file_form = html.Div(
         fl.y_unit_input_row,
         fl.year_input_row,
         html.Div(id='container', children=['here']),
-    ], style={'width': '370px', 'height': '650px','background-color': 'lightcoral'})
+    ], className="container", style=container_style | {'width': '360px', 'height': '635px','background-color': 'lightcoral'})
 
 ##{'position': 'absolute','top': '30px', 'left': '0px', 'border': '3px solid blue','width':'400px', 'maxWidth':'400px', 'maxHeight': '550px', 'height': '550px'}
 ##style={'width':'500px','overflow-y':'auto','overflow-x':'scroll', 'height': '550px', 'maxHeight': '550px'})
@@ -330,11 +330,11 @@ child_5 = html.Div(id="child-5",
 simple_mobile_container = html.Div(children=[load_limit_file_form, small_button_row], className='container', style={'overflow': 'auto'})
 
 
-container_style = {'margin':'0px', 'padding' : '0', 'background': 'lightgrey'}
+
 
 
 # inner_container = html.Div(children=[child_5], style={'width':'500px', 'overflow': 'auto', 'height': '550px'}) not work horiz
-inner_container = html.Div(children=[child_5], className="container", style= container_style | {'overflow-y':'auto','overflow-x':'scroll'})
+inner_container = html.Div(children=[load_limit_file_form], className="container", style= container_style | {'overflow-y':'auto','overflow-x':'scroll'})
 ## 'overflow-y': 'overflow-y:hidden; ','overflow-x': 'scroll'
 ## {“maxHeight”: “400px”, “overflow”: “scroll”}
 
