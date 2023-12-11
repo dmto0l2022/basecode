@@ -687,7 +687,7 @@ remove_site_address_input_row = html.Div(
 style_form_select_file = {
     'text-align': 'left',
     'color': 'purple',
-    'font-size': '13px,
+    'font-size': '13px',
     'font-weight': 'bold'
 }
 
