@@ -684,6 +684,13 @@ remove_site_address_input_row = html.Div(
 
 # Upload XML File - Select File
 
+style_form_select_file = {
+    'text-align': 'left',
+    'color': 'purple',
+    'font-size': '13px,
+    'font-weight': 'bold'
+}
+
 upload_xml_file_input_row = html.Div(
     [
         dbc.Row(
@@ -698,7 +705,7 @@ upload_xml_file_input_row = html.Div(
                           id = 'upload_xml_file_form_field_id',
                           children= [
                                     'Drop or ',
-                                    html.A('Select',className='FORM_SELECTFILE')
+                                    html.A('Select',style=style_form_select_file)
                                     ],
                        #className='FORM_COLUMN_UPLOAD',
                        className='FORM_COLUMN_DATA',
