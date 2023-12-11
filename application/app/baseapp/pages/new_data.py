@@ -256,7 +256,9 @@ load_limit_file_form = html.Div(
         fl.y_unit_input_row,
         fl.year_input_row,
         html.Div(id='container', children=['here']),
-    ], className="container", style=container_style | {'width': '360px', 'height': '635px','background-color': 'lightcoral'})
+    ], className="container", style=container_style | {'background-color': 'lightcoral'})
+
+## 'width': '360px', 'height': '635px',
 
 ##{'position': 'absolute','top': '30px', 'left': '0px', 'border': '3px solid blue','width':'400px', 'maxWidth':'400px', 'maxHeight': '550px', 'height': '550px'}
 ##style={'width':'500px','overflow-y':'auto','overflow-x':'scroll', 'height': '550px', 'maxHeight': '550px'})
