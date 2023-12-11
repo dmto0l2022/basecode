@@ -256,7 +256,7 @@ load_limit_file_form = html.Div(
         fl.y_unit_input_row,
         fl.year_input_row,
         html.Div(id='container', children=['here']),
-    ], style={'width': '600px', 'height': '600px','background-color': 'lightcoral'})
+    ], style={'width': '370px', 'height': '650px','background-color': 'lightcoral'})
 
 ##{'position': 'absolute','top': '30px', 'left': '0px', 'border': '3px solid blue','width':'400px', 'maxWidth':'400px', 'maxHeight': '550px', 'height': '550px'}
 ##style={'width':'500px','overflow-y':'auto','overflow-x':'scroll', 'height': '550px', 'maxHeight': '550px'})
@@ -325,7 +325,7 @@ child_5 = html.Div(id="child-5",
     essentially unchanged. It was popularised in the 1960s with the release \
     of Letraset sheets containing Lorem Ipsum passages, and more recently \
     with desktop publishing software like Aldus PageMaker including versions \
-    of Lorem Ipsum."], style={'width': '500px', 'height': '500px','background-color': 'lightcoral'})
+    of Lorem Ipsum."], style={'width': '360px', 'height': '650px','background-color': 'lightcoral'})
 
 simple_mobile_container = html.Div(children=[load_limit_file_form, small_button_row], className='container', style={'overflow': 'auto'})
 
