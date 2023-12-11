@@ -53,8 +53,8 @@ class get_main_table:
     def __init__(self, page_title_in,
                  main_table_id_in,
                  table_meta_data_data_in,
-                 table_height_in,
-                 page_size_in,
+                 #table_height_in,
+                 #page_size_in,
                  row_height_in,
                  table_font_size_in,
                  fastapi_url_all_in,
@@ -65,8 +65,8 @@ class get_main_table:
         self.page_title = page_title_in
         self.main_table_id = main_table_id_in
         self.table_meta_data_data = table_meta_data_data_in
-        self.table_height = table_height_in
-        self.page_size = page_size_in
+        self.table_height = '100%'
+        self.page_size = 0
         self.row_height = row_height_in
         self.table_font_size = table_font_size_in
         self.fastapi_url_all = fastapi_url_all_in
