@@ -407,8 +407,8 @@ pages_container = html.Div([
 
 pages_container_box = html.Div(children=[dash.page_container],
 			       style={'position': 'absolute',
-					    'top': '33px',
-					    'height' :  'calc(100% - 75px)',
+					    'top': '34px',
+					    'height' :  'calc(100% - 76px)',
 					    'width' : '100%',
 					    'left': '0px',
 					    'background-color': 'lightblue'})
