@@ -377,6 +377,16 @@ navbar_dropdown = dbc.Navbar(
     color="dark",
     dark=True,
 )
+'''
+.PAGES_CONTAINER {
+    position: absolute;
+    top: var(--header_height);
+    height:  calc(100% - 80px);
+    width : var(--content_width);
+    left: var(--sidebar_width);
+    background-color: lightgray;
+    }
+'''
 
 pages_container = html.Div([
 	html.H1('Multi-page app with Dash Pages'),
@@ -400,8 +410,7 @@ pages_container_box = html.Div(children=[dash.page_container],
 					    'height' :  'calc(100% - 75px)',
 					    'width' : '100%',
 					    'left': '0px',
-					    'background-color': 'lightblue',
-					    'overflow-y': 'scroll'})
+					    'background-color': 'lightblue'})
 
 layout4 = html.Div([page_header,
 		    ##pc.page_header_1,
