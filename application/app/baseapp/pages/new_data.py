@@ -327,15 +327,15 @@ child_5 = html.Div(id="child-5",
 simple_mobile_container = html.Div(children=[load_limit_file_form, small_button_row], className='container', style={'overflow': 'auto'})
 
 
-inner_container = html.Div(children=[load_limit_file_form], style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
+inner_container = html.Div(children=[child_5], style={'width':'500px', 'overflow': 'auto', 'height': '550px'})
 
 ## 'overflow-y': 'overflow-y:hidden; ','overflow-x': 'scroll'
 ## {“maxHeight”: “400px”, “overflow”: “scroll”}
 
 page_contents = html.Div(id=page_name+'page_content',
-                         children=[ simple_mobile_container,
+                         children=[ inner_container,
                                     dcc.Location(id='url', refresh=True), ## very important for url output of callback
-                                  ], className='container')
+                                  ], className='container', tyle={'overflow': 'auto'})
 
 def parse_contents(contents):
     content_type, content_string = contents.split(',')
