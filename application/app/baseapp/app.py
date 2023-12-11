@@ -396,7 +396,7 @@ pages_container = html.Div([
 
 pages_container_box = html.Div(children=[dash.page_container],
 			       style={'position': 'absolute',
-					    'top': '44px',
+					    'top': '54px',
 					    'height' :  'calc(100% - 75px)',
 					    'width' : '100%',
 					    'left': '0px',
