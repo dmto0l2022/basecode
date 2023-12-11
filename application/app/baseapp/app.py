@@ -121,6 +121,20 @@ server.config['FLASK_DEBUG'] = 0
 headertext = 'Dark Matter Tool'
 footertext = 'ACG'
 
+page_header_style = {'position': 'absolute','top': '0','left': '0','right': '0','height': '21px','background-color': 'Gray'}
+header_colum_style = {'height':'100%','background-color': 'black','padding':'0px','margin':'0px','text-align':'center'}
+
+page_header_0 = dbc.Row(
+            [
+                dbc.Col(html.Div("",className="HEADER_TEXT"), width=4,style=header_colum_style),
+                dbc.Col(
+                    html.Div("DMTools", className="HEADER_TEXT"), width=4, style=header_colum_style
+                        ),
+                dbc.Col(html.Div("", className="HEADER_TEXT"), width=4, style=header_colum_style),
+            ],
+    style = page_header_style
+        )
+
 ### no drop down
 nav_menu = html.Div(id='id 111', children=[
     html.Ul([
@@ -186,7 +200,7 @@ nav_menu = html.Div(id='id 111', children=[
 </nav>
 '''
 
-nav_bar_height = '35px'
+nav_bar_height = '50px'
 
 navbar_brand = html.A(className='navbar-brand', href='#',style={'height':nav_bar_height})
 image_path = 'assets/DMToolsLogo.png'
@@ -361,7 +375,7 @@ pages_container_box = html.Div(children=[dash.page_container],
 					    'background-color': 'lightgray',
 					    'overflow-y': 'scroll'})
 
-layout4 = html.Div([##pc.page_header_0,
+layout4 = html.Div([pc.page_header_0,
 		    ##pc.page_header_1,
 		    ##pc.page_header_2,
 		    #nav_menu_button,
