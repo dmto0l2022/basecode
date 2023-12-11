@@ -328,7 +328,7 @@ simple_mobile_container = html.Div(children=[load_limit_file_form, small_button_
 
 
 # inner_container = html.Div(children=[child_5], style={'width':'500px', 'overflow': 'auto', 'height': '550px'}) not work horiz
-inner_container = html.Div(children=[child_5], style={'width':'500px','overflow-y':'hidden','overflow-x':'scroll', 'height': '550px', 'maxHeight': '550px'})
+inner_container = html.Div(children=[child_5], style={'width':'500px','overflow-y':'auto','overflow-x':'scroll', 'height': '550px', 'maxHeight': '550px'})
 ## 'overflow-y': 'overflow-y:hidden; ','overflow-x': 'scroll'
 ## {“maxHeight”: “400px”, “overflow”: “scroll”}
 
