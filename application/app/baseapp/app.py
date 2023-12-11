@@ -123,7 +123,7 @@ footertext = 'ACG'
 
 page_header_style = {'position': 'absolute','top': '0','left': '0','right': '0','height': '21px','background-color': 'Gray'}
 header_colum_style = {'height':'100%','background-color': 'black','padding':'0px','margin':'0px','text-align':'center'}
-header_text =  {'color': '#a569bd','background-color': 'Black','font-size': '12px'}
+header_text =  {'color': '#a569bd','background-color': 'Black','font-size': '6px'}
 
 page_header_0 = dbc.Row(
             [
