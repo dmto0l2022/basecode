@@ -640,13 +640,12 @@ class SelectLimitsToPlotDashBoardLayout():
         
         self.DivOfButtons = html.Div(id= self.page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button,list_button], className="PAGE_FOOTER_BUTTONS")
         
-        
         #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",
         #                    children=[self.main_data_table],
         #                    width=12,)],
         #                    className ="NOPADDING_CONTENT")
 
-	row_limits_style = {'padding':'0','margins':'0','left':'0','background-color':'purple','overflow-y':'scroll','height':'80vh'}
+        row_limits_style = {'padding':'0','margins':'0','left':'0','background-color':'purple','overflow-y':'scroll','height':'80vh'}
 
 	self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",
                             width=12,)],
