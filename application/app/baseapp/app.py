@@ -400,7 +400,7 @@ pages_container_box = html.Div(children=[dash.page_container],
 					    'height' :  'calc(100% - 75px)',
 					    'width' : '100%',
 					    'left': '0px',
-					    'background-color': 'lightgray',
+					    'background-color': 'lightblue',
 					    'overflow-y': 'scroll'})
 
 layout4 = html.Div([page_header,
