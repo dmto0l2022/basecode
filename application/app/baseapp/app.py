@@ -276,7 +276,7 @@ nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-t
 				collapse_button,
 				just_nav_options
 					])
-			    ],style={'position':'sticky','top': '21px','left': '0','right':'0','height':nav_bar_height} | no_padding_or_margins)
+			    ],style={'position':'sticky','top': '21px','left': '0','right':'0','height':nav_bar_height, 'width': '100%'} | no_padding_or_margins)
 
 '''
 
