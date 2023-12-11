@@ -135,6 +135,31 @@ page_header_0 = dbc.Row(
     style = page_header_style
         )
 
+page_footer_style =  {'position': 'absolute','bottom': '0','left': '0','right': '0','height': '21px','background-color': 'gray'}
+
+footer_column_style =  {'height': '100%','background-color': 'black','padding':'0px','margin':'0px','text-align':'center'}
+
+page_footer = dbc.Row(
+            [
+                dbc.Col(
+                    html.P("ACG", className="PAGE_TEXT"),
+                    width=4,
+                    style=footer_column_style,
+                ),
+                dbc.Col(
+                    html.P("Brown",  className="PAGE_TEXT"),
+                    width=4,
+                    style=footer_column_style,
+                ),
+                 dbc.Col(
+                    html.P("Version 0", className="PAGE_TEXT"),
+                    width=4,
+                    style=footer_column_style,
+                 ),
+            ],
+            style = page_footer_style
+        )
+
 ### no drop down
 nav_menu = html.Div(id='id 111', children=[
     html.Ul([
@@ -247,7 +272,7 @@ nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-t
 				collapse_button,
 				just_nav_options
 					])
-			    ],style={'height':nav_bar_height} | no_padding_or_margins)
+			    ],style={'position':'absolute','top': '21px','left': '0','right':'0','height':nav_bar_height} | no_padding_or_margins)
 
 '''
 
@@ -368,8 +393,8 @@ pages_container = html.Div([
 
 pages_container_box = html.Div(children=[dash.page_container],
 			       style={'position': 'absolute',
-					    'top': 'var(--header_height)',
-					    'height' :  'calc(100% - 80px)',
+					    'top': '44px',
+					    'height' :  'calc(100vh - 80px)',
 					    'width' : 'var(--content_width)',
 					    'left': 'var(--sidebar_width)',
 					    'background-color': 'lightgray',
