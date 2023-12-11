@@ -646,6 +646,7 @@ class SelectLimitsToPlotDashBoardLayout():
         #                    className ="NOPADDING_CONTENT")
 
         row_limits_style = {'padding':'0','margins':'0','left':'0','background-color':'purple','overflow-y':'scroll','height':'80%'}
+        main_style = {'padding':'0','margins':'0','left':'0','background-color':'red','overflow-y':'scroll','height':'100%'}
 	    
         #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],className = "container",style=row_limits_style)
         
@@ -653,7 +654,7 @@ class SelectLimitsToPlotDashBoardLayout():
 	    
         self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'))
         
-        maincolumn = dbc.Col(
+        maincolumn = html.Div(
                         [dcc.Location(id=page_name+'url',refresh=True),
                         self.DivPlotName,
                         self.RowFilters,
@@ -661,7 +662,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         #self.RowLimitsToPlot,
                         #self.DivOfButtons,
                         self.RowListOfLimits],
-                    width=12,)
+                    className='container', style=main_style)
         
         self.layout = html.Div(id=page_name+'content',children=maincolumn,style=self.page_content_style)
 
