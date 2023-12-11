@@ -79,6 +79,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.filter_table_heights = '60px'
 
         self.page_content_style = {'top': '0px','padding':'0','margins':'0',
+				   'height':'100%', 'width':'100%',
 				   'left': '0','background-color': 'green',
                                    'overflow-y': 'scroll'}
         
@@ -664,7 +665,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         self.RowListOfLimits],
                     className='container', style=main_style)
         
-        self.layout = html.Div(id=page_name+'content',children=maincolumn,style=self.page_content_style)
+        self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container",style=self.page_content_style)
 
     def SetPlotNameCallback(self):
         @callback([Output(self.page_name +'_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children')],
