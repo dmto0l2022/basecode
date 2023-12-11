@@ -256,7 +256,10 @@ load_limit_file_form = html.Div(
         fl.y_unit_input_row,
         fl.year_input_row,
         html.Div(id='container', children=['here']),
-    ], style={'position': 'absolute','top': '30px', 'left': '0px', 'border': '3px solid blue','width':'400px', 'maxWidth':'400px', 'maxHeight': '550px', 'height': '550px'})
+    ], style={'width': '600px', 'height': '600px','background-color': 'lightcoral'})
+
+##{'position': 'absolute','top': '30px', 'left': '0px', 'border': '3px solid blue','width':'400px', 'maxWidth':'400px', 'maxHeight': '550px', 'height': '550px'}
+##style={'width':'500px','overflow-y':'auto','overflow-x':'scroll', 'height': '550px', 'maxHeight': '550px'})
 
 ## 'position': 'fixed','top': '88px'
 ###### scroll testing ######
@@ -328,7 +331,7 @@ simple_mobile_container = html.Div(children=[load_limit_file_form, small_button_
 
 
 # inner_container = html.Div(children=[child_5], style={'width':'500px', 'overflow': 'auto', 'height': '550px'}) not work horiz
-inner_container = html.Div(children=[child_5], style={'width':'500px','overflow-y':'auto','overflow-x':'scroll', 'height': '550px', 'maxHeight': '550px'})
+inner_container = html.Div(children=[child_5], style={'width':'100%','overflow-y':'auto','overflow-x':'scroll', 'height': '100%')
 ## 'overflow-y': 'overflow-y:hidden; ','overflow-x': 'scroll'
 ## {“maxHeight”: “400px”, “overflow”: “scroll”}
 
