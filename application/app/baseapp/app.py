@@ -140,20 +140,22 @@ page_footer_style =  {'position': 'absolute','bottom': '0','left': '0','right': 
 
 footer_column_style =  {'height': '100%','background-color': 'black','padding':'0px','margin':'0px','text-align':'center'}
 
+footer_text_style =  {'color': '#a569bd','background-color': 'Black','font-size': '14px'}
+
 page_footer = dbc.Row(
             [
                 dbc.Col(
-                    html.P("ACG", className="PAGE_TEXT"),
+                    html.P("ACG", style=footer_text_style),
                     width=4,
                     style=footer_column_style,
                 ),
                 dbc.Col(
-                    html.P("Brown",  className="PAGE_TEXT"),
+                    html.P("Brown", style=footer_text_style),
                     width=4,
                     style=footer_column_style,
                 ),
                  dbc.Col(
-                    html.P("Version 0", className="PAGE_TEXT"),
+                    html.P("Version 0", style=footer_text_style),
                     width=4,
                     style=footer_column_style,
                  ),
@@ -395,9 +397,9 @@ pages_container = html.Div([
 pages_container_box = html.Div(children=[dash.page_container],
 			       style={'position': 'absolute',
 					    'top': '44px',
-					    'height' :  'calc(100vh - 80px)',
-					    'width' : 'var(--content_width)',
-					    'left': 'var(--sidebar_width)',
+					    'height' :  'calc(100% - 75px)',
+					    'width' : '100%',
+					    'left': '0px',
 					    'background-color': 'lightgray',
 					    'overflow-y': 'scroll'})
 
