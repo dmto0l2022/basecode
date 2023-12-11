@@ -966,7 +966,7 @@ date_of_run_start_input_row = html.Div(
         dbc.Row(
             [
                 dbc.Col(
-                    html.Label('Date of Run Start :',className='FORM_COLUMN_LABEL'),
+                    html.Label('Run Start Date :',className='FORM_COLUMN_LABEL'),
                     className='FORM_LABEL_COLUMN',
                     width = label_column_width
                 ),
@@ -1004,7 +1004,7 @@ date_of_run_end_input_row = html.Div(
         dbc.Row(
             [
                 dbc.Col(
-                    html.Label('Date of Run End :',className='FORM_COLUMN_LABEL'),
+                    html.Label('Run End Date :',className='FORM_COLUMN_LABEL'),
                     className='FORM_LABEL_COLUMN',
                     width = label_column_width
                 ),
