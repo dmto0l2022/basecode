@@ -106,10 +106,6 @@
   font-size:50px;
 }
 
-.PlotName {
-  background-color: Orange;
-}
-
 .TABLE_TITLE {
   text-align: center;
   color: black;
@@ -976,20 +972,24 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
     border:1px solid black;
 }
 
+.plot_name {
+  background-color: Orange;
+}
+       
 // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap
 
        
 // Small devices (landscape phones, 576px and up)
 @media screen and (min-width: 578px) and (max-width: 767px) {
-     .PlotName {
+     .plot_name {
     background-color: red !important;
   }
 }
 
 // Medium devices (tablets, 768px and up)
 @media screen and (min-width: 768px) and (max-width: 992px){
-    .PlotName {
+    .plot_name {
     background-color: orange !important;
   }
     
@@ -997,21 +997,21 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
 
 // Large devices (desktops, 992px and up)
 @media screen and (min-width: 992px) and (max-width: 1199px) {
-    .PlotName {
+    .plot_name {
     background-color: yellow !important;
   }
 }
 
 // X-Large devices (large desktops, 1200px and up)
 @media screen and (min-width: 1200px) and (max-width: 1399px) {
-    .PlotName {
+    .plot_name {
     background-color: green !important;
   }
 }
 
 // XX-Large devices (larger desktops, 1400px and up)
 @media screen and (min-width: 1400px) {
-    .PlotName {
+    .plot_name {
     background-color: blue !important;
   }
 }
