@@ -980,14 +980,14 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
 // No media query for `xs` since this is the default in Bootstrap
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
+@media all and (min-width: 576px) {
      .PlotName {
     background-color: red;
   }
 }
 
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
+@media all and (min-width: 768px) {
     .PlotName {
     background-color: orange;
   }
@@ -995,21 +995,21 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
 }
 
 // Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
+@media all and (min-width: 992px) {
     .PlotName {
     background-color: yellow;
   }
 }
 
 // X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
+@media all and (min-width: 1200px) {
     .PlotName {
     background-color: green;
   }
 }
 
 // XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) {
+@media all and (min-width: 1400px) {
     .PlotName {
     background-color: blue;
   }
