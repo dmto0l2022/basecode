@@ -633,11 +633,11 @@ class SelectLimitsToPlotDashBoardLayout():
 				 'background-color': 'green',
 				 'overflow-y': 'scroll'}
         plot_name_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0',
-			   'background-color':'purple','overflow-y':'scroll','height':'80%'}
+			               'background-color':'purple','overflow-y':'scroll','height':'80%'}
         row_limits_style = {'position':'absolute','top': '22px','padding':'0','margins':'0','left':'0',
-			    'background-color':'purple','overflow-y':'scroll','height':'80%'}
-        main_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0','
-				background-color':'red','overflow-y':'scroll','height':'100%'}
+			                'background-color':'purple','overflow-y':'scroll','height':'80%'}
+        main_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0',
+		              'background-color':'red','overflow-y':'scroll','height':'100%'}
 	    
         self.DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id', className="container",style=plot_name_style)
         
