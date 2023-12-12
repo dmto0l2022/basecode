@@ -636,7 +636,7 @@ class SelectLimitsToPlotDashBoardLayout():
         row_filters_style = {'position':'absolute','top': '20px','padding':'0','margins':'0','left':'0',
 			                'background-color':'blue','height':'200px', 'width':'100%'}
         row_limits_style = {'position':'absolute','top': '220px','padding':'0','margins':'0','left':'0',
-			                'background-color':'green','height':'100px', 'width':'100%'}
+			                'background-color':'green','height':'300px', 'width':'100%'}
         main_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0','height':'100%','width':'100%',
 		              'background-color':'red'}
 	    
@@ -698,7 +698,7 @@ class SelectLimitsToPlotDashBoardLayout():
 	    
         #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],style=row_limits_style)
         
-        self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div_xxx",width=12,)],style=row_limits_style)
+        self.RowLimits = dbc.Row([dbc.Col(children=[html.Div(children='Data Starts')], id=self.page_name+"main_table_div_xxx",width=12,)],style=row_limits_style)
 	    
         self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'))
         
