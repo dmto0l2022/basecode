@@ -631,10 +631,10 @@ class SelectLimitsToPlotDashBoardLayout():
         page_content_style_1 =  {'position':'fixed', 'width':'100vw', 'height':'100vh','top': '0px','padding':'0','margins':'0',
 				                 'left': '0',
 				                 'background-color': 'lightgreen'}
-        plot_name_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0',
+        plot_name_style = {'position':'absolute','top': '20px','padding':'0','margins':'0','left':'0',
 			               'background-color':'purple','height':'22px', 'width' : '200px'}
-        row_limits_style = {'position':'absolute','top': '22px','padding':'0','margins':'0','left':'0',
-			                'background-color':'purple','height':'80%'}
+        row_limits_style = {'position':'absolute','top': '42px','padding':'0','margins':'0','left':'0',
+			                'background-color':'green','height':'80%', 'width':'100%'}
         main_style = {'position':'absolute','top': '22px','bottom':'0','padding':'0','margins':'0','left':'0',
 		              'background-color':'red'}
 	    
