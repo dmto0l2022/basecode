@@ -628,7 +628,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
     
     def CreateLayout(self):
-        page_content_style_1 =  {'position':'fixed', 'width':'100vw', 'height':'100vh','top': '0px','padding':'0','margins':'0',
+        page_content_style_1 =  {'position':'relative', 'width':'100vw', 'height':'100vh','top': '0px','padding':'0','margins':'0',
 				                 'left': '0',
 				                 'background-color': 'lightgreen'}
         plot_name_style = {'position':'absolute','top': '20px','padding':'0','margins':'0','left':'0',
