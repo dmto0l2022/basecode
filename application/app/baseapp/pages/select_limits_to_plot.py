@@ -632,15 +632,54 @@ class SelectLimitsToPlotDashBoardLayout():
 				                 'left': '0',
 				                 'background-color': 'lightgreen'}
         plot_name_style = {'position':'absolute','top': '20px','padding':'0','margins':'0','left':'0',
-			               'background-color':'purple','height':'22px', 'width' : '200px'}
-        row_limits_style = {'position':'absolute','top': '42px','padding':'0','margins':'0','left':'0',
-			                'background-color':'green','height':'80%', 'width':'100%'}
+			               'background-color':'purple','height':'5%', 'width' : '100%'}
+	    row_filters_style = {'position':'absolute','top': '42px','padding':'0','margins':'0','left':'0',
+			                'background-color':'blue','height':'20%', 'width':'100%'}
+        row_limits_style = {'position':'absolute','top': '100px','padding':'0','margins':'0','left':'0',
+			                'background-color':'green','height':'50%', 'width':'100%'}
         main_style = {'position':'absolute','top': '22px','bottom':'0','padding':'0','margins':'0','left':'0',
 		              'background-color':'red'}
 	    
         self.DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id',style=plot_name_style)
         
-        
+        self.RowFilters =  dbc.Row([
+                dbc.Col(
+                    [
+                        self.official_table
+                    ],
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
+                    ),
+                dbc.Col(
+                    [
+                        self.experiments_table
+                    ],
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
+                    ),
+                dbc.Col(
+                    [
+                        self.result_types_table
+                    ],
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
+                    ),
+                dbc.Col(
+                    [
+                        self.spin_dependency_table
+                    ],
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
+                    ),
+               dbc.Col(
+                    [
+                        self.years_table
+                    ],
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
+                    ),
+               dbc.Col(
+                    [
+                        self.greatest_hit_table
+                    ],
+                    width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
+                    ),
+        ], style=row_filters_style)
         
         new_button =  html.Button("New", id= self.page_name + "new_button_id", style=self.button_styling_1)
         save_button =  html.Button("Save", id= self.page_name + "save_button_id", style=self.button_styling_1)
