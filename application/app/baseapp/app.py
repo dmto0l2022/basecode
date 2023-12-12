@@ -101,10 +101,12 @@ app = Dash(__name__,
             requests_pathname_prefix=REQUESTS_PATHNAME_PREFIX,#  '/login/baseapp/',
             external_stylesheets=external_stylesheets,
 	    external_scripts=external_scripts,
-            meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1'}],
+            meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}],
             ##suppress_callback_exceptions=True,
 	  )
 
+
+#app = dash.Dash(name, meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}] ) 
 
 server = app.server
 server.config['SECRET_KEY'] = FLASK_SECRET_KEY
