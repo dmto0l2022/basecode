@@ -631,14 +631,14 @@ class SelectLimitsToPlotDashBoardLayout():
         page_content_style_1 =  {'position':'relative', 'width':'100vw', 'height':'100vh','top': '0px','padding':'0','margins':'0',
 				                 'left': '0',
 				                 'background-color': 'lightgreen'}
-        button_style = {'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'100%', 'height' : '25px'}
-        plot_name_style = {'position':'absolute','top': '25px','padding':'0','margins':'0','left':'0',
+        button_style = {'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'100%', 'height' : '35px'}
+        plot_name_style = {'position':'absolute','top': '35px','padding':'0','margins':'0','left':'0',
 			               'background-color':'purple','height':'20px', 'width' : '100%'}
-        row_filters_style = {'position':'absolute','top': '45px','padding':'0','margins':'0','left':'0',
+        row_filters_style = {'position':'absolute','top': '55px','padding':'0','margins':'0','left':'0',
 			                'background-color':'blue','height':'200px', 'width':'100%'}
-        row_limits_style = {'position':'absolute','top': '245px','padding':'0','margins':'0','left':'0',
+        row_limits_style = {'position':'absolute','top': '255px','padding':'0','margins':'0','left':'0',
 			                'background-color':'green','height':'300px', 'width':'100%'}
-        plot_limits_style = {'position':'absolute','top': '545px','padding':'0','margins':'0','left':'0',
+        plot_limits_style = {'position':'absolute','top': '555px','padding':'0','margins':'0','left':'0',
 			                'background-color':'grey','height':'150px', 'width':'100%'}
         
         
