@@ -691,17 +691,18 @@ class SelectLimitsToPlotDashBoardLayout():
         cancel_button = html.Button("Cancel",  id=self.page_name + "cancel_button_id", style=self.button_styling_1)
         home_button =  html.Button("Home",  id=self.page_name + "home_button_id", style=self.button_styling_1)
         list_button =  html.Button("List",  id=self.page_name + "list_button_id", style=self.button_styling_1)
-
+	    
+        default_width = 4
 
         row_of_buttons = dbc.Row(
                         [
-                        dbc.Col(html.Button('Save', id=page_name + '_save_' + 'button_id', n_clicks=0,
+                        dbc.Col(html.Button('Save', id=self.page_name + '_save_' + 'button_id', n_clicks=0,
                             className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
                             xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
-                        dbc.Col(html.Button('Cancel', id=page_name + '_cancel_' + 'button_id', n_clicks=0,
+                        dbc.Col(html.Button('Cancel', id=self.page_name + '_cancel_' + 'button_id', n_clicks=0,
                             className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
                             xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
-                        dbc.Col(html.Button('Home', id=page_name + '_home_' + 'button_id', n_clicks=0,
+                        dbc.Col(html.Button('Home', id=self.page_name + '_home_' + 'button_id', n_clicks=0,
                             className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
                             xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
                         ]
