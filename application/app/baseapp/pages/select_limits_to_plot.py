@@ -631,14 +631,17 @@ class SelectLimitsToPlotDashBoardLayout():
         page_content_style_1 =  {'position':'relative', 'width':'100vw', 'height':'100vh','top': '0px','padding':'0','margins':'0',
 				                 'left': '0',
 				                 'background-color': 'lightgreen'}
-        plot_name_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0',
+        button_style = {'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'100%', 'height' : '25px'}
+        plot_name_style = {'position':'absolute','top': '25px','padding':'0','margins':'0','left':'0',
 			               'background-color':'purple','height':'20px', 'width' : '100%'}
-        row_filters_style = {'position':'absolute','top': '20px','padding':'0','margins':'0','left':'0',
+        row_filters_style = {'position':'absolute','top': '45px','padding':'0','margins':'0','left':'0',
 			                'background-color':'blue','height':'200px', 'width':'100%'}
-        row_limits_style = {'position':'absolute','top': '220px','padding':'0','margins':'0','left':'0',
+        row_limits_style = {'position':'absolute','top': '245px','padding':'0','margins':'0','left':'0',
 			                'background-color':'green','height':'300px', 'width':'100%'}
-        plot_limits_style = {'position':'absolute','top': '520px','padding':'0','margins':'0','left':'0',
+        plot_limits_style = {'position':'absolute','top': '545px','padding':'0','margins':'0','left':'0',
 			                'background-color':'grey','height':'150px', 'width':'100%'}
+        
+        
         main_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0','height':'100%','width':'100%',
 		              'background-color':'red'}
 	    
@@ -688,7 +691,23 @@ class SelectLimitsToPlotDashBoardLayout():
         cancel_button = html.Button("Cancel",  id=self.page_name + "cancel_button_id", style=self.button_styling_1)
         home_button =  html.Button("Home",  id=self.page_name + "home_button_id", style=self.button_styling_1)
         list_button =  html.Button("List",  id=self.page_name + "list_button_id", style=self.button_styling_1)
-        
+
+
+    	row_of_buttons = dbc.Row(
+                                    [
+                                        dbc.Col(html.Button('Save', id=page_name + '_save_' + 'button_id', n_clicks=0,
+                                                            className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
+                                                xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
+                                        dbc.Col(html.Button('Cancel', id=page_name + '_cancel_' + 'button_id', n_clicks=0,
+                                                            className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
+                                                xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
+                                        dbc.Col(html.Button('Home', id=page_name + '_home_' + 'button_id', n_clicks=0,
+                                                            className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
+                                                xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
+                                    ]
+                                , style=button_style)
+
+	    
         self.DivOfButtons = html.Div(id= self.page_name + "page_buttons",
 				     children=[new_button,save_button,cancel_button,home_button,list_button],
 				     className="PAGE_FOOTER_BUTTONS")
@@ -712,6 +731,7 @@ class SelectLimitsToPlotDashBoardLayout():
         
         maincolumn = html.Div(
                         [dcc.Location(id=page_name+'url',refresh=True),
+                        row_of_buttons,
                         self.DivPlotName,
                         self.RowFilters,
                         self.RowLimits,
