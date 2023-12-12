@@ -1016,7 +1016,7 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
 }
 
   
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 700px) {
     .root-container {
         display: flex;
         flex-wrap: wrap;
