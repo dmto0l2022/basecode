@@ -14,6 +14,8 @@ navbar_brand = html.A(className='navbar-brand', href='#')
 image_path = 'assets/DMToolsLogo.png'
 nav_image = html.Img(src=image_path)
 
+DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id',className='PlotName')
+
 cell_row = html.Div(
     [
         dbc.Row(
@@ -42,6 +44,7 @@ button_row = html.Div(
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
     dcc.Location(id="url", refresh=True), ## important to allow redirects
+    DivPlotName,
     #html.Div("Data Menu"),
     button_row,
     ##html.Button('Create New', id=page_name + '_create_new_' + 'button_id', n_clicks=0),
