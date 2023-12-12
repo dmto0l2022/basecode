@@ -634,8 +634,8 @@ class SelectLimitsToPlotDashBoardLayout():
         plot_name_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0',
 			               'background-color':'purple','height':'20px', 'width' : '100%'}
         row_filters_style = {'position':'absolute','top': '20px','padding':'0','margins':'0','left':'0',
-			                'background-color':'blue','height':'50px', 'width':'100%'}
-        row_limits_style = {'position':'absolute','top': '100px','padding':'0','margins':'0','left':'0',
+			                'background-color':'blue','height':'150px', 'width':'100%'}
+        row_limits_style = {'position':'absolute','top': '170px','padding':'0','margins':'0','left':'0',
 			                'background-color':'green','height':'100px', 'width':'100%'}
         main_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0','height':'90%','width':'100%',
 		              'background-color':'red'}
