@@ -15,11 +15,6 @@ import pickle
 #r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
 
 
-dash.register_page(__name__, path='/select_limits_to_plot')
-dmtool_userid = 1 ## testing
-page_name = 'select_limits_to_plot'
-listoflimits = []
-
 #### select limits to plot
 
 from dash import dcc
@@ -56,6 +51,13 @@ from app.baseapp.libraries import main_table_editor as mte
 #print("guid.dmtool_userid >>>>>>>>>>>>>>>>", guid.dmtool_userid)
 
 dashdataandtables = adt.DashDataAndTables(dmtool_userid)
+
+dash.register_page(__name__, path='/select_limits_to_plot')
+dmtool_userid = 1 ## testing
+page_name = 'select_limits_to_plot'
+listoflimits = []
+
+
 
 #####
 
