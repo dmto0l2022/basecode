@@ -106,6 +106,10 @@
   font-size:50px;
 }
 
+.PlotName {
+  background-color: BlueViolet;
+}
+
 .TABLE_TITLE {
   text-align: center;
   color: black;
