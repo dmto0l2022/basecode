@@ -628,9 +628,9 @@ class SelectLimitsToPlotDashBoardLayout():
 
     
     def CreateLayout(self):
-        page_content_style_1 =  {'position':'absolute', 'top': '0px','padding':'0','margins':'0',
+        page_content_style_1 =  {'position':'fixed', 'width':'100vh', 'height':'100vw','top': '0px','padding':'0','margins':'0',
 				                 'left': '0',
-				                 'background-color': 'green'}
+				                 'background-color': 'lightgreen'}
         plot_name_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0',
 			               'background-color':'purple','height':'22px'}
         row_limits_style = {'position':'absolute','top': '22px','padding':'0','margins':'0','left':'0',
@@ -673,7 +673,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         #self.RowListOfLimits
 			], style=main_style)
         
-        self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container",style=page_content_style_1)
+        self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container-fluid",style=page_content_style_1)
 
     def SetPlotNameCallback(self):
         @callback([Output(self.page_name +'_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children')],
