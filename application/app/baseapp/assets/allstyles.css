@@ -973,7 +973,6 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
 }
 
 .plot_name {
-  background-color: green;
 }
        
 // X-Small devices (portrait phones, less than 576px)
@@ -982,14 +981,14 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
        
 // Small devices (landscape phones, 576px and up)
 @media screen and (min-width: 578px) and (max-width: 767px) {
-     .plot_name {
+     body {
     background-color: red !important;
   }
 }
 
 // Medium devices (tablets, 768px and up)
 @media screen and (min-width: 768px) and (max-width: 992px){
-    .plot_name {
+    body {
     background-color: orange !important;
   }
     
@@ -997,21 +996,21 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
 
 // Large devices (desktops, 992px and up)
 @media screen and (min-width: 992px) and (max-width: 1199px) {
-    .plot_name {
+    body {
     background-color: yellow !important;
   }
 }
 
 // X-Large devices (large desktops, 1200px and up)
 @media screen and (min-width: 1200px) and (max-width: 1399px) {
-    .plot_name {
+    body {
     background-color: green !important;
   }
 }
 
 // XX-Large devices (larger desktops, 1400px and up)
 @media screen and (min-width: 1400px) {
-    .plot_name {
+    body {
     background-color: blue !important;
   }
 }
