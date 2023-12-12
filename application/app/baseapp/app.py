@@ -423,7 +423,7 @@ layout4 = html.Div([##page_header,
 		    pages_container_box,
 		   ## page_footer
 		   ],
-		   className="container",
+		   className="container-fluid",
 		   style={'position': 'fixed',
                   'height': '100vh',
                   'width': '100vw',
