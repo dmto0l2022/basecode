@@ -637,7 +637,7 @@ class SelectLimitsToPlotDashBoardLayout():
 			                'background-color':'blue','height':'20px', 'width':'100%'}
         row_limits_style = {'position':'absolute','top': '100px','padding':'0','margins':'0','left':'0',
 			                'background-color':'green','height':'100px', 'width':'100%'}
-        main_style = {'position':'absolute','top': '22px','padding':'0','margins':'0','left':'0','height':'90%','width':'100%',
+        main_style = {'position':'absolute','top': '15px','padding':'0','margins':'0','left':'0','height':'90%','width':'100%',
 		              'background-color':'red'}
 	    
         self.DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id',style=plot_name_style)
