@@ -425,7 +425,10 @@ layout4 = html.Div([##page_header,
 		   ],
 		   className="container",
 		   style={'position': 'relative',
-                  'min-height': '100%',
+                  'height': '100vh',
+                  'width': '100vw',
+                  'margins':'0',
+                  'padding':'0',
 				  'background-color': 'pink'}
                   )
 
