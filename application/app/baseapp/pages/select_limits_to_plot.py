@@ -633,8 +633,7 @@ class SelectLimitsToPlotDashBoardLayout():
 				                 'left': '0',
 				                 'background-color': 'lightgreen'}
         button_style = {'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'100%', 'height' : '35px'}
-        plot_name_style = {'position':'absolute','top': '35px','padding':'0','margins':'0','left':'0',
-			               'background-color':'purple','height':'20px', 'width' : '100%'}
+        plot_name_style = {'position':'absolute','top': '35px','padding':'0','margins':'0','left':'0','height':'20px', 'width' : '100%'}
         row_filters_style = {'position':'absolute','top': '55px','padding':'0','margins':'0','left':'0',
 			                'background-color':'blue','height':'200px', 'width':'100%'}
         row_limits_style = {'position':'absolute','top': '255px','padding':'0','margins':'0','left':'0',
