@@ -628,14 +628,14 @@ class SelectLimitsToPlotDashBoardLayout():
 
     
     def CreateLayout(self):
-        page_content_style_1 =  {'position':'fixed', 'width':'100vw', 'height':'100vh','top': '0px','padding':'1','margins':'0',
+        page_content_style_1 =  {'position':'fixed', 'width':'100vw', 'height':'100vh','top': '0px','padding':'0','margins':'0',
 				                 'left': '0',
 				                 'background-color': 'lightgreen'}
         plot_name_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0',
-			               'background-color':'purple','height':'22px'}
+			               'background-color':'purple','height':'22px', 'width' : '100%'}
         row_limits_style = {'position':'absolute','top': '22px','padding':'0','margins':'0','left':'0',
 			                'background-color':'purple','height':'80%'}
-        main_style = {'position':'absolute','top': '0','bottom':'0','padding':'1','margins':'0','left':'0',
+        main_style = {'position':'absolute','top': '0','bottom':'0','padding':'0','margins':'0','left':'0',
 		              'background-color':'red'}
 	    
         self.DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id',style=plot_name_style)
