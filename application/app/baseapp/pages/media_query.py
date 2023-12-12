@@ -13,7 +13,7 @@ top = dbc.Col('top', style={'height': '10em', 'background-color': '#636EFA'})
 middle = dbc.Col('middle', style={'height': '20em', 'background-color': '#EF553B'})
 bottom = dbc.Col('bottom', style={'height': '8em', 'background-color': '#00CC96'})
 
-layout = [
+layout_inner = [
     dbc.Col(
         top,
         xs=dict(order=1, size=12),
@@ -31,3 +31,4 @@ layout = [
     )
 ]
 
+layout = dbc.Container(layout_inner, className='root-container')
