@@ -50,14 +50,14 @@ from app.baseapp.libraries import main_table_editor as mte
 
 #print("guid.dmtool_userid >>>>>>>>>>>>>>>>", guid.dmtool_userid)
 
-dashdataandtables = adt.DashDataAndTables(dmtool_userid)
+
 
 dash.register_page(__name__, path='/select_limits_to_plot')
 dmtool_userid = 1 ## testing
 page_name = 'select_limits_to_plot'
 listoflimits = []
 
-
+dashdataandtables = adt.DashDataAndTables(dmtool_userid)
 
 #####
 
