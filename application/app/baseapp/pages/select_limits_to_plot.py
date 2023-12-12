@@ -631,10 +631,10 @@ class SelectLimitsToPlotDashBoardLayout():
         page_content_style_1 =  {'position':'relative', 'width':'100vw', 'height':'100vh','top': '0px','padding':'0','margins':'0',
 				                 'left': '0',
 				                 'background-color': 'lightgreen'}
-        plot_name_style = {'position':'absolute','top': '20px','padding':'0','margins':'0','left':'0',
+        plot_name_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0',
 			               'background-color':'purple','height':'20px', 'width' : '100%'}
-        row_filters_style = {'position':'absolute','top': '42px','padding':'0','margins':'0','left':'0',
-			                'background-color':'blue','height':'20px', 'width':'100%'}
+        row_filters_style = {'position':'absolute','top': '20px','padding':'0','margins':'0','left':'0',
+			                'background-color':'blue','height':'50px', 'width':'100%'}
         row_limits_style = {'position':'absolute','top': '100px','padding':'0','margins':'0','left':'0',
 			                'background-color':'green','height':'100px', 'width':'100%'}
         main_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0','height':'90%','width':'100%',
