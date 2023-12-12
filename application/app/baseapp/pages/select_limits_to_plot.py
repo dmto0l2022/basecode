@@ -637,6 +637,8 @@ class SelectLimitsToPlotDashBoardLayout():
 			                'background-color':'blue','height':'200px', 'width':'100%'}
         row_limits_style = {'position':'absolute','top': '220px','padding':'0','margins':'0','left':'0',
 			                'background-color':'green','height':'300px', 'width':'100%'}
+	    plot_limits_style = {'position':'absolute','top': '520px','padding':'0','margins':'0','left':'0',
+			                'background-color':'grey','height':'150px', 'width':'100%'}
         main_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0','height':'100%','width':'100%',
 		              'background-color':'red'}
 	    
@@ -699,15 +701,21 @@ class SelectLimitsToPlotDashBoardLayout():
         #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],style=row_limits_style)
         
         self.RowLimits = dbc.Row([dbc.Col(children=[html.Div(children='Data Starts')], id=self.page_name+"main_table_div_xxx",width=12,)],style=row_limits_style)
-	    
-        self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'))
+
+        self.RowLimitsToPlot = dbc.Row([dbc.Col(
+                [
+                     html.Div(children='Limits to Plot Here')
+                ],
+                width=12,)],style=plot_limits_style)
+        
+        self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'),style=plot_limits_style)
         
         maincolumn = html.Div(
                         [dcc.Location(id=page_name+'url',refresh=True),
                         self.DivPlotName,
                         self.RowFilters,
                         self.RowLimits,
-                        #self.RowLimitsToPlot,
+                        self.RowLimitsToPlot,
                         #self.DivOfButtons,
                         #self.RowListOfLimits
 			], style=main_style)
