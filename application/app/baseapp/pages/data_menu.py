@@ -14,7 +14,7 @@ navbar_brand = html.A(className='navbar-brand', href='#')
 image_path = 'assets/DMToolsLogo.png'
 nav_image = html.Img(src=image_path)
 
-DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id',className='PlotName')
+DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id',className='plot_name')
 
 cell_row = html.Div(
     [
