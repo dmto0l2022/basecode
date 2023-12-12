@@ -9,9 +9,9 @@ import dash_bootstrap_components as dbc
 
 dash.register_page(__name__, path='/media_query', title="Media Query")
 
-top = dbc.Col('top', style={'height': '10em', 'background-color': '#636EFA'})
-middle = dbc.Col('middle', style={'height': '20em', 'background-color': '#EF553B'})
-bottom = dbc.Col('bottom', style={'height': '8em', 'background-color': '#00CC96'})
+top = dbc.Col('top',id='topbox', style={'height': '10em', 'background-color': 'red'})
+middle = dbc.Col('middle',id='middlebox', style={'height': '20em', 'background-color': 'orange'})
+bottom = dbc.Col('bottom',id='bottombox', style={'height': '8em', 'background-color': 'green'})
 
 layout_inner = [
     dbc.Col(
