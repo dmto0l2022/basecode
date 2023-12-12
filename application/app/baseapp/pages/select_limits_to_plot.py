@@ -628,10 +628,16 @@ class SelectLimitsToPlotDashBoardLayout():
 
     
     def CreateLayout(self):
-        page_content_style_1 =  {'position':'absolute', 'top': '0px','padding':'0','margins':'0','height':'100%', 'width':'100%','left': '0','background-color': 'green','overflow-y': 'scroll'}
-        plot_name_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0','background-color':'purple','overflow-y':'scroll','height':'80%'}
-        row_limits_style = {'position':'absolute','top': '22px','padding':'0','margins':'0','left':'0','background-color':'purple','overflow-y':'scroll','height':'80%'}
-        main_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0','background-color':'red','overflow-y':'scroll','height':'100%'}
+        page_content_style_1 =  {'position':'absolute', 'top': '0px','padding':'0','margins':'0',
+				 'height':'100%', 'width':'100%','left': '0',
+				 'background-color': 'green',
+				 'overflow-y': 'scroll'}
+        plot_name_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0',
+			   'background-color':'purple','overflow-y':'scroll','height':'80%'}
+        row_limits_style = {'position':'absolute','top': '22px','padding':'0','margins':'0','left':'0',
+			    'background-color':'purple','overflow-y':'scroll','height':'80%'}
+        main_style = {'position':'absolute','top': '0','padding':'0','margins':'0','left':'0','
+				background-color':'red','overflow-y':'scroll','height':'100%'}
 	    
         self.DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id', className="container",style=plot_name_style)
         
@@ -652,9 +658,9 @@ class SelectLimitsToPlotDashBoardLayout():
         #                    width=12,)],
         #                    className ="NOPADDING_CONTENT")
 	    
-        #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],className = "container",style=row_limits_style)
+        #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],style=row_limits_style)
         
-        self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div_xxx",width=12,)],className = "container",style=row_limits_style)
+        self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div_xxx",width=12,)],style=row_limits_style)
 	    
         self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'))
         
@@ -666,8 +672,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         #self.RowLimitsToPlot,
                         #self.DivOfButtons,
                         #self.RowListOfLimits
-			],
-                    className='container', style=main_style)
+			], style=main_style)
         
         self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container",style=page_content_style_1)
 
