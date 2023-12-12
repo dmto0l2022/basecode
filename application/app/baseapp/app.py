@@ -406,7 +406,7 @@ pages_container = html.Div([
 
 
 pages_container_box = html.Div(children=[dash.page_container],
-			       style={'position': 'absolute',
+			       style={'position': 'fixed',
 					    'top': '34px',
 					    'height' :  'calc(100% - 76px)',
 					    'width' : '100%',
@@ -424,7 +424,7 @@ layout4 = html.Div([##page_header,
 		   ## page_footer
 		   ],
 		   className="container",
-		   style={'position': 'relative',
+		   style={'position': 'fixed',
                   'height': '100vh',
                   'width': '100vw',
                   'margins':'0',
