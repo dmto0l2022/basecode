@@ -693,7 +693,7 @@ class SelectLimitsToPlotDashBoardLayout():
         list_button =  html.Button("List",  id=self.page_name + "list_button_id", style=self.button_styling_1)
 
 
-row_of_buttons = dbc.Row(
+        row_of_buttons = dbc.Row(
                         [
                         dbc.Col(html.Button('Save', id=page_name + '_save_' + 'button_id', n_clicks=0,
                             className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
