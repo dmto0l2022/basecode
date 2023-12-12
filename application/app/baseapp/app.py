@@ -231,7 +231,9 @@ nav_menu = html.Div(id='id 111', children=[
 nav_bar_height = '33px'
 
 navbar_brand = html.A(className='navbar-brand', href='#',style={'height':nav_bar_height})
-image_path = 'assets/DMToolsLogo.png'
+
+#html.Img(src=dash.get_asset_url('DMToolsLogo.png'))
+image_path = dash.get_asset_url('DMToolsLogo.png')
 nav_image = html.Img(src=image_path,style={'height':nav_bar_height})
 
 
