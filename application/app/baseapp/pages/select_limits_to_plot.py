@@ -50,7 +50,6 @@ from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
 
 from app.baseapp.libraries import main_table_editor as mte
 
-dash.register_page(__name__, path='/select_limits_to_plot')
 
 #guid = gdu.GetUserID()
 
