@@ -1023,4 +1023,7 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
         flex-direction: column;
         height: 300px;
     }
+  #topbox {
+    background-color: purple !important;
+  }
 }
