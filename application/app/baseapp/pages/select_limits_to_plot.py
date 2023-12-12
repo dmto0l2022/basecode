@@ -646,7 +646,7 @@ class SelectLimitsToPlotDashBoardLayout():
         main_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0','height':'100%','width':'100%',
 		              'background-color':'red'}
 	    
-        self.DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id',style=plot_name_style)
+        self.DivPlotName = html.Div(children='Plot Name Here',id=page_name +'_plot_name_id',style=plot_name_style, className='PlotName')
         
         self.RowFilters =  dbc.Row([
                 dbc.Col(
