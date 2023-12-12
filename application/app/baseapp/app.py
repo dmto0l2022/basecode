@@ -424,12 +424,9 @@ layout4 = html.Div([##page_header,
 		   ## page_footer
 		   ],
 		   className="container",
-		   style={'position': 'absolute',
-					    'top': '0px',
-					    'height' :  '100vh',
-					    'width' : '100vw',
-					    'left': '0px',
-					    'background-color': 'pink'}
+		   style={'position': 'relative',
+                  'min-height': '100%',
+				  'background-color': 'pink'}
                   )
 
 app.layout = layout4
