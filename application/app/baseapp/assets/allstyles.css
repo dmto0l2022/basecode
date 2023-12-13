@@ -1121,7 +1121,7 @@ plot data 60px
     .select_limits_to_plot_plot_name_class {
     background-color: red !important;
   }
- .select_limits_to_plot_row_filters_class{
+ .select_limits_to_plot_row_limits_class{
      height:150px;
  }
 }
@@ -1131,7 +1131,7 @@ plot data 60px
     .select_limits_to_plot_plot_name_class {
     background-color: orange !important;
   }
-     .select_limits_to_plot_row_filters_class{
+     .select_limits_to_plot_row_limits_class{
      height:200px;
  }
 }
@@ -1142,7 +1142,7 @@ plot data 60px
     .select_limits_to_plot_plot_name_class {
     background-color: green !important;
   }
-     .select_limits_to_plot_row_filters_class{
+     .select_limits_to_plot_row_limits_class{
      height:250px;
  }
 }
@@ -1161,7 +1161,7 @@ plot data 60px
     .select_limits_to_plot_plot_name_class {
     background-color: blue !important;
   }
-      .select_limits_to_plot_row_filters_class{
+.select_limits_to_plot_row_limits_class{
      height:300px;
  }
 }
