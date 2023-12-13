@@ -1015,7 +1015,9 @@ screen 3 768 * 1024
 screen 4 >768
 */
 
-*/ select data to plot heights
+/*
+select data to plot heights
+
 screen 1
 --------
 navbar 33px
@@ -1050,7 +1052,14 @@ plot data 60px
 
 */
 
-@media screen and (min-width: 578px) and (max-width: 767px) {
+@media screen and (max-width: 375px) {
+    .plot_name {
+    background-color: red !important;
+  }
+}
+
+
+@media screen and (min-width: 376px) and (max-width: 390px) {
     .plot_name {
     background-color: red !important;
   }
@@ -1058,7 +1067,7 @@ plot data 60px
 
 /* Medium devices (tablets, 768px and up) */
 
-@media screen and (min-width: 768px) and (max-width: 992px){
+@media screen and (min-width: 391px) and (max-width: 768px){
     .plot_name {
     background-color: orange !important;
   }
@@ -1066,7 +1075,7 @@ plot data 60px
 }
 
 /* Large devices (desktops, 992px and up) */
-@media screen and (min-width: 992px) and (max-width: 1199px) {
+@media screen and (min-width: 767px) and (max-width: 1024px) {
     .plot_name {
     background-color: yellow !important;
   }
@@ -1074,19 +1083,20 @@ plot data 60px
 
 /* X-Large devices (large desktops, 1200px and up) */
 
-@media screen and (min-width: 1200px) and (max-width: 1399px) {
+@media screen and (min-width: 1025px) {
     .plot_name {
     background-color: green !important;
   }
 }
 
-/* XX-Large devices (larger desktops, 1400px and up) */
+/* XX-Large devices (larger desktops, 1400px and up) 
 
 @media screen and (min-width: 1400px) {
     plot_name {
     background-color: blue !important;
   }
 }
+*/
 
   
 @media screen and (min-width: 700px) and (max-width: 992px) {
