@@ -183,7 +183,7 @@
 }
 
 .heading1 {
-  background-color: tomato;
+  background-color:orange;
   color: white;
   border: 2px solid black;
   margin: 20px;
@@ -197,7 +197,7 @@
              padding-right:0;
              margin-left:0;
              margin-right: 0;
-             ##border:1px solid black
+             /*border:1px solid black*/
              }
 
 .MASTER_CONTAINER_STYLE {height:100vh;
@@ -366,6 +366,7 @@
     background-color:pink;
 }
 
+/*
 .parent {style_cell={'textAlign': 'left','padding': '0px','font_size': font_size,
                         'overflow': 'hidden',
                         'textOverflow': 'ellipsis',
@@ -378,6 +379,7 @@
   width: 300px;
   position: relative;
 }
+*/
 
 .PAGE_CENTER_DIV {
   border: 5px solid;
