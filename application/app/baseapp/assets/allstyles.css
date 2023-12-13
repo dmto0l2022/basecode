@@ -979,8 +979,8 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
   padding:0;
   margins:0;
   left:0;
-  height:20px;
-  width : 100%;
+  height : 20px;
+  width : 100px;
   }
        
 // X-Small devices (portrait phones, less than 576px)
@@ -989,14 +989,14 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
        
 // Small devices (landscape phones, 576px and up)
 @media screen and (min-width: 578px) and (max-width: 767px) {
-     #select_limits_to_plot_plot_name_id {
+    .plot_name {
     background-color: red !important;
   }
 }
 
 // Medium devices (tablets, 768px and up)
 @media screen and (min-width: 768px) and (max-width: 992px){
-    #select_limits_to_plot_plot_name_id {
+    .plot_name {
     background-color: orange !important;
   }
     
@@ -1004,14 +1004,14 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
 
 // Large devices (desktops, 992px and up)
 @media screen and (min-width: 992px) and (max-width: 1199px) {
-    #select_limits_to_plot_plot_name_id {
+    .plot_name {
     background-color: yellow !important;
   }
 }
 
 // X-Large devices (large desktops, 1200px and up)
 @media screen and (min-width: 1200px) and (max-width: 1399px) {
-    #select_limits_to_plot_plot_name_id {
+    .plot_name {
     background-color: green !important;
   }
 }
