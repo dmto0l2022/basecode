@@ -973,7 +973,14 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
 }
 
 .plot_name {
-}
+  position:absolute;
+  top: 35px;
+  padding:0;
+  margins:0;
+  left:0;
+  height:20px;
+  width : 100%;
+  }
        
 // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap
