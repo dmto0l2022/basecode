@@ -686,7 +686,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     ],
                     width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
                     ),
-        ], style=select_limits_to_plot_row_filters_style)
+        ], className="select_limits_to_plot_row_filters_class") ## style=select_limits_to_plot_row_filters_style)
         
         new_button =  html.Button("New", id= self.page_name + "new_button_id", style=self.button_styling_1)
         save_button =  html.Button("Save", id= self.page_name + "save_button_id", style=self.button_styling_1)
