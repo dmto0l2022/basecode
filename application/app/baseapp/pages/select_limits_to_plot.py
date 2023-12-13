@@ -728,7 +728,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 [
                      html.Div(children='Limits to Plot Here')
                 ],
-                width=12,)],style=plot_limits_style)
+                width=12,)],style=select_limits_to_plot_plot_limits_style)
         
         self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'),style=select_limits_to_plot_plot_limits_style)
         
