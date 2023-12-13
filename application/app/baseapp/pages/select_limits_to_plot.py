@@ -651,10 +651,11 @@ class SelectLimitsToPlotDashBoardLayout():
                 	            'id': 'column-{}'.format(i)
                 	        } for i in range(1,15)],
                 	        data=[
-                	            {'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)}
+                	            {'column-{}'.format(i): (j + (i-1)*25) for i in range(1, 15)}
                 	            for j in range(5)
                 	        ],
-                	        style_table={'overflowX': 'scroll'},
+                	        style_table={'overflowX': 'scroll', 'height': 400},
+				fixed_rows={'headers': True},
                     		)
                 	    
         ##style=plot_name_style, 
