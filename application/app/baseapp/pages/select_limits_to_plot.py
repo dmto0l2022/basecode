@@ -730,7 +730,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 ],
                 width=12,)],className='select_limits_to_plot_plot_limits_class') ## style=select_limits_to_plot_plot_limits_style)
         
-        self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'),className='select_limits_to_plot_plot_limits_class')## style=select_limits_to_plot_plot_limits_style)
+        #self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'),className='select_limits_to_plot_plot_limits_class')## style=select_limits_to_plot_plot_limits_style)
         
         maincolumn = html.Div(
                         [dcc.Location(id=page_name+'url',refresh=True),
