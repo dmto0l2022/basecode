@@ -734,7 +734,7 @@ class SelectLimitsToPlotDashBoardLayout():
         #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],className='select_limits_to_plot_row_limits_class')## style=select_limits_to_plot_row_limits_style)
         
         #self.RowLimits = dbc.Row([dbc.Col(children=[html.Div(children='Data Starts')], id=self.page_name+"main_table_div_xxx",width=12,)],className='select_limits_to_plot_row_limits_class') ##,style=select_limits_to_plot_row_limits_style)
-	self.RowLimits = dbc.Row([dbc.Col(children=[example_table], id=self.page_name+"main_table_div_xxx",width=12,)],className='select_limits_to_plot_row_limits_class') ##,style=select_limits_to_plot_row_limits_style)
+        self.RowLimits = dbc.Row([dbc.Col(children=[example_table], id=self.page_name+"main_table_div_xxx",width=12,)],className='select_limits_to_plot_row_limits_class') ##,style=select_limits_to_plot_row_limits_style)
 
         self.RowLimitsToPlot = dbc.Row([dbc.Col(
                 [
