@@ -1141,22 +1141,64 @@ plot data 60px
 @media screen and (max-width: 375px) {
   .select_limits_to_plot_plot_name_class {
     background-color: red !important;
+    width:375px !important;
     height:20px !important;
   }
   .select_limits_to_plot_row_filters_class {
     top:89px !important;
+    width:375px !important;
     height:300px !important;
     background-color: red !important;
   }
  .select_limits_to_plot_row_limits_class {
     top:389px !important;
+    width:375px !important;
     height:227px !important;
     background-color: red !important;
  }
  .select_limits_to_plot_plot_limits_class {
   top:616px !important;
+  width:375px !important;
   height:60px !important;
   background-color: red !important;
+ }
+}
+
+/*
+screen 2
+--------
+height total 844
+
+navbar 33px
+buttons 35px
+plot name 21px
+filter 300px
+data 315px
+plot data 60px
+*/
+
+@media screen and (min-width: 376px) and (max-width: 767px) {
+  .select_limits_to_plot_plot_name_class {
+    background-color: orange !important;
+    height:20px !important;
+  }
+  .select_limits_to_plot_row_filters_class {
+    top:89px !important;
+    height:300px !important;
+    width:390px !important;
+    background-color: orange !important;
+  }
+ .select_limits_to_plot_row_limits_class {
+    top:389px !important;
+    height:300px !important;
+    width:390px !important;
+    background-color: orange !important;
+ }
+ .select_limits_to_plot_plot_limits_class {
+  top:689px !important;
+  height:60px !important;
+  width:390px !important;
+  background-color: orange !important;
  }
 }
 
