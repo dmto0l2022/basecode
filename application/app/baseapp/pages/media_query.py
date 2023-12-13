@@ -31,4 +31,5 @@ layout_inner = [
     )
 ]
 
-layout = dbc.Container(layout_inner, className='root-container')
+#layout = dbc.Container(layout_inner, className='root-container')
+layout = dbc.Container(layout_inner, className='container')
