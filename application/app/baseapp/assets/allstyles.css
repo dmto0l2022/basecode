@@ -1061,7 +1061,7 @@ plot data 60px
 
 @media screen and (min-width: 376px) and (max-width: 390px) {
     .plot_name {
-    background-color: red !important;
+    background-color: orange !important;
   }
 }
 
@@ -1069,7 +1069,7 @@ plot data 60px
 
 @media screen and (min-width: 391px) and (max-width: 768px){
     .plot_name {
-    background-color: orange !important;
+    background-color: yellow !important;
   }
     
 }
@@ -1077,7 +1077,7 @@ plot data 60px
 /* Large devices (desktops, 992px and up) */
 @media screen and (min-width: 767px) and (max-width: 1024px) {
     .plot_name {
-    background-color: yellow !important;
+    background-color: green !important;
   }
 }
 
@@ -1085,7 +1085,7 @@ plot data 60px
 
 @media screen and (min-width: 1025px) {
     .plot_name {
-    background-color: green !important;
+    background-color: blue !important;
   }
 }
 
