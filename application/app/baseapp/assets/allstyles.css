@@ -1101,7 +1101,7 @@ plot data 60px
                     margin:0;
                     left:0;
                     background-color:green;
-                    height:300px;
+                    height:50px;
                     width:100%;
 	                  }
 
@@ -1123,7 +1123,7 @@ plot data 60px
     height:20px !important;
   }
  .select_limits_to_plot_row_limits_class{
-     height:150px !important;
+     height:100px !important;
  }
 }
 
@@ -1134,7 +1134,7 @@ plot data 60px
     height:40px !important;
   }
      .select_limits_to_plot_row_limits_class{
-     height:200px;
+     height:200px !important;
  }
 }
 
@@ -1146,7 +1146,7 @@ plot data 60px
     height:60px !important;
   }
      .select_limits_to_plot_row_limits_class{
-     height:250px;
+     height:250px !important;
  }
 }
 
@@ -1166,7 +1166,7 @@ plot data 60px
     height:80px !important;
   }
 .select_limits_to_plot_row_limits_class{
-     height:300px;
+     height:300px !important;
  }
 }
 
