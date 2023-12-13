@@ -646,18 +646,18 @@ class SelectLimitsToPlotDashBoardLayout():
 		              'background-color':'red'}
 
 
-	example_table = dash_table.DataTable(
-		columns=[{
-	            'name': 'Column {}'.format(i),
-	            'id': 'column-{}'.format(i)
-	        } for i in range(1,15)],
-	        data=[
-	            {'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)}
-	            for j in range(5)
-	        ],
-	        style_table={'overflowX': 'scroll'},
-    		)
-	    
+	    example_table = dash_table.DataTable(
+                		columns=[{
+                	            'name': 'Column {}'.format(i),
+                	            'id': 'column-{}'.format(i)
+                	        } for i in range(1,15)],
+                	        data=[
+                	            {'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)}
+                	            for j in range(5)
+                	        ],
+                	        style_table={'overflowX': 'scroll'},
+                    		)
+                	    
         ##style=plot_name_style, 
         self.DivPlotName = html.Div(children='Plot Name Here',id='select_limits_to_plot_plot_name_id',className='select_limits_to_plot_plot_name_class')##,style=select_limits_to_plot_plot_name_style)
         
