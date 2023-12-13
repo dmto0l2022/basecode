@@ -646,6 +646,18 @@ class SelectLimitsToPlotDashBoardLayout():
 		              'background-color':'red'}
 
 
+	example_table = dash_table.DataTable(
+		columns=[{
+	            'name': 'Column {}'.format(i),
+	            'id': 'column-{}'.format(i)
+	        } for i in range(1,15)],
+	        data=[
+	            {'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)}
+	            for j in range(5)
+	        ],
+	        style_table={'overflowX': 'scroll'},
+    		)
+	    
         ##style=plot_name_style, 
         self.DivPlotName = html.Div(children='Plot Name Here',id='select_limits_to_plot_plot_name_id',className='select_limits_to_plot_plot_name_class')##,style=select_limits_to_plot_plot_name_style)
         
@@ -722,11 +734,13 @@ class SelectLimitsToPlotDashBoardLayout():
 	    
         #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],className='select_limits_to_plot_row_limits_class')## style=select_limits_to_plot_row_limits_style)
         
-        self.RowLimits = dbc.Row([dbc.Col(children=[html.Div(children='Data Starts')], id=self.page_name+"main_table_div_xxx",width=12,)],className='select_limits_to_plot_row_limits_class') ##,style=select_limits_to_plot_row_limits_style)
+        #self.RowLimits = dbc.Row([dbc.Col(children=[html.Div(children='Data Starts')], id=self.page_name+"main_table_div_xxx",width=12,)],className='select_limits_to_plot_row_limits_class') ##,style=select_limits_to_plot_row_limits_style)
+	self.RowLimits = dbc.Row([dbc.Col(children=[example_table], id=self.page_name+"main_table_div_xxx",width=12,)],className='select_limits_to_plot_row_limits_class') ##,style=select_limits_to_plot_row_limits_style)
 
         self.RowLimitsToPlot = dbc.Row([dbc.Col(
                 [
-                     html.Div(children='Limits to Plot Here')
+                     ##html.Div(children='Limits to Plot Here')
+		     example_table
                 ],
                 width=12,)],className='select_limits_to_plot_plot_limits_class') ## style=select_limits_to_plot_plot_limits_style)
         
