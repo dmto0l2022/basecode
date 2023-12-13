@@ -654,8 +654,10 @@ class SelectLimitsToPlotDashBoardLayout():
                 	            {'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)}
                 	            for j in range(25)
                 	        ],
-                	        style_table={'overflowX': 'scroll', 'height': 400},
-				fixed_rows={'headers': True},
+                            fixed_rows={'headers': True},
+                            virtualization=True,
+                            style_cell={'minWidth': 95, 'width': 95, 'maxWidth': 95},
+                            style_table={'height': 300}  # default is 500
                     		)
                 	    
         ##style=plot_name_style, 
