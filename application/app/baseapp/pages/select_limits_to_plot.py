@@ -658,6 +658,7 @@ class SelectLimitsToPlotDashBoardLayout():
                             virtualization=True,
                             style_cell={'minWidth': 95, 'width': 95, 'maxWidth': 95},
                             style_table={'height': 300}  # default is 500
+			    css=self.filter_table_css_row_heights,
                     		)
                 	    
         ##style=plot_name_style, 
