@@ -1120,9 +1120,10 @@ plot data 60px
 @media screen and (max-width: 375px) {
     .select_limits_to_plot_plot_name_class {
     background-color: red !important;
+    height:20px !important;
   }
  .select_limits_to_plot_row_limits_class{
-     height:150px;
+     height:150px !important;
  }
 }
 
@@ -1130,6 +1131,7 @@ plot data 60px
 @media screen and (min-width: 376px) and (max-width: 767px) {
     .select_limits_to_plot_plot_name_class {
     background-color: orange !important;
+    height:40px !important;
   }
      .select_limits_to_plot_row_limits_class{
      height:200px;
@@ -1141,6 +1143,7 @@ plot data 60px
 @media screen and (min-width: 768px) and (max-width: 1024px){
     .select_limits_to_plot_plot_name_class {
     background-color: green !important;
+    height:60px !important;
   }
      .select_limits_to_plot_row_limits_class{
      height:250px;
@@ -1160,6 +1163,7 @@ plot data 60px
 @media screen and (min-width: 1025px) {
     .select_limits_to_plot_plot_name_class {
     background-color: blue !important;
+    height:80px !important;
   }
 .select_limits_to_plot_row_limits_class{
      height:300px;
