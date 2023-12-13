@@ -1121,6 +1121,9 @@ plot data 60px
     .select_limits_to_plot_plot_name_class {
     background-color: red !important;
   }
+ .select_limits_to_plot_row_filters_class{
+     height:150px;
+ }
 }
 
 
@@ -1128,6 +1131,9 @@ plot data 60px
     .select_limits_to_plot_plot_name_class {
     background-color: orange !important;
   }
+     .select_limits_to_plot_row_filters_class{
+     height:200px;
+ }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -1136,6 +1142,9 @@ plot data 60px
     .select_limits_to_plot_plot_name_class {
     background-color: green !important;
   }
+     .select_limits_to_plot_row_filters_class{
+     height:250px;
+ }
 }
 
 /* Large devices (desktops, 992px and up)
@@ -1152,6 +1161,9 @@ plot data 60px
     .select_limits_to_plot_plot_name_class {
     background-color: blue !important;
   }
+      .select_limits_to_plot_row_filters_class{
+     height:300px;
+ }
 }
 
 /* XX-Large devices (larger desktops, 1400px and up) 
