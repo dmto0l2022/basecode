@@ -644,9 +644,8 @@ class SelectLimitsToPlotDashBoardLayout():
         
         select_limits_to_plot_main_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0','height':'100%','width':'100%',
 		              'background-color':'red'}
-
-
-	    example_table = dash_table.DataTable(
+        
+        example_table = dash_table.DataTable(
                 		columns=[{
                 	            'name': 'Column {}'.format(i),
                 	            'id': 'column-{}'.format(i)
