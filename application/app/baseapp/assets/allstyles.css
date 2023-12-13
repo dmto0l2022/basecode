@@ -390,7 +390,7 @@
 
 .PAGE_CENTER_TEXT {
   text-align: center;
-  color: red;
+  color: red;
 }
 
 
@@ -663,8 +663,10 @@
 }
 
 
+/*
 style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px','padding':'0 !important','margin': '0 !important', 'border': '1px solid black'}
-         
+*/
+
 .FORM_DATA_COLUMN {
   padding:0 !important;
   margin: 0 !important;
@@ -1036,7 +1038,7 @@ style={'width':'100%','height':'24px','line-height': '80%', 'font-size': '12px',
 
   
 @media screen and (min-width: 700px) and (max-width: 992px) {
-    .root-container {
+  .root-container {
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
