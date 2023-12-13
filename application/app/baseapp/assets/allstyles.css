@@ -1020,34 +1020,42 @@ select data to plot heights
 
 screen 1
 --------
+height total 667px
+
 navbar 33px
+buttons 35px
 plot name 21px
 filter 300px
-data 250px
+data 227px
 plot data 60px
 
 screen 2
 --------
+height total 844
+
 navbar 33px
+buttons 35px
 plot name 21px
 filter 300px
-data 350px
+data 315px
 plot data 60px
 
 screen 3
 --------
 navbar 33px
+buttons 35px
 plot name 21px
 filter 300px
-data 350px
+data 315px
 plot data 60px
 
 screen 4
 --------
 navbar 33px
+buttons 35px
 plot name 21px
 filter 300px
-data 350px
+data 315px
 plot data 60px
 
 */
@@ -1116,15 +1124,39 @@ plot data 60px
                     width:100%;
 	                  }
 
-                    
+
+/*
+screen 1
+--------
+height total 667px
+
+navbar 33px
+buttons 35px
+plot name 21px
+filter 300px
+data 227px
+plot data 60px
+*/
+
 @media screen and (max-width: 375px) {
-    .select_limits_to_plot_plot_name_class {
+  .select_limits_to_plot_plot_name_class {
     background-color: red !important;
     height:20px !important;
   }
- .select_limits_to_plot_row_limits_class{
-     height:100px !important;
-     background-color: red !important;
+  .select_limits_to_plot_row_filters_class {
+    top:89px !important;
+    height:300px !important;
+    background-color: red !important;
+  }
+ .select_limits_to_plot_row_limits_class {
+    top:389px !important;
+    height:227px !important;
+    background-color: red !important;
+ }
+ .select_limits_to_plot_plot_limits_class {
+  top:616px !important;
+  height:60px !important;
+  background-color: red !important;
  }
 }
 
