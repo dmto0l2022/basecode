@@ -1209,16 +1209,7 @@ plot data 60px
 }
 
 
-@media screen and (min-width: 376px) and (max-width: 767px) {
-    .select_limits_to_plot_plot_name_class {
-    background-color: orange !important;
-    height:40px !important;
-  }
-     .select_limits_to_plot_row_limits_class{
-     height:200px !important;
-     background-color: orange !important;
- }
-}
+
 
 /* Medium devices (tablets, 768px and up) */
 
