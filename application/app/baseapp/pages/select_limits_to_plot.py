@@ -629,25 +629,25 @@ class SelectLimitsToPlotDashBoardLayout():
 
     
     def CreateLayout(self):
-        page_content_style_1 =  {'position':'relative', 'width':'100vw', 'height':'100vh','top': '0px','padding':'0','margins':'0',
+        select_limits_to_plot_page_content_style_1 =  {'position':'relative', 'width':'100vw', 'height':'100vh','top': '0px','padding':'0','margins':'0',
 				                 'left': '0',
 				                 'background-color': 'lightgreen'}
-        button_style = {'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'100%', 'height' : '35px'}
-        plot_name_style = {'position':'absolute','top': '35px','padding':'0','margins':'0','left':'0','height':'20px', 'width' : '100%'}
-        row_filters_style = {'position':'absolute','top': '55px','padding':'0','margins':'0','left':'0',
+        select_limits_to_plot_button_style = {'position': 'absolute','top': '0px', 'left': '0px','border': '3px solid green', 'width':'100%', 'height' : '35px'}
+        select_limits_to_plot_plot_name_style = {'position':'absolute','top': '35px','padding':'0','margins':'0','left':'0','height':'20px', 'width' : '100%'}
+        select_limits_to_plot_row_filters_style = {'position':'absolute','top': '55px','padding':'0','margins':'0','left':'0',
 			                'background-color':'blue','height':'200px', 'width':'100%'}
-        row_limits_style = {'position':'absolute','top': '255px','padding':'0','margins':'0','left':'0',
+        select_limits_to_plot_row_limits_style = {'position':'absolute','top': '255px','padding':'0','margins':'0','left':'0',
 			                'background-color':'green','height':'300px', 'width':'100%'}
-        plot_limits_style = {'position':'absolute','top': '555px','padding':'0','margins':'0','left':'0',
+        select_limits_to_plot_plot_limits_style = {'position':'absolute','top': '555px','padding':'0','margins':'0','left':'0',
 			                'background-color':'grey','height':'150px', 'width':'100%'}
         
         
-        main_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0','height':'100%','width':'100%',
+        select_limits_to_plot_main_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0','height':'100%','width':'100%',
 		              'background-color':'red'}
 
 
         ##style=plot_name_style, 
-        self.DivPlotName = html.Div(children='Plot Name Here',id='select_limits_to_plot_plot_name_id',className='plot_name',style=plot_name_style)
+        self.DivPlotName = html.Div(children='Plot Name Here',id='select_limits_to_plot_plot_name_id',className='plot_name',style=select_limits_to_plot_plot_name_style)
         
         self.RowFilters =  dbc.Row([
                 dbc.Col(
@@ -686,7 +686,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     ],
                     width=2,xs=6, sm=6, md=4, lg=2, xl=2, xxl=2,
                     ),
-        ], style=row_filters_style)
+        ], style=select_limits_to_plot_row_filters_style)
         
         new_button =  html.Button("New", id= self.page_name + "new_button_id", style=self.button_styling_1)
         save_button =  html.Button("Save", id= self.page_name + "save_button_id", style=self.button_styling_1)
@@ -708,7 +708,7 @@ class SelectLimitsToPlotDashBoardLayout():
                             className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
                             xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
                         ]
-                    , style=button_style)
+                    , style=select_limits_to_plot_button_style)
 
 	    
         self.DivOfButtons = html.Div(id= self.page_name + "page_buttons",
@@ -720,9 +720,9 @@ class SelectLimitsToPlotDashBoardLayout():
         #                    width=12,)],
         #                    className ="NOPADDING_CONTENT")
 	    
-        #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],style=row_limits_style)
+        #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],style=select_limits_to_plot_row_limits_style)
         
-        self.RowLimits = dbc.Row([dbc.Col(children=[html.Div(children='Data Starts')], id=self.page_name+"main_table_div_xxx",width=12,)],style=row_limits_style)
+        self.RowLimits = dbc.Row([dbc.Col(children=[html.Div(children='Data Starts')], id=self.page_name+"main_table_div_xxx",width=12,)],style=select_limits_to_plot_row_limits_style)
 
         self.RowLimitsToPlot = dbc.Row([dbc.Col(
                 [
@@ -730,7 +730,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 ],
                 width=12,)],style=plot_limits_style)
         
-        self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'),style=plot_limits_style)
+        self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'),style=select_limits_to_plot_plot_limits_style)
         
         maincolumn = html.Div(
                         [dcc.Location(id=page_name+'url',refresh=True),
@@ -741,9 +741,9 @@ class SelectLimitsToPlotDashBoardLayout():
                         self.RowLimitsToPlot,
                         #self.DivOfButtons,
                         #self.RowListOfLimits
-			], style=main_style)
+			], style=select_limits_to_plot_main_style)
         
-        self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container-fluid",style=page_content_style_1)
+        self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container-fluid",style=select_limits_to_plot_page_content_style_1)
 
     def SetPlotNameCallback(self):
         @callback([Output(self.page_name +'_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children')],
