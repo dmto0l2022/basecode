@@ -647,7 +647,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
 
         ##style=plot_name_style, 
-        self.DivPlotName = html.Div(children='Plot Name Here',id='select_limits_to_plot_plot_name_id',className='plot_name',style=select_limits_to_plot_plot_name_style)
+        self.DivPlotName = html.Div(children='Plot Name Here',id='select_limits_to_plot_plot_name_id',className='select_limits_to_plot_plot_name_class')##,style=select_limits_to_plot_plot_name_style)
         
         self.RowFilters =  dbc.Row([
                 dbc.Col(
@@ -708,7 +708,7 @@ class SelectLimitsToPlotDashBoardLayout():
                             className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
                             xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
                         ]
-                    , style=select_limits_to_plot_button_style)
+                    , className="select_limits_to_plot_button_class") ##style=select_limits_to_plot_button_style)
 
 	    
         self.DivOfButtons = html.Div(id= self.page_name + "page_buttons",
@@ -720,7 +720,7 @@ class SelectLimitsToPlotDashBoardLayout():
         #                    width=12,)],
         #                    className ="NOPADDING_CONTENT")
 	    
-        #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],style=select_limits_to_plot_row_limits_style)
+        #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],className='select_limits_to_plot_row_limits_class')## style=select_limits_to_plot_row_limits_style)
         
         self.RowLimits = dbc.Row([dbc.Col(children=[html.Div(children='Data Starts')], id=self.page_name+"main_table_div_xxx",width=12,)],style=select_limits_to_plot_row_limits_style)
 
@@ -728,9 +728,9 @@ class SelectLimitsToPlotDashBoardLayout():
                 [
                      html.Div(children='Limits to Plot Here')
                 ],
-                width=12,)],style=select_limits_to_plot_plot_limits_style)
+                width=12,)],className='select_limits_to_plot_plot_limits_class') ## style=select_limits_to_plot_plot_limits_style)
         
-        self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'),style=select_limits_to_plot_plot_limits_style)
+        self.RowListOfLimits = dbc.Row(html.Div(children=['List of limits appear here'],id=self.page_name+'limit_list'),className='select_limits_to_plot_plot_limits_class')## style=select_limits_to_plot_plot_limits_style)
         
         maincolumn = html.Div(
                         [dcc.Location(id=page_name+'url',refresh=True),
@@ -741,9 +741,9 @@ class SelectLimitsToPlotDashBoardLayout():
                         self.RowLimitsToPlot,
                         #self.DivOfButtons,
                         #self.RowListOfLimits
-			], style=select_limits_to_plot_main_style)
+			],className='select_limits_to_plot_main_class') ## style=select_limits_to_plot_main_style)
         
-        self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container-fluid",style=select_limits_to_plot_page_content_style_1)
+        self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container-fluid", style=select_limits_to_plot_page_content_style_1)
 
     def SetPlotNameCallback(self):
         @callback([Output(self.page_name +'_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children')],
