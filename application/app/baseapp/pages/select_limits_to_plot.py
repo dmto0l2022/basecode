@@ -543,7 +543,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.ClsMainDataTable = mte.get_main_table(self.page_title,
                                              self.page_name + self.main_table_id,
                                              self.table_meta_data_main_table,
-                                             self.table_height,
+                                             #self.table_height,
                                              self.page_size,
                                              self.row_height,
                                              self.table_font_size,
@@ -582,7 +582,7 @@ class SelectLimitsToPlotDashBoardLayout():
             row_deletable=True,
             #row_selectable='multi',
             #selected_rows=[],
-            style_table={'height': '25vh',},
+            #style_table={'height': '25vh',},
             style_cell_conditional=[
                 {'if': {'column_id': 'id'},
                  'width': '5%'},
