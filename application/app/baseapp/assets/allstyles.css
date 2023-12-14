@@ -1130,38 +1130,38 @@ screen 1
 --------
 height total 667px
 
-navbar 33px
+navbar 35px
 buttons 35px
 plot name 21px
-filter 300px
+filter 210px
 data 227px
-plot data 60px
+plot data 100px
 */
 
 @media screen and (max-width: 375px) {
   .select_limits_to_plot_plot_name_class {
     background-color: red !important;
     width:375px !important;
-    height:20px !important;
+    height:21px !important;
   }
   .select_limits_to_plot_row_filters_class {
-    top:55px !important;
+    top:58px !important;
     width:375px !important;
-    height:300px !important;
+    height:210px !important;
     background-color: red !important;
     border:1px solid black;
   }
  .select_limits_to_plot_row_limits_class {
-    top:355px !important;
+    top:269px !important;
     width:375px !important;
     height:227px !important;
     background-color: red !important;
     border:1px solid black;
  }
  .select_limits_to_plot_plot_limits_class {
-  top:582px !important;
+  top:497px !important;
   width:375px !important;
-  height:60px !important;
+  height:100px !important;
   background-color: red !important;
   border:1px solid black;
  }
