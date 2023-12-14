@@ -679,7 +679,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     		)
                 	    
         ##style=plot_name_style, 
-        self.DivPlotName = html.Div(children='Plot Name Here',id='select_limits_to_plot_plot_name_id',className='select_limits_to_plot_plot_name_class')##,style=select_limits_to_plot_plot_name_style)
+        #self.DivPlotName = html.Div(children='Plot Name Here',id='select_limits_to_plot_plot_name_id',className='select_limits_to_plot_plot_name_class')##,style=select_limits_to_plot_plot_name_style)
         
         self.RowFilters =  dbc.Row([
                 dbc.Col(
@@ -787,7 +787,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container-fluid", style=select_limits_to_plot_page_content_style_1)
 
     def SetPlotNameCallback(self):
-        @callback([Output(self.page_name +'_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children')],
+        @callback([Output('select_limits_to_plot_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children')],
               [Input(self.page_name +'url', 'href')])
         def set_plot_name(href: str):
             ## get user id from cookie
