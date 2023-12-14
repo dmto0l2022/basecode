@@ -1151,7 +1151,7 @@ sltpdb.SetPlotNameCallback() ## sets the dmtool user id
 sltpdb.ApplyFiltersCallback()
 sltpdb.MoveLimitToLimitsToPlotCallback()
 sltpdb.RespondToButtonsCallback()
-sltpdb.PopulateMainDataTable()
+
 
 ###
 
