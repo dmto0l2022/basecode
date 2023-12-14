@@ -199,6 +199,9 @@ class SelectLimitsToPlotDashBoardLayout():
         self.style_header_var={ 'backgroundColor': 'black','color': 'white'}
 
         self.limits_to_plot_df = pd.DataFrame()
+	    
+        self.DivPlotName = html.Div()
+	    
         self.RowLimitsToPlot = dbc.Row()
 
         self.ClsMainDataTable = None
@@ -679,7 +682,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     		)
                 	    
         ##style=plot_name_style, 
-        #self.DivPlotName = html.Div(children='Plot Name Here',id='select_limits_to_plot_plot_name_id',className='select_limits_to_plot_plot_name_class')##,style=select_limits_to_plot_plot_name_style)
+        self.DivPlotName = html.Div(children='Plot Name Here',id='select_limits_to_plot_plot_name_id',className='select_limits_to_plot_plot_name_class')##,style=select_limits_to_plot_plot_name_style)
         
         self.RowFilters =  dbc.Row([
                 dbc.Col(
