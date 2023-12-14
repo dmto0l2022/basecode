@@ -65,8 +65,8 @@ class get_main_table:
         self.page_title = page_title_in
         self.main_table_id = main_table_id_in
         self.table_meta_data_data = table_meta_data_data_in
-        self.table_height = '100%'
-        self.page_size = 0
+        self.table_height = '300'
+        self.page_size = 1000
         self.row_height = row_height_in
         self.table_font_size = table_font_size_in
         self.fastapi_url_all = fastapi_url_all_in
@@ -213,7 +213,7 @@ class get_main_table:
         #print("column widths : " , self.conditional_column_widths)
         
         self.dash_table_main = dash_table.DataTable(
-            #virtualization=True,
+            virtualization=True,
             id = self.main_table_id,
             data = self.main_table_data_dict,
             columns=[{"name": c, "id": c} for c in self.all_table_column_names],
@@ -226,7 +226,7 @@ class get_main_table:
             tooltip_duration=None,
             #style_table={'minHeight': '700px', 'height': '700px', 'maxHeight': '700px'},
             #style_table={'minHeight': '100%', 'height': '100%', 'maxHeight': '100%'},
-            style_table={'overflowY': 'scroll'},
+            style_table={'overflowY': 'auto', 'overflowX': 'auto'},
             ##style_table={'height': 'calc(90vh-84px)', 'maxHeight': 'calc(90vh-84px)'},
             #page_size=self.page_size
             )
