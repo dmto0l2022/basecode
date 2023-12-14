@@ -235,7 +235,7 @@ class get_main_table:
             #style_table={'minHeight': '100%', 'height': '100%', 'maxHeight': '100%'},
             style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': '150px', 'maxHeight': '150px'},
             ##style_table={'height': 'calc(90vh-84px)', 'maxHeight': 'calc(90vh-84px)'},
-            #page_size=self.page_size
+            page_size=1000
             )
 
 '''
