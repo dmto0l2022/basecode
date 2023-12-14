@@ -645,7 +645,7 @@ class SelectLimitsToPlotDashBoardLayout():
         select_limits_to_plot_main_style = {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0','height':'100%','width':'100%',
 		              'background-color':'red'}
         
-        example_table_300 = dash_table.DataTable(
+        example_table_main = dash_table.DataTable(
                 		columns=[{
                 	            'name': 'Column {}'.format(i),
                 	            'id': 'column-{}'.format(i)
@@ -657,11 +657,11 @@ class SelectLimitsToPlotDashBoardLayout():
                             fixed_rows={'headers': True},
                             virtualization=True,
                             style_cell={'minWidth': 95, 'width': 95, 'maxWidth': 95},
-                            style_table={'height': 300, 'overflowX': 'auto', 'overflowY': 'auto'} , # default is 500
+                            style_table={'height': 140, 'overflowX': 'auto', 'overflowY': 'auto'} , # default is 500
 			    css=self.filter_table_css_row_heights,
                     		)
 
-        example_table_80 = dash_table.DataTable(
+        example_table_plots = dash_table.DataTable(
                 		columns=[{
                 	            'name': 'Column {}'.format(i),
                 	            'id': 'column-{}'.format(i)
@@ -754,12 +754,12 @@ class SelectLimitsToPlotDashBoardLayout():
         #self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",width=12,)],className='select_limits_to_plot_row_limits_class')## style=select_limits_to_plot_row_limits_style)
         
         #self.RowLimits = dbc.Row([dbc.Col(children=[html.Div(children='Data Starts')], id=self.page_name+"main_table_div_xxx",width=12,)],className='select_limits_to_plot_row_limits_class') ##,style=select_limits_to_plot_row_limits_style)
-        self.RowLimits = dbc.Row([dbc.Col(children=[example_table_300], id=self.page_name+"main_table_div_xxx",width=12,)],className='select_limits_to_plot_row_limits_class') ##,style=select_limits_to_plot_row_limits_style)
+        self.RowLimits = dbc.Row([dbc.Col(children=[example_table_main], id=self.page_name+"main_table_div_xxx",width=12,)],className='select_limits_to_plot_row_limits_class') ##,style=select_limits_to_plot_row_limits_style)
 
         self.RowLimitsToPlot = dbc.Row([dbc.Col(
                 [
                      ##html.Div(children='Limits to Plot Here')
-		     example_table_80
+		     example_table_plots
                 ],
                 width=12,)],className='select_limits_to_plot_plot_limits_class') ## style=select_limits_to_plot_plot_limits_style)
         
