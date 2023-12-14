@@ -71,7 +71,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.table_meta_data_main_table = [
                                         #['id', '5%'],
                                         #['experiment', '5%'],
-                                        ['data_label', '98%']
+                                        ['data_label', '90%']
                                     ]
         #self.table_height = '50vh'
         #self.page_size = 26
