@@ -544,7 +544,7 @@ class SelectLimitsToPlotDashBoardLayout():
                                              self.page_name + self.main_table_id,
                                              self.table_meta_data_main_table,
                                              #self.table_height,
-                                             self.page_size,
+                                             #self.page_size,
                                              self.row_height,
                                              self.table_font_size,
                                              self.fastapi_url_all_limits,
