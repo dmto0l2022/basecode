@@ -1139,6 +1139,9 @@ plot name 21px
 filter 210px
 data 162px
 plot data 100px
+
+iphone navigation bar 40px
+
 */
 
 @media screen and (max-width: 375px) {
@@ -1157,14 +1160,14 @@ plot data 100px
  .select_limits_to_plot_row_limits_class {
     top:269px !important;
     width:375px !important;
-    height:162px !important;
+    height:142px !important;
     background-color: red !important;
     border:1px solid black;
  }
  .select_limits_to_plot_plot_limits_class {
-  top:432px !important;
+  top:412px !important;
   width:375px !important;
-  height:100px !important;
+  height:80px !important;
   background-color: red !important;
   border:1px solid black;
  }
