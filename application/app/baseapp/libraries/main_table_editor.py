@@ -76,9 +76,10 @@ class get_main_table:
         self.internal_header = {'dmtool-userid':'999'}
         self.table_meta_data_columns = ['name', 'width']
         self.button_meta_data_data =[
-                            ['edit', '3%'],
-                            ['ceased', '3%'],
-                            ['delete', '3%']
+                            ['add', '2%'],
+                            ['edit', '2%'],
+                            ['ceased', '2%'],
+                            ['delete', '2%']
                             ]
         self.all_table_meta_data_data = self.table_meta_data_data + self.button_meta_data_data
         self.table_meta_data_all_df = pd.DataFrame(data=self.all_table_meta_data_data, columns=self.table_meta_data_columns)
@@ -119,7 +120,7 @@ class get_main_table:
         self.table_column_names_data = []
         self.get_conditional_column_widths()
         self.get_data_column_names()
-        self.all_table_column_names = self.table_column_names_data+['edit','ceased','delete']
+        self.all_table_column_names = self.table_column_names_data+['add','edit','ceased','delete']
         self.main_table_data_dict = {}
         self.main_table_data_frame = pd.DataFrame()
         self.response_data_frame = pd.DataFrame()
