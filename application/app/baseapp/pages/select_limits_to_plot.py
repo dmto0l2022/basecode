@@ -661,7 +661,7 @@ class SelectLimitsToPlotDashBoardLayout():
 			    css=self.filter_table_css_row_heights,
                     		)
 
-        example_table_100 = dash_table.DataTable(
+        example_table_80 = dash_table.DataTable(
                 		columns=[{
                 	            'name': 'Column {}'.format(i),
                 	            'id': 'column-{}'.format(i)
@@ -673,7 +673,7 @@ class SelectLimitsToPlotDashBoardLayout():
                             fixed_rows={'headers': True},
                             virtualization=True,
                             style_cell={'minWidth': 95, 'width': 95, 'maxWidth': 95},
-                            style_table={'height': 100, 'overflowX': 'auto', 'overflowY': 'auto'} , # default is 500
+                            style_table={'height': 80, 'overflowX': 'auto', 'overflowY': 'auto'} , # default is 500
 			    css=self.filter_table_css_row_heights,
                     		)
                 	    
@@ -759,7 +759,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.RowLimitsToPlot = dbc.Row([dbc.Col(
                 [
                      ##html.Div(children='Limits to Plot Here')
-		     example_table_100
+		     example_table_80
                 ],
                 width=12,)],className='select_limits_to_plot_plot_limits_class') ## style=select_limits_to_plot_plot_limits_style)
         
