@@ -1148,10 +1148,10 @@ sltpdb.CreateLayout()
 layout = sltpdb.layout
 sltpdb.SetPlotNameCallback() ## sets the dmtool user id
 #sltpdb.CreateLimitsToPlot() ## this populates if there is a previous plot
-#sltpdb.ApplyFiltersCallback()
-#sltpdb.MoveLimitToLimitsToPlotCallback()
-#sltpdb.RespondToButtonsCallback()
-#sltpdb.PopulateMainDataTable()
+sltpdb.ApplyFiltersCallback()
+sltpdb.MoveLimitToLimitsToPlotCallback()
+sltpdb.RespondToButtonsCallback()
+sltpdb.PopulateMainDataTable()
 
 ###
 
