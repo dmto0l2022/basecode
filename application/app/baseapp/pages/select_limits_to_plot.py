@@ -661,7 +661,7 @@ class SelectLimitsToPlotDashBoardLayout():
 			    css=self.filter_table_css_row_heights,
                     		)
 
-	     example_table_100 = dash_table.DataTable(
+        example_table_100 = dash_table.DataTable(
                 		columns=[{
                 	            'name': 'Column {}'.format(i),
                 	            'id': 'column-{}'.format(i)
