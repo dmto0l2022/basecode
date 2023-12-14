@@ -207,8 +207,8 @@ class get_main_table:
             self.main_table_data_frame = self.main_table_data_frame[lst]
             #updated_data_frame_ret['create'] = "create"
             self.main_table_data_frame['edit'] = edit_symbol
-            self.main_table_data_frame['ceased'] = ceased_symbol
             self.main_table_data_frame['add'] = add_symbol
+            self.main_table_data_frame['ceased'] = ceased_symbol
             #updated_data_frame_ret['update'] = "update"
             self.main_table_data_frame['delete'] = delete_symbol
             self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
