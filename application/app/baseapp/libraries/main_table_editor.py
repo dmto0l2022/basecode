@@ -188,9 +188,14 @@ class get_main_table:
             self.response_data_frame = pd.DataFrame()
         
         #all_table_column_names = table_column_names_data+['edit','ceased','delete']
-      
+
+        add_symbol = "+"
+        edit_symbol = "~"
+        delete_symbol = "X"
+        ceased_symbol = "-"
+        
         if self.response_data_frame.empty:
-            empty_data = self.table_column_names_data+['edit','ceased','delete']
+            empty_data = self.table_column_names_data+['edit','add','ceased','delete']
             #print("RefreshTableData >> empty_data >>>>>>", empty_data)
             #print("RefreshTableData >> all_table_column_names>>>>>>>>>>", self.all_table_column_names)
             self.main_table_data_frame = pd.DataFrame(data = [empty_data], columns = self.all_table_column_names)
@@ -200,10 +205,11 @@ class get_main_table:
             self.main_table_data_frame = self.response_data_frame[self.response_data_frame.columns.intersection(lst)]
             self.main_table_data_frame = self.main_table_data_frame[lst]
             #updated_data_frame_ret['create'] = "create"
-            self.main_table_data_frame['edit'] = "edit"
-            self.main_table_data_frame['ceased'] = "ceased"
+            self.main_table_data_frame['edit'] = edit_symbol
+            self.main_table_data_frame['ceased'] = ceased_symbol
+            self.main_table_data_frame['add'] = add_symbol
             #updated_data_frame_ret['update'] = "update"
-            self.main_table_data_frame['delete'] = "delete"
+            self.main_table_data_frame['delete'] = delete_symbol
             self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
         
         
