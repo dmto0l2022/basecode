@@ -72,7 +72,7 @@ class SelectLimitsToPlotDashBoardLayout():
                                         #['id', '5%'],
                                         #['experiment', '5%'],
 					['add','2%'],
-                                        ['data_label', '100%']
+                                        ['data_label', '98%']
                                     ]
         #self.table_height = '50vh'
         #self.page_size = 26
