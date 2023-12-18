@@ -201,6 +201,7 @@ class SelectLimitsToPlotDashBoardLayout():
 	    
         self.DivPlotName = html.Div()
 	    
+	self.RowOfButtons = dbc.Row()
         self.RowLimitsToPlot = dbc.Row()
 
         self.ClsMainDataTable = None
@@ -722,17 +723,18 @@ class SelectLimitsToPlotDashBoardLayout():
                     ),
         ], className="select_limits_to_plot_row_filters_class") ## style=select_limits_to_plot_row_filters_style)
         
-        new_button =  html.Button("New", id= self.page_name + "new_button_id", style=self.button_styling_1)
-        save_button =  html.Button("Save", id= self.page_name + "save_button_id", style=self.button_styling_1)
-        cancel_button = html.Button("Cancel",  id=self.page_name + "cancel_button_id", style=self.button_styling_1)
-        home_button =  html.Button("Home",  id=self.page_name + "home_button_id", style=self.button_styling_1)
-        list_button =  html.Button("List",  id=self.page_name + "list_button_id", style=self.button_styling_1)
+        #new_button =  html.Button("New", id= self.page_name + "new_button_id", style=self.button_styling_1)
+        #save_button =  html.Button("Save", id= self.page_name + "save_button_id", style=self.button_styling_1)
+        #cancel_button = html.Button("Cancel",  id=self.page_name + "cancel_button_id", style=self.button_styling_1)
+        #home_button =  html.Button("Home",  id=self.page_name + "home_button_id", style=self.button_styling_1)
+        #list_button =  html.Button("List",  id=self.page_name + "list_button_id", style=self.button_styling_1)
+	
 	    
         default_width = 4
 
-        row_of_buttons = dbc.Row(
+        self.RowOfButtons = dbc.Row(
                         [
-                        dbc.Col(html.Button('Save', id=self.page_name + '_save_' + 'button_id', n_clicks=0,
+                        dbc.Col(html.Button('Plot', id=self.page_name + '_plot_' + 'button_id', n_clicks=0,
                             className="btn w-100 btn-primary btn-default btn-sm", style={'margin-top':'3px'}),
                             xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
                         dbc.Col(html.Button('Cancel', id=self.page_name + '_cancel_' + 'button_id', n_clicks=0,
@@ -745,9 +747,9 @@ class SelectLimitsToPlotDashBoardLayout():
                     , className="select_limits_to_plot_button_class") ##style=select_limits_to_plot_button_style)
 
 	    
-        self.DivOfButtons = html.Div(id= self.page_name + "page_buttons",
-				     children=[new_button,save_button,cancel_button,home_button,list_button],
-				     className="PAGE_FOOTER_BUTTONS")
+        #self.DivOfButtons = html.Div(id= self.page_name + "page_buttons",
+        children=[new_button,save_button,cancel_button,home_button,list_button],
+		#className="PAGE_FOOTER_BUTTONS")
         
         self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",
                             children=[self.main_data_table],
@@ -777,7 +779,7 @@ class SelectLimitsToPlotDashBoardLayout():
         
         maincolumn = html.Div(
                         [dcc.Location(id=page_name+'url',refresh=True),
-                        row_of_buttons,
+                        self.RowOfButtons,
                         self.DivPlotName,
                         self.RowFilters,
                         self.RowLimits,
@@ -1079,15 +1081,13 @@ class SelectLimitsToPlotDashBoardLayout():
             [Output(self.page_name+'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
              Output(self.page_name+'limit_list','children')],
             [
-            Input(self.page_name + "new_button_id", "n_clicks"),
-            Input(self.page_name + "save_button_id", "n_clicks"),
-            Input(self.page_name + "cancel_button_id", "n_clicks"),
-            Input(self.page_name + "home_button_id", "n_clicks"),
-            Input(self.page_name + "list_button_id","n_clicks"),
+            Input(self.page_name + "_plot_" + "button_id", "n_clicks"),
+            Input(self.page_name + "_cancel_" + "button_id", "n_clicks"),
+            Input(self.page_name + "_home_" + "button_id", "n_clicks"),
                 ],[State(self.page_name +'limits_to_plot_table', 'data')],
                 prevent_initial_call=True
         )
-        def button_click(button1,button2,button3,button4,button5,plot_table_in):
+        def button_click(button1,button2,button3,plot_table_in):
             #msg = "None of the buttons have been clicked yet"
             prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
             print('plot_table_in >>>>>>>>>>>>>>>>' ,plot_table_in)
@@ -1106,32 +1106,21 @@ class SelectLimitsToPlotDashBoardLayout():
             #print('limit_ids >>>>>>>>' ,limit_ids)
                     
             #msg = prop_id
-            if page_name + "new_button_id" == prop_id :
+            if self.page_name + "_plot_" + button_id" == prop_id :
                 #msg = "Button 1 was most recently clicked"
                 #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
                 href_return = '/application/baseapp/style_plot_and_traces'
                 return [href_return,'']
-            elif page_name + "new_button_id" == prop_id:
-                #msg = "Button 2 was most recently clicked"
-                #href_return = dash.page_registry['pages.home']['path']
-                href_return = '/application/baseapp/create_new_plot'
-                return  [href_return,'']
-            elif page_name + "cancel_button_id" == prop_id:
+            elif  self.page_name + "_home_" + button_id" == prop_id:
                 #msg = "Button 2 was most recently clicked"
                 #href_return = dash.page_registry['pages.home']['path']
                 href_return = '/application/baseapp/homepage'
                 return  [href_return,'']
-            elif page_name + "home_button_id" == prop_id:
+            elif self.page_name + "_cancel_" + button_id" == prop_id:
                 #msg = "Button 2 was most recently clicked"
                 #href_return = dash.page_registry['pages.home']['path']
-                href_return = '/application/baseapp/homepage'
+                href_return = '/application/baseapp/plot_menu'
                 return  [href_return,'']
-            elif page_name + "list_button_id" == prop_id:
-                #msg = "Button 3 was most recently clicked"
-                #href_return = dash.page_registry['pages.home']['path']
-                #href_return = '/app/baseapp/select_limits_to_plot'
-                href_return = '/application/baseapp/style_plot_and_traces?limit_id=' + limit_ids
-                return [href_return,limit_ids]
             else:
                 href_return = '/application/baseapp/select_limits_to_plot'
                 return href_return
