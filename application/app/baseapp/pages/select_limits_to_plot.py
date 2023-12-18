@@ -980,8 +980,8 @@ class SelectLimitsToPlotDashBoardLayout():
         @callback(
             Output(self.page_name+'limits_to_plot_table', 'data'),
             [Input(self.page_name + 'main_limits_table', 'active_cell'),Input(self.page_name+'limits_to_plot_table', 'active_cell')],
-            [State(self.page_name+'limits_to_plot_table', 'data')])
-        def trigger_fork(active_cell_exp,active_cell_plot,data_in):
+            [State(self.page_name+'main_limits_table', 'data'), State(self.page_name+'limits_to_plot_table', 'data')])
+        def trigger_fork(active_cell_exp,active_cell_plot,main_data_in, plot_data_in):
             ctx = dash.callback_context
             triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
             #print(triggered_id)
@@ -990,10 +990,10 @@ class SelectLimitsToPlotDashBoardLayout():
                     all_limit_list_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
                     data_row = active_cell_exp['row_id']
                     data_col_id = active_cell_exp['column_id']
-                    data_in_df = pd.DataFrame.from_dict(data_in)
-                    print("sltp : data_in >>>>>>>>>>", data_in)
-                    print("sltp : data_in_df >>>>>>>>>>", data_in_df)
-                    cell_value = data_in_df.loc[data_row, data_col_id]
+                    main_data_df = pd.DataFrame.from_dict(main_data_in)
+                    print("sltp : main_data_in >>>>>>>>>>", main_data_in)
+                    print("sltp : main_data_df >>>>>>>>>>", main_data_df)
+                    cell_value = main_data_df.loc[data_row, data_col_id]
                     print(cell_value)
                     if cell_value == '+':
                         selected_rowid = active_cell_exp['row_id']
