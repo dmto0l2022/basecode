@@ -748,7 +748,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
 	    
         #self.DivOfButtons = html.Div(id= self.page_name + "page_buttons",
-        children=[new_button,save_button,cancel_button,home_button,list_button],
+        #children=[new_button,save_button,cancel_button,home_button,list_button],
 		#className="PAGE_FOOTER_BUTTONS")
         
         self.RowLimits = dbc.Row([dbc.Col(id=self.page_name+"main_table_div",
