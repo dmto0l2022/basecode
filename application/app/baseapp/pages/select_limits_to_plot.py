@@ -1078,8 +1078,8 @@ class SelectLimitsToPlotDashBoardLayout():
     
     def RespondToButtonsCallback(self):
         @callback(
-            [Output(self.page_name+'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
-             Output(self.page_name+'limit_list','children')],
+            [Output(self.page_name+'url', 'href',allow_duplicate=True) ## duplicate set as all callbacks tartgetting url
+	    ],
             [
             Input(self.page_name + "_plot_" + "button_id", "n_clicks"),
             Input(self.page_name + "_cancel_" + "button_id", "n_clicks"),
@@ -1110,17 +1110,17 @@ class SelectLimitsToPlotDashBoardLayout():
                 #msg = "Button 1 was most recently clicked"
                 #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
                 href_return = '/application/baseapp/style_plot_and_traces'
-                return [href_return,'']
+                return [href_return]
             elif  self.page_name + "_home_" + "button_id" == prop_id:
                 #msg = "Button 2 was most recently clicked"
                 #href_return = dash.page_registry['pages.home']['path']
                 href_return = '/application/baseapp/homepage'
-                return  [href_return,'']
+                return  [href_return]
             elif self.page_name + "_cancel_" + "button_id" == prop_id:
                 #msg = "Button 2 was most recently clicked"
                 #href_return = dash.page_registry['pages.home']['path']
                 href_return = '/application/baseapp/plot_menu'
-                return  [href_return,'']
+                return  [href_return]
             else:
                 href_return = '/application/baseapp/select_limits_to_plot'
                 return href_return
