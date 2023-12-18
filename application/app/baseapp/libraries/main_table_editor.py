@@ -196,7 +196,7 @@ class get_main_table:
         ceased_symbol = "-"
         
         if self.response_data_frame.empty:
-            empty_data = self.table_column_names_data+['edit','add','ceased','delete']
+            empty_data = self.table_column_names_data+['~','+','-','X']
             #print("RefreshTableData >> empty_data >>>>>>", empty_data)
             #print("RefreshTableData >> all_table_column_names>>>>>>>>>>", self.all_table_column_names)
             self.main_table_data_frame = pd.DataFrame(data = [empty_data], columns = self.all_table_column_names)
@@ -218,7 +218,7 @@ class get_main_table:
     def get_dash_table(self):
         #print("column names : " , self.table_column_names_data)
         #print("column widths : " , self.conditional_column_widths)
-        
+        self.RefreshTableData()
         self.dash_table_main = dash_table.DataTable(
             virtualization=True,
             id = self.main_table_id,
