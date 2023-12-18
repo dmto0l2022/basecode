@@ -245,7 +245,8 @@ class StylingTable():
               css=self.format_table_css,
               dropdown={
                   'line_color': {
-                      'options': self.color_options
+                      'options': self.color_options,
+                      'searchable' : False
                   },
                   'line': {
                        'options': self.line_style_options
