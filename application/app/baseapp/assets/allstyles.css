@@ -1100,6 +1100,8 @@ plot data 60px
                     background-color:blue;
                     height:200px;
                     width:100%;
+                    font-size:12px;
+                    font-style: bold;
                   }
 
 .select_limits_to_plot_row_limits_class{
