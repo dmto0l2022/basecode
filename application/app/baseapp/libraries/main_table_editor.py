@@ -76,10 +76,10 @@ class get_main_table:
         self.internal_header = {'dmtool-userid':'999'}
         self.table_meta_data_columns = ['name', 'width']
         self.button_meta_data_data =[
-                            ['add', '2%'],
-                            ['edit', '2%'],
-                            ['ceased', '2%'],
-                            ['delete', '2%']
+                            ['add', '4%'],
+                            ['edit', '4%'],
+                            ['ceased', '4%'],
+                            ['delete', '4%']
                             ]
         self.all_table_meta_data_data = self.table_meta_data_data + self.button_meta_data_data
         self.table_meta_data_all_df = pd.DataFrame(data=self.all_table_meta_data_data, columns=self.table_meta_data_columns)
