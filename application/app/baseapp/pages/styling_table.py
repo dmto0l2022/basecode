@@ -249,16 +249,20 @@ class StylingTable():
                       'searchable' : False
                   },
                   'line': {
-                       'options': self.line_style_options
+                       'options': self.line_style_options,
+                       'searchable' : False
                   },
                   'fill_color': {
-                      'options': self.color_options
+                      'options': self.color_options,
+                      'searchable' : False
                   },
                   'symbol': {
-                       'options': self.symbol_options
+                       'options': self.symbol_options,
+                       'searchable' : False
                   },
                    'symbol_color': {
-                       'options': self.color_options
+                       'options': self.color_options,
+                       'searchable' : False
                   }
               },
               style_cell_conditional=[
