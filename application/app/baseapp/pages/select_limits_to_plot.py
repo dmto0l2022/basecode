@@ -991,7 +991,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     table_of_limits = all_limit_list_df[['data_label','+','~','-','X']].copy()
                     data_row = active_cell_exp['row_id']
                     data_col_id = active_cell_exp['column_id']
-		            data_in_df = pd.DataFrame.from_dict(data_in)
+                    data_in_df = pd.DataFrame.from_dict(data_in)
                     cell_value = data_in_df.loc[data_row, data_col_id]
                     print(cell_value)
                     if cell_value == '+':
