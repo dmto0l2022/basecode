@@ -991,19 +991,22 @@ class SelectLimitsToPlotDashBoardLayout():
                     data_row = active_cell_exp['row_id']
                     data_col_id = active_cell_exp['column_id']
                     main_data_df = pd.DataFrame.from_dict(main_data_in)
-                    print("sltp : main_data_in >>>>>>>>>>", main_data_in)
-                    print("sltp : main_data_df >>>>>>>>>>", main_data_df)
+                    #print("sltp : main_data_in >>>>>>>>>>", main_data_in)
+                    #print("sltp : main_data_df >>>>>>>>>>", main_data_df)
                     cell_value = main_data_df.loc[data_row, data_col_id]
-                    print(cell_value)
+                    print("sltp cell value >>>>>>>> " , cell_value)
                     if cell_value == '+':
                         selected_rowid = active_cell_exp['row_id']
                         selected_limit = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
                         print("selected limit columns >>>>>>>>>", selected_limit.columns)
                         selected_row  = selected_limit[['id','limit_id','data_reference','data_label']].copy()
+                        
                         #selected_row['plot_id'] = self.plot_id
                         #data_out=plots_todo_df.to_dict("records")
                         
                         record=selected_row.to_dict("records")[0]
+
+                        print("sltp : record >>>>>>>> ", record)
                         
                         request_header = {'dmtool-userid': str(self.dmtool_userid)}
                         fastapi_data_url = "http://container_fastapi_data_1:8014/"
