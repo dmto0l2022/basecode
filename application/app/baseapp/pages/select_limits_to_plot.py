@@ -937,10 +937,10 @@ class SelectLimitsToPlotDashBoardLayout():
             lol = row_count * edit_buttons
             button_df = pd.DataFrame(data=lol,columns=edit_buttons)
             new_df = unfiltered_df.merge(button_df, left_index=True, right_index=True)
-	        unfiltered_df = new_df.copy()
+            unfiltered_df = new_df.copy()
             print('sltp : unfiltered_df >>>', unfiltered_df) 
             #df.drop(df.index , inplace=True)
-           
+            
             filtered_df = unfiltered_df.drop(unfiltered_df.index)
             #filtered_df
             
