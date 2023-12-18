@@ -71,7 +71,8 @@ class SelectLimitsToPlotDashBoardLayout():
         self.table_meta_data_main_table = [
                                         #['id', '5%'],
                                         #['experiment', '5%'],
-                                        ['data_label', '84%']
+					['limit_id', '10%'],
+                                        ['data_label', '74%']
                                     ]
         #self.table_height = '50vh'
         #self.page_size = 26
@@ -990,7 +991,9 @@ class SelectLimitsToPlotDashBoardLayout():
                     table_of_limits = all_limit_list_df[['data_label','+','~','-','X']].copy()
                     data_row = active_cell_exp['row_id']
                     data_col_id = active_cell_exp['column_id']
-                    cell_value = table_of_limits.loc[data_row, data_col_id]
+		            data_in_df = pd.DataFrame.from_dict(data_in)
+                    cell_value = data_in_df.loc[data_row, data_col_id]
+                    print(cell_value)
                     if cell_value == '+':
                         selected_rowid = active_cell_exp['row_id']
                         selected_limit = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
