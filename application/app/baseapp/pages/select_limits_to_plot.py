@@ -1106,17 +1106,17 @@ class SelectLimitsToPlotDashBoardLayout():
             #print('limit_ids >>>>>>>>' ,limit_ids)
                     
             #msg = prop_id
-            if self.page_name + "_plot_" + button_id" == prop_id :
+            if self.page_name + "_plot_" + "button_id" == prop_id :
                 #msg = "Button 1 was most recently clicked"
                 #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
                 href_return = '/application/baseapp/style_plot_and_traces'
                 return [href_return,'']
-            elif  self.page_name + "_home_" + button_id" == prop_id:
+            elif  self.page_name + "_home_" + "button_id" == prop_id:
                 #msg = "Button 2 was most recently clicked"
                 #href_return = dash.page_registry['pages.home']['path']
                 href_return = '/application/baseapp/homepage'
                 return  [href_return,'']
-            elif self.page_name + "_cancel_" + button_id" == prop_id:
+            elif self.page_name + "_cancel_" + "button_id" == prop_id:
                 #msg = "Button 2 was most recently clicked"
                 #href_return = dash.page_registry['pages.home']['path']
                 href_return = '/application/baseapp/plot_menu'
