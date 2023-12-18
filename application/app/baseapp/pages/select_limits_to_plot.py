@@ -988,7 +988,6 @@ class SelectLimitsToPlotDashBoardLayout():
             if triggered_id == self.page_name + 'main_limits_table':
                 if active_cell_exp is not None:
                     all_limit_list_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
-                    table_of_limits = all_limit_list_df[['data_label','+','~','-','X']].copy()
                     data_row = active_cell_exp['row_id']
                     data_col_id = active_cell_exp['column_id']
                     data_in_df = pd.DataFrame.from_dict(data_in)
