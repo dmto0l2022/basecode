@@ -991,7 +991,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     data_row = active_cell_exp['row_id']
                     data_col_id = active_cell_exp['column_id']
                     cell_value = table_of_limits.loc[data_row, data_col_id]
-                    if cell_value = '+':
+                    if cell_value == '+':
                         selected_rowid = active_cell_exp['row_id']
                         selected_limit = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
                         print("selected limit columns >>>>>>>>>", selected_limit.columns)
