@@ -1061,8 +1061,8 @@ class SelectLimitsToPlotDashBoardLayout():
                         #print(data_in)
         
                         record_data=selected_limit.to_dict("records")[0]
-                        data_in.append(record_data)
-                        print("data_out >>>>>>>>>", data_in)
+                        plot_data_in.append(record_data)
+                        print("data_out >>>>>>>>>", plot_data_in)
                         #data_in = record
                         # Return the updated data.
                         #return data
@@ -1095,7 +1095,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 #print(data_in)
                 a = 1
             
-            return data_in
+            return plot_data_in
     
     
     def RespondToButtonsCallback(self):
