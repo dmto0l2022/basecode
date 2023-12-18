@@ -201,7 +201,7 @@ class SelectLimitsToPlotDashBoardLayout():
 	    
         self.DivPlotName = html.Div()
 	    
-	    self.RowOfButtons = dbc.Row()
+        self.RowOfButtons = dbc.Row()
         self.RowLimitsToPlot = dbc.Row()
 
         self.ClsMainDataTable = None
