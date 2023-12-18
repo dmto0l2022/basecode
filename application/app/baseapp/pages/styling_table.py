@@ -246,7 +246,8 @@ class StylingTable():
               dropdown={
                   'line_color': {
                       'options': self.color_options,
-                      'searchable' : False
+                      'searchable' : False,
+                      'clearable' : False,
                   },
                   'line': {
                        'options': self.line_style_options,
@@ -254,15 +255,18 @@ class StylingTable():
                   },
                   'fill_color': {
                       'options': self.color_options,
-                      'searchable' : False
+                      'searchable' : False,
+                      'clearable' : False,
                   },
                   'symbol': {
                        'options': self.symbol_options,
-                       'searchable' : False
+                       'searchable' : False,
+                      'clearable' : False,
                   },
                    'symbol_color': {
                        'options': self.color_options,
-                       'searchable' : False
+                       'searchable' : False,
+                       'clearable' : False,
                   }
               },
               style_cell_conditional=[
