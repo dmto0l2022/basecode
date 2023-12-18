@@ -799,7 +799,7 @@ class SelectLimitsToPlotDashBoardLayout():
             self.dmtool_userid = dmtooluser_cls.dmtool_userid
             ## get plot name from url
             f = furl(href)
-            self.plot_name = f.args['plot_name']
+            #self.plot_name = f.args['plot_name']
             self.plot_id = f.args['plot_id']
             #####
             '''
