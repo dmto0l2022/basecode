@@ -72,7 +72,7 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
         new_plot_name = json_data['name']
         print("create_new_plot_req plot id >>>> " , new_plot_id)
 
-        href_return = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)+'&plot_name='+new_plot_name
+        href_return = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)
         #href_return = baseapp_prefix + '/create_new_plot'
         return href_return
     elif page_name + '_cancel_' + 'button_id' == prop_id:
