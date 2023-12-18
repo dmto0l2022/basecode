@@ -934,7 +934,9 @@ class SelectLimitsToPlotDashBoardLayout():
 
             row_count, column_count = unfiltered_df.shape
             edit_buttons = ['+','~','-','X']
-            lol = row_count * edit_buttons
+            lol = []
+            for r in range(0, row_count):
+                lol.append(edit_buttons)
             button_df = pd.DataFrame(data=lol,columns=edit_buttons)
             new_df = unfiltered_df.merge(button_df, left_index=True, right_index=True)
             unfiltered_df = new_df.copy()
