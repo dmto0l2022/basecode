@@ -854,8 +854,10 @@ class SelectLimitsToPlotDashBoardLayout():
 
             #########################
             self.PopulateMainDataTable()
+
+            return_plotname = str(new_plot_id) + ' - ' + new_plot_name
             
-            return [html.H1(children=str(new_plot_id) + ' - ' + new_plot_name) , self.main_data_table]
+            return [return_plotname, self.main_data_table]
     
     def ApplyFiltersCallback(self):
         @callback(
