@@ -991,6 +991,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     data_row = active_cell_exp['row_id']
                     data_col_id = active_cell_exp['column_id']
                     data_in_df = pd.DataFrame.from_dict(data_in)
+                    print("sltp : data_in >>>>>>>>>>", data_in)
                     print("sltp : data_in_df >>>>>>>>>>", data_in_df)
                     cell_value = data_in_df.loc[data_row, data_col_id]
                     print(cell_value)
