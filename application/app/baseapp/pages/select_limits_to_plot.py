@@ -973,98 +973,99 @@ class SelectLimitsToPlotDashBoardLayout():
             triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
             #print(triggered_id)
             if triggered_id == self.page_name + 'main_limits_table':
-                all_limit_list_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
-                selected_rowid = active_cell_exp['row_id']
-                selected_limit = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
-                print("selected limit columns >>>>>>>>>", selected_limit.columns)
-                selected_row  = selected_limit[['id','limit_id','data_reference','data_label']].copy()
-                #selected_row['plot_id'] = self.plot_id
-                #data_out=plots_todo_df.to_dict("records")
+		        if active_cell_exp['row_id'] is not None:
+                    all_limit_list_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
+                    selected_rowid = active_cell_exp['row_id']
+                    selected_limit = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
+                    print("selected limit columns >>>>>>>>>", selected_limit.columns)
+                    selected_row  = selected_limit[['id','limit_id','data_reference','data_label']].copy()
+                    #selected_row['plot_id'] = self.plot_id
+                    #data_out=plots_todo_df.to_dict("records")
+                    
+                    record=selected_row.to_dict("records")[0]
+                    
+                    request_header = {'dmtool-userid': str(self.dmtool_userid)}
+                    fastapi_data_url = "http://container_fastapi_data_1:8014/"
                 
-                record=selected_row.to_dict("records")[0]
+                    add_limit_to_plot_api = "dmtool/fastapi_data/internal/data/data_about"
+                    add_limit_to_plot_api_url = fastapi_data_url + add_limit_to_plot_api
+                    
+                    df_to_json = selected_limit[["limit_id", "data_label", "data_reference", "data_comment", "x_units", "y_units",
+                          "x_rescale", "y_rescale", "year", "experiment", "spin_dependency", "result_type", "official", "greatest_hit"]].copy()
+                    
+                    df_to_json["plot_id"] =  str(self.plot_id)
+                    ####
+                    '''
+                    json_data = {
+                          "limit_id": str(selected_limit["limit_id"].iloc[0]),
+                          "plot_id": str(self.plot_id),
+                          "data_label": selected_limit["data_label"].iloc[0],
+                          "data_reference": selected_limit["data_reference"].iloc[0],
+                          "data_comment": selected_limit["data_comment"].iloc[0],
+                          "x_units": selected_limit["x_units"].iloc[0],
+                          "y_units": selected_limit["y_units"].iloc[0],
+                          "x_rescale": '1', ##str(selected_limit["x_rescale"].iloc[0]),
+                          "y_rescale": '1', ##str(selected_limit["y_rescale"].iloc[0]),
+                          "year": str(int(selected_limit["year"].iloc[0])),
+                          "experiment": selected_limit["experiment"].iloc[0],
+                          "spin_dependency": selected_limit["spin_dependency"].iloc[0],
+                          "result_type": selected_limit["result_type"].iloc[0],
+                          "official": str(selected_limit["official"].iloc[0]),
+                          "greatest_hit": str(selected_limit["greatest_hit"].iloc[0])
+                        }
+                    '''
+                    
+                    json_data_1 = df_to_json.to_json(orient="records")
+                    #result = df.to_json(orient="records")
+    
+                    parsed = loads(json_data_1)
+                    print("print(dumps(parsed, indent=4))")
+                    #print(dumps(parsed, indent=4))
+                    print("parsed[0]  >>>", parsed[0])
+                    
+                    ##df.loc[i].to_json
+    
+                    ####
+    
+                    #print(json_data)
+                    #print("json_data_1 >>>>>>>>>>>", json_data_1)
+                    
+                    ####
+                    
+                    add_limit_to_plot_api_response = requests.post(add_limit_to_plot_api_url, json=parsed[0], headers=request_header)
+                    json_data_response = json.loads(add_limit_to_plot_api_response.text)
+                    print("json_data sltp add limit to plot >>>>>>>>>", json_data_response)
+                    print("select limits to plot - add limit to plot - status code >>>> " , add_limit_to_plot_api_response.status_code)
+    
+                    #print(data_in)
+    
+                    record_data=selected_limit.to_dict("records")[0]
+                    data_in.append(record_data)
+                    print("data_out >>>>>>>>>", data_in)
+                    #data_in = record
+                    # Return the updated data.
+                    #return data
+    
+                    
+                    #print(type(record))
+                    #print(record)
+                    #record = {columns[i]: arg for i, arg in enumerate(list(args))}
+                    # If the record (identified by user_key) already exists, update it.
+                    #try:
+                    #    #record_index = [record[selected_rowid] for record in data_in].index(record[selected_rowid])
+                    #    record_index = [record[selected_rowid] for record in data_in].index(record[selected_rowid])
+                    #    data_in[record_index] = record
+                    # Otherwise, append it.
+                    #except ValueError:
+                    #    data_in[selected_rowid] = record
+                    #dictlen = len(data_in)
+                    #data_in[selected_rowid] = record
                 
-                request_header = {'dmtool-userid': str(self.dmtool_userid)}
-                fastapi_data_url = "http://container_fastapi_data_1:8014/"
+                    #selected_row = limits_table_df[limits_table_df['expid']==active_cell['row_id']]
+                    #plots_todo_df= selected_row.copy()
+                    #data_out=plots_todo_df.to_dict("records")
+                    #data_out=selected_row.to_dict("records")
             
-                add_limit_to_plot_api = "dmtool/fastapi_data/internal/data/data_about"
-                add_limit_to_plot_api_url = fastapi_data_url + add_limit_to_plot_api
-                
-                df_to_json = selected_limit[["limit_id", "data_label", "data_reference", "data_comment", "x_units", "y_units",
-                      "x_rescale", "y_rescale", "year", "experiment", "spin_dependency", "result_type", "official", "greatest_hit"]].copy()
-                
-                df_to_json["plot_id"] =  str(self.plot_id)
-                ####
-                '''
-                json_data = {
-                      "limit_id": str(selected_limit["limit_id"].iloc[0]),
-                      "plot_id": str(self.plot_id),
-                      "data_label": selected_limit["data_label"].iloc[0],
-                      "data_reference": selected_limit["data_reference"].iloc[0],
-                      "data_comment": selected_limit["data_comment"].iloc[0],
-                      "x_units": selected_limit["x_units"].iloc[0],
-                      "y_units": selected_limit["y_units"].iloc[0],
-                      "x_rescale": '1', ##str(selected_limit["x_rescale"].iloc[0]),
-                      "y_rescale": '1', ##str(selected_limit["y_rescale"].iloc[0]),
-                      "year": str(int(selected_limit["year"].iloc[0])),
-                      "experiment": selected_limit["experiment"].iloc[0],
-                      "spin_dependency": selected_limit["spin_dependency"].iloc[0],
-                      "result_type": selected_limit["result_type"].iloc[0],
-                      "official": str(selected_limit["official"].iloc[0]),
-                      "greatest_hit": str(selected_limit["greatest_hit"].iloc[0])
-                    }
-                '''
-                
-                json_data_1 = df_to_json.to_json(orient="records")
-                #result = df.to_json(orient="records")
-
-                parsed = loads(json_data_1)
-                print("print(dumps(parsed, indent=4))")
-                #print(dumps(parsed, indent=4))
-                print("parsed[0]  >>>", parsed[0])
-                
-                ##df.loc[i].to_json
-
-                ####
-
-                #print(json_data)
-                #print("json_data_1 >>>>>>>>>>>", json_data_1)
-                
-                ####
-                
-                add_limit_to_plot_api_response = requests.post(add_limit_to_plot_api_url, json=parsed[0], headers=request_header)
-                json_data_response = json.loads(add_limit_to_plot_api_response.text)
-                print("json_data sltp add limit to plot >>>>>>>>>", json_data_response)
-                print("select limits to plot - add limit to plot - status code >>>> " , add_limit_to_plot_api_response.status_code)
-
-                #print(data_in)
-
-                record_data=selected_limit.to_dict("records")[0]
-                data_in.append(record_data)
-                print("data_out >>>>>>>>>", data_in)
-                #data_in = record
-                # Return the updated data.
-                #return data
-
-                
-                #print(type(record))
-                #print(record)
-                #record = {columns[i]: arg for i, arg in enumerate(list(args))}
-                # If the record (identified by user_key) already exists, update it.
-                #try:
-                #    #record_index = [record[selected_rowid] for record in data_in].index(record[selected_rowid])
-                #    record_index = [record[selected_rowid] for record in data_in].index(record[selected_rowid])
-                #    data_in[record_index] = record
-                # Otherwise, append it.
-                #except ValueError:
-                #    data_in[selected_rowid] = record
-                #dictlen = len(data_in)
-                #data_in[selected_rowid] = record
-            
-                #selected_row = limits_table_df[limits_table_df['expid']==active_cell['row_id']]
-                #plots_todo_df= selected_row.copy()
-                #data_out=plots_todo_df.to_dict("records")
-                #data_out=selected_row.to_dict("records")
-        
             elif triggered_id == self.page_name+'limits_to_plot_table':
                 #selected_rowid = active_cell_plot['row']
                 #print(data_in[selected_rowid])
