@@ -903,7 +903,7 @@ class SelectLimitsToPlotDashBoardLayout():
             active_cell_greatest_hit,
             derived_virtual_selected_rows_greatest_hit):
 
-            print("call back triggered")
+            print("sltp : apply filters callback triggered")
             
             try:
                 dfs = [
@@ -931,9 +931,16 @@ class SelectLimitsToPlotDashBoardLayout():
             #self.PopulateMainDataTable()
             
             unfiltered_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
+
+            row_count, column_count = unfiltered_df.shape
+            edit_buttons = ['+','~','-','X']
+            lol = row_count * edit_buttons
+            button_df = pd.DataFrame(data=lol,columns=edit_buttons)
+            new_df = unfiltered_df.merge(button_df, left_index=True, right_index=True)
+	        unfiltered_df = new_df.copy()
             print('sltp : unfiltered_df >>>', unfiltered_df) 
             #df.drop(df.index , inplace=True)
-            
+           
             filtered_df = unfiltered_df.drop(unfiltered_df.index)
             #filtered_df
             
