@@ -973,7 +973,7 @@ class SelectLimitsToPlotDashBoardLayout():
             triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
             #print(triggered_id)
             if triggered_id == self.page_name + 'main_limits_table':
-		        if active_cell_exp['row_id'] is not None:
+                if active_cell_exp['row_id'] is not None:
                     all_limit_list_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
                     selected_rowid = active_cell_exp['row_id']
                     selected_limit = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
