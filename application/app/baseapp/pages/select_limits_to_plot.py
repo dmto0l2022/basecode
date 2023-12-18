@@ -794,6 +794,7 @@ class SelectLimitsToPlotDashBoardLayout():
         @callback([Output('select_limits_to_plot_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children')],
               [Input(self.page_name +'url', 'href')])
         def set_plot_name(href: str):
+            print('sltp : set plot name callback triggered')
             ## get user id from cookie
             dmtooluser_cls = gdu.GetUserID()
             self.dmtool_userid = dmtooluser_cls.dmtool_userid
@@ -927,7 +928,7 @@ class SelectLimitsToPlotDashBoardLayout():
         
             #all_limit_list_df, all_trace_list_df, all_limit_data_df, all_limit_list_dict = gld.GetLimits(dmtool_userid) 
             
-            self.PopulateMainDataTable()
+            #self.PopulateMainDataTable()
             
             unfiltered_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
             print('sltp : unfiltered_df >>>', unfiltered_df) 
