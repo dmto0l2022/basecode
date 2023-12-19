@@ -550,7 +550,7 @@ async def create_limit(limit: LimitCreate, session: AsyncSession = Depends(get_s
 @router.get(api_base_url + "limit/{limit_id}")
 async def read_limit(limit_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(LimitOwnership,Limit).join(Limit).where(LimitOwnership.limit_id == limit_id).where(LimitOwnership.user_id == dmtool_userid)
+    statement = select(Limit_ownership,Limit).join(Limit).where(Limit_ownership.limit_id == limit_id).where(Limit_ownership.user_id == dmtool_userid)
     raw_data = await session.exec(statement)
     limit = raw_data.first()
     #print("limit data >>>>>>>>>>>>>>>",  limits)
