@@ -1084,8 +1084,8 @@ async def create_data_appearance(data_appearance_in: Data_appearanceCreate, sess
                             fill_color = data_appearance_in.fill_color,
                             line = data_appearance_in.line,
                             symbol = data_appearance_in.symbol,
-                            created_at = limit_data_in.created_at,
-                            updated_at = limit_data_in.updated_at)
+                            created_at = data_appearance_in.created_at,
+                            updated_at = data_appearance_in.updated_at)
     session.add(data_appearance)
     await session.commit()
     await session.refresh(data_appearance)
