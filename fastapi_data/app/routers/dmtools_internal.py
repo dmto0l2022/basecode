@@ -994,18 +994,17 @@ async def read_data_about_for_plot(plot_id_in: int,session: AsyncSession = Depen
     print("return_lol >>>>>>>>>", return_lol)
     return return_lol
 
-###
-'''
-@router.patch(api_base_url + "plot_ownership/{plot_ownership_id}")
-async def update_plot_ownership(plot_ownership_id: int,
-                      record_in: Plot_ownershipUpdate,
+
+@router.patch(api_base_url + "data_about/{data_about_id}")
+async def update_data_about(data_about_id: int,
+                      record_in: Data_aboutUpdate,
                       session: AsyncSession = Depends(get_session),
                       dmtool_userid: Annotated[int | None, Header()] = None):
     
-    route_name = "Update Plot_ownership"
+    route_name = "Update Data_about"
     record_in_data = record_in.dict(exclude_unset=True)
-    get_records_statement = select(Plot_ownership).where(Plot_ownership.id == plot_ownership_id)
-    record_update_statement = (update(Plot_ownership).where(Plot_ownership.id == plot_ownership_id).values(**record_in_data))
+    get_records_statement = select(Data_about).where(Data_about.id == data_about_id)
+    record_update_statement = (update(Data_about).where(Data_about.id == data_about_id).values(**record_in_data))
     
     db_records = await session.exec(get_records_statement)
     
@@ -1022,17 +1021,17 @@ async def update_plot_ownership(plot_ownership_id: int,
     return {"updated": return_record}
 
 
-@router.delete(api_base_url + "plot_ownership/{plot_ownership_id}")
-async def delete_plot_ownership(plot_ownership_id: int, session: AsyncSession = Depends(get_session),
+@router.delete(api_base_url + "data_about/{data_about_id}")
+async def delete_data_about(data_about_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(Plot_ownership).where(Plot_ownership.id == plot_ownership_id)
+    statement = select(Data_about).where(Data_about.id == data_about_id)
     results = await session.exec(statement)
-    plot_ownership = results.one()
-    await session.delete(plot_ownership)
+    data_about = results.one()
+    await session.delete(data_about)
     await session.commit()
-    return {"deleted": plot_ownership}
+    return {"deleted": data_about}
 
-'''
+
 
 ## Data appearance
 
@@ -1068,7 +1067,7 @@ async def delete_plot_ownership(plot_ownership_id: int, session: AsyncSession = 
 '''
 
 @router.post(api_base_url + "data_appearance")
-async def create_limit_data(data_appearance_in: Data_appearanceCreate, session: AsyncSession = Depends(get_session),
+async def create_data_appearance(data_appearance_in: Data_appearanceCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     data_appearance = Data_appearance(
                             limit_id = data_appearance_in.limit_id,
@@ -1107,18 +1106,17 @@ async def read_data_appearance_for_plot(plot_id_in: int,session: AsyncSession = 
     print("return_lol >>>>>>>>>", return_lol)
     return return_lol
 
-###
-'''
-@router.patch(api_base_url + "plot_ownership/{plot_ownership_id}")
-async def update_plot_ownership(plot_ownership_id: int,
-                      record_in: Plot_ownershipUpdate,
+
+@router.patch(api_base_url + "data_appearance/{data_appearance_id}")
+async def update_data_appearance(data_appearance_id: int,
+                      record_in: Data_appearanceUpdate,
                       session: AsyncSession = Depends(get_session),
                       dmtool_userid: Annotated[int | None, Header()] = None):
     
-    route_name = "Update Plot_ownership"
+    route_name = "Update Data Appearance"
     record_in_data = record_in.dict(exclude_unset=True)
-    get_records_statement = select(Plot_ownership).where(Plot_ownership.id == plot_ownership_id)
-    record_update_statement = (update(Plot_ownership).where(Plot_ownership.id == plot_ownership_id).values(**record_in_data))
+    get_records_statement = select(Data_appearance).where(Data_appearance.id == data_appearance_id)
+    record_update_statement = (update(Data_appearance).where(Data_appearance.id == data_appearance_id).values(**record_in_data))
     
     db_records = await session.exec(get_records_statement)
     
@@ -1135,17 +1133,15 @@ async def update_plot_ownership(plot_ownership_id: int,
     return {"updated": return_record}
 
 
-@router.delete(api_base_url + "plot_ownership/{plot_ownership_id}")
-async def delete_plot_ownership(plot_ownership_id: int, session: AsyncSession = Depends(get_session),
+@router.delete(api_base_url + "data_appearance/{data_appearance_id}")
+async def delete_data_appearance(data_appearance_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(Plot_ownership).where(Plot_ownership.id == plot_ownership_id)
+    statement = select(Data_appearance).where(Data_appearance.id == data_appearance_id)
     results = await session.exec(statement)
-    plot_ownership = results.one()
-    await session.delete(plot_ownership)
+    data_appearance = results.one()
+    await session.delete(data_appearance)
     await session.commit()
-    return {"deleted": plot_ownership}
-
-'''
+    return {"deleted": data_appearance}
 
 ## Data data
 
@@ -1174,7 +1170,7 @@ updated_at
 '''
 
 @router.post(api_base_url + "data_data")
-async def create_limit_data(data_data_in: Data_dataCreate, session: AsyncSession = Depends(get_session),
+async def create_data_datapoint(data_data_in: Data_dataCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     data_data = Data_data(limit_id = data_data_in.limit_id,
                           plot_id = data_data_in.plot_id,
@@ -1194,7 +1190,7 @@ async def create_limit_data(data_data_in: Data_dataCreate, session: AsyncSession
     return data_data
 
 @router.post(api_base_url + "data_data_dataset")
-async def create_limit_dataset(data_data_dataset_in: list[Data_dataCreate], session: AsyncSession = Depends(get_session),
+async def create_data_dataset(data_data_dataset_in: list[Data_dataCreate], session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     counter = 0
     for ll in data_data_dataset_in:
@@ -1215,8 +1211,8 @@ async def create_limit_dataset(data_data_dataset_in: list[Data_dataCreate], sess
         counter += 1
     return {'inserted' : counter}
 
-@router.get(api_base_url + "data_data_dataset", response_model=list[Data_data])
-async def read_data_data_dataset(limit_id_in: int, session: AsyncSession = Depends(get_session),
+@router.get(api_base_url + "data_dataset", response_model=list[Data_data])
+async def read_data_dataset(limit_id_in: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Data_data).where(Data_data.limit_id == limit_id_in))
     data_data_dataset = result.scalars().all()
@@ -1237,18 +1233,16 @@ async def read_data_data_dataset(limit_id_in: int, session: AsyncSession = Depen
             for data_data in data_data_dataset]
 
 
-
-'''
-@router.patch(api_base_url + "plot_ownership/{plot_ownership_id}")
-async def update_plot_ownership(plot_ownership_id: int,
-                      record_in: Plot_ownershipUpdate,
+@router.patch(api_base_url + "data_data/{data_data_id}")
+async def update_data_data(data_data_id: int,
+                      record_in: Data_dataUpdate,
                       session: AsyncSession = Depends(get_session),
                       dmtool_userid: Annotated[int | None, Header()] = None):
     
-    route_name = "Update Plot_ownership"
+    route_name = "Update Data_data"
     record_in_data = record_in.dict(exclude_unset=True)
-    get_records_statement = select(Plot_ownership).where(Plot_ownership.id == plot_ownership_id)
-    record_update_statement = (update(Plot_ownership).where(Plot_ownership.id == plot_ownership_id).values(**record_in_data))
+    get_records_statement = select(Data_data).where(Data_data.id == data_data_id)
+    record_update_statement = (update(Data_data).where(Data_data.id == data_data_id).values(**record_in_data))
     
     db_records = await session.exec(get_records_statement)
     
@@ -1265,16 +1259,15 @@ async def update_plot_ownership(plot_ownership_id: int,
     return {"updated": return_record}
 
 
-@router.delete(api_base_url + "plot_ownership/{plot_ownership_id}")
-async def delete_plot_ownership(plot_ownership_id: int, session: AsyncSession = Depends(get_session),
+@router.delete(api_base_url + "data_data/{data_data_id}")
+async def delete_data_data(data_data_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(Plot_ownership).where(Plot_ownership.id == plot_ownership_id)
+    statement = select(Data_data).where(Data_data.id == data_data_id)
     results = await session.exec(statement)
-    plot_ownership = results.one()
-    await session.delete(plot_ownership)
+    data_data = results.one()
+    await session.delete(data_data)
     await session.commit()
-    return {"deleted": plot_ownership}
-'''
+    return {"deleted": data_data}
 
 
 
