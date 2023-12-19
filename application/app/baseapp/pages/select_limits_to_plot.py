@@ -1105,8 +1105,22 @@ class SelectLimitsToPlotDashBoardLayout():
                         json_data_response = json.loads(add_limit_to_plot_api_response.text)
                         print("json_data sltp add limit to plot >>>>>>>>>", json_data_response)
                         print("select limits to plot - add limit to plot - status code >>>> " , add_limit_to_plot_api_response.status_code)
-        
-                        #print(data_in)
+
+                        #/dmtool/fastapi_data/internal/data/data_about
+                        #https://dev1.dmtool.info/dmtool/fastapi_data/internal/data/data_about?plot_id_in=3146' 
+                        get_plot_data_abouts_api = 'dmtool/fastapi_data/internal/data/data_about?plot_id_in=' + self.plot_id
+                        get_plot_data_abouts_url = fastapi_data_url + get_plot_data_abouts_api
+                        get_about_data_to_plot_api_response = requests.get(get_plot_data_abouts_url, headers=request_header)
+
+                        json_data_response = json.loads(get_about_data_to_plot_api_response.text)
+                        
+                        all_data_about = []
+                        
+                        for data_about in json_data_response:
+                            all_data_about.append(data_about['Data_about'])
+                            
+                        
+                        print("all_data_about >>>>>", all_data_about)
                         '''
                         record_data=selected_limit.to_dict("records")[0]
                         plot_data_in.append(record_data)
