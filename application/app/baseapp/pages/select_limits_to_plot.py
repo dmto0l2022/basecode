@@ -1022,7 +1022,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
                         print("sltp : record >>>>>>>> ", record)
                         
-                       
+                       '''
                         
                         add_limit_to_plot_api = "dmtool/fastapi_data/internal/data/data_about"
                         add_limit_to_plot_api_url = fastapi_data_url + add_limit_to_plot_api
@@ -1032,6 +1032,8 @@ class SelectLimitsToPlotDashBoardLayout():
                         
                         df_to_json["plot_id"] =  str(self.plot_id)
                         ####
+                        '''
+                        
                         '''
                         json_data = {
                               "limit_id": str(selected_limit["limit_id"].iloc[0]),
@@ -1051,7 +1053,8 @@ class SelectLimitsToPlotDashBoardLayout():
                               "greatest_hit": str(selected_limit["greatest_hit"].iloc[0])
                             }
                         '''
-                        
+
+                        '''
                         json_data_1 = df_to_json.to_json(orient="records")
                         #result = df.to_json(orient="records")
         
@@ -1102,7 +1105,9 @@ class SelectLimitsToPlotDashBoardLayout():
                         #plots_todo_df= selected_row.copy()
                         #data_out=plots_todo_df.to_dict("records")
                         #data_out=selected_row.to_dict("records")
-            
+
+                        '''
+                    
             elif triggered_id == self.page_name+'limits_to_plot_table':
                 #selected_rowid = active_cell_plot['row']
                 #print(data_in[selected_rowid])
