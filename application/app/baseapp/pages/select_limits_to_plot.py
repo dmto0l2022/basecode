@@ -1006,7 +1006,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         selected_row  = selected_limit[['id','limit_id','data_label']].copy()
                         selected_limit_id = selected_row['limit_id'].iloc[0]
                         ## df_test['Btime'].iloc[0]
-                        get_limit_api = '/dmtool/fastapi_data/internal/data/limit/' + selected_limit_id
+                        get_limit_api = '/dmtool/fastapi_data/internal/data/limit/' + str(selected_limit_id)
                         get_limit_api_url = fastapi_data_url + get_limit_api
 
                         get_limit_api_response = requests.get(get_limit_api_url, headers=request_header)
