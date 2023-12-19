@@ -1008,6 +1008,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         ## df_test['Btime'].iloc[0]
                         get_limit_api = '/dmtool/fastapi_data/internal/data/limit/' + str(selected_limit_id)
                         get_limit_api_url = fastapi_data_url + get_limit_api
+                        print("get_limit_api_url >>>>>>" , get_limit_api_url)
 
                         get_limit_api_response = requests.get(get_limit_api_url, headers=request_header)
 
