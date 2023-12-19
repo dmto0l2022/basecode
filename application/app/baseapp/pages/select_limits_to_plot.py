@@ -1054,17 +1054,15 @@ class SelectLimitsToPlotDashBoardLayout():
 
                         #print("sltp : record >>>>>>>> ", record)
                         
-                        '''
-                        
                         add_limit_to_plot_api = "dmtool/fastapi_data/internal/data/data_about"
                         add_limit_to_plot_api_url = fastapi_data_url + add_limit_to_plot_api
                         
-                        df_to_json = selected_limit[["limit_id", "data_label", "data_reference", "data_comment", "x_units", "y_units",
-                              "x_rescale", "y_rescale", "year", "experiment", "spin_dependency", "result_type", "official", "greatest_hit"]].copy()
+                        #df_to_json = selected_limit[["limit_id", "data_label", "data_reference", "data_comment", "x_units", "y_units",
+                        #      "x_rescale", "y_rescale", "year", "experiment", "spin_dependency", "result_type", "official", "greatest_hit"]].copy()
                         
-                        df_to_json["plot_id"] =  str(self.plot_id)
+                        #df_to_json["plot_id"] =  str(self.plot_id)
                         ####
-                        '''
+                        
                         
                         '''
                         json_data = {
@@ -1084,9 +1082,7 @@ class SelectLimitsToPlotDashBoardLayout():
                               "official": str(selected_limit["official"].iloc[0]),
                               "greatest_hit": str(selected_limit["greatest_hit"].iloc[0])
                             }
-                        '''
-
-                        '''
+                        
                         json_data_1 = df_to_json.to_json(orient="records")
                         #result = df.to_json(orient="records")
         
@@ -1103,14 +1099,15 @@ class SelectLimitsToPlotDashBoardLayout():
                         #print("json_data_1 >>>>>>>>>>>", json_data_1)
                         
                         ####
+                        '''
                         
-                        add_limit_to_plot_api_response = requests.post(add_limit_to_plot_api_url, json=parsed[0], headers=request_header)
+                        add_limit_to_plot_api_response = requests.post(add_limit_to_plot_api_url, json=reduced_json, headers=request_header)
                         json_data_response = json.loads(add_limit_to_plot_api_response.text)
                         print("json_data sltp add limit to plot >>>>>>>>>", json_data_response)
                         print("select limits to plot - add limit to plot - status code >>>> " , add_limit_to_plot_api_response.status_code)
         
                         #print(data_in)
-        
+                        '''
                         record_data=selected_limit.to_dict("records")[0]
                         plot_data_in.append(record_data)
                         print("data_out >>>>>>>>>", plot_data_in)
