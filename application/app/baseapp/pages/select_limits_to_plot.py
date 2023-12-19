@@ -1014,9 +1014,14 @@ class SelectLimitsToPlotDashBoardLayout():
 
                         print("get_limit_api_response >>>>>>>>>>>", get_limit_api_response)
 
-                        #request_json = get_limit_api_response.json()
+                        request_json = get_limit_api_response.json()
 
-                        #print("sltp : request_json >>>>>>>", request_json)
+                        print("sltp : request_json .json >>>>>>>", request_json)
+
+                        json_data_response = json.loads(get_limit_api_response.text)
+                        print("json_data sltp add limit to plot >>>>>>>>>", json_data_response)
+
+                        print("json_data sltp just limit data >>>>>>>>>", json_data_response['Limit'])
 
                         #limit_df = pd.DataFrame.from_dict(request_json)
                         
