@@ -1013,14 +1013,16 @@ class SelectLimitsToPlotDashBoardLayout():
 
                         request_json = get_limit_api_response.json()
 
-                        limit_df = pd.DataFrame.from_dict(request_json)
+                        print("sltp : request_json >>>>>>>", request_json)
+
+                        #limit_df = pd.DataFrame.from_dict(request_json)
                         
                         #selected_row['plot_id'] = self.plot_id
                         #data_out=plots_todo_df.to_dict("records")
                         
-                        record=selected_row.to_dict("records")[0]
+                        #record=selected_row.to_dict("records")[0]
 
-                        print("sltp : record >>>>>>>> ", record)
+                        #print("sltp : record >>>>>>>> ", record)
                         
                         '''
                         
