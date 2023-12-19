@@ -1012,9 +1012,11 @@ class SelectLimitsToPlotDashBoardLayout():
 
                         get_limit_api_response = requests.get(get_limit_api_url, headers=request_header)
 
-                        request_json = get_limit_api_response.json()
+                        print("get_limit_api_response >>>>>>>>>>>", get_limit_api_response)
 
-                        print("sltp : request_json >>>>>>>", request_json)
+                        #request_json = get_limit_api_response.json()
+
+                        #print("sltp : request_json >>>>>>>", request_json)
 
                         #limit_df = pd.DataFrame.from_dict(request_json)
                         
