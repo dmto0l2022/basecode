@@ -1026,21 +1026,21 @@ class SelectLimitsToPlotDashBoardLayout():
                         #reduced_json = id = x['criteria'][0]['id']
 
                         reduced_json = {
-                              "limit_id": json_data_response['Limit'][0]['limit_id'],
+                              "limit_id": json_data_response['Limit']['limit_id'],
                               "plot_id": str(self.plot_id),
-                              "data_label": json_data_response['Limit'][0]['data_label'],
-                              "data_reference": json_data_response['Limit'][0]['data_reference'],
-                              "data_comment": json_data_response['Limit'][0]['data_comment'],
-                              "x_units": json_data_response['Limit'][0]['x_units'],
-                              "y_units": json_data_response['Limit'][0]['y_units'],
-                              "x_rescale": json_data_response['Limit'][0]['x_rescale'],
-                              "y_rescale": json_data_response['Limit'][0]['y_rescale'],
-                              "year": json_data_response['Limit'][0]['year'],
-                              "experiment": json_data_response['Limit'][0]['experiment'],
-                              "spin_dependency": json_data_response['Limit'][0]['spin_dependency'],
-                              "result_type": json_data_response['Limit'][0]['result_type'],
-                              "official": json_data_response['Limit'][0]['official'],
-                              "greatest_hit": json_data_response['Limit'][0]['greatest_hit']
+                              "data_label": json_data_response['Limit']['data_label'],
+                              "data_reference": json_data_response['Limit']['data_reference'],
+                              "data_comment": json_data_response['Limit']['data_comment'],
+                              "x_units": json_data_response['Limit']['x_units'],
+                              "y_units": json_data_response['Limit']['y_units'],
+                              "x_rescale": json_data_response['Limit']['x_rescale'],
+                              "y_rescale": json_data_response['Limit']['y_rescale'],
+                              "year": json_data_response['Limit']['year'],
+                              "experiment": json_data_response['Limit']['experiment'],
+                              "spin_dependency": json_data_response['Limit']['spin_dependency'],
+                              "result_type": json_data_response['Limit']['result_type'],
+                              "official": json_data_response['Limit']['official'],
+                              "greatest_hit": json_data_response['Limit']['greatest_hit']
                             }
 
                         print('sltp : reduced_json >>>>>>>>>>>>' , reduced_json)
