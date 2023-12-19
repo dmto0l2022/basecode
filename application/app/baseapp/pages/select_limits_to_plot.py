@@ -997,9 +997,23 @@ class SelectLimitsToPlotDashBoardLayout():
                     print("sltp cell value >>>>>>>> " , cell_value)
                     if cell_value == '+':
                         selected_rowid = active_cell_exp['row_id']
-                        selected_limit = all_limit_list_df[all_limit_list_df['id']==active_cell_exp['row_id']]
+                        selected_limit = main_data_df[main_data_df['id']==active_cell_exp['row_id']]
                         print("selected limit columns >>>>>>>>>", selected_limit.columns)
-                        selected_row  = selected_limit[['id','limit_id','data_reference','data_label']].copy()
+
+                        request_header = {'dmtool-userid': str(self.dmtool_userid)}
+                        fastapi_data_url = "http://container_fastapi_data_1:8014/"
+                        
+                        selected_row  = selected_limit[['id','limit_id','data_label']].copy()
+                        selected_limit_id = selected_row['limit_id'].iloc[0]
+                        ## df_test['Btime'].iloc[0]
+                        get_limit_api = '/dmtool/fastapi_data/internal/data/limit/' + selected_limit_id
+                        get_limit_api_url = fastapi_data_url + get_limit_api
+
+                        get_limit_api_response = requests.get(get_limit_api_url, headers=request_header)
+
+                        request_json = get_limit_api_response.json()
+
+                        limit_df = pd.DataFrame.from_dict(request_json)
                         
                         #selected_row['plot_id'] = self.plot_id
                         #data_out=plots_todo_df.to_dict("records")
@@ -1008,9 +1022,8 @@ class SelectLimitsToPlotDashBoardLayout():
 
                         print("sltp : record >>>>>>>> ", record)
                         
-                        request_header = {'dmtool-userid': str(self.dmtool_userid)}
-                        fastapi_data_url = "http://container_fastapi_data_1:8014/"
-                    
+                       
+                        
                         add_limit_to_plot_api = "dmtool/fastapi_data/internal/data/data_about"
                         add_limit_to_plot_api_url = fastapi_data_url + add_limit_to_plot_api
                         
