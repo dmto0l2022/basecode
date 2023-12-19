@@ -1026,7 +1026,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         #reduced_json = id = x['criteria'][0]['id']
 
                         reduced_json = {
-                              "limit_id": json_data_response['Limit']['limit_id'],
+                              "limit_id": json_data_response['Limit']['id'],
                               "plot_id": str(self.plot_id),
                               "data_label": json_data_response['Limit']['data_label'],
                               "data_reference": json_data_response['Limit']['data_reference'],
