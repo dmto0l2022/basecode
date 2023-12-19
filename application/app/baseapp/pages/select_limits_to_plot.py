@@ -1150,7 +1150,8 @@ class SelectLimitsToPlotDashBoardLayout():
                         #data_out=selected_row.to_dict("records")
 
                         '''
-                    
+                        return_data = all_data_about
+                        
             elif triggered_id == self.page_name+'limits_to_plot_table':
                 #selected_rowid = active_cell_plot['row']
                 #print(data_in[selected_rowid])
@@ -1159,7 +1160,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 #print(data_in)
                 a = 1
             
-            return plot_data_in
+            return return_data
     
     
     def RespondToButtonsCallback(self):
