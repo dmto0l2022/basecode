@@ -62,16 +62,16 @@ dashdataandtables = adt.DashDataAndTables(dmtool_userid)
 #####
 
 class SelectLimitsToPlotDashBoardLayout():
-    def __init__(self,pagename_in,  listoflimits_in):
-        self.page_name = pagename_in
-        self.page_title = pagename_in
+    def __init__(self)
+        self.page_name = 'select_limits_to_plot'
+        self.page_title = 'select_limits_to_plot'
         self.plot_id = 0
         self.dmtool_userid = 0
         self.main_table_id =  "main_limits_table"
         self.table_meta_data_main_table = [
                                         #['id', '5%'],
                                         #['experiment', '5%'],
-                    ['limit_id', '10%'],
+                                        ['limit_id', '10%'],
                                         ['data_label', '74%']
                                     ]
         #self.table_height = '50vh'
@@ -81,8 +81,8 @@ class SelectLimitsToPlotDashBoardLayout():
         self.filter_table_heights = '60px'
 
         self.page_content_style = {'top': '0px','padding':'0','margins':'0',
-                   'height':'100%', 'width':'100%',
-                   'left': '0','background-color': 'green',
+                                   'height':'100%', 'width':'100%',
+                                   'left': '0','background-color': 'green',
                                    'overflow-y': 'scroll'}
         
         self.filter_table_cell_styles = {'textAlign': 'left',
@@ -213,6 +213,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.CreateFilterRow()
         self.data_to_plot_table_height = '80px'
         self.CreateLimitsToPlot(self.data_to_plot_table_height)
+        
 
 
     def PopulateFilterDataFrames(self):
@@ -727,7 +728,21 @@ class SelectLimitsToPlotDashBoardLayout():
 
         example_table_plots = dash_table.DataTable(
                         columns=[{
-                                'name': 'Column {}'.format(i),
+                                'name': 'Column {}'.format(i),@callback(
+    Output("graph", "figure"),
+    Input("store", "data"),
+)
+def update(store):
+    dff = pd.DataFrame(store)
+    return px.scatter(
+        dff,
+        x="gdpPercap",
+        y="lifeExp",
+        size="pop",
+        color="continent",
+        log_x=True,
+        size_max=60,
+    )
                                 'id': 'column-{}'.format(i)
                             } for i in range(1,15)],
                             data=[
@@ -1278,7 +1293,7 @@ class SelectLimitsToPlotDashBoardLayout():
 #    
 #    return layout_out
 
-sltpdb = SelectLimitsToPlotDashBoardLayout(page_name, listoflimits)
+sltpdb = SelectLimitsToPlotDashBoardLayout()
 sltpdb.CreateLayout()
 layout = sltpdb.layout
 sltpdb.SetPlotNameCallback() ## sets the dmtool user id
