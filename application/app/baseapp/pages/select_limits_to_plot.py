@@ -545,8 +545,8 @@ class SelectLimitsToPlotDashBoardLayout():
                     ),
         ])
 
-    def PopulateMainDataTable(self):
-        self.main_table_height = '300px'
+    def PopulateMainDataTable(self, table_height_in):
+        self.main_table_height = 'table_height_in'
         self.ClsMainDataTable = mte.get_main_table(self.page_title,
                                              self.page_name + self.main_table_id,
                                              self.table_meta_data_main_table,
@@ -621,9 +621,10 @@ class SelectLimitsToPlotDashBoardLayout():
                     className ="select_limits_to_plot_plot_limits_class")
     
 
-    def PopulateLimitsToPlotTable(self):
+    def PopulateLimitsToPlotTable(self, data_to_plot_table_height_in):
 
         self.GetDataToPlot()
+        self.data_to_plot_table_height = data_to_plot_table_height_in
         
         style_header_var={ 'backgroundColor': 'black','color': 'white'}
         
@@ -666,7 +667,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 'whiteSpace': 'nowrap'
             },
             style_header=style_header_var,
-            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': '80px', 'maxHeight': '80px'},
+            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height':  self.data_to_plot_table_height, 'maxHeight':  self.data_to_plot_table_height},
         ) 
 
         
@@ -892,8 +893,10 @@ class SelectLimitsToPlotDashBoardLayout():
             #self.CreateLimitsToPlot()
 
             #########################
-            self.PopulateMainDataTable()
-            self.PopulateLimitsToPlotTable()
+
+            
+            self.PopulateMainDataTable('300px') ## height of table as input
+            self.PopulateLimitsToPlotTable('100px') ## height of table as input
 
             return_plotname = str(new_plot_id) + ' - ' + new_plot_name
             
