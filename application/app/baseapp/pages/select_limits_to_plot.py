@@ -619,7 +619,54 @@ class SelectLimitsToPlotDashBoardLayout():
                 width=12,)],
                     className ="select_limits_to_plot_plot_limits_class")
     
-   
+
+    def PopulateLimitsToPlotTable(self):
+
+        self.GetDataToPlot()
+        
+        self.limits_to_plot_table = dash_table.DataTable(
+            virtualization=True,
+            id=self.page_name+'limits_to_plot_table',
+            data=self.data_to_plot_list_of_dict,
+            columns=[{'name': 'id', 'id': 'id'},
+                     {'name': 'limit_id', 'id': 'limit_id'},
+                     #{'name': 'data_reference', 'id': 'data_reference'},
+                     {'name': 'data_label', 'id': 'data_label'},
+                     {'name': 'X', 'id': 'X'},
+                     ],
+            fixed_rows={'headers': True},
+            page_size=1000,
+            style_cell=self.limits_to_plot_table_cell_styles,
+            css=self.limits_to_plot_table_css_row_heights,
+            #sort_action='native',
+            #sort_mode='multi',
+            #sort_as_null=['', 'No'],
+            #sort_by=[{'column_id': 'expid', 'direction': 'desc'}],
+            filter_action='none',
+            #row_deletable=True,
+            #row_selectable='multi',
+            #selected_rows=[],
+            #style_table={'height': '25vh',},
+            style_cell_conditional=[
+                {'if': {'column_id': 'id'},
+                 'width': '5%'},
+                {'if': {'column_id': 'limit_id'},
+                 'width': '10%'},
+                #{'if': {'column_id': 'data_reference'},
+                # 'width': '25%'},
+                {'if': {'column_id': 'data_label'},
+                 'width': '80%'},
+                {'if': {'column_id': 'X'},
+                 'width': '5%'},
+            ],
+            style_data={
+                'whiteSpace': 'nowrap'
+            },
+            style_header=style_header_var,
+            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': '80px', 'maxHeight': '80px'},
+        ) 
+
+        
     
     def GetDebugTable():
         row2_debug_ret = dbc.Row([dbc.Col(
@@ -839,7 +886,7 @@ class SelectLimitsToPlotDashBoardLayout():
             ## if the plot is in progress or being edited there will be limits already chosen
             
             #self.GetDataToPlot()
-            self.CreateLimitsToPlot()
+            #self.CreateLimitsToPlot()
 
             #########################
             self.PopulateMainDataTable()
@@ -986,7 +1033,7 @@ class SelectLimitsToPlotDashBoardLayout():
         else:
             self.data_to_plot_list_of_dict = []
         
-        print("sltp : self.data_to_plot_list_of_dict >>>>>>>>>>" , self.data_to_plot_list_of_dict)
+        print("sltp : self.data_to_plot_list_of_dict >>>>>>>>>>" ,self.data_to_plot_list_of_dict)
     
     def MoveLimitToLimitsToPlotCallback(self):
         @callback(
