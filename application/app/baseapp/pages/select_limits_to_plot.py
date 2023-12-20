@@ -564,7 +564,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
         ## creates empty limits to plot table and sets the unique id
         
-        self.limits_to_plot_df = pd.DataFrame(data=[], columns=['id','plot_id','limit_id','data_reference','data_label','X'])
+        #self.limits_to_plot_df = pd.DataFrame(data=[], columns=['id','plot_id','limit_id','data_reference','data_label','X'])
         
         style_header_var={ 'backgroundColor': 'black','color': 'white'}
 
@@ -964,6 +964,7 @@ class SelectLimitsToPlotDashBoardLayout():
             return data2 #, list_output
 
     def GetDataToPlot(self):
+        print('sltp : get data to plot function called')
          #/dmtool/fastapi_data/internal/data/data_about
         #https://dev1.dmtool.info/dmtool/fastapi_data/internal/data/data_about?plot_id_in=3146' 
         ##self.fastapi_data_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
@@ -989,6 +990,7 @@ class SelectLimitsToPlotDashBoardLayout():
             [Input(self.page_name + 'main_limits_table', 'active_cell'),Input(self.page_name+'limits_to_plot_table', 'active_cell')],
             [State(self.page_name+'main_limits_table', 'data'), State(self.page_name+'limits_to_plot_table', 'data')])
         def trigger_fork(active_cell_exp,active_cell_plot,main_data_in, plot_data_in):
+            print('sltp : move limit to plot list callback triggered')
             ctx = dash.callback_context
             return_data = []
             triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
@@ -1171,20 +1173,21 @@ class SelectLimitsToPlotDashBoardLayout():
         )
         def button_click(button1,button2,button3,plot_table_in):
             #msg = "None of the buttons have been clicked yet"
+            print("sltp : button callback triggered")
             prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
             print('plot_table_in >>>>>>>>>>>>>>>>' ,plot_table_in)
             #plots_to_do_df = pd.DataFrame(plot_table_in)
-            plots_to_do_df = pd.DataFrame.from_dict(plot_table_in)
-            plots_to_do_df['all'] = 'all'
-            plots_to_do_df['limit_id'] = plots_to_do_df['limit_id'].astype(str)
-            limits_to_plot = plots_to_do_df[['limit_id','all']]
-            print('limits_to_plot >>>>>>', limits_to_plot)
+            #plots_to_do_df = pd.DataFrame.from_dict(plot_table_in)
+            #plots_to_do_df['all'] = 'all'
+            #plots_to_do_df['limit_id'] = plots_to_do_df['limit_id'].astype(str)
+            #limits_to_plot = plots_to_do_df[['limit_id','all']]
+            #print('limits_to_plot >>>>>>', limits_to_plot)
             
             #limits_to_plot['limit_ids'] = limits_to_plot[['all']].groupby(['all'])['limit_id'].transform(lambda x: ','.join(x))
             #print(limit_ids)  
-            new_df = limits_to_plot.groupby(['all'])['limit_id'].apply('|'.join).reset_index()
+            #new_df = limits_to_plot.groupby(['all'])['limit_id'].apply('|'.join).reset_index()
             #print('new_df >>>>>>>>' ,new_df)
-            limit_ids = new_df['limit_id'].values[0]
+            #limit_ids = new_df['limit_id'].values[0]
             #print('limit_ids >>>>>>>>' ,limit_ids)
                     
             #msg = prop_id
