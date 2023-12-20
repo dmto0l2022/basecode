@@ -612,13 +612,12 @@ class SelectLimitsToPlotDashBoardLayout():
             style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': '80px', 'maxHeight': '80px'},
         ) 
 
-        self.RowLimitsToPlot = dbc.Row([dbc.Col(
-                [
+        self.RowLimitsToPlot = dbc.Row([dbc.Col(id=self.page_name+'data_to_plot_table_div',
+                children=[
                      self.limits_to_plot_table
                 ],
                 width=12,)],
-                    className ="NOPADDING")
-
+                    className ="select_limits_to_plot_plot_limits_class")
     
    
     
@@ -777,8 +776,8 @@ class SelectLimitsToPlotDashBoardLayout():
         #        ],
         #        width=12,)],className='select_limits_to_plot_plot_limits_class') ## style=select_limits_to_plot_plot_limits_style)
 
-        self.RowLimitsToPlot = dbc.Row([dbc.Col(
-                [
+        self.RowLimitsToPlot = dbc.Row([dbc.Col(id=self.page_name+'data_to_plot_table_div',
+                children=[
                      self.limits_to_plot_table
                 ],
                 width=12,)],
@@ -800,7 +799,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.layout = html.Div(id=page_name+'content',children=maincolumn,className="container-fluid", style=select_limits_to_plot_page_content_style_1)
 
     def SetPlotNameCallback(self):
-        @callback([Output('select_limits_to_plot_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children')],
+        @callback([Output('select_limits_to_plot_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children'), Output(self.page_name+'data_to_plot_table_div','children')],
               [Input(self.page_name +'url', 'href')])
         def set_plot_name(href: str):
             print('sltp : set plot name callback triggered')
@@ -840,13 +839,14 @@ class SelectLimitsToPlotDashBoardLayout():
             ## if the plot is in progress or being edited there will be limits already chosen
             
             self.GetDataToPlot()
+            self.CreateLimitsToPlot()
 
             #########################
             self.PopulateMainDataTable()
 
             return_plotname = str(new_plot_id) + ' - ' + new_plot_name
             
-            return [return_plotname, self.main_data_table]
+            return [return_plotname, self.main_data_table,  self.limits_to_plot_table]
     
     def ApplyFiltersCallback(self):
         @callback(
