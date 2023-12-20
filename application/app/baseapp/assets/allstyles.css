@@ -1003,16 +1003,19 @@ iphone se 375 * 667
 iphone xr 414 * 896
 iphone 12 pro 390 * 844
 iphone 14 pro max 430 * 932
+ipad media (acg) 768 * 918
 ipad mini 768 * 1024
 ipad air 820 * 1180
 ipad pro 1024 * 1366
+normal desktop screen 1478 * 751
 */
 
-/* 4 size screens
+/* 5 size screens
 screen 1 375 * 667
 screen 2 390 * 844
-screen 3 768 * 1024
-screen 4 >768
+screen 3 430 * 900
+screen 4 768 * 918
+screen 5 1000 * 750
 */
 
 /*
