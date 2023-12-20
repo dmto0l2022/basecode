@@ -624,6 +624,8 @@ class SelectLimitsToPlotDashBoardLayout():
 
         self.GetDataToPlot()
         
+        style_header_var={ 'backgroundColor': 'black','color': 'white'}
+        
         self.limits_to_plot_table = dash_table.DataTable(
             virtualization=True,
             id=self.page_name+'limits_to_plot_table',
