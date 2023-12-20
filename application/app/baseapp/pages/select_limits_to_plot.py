@@ -181,6 +181,8 @@ class SelectLimitsToPlotDashBoardLayout():
         self.greatest_hit_table = dash_table.DataTable()
         self.limits_table = dash_table.DataTable()
         self.plots_table = dash_table.DataTable()
+
+        self.data_to_plot_list_of_dict = []
         
         self.main_data_table = dash_table.DataTable(
             id = self.page_name + self.main_table_id
@@ -566,11 +568,13 @@ class SelectLimitsToPlotDashBoardLayout():
         self.limits_to_plot_df = pd.DataFrame(data=[], columns=['id','plot_id','limit_id','data_reference','data_label','X'])
         
         style_header_var={ 'backgroundColor': 'black','color': 'white'}
+
+        self.GetDataToPlot()
         
         self.limits_to_plot_table = dash_table.DataTable(
             virtualization=True,
             id=self.page_name+'limits_to_plot_table',
-            data=self.limits_to_plot_df.to_dict('records'),
+            data=self.data_to_plot_list_of_dict,
             columns=[{'name': 'id', 'id': 'id'},
                      {'name': 'limit_id', 'id': 'limit_id'},
                      #{'name': 'data_reference', 'id': 'data_reference'},
@@ -981,6 +985,25 @@ class SelectLimitsToPlotDashBoardLayout():
             #list_output = str(selectedcontinent_list) if selectedcontinent_list else "Click the table"
             return data2 #, list_output
 
+    def GetDataToPlot(self):
+         #/dmtool/fastapi_data/internal/data/data_about
+        #https://dev1.dmtool.info/dmtool/fastapi_data/internal/data/data_about?plot_id_in=3146' 
+        get_plot_data_abouts_api = 'dmtool/fastapi_data/internal/data/data_about?plot_id_in=' + self.plot_id
+        get_plot_data_abouts_url = fastapi_data_url + get_plot_data_abouts_api
+        get_about_data_to_plot_api_response = requests.get(get_plot_data_abouts_url, headers=request_header)
+        if get_about_data_to_plot_api_response.status_code == 200:
+            json_data_response = json.loads(get_about_data_to_plot_api_response.text)
+            
+            all_data_about = []
+            
+            for data_about in json_data_response:
+                data_about['Data_about']['X'] = 'X' ## to provide a column to click on to delete
+                all_data_about.append(data_about['Data_about'])
+    
+            self.data_to_plot_list_of_dict = all_data_about
+        else:
+            self.data_to_plot_list_of_dict = []
+    
     def MoveLimitToLimitsToPlotCallback(self):
         @callback(
             Output(self.page_name+'limits_to_plot_table', 'data'),
