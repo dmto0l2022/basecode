@@ -158,8 +158,7 @@ class SelectLimitsToPlotDashBoardLayout():
                           'verticalAlign': 'center'}
 
         self.internal_header={'dmtool-userid':'0'}
-
-        
+        self.request_header={'dmtool-userid':'0'}
 
         self.experiments_df = pd.DataFrame()
         self.result_types_df = pd.DataFrame()
