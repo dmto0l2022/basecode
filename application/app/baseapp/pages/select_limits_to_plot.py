@@ -568,6 +568,7 @@ class SelectLimitsToPlotDashBoardLayout():
         style_header_var={ 'backgroundColor': 'black','color': 'white'}
         
         self.limits_to_plot_table = dash_table.DataTable(
+            virtualization=True,
             id=self.page_name+'limits_to_plot_table',
             data=self.limits_to_plot_df.to_dict('records'),
             columns=[{'name': 'id', 'id': 'id'},
@@ -605,6 +606,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 'whiteSpace': 'nowrap'
             },
             style_header=style_header_var,
+            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': '100px', 'maxHeight': '100px'},
         ) 
 
         self.RowLimitsToPlot = dbc.Row([dbc.Col(
