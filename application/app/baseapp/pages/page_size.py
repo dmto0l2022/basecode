@@ -19,7 +19,8 @@ clientside_callback(
     function(href) {
         var w = window.innerWidth;
         var h = window.innerHeight;
-        return h;
+        var jsn = {width: w, height: h};
+        return jsn;
     }
     """,
     Output('sizehere', 'children'),
