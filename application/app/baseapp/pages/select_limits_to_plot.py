@@ -990,6 +990,7 @@ class SelectLimitsToPlotDashBoardLayout():
             [State(self.page_name+'main_limits_table', 'data'), State(self.page_name+'limits_to_plot_table', 'data')])
         def trigger_fork(active_cell_exp,active_cell_plot,main_data_in, plot_data_in):
             ctx = dash.callback_context
+            return_data = []
             triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
             #print(triggered_id)
             if triggered_id == self.page_name + 'main_limits_table':
@@ -1167,6 +1168,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 #data_in = data_in.pop(active_cell_plot['row'])
                 #print(data_in)
                 a = 1
+                return_data = []
             
             return return_data
     
