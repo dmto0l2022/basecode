@@ -728,21 +728,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
         example_table_plots = dash_table.DataTable(
                         columns=[{
-                                'name': 'Column {}'.format(i),@callback(
-    Output("graph", "figure"),
-    Input("store", "data"),
-)
-def update(store):
-    dff = pd.DataFrame(store)
-    return px.scatter(
-        dff,
-        x="gdpPercap",
-        y="lifeExp",
-        size="pop",
-        color="continent",
-        log_x=True,
-        size_max=60,
-    )
+                                'name': 'Column {}'.format(i),
                                 'id': 'column-{}'.format(i)
                             } for i in range(1,15)],
                             data=[
