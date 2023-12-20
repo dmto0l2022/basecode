@@ -19,9 +19,9 @@ clientside_callback(
     function(href) {
         var w = window.innerWidth;
         var h = window.innerHeight;
-        return {'height': h, 'width': w};
+        return h;
     }
     """,
-    [Output(page_name + 'viewport-container', 'children')],
-    [Input(page_name + 'url', 'href')]
+    Output(page_name + 'viewport-container', 'value'),
+    Input(page_name + 'url', 'href')
 )
