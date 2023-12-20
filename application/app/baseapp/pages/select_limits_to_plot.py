@@ -838,29 +838,7 @@ class SelectLimitsToPlotDashBoardLayout():
             ## populate data=self.limits_to_plot_df.to_dict('records'),
             ## if the plot is in progress or being edited there will be limits already chosen
             
-            #self.request_header = {'dmtool-userid': str(self.dmtool_userid)}
-            #fastapi_data_url = "http://container_fastapi_data_1:8014/"
-        
-            get_limits_to_plot_api = "dmtool/fastapi_data/internal/data/data_about?plot_id_in=" + str(new_plot_id)
-            
-            get_limits_to_plot_api_url = self.fastapi_data_url + get_limits_to_plot_api
-
-            get_limits_to_plot_response = requests.get(get_limits_to_plot_api_url, headers=self.request_header)
-            json_data_response = json.loads(get_limits_to_plot_response.text)
-            
-            lol = []
-            for j in json_data_response:
-                record = j['Data_about']
-                lol.append(record)
-            
-            self.limits_to_plot_df = pd.DataFrame.from_dict(lol)
-
-            print("self.limits_to_plot_df >>>>>>>>", self.limits_to_plot_df)
-            
-            #print("json_data sltp add initial limits to plot >>>>>>>>>", json_data_response)
-            #print("select limits to plot - add limit to plot - status code >>>> " , get_limits_to_plot_response.status_code)
-            
-            #self.limits_to_plot_df = pd.json_normalize(json_data_response)
+            self.GetDataToPlot()
 
             #########################
             self.PopulateMainDataTable()
