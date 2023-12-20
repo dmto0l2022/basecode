@@ -890,6 +890,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
             #########################
             self.PopulateMainDataTable()
+            self.PopulateLimitsToPlotTable()
 
             return_plotname = str(new_plot_id) + ' - ' + new_plot_name
             
