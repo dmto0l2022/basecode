@@ -1,3 +1,4 @@
+
 import os
 from os import environ, path
 #from flask_session import Session
@@ -417,7 +418,8 @@ pages_container_box = html.Div(children=[dash.page_container],
 					    'left': '0px',
 					    'background-color': 'lightblue'})
 
-layout4 = html.Div([##page_header,
+layout4 = html.Div([dcc.Store(id="screen_size_store", data={}),
+			##page_header,
 		    ##pc.page_header_1,
 		    ##pc.page_header_2,
 		    #nav_menu_button,
