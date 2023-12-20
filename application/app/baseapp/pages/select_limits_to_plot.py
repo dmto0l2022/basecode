@@ -971,6 +971,7 @@ class SelectLimitsToPlotDashBoardLayout():
         get_plot_data_abouts_api = 'data_about?plot_id_in=' + str(self.plot_id)
         get_plot_data_abouts_url = self.fastapi_data_url + get_plot_data_abouts_api
         get_about_data_to_plot_api_response = requests.get(get_plot_data_abouts_url, headers=self.request_header)
+        print("sltp : get_about_data_to_plot_api_response >>>>>>>>>>" , get_about_data_to_plot_api_response)
         if get_about_data_to_plot_api_response.status_code == 200:
             json_data_response = json.loads(get_about_data_to_plot_api_response.text)
             
@@ -981,8 +982,11 @@ class SelectLimitsToPlotDashBoardLayout():
                 all_data_about.append(data_about['Data_about'])
     
             self.data_to_plot_list_of_dict = all_data_about
+            
         else:
             self.data_to_plot_list_of_dict = []
+        
+        print("sltp : self.data_to_plot_list_of_dict >>>>>>>>>>" , self.data_to_plot_list_of_dict)
     
     def MoveLimitToLimitsToPlotCallback(self):
         @callback(
