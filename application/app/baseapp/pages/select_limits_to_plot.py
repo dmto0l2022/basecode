@@ -211,7 +211,8 @@ class SelectLimitsToPlotDashBoardLayout():
         self.PopulateFilterDataFrames()
         self.CreateFilterTables()
         self.CreateFilterRow()
-        self.CreateLimitsToPlot()
+        self.data_to_plot_table_height = '80px'
+        self.CreateLimitsToPlot(self.data_to_plot_table_height)
 
 
     def PopulateFilterDataFrames(self):
@@ -561,7 +562,7 @@ class SelectLimitsToPlotDashBoardLayout():
         self.main_data_table = self.ClsMainDataTable.dash_table_main
 
     
-    def CreateLimitsToPlot(self):
+    def CreateLimitsToPlot(self,table_height_data_to_plot):
 
         ## creates empty limits to plot table and sets the unique id
         
@@ -610,7 +611,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 'whiteSpace': 'nowrap'
             },
             style_header=style_header_var,
-            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': '80px', 'maxHeight': '80px'},
+            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': table_height_data_to_plot,  'maxHeight': table_height_data_to_plot},
         ) 
 
         self.RowLimitsToPlot = dbc.Row([dbc.Col(id=self.page_name+'data_to_plot_table_div',
