@@ -62,7 +62,7 @@ dashdataandtables = adt.DashDataAndTables(dmtool_userid)
 #####
 
 class SelectLimitsToPlotDashBoardLayout():
-    def __init__(self)
+    def __init__(self):
         self.page_name = 'select_limits_to_plot'
         self.page_title = 'select_limits_to_plot'
         self.plot_id = 0
