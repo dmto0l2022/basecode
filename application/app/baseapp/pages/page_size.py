@@ -11,7 +11,7 @@ page_name = 'page_size'
 
 layout = html.Div([
     dcc.Location(id=page_name + 'url'),
-    html.Div(id=page_name + 'viewport-container', children=['Size Here'])
+    html.Div(id=page_name + 'viewport-container', children=[html.P('Size Here',id='sizehere')])
 ])
 
 clientside_callback(
@@ -22,6 +22,6 @@ clientside_callback(
         return h;
     }
     """,
-    Output(page_name + 'viewport-container', 'value'),
+    Output('sizehere', 'value'),
     Input(page_name + 'url', 'href')
 )
