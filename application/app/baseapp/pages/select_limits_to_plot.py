@@ -838,7 +838,7 @@ class SelectLimitsToPlotDashBoardLayout():
             ## populate data=self.limits_to_plot_df.to_dict('records'),
             ## if the plot is in progress or being edited there will be limits already chosen
             
-            self.GetDataToPlot()
+            #self.GetDataToPlot()
             self.CreateLimitsToPlot()
 
             #########################
@@ -964,7 +964,7 @@ class SelectLimitsToPlotDashBoardLayout():
             return data2 #, list_output
 
     def GetDataToPlot(self):
-        print('sltp : get data to plot function called')
+        print('sltp : get data to plot function called for plot ' + str(self.plot_id))
          #/dmtool/fastapi_data/internal/data/data_about
         #https://dev1.dmtool.info/dmtool/fastapi_data/internal/data/data_about?plot_id_in=3146' 
         ##self.fastapi_data_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
