@@ -20,7 +20,8 @@ clientside_callback(
         var w = window.innerWidth;
         var h = window.innerHeight;
         var jsn = {width: w, height: h};
-        return jsn;
+        const myJSON = JSON.stringify(jsn); 
+        return myJSON;
     }
     """,
     Output('sizehere', 'children'),
