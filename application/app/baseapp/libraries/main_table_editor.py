@@ -53,7 +53,7 @@ class get_main_table:
     def __init__(self, page_title_in,
                  main_table_id_in,
                  table_meta_data_data_in,
-                 #table_height_in,
+                 table_height_in,
                  #page_size_in,
                  row_height_in,
                  table_font_size_in,
@@ -65,7 +65,7 @@ class get_main_table:
         self.page_title = page_title_in
         self.main_table_id = main_table_id_in
         self.table_meta_data_data = table_meta_data_data_in
-        self.table_height = '300'
+        self.table_height = table_height_in
         self.page_size = 1000
         self.row_height = row_height_in
         self.table_font_size = table_font_size_in
@@ -233,7 +233,7 @@ class get_main_table:
             tooltip_duration=None,
             #style_table={'minHeight': '700px', 'height': '700px', 'maxHeight': '700px'},
             #style_table={'minHeight': '100%', 'height': '100%', 'maxHeight': '100%'},
-            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': '150px', 'maxHeight': '150px'},
+            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': self.table_height, 'maxHeight': self.table_height},
             ##style_table={'height': 'calc(90vh-84px)', 'maxHeight': 'calc(90vh-84px)'},
             page_size=1000
             )
