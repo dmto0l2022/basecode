@@ -606,7 +606,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 'whiteSpace': 'nowrap'
             },
             style_header=style_header_var,
-            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': '100px', 'maxHeight': '100px'},
+            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': '80px', 'maxHeight': '80px'},
         ) 
 
         self.RowLimitsToPlot = dbc.Row([dbc.Col(
