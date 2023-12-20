@@ -563,7 +563,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
         ## creates empty limits to plot table and sets the unique id
         
-        self.limits_to_plot_df = pd.DataFrame(data=[], columns=['id','plot_id','limit_id','data_reference','data_label'])
+        self.limits_to_plot_df = pd.DataFrame(data=[], columns=['id','plot_id','limit_id','data_reference','data_label','X'])
         
         style_header_var={ 'backgroundColor': 'black','color': 'white'}
         
@@ -573,7 +573,8 @@ class SelectLimitsToPlotDashBoardLayout():
             columns=[{'name': 'id', 'id': 'id'},
                      {'name': 'limit_id', 'id': 'limit_id'},
                      #{'name': 'data_reference', 'id': 'data_reference'},
-                     {'name': 'data_label', 'id': 'data_label'}
+                     {'name': 'data_label', 'id': 'data_label'},
+                     {'name': 'X', 'id': 'X'},
                      ],
             #fixed_rows={'headers': True},
             page_size=7,
@@ -596,7 +597,9 @@ class SelectLimitsToPlotDashBoardLayout():
                 #{'if': {'column_id': 'data_reference'},
                 # 'width': '25%'},
                 {'if': {'column_id': 'data_label'},
-                 'width': '85%'},
+                 'width': '80%'},
+                {'if': {'column_id': 'X'},
+                 'width': '5%'},
             ],
             style_data={
                 'whiteSpace': 'nowrap'
@@ -1117,6 +1120,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         all_data_about = []
                         
                         for data_about in json_data_response:
+                            data_about['Data_about']['X'] = 'X' ## to provide a column to click on to delete
                             all_data_about.append(data_about['Data_about'])
                             
                         
