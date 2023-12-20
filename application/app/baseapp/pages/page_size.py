@@ -6,11 +6,12 @@ from dash import html, dcc, callback, Output, Input
 dash.register_page(__name__, path='/page_size')
 
 page_prefix_url = '/application/baseapp/'
+page_name = 'page_size'
 
 
 layout = html.Div([
-    dcc.Location(id='url'),
-    html.Div(id='viewport-container')
+    dcc.Location(id=page_name + 'url'),
+    html.Div(id=page_name + 'viewport-container', children=['Size Here'])
 ])
 
 clientside_callback(
@@ -21,6 +22,6 @@ clientside_callback(
         return {'height': h, 'width': w};
     }
     """,
-    Output('viewport-container', 'children'),
-    Input('url', 'href')
+    Output(page_name + 'viewport-container', 'children'),
+    Input(page_name + 'url', 'href')
 )
