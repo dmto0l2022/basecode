@@ -39,10 +39,10 @@ clientside_callback(
         var h = window.innerHeight;
         var jsn = {width: w, height: h};
         const myJSON = JSON.stringify(jsn); 
-        return myJSON, jsn;
+        return [myJSON, jsn];
     }
     """,
-    [Output('sizehere', 'children'),
-    Output('screen_size_store', 'data')],
+    Output('sizehere', 'children'),
+    Output('screen_size_store', 'data'),
     Input(page_name + 'url', 'href')
 )
