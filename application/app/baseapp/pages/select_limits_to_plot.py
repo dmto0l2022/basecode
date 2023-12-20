@@ -896,8 +896,8 @@ class SelectLimitsToPlotDashBoardLayout():
             #########################
 
             
-            self.PopulateMainDataTable('150px') ## height of table as input
-            self.PopulateLimitsToPlotTable('80px') ## height of table as input
+            self.PopulateMainDataTable('100px') ## height of table as input
+            self.PopulateLimitsToPlotTable('50px') ## height of table as input
 
             return_plotname = str(new_plot_id) + ' - ' + new_plot_name
             
