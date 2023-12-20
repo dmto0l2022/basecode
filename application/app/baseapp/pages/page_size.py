@@ -22,6 +22,6 @@ clientside_callback(
         return {'height': h, 'width': w};
     }
     """,
-    Output(page_name + 'viewport-container', 'children'),
-    Input(page_name + 'url', 'href')
+    [Output(page_name + 'viewport-container', 'children')],
+    [Input(page_name + 'url', 'href')]
 )
