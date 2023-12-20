@@ -1046,7 +1046,7 @@ class SelectLimitsToPlotDashBoardLayout():
         def trigger_fork(active_cell_exp,active_cell_plot,main_data_in, plot_data_in):
             print('sltp : move limit to plot list callback triggered')
             ctx = dash.callback_context
-            return_data = []
+            return_data = plot_data_in
             triggered_id = ctx.triggered[0]['prop_id'].split('.')[0]
             #print(triggered_id)
             if triggered_id == self.page_name + 'main_limits_table':
@@ -1202,6 +1202,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         '''
                         return_data = self.data_to_plot_list_of_dict
                         
+            '''
             elif triggered_id == self.page_name+'limits_to_plot_table':
                 #selected_rowid = active_cell_plot['row']
                 #print(data_in[selected_rowid])
@@ -1210,6 +1211,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 #print(data_in)
                 a = 1
                 return_data = []
+            '''
             
             return return_data
     
