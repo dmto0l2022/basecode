@@ -824,7 +824,7 @@ class SelectLimitsToPlotDashBoardLayout():
             request_header = {'dmtool-userid': str(self.dmtool_userid)}
             fastapi_data_url = "http://container_fastapi_data_1:8014/"
             
-            get_plot_api = "dmtool/fastapi_data/internal/data/plot?plot_id=" + self.plot_id
+            get_plot_api = "dmtool/fastapi_data/internal/data/plot?plot_id=" + str(self.plot_id)
             get_plot_api_url = fastapi_data_url + get_plot_api
             
             get_plot_response = requests.get(get_plot_api_url, headers=request_header)
@@ -988,7 +988,7 @@ class SelectLimitsToPlotDashBoardLayout():
     def GetDataToPlot(self):
          #/dmtool/fastapi_data/internal/data/data_about
         #https://dev1.dmtool.info/dmtool/fastapi_data/internal/data/data_about?plot_id_in=3146' 
-        get_plot_data_abouts_api = 'dmtool/fastapi_data/internal/data/data_about?plot_id_in=' + self.plot_id
+        get_plot_data_abouts_api = 'dmtool/fastapi_data/internal/data/data_about?plot_id_in=' + str(self.plot_id)
         get_plot_data_abouts_url = fastapi_data_url + get_plot_data_abouts_api
         get_about_data_to_plot_api_response = requests.get(get_plot_data_abouts_url, headers=request_header)
         if get_about_data_to_plot_api_response.status_code == 200:
