@@ -549,6 +549,7 @@ class SelectLimitsToPlotDashBoardLayout():
 
     def PopulateMainDataTable(self, table_height_in):
         self.main_table_height = 'table_height_in'
+        self.main_table_height = '100px'
         self.ClsMainDataTable = mte.get_main_table(self.page_title,
                                              self.page_name + self.main_table_id,
                                              self.table_meta_data_main_table,
