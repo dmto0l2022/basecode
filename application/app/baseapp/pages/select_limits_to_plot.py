@@ -1240,7 +1240,7 @@ class SelectLimitsToPlotDashBoardLayout():
                     #self.fastapi_data_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
                     
                     delete_data_from_plot_api = "data_about"
-                    json = {"limit_id": limit_id,"plot_id": plot_id}
+                    json = {"limit_id": int(limit_id),"plot_id": int(plot_id)}
                     delete_data_from_plot_api_url = self.fastapi_data_url + delete_data_from_plot_api
                     print("sltp : delete_data_from_plot_api_url >>>>>>>>>>>", delete_data_from_plot_api_url)
                     
