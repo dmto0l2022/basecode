@@ -1218,8 +1218,8 @@ class SelectLimitsToPlotDashBoardLayout():
             
             elif triggered_id == self.page_name+'limits_to_plot_table':
                 print("sltp : active_cell_plot >>>>>>>>", active_cell_plot)
-                plot_data_row_id = active_cell_plot['row']
-                plot_data_col_id = active_cell_plot['column']
+                plot_data_row_id = active_cell_plot['row'] - 1
+                plot_data_col_id = active_cell_plot['column'] - 1
                 print("sltp : raw plot_data_in >>>>>>",  plot_data_in)
                 plot_data_df = pd.DataFrame.from_dict(plot_data_in)
                 print("sltp : plot_data_df >>>>>>>>>>", plot_data_df)
