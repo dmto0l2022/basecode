@@ -218,6 +218,8 @@ class get_main_table:
         #print("column names : " , self.table_column_names_data)
         #print("column widths : " , self.conditional_column_widths)
         self.RefreshTableData()
+        style_table_dict={'overflowY': 'auto', 'overflowX': 'auto', 'height': self.table_height, 'maxHeight': self.table_height}
+        print("mte : style_table_dict >>>>>>", style_table_dict)
         self.dash_table_main = dash_table.DataTable(
             virtualization=True,
             id = self.main_table_id,
