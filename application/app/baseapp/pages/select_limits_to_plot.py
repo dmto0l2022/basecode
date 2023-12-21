@@ -1289,15 +1289,14 @@ class SelectLimitsToPlotDashBoardLayout():
 #    return layout_out
 
 sltpdb = SelectLimitsToPlotDashBoardLayout()
-layout = sltpdb.serve_layout
-
-#sltpdb.CreateLayout()
-#layout = sltpdb.layout
-#sltpdb.SetPlotNameCallback() ## sets the dmtool user id
+#layout = sltpdb.serve_layout ## did not work
+sltpdb.CreateLayout()
+layout = sltpdb.layout
+sltpdb.SetPlotNameCallback() ## sets the dmtool user id
 ##sltpdb.CreateLimitsToPlot() ## this populates if there is a previous plot
-#sltpdb.ApplyFiltersCallback()
-#sltpdb.MoveLimitToLimitsToPlotCallback()
-#sltpdb.RespondToButtonsCallback()
+sltpdb.ApplyFiltersCallback()
+sltpdb.MoveLimitToLimitsToPlotCallback()
+sltpdb.RespondToButtonsCallback()
 
 
 ###
