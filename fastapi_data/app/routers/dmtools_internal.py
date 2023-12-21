@@ -14,7 +14,7 @@ from models.dmtools import Limit_display, Limit_displayCreate, Limit_displayUpda
 from models.dmtools import Limit_ownership, Limit_ownershipCreate, Limit_ownershipUpdate
 from models.dmtools import Limit, LimitCreate, LimitUpdate,  LimitSelect
 from models.dmtools import Limit_data, Limit_dataCreate, Limit_dataUpdate
-from models.dmtools import Data_about, Data_aboutCreate, Data_aboutUpdate
+from models.dmtools import Data_about, Data_aboutCreate, Data_aboutUpdate, Data_aboutDelete
 from models.dmtools import Data_appearance, Data_appearanceCreate, Data_appearanceUpdate
 from models.dmtools import Data_data, Data_dataCreate, Data_dataUpdate
 from models.dmtools import ListOfLimitIDs
@@ -1022,9 +1022,9 @@ async def update_data_about(data_about_id: int,
 
 
 @router.delete(api_base_url + "data_about/{data_about_id}")
-async def delete_data_about(data_about_id: int, session: AsyncSession = Depends(get_session),
+async def delete_data_about(data_about_delete_in: Data_aboutDelete, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(Data_about).where(Data_about.id == data_about_id)
+    statement = select(Data_about).where(Data_about.plot_id == data_about_delete_in['plot_id']).where(Data_about.limit_id == data_about_delete_in['limit_id'])
     results = await session.exec(statement)
     data_about = results.one()
     await session.delete(data_about)
