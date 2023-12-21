@@ -1245,9 +1245,9 @@ class SelectLimitsToPlotDashBoardLayout():
                     print("sltp : delete_data_from_plot_api_url >>>>>>>>>>>", delete_data_from_plot_api_url)
                     
                     delete_data_from_plot_response = requests.delete(delete_data_from_plot_api_url,json=json, headers=self.request_header)
-                    json_data = json.loads(delete_data_from_plot_response.text)
-                    #dict_data = delete_data_from_plot_api_url.text
-                    print("sltp : delete data from plot json_data >>>>>>>>>", json_data)
+                    #json_data = json.loads(delete_data_from_plot_response.text)
+                    dict_data = delete_data_from_plot_response.text
+                    print("sltp : delete data from plot dict_data >>>>>>>>>", delete_data_from_plot_response)
                     print("sltp : delete data from plot status code >>>> " , delete_data_from_plot_response.status_code)
 
                     self.GetDataToPlot()
