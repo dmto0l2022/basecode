@@ -1235,7 +1235,25 @@ class SelectLimitsToPlotDashBoardLayout():
                     plot_id = plot_data_df['plot_id'].iloc[0]
                     limit_id = plot_data_df['limit_id'].iloc[0]
                     print("sltp : selected_plot_data p l >>>>>>>>>>" , plot_id, limit_id)
-                return plot_data_in
+
+                    self.request_header = {'dmtool-userid': str(self.dmtool_userid)}
+                    #self.fastapi_data_url = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/"
+                    
+                    delete_data_from_plot_api = "data_about"
+                    json = {"limit_id": limit_id,"plot_id": plot_id}
+                    delete_data_from_plot_api_url = self.fastapi_data_url + delete_data_from_plot_api
+                    print("sltp : delete_data_from_plot_api_url >>>>>>>>>>>", delete_data_from_plot_api_url)
+                    
+                    delete_data_from_plot_api_url = requests.delete(delete_data_from_plot_api_url,json=json, headers=self.request_header)
+                    json_data = json.loads(delete_data_from_plot_api_url.text)
+                    print("sltp : delete data from plot json_data >>>>>>>>>", json_data)
+                    print("sltp : delete data from plot status code >>>> " , get_plot_response.status_code)
+
+                    self.GetDataToPlot()
+
+                    return_data = self.data_to_plot_list_of_dict
+                    
+                return return_data
             
             return return_data
     
