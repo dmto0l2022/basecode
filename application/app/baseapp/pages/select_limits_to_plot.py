@@ -1217,6 +1217,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         
             
             elif triggered_id == self.page_name+'limits_to_plot_table':
+                print("sltp : active_cell_plot >>>>>>>>", active_cell_plot)
                 plot_data_row_id = active_cell_plot['row_id']
                 plot_data_col_id = active_cell_plot['column_id']
                 print("sltp : raw plot_data_in >>>>>>",  plot_data_in)
