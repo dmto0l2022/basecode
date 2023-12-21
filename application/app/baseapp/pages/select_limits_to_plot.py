@@ -1277,6 +1277,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 return href_return
 
     def page_size_callback(self):
+        ## #return [myJSON, jsn];
         clientside_callback(
                         """
                         function(href) {
@@ -1284,7 +1285,6 @@ class SelectLimitsToPlotDashBoardLayout():
                             var h = window.innerHeight;
                             var jsn = {width: w, height: h};
                             const myJSON = JSON.stringify(jsn); 
-                            #return [myJSON, jsn];
                             return jsn;
                         }
                         """,
