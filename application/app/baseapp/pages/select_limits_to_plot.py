@@ -1272,7 +1272,15 @@ class SelectLimitsToPlotDashBoardLayout():
             else:
                 href_return = '/application/baseapp/select_limits_to_plot'
                 return href_return
-    
+    def serve_layout():
+        self.CreateLayout()
+        layout_return = self.layout
+        self.SetPlotNameCallback() ## sets the dmtool user id
+        #sltpdb.CreateLimitsToPlot() ## this populates if there is a previous plot
+        self.ApplyFiltersCallback()
+        self.MoveLimitToLimitsToPlotCallback()
+        self.RespondToButtonsCallback()
+        return layout_return
 
 #def get_layout():
 #    layout_out = html.Div(id=page_name+'content',children=[maincolumn],className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT")
@@ -1281,13 +1289,15 @@ class SelectLimitsToPlotDashBoardLayout():
 #    return layout_out
 
 sltpdb = SelectLimitsToPlotDashBoardLayout()
-sltpdb.CreateLayout()
-layout = sltpdb.layout
-sltpdb.SetPlotNameCallback() ## sets the dmtool user id
-#sltpdb.CreateLimitsToPlot() ## this populates if there is a previous plot
-sltpdb.ApplyFiltersCallback()
-sltpdb.MoveLimitToLimitsToPlotCallback()
-sltpdb.RespondToButtonsCallback()
+layout = sltpdb.serve_layout
+
+#sltpdb.CreateLayout()
+#layout = sltpdb.layout
+#sltpdb.SetPlotNameCallback() ## sets the dmtool user id
+##sltpdb.CreateLimitsToPlot() ## this populates if there is a previous plot
+#sltpdb.ApplyFiltersCallback()
+#sltpdb.MoveLimitToLimitsToPlotCallback()
+#sltpdb.RespondToButtonsCallback()
 
 
 ###
