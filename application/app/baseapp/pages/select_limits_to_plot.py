@@ -901,8 +901,8 @@ class SelectLimitsToPlotDashBoardLayout():
             #########################
             screen_height = page_size_in['height']
             print('screen_height >>>>>>>>>>', screen_height)
-            main_table_height = str(screen_height * 0.6) + 'px'
-            plots_table_height = str(screen_height * 0.2) + 'px'
+            main_table_height = str(screen_height * 0.3) + 'px'
+            plots_table_height = str(screen_height * 0.1) + 'px'
             
             self.PopulateMainDataTable(main_table_height) ## height of table as input
             self.PopulateLimitsToPlotTable(plots_table_height) ## height of table as input
