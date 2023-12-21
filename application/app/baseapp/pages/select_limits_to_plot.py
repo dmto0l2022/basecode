@@ -1244,11 +1244,11 @@ class SelectLimitsToPlotDashBoardLayout():
                     delete_data_from_plot_api_url = self.fastapi_data_url + delete_data_from_plot_api
                     print("sltp : delete_data_from_plot_api_url >>>>>>>>>>>", delete_data_from_plot_api_url)
                     
-                    delete_data_from_plot_api_url = requests.delete(delete_data_from_plot_api_url,json=json, headers=self.request_header)
-                    #json_data = json.loads(delete_data_from_plot_api_url.text)
-                    dict_data = delete_data_from_plot_api_url.text
-                    print("sltp : delete data from plot json_data >>>>>>>>>", dict_data)
-                    print("sltp : delete data from plot status code >>>> " , get_plot_response.status_code)
+                    delete_data_from_plot_response = requests.delete(delete_data_from_plot_api_url,json=json, headers=self.request_header)
+                    json_data = json.loads(delete_data_from_plot_response.text)
+                    #dict_data = delete_data_from_plot_api_url.text
+                    print("sltp : delete data from plot json_data >>>>>>>>>", json_data)
+                    print("sltp : delete data from plot status code >>>> " , delete_data_from_plot_response.status_code)
 
                     self.GetDataToPlot()
 
