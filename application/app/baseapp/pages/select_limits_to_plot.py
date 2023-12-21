@@ -1274,7 +1274,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 href_return = '/application/baseapp/select_limits_to_plot'
                 return href_return
 
-    def page_size_callback():
+    def page_size_callback(self):
         clientside_callback(
                         """
                         function(href) {
@@ -1286,7 +1286,7 @@ class SelectLimitsToPlotDashBoardLayout():
                         }
                         """,
                         Output('screen_size_store', 'data'),
-                        Input(page_name + 'url', 'href')
+                        Input(self.page_name + 'url', 'href')
                     )
     
     def serve_layout(self):
