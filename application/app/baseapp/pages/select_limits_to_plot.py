@@ -1221,7 +1221,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 plot_data_col_id = active_cell_plot['column_id']
                 plot_data_df = pd.DataFrame.from_dict(plot_data_in)
                 print("sltp : plot_data_df >>>>>>>>>>", plot_data_df)
-                plot_cell_value = main_data_df.loc[plot_data_row, plot_data_col_id]
+                plot_cell_value = plot_data_df.loc[plot_data_row, plot_data_col_id]
                 print("sltp plot_cell_value >>>>>>>> " , plot_cell_value)
                 if plot_cell_value == 'X':
                     selected_rowid = active_cell_plot['row_id']
