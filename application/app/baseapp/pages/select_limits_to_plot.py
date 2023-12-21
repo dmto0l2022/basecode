@@ -1064,7 +1064,7 @@ class SelectLimitsToPlotDashBoardLayout():
             #print(triggered_id)
             if triggered_id == self.page_name + 'main_limits_table':
                 if active_cell_exp is not None:
-                    all_limit_list_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
+                    #all_limit_list_df = self.ClsMainDataTable.limit_data.limit_list_df.copy()
                     data_row = active_cell_exp['row_id']
                     data_col_id = active_cell_exp['column_id']
                     main_data_df = pd.DataFrame.from_dict(main_data_in)
@@ -1215,16 +1215,19 @@ class SelectLimitsToPlotDashBoardLayout():
                         '''
                         return_data = self.data_to_plot_list_of_dict
                         
-            '''
+            
             elif triggered_id == self.page_name+'limits_to_plot_table':
-                #selected_rowid = active_cell_plot['row']
-                #print(data_in[selected_rowid])
-                #print(active_cell_plot)
-                #data_in = data_in.pop(active_cell_plot['row'])
-                #print(data_in)
-                a = 1
-                return_data = []
-            '''
+                plot_data_row = active_cell_plot['row_id']
+                plot_data_col_id = active_cell_plot['column_id']
+                plot_data_df = pd.DataFrame.from_dict(plot_data_in)
+                print("sltp : plot_data_df >>>>>>>>>>", plot_data_df)
+                plot_cell_value = main_data_df.loc[plot_data_row, plot_data_col_id]
+                print("sltp plot_cell_value >>>>>>>> " , plot_cell_value)
+                if plot_cell_value == 'X':
+                    selected_rowid = active_cell_plot['row_id']
+                    selected_plot_data = plot_data_df[plot_data_df['id']==active_cell_plot['row_id']]
+                    print(selected_plot_data)
+                return plot_data_in
             
             return return_data
     
