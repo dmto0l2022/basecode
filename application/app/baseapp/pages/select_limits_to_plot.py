@@ -842,6 +842,7 @@ class SelectLimitsToPlotDashBoardLayout():
         
         maincolumn = html.Div(
                         [dcc.Location(id=page_name+'url',refresh=True),
+                        dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'), ## stores screen size
                         self.RowOfButtons,
                         self.DivPlotName,
                         self.RowFilters,
@@ -1285,7 +1286,7 @@ class SelectLimitsToPlotDashBoardLayout():
                             return [myJSON, jsn];
                         }
                         """,
-                        Output('screen_size_store', 'data'),
+                        Output(self.page_name + 'screen_size_store', 'data'),
                         Input(self.page_name + 'url', 'href')
                     )
     
