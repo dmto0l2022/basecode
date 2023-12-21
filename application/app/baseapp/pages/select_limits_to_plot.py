@@ -1284,7 +1284,8 @@ class SelectLimitsToPlotDashBoardLayout():
                             var h = window.innerHeight;
                             var jsn = {width: w, height: h};
                             const myJSON = JSON.stringify(jsn); 
-                            return [myJSON, jsn];
+                            #return [myJSON, jsn];
+                            return jsn;
                         }
                         """,
                         Output(self.page_name + 'screen_size_store', 'data'),
