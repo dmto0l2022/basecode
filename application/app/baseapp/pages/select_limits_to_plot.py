@@ -1272,7 +1272,7 @@ class SelectLimitsToPlotDashBoardLayout():
             else:
                 href_return = '/application/baseapp/select_limits_to_plot'
                 return href_return
-    def serve_layout():
+    def serve_layout(self):
         self.CreateLayout()
         layout_return = self.layout
         self.SetPlotNameCallback() ## sets the dmtool user id
