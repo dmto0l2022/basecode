@@ -1,5 +1,6 @@
 import dash
 from dash import Dash
+from dash import clientside_callback
 import dash_bootstrap_components as dbc
 from flask import session
 from furl import furl
@@ -1272,6 +1273,22 @@ class SelectLimitsToPlotDashBoardLayout():
             else:
                 href_return = '/application/baseapp/select_limits_to_plot'
                 return href_return
+
+    def page_size_callback():
+        clientside_callback(
+                        """
+                        function(href) {
+                            var w = window.innerWidth;
+                            var h = window.innerHeight;
+                            var jsn = {width: w, height: h};
+                            const myJSON = JSON.stringify(jsn); 
+                            return [myJSON, jsn];
+                        }
+                        """,
+                        Output('screen_size_store', 'data'),
+                        Input(page_name + 'url', 'href')
+                    )
+    
     def serve_layout(self):
         self.CreateLayout()
         layout_return = self.layout
@@ -1292,6 +1309,7 @@ sltpdb = SelectLimitsToPlotDashBoardLayout()
 #layout = sltpdb.serve_layout ## did not work
 sltpdb.CreateLayout()
 layout = sltpdb.layout
+sltpdb.page_size_callback() ## stores page size in dcc store screen_size_store
 sltpdb.SetPlotNameCallback() ## sets the dmtool user id
 ##sltpdb.CreateLimitsToPlot() ## this populates if there is a previous plot
 sltpdb.ApplyFiltersCallback()
