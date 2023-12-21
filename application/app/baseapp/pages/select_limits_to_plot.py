@@ -1218,14 +1218,14 @@ class SelectLimitsToPlotDashBoardLayout():
             
             elif triggered_id == self.page_name+'limits_to_plot_table':
                 print("sltp : active_cell_plot >>>>>>>>", active_cell_plot)
-                plot_data_row_id = active_cell_plot['row_id']
-                plot_data_col_id = active_cell_plot['column_id']
+                plot_data_row_id = active_cell_plot['row']
+                plot_data_col_id = active_cell_plot['column']
                 print("sltp : raw plot_data_in >>>>>>",  plot_data_in)
                 plot_data_df = pd.DataFrame.from_dict(plot_data_in)
                 print("sltp : plot_data_df >>>>>>>>>>", plot_data_df)
                 print("sltp : plot r c " + str(plot_data_row_id) + " , " + str(plot_data_col_id))
-                #plot_cell_value = plot_data_df.loc[plot_data_row_id, plot_data_col_id]
-                #print("sltp plot_cell_value >>>>>>>> " , plot_cell_value)
+                plot_cell_value = plot_data_df.loc[plot_data_row_id, plot_data_col_id]
+                print("sltp plot_cell_value >>>>>>>> " , plot_cell_value)
                 if plot_data_col_id == 'X':
                     selected_rowid = active_cell_plot['row_id']
                     selected_plot_data = plot_data_df[plot_data_df['id']==active_cell_plot['row_id']]
