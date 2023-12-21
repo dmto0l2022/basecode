@@ -1024,7 +1024,7 @@ async def update_data_about(data_about_id: int,
 @router.delete(api_base_url + "data_about/{data_about_id}")
 async def delete_data_about(data_about_delete_in: Data_aboutDelete, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    statement = select(Data_about).where(Data_about.plot_id == data_about_delete_in.plot_id).where(Data_about.limit_id == data_about_delete_in.limit_id])
+    statement = select(Data_about).where(Data_about.plot_id == data_about_delete_in.plot_id).where(Data_about.limit_id == data_about_delete_in.limit_id)
     results = await session.exec(statement)
     data_about = results.one()
     await session.delete(data_about)
