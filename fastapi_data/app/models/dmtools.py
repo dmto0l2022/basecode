@@ -345,6 +345,9 @@ class Data_aboutUpdate(SQLModel):
     greatest_hit : Optional[int] = Field(default=0, nullable=True, primary_key=False) ## boolean
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
 
+class Data_aboutDelete(SQLModel):
+    limit_id : int = Field(default=None, nullable=True, primary_key=False)
+    plot_id : int = Field(default=None, nullable=True, primary_key=False)
 
 '''
 trace_list_df_out = limit_data_df_out[['limit_id','data_label','trace_id','trace_name',
