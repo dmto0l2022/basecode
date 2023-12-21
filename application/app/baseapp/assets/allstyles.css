@@ -1152,26 +1152,26 @@ iphone navigation bar 40px
 @media screen and (max-width: 375px) {
   .select_limits_to_plot_plot_name_class {
     background-color: red !important;
-    top:69px !important;
+    top:35px !important;
     width:375px !important;
     height:21px !important;
   }
   .select_limits_to_plot_row_filters_class {
-    top:90px !important;
+    top:56px !important;
     width:375px !important;
     height:200px !important;
     background-color: red !important;
     border:1px solid black;
   }
  .select_limits_to_plot_row_limits_class {
-    top:290px !important;
+    top:256px !important;
     width:375px !important;
     height:190px !important;
     background-color: red !important;
     border:1px solid black;
  }
  .select_limits_to_plot_plot_limits_class {
-  top:480px !important;
+  top:446px !important;
   width:375px !important;
   height:81px !important;
   background-color: red !important;
