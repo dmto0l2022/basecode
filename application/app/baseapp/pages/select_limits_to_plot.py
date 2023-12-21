@@ -856,9 +856,10 @@ class SelectLimitsToPlotDashBoardLayout():
 
     def SetPlotNameCallback(self):
         @callback([Output('select_limits_to_plot_plot_name_id', 'children'), Output(self.page_name+'main_table_div','children'), Output(self.page_name+'data_to_plot_table_div','children')],
-              [Input(self.page_name +'url', 'href')])
-        def set_plot_name(href: str):
-            print('sltp : set plot name callback triggered')
+              Input(self.page_name +'url', 'href'), State(self.page_name + 'screen_size_store', 'data'))
+        def set_plot_name(href: str, page_size_in):
+            page_size_as_string = json.dumps(page_size_in)
+            print('sltp : set plot name callback triggered ---- page size >>>>>>>' + page_size_as_string)
             ## get user id from cookie
             dmtooluser_cls = gdu.GetUserID()
             self.dmtool_userid = dmtooluser_cls.dmtool_userid
