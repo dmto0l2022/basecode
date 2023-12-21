@@ -1229,7 +1229,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 print("sltp : plot r c " + str(plot_data_row_id) + " , " + str(plot_data_col_id))
                 plot_cell_value = plot_data_df.iloc[plot_data_row_id, plot_data_col_id]
                 print("sltp plot_cell_value >>>>>>>> " , plot_cell_value)
-                if plot_data_col_id == 'X':
+                if plot_cell_value == 'X':
                     selected_rowid = active_cell_plot['row_id']
                     selected_plot_data = plot_data_df[plot_data_df['id']==active_cell_plot['row_id']]
                     plot_id = plot_data_df['plot_id'].iloc[0]
