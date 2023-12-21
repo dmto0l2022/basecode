@@ -54,7 +54,6 @@ class get_main_table:
                  main_table_id_in,
                  table_meta_data_data_in,
                  table_height_in,
-                 #page_size_in,
                  row_height_in,
                  table_font_size_in,
                  fastapi_url_all_in,
@@ -225,17 +224,13 @@ class get_main_table:
             data = self.main_table_data_dict,
             columns=[{"name": c, "id": c} for c in self.all_table_column_names],
             fixed_rows={'headers': True},
-            #filter_action='none',
             style_data={'whiteSpace': 'nowrap', 'height': self.row_height},
             style_cell=self.table_cell_styles,
             css=self.css_row_heights,
             style_cell_conditional=self.conditional_column_widths,
             tooltip_duration=None,
-            #style_table={'minHeight': '700px', 'height': '700px', 'maxHeight': '700px'},
-            #style_table={'minHeight': '100%', 'height': '100%', 'maxHeight': '100%'},
-            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': self.table_height, 'maxHeight': self.table_height},
-            ##style_table={'height': 'calc(90vh-84px)', 'maxHeight': 'calc(90vh-84px)'},
-            page_size=1000
+            page_size=1000,
+            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': self.table_height, 'maxHeight': self.table_height}
             )
 
 '''
