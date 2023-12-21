@@ -1042,8 +1042,11 @@ class SelectLimitsToPlotDashBoardLayout():
             
             for data_about in json_data_response:
                 data_about['Data_about']['X'] = 'X' ## to provide a column to click on to delete
-                all_data_about.append(data_about['Data_about'])
-    
+                required_keys = ['id', 'limit_id', 'plot_id', 'data_label', 'X']
+                old_dict = data_about['Data_about']
+                restricted_dict = {key: old_dict[key] for key in required_keys}
+                all_data_about.append(restricted_dict)
+                
             self.data_to_plot_list_of_dict = all_data_about
             
         else:
