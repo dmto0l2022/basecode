@@ -34,10 +34,10 @@ class get_table:
         self.internal_header = {'dmtool-userid':'0'}
         self.table_meta_data_columns = ['name', 'width']
         self.button_meta_data_data =[
-                            ['+', '4%'],
-                            ['~', '4%'],
-                            ['-', '4%'],
-                            ['X', '4%']
+                            ['+', '1%'],
+                            ['~', '1%'],
+                            ['-', '1%'],
+                            ['X', '1%']
                             ]
         self.all_table_meta_data_data = self.table_meta_data_data + self.button_meta_data_data
         self.table_meta_data_all_df = pd.DataFrame(data=self.all_table_meta_data_data, columns=self.table_meta_data_columns)
