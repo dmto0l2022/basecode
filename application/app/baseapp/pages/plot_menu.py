@@ -43,7 +43,7 @@ type=‘button’,
 danger_button = html.Button("Danger", className="btn btn-danger",type="button")
 
 
-dropdown_button = html.Div(id=page_name + "dropdown_button", type="button",
+dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
                            className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
                            **{
                             'data-toggle' : 'dropdown',
