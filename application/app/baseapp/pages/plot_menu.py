@@ -54,8 +54,8 @@ dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
                           )
 
 drop_down_new =  html.A(id=page_name + "dropdown_action", children=['New'], href=baseapp_prefix + '/create_new_plot')
-drop_down_edit =  html.A(id=page_name + "dropdown_action", children=['New'], href=baseapp_prefix + '/create_new_plot')
-drop_down_list =  html.A(id=page_name + "dropdown_action", children=['New'], href=baseapp_prefix + '/create_new_plot')
+drop_down_edit =  html.A(id=page_name + "dropdown_action", children=['Edit'], href=baseapp_prefix + '/edit_existing_plot')
+drop_down_list =  html.A(id=page_name + "dropdown_action", children=['List'], href=baseapp_prefix + '/list_all_plots')
 
 dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_new,drop_down_edit,drop_down_list], className = "dropdown-menu")
 
