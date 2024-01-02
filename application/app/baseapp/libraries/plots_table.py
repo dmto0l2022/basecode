@@ -90,6 +90,7 @@ class get_table:
 
     def set_table_height(self,table_height_in):
         self.table_height = table_height_in
+        self.table_style = {'overflowY': 'auto', 'overflowX': 'auto', 'height': self.table_height, 'maxHeight': self.table_height}
     
     def set_dmtool_userid(self,dmtool_userid_in):
         self.dmtool_userid = dmtool_userid_in
