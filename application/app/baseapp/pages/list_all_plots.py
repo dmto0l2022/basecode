@@ -30,9 +30,9 @@ from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
 page_name = "list_all_plots"
 page_title = 'List All Plots'
 table_meta_data_data = [
-                        ['id', '2%'],
-                        ['user_id', '2%'],
-                        ['name', '18%'],
+                        ['id', '5%'],
+                        ['user_id', '5%'],
+                        ['name', '71%'],
                         ['created_at', '5%'],
                         ['updated_at', '5%'],
                         ['ceased_at', '5%']
