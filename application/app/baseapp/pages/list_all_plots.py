@@ -95,7 +95,8 @@ def get_layout():
                 children=[
                     plot_table.dash_table
                 ],
-                ##className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"),
+                ##className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
+                ),
             ## debug_output
         ],
         ##className="row NOPADDING_CONTENT"
