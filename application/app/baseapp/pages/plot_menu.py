@@ -42,6 +42,7 @@ type=‘button’,
 '''
 danger_button = html.Button("Danger", className="btn btn-danger",type="button")
 
+new_plot_button = html.Button("New Plot", id=page_name+"new_plot_button", className="btn btn-primary",type="button")
 
 dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
                            className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
@@ -59,7 +60,7 @@ drop_down_list =  html.A(id=page_name + "dropdown_action", children=['List'], hr
 
 dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_new,drop_down_edit,drop_down_list], className = "dropdown-menu")
 
-split_button = html.Div(children=[danger_button,dropdown_button,dropdown_menu], className="btn-group")
+split_button = html.Div(children=[new_plot_button,dropdown_button,dropdown_menu], className="btn-group")
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
