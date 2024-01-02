@@ -108,7 +108,7 @@ class ListAllPlotsDash():
                 Input(self.page_name + 'url', 'href')
             )
     def get_user_owned_plots(self):
-        callback([Output(self.page_name + "plot_table_div", 'children')],
+        @callback([Output(self.page_name + "plot_table_div", 'children')],
                       Input(self.page_name +'url', 'href'), State(self.page_name + 'screen_size_store', 'data'))
         def set_plot_name(href: str, page_size_in):
             page_size_as_string = json.dumps(page_size_in)
