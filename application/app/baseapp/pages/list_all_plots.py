@@ -119,7 +119,6 @@ layout = get_layout
             dmtooluser_cls = gdu.GetUserID()
             dmtool_userid = dmtooluser_cls.dmtool_userid
             
-            request_header = {'dmtool-userid': str(self.dmtool_userid)}
-            
+            plot_table.set_dmtool_userid(dmtool_userid)
             plot_table.RefreshTableData()
             return plot_table.table_data_dict
