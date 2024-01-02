@@ -65,21 +65,11 @@ table_font_size = '12px'
 
 
 
-empty_dash_table = dash_table.DataTable(id=table_id)
+empty_dash_table = dash_table.DataTable(id=plot_table_id)
 ######################################################
 
 def get_layout():    
   
-    #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
-
-    new_button =  html.Button("New", id= page_name + "new_button_id", style=button_styling_1)
-
-    save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
-
-    cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
-
-    home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling_1)
-
     debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
                                       html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
                                       html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
