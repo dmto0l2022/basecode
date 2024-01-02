@@ -117,13 +117,9 @@ layout = get_layout
             print('sltp : set plot name callback triggered ---- page size >>>>>>>' + page_size_as_string)
             ## get user id from cookie
             dmtooluser_cls = gdu.GetUserID()
-            self.dmtool_userid = dmtooluser_cls.dmtool_userid
+            dmtool_userid = dmtooluser_cls.dmtool_userid
             
-            self.request_header = {'dmtool-userid': str(self.dmtool_userid)}
-
-            plot_table = pt.get_table(page_title_in,
-                                     plot_table_id_in,
-                                     table_meta_data_data_in,
-                                     row_height_in,
-                                     table_font_size_in,
-                                     dmtool_user_id_in)
+            request_header = {'dmtool-userid': str(self.dmtool_userid)}
+            
+            plot_table.RefreshTableData()
+            return plot_table.table_data_dict
