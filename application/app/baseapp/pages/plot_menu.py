@@ -40,7 +40,7 @@ type=‘button’,
 ),
 
 '''
-danger_button = html.Button("Danger", class="btn btn-danger",type="button")
+danger_button = html.Button("Danger", className="btn btn-danger",type="button")
 
 
 dropdown_button = html.Div(id=page_name + "dropdown_button", type="button",
