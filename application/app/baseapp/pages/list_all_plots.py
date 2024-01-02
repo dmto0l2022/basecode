@@ -1,0 +1,123 @@
+#####################################################
+## Full Table Page to Edit Tables
+#####################################################
+## Version Journal
+#####################################################
+
+import dash
+
+from dash import Dash
+from dash import dcc, html
+from dash import Input, Output, callback
+from dash import dash_table, no_update  # Dash version >= 2.0.0
+import pandas as pd
+import plotly.express as px
+import json
+import requests
+import pickle
+import dash_bootstrap_components as dbc
+
+from flask import request, session
+
+from app.baseapp.libraries import formlibrary as fl
+from app.baseapp.libraries import plot_table as pt
+## from app.baseapp.libraries import get_dmtool_user as gdu
+
+
+###########################################################
+# Should only need to change the following:
+
+page_name = "list_all_plots"
+page_title = 'List All Plots'
+table_meta_data_data = [
+                        ['id', '2%'],
+                        ['user_id', '2%'],
+                        ['plot_name', '18%'],
+                        ['created_at', '5%'],
+                        ['updated_at', '5%'],
+                        ['archived_at', '5%']
+                       ]
+
+single_api = 'plot'
+multiple_api = 'plots'
+
+##########################################################
+baseapp_prefix = '/application/baseapp'
+plot_table_id = page_name + '_plot_table'
+dash.register_page(__name__, path='/'+page_name)
+
+#fastapi_url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/"
+#fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
+#fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
+
+button_styling_1 = {'font-size': '12px',
+                  'width': '70px',
+                  'display': 'inline-block', 
+                  'margin-bottom': '1px',
+                  'margin-right': '0px',
+                  'margin-top': '1px',
+                  'height':'19px',
+                  'verticalAlign': 'center'}
+
+
+row_height = '13px'
+table_font_size = '12px'
+
+
+
+empty_dash_table = dash_table.DataTable(id=table_id)
+######################################################
+
+def get_layout():    
+  
+    #submit_button =  dbc.Col(dbc.Button("Submit", color="primary"), width="auto")
+
+    new_button =  html.Button("New", id= page_name + "new_button_id", style=button_styling_1)
+
+    save_button =  html.Button("Save", id= page_name + "save_button_id", style=button_styling_1)
+
+    cancel_button =  html.Button("Cancel",  id=page_name + "cancel_button_id", style=button_styling_1)
+
+    home_button =  html.Button("Home",  id=page_name + "home_button_id", style=button_styling_1)
+
+    debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
+                                      html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
+                                      html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
+                                      className="PAGE_DEBUG_CONTENT")
+
+    ##dmtool_user_id = gdu.dmtool_userid
+    ## the callback triggers first time the page opens and the actual user is retrieved from the header
+    dmtool_user_id = '0' ### default - no user should be given 0
+    internal_header={'dmtool-userid':'1'}
+
+    ## create an empty table to be refreshed by the callback
+    plot_table = pt.get_table(page_title,
+                                     plot_table_id,
+                                     table_meta_data_data,
+                                     row_height,
+                                     table_font_size,
+                                     dmtool_user_id)
+    
+  
+    table_layout = html.Div(
+        [
+            dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
+            html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
+            html.Div(
+                [
+                    main_table_1.dash_table_main
+                ],
+                className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
+            ),
+            debug_output,
+            html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
+        ],
+        className="row NOPADDING_CONTENT"
+    )
+
+    return table_layout
+    
+
+layout = get_layout
+
+
