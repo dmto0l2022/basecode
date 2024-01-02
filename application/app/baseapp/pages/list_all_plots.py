@@ -72,7 +72,7 @@ class ListAllPlotsDash():
     
         #set_table_height("80%")
         self.table_height = '1000px'
-        self.plot_table = pt.get_table(self.page_title,self.plot_table_id, self.table_meta_data_data,self.table_height,self.row_height,self.table_font_size,self.dmtool_user_id)
+        self.plot_table = pt.get_table(self.page_title,self.plot_table_id, self.table_meta_data_data,self.table_height,self.row_height,self.table_font_size,self.dmtool_userid)
         
     
         self.row_plots = dbc.Row([dbc.Col(id=self.page_name + "plot_table_div",
