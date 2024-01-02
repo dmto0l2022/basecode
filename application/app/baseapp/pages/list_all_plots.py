@@ -74,54 +74,57 @@ class ListAllPlotsDash():
         self.plot_table = pt.get_table(self.page_title,self.plot_table_id, self.table_meta_data_data,self.table_height,self.row_height,self.table_font_size,self.dmtool_user_id)
         
     
-        row_plots = dbc.Row([dbc.Col(id=self.page_name + "plot_table_div",
+        self.row_plots = dbc.Row([dbc.Col(id=self.page_name + "plot_table_div",
                                 children=[self.plot_table.dash_table],
                                 width=12,)],
                                 className ="list_all_plots_plots_class")
       
-        table_layout = html.Div(
+        self.table_layout = html.Div(
             [
-                dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
+                dcc.Location(id= self.page_name + "url", refresh=True), ## important to allow redirects
                 ##html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
-                row_plots,
+                self.row_plots,
                 ## debug_output
             ],
             className='list_all_plots_main_class'
         )
     
-        layout = html.Div(id=page_name+'content',children=table_layout,className="container-fluid", style=page_content_style)
+        layout = html.Div(id=page_name+'content',children=self.table_layout,className="container-fluid", style=self.page_content_style)
         
+    def page_size_callback(self):
+        clientside_callback(
+                """
+                function(href) {
+                    var w = window.innerWidth;
+                    var h = window.innerHeight;
+                    var jsn = {width: w, height: h};
+                    const myJSON = JSON.stringify(jsn); 
+                    return jsn;
+                }
+                """,
+                Output(page_name + 'screen_size_store', 'data'),
+                Input(page_name + 'url', 'href')
+            )
+    def get_user_owned_plots(self):
+        callback([Output(page_name + "plot_table_div", 'children')],
+                      Input(page_name +'url', 'href'), State(page_name + 'screen_size_store', 'data'))
+        def set_plot_name(href: str, page_size_in):
+            page_size_as_string = json.dumps(page_size_in)
+            print('sltp : set plot name callback triggered ---- page size >>>>>>>' + page_size_as_string)
+            screen_height = page_size_in['height']
+            print('screen_height >>>>>>>>>>', screen_height)
+            plots_table_height = str(screen_height * 0.5) + 'px'
+            ## get user id from cookie
+            dmtooluser_cls = gdu.GetUserID()
+            dmtool_userid = dmtooluser_cls.dmtool_userid
+            plot_table.set_dmtool_userid(dmtool_userid)
+            plot_table.set_table_height(plots_table_height)
+            plot_table.get_dash_table()
+            return plot_table.dash_table
+
 dashboard = ListAllPlotsDash(page_name)
 dashboard.get_layout()
 layout = dashboard.layout
-
-clientside_callback(
-        """
-        function(href) {
-            var w = window.innerWidth;
-            var h = window.innerHeight;
-            var jsn = {width: w, height: h};
-            const myJSON = JSON.stringify(jsn); 
-            return jsn;
-        }
-        """,
-        Output(page_name + 'screen_size_store', 'data'),
-        Input(page_name + 'url', 'href')
-    )
-
-callback([Output(page_name + "plot_table_div", 'children')],
-              Input(page_name +'url', 'href'), State(page_name + 'screen_size_store', 'data'))
-def set_plot_name(href: str, page_size_in):
-    page_size_as_string = json.dumps(page_size_in)
-    print('sltp : set plot name callback triggered ---- page size >>>>>>>' + page_size_as_string)
-    screen_height = page_size_in['height']
-    print('screen_height >>>>>>>>>>', screen_height)
-    plots_table_height = str(screen_height * 0.5) + 'px'
-    ## get user id from cookie
-    dmtooluser_cls = gdu.GetUserID()
-    dmtool_userid = dmtooluser_cls.dmtool_userid
+dashboard.page_size_callback()
+dashboard.get_user_owned_plots()
     
-    plot_table.set_dmtool_userid(dmtool_userid)
-    plot_table.set_table_height(plots_table_height)
-    plot_table.get_dash_table()
-    return plot_table.dash_table
