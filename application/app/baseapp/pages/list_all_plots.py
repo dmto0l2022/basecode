@@ -5,7 +5,7 @@
 #####################################################
 
 import dash
-
+from dash import clientside_callback
 from dash import Dash
 from dash import dcc, html
 from dash import Input, Output, callback
@@ -109,6 +109,20 @@ def get_layout():
     
 
 layout = get_layout
+
+@clientside_callback(
+        """
+        function(href) {
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+            var jsn = {width: w, height: h};
+            const myJSON = JSON.stringify(jsn); 
+            return jsn;
+        }
+        """,
+        Output(self.page_name + 'screen_size_store', 'data'),
+        Input(self.page_name + 'url', 'href')
+    )
 
 @callback([Output(plot_table_id, 'data')],
               Input(page_name +'url', 'href'), State(page_name + 'screen_size_store', 'data'))
