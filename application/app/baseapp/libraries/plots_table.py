@@ -21,33 +21,7 @@ import requests
 import json
 import redis
 
-'''
-class MakeApiCall():
 
-    def get_data(self, api):
-        response = requests.get(f"{api}")
-        if response.status_code == 200:
-            print("sucessfully fetched the data")
-            self.formatted_print(response.json())
-        else:
-            print(
-                f"Hello person, there's a {response.status_code} error with your request")
-            
-    def formatted_print(self, obj):
-        text = json.dumps(obj, sort_keys=True, indent=4)
-        print(text)
-'''
-
-
-'''
-class Person:
-  def __init__(self, name, age):
-    self.name = name
-    self.age = age
-
-  def myfunc(self):
-    print("Hello my name is " + self.name)
-'''
 
 class get_main_table:
     def __init__(self, page_title_in,
@@ -77,7 +51,7 @@ class get_main_table:
         self.button_meta_data_data =[
                             ['add', '4%'],
                             ['edit', '4%'],
-                            ['ceased', '4%'],
+                            ['archive', '4%'],
                             ['delete', '4%']
                             ]
         self.all_table_meta_data_data = self.table_meta_data_data + self.button_meta_data_data
@@ -111,7 +85,9 @@ class get_main_table:
         self.button_styling = {'font-size': '12px', 'width': '70px', 'display': 'inline-block', 
                               'margin-bottom': '1px', 'margin-right': '0px','margin-top': '1px', 'height':'19px',
                               'verticalAlign': 'center'}
-        
+
+        self.table_style = {'overflowY': 'auto', 'overflowX': 'auto', 'height': self.table_height, 'maxHeight': self.table_height}
+                    
         self.initial_active_cell = {"row": 0, "column": 0, "column_id": "id", "row_id": 0}
         
         
@@ -120,11 +96,11 @@ class get_main_table:
         self.get_conditional_column_widths()
         self.get_data_column_names()
         self.all_table_column_names = self.table_column_names_data+['+','~','-','X']
-        self.main_table_data_dict = {}
-        self.main_table_data_frame = pd.DataFrame()
+        self.table_data_dict = {}
+        self.table_data_frame = pd.DataFrame()
         self.response_data_frame = pd.DataFrame()
         #self.RefreshTableData()
-        self.dash_table_main = dash_table.DataTable()
+        self.dash_table = dash_table.DataTable()
         self.get_dash_table()
         
         
@@ -142,83 +118,56 @@ class get_main_table:
             self.table_column_names_data = self.table_column_names_data + [row['name']]
         #print("table_column_names_data>>>>>>>>>>>>", self.table_column_names_data)
         
-   
-    
-    ###
-    
-    def DeleteRow(self,key_in):
-        delete_url = self.fastapi_url_one + str(key_in)
-        requests.delete(delete_url, headers=self.internal_header)
-    
-    def CeaseRow(self,key_in):
-        cease_url = self.fastapi_url_one + str(key_in)
-        print('cease >>' + str(key_in))
-        print('cease url >>' + str(cease_url))
-        #dmtooluser_header = {'dmtool-userid':'1'}
-        requests.post(cease_url, headers=self.dmtool_user_header)
-
-    def NewRow(self,dmtool_user_in):
-        new_url = self.fastapi_url_one
-        #print('new api key >>' + str(dmtool_user_in))
-        data = {"user_id": 1}
-        #dmtooluser_header = {'dmtool-userid':'1'}
-        requests.post(new_url,json=data, headers=self.dmtool_user_header)
-    
     
     def RefreshTableData(self):
-        #url = fastapi_url_all_in
+        plots_api = '/dmtool/fastapi_data/internal/data/plots'
+        internal_api = 
+        self.fastapi_url_all = 
+        print("mt : fastapi_url_all for api key >>>>>>>>>>>>", self.fastapi_url_all)
         
-        if "limit" in self.fastapi_url_all:
-            #limit_list_df, trace_list_df, limit_data_df, limit_list_dict = gld.GetLimits(self.dmtool_userid)
-            self.limit_data = gldc.LimitData(self.dmtool_userid, 0, [])
-            self.response_data_frame = self.limit_data.limit_list_df.copy()
-        elif "api_key" in self.fastapi_url_all:
-            try:
-                print("mt : fastapi_url_all for api key >>>>>>>>>>>>", self.fastapi_url_all)
-                r = requests.get(self.fastapi_url_all, headers = self.dmtool_user_header)
-                response_data = r.json()
-                #print('response data')
-                #print('===================')
-                #print(response_data)
-                #print('===================')
-                self.response_data_frame = pd.DataFrame(response_data)
-            except:
-                a = 1
-        else:
+        try:
+            
+            r = requests.get(self.fastapi_url_all, headers = self.dmtool_user_header)
+            response_data = r.json()
+            #print('response data')
+            #print('===================')
+            #print(response_data)
+            #print('===================')
+            self.response_data_frame = pd.DataFrame(response_data)
+        except:
             self.response_data_frame = pd.DataFrame()
-        
-        #all_table_column_names = table_column_names_data+['edit','ceased','delete']
+    else:
+        self.response_data_frame = pd.DataFrame()
+    
+    #all_table_column_names = table_column_names_data+['edit','ceased','delete']
 
-        add_symbol = "+"
-        edit_symbol = "~"
-        delete_symbol = "X"
-        ceased_symbol = "-"
-        
-        if self.response_data_frame.empty:
-            empty_data = self.table_column_names_data+['~','+','-','X']
-            #print("RefreshTableData >> empty_data >>>>>>", empty_data)
-            #print("RefreshTableData >> all_table_column_names>>>>>>>>>>", self.all_table_column_names)
-            self.main_table_data_frame = pd.DataFrame(data = [empty_data], columns = self.all_table_column_names)
-            self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
-        else:
-            lst = self.table_column_names_data
-            self.main_table_data_frame = self.response_data_frame[self.response_data_frame.columns.intersection(lst)]
-            self.main_table_data_frame = self.main_table_data_frame[lst]
-            #updated_data_frame_ret['create'] = "create"
-            self.main_table_data_frame['~'] = edit_symbol
-            self.main_table_data_frame['+'] = add_symbol
-            self.main_table_data_frame['-'] = ceased_symbol
-            #updated_data_frame_ret['update'] = "update"
-            self.main_table_data_frame['X'] = delete_symbol
-            self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
-        
+    add_symbol = "+"
+    edit_symbol = "~"
+    delete_symbol = "X"
+    archive_symbol = "-"
+    
+    if self.response_data_frame.empty:
+        empty_data = self.table_column_names_data+['~','+','-','X']
+        self.main_table_data_frame = pd.DataFrame(data = [empty_data], columns = self.all_table_column_names)
+        self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
+    else:
+        lst = self.table_column_names_data
+        self.main_table_data_frame = self.response_data_frame[self.response_data_frame.columns.intersection(lst)]
+        self.main_table_data_frame = self.main_table_data_frame[lst]
+        #updated_data_frame_ret['create'] = "create"
+        self.main_table_data_frame['~'] = edit_symbol
+        self.main_table_data_frame['+'] = add_symbol
+        self.main_table_data_frame['-'] = archive_symbol
+        self.main_table_data_frame['X'] = delete_symbol
+        self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
+    
         
     
     def get_dash_table(self):
         #print("column names : " , self.table_column_names_data)
         #print("column widths : " , self.conditional_column_widths)
         self.RefreshTableData()
-        style_table_dict={'overflowY': 'auto', 'overflowX': 'auto', 'height': self.table_height, 'maxHeight': self.table_height}
+        
         print("mte : style_table_dict >>>>>>", style_table_dict)
         self.dash_table_main = dash_table.DataTable(
             virtualization=True,
@@ -232,15 +181,6 @@ class get_main_table:
             style_cell_conditional=self.conditional_column_widths,
             tooltip_duration=None,
             page_size=1000,
-            style_table={'overflowY': 'auto', 'overflowX': 'auto', 'height': self.table_height, 'maxHeight': self.table_height}
+            style_table=self.table_style
             )
 
-'''
-style_table={'overflowX': 'auto'},
-    style_cell={
-        'height': 'auto',
-        # all three widths are needed
-        'minWidth': '180px', 'width': '180px', 'maxWidth': '180px',
-        'whiteSpace': 'normal'
-    }
-'''
