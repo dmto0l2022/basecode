@@ -140,5 +140,5 @@ def set_plot_name(href: str, page_size_in):
     
     plot_table.set_dmtool_userid(dmtool_userid)
     plot_table.set_table_height(plots_table_height)
-    plot_table.RefreshTableData()
+    plot_table.get_dash_table()
     return plot_table.dash_table
