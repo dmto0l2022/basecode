@@ -32,7 +32,7 @@ class ListAllPlotsDash():
     def __init__(self, page_name_in):
         self.page_name = "list_all_plots"
         self.page_title = 'List All Plots'
-        self.dmtool_user_id = '0' 
+        self.dmtool_userid = '0' 
         self.plot_table_id = self.page_name + 'table_id'
         self.table_meta_data_data = [
                                 ['id', '5%'],
@@ -52,6 +52,7 @@ class ListAllPlotsDash():
                                            'overflow-y': 'scroll'}
         self.row_height = '13px'
         self.table_font_size = '12px'
+        self.layout = html.Div()
         
         self.dash_table = dash_table.DataTable(id=self.plot_table_id)
 
@@ -64,8 +65,8 @@ class ListAllPlotsDash():
     
         ##dmtool_user_id = gdu.dmtool_userid
         ## the callback triggers first time the page opens and the actual user is retrieved from the header
-        self.dmtool_user_id = '0' ### default - no user should be given 0
-        internal_header={'dmtool-userid':self.dmtool_user_id}
+        self.dmtool_userid = '0' ### default - no user should be given 0
+        internal_header={'dmtool-userid':self.dmtool_userid}
     
         ## create an empty table to be refreshed by the callback
     
@@ -89,7 +90,7 @@ class ListAllPlotsDash():
             className='list_all_plots_main_class'
         )
     
-        layout = html.Div(id=page_name+'content',children=self.table_layout,className="container-fluid", style=self.page_content_style)
+        self.layout = html.Div(id=page_name+'content',children=[self.table_layout],className="container-fluid", style=self.page_content_style)
         
     def page_size_callback(self):
         clientside_callback(
@@ -102,25 +103,25 @@ class ListAllPlotsDash():
                     return jsn;
                 }
                 """,
-                Output(page_name + 'screen_size_store', 'data'),
-                Input(page_name + 'url', 'href')
+                Output(self.page_name + 'screen_size_store', 'data'),
+                Input(self.page_name + 'url', 'href')
             )
     def get_user_owned_plots(self):
-        callback([Output(page_name + "plot_table_div", 'children')],
-                      Input(page_name +'url', 'href'), State(page_name + 'screen_size_store', 'data'))
+        callback([Output(self.page_name + "plot_table_div", 'children')],
+                      Input(self.page_name +'url', 'href'), State(self.page_name + 'screen_size_store', 'data'))
         def set_plot_name(href: str, page_size_in):
             page_size_as_string = json.dumps(page_size_in)
-            print('sltp : set plot name callback triggered ---- page size >>>>>>>' + page_size_as_string)
+            print('sltp : list all plots callback triggered ---- page size >>>>>>>' + page_size_as_string)
             screen_height = page_size_in['height']
             print('screen_height >>>>>>>>>>', screen_height)
             plots_table_height = str(screen_height * 0.5) + 'px'
             ## get user id from cookie
             dmtooluser_cls = gdu.GetUserID()
-            dmtool_userid = dmtooluser_cls.dmtool_userid
-            plot_table.set_dmtool_userid(dmtool_userid)
-            plot_table.set_table_height(plots_table_height)
-            plot_table.get_dash_table()
-            return plot_table.dash_table
+            self.dmtool_userid = dmtooluser_cls.dmtool_userid
+            self.plot_table.set_dmtool_userid(self.dmtool_userid)
+            self.plot_table.set_table_height(plots_table_height)
+            self.plot_table.get_dash_table()
+            return self.plot_table.dash_table
 
 dashboard = ListAllPlotsDash(page_name)
 dashboard.get_layout()
