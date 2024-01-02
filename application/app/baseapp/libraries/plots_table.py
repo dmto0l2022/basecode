@@ -14,7 +14,7 @@ import pickle
 
 class get_table:
     def __init__(self, page_title_in,
-                 main_table_id_in,
+                 table_id_in,
                  table_meta_data_data_in,
                  table_height_in,
                  row_height_in,
@@ -23,7 +23,7 @@ class get_table:
                 ):
 
         self.page_title = page_title_in
-        self.main_table_id = main_table_id_in
+        self.table_id = table_id_in
         self.table_meta_data_data = table_meta_data_data_in
         self.table_height = table_height_in
         self.page_size = 1000
