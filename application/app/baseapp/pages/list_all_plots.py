@@ -81,8 +81,10 @@ def get_layout():
     internal_header={'dmtool-userid':'1'}
 
     ## create an empty table to be refreshed by the callback
-   
-    plot_table = pt.get_table(page_title,plot_table_id, table_meta_data_data,row_height,table_font_size,dmtool_user_id)
+
+    #set_table_height("80%")
+    table_height_in = "80%"
+    plot_table = pt.get_table(page_title,plot_table_id, table_meta_data_data,table_height_in,row_height,table_font_size,dmtool_user_id)
     
   
     table_layout = html.Div(
@@ -91,7 +93,7 @@ def get_layout():
             html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(
                 [
-                    main_table_1.dash_table_main
+                    plot_table.dash_table
                 ],
                 className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
             ),
@@ -130,5 +132,6 @@ def set_plot_name(href: str, page_size_in):
     dmtool_userid = dmtooluser_cls.dmtool_userid
     
     plot_table.set_dmtool_userid(dmtool_userid)
+    plot_table.set_table_height("80%")
     plot_table.RefreshTableData()
     return plot_table.table_data_dict
