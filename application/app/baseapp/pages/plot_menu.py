@@ -46,9 +46,9 @@ danger_button = html.Button("Danger", className="btn btn-danger",type="button")
 dropdown_button = html.Div(id=page_name + "dropdown_button", type="button",
                            className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
                            **{
-                            'data-toggle': 'dropdown',
-                            'aria-haspopup'='true',
-                            'aria-expanded': 'false',
+                            'data-toggle' : 'dropdown',
+                            'aria-haspopup' : 'true',
+                            'aria-expanded' : 'false',
                             },
                             children=html.Span(className="sr-only", children=['Toggle Dropdown'])
                           )
