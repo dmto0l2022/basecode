@@ -115,6 +115,7 @@ class get_table:
         api_server = "http://container_fastapi_data_1:8014"
         all_plots_api = api_server + plots_api
         print("mt : all_plots_api >>>>>>>>>>>>", all_plots_api)
+        print("mt : all_plots user_header >>>>>>>>>>>>", self.dmtool_user_header)
         
         try:
             r = requests.get(all_plots_api, headers = self.dmtool_user_header)
