@@ -119,8 +119,10 @@ class ListAllPlotsDash():
             ## get user id from cookie
             dmtooluser_cls = gdu.GetUserID()
             self.dmtool_userid = dmtooluser_cls.dmtool_userid
-            self.plot_table.set_dmtool_userid(self.dmtool_userid)
-            self.plot_table.set_table_height(plots_table_height)
+            self.table_height = str(screen_height * 0.5) + 'px'
+            self.plot_table = pt.get_table(self.page_title,self.plot_table_id, self.table_meta_data_data,self.table_height,self.row_height,self.table_font_size,self.dmtool_userid)
+            #self.plot_table.set_dmtool_userid(self.dmtool_userid)
+            #self.plot_table.set_table_height(plots_table_height)
             self.plot_table.get_dash_table()
             return [self.plot_table.dash_table]
 
