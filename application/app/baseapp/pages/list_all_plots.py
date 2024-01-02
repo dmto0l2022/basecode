@@ -92,7 +92,7 @@ def get_layout():
             dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
             html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
             html.Div(id=page_name + "plot_table_div",
-                [
+                children=[
                     plot_table.dash_table
                 ],
                 className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"),
