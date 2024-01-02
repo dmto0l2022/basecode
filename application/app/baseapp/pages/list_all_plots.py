@@ -82,7 +82,8 @@ class ListAllPlotsDash():
       
         self.table_layout = html.Div(
             [
-                dcc.Location(id= self.page_name + "url", refresh=True), ## important to allow redirects
+                dcc.Location(id= self.page_name + "url", refresh=True), ## important to allow redirects,
+                dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'), ## stores screen size
                 ##html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
                 self.row_plots,
                 ## debug_output
