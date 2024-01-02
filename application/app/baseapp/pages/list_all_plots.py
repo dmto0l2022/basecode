@@ -8,7 +8,7 @@ import dash
 from dash import clientside_callback
 from dash import Dash
 from dash import dcc, html
-from dash import Input, Output, callback
+from dash import Input, Output, State, callback
 from dash import dash_table, no_update  # Dash version >= 2.0.0
 import pandas as pd
 import plotly.express as px
