@@ -110,8 +110,8 @@ def get_layout():
 
 layout = get_layout
 
-@callback([Output('plot_table_id', 'data')],
-              Input(self.page_name +'url', 'href'), State(self.page_name + 'screen_size_store', 'data'))
+@callback([Output(plot_table_id, 'data')],
+              Input(page_name +'url', 'href'), State(page_name + 'screen_size_store', 'data'))
 def set_plot_name(href: str, page_size_in):
     page_size_as_string = json.dumps(page_size_in)
     print('sltp : set plot name callback triggered ---- page size >>>>>>>' + page_size_as_string)
