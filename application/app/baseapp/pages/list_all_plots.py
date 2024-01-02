@@ -59,7 +59,7 @@ button_styling_1 = {'font-size': '12px',
                   'height':'19px',
                   'verticalAlign': 'center'}
 
- page_content_style = {'top': '0px','padding':'0','margins':'0',
+page_content_style = {'top': '0px','padding':'0','margins':'0',
                                    'height':'100%', 'width':'100%',
                                    'left': '0','background-color': 'green',
                                    'overflow-y': 'scroll'}
