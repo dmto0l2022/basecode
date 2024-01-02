@@ -20,8 +20,8 @@ import dash_bootstrap_components as dbc
 from flask import request, session
 
 from app.baseapp.libraries import formlibrary as fl
-from app.baseapp.libraries import plot_table as pt
-## from app.baseapp.libraries import get_dmtool_user as gdu
+from app.baseapp.libraries import plots_table as pt
+from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
 
 
 ###########################################################
