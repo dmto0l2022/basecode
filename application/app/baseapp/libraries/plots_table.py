@@ -121,9 +121,9 @@ class get_table:
             response_data = r.json()
             #print('all plots response data')
             #print('===================')
-            print(response_data)
-            print('===================')
-            self.response_data_frame = pd.DataFrame(response_data)
+            #print(response_data)
+            #print('===================')
+            #self.response_data_frame = pd.DataFrame(response_data)
         except:
             self.response_data_frame = pd.DataFrame()
   
