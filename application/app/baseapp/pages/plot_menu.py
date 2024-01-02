@@ -51,7 +51,7 @@ dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
                             'aria-haspopup' : 'true',
                             'aria-expanded' : 'false',
                             },
-                            children=html.Span(className="sr-only", children=['Toggle Dropdown'])
+                            children=html.Span(className="sr-only", children=['Menu'])
                           )
 
 drop_down_new =  html.A(id=page_name + "dropdown_action", children=['New'], href=baseapp_prefix + '/create_new_plot', className="dropdown-item")
