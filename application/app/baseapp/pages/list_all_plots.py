@@ -55,26 +55,26 @@ class ListAllPlotsDash():
         
         self.dash_table = dash_table.DataTable(id=self.plot_table_id)
 
-    def get_layout():    
+    def get_layout(self):    
       
         debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
-                                          html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
-                                          html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
+                                          html.Div(id=self.page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
+                                          html.Div(id=self.page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
                                           className="PAGE_DEBUG_CONTENT")
     
         ##dmtool_user_id = gdu.dmtool_userid
         ## the callback triggers first time the page opens and the actual user is retrieved from the header
-        dmtool_user_id = '0' ### default - no user should be given 0
+        self.dmtool_user_id = '0' ### default - no user should be given 0
         internal_header={'dmtool-userid':self.dmtool_user_id}
     
         ## create an empty table to be refreshed by the callback
     
         #set_table_height("80%")
-        table_height_in = '1000px'
-        self.plot_table = pt.get_table(page_title,plot_table_id, table_meta_data_data,table_height_in,row_height,table_font_size,dmtool_user_id)
+        self.table_height = '1000px'
+        self.plot_table = pt.get_table(self.page_title,self.plot_table_id, self.table_meta_data_data,self.table_height,self.row_height,self.table_font_size,self.dmtool_user_id)
         
     
-        row_plots = dbc.Row([dbc.Col(id=page_name + "plot_table_div",
+        row_plots = dbc.Row([dbc.Col(id=self.page_name + "plot_table_div",
                                 children=[self.plot_table.dash_table],
                                 width=12,)],
                                 className ="list_all_plots_plots_class")
