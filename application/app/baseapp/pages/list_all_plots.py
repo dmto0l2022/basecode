@@ -91,7 +91,7 @@ def get_layout():
         [
             dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
             html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
-            html.Div(
+            html.Div(id=page_name + "plot_table_div",
                 [
                     plot_table.dash_table
                 ],
@@ -121,16 +121,19 @@ clientside_callback(
         Input(page_name + 'url', 'href')
     )
 
-callback([Output(plot_table_id, 'data')],
+callback([Output(page_name + "plot_table_div", 'children')],
               Input(page_name +'url', 'href'), State(page_name + 'screen_size_store', 'data'))
 def set_plot_name(href: str, page_size_in):
     page_size_as_string = json.dumps(page_size_in)
     print('sltp : set plot name callback triggered ---- page size >>>>>>>' + page_size_as_string)
+    screen_height = page_size_in['height']
+    print('screen_height >>>>>>>>>>', screen_height)
+    plots_table_height = str(screen_height * 0.7) + 'px'
     ## get user id from cookie
     dmtooluser_cls = gdu.GetUserID()
     dmtool_userid = dmtooluser_cls.dmtool_userid
     
     plot_table.set_dmtool_userid(dmtool_userid)
-    plot_table.set_table_height("80%")
+    plot_table.set_table_height(plots_table_height)
     plot_table.RefreshTableData()
-    return plot_table.table_data_dict
+    return plot_table.dash_table
