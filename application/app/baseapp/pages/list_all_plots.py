@@ -81,12 +81,8 @@ def get_layout():
     internal_header={'dmtool-userid':'1'}
 
     ## create an empty table to be refreshed by the callback
-    plot_table = pt.get_table(page_title,
-                                     plot_table_id,
-                                     table_meta_data_data,
-                                     row_height,
-                                     table_font_size,
-                                     dmtool_user_id)
+   
+    plot_table = pt.get_table(page_title,plot_table_id, table_meta_data_data,row_height,table_font_size,dmtool_user_id)
     
   
     table_layout = html.Div(
