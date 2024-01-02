@@ -8,13 +8,67 @@ dash.register_page(__name__, path='/plot_menu')
 page_name = 'plot_menu'
 baseapp_prefix = '/application/baseapp'
 
+'''
+<!-- Example split danger button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Action</button>
+  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Separated link</a>
+  </div>
+</div>
+
+html.Button(
+[
+html.Span(className=‘navbar-toggler-icon’)
+],
+className=“navbar-toggler”,
+type=‘button’,
+**{
+‘data-toggle’: ‘collapse’,
+‘data-target’: “#navbarNav”,
+‘aria-controls’: “navbarNav”,
+‘aria-expanded’: “false”,
+‘aria-label’: “Toggle navigation”
+}
+),
+
+'''
+danger_button = html.Button("Danger", class="btn btn-danger",type="button")
+
+
+dropdown_button = html.Div(id=page_name + "dropdown_button", type="button",
+                           className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
+                           **{
+                            'data-toggle': 'dropdown',
+                            'aria-haspopup'='true',
+                            'aria-expanded': 'false',
+                            },
+                            children=html.Span(className="sr-only", children=['Toggle Dropdown'])
+                          )
+
+drop_down_new =  html.A(id=page_name + "dropdown_action", children=['New'], href=baseapp_prefix + '/create_new_plot')
+drop_down_edit =  html.A(id=page_name + "dropdown_action", children=['New'], href=baseapp_prefix + '/create_new_plot')
+drop_down_list =  html.A(id=page_name + "dropdown_action", children=['New'], href=baseapp_prefix + '/create_new_plot')
+
+dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_new,drop_down_edit,drop_down_list], className = "dropdown-menu")
+
+split_button = html.Div(children=[danger_button,dropdown_button,dropdown_menu], className="btn-group")
+
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
     dcc.Location(id="url", refresh=True), ## important to allow redirects
     html.Div("Plot Menu"),
-    html.Button('Create New', id=page_name + '_create_new_' + 'button_id', n_clicks=0),
-    html.Button('Edit Existing', id=page_name + '_edit_existing_' + 'button_id', n_clicks=0),
-    html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0),
+    split_button,
+    #html.Button('Create New', id=page_name + '_create_new_' + 'button_id', n_clicks=0),
+    #html.Button('Edit Existing', id=page_name + '_edit_existing_' + 'button_id', n_clicks=0),
+    #html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0),
     html.Div('No Button Pressed', id="whatbutton")
     ])
 
