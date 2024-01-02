@@ -97,8 +97,7 @@ def get_layout():
                 ],
                 className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
             ),
-            debug_output,
-            html.Div(id= page_name + "page_buttons", children=[new_button,save_button,cancel_button,home_button], className="PAGE_FOOTER_BUTTONS"),
+            debug_output
         ],
         className="row NOPADDING_CONTENT"
     )
