@@ -59,7 +59,10 @@ button_styling_1 = {'font-size': '12px',
                   'height':'19px',
                   'verticalAlign': 'center'}
 
-
+ page_content_style = {'top': '0px','padding':'0','margins':'0',
+                                   'height':'100%', 'width':'100%',
+                                   'left': '0','background-color': 'green',
+                                   'overflow-y': 'scroll'}
 row_height = '13px'
 table_font_size = '12px'
 
@@ -86,23 +89,25 @@ def get_layout():
     table_height_in = "80%"
     plot_table = pt.get_table(page_title,plot_table_id, table_meta_data_data,table_height_in,row_height,table_font_size,dmtool_user_id)
     
+
+    row_plots = dbc.Row([dbc.Col(id=page_name + "plot_table_div",
+                            children=[plot_table.dash_table],
+                            width=12,)],
+                            className ="list_all_plots_plots_class")
   
     table_layout = html.Div(
         [
             dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
             ##html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
-            html.Div(id=page_name + "plot_table_div",
-                children=[
-                    plot_table.dash_table
-                ],
-                ##className="NOPADDING_CONTENT PAGE_FULL_TABLE_CONTENT"
-                ),
+            row_plots,
             ## debug_output
         ],
-        ##className="row NOPADDING_CONTENT"
+        className='list_all_plots_main_class'
     )
 
-    return table_layout
+    layout_return = html.Div(id=page_name+'content',children=table_layout,className="container-fluid", style=page_content_style)
+
+    return layout_return
     
 
 layout = get_layout
