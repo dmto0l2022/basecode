@@ -1,29 +1,18 @@
-import dash
-
-from dash import Dash
-from dash import dcc, html
-from dash import Input, Output, callback
+#import dash
+#from dash import Dash
+#from dash import dcc, html
+#from dash import Input, Output, callback
 from dash import dash_table, no_update  # Dash version >= 2.0.0
 import pandas as pd
-import plotly.express as px
 import json
 import requests
 import pickle
-import dash_bootstrap_components as dbc
 
-from flask import request, session
-
-from app.baseapp.libraries import formlibrary as fl
+#from app.baseapp.libraries import formlibrary as fl
 #from app.baseapp.dashboard_libraries import get_limit_data as gld
-from app.baseapp.dashboard_libraries import get_limit_data_cls as gldc
+#from app.baseapp.dashboard_libraries import get_limit_data_cls as gldc
 
-import requests
-import json
-import redis
-
-
-
-class get_main_table:
+class get_table:
     def __init__(self, page_title_in,
                  main_table_id_in,
                  table_meta_data_data_in,
@@ -121,26 +110,23 @@ class get_main_table:
     
     def RefreshTableData(self):
         plots_api = '/dmtool/fastapi_data/internal/data/plots'
-        internal_api = 
-        self.fastapi_url_all = 
-        print("mt : fastapi_url_all for api key >>>>>>>>>>>>", self.fastapi_url_all)
+        api_server = "http://container_fastapi_data_1:8014"
+        all_plots_api = api_server + plots_api
+        print("mt : all_plots_api >>>>>>>>>>>>", all_plots_api)
         
         try:
-            
-            r = requests.get(self.fastapi_url_all, headers = self.dmtool_user_header)
+            r = requests.get(all_plots_api, headers = self.dmtool_user_header)
             response_data = r.json()
-            #print('response data')
+            #print('all plots response data')
             #print('===================')
-            #print(response_data)
-            #print('===================')
+            print(response_data)
+            print('===================')
             self.response_data_frame = pd.DataFrame(response_data)
         except:
             self.response_data_frame = pd.DataFrame()
     else:
         self.response_data_frame = pd.DataFrame()
     
-    #all_table_column_names = table_column_names_data+['edit','ceased','delete']
-
     add_symbol = "+"
     edit_symbol = "~"
     delete_symbol = "X"
@@ -148,18 +134,18 @@ class get_main_table:
     
     if self.response_data_frame.empty:
         empty_data = self.table_column_names_data+['~','+','-','X']
-        self.main_table_data_frame = pd.DataFrame(data = [empty_data], columns = self.all_table_column_names)
-        self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
+        self.table_data_frame = pd.DataFrame(data = [empty_data], columns = self.all_table_column_names)
+        self.table_data_dict = self.table_data_frame.to_dict('records')
     else:
         lst = self.table_column_names_data
-        self.main_table_data_frame = self.response_data_frame[self.response_data_frame.columns.intersection(lst)]
-        self.main_table_data_frame = self.main_table_data_frame[lst]
+        self.table_data_frame = self.response_data_frame[self.response_data_frame.columns.intersection(lst)]
+        self.table_data_frame = self.main_table_data_frame[lst]
         #updated_data_frame_ret['create'] = "create"
-        self.main_table_data_frame['~'] = edit_symbol
-        self.main_table_data_frame['+'] = add_symbol
-        self.main_table_data_frame['-'] = archive_symbol
-        self.main_table_data_frame['X'] = delete_symbol
-        self.main_table_data_dict = self.main_table_data_frame.to_dict('records')
+        self.table_data_frame['~'] = edit_symbol
+        self.table_data_frame['+'] = add_symbol
+        self.table_data_frame['-'] = archive_symbol
+        self.table_data_frame['X'] = delete_symbol
+        self.table_data_dict = self.table_data_frame.to_dict('records')
     
         
     
@@ -169,10 +155,10 @@ class get_main_table:
         self.RefreshTableData()
         
         print("mte : style_table_dict >>>>>>", style_table_dict)
-        self.dash_table_main = dash_table.DataTable(
+        self.dash_table = dash_table.DataTable(
             virtualization=True,
-            id = self.main_table_id,
-            data = self.main_table_data_dict,
+            id = self.table_id,
+            data = self.table_data_dict,
             columns=[{"name": c, "id": c} for c in self.all_table_column_names],
             fixed_rows={'headers': True},
             style_data={'whiteSpace': 'nowrap', 'height': self.row_height},
