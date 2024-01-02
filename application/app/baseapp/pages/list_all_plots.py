@@ -32,7 +32,7 @@ page_title = 'List All Plots'
 table_meta_data_data = [
                         ['id', '2%'],
                         ['user_id', '2%'],
-                        ['plot_name', '18%'],
+                        ['name', '18%'],
                         ['created_at', '5%'],
                         ['updated_at', '5%'],
                         ['ceased_at', '5%']
