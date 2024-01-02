@@ -87,7 +87,9 @@ class get_table:
         #self.RefreshTableData()
         self.dash_table = dash_table.DataTable()
         self.get_dash_table()
-        
+
+    def set_dmtool_userid(self,dmtool_userid_in):
+        self.dmtool_userid = dmtool_userid_in
         
 
     def get_conditional_column_widths(self):
