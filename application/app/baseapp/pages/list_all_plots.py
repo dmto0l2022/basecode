@@ -35,7 +35,7 @@ table_meta_data_data = [
                         ['plot_name', '18%'],
                         ['created_at', '5%'],
                         ['updated_at', '5%'],
-                        ['archived_at', '5%']
+                        ['ceased_at', '5%']
                        ]
 
 single_api = 'plot'
