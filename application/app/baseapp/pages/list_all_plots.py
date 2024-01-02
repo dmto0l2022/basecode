@@ -120,8 +120,8 @@ layout = get_layout
             return jsn;
         }
         """,
-        Output(self.page_name + 'screen_size_store', 'data'),
-        Input(self.page_name + 'url', 'href')
+        Output(page_name + 'screen_size_store', 'data'),
+        Input(page_name + 'url', 'href')
     )
 
 @callback([Output(plot_table_id, 'data')],
