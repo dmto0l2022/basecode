@@ -153,7 +153,7 @@ class get_table:
         #print("column widths : " , self.conditional_column_widths)
         self.RefreshTableData()
         
-        print("plot table : style_table_dict >>>>>>", style_table_dict)
+        #print("plot table : style_table_dict >>>>>>", self.table_style)
         self.dash_table = dash_table.DataTable(
             virtualization=True,
             id = self.table_id,
