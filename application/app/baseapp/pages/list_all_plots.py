@@ -122,7 +122,7 @@ class ListAllPlotsDash():
             self.plot_table.set_dmtool_userid(self.dmtool_userid)
             self.plot_table.set_table_height(plots_table_height)
             self.plot_table.get_dash_table()
-            return self.plot_table.dash_table
+            return [self.plot_table.dash_table]
 
 dashboard = ListAllPlotsDash(page_name)
 dashboard.get_layout()
