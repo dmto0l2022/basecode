@@ -122,28 +122,26 @@ class get_table:
             self.response_data_frame = pd.DataFrame(response_data)
         except:
             self.response_data_frame = pd.DataFrame()
-    else:
-        self.response_data_frame = pd.DataFrame()
-    
-    add_symbol = "+"
-    edit_symbol = "~"
-    delete_symbol = "X"
-    archive_symbol = "-"
-    
-    if self.response_data_frame.empty:
-        empty_data = self.table_column_names_data+['~','+','-','X']
-        self.table_data_frame = pd.DataFrame(data = [empty_data], columns = self.all_table_column_names)
-        self.table_data_dict = self.table_data_frame.to_dict('records')
-    else:
-        lst = self.table_column_names_data
-        self.table_data_frame = self.response_data_frame[self.response_data_frame.columns.intersection(lst)]
-        self.table_data_frame = self.main_table_data_frame[lst]
-        #updated_data_frame_ret['create'] = "create"
-        self.table_data_frame['~'] = edit_symbol
-        self.table_data_frame['+'] = add_symbol
-        self.table_data_frame['-'] = archive_symbol
-        self.table_data_frame['X'] = delete_symbol
-        self.table_data_dict = self.table_data_frame.to_dict('records')
+  
+        add_symbol = "+"
+        edit_symbol = "~"
+        delete_symbol = "X"
+        archive_symbol = "-"
+        
+        if self.response_data_frame.empty:
+            empty_data = self.table_column_names_data+['~','+','-','X']
+            self.table_data_frame = pd.DataFrame(data = [empty_data], columns = self.all_table_column_names)
+            self.table_data_dict = self.table_data_frame.to_dict('records')
+        else:
+            lst = self.table_column_names_data
+            self.table_data_frame = self.response_data_frame[self.response_data_frame.columns.intersection(lst)]
+            self.table_data_frame = self.main_table_data_frame[lst]
+            #updated_data_frame_ret['create'] = "create"
+            self.table_data_frame['~'] = edit_symbol
+            self.table_data_frame['+'] = add_symbol
+            self.table_data_frame['-'] = archive_symbol
+            self.table_data_frame['X'] = delete_symbol
+            self.table_data_dict = self.table_data_frame.to_dict('records')
     
         
     
