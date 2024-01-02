@@ -23,94 +23,77 @@ from app.baseapp.libraries import formlibrary as fl
 from app.baseapp.libraries import plots_table as pt
 from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
 
+page_name = 'list_all_plots'
+dash.register_page(__name__, path='/'+page_name)
 
 ###########################################################
 # Should only need to change the following:
-
-page_name = "list_all_plots"
-page_title = 'List All Plots'
-table_meta_data_data = [
-                        ['id', '5%'],
-                        ['user_id', '5%'],
-                        ['name', '71%'],
-                        ['created_at', '5%'],
-                        ['updated_at', '5%'],
-                        ['ceased_at', '5%']
-                       ]
-
-single_api = 'plot'
-multiple_api = 'plots'
-
-##########################################################
-baseapp_prefix = '/application/baseapp'
-plot_table_id = page_name + '_plot_table'
-dash.register_page(__name__, path='/'+page_name)
-
-#fastapi_url = "http://container_fastapi_about_1:8016/dmtool/fastapi_about/internal/about/"
-#fastapi_url_all = fastapi_url + multiple_api ## multiple limit operations
-#fastapi_url_one = fastapi_url + single_api + "/" ## single limit operations
-
-button_styling_1 = {'font-size': '12px',
-                  'width': '70px',
-                  'display': 'inline-block', 
-                  'margin-bottom': '1px',
-                  'margin-right': '0px',
-                  'margin-top': '1px',
-                  'height':'19px',
-                  'verticalAlign': 'center'}
-
-page_content_style = {'top': '0px','padding':'0','margins':'0',
-                                   'height':'100%', 'width':'100%',
-                                   'left': '0','background-color': 'green',
-                                   'overflow-y': 'scroll'}
-row_height = '13px'
-table_font_size = '12px'
+class ListAllPlotsDash():
+    def __init__(self, page_name_in):
+        self.page_name = "list_all_plots"
+        self.page_title = 'List All Plots'
+        self.dmtool_user_id = '0' 
+        self.plot_table_id = self.page_name + 'table_id'
+        self.table_meta_data_data = [
+                                ['id', '5%'],
+                                ['user_id', '5%'],
+                                ['name', '71%'],
+                                ['created_at', '5%'],
+                                ['updated_at', '5%'],
+                                ['ceased_at', '5%']
+                               ]
+        self.baseapp_prefix = '/application/baseapp'
+        self.plot_table_id = page_name + '_plot_table'
 
 
+        self.page_content_style = {'top': '0px','padding':'0','margins':'0',
+                                           'height':'100%', 'width':'100%',
+                                           'left': '0','background-color': 'green',
+                                           'overflow-y': 'scroll'}
+        self.row_height = '13px'
+        self.table_font_size = '12px'
+        
+        self.dash_table = dash_table.DataTable(id=self.plot_table_id)
 
-empty_dash_table = dash_table.DataTable(id=plot_table_id)
-######################################################
-
-def get_layout():    
-  
-    debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
-                                      html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
-                                      html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
-                                      className="PAGE_DEBUG_CONTENT")
-
-    ##dmtool_user_id = gdu.dmtool_userid
-    ## the callback triggers first time the page opens and the actual user is retrieved from the header
-    dmtool_user_id = '0' ### default - no user should be given 0
-    internal_header={'dmtool-userid':'1'}
-
-    ## create an empty table to be refreshed by the callback
-
-    #set_table_height("80%")
-    table_height_in = "80%"
-    plot_table = pt.get_table(page_title,plot_table_id, table_meta_data_data,table_height_in,row_height,table_font_size,dmtool_user_id)
+    def get_layout():    
+      
+        debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
+                                          html.Div(id=page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
+                                          html.Div(id=page_name+"button-output-div", children="Button Output Here", className="NOPADDING_CONTENT OUTPUT_CELL")],
+                                          className="PAGE_DEBUG_CONTENT")
     
-
-    row_plots = dbc.Row([dbc.Col(id=page_name + "plot_table_div",
-                            children=[plot_table.dash_table],
-                            width=12,)],
-                            className ="list_all_plots_plots_class")
-  
-    table_layout = html.Div(
-        [
-            dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
-            ##html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
-            row_plots,
-            ## debug_output
-        ],
-        className='list_all_plots_main_class'
-    )
-
-    layout_return = html.Div(id=page_name+'content',children=table_layout,className="container-fluid", style=page_content_style)
-
-    return layout_return
+        ##dmtool_user_id = gdu.dmtool_userid
+        ## the callback triggers first time the page opens and the actual user is retrieved from the header
+        dmtool_user_id = '0' ### default - no user should be given 0
+        internal_header={'dmtool-userid':self.dmtool_user_id}
     
-
-layout = get_layout
+        ## create an empty table to be refreshed by the callback
+    
+        #set_table_height("80%")
+        table_height_in = '1000px'
+        self.plot_table = pt.get_table(page_title,plot_table_id, table_meta_data_data,table_height_in,row_height,table_font_size,dmtool_user_id)
+        
+    
+        row_plots = dbc.Row([dbc.Col(id=page_name + "plot_table_div",
+                                children=[self.plot_table.dash_table],
+                                width=12,)],
+                                className ="list_all_plots_plots_class")
+      
+        table_layout = html.Div(
+            [
+                dcc.Location(id= page_name + "url", refresh=True), ## important to allow redirects
+                ##html.Div(children= page_title, className="NOPADDING_CONTENT TABLE_TITLE"),
+                row_plots,
+                ## debug_output
+            ],
+            className='list_all_plots_main_class'
+        )
+    
+        layout = html.Div(id=page_name+'content',children=table_layout,className="container-fluid", style=page_content_style)
+        
+dashboard = ListAllPlotsDash(page_name)
+dashboard.get_layout()
+layout = dashboard.layout
 
 clientside_callback(
         """
