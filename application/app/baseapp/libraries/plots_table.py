@@ -138,7 +138,7 @@ class get_table:
         else:
             lst = self.table_column_names_data
             self.table_data_frame = self.response_data_frame[self.response_data_frame.columns.intersection(lst)]
-            self.table_data_frame = self.main_table_data_frame[lst]
+            self.table_data_frame = self.table_data_frame[lst]
             #updated_data_frame_ret['create'] = "create"
             self.table_data_frame['~'] = edit_symbol
             self.table_data_frame['+'] = add_symbol
@@ -153,7 +153,7 @@ class get_table:
         #print("column widths : " , self.conditional_column_widths)
         self.RefreshTableData()
         
-        print("mte : style_table_dict >>>>>>", style_table_dict)
+        print("plot table : style_table_dict >>>>>>", style_table_dict)
         self.dash_table = dash_table.DataTable(
             virtualization=True,
             id = self.table_id,
