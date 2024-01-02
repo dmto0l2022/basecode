@@ -19,8 +19,6 @@ class get_table:
                  table_height_in,
                  row_height_in,
                  table_font_size_in,
-                 fastapi_url_all_in,
-                 fastapi_url_one_in,
                  dmtool_userid_in
                 ):
 
@@ -31,11 +29,9 @@ class get_table:
         self.page_size = 1000
         self.row_height = row_height_in
         self.table_font_size = table_font_size_in
-        self.fastapi_url_all = fastapi_url_all_in
-        self.fastapi_url_one = fastapi_url_one_in
         self.dmtool_userid = dmtool_userid_in
         self.dmtool_user_header = {'dmtool-userid':str(self.dmtool_userid)}
-        self.internal_header = {'dmtool-userid':'999'}
+        self.internal_header = {'dmtool-userid':'0'}
         self.table_meta_data_columns = ['name', 'width']
         self.button_meta_data_data =[
                             ['add', '4%'],
