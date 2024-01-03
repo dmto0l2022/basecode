@@ -3,7 +3,7 @@ from dash import html
 
 def logo_img():
     image_path = dash.get_asset_url('DMToolsLogo.png')
-    nav_image = html.Img(src=image_path,style={'height':'33px','padding':'0', 'margin':'0'})
+    nav_image = html.Img(src=image_path,style={'height':'33px','padding':'0', 'margin':'0', 'border': '0'})
     return nav_image
 
 def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
@@ -11,7 +11,9 @@ def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
     baseapp_prefix = '/application/baseapp'
     nav_image = logo_img_in
     
-    brand_button = html.Button(nav_image, id=page_name_in+"brand_button", className="btn btn-brand",type="button")
+    brand_button = html.Button(nav_image, id=page_name_in+"brand_button",
+                               className="btn btn-brand",type="button",
+                               style={'padding': '0','border': '0', 'margin': '0'})
     
     plot_menu_button = html.Button("Plot Menu", id=page_name_in+"plot_menu_button", className="btn btn-primary",type="button")
     
