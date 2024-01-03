@@ -28,7 +28,7 @@ dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
                             'aria-haspopup' : 'true',
                             'aria-expanded' : 'false',
                             },
-                            children=html.Span(className="sr-only", children=['New Plot Menu'])
+                            children=html.Span(className="sr-only", children=['Create Plot Menu'])
                           )
 
 drop_down_create =  html.A(id=page_name + "dropdown_action", children=['New'], href=baseapp_prefix + '/create_new_plot', className="dropdown-item")
@@ -38,12 +38,12 @@ drop_down_exit =  html.A(id=page_name + "dropdown_action", children=['Exit'], hr
 
 dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_create,drop_down_edit,drop_down_list, drop_down_exit], className = "dropdown-menu")
 
-split_button = html.Div(children=[new_plot_button,dropdown_button,dropdown_menu], className="btn-group")
+split_button = html.Div(children=[create_plot_button, dropdown_button, dropdown_menu], className="btn-group")
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
     dcc.Location(id="url_create_new_plot", refresh=True), ## important to allow redirects
-    html.Div("Create New Plot"),
+    #html.Div("Create New Plot"),
     fl.plot_name_input_row,
     split_button,
     html.Div('No Button Pressed', id="whatbutton")
