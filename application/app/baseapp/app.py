@@ -366,7 +366,7 @@ nav_image = html.Img(src=image_path,style={'height':nav_bar_height})
 </button>
 '''
 
-brand_button = html.Button(nav_image, id=page_name+"brand_button", className="btn btn-primary",type="button")
+brand_button = html.Button(nav_image, id=page_name+"brand_button", className="btn btn-primary",type="button", style={'background-color': 'purple !important'})
 
 plot_menu_button = html.Button("Plot Menu", id=page_name+"plot_menu_button", className="btn btn-primary",type="button")
 
