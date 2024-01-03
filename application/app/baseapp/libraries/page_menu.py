@@ -35,6 +35,6 @@ def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
     dropdown_menu = html.Div(id=page_name_in + "dropdown_menu", children = button_list , className = "dropdown-menu")
     
     split_button = html.Div(children=[brand_button,plot_menu_button, dropdown_button, dropdown_menu], className="btn-group",
-                            style={'position':'sticky','top': '0px','left': '0','right':'0','height':'33px'})
+                            style={'top': '0px','left': '0','right':'0','height':'33px'})
 
     return split_button
