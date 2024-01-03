@@ -8,17 +8,22 @@ def logo_img():
 
 def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
 
+    button_padding = {'height':'33px','padding-left':'3px','padding-right':'3px' ,
+                          'padding-top':'0px',
+                          'padding-bottom':'0px'
+                          'margin':'0', 'border': '0', 'vertical-align':'middle'}
+    
     baseapp_prefix = '/application/baseapp'
     nav_image = logo_img_in
     
     brand_button = html.Button(nav_image, id=page_name_in+"brand_button",
                                className="btn btn-brand",type="button",
-                               style={'padding': '0','border': '0', 'margin': '0'})
+                               style=button_padding)
     
     plot_menu_button = html.Button("Plot Menu",
                                    id=page_name_in+"plot_menu_button",
                                    className="btn btn-primary",type="button",
-                                   style={'height':'33px','padding':'0', 'margin':'0', 'border': '0', 'vertical-align':'middle'})
+                                   style=button_padding)
     
     dropdown_button = html.Button(id=page_name_in + "dropdown_button", type="button",
                                className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
@@ -41,6 +46,6 @@ def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
     dropdown_menu = html.Div(id=page_name_in + "dropdown_menu", children = button_list , className = "dropdown-menu")
     
     split_button = html.Div(children=[brand_button,plot_menu_button, dropdown_button, dropdown_menu], className="btn-group",
-                            style={'top': '0px','left': '0','right':'0','height':'33px'})
+                            style=button_padding)
 
     return split_button
