@@ -61,6 +61,7 @@ FLASK_SECRET_KEY = environ.get("FLASK_SECRET_KEY")
 ALL_STYLES = "/application/baseapp/allstyles.css"
 #external_stylesheets=[dbc.themes.BOOTSTRAP, PAGES_STYLE, CONTENT_STYLES]
 
+page_name = 'main_page'
 
 #COMPONENT_STYLE = "/login/baseapp/forms.css"
 external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP, ALL_STYLES]
