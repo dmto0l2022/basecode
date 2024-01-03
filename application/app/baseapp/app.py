@@ -364,7 +364,7 @@ nav_menu_button = html.Div(id='nav_menu_button',
 image_path = dash.get_asset_url('DMToolsLogo.png')
 nav_image = html.Img(src=image_path,style={'height':nav_bar_height})
 
-app_page_menu = page_menu.page_top_menu(page_name,[], nav_image)
+#app_page_menu = page_menu.page_top_menu(page_name,[], nav_image)
 
 '''
 <button class="btn btn-default">
