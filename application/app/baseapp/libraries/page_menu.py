@@ -32,7 +32,11 @@ def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
                                 'aria-haspopup' : 'true',
                                 'aria-expanded' : 'false',
                                 },
-                                children=html.Span(className="sr-only", children=['Main Menu'],style=button_padding),
+                                children=html.Span(className="sr-only", children=['Main Menu'],
+                                                   style={'height':'33px','padding-left':'0px','padding-right':'0px' ,
+                                                          'padding-top':'0px',
+                                                          'padding-bottom':'0px',
+                                                          'margin':'0', 'border': '0', 'vertical-align':'middle'}),
                                   style=button_padding
                               )
     
