@@ -67,7 +67,7 @@ def button_click_create_new_plot(button0,plot_name_input):
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
 
     #msg = prop_id
-    if (page_name+"create_plot_button" == prop_id :
+    if page_name+"create_plot_button" == prop_id :
         request_header = {'dmtool-userid': str(dmtool_userid)}
         fastapi_about_url = "http://container_fastapi_data_1:8014/"
         create_plot_api = "dmtool/fastapi_data/internal/data/plot/"
