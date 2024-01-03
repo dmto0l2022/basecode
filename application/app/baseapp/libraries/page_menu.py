@@ -15,7 +15,10 @@ def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
                                className="btn btn-brand",type="button",
                                style={'padding': '0','border': '0', 'margin': '0'})
     
-    plot_menu_button = html.Button("Plot Menu", id=page_name_in+"plot_menu_button", className="btn btn-primary",type="button")
+    plot_menu_button = html.Button("Plot Menu",
+                                   id=page_name_in+"plot_menu_button",
+                                   className="btn btn-primary",type="button",
+                                   style={'height':'33px','padding':'0', 'margin':'0', 'border': '0', 'vertical-align':'middle'})
     
     dropdown_button = html.Button(id=page_name_in + "dropdown_button", type="button",
                                className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
@@ -24,7 +27,8 @@ def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
                                 'aria-haspopup' : 'true',
                                 'aria-expanded' : 'false',
                                 },
-                                children=html.Span(className="sr-only", children=['Main Menu'])
+                                children=html.Span(className="sr-only", children=['Main Menu']),
+                                  style={'height':'33px','padding':'0', 'margin':'0', 'border': '0', 'vertical-align':'middle'}
                               )
     
     drop_down_plot=  html.A(id=page_name_in + "dropdown_action_plot", children=['Plot'], href=baseapp_prefix + '/plot_menu', className="dropdown-item")
