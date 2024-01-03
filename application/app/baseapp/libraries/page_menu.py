@@ -6,10 +6,10 @@ def logo_img():
     nav_image = html.Img(src=image_path,style={'height':'33px'})
     return nav_image
 
-def page_top_menu(page_name_in, relevant_dropdowns_in):
+def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
 
     baseapp_prefix = '/application/baseapp'
-    nav_image = logo_img()
+    nav_image = logo_img_in
     
     brand_button = html.Button(nav_image, id=page_name_in+"brand_button", className="btn btn-brand",type="button")
     
