@@ -64,7 +64,7 @@ split_button = html.Div(children=[new_plot_button,dropdown_button,dropdown_menu]
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
-    dcc.Location(id="url", refresh=True), ## important to allow redirects
+    dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
     #html.Div("Plot Menu"),
     split_button,
     #html.Button('Create New', id=page_name + '_create_new_' + 'button_id', n_clicks=0),
@@ -75,7 +75,7 @@ layout = html.Div([
 
 
 @callback(
-    Output('url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    Output(page_name + 'url', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
     [
     Input(page_name+"new_plot_button", "n_clicks")
         ],
