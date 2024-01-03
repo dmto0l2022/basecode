@@ -19,29 +19,44 @@ dash.register_page(__name__, path='/create_new_plot')
 page_name = 'create_new_plot'
 baseapp_prefix = '/application/baseapp'
 
-## id='plot_name_form_field_id',
+create_plot_button = html.Button("Create Plot", id=page_name+"create_plot_button", className="btn btn-primary",type="button")
+
+dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
+                           className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
+                           **{
+                            'data-toggle' : 'dropdown',
+                            'aria-haspopup' : 'true',
+                            'aria-expanded' : 'false',
+                            },
+                            children=html.Span(className="sr-only", children=['New Plot Menu'])
+                          )
+
+drop_down_create =  html.A(id=page_name + "dropdown_action", children=['New'], href=baseapp_prefix + '/create_new_plot', className="dropdown-item")
+drop_down_edit =  html.A(id=page_name + "dropdown_action", children=['Edit'], href=baseapp_prefix + '/edit_existing_plot', className="dropdown-item")
+drop_down_list =  html.A(id=page_name + "dropdown_action", children=['List'], href=baseapp_prefix + '/list_all_plots', className="dropdown-item")
+drop_down_exit =  html.A(id=page_name + "dropdown_action", children=['Exit'], href=baseapp_prefix + '/plot_menu', className="dropdown-item")
+
+dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_new,drop_down_edit,drop_down_list, drop_down_exit], className = "dropdown-menu")
+
+split_button = html.Div(children=[new_plot_button,dropdown_button,dropdown_menu], className="btn-group")
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
     dcc.Location(id="url_create_new_plot", refresh=True), ## important to allow redirects
     html.Div("Create New Plot"),
     fl.plot_name_input_row,
-    html.Button('Print', id=page_name + '_print_' + 'button_id', n_clicks=0),
-    html.Button('Create', id=page_name + '_create_' + 'button_id', n_clicks=0),
-    html.Button('Cancel',  id=page_name + '_cancel_' + 'button_id', n_clicks=0),
+    split_button,
     html.Div('No Button Pressed', id="whatbutton")
     ])
 
 
 @callback(
     Output('url_create_new_plot', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
-    Input(page_name + '_print_' + 'button_id', "n_clicks"),
-    Input(page_name + '_create_' + 'button_id', "n_clicks"),
-    Input(page_name + '_cancel_' + 'button_id', "n_clicks"),
+    Input(page_name+"create_plot_button", "n_clicks"),
     State("plot_name_form_field_id", "value"),
         prevent_initial_call=True
 )
-def button_click_create_new_plot(button0,button1,button2,plot_name_input):
+def button_click_create_new_plot(button0,plot_name_input):
     #msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     print("create new plot >> prop id >>  " ,prop_id)
@@ -52,13 +67,7 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
     print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
 
     #msg = prop_id
-    if page_name + '_print_' + 'button_id' == prop_id :
-        #href_return = '/application/baseapp/create_new_plot'
-        #return href_return
-        
-        href_return = baseapp_prefix + '/create_new_plot'
-        return href_return
-    elif page_name + '_create_' + 'button_id' == prop_id :
+    if (page_name+"create_plot_button" == prop_id :
         request_header = {'dmtool-userid': str(dmtool_userid)}
         fastapi_about_url = "http://container_fastapi_data_1:8014/"
         create_plot_api = "dmtool/fastapi_data/internal/data/plot/"
@@ -74,11 +83,6 @@ def button_click_create_new_plot(button0,button1,button2,plot_name_input):
 
         href_return = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)
         #href_return = baseapp_prefix + '/create_new_plot'
-        return href_return
-    elif page_name + '_cancel_' + 'button_id' == prop_id:
-        #msg = "Button 2 was most recently clicked"
-        #href_return = dash.page_registry['pages.edit_existing_plot']['path']
-        href_return = baseapp_prefix+ '/plot_menu'
         return href_return
     else:
         href_return = baseapp_prefix + '/create_new_plot'
