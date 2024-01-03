@@ -441,6 +441,27 @@ navbar_dropdown = dbc.Navbar(
     background-color: lightgray;
     }
 '''
+'''
+.PAGE_CONTENT {
+    position: absolute;
+    top: var(--header_height);
+    height:  calc(100% - 80px);
+    width : var(--content_width);
+    left: var(--sidebar_width);
+    background-color: lightgray;
+    overflow-y: scroll;
+    }
+'''
+
+page_content_style = {
+    'position': 'absolute,
+    'top': '0',
+    'height': '100%', # 'calc(100% - 80px)',
+    'width' : '100%',
+    'left':'0',
+    'background-color': 'lightgray',
+    'overflow-y': 'scroll'
+    }
 
 pages_container = html.Div([
   html.H1('Multi-page app with Dash Pages'),
@@ -455,13 +476,14 @@ pages_container = html.Div([
           ]
       ),
     dash.page_container
-  ], className='PAGE_CONTENT') ##, style={'overflow': 'auto'})
-
+  ], style=page_content_style)
 
 pages_container_box = html.Div(children=[dash.page_container],
              style={'position': 'fixed',
-              'top': '34px',
-              'height' :  'calc(100% - 76px)',
+              'top': '0px',
+              'padding' : '0',
+              'margin' : '0',
+              'height' :  '100%',
               'width' : '100%',
               'left': '0px',
               'background-color': 'lightblue'})
@@ -475,7 +497,7 @@ layout4 = html.Div([dcc.Store(id="screen_size_store", data={}),
         #nav_bar,
         ##pc.side_bar_left,
         ##pc.side_bar_right,
-        app_page_menu,
+        ## app_page_menu,
         pages_container_box,
        ## page_footer
        ],
@@ -483,7 +505,7 @@ layout4 = html.Div([dcc.Store(id="screen_size_store", data={}),
        style={'position': 'fixed',
                   'height': '100vh',
                   'width': '100vw',
-                  'margins':'0',
+                  'margin':'0',
                   'padding':'0',
           'background-color': 'pink'}
                   )
