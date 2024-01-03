@@ -51,7 +51,13 @@ relevant_dropdowns = [drop_down_new,drop_down_edit,drop_down_list]
 
 image_path = dash.get_asset_url('DMToolsLogo.png')
 nav_image = html.Img(src=image_path,style={'height':'33px'})
-app_page_menu = page_menu.page_top_menu(page_name,relevant_dropdowns, nav_image)
+
+action_button = html.Button("Plot Menu",
+                                       id=page_name_in+"plot_menu_button",
+                                       className="btn btn-primary",type="button",
+                                       style=button_padding)
+
+app_page_menu = page_menu.page_top_menu(page_name,action_button,relevant_dropdowns)
 
 
 layout = html.Div([
