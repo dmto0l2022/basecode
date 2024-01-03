@@ -22,6 +22,12 @@
   --debug_section_height: 63px;
 }
 
+.btn-brand {
+    color: purple;
+    background-color: black;
+    border-color: black
+}
+
 .Select--multi .Select-value {
   background-color: #fcba03;
   border-color: #e3a700;
