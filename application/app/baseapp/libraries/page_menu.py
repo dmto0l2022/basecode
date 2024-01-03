@@ -1,7 +1,7 @@
 import dash
 from dash import html
 
-def page_top_menu(page_name_in, relevant_buttons_in):
+def page_top_menu(page_name_in, relevant_dropdowns_in):
 
     baseapp_prefix = '/application/baseapp'
 
