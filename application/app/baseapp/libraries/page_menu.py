@@ -10,7 +10,7 @@ def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
 
     button_padding = {'height':'33px','padding-left':'3px','padding-right':'3px' ,
                           'padding-top':'0px',
-                          'padding-bottom':'0px'
+                          'padding-bottom':'0px',
                           'margin':'0', 'border': '0', 'vertical-align':'middle'}
     
     baseapp_prefix = '/application/baseapp'
