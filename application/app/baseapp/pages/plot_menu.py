@@ -49,11 +49,8 @@ drop_down_list =  html.A(id=page_name + "dropdown_action", children=['List'], hr
 
 relevant_dropdowns = [drop_down_new,drop_down_edit,drop_down_list] 
 
-image_path = dash.get_asset_url('DMToolsLogo.png')
-nav_image = html.Img(src=image_path,style={'height':'33px'})
-
 action_button = html.Button("Plot Menu",
-                                       id=page_name_in+"plot_menu_button",
+                                       id=page_name+"plot_menu_button",
                                        className="btn btn-primary",type="button",
                                        style=button_padding)
 
