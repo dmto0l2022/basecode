@@ -6,7 +6,7 @@ def logo_img():
     nav_image = html.Img(src=image_path,style={'height':'33px','padding':'0', 'margin':'0', 'border': '0', 'vertical-align':'middle'})
     return nav_image
 
-def page_top_menu(page_name_in,action_button_in, relevant_dropdowns_in, logo_img_in):
+def page_top_menu(page_name_in,action_button_in, relevant_dropdowns_in):
 
     button_padding = {'height':'33px','padding-left':'12px','padding-right':'12px' ,
                           'padding-top':'0px',
@@ -14,7 +14,7 @@ def page_top_menu(page_name_in,action_button_in, relevant_dropdowns_in, logo_img
                           'margin':'0', 'border': '0', 'vertical-align':'middle'}
     
     baseapp_prefix = '/application/baseapp'
-    nav_image = logo_img_in
+    nav_image = logo_img()
     
     brand_button = html.Button(nav_image, id=page_name_in+"brand_button",
                                className="btn btn-brand",type="button",
