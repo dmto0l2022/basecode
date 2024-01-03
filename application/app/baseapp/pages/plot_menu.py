@@ -3,6 +3,8 @@ from dash import html, dcc, callback, Output, Input
 
 #import libraries.formlibrary as fl
 from app.baseapp.libraries import formlibrary as fl
+from app.baseapp.libraries import page_menu as page_menu
+
 
 dash.register_page(__name__, path='/plot_menu')
 page_name = 'plot_menu'
@@ -40,36 +42,22 @@ type=‘button’,
 ),
 
 '''
-danger_button = html.Button("Danger", className="btn btn-danger",type="button")
-
-new_plot_button = html.Button("New Plot", id=page_name+"new_plot_button", className="btn btn-primary",type="button")
-
-dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
-                           className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
-                           **{
-                            'data-toggle' : 'dropdown',
-                            'aria-haspopup' : 'true',
-                            'aria-expanded' : 'false',
-                            },
-                            children=html.Span(className="sr-only", children=['Plot Menu'])
-                          )
 
 drop_down_new =  html.A(id=page_name + "dropdown_action", children=['New'], href=baseapp_prefix + '/create_new_plot', className="dropdown-item")
 drop_down_edit =  html.A(id=page_name + "dropdown_action", children=['Edit'], href=baseapp_prefix + '/edit_existing_plot', className="dropdown-item")
 drop_down_list =  html.A(id=page_name + "dropdown_action", children=['List'], href=baseapp_prefix + '/list_all_plots', className="dropdown-item")
 
-dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_new,drop_down_edit,drop_down_list], className = "dropdown-menu")
+relevant_dropdowns = [drop_down_new,drop_down_edit,drop_down_list] 
 
-split_button = html.Div(children=[new_plot_button,dropdown_button,dropdown_menu], className="btn-group")
+image_path = dash.get_asset_url('DMToolsLogo.png')
+nav_image = html.Img(src=image_path,style={'height':'33px'})
+app_page_menu = page_menu.page_top_menu(page_name,relevant_dropdowns, nav_image)
+
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
     dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
-    #html.Div("Plot Menu"),
-    split_button,
-    #html.Button('Create New', id=page_name + '_create_new_' + 'button_id', n_clicks=0),
-    #html.Button('Edit Existing', id=page_name + '_edit_existing_' + 'button_id', n_clicks=0),
-    #html.Button('List', id=page_name + '_list__' + 'button_id', n_clicks=0),
+    app_page_menu,
     html.Div('No Button Pressed', id=page_name+"whatbutton")
     ])
 
