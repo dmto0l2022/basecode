@@ -173,7 +173,7 @@ async def read_limit_display(limit_display_id: int,session: AsyncSession = Depen
 ###
 
 
-@router.patch(api_base_url + "limit_display/{id}"), include_in_schema=False)
+@router.patch(api_base_url + "limit_display/{id}", include_in_schema=False)
 async def update_limit_display(limit_display_id: int,
                       record_in: Limit_displayUpdate,
                       session: AsyncSession = Depends(get_session),
