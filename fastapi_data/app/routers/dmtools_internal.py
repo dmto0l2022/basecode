@@ -821,6 +821,19 @@ legend_png
 plot_eps
 legend_eps
 no_id
+
+@router.post(api_base_url + "plot_ownership")
+async def create_plot_ownership(plot_ownership: Plot_ownershipCreate, session: AsyncSession = Depends(get_session),
+                            dmtool_userid: Annotated[int | None, Header()] = None):
+    plot_ownership = Plot_ownership(user_id = plot_ownership.user_id,
+                            plot_id = plot_ownership.plot_id,
+                            created_at = plot_ownership.created_at,
+                            updated_at = plot_ownership.updated_at)
+    session.add(plot_ownership)
+    await session.commit()
+    await session.refresh(plot_ownership)
+    return plot_ownership
+
 '''
 
 @router.post(api_base_url + "plot")
