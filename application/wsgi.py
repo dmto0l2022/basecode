@@ -46,7 +46,7 @@ print(BASE_DIR)
 #from app.dashapps.crud_table import app as app0
 #from app.dashapps.interactive_table import app as app1
 #from app.dashapps.basic_table import app as app2
-from app.dashapps.session_app import app as app3
+#from app.dashapps.session_app import app as app3
 from app.baseapp.app import app as app4
 
 app = init_app()
@@ -115,7 +115,7 @@ application = DispatcherMiddleware(app, {
     #'/app/wsgi_app0': app0.server,  
     #'/app/wsgi_app1': app1.server,
     #'/app/wsgi_app2': app2.server,
-    '/application/session_app': app3.server,
+    #'/application/session_app': app3.server,
     '/application/baseapp': app4.server,
 })  
 
