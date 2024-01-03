@@ -454,7 +454,7 @@ navbar_dropdown = dbc.Navbar(
 '''
 
 page_content_style = {
-    'position': 'absolute,
+    'position': 'absolute',
     'top': '0',
     'height': '100%', # 'calc(100% - 80px)',
     'width' : '100%',
