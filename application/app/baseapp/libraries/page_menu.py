@@ -32,8 +32,8 @@ def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
                                 'aria-haspopup' : 'true',
                                 'aria-expanded' : 'false',
                                 },
-                                children=html.Span(className="sr-only", children=['Main Menu']),
-                                  style={'height':'33px','padding':'0', 'margin':'0', 'border': '0', 'vertical-align':'middle'}
+                                children=html.Span(className="sr-only", children=['Main Menu'],style=button_padding),
+                                  style=button_padding
                               )
     
     drop_down_plot=  html.A(id=page_name_in + "dropdown_action_plot", children=['Plot'], href=baseapp_prefix + '/plot_menu', className="dropdown-item")
