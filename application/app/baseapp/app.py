@@ -106,10 +106,10 @@ app = Dash(__name__,
             use_pages=True,
             requests_pathname_prefix=REQUESTS_PATHNAME_PREFIX,#  '/login/baseapp/',
             external_stylesheets=external_stylesheets,
-	    external_scripts=external_scripts,
+      external_scripts=external_scripts,
             meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}],
             ##suppress_callback_exceptions=True,
-	  )
+    )
 
 
 #app = dash.Dash(name, meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}] ) 
@@ -246,47 +246,47 @@ nav_image = html.Img(src=image_path,style={'height':nav_bar_height})
 
 
 collapse_button = html.Button([html.Span(className='navbar-toggler-icon')],
-				className='navbar-toggler',
-				type='button',
-				**{
-				'data-toggle': 'collapse',
-    				'data-target':'#navbarNav',
-				'aria-controls': 'navbarNav',
-				'aria-expanded': 'false',
-				'aria-label': 'Toggle navigation'
-				})
+        className='navbar-toggler',
+        type='button',
+        **{
+        'data-toggle': 'collapse',
+            'data-target':'#navbarNav',
+        'aria-controls': 'navbarNav',
+        'aria-expanded': 'false',
+        'aria-label': 'Toggle navigation'
+        })
 
 
 no_padding_or_margins = {'padding':'0px', 'margin':'0px', 'line-height': '15px', 'background': 'white'}
 some_padding_and_margins = {'padding':'1px', 'margin':'1px', 'line-height': '15px', 'background': 'white'}
 
 just_nav_options = html.Div(className="collapse navbar-collapse", id="navbarNav",
-	children=[
-		html.Ul(children=[
-		            html.Li([
-		                    html.A('Plot', href='/application/baseapp/plot_menu', className='nav-link',style=no_padding_or_margins)],
-				    className='nav-item' ,style=some_padding_and_margins),
-		            html.Li([
-		                    html.A('Data', href='/application/baseapp/data_menu', className='nav-link',style=no_padding_or_margins)],
-				    className='nav-item' ,style=some_padding_and_margins),
-			    html.Li([
-		                    html.A('Admin', href='/application/baseapp/admin_menu', className='nav-link',style=no_padding_or_margins)],
-				    className='nav-item' ,style=some_padding_and_margins),
-			    html.Li([
-		                    html.A('Help', href='/application/baseapp/help', className='nav-link',style=no_padding_or_margins)],
-				    className='nav-item' ,style=some_padding_and_margins),
-            			], className='navbar-nav',style=no_padding_or_margins)
-			  ], style=no_padding_or_margins)
+  children=[
+    html.Ul(children=[
+                html.Li([
+                        html.A('Plot', href='/application/baseapp/plot_menu', className='nav-link',style=no_padding_or_margins)],
+            className='nav-item' ,style=some_padding_and_margins),
+                html.Li([
+                        html.A('Data', href='/application/baseapp/data_menu', className='nav-link',style=no_padding_or_margins)],
+            className='nav-item' ,style=some_padding_and_margins),
+          html.Li([
+                        html.A('Admin', href='/application/baseapp/admin_menu', className='nav-link',style=no_padding_or_margins)],
+            className='nav-item' ,style=some_padding_and_margins),
+          html.Li([
+                        html.A('Help', href='/application/baseapp/help', className='nav-link',style=no_padding_or_margins)],
+            className='nav-item' ,style=some_padding_and_margins),
+                  ], className='navbar-nav',style=no_padding_or_margins)
+        ], style=no_padding_or_margins)
 
 nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-top navbar-light bg-light',
-		   children=[html.Div(className='container',
-			   children=[
-				navbar_brand,
-				nav_image,
-				collapse_button,
-				just_nav_options
-					])
-			    ],style={'position':'sticky','top': '0px','left': '0','right':'0','height':nav_bar_height, 'width': '100%'} | no_padding_or_margins)
+       children=[html.Div(className='container',
+         children=[
+        navbar_brand,
+        nav_image,
+        collapse_button,
+        just_nav_options
+          ])
+          ],style={'position':'sticky','top': '0px','left': '0','right':'0','height':nav_bar_height, 'width': '100%'} | no_padding_or_margins)
 
 '''
 
@@ -332,25 +332,25 @@ type=‘button’,
 menu_icon = html.I(className="bi bi-menu-button")
 
 dropdown_button = html.Div(children=[menu_icon, ##'Drop Down Button',
-			html.Span(className='navbar-toggler-icon')
-			],
-			className='btn btn-secondary dropdown-toggle',
-			id='dropdownMenuButton1',**{
-			'data-toggle': 'dropdown',
-			'aria-expanded': 'false'
-			}
-			) 
+      html.Span(className='navbar-toggler-icon')
+      ],
+      className='btn btn-secondary dropdown-toggle',
+      id='dropdownMenuButton1',**{
+      'data-toggle': 'dropdown',
+      'aria-expanded': 'false'
+      }
+      ) 
 
 nav_menu_button = html.Div(id='nav_menu_button',
     children=[dropdown_button,
-	html.Ul([
+  html.Ul([
             html.Li([
                     html.A('Plot', href='#', className='dropdown-item')]),
             html.Li([
                     html.A('Data', href='#', className='dropdown-item')]),
-	    html.Li([
+      html.Li([
                     html.A('Admin', href='#', className='dropdown-item')]),
-	    html.Li([
+      html.Li([
                     html.A('Help', href='#', className='dropdown-item')]),
             ], className='dropdown-menu', **{'aria-labelledby':'dropdownMenuButton1'}
                 ) ], className='dropdown')
@@ -432,49 +432,49 @@ navbar_dropdown = dbc.Navbar(
 '''
 
 pages_container = html.Div([
-	html.H1('Multi-page app with Dash Pages'),
-	    html.Div(
-	        [
-	            html.Div(
-	                dcc.Link(
-	                    f"{page['name']} - {page['path']}", href=page["relative_path"]
-	                )
-	            )
-	            for page in dash.page_registry.values()
-	        ]
-	    ),
-		dash.page_container
-	], className='PAGE_CONTENT') ##, style={'overflow': 'auto'})
+  html.H1('Multi-page app with Dash Pages'),
+      html.Div(
+          [
+              html.Div(
+                  dcc.Link(
+                      f"{page['name']} - {page['path']}", href=page["relative_path"]
+                  )
+              )
+              for page in dash.page_registry.values()
+          ]
+      ),
+    dash.page_container
+  ], className='PAGE_CONTENT') ##, style={'overflow': 'auto'})
 
 
 pages_container_box = html.Div(children=[dash.page_container],
-			       style={'position': 'fixed',
-					    'top': '34px',
-					    'height' :  'calc(100% - 76px)',
-					    'width' : '100%',
-					    'left': '0px',
-					    'background-color': 'lightblue'})
+             style={'position': 'fixed',
+              'top': '34px',
+              'height' :  'calc(100% - 76px)',
+              'width' : '100%',
+              'left': '0px',
+              'background-color': 'lightblue'})
 
 layout4 = html.Div([dcc.Store(id="screen_size_store", data={}),
-		    dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
-		    ##page_header,
-		    ##pc.page_header_1,
-		    ##pc.page_header_2,
-		    #nav_menu_button,
-		    #nav_bar,
-		    ##pc.side_bar_left,
-		    ##pc.side_bar_right,
-		    app_page_menu,
-		    pages_container_box,
-		   ## page_footer
-		   ],
-		   className="container-fluid",
-		   style={'position': 'fixed',
+        dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
+        ##page_header,
+        ##pc.page_header_1,
+        ##pc.page_header_2,
+        #nav_menu_button,
+        #nav_bar,
+        ##pc.side_bar_left,
+        ##pc.side_bar_right,
+        app_page_menu,
+        pages_container_box,
+       ## page_footer
+       ],
+       className="container-fluid",
+       style={'position': 'fixed',
                   'height': '100vh',
                   'width': '100vw',
                   'margins':'0',
                   'padding':'0',
-				  'background-color': 'pink'}
+          'background-color': 'pink'}
                   )
 
 app.layout = layout4
@@ -499,7 +499,7 @@ def button_click(button1):
         href_return = baseapp_prefix + '/'
         return href_return
         
-	
+  
 ## locally
 #if __name__ == '__main__':
 #    app.run_server(debug=True)
