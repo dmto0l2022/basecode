@@ -19,7 +19,7 @@ def page_top_menu(page_name_in,action_button_in, relevant_dropdowns_in):
     brand_button = html.Button(nav_image, id=page_name_in+"brand_button",
                                className="btn btn-brand",type="button",
                                style=button_padding)
-    if action_button_in = '':
+    if action_button_in == '':
         action_button = html.Button("Plot Menu",
                                        id=page_name_in+"plot_menu_button",
                                        className="btn btn-primary",type="button",
