@@ -355,6 +355,27 @@ nav_menu_button = html.Div(id='nav_menu_button',
 
 ####
 
+plot_menu_button = html.Button("Plot Menu", id=page_name+"plot_menu_button", className="btn btn-primary",type="button")
+
+dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
+                           className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
+                           **{
+                            'data-toggle' : 'dropdown',
+                            'aria-haspopup' : 'true',
+                            'aria-expanded' : 'false',
+                            },
+                            children=html.Span(className="sr-only", children=['Main Menu'])
+                          )
+
+drop_down_plot=  html.A(id=page_name + "dropdown_action", children=['Plot'], href=baseapp_prefix + '/plot_menu', className="dropdown-item")
+drop_down_data =  html.A(id=page_name + "dropdown_action", children=['Data'], href=baseapp_prefix + '/data_menu', className="dropdown-item")
+drop_down_admin =  html.A(id=page_name + "dropdown_action", children=['Admin'], href=baseapp_prefix + '/admin_menu', className="dropdown-item")
+drop_down_exit =  html.A(id=page_name + "dropdown_action", children=['Exit'], href=baseapp_prefix + '/', className="dropdown-item")
+
+dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_plot,drop_down_data,drop_down_admin, drop_down_exit], className = "dropdown-menu")
+
+split_button = html.Div(children=[plot_menu_button, dropdown_button, dropdown_menu], className="btn-group")
+
 
 navbar_dropdown = dbc.Navbar(
     dbc.Container(
@@ -419,13 +440,14 @@ pages_container_box = html.Div(children=[dash.page_container],
 					    'background-color': 'lightblue'})
 
 layout4 = html.Div([dcc.Store(id="screen_size_store", data={}),
-			##page_header,
+		    ##page_header,
 		    ##pc.page_header_1,
 		    ##pc.page_header_2,
 		    #nav_menu_button,
-		    nav_bar,
+		    #nav_bar,
 		    ##pc.side_bar_left,
 		    ##pc.side_bar_right,
+		    split_button,
 		    pages_container_box,
 		   ## page_footer
 		   ],
