@@ -49,6 +49,11 @@ drop_down_list =  html.A(id=page_name + "dropdown_action", children=['List'], hr
 
 relevant_dropdowns = [drop_down_new,drop_down_edit,drop_down_list] 
 
+button_padding = {'height':'33px','padding-left':'12px','padding-right':'12px' ,
+                          'padding-top':'0px',
+                          'padding-bottom':'0px',
+                          'margin':'0', 'border': '0', 'vertical-align':'middle'}
+
 action_button = html.Button("Plot Menu",
                                        id=page_name+"plot_menu_button",
                                        className="btn btn-primary",type="button",
