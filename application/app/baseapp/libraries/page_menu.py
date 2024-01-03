@@ -3,7 +3,7 @@ from dash import html
 
 def logo_img():
     image_path = dash.get_asset_url('DMToolsLogo.png')
-    nav_image = html.Img(src=image_path,style={'height':'33px'})
+    nav_image = html.Img(src=image_path,style={'height':'33px','padding':'0', 'margin':'0'})
     return nav_image
 
 def page_top_menu(page_name_in, relevant_dropdowns_in, logo_img_in):
