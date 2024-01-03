@@ -62,6 +62,7 @@ ALL_STYLES = "/application/baseapp/allstyles.css"
 #external_stylesheets=[dbc.themes.BOOTSTRAP, PAGES_STYLE, CONTENT_STYLES]
 
 page_name = 'main_page'
+baseapp_prefix = '/application/baseapp'
 
 #COMPONENT_STYLE = "/login/baseapp/forms.css"
 external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP, ALL_STYLES]
@@ -441,6 +442,7 @@ pages_container_box = html.Div(children=[dash.page_container],
 					    'background-color': 'lightblue'})
 
 layout4 = html.Div([dcc.Store(id="screen_size_store", data={}),
+		    dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
 		    ##page_header,
 		    ##pc.page_header_1,
 		    ##pc.page_header_2,
@@ -463,6 +465,26 @@ layout4 = html.Div([dcc.Store(id="screen_size_store", data={}),
 
 app.layout = layout4
 
+
+@callback(
+    Output(page_name + "url", 'href',allow_duplicate=True),
+    [
+    Input(page_name+"plot_menu_button", "n_clicks")
+        ],
+        prevent_initial_call=True
+)
+def button_click(button1):
+    #msg = "None of the buttons have been clicked yet"
+    prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
+    #msg = prop_id
+    if page_name+"plot_menu_button" == prop_id :
+        #msg = "Button 1 was most recently clicked"
+        href_return = baseapp_prefix + '/plot_menu'
+        return href_return
+    else:
+        href_return = baseapp_prefix + '/'
+        return href_return
+        
 	
 ## locally
 #if __name__ == '__main__':
