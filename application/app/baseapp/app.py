@@ -369,10 +369,10 @@ dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
                             children=html.Span(className="sr-only", children=['Main Menu'])
                           )
 
-drop_down_plot=  html.A(id=page_name + "dropdown_action", children=['Plot'], href=baseapp_prefix + '/plot_menu', className="dropdown-item")
-drop_down_data =  html.A(id=page_name + "dropdown_action", children=['Data'], href=baseapp_prefix + '/data_menu', className="dropdown-item")
-drop_down_admin =  html.A(id=page_name + "dropdown_action", children=['Admin'], href=baseapp_prefix + '/admin_menu', className="dropdown-item")
-drop_down_exit =  html.A(id=page_name + "dropdown_action", children=['Exit'], href=baseapp_prefix + '/', className="dropdown-item")
+drop_down_plot=  html.A(id=page_name + "dropdown_action_plot", children=['Plot'], href=baseapp_prefix + '/plot_menu', className="dropdown-item")
+drop_down_data =  html.A(id=page_name + "dropdown_action_data", children=['Data'], href=baseapp_prefix + '/data_menu', className="dropdown-item")
+drop_down_admin =  html.A(id=page_name + "dropdown_action_admin", children=['Admin'], href=baseapp_prefix + '/admin_menu', className="dropdown-item")
+drop_down_exit =  html.A(id=page_name + "dropdown_action_exit", children=['Exit'], href=baseapp_prefix + '/', className="dropdown-item")
 
 dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_plot,drop_down_data,drop_down_admin, drop_down_exit], className = "dropdown-menu")
 
