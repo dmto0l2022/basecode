@@ -65,8 +65,6 @@ ALL_STYLES = "/application/baseapp/allstyles.css"
 page_name = 'main_page'
 baseapp_prefix = '/application/baseapp'
 
-app_page_menu = page_menu.page_top_menu(page_name,[])
-
 #COMPONENT_STYLE = "/login/baseapp/forms.css"
 external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP, ALL_STYLES]
 
@@ -365,6 +363,8 @@ nav_menu_button = html.Div(id='nav_menu_button',
 
 image_path = dash.get_asset_url('DMToolsLogo.png')
 nav_image = html.Img(src=image_path,style={'height':nav_bar_height})
+
+app_page_menu = page_menu.page_top_menu(page_name,[], nav_image)
 
 '''
 <button class="btn btn-default">
