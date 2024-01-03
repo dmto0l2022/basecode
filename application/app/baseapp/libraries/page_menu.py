@@ -28,7 +28,7 @@ def page_top_menu(page_name_in, relevant_dropdowns_in):
     drop_down_exit =  html.A(id=page_name_in + "dropdown_action_exit", children=['Exit'], href=baseapp_prefix + '/', className="dropdown-item")
     button_list = relevant_dropdowns_in + [drop_down_plot,drop_down_data,drop_down_admin, drop_down_exit]
   
-    dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = button_list , className = "dropdown-menu")
+    dropdown_menu = html.Div(id=page_name_in + "dropdown_menu", children = button_list , className = "dropdown-menu")
     
     split_button = html.Div(children=[brand_button,plot_menu_button, dropdown_button, dropdown_menu], className="btn-group",
                             style={'position':'sticky','top': '0px','left': '0','right':'0','height':'33px'})
