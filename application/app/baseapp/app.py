@@ -30,6 +30,7 @@ from flask import request, session
 #from app.baseapp.libraries import formlibrary as fl
 #from app.baseapp.libraries import main_table as mt
 ## from app.baseapp.libraries import get_dmtool_user as gdu
+from app.baseapp.libraries import page_menu as page_menu
 
 import redis
 
@@ -63,6 +64,8 @@ ALL_STYLES = "/application/baseapp/allstyles.css"
 
 page_name = 'main_page'
 baseapp_prefix = '/application/baseapp'
+
+app_page_menu = page_menu.page_top_menu(page_name,[])
 
 #COMPONENT_STYLE = "/login/baseapp/forms.css"
 external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP, ALL_STYLES]
@@ -461,7 +464,7 @@ layout4 = html.Div([dcc.Store(id="screen_size_store", data={}),
 		    #nav_bar,
 		    ##pc.side_bar_left,
 		    ##pc.side_bar_right,
-		    split_button,
+		    app_page_menu,
 		    pages_container_box,
 		   ## page_footer
 		   ],
