@@ -241,9 +241,12 @@ nav_bar_height = '33px'
 navbar_brand = html.A(className='navbar-brand', href='#',style={'height':nav_bar_height})
 
 #html.Img(src=dash.get_asset_url('DMToolsLogo.png'))
-image_path = dash.get_asset_url('DMToolsLogo.png')
-nav_image = html.Img(src=image_path,style={'height':nav_bar_height})
+def logo_img():
+    image_path = dash.get_asset_url('DMToolsLogo.png')
+    nav_image = html.Img(src=image_path,style={'height':nav_bar_height})
+    return nav_image
 
+logo_image = logo_img()
 
 collapse_button = html.Button([html.Span(className='navbar-toggler-icon')],
         className='navbar-toggler',
@@ -282,7 +285,7 @@ nav_bar = html.Nav(className = 'navbar navbar-expand-lg navbar-expand-sm fixed-t
        children=[html.Div(className='container',
          children=[
         navbar_brand,
-        nav_image,
+        logo_image,
         collapse_button,
         just_nav_options
           ])
@@ -369,7 +372,15 @@ nav_image = html.Img(src=image_path,style={'height':nav_bar_height})
 </button>
 '''
 
-brand_button = html.Button(nav_image, id=page_name+"brand_button", className="btn btn-brand",type="button")
+def logo_img():
+    image_path = dash.get_asset_url('DMToolsLogo.png')
+    nav_image = html.Img(src=image_path,style={'height':nav_bar_height})
+    return nav_image
+
+logo_image = logo_img()
+
+
+brand_button = html.Button(logo_image, id=page_name+"brand_button", className="btn btn-brand",type="button")
 
 plot_menu_button = html.Button("Plot Menu", id=page_name+"plot_menu_button", className="btn btn-primary",type="button")
 
