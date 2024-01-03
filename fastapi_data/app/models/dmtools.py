@@ -51,7 +51,7 @@ class ExperimentBase(SQLModel):
     name : str = Field(default=None, nullable=False)
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True)
-    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True)
+    archived_at : Optional[datetime] = Field(default=datetime_origin, nullable=True)
 
 class Experiment(ExperimentBase, table=True):
     ##__tablename__= "experiment"
@@ -104,7 +104,7 @@ class Limit_displayBase(SQLModel):
     old_style :  Optional[str] = Field(default=None, nullable=True)
     created_at :  Optional[datetime]  = Field(default=datetime.utcnow(), nullable=True)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True)
-    ceased_at : datetime = Field(default=datetime_origin, nullable=True)
+    archived_at : datetime = Field(default=datetime_origin, nullable=True)
 
 
 class Limit_display(Limit_displayBase, table=True):
@@ -149,7 +149,7 @@ class Limit_ownershipBase(SQLModel):
     old_limit_id : Optional[int] = Field(default=None, nullable=True)
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=False)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=False)
-    ceased_at : datetime = Field(default=datetime_origin, nullable=False)
+    archived_at : datetime = Field(default=datetime_origin, nullable=False)
     
 class Limit_ownership(Limit_ownershipBase, table=True):
     ##__tablename__= "limit_ownership"
@@ -229,7 +229,7 @@ class LimitBase(SQLModel):
     data_reference : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
-    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
+    archived_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
     creator_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     experiment :  Optional[str] = Field(default=None, nullable=True, primary_key=False)
     rating : Optional[int] = Field(default=None, nullable=True, primary_key=False)
@@ -303,6 +303,7 @@ class LimitSelect(SQLModel):
 class Data_aboutBase(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    series_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     data_reference : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     data_comment : Optional[str] = Field(default=None, nullable=True, primary_key=False)
@@ -318,7 +319,7 @@ class Data_aboutBase(SQLModel):
     greatest_hit : Optional[int] = Field(default=0, nullable=True, primary_key=False) ## boolean
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
-    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
+    archived_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
 
 class Data_about(Data_aboutBase, table=True):
     ##__tablename__= "data_about"
@@ -330,6 +331,7 @@ class Data_aboutCreate(Data_aboutBase):
 class Data_aboutUpdate(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    series_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     data_reference : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     data_comment : Optional[str] = Field(default=None, nullable=True, primary_key=False)
@@ -357,6 +359,7 @@ trace_list_df_out = limit_data_df_out[['limit_id','data_label','trace_id','trace
 class Data_appearanceBase(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    series_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     x_units : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     y_units : Optional[str] = Field(default=None, nullable=True, primary_key=False)
@@ -371,7 +374,7 @@ class Data_appearanceBase(SQLModel):
     symbol : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
-    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
+    archived_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
 
 class Data_appearance(Data_appearanceBase, table=True):
     ##__tablename__= "data_appearance"
@@ -383,6 +386,7 @@ class Data_appearanceCreate(Data_appearanceBase):
 class Data_appearanceUpdate(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    series_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     data_label : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     x_units : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     y_units : Optional[str] = Field(default=None, nullable=True, primary_key=False)
@@ -402,6 +406,7 @@ class Data_appearanceUpdate(SQLModel):
 class Data_dataBase(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    series_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     x_units : Optional[str] = Field(default=None, nullable=True, primary_key=False)
@@ -412,7 +417,7 @@ class Data_dataBase(SQLModel):
     y : Optional[float] = Field(default=None, nullable=True, primary_key=False)
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
-    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
+    archived_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
 
 class Data_data(Data_dataBase, table=True):
     ##__tablename__= "data_data"
@@ -424,6 +429,7 @@ class Data_dataCreate(Data_dataBase):
 class Data_dataUpdate(SQLModel):
     limit_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
+    series_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     trace_name : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     x_units : Optional[str] = Field(default=None, nullable=True, primary_key=False)
@@ -446,7 +452,7 @@ class Limit_dataBase(SQLModel):
     y : Optional[float] = Field(default=None, nullable=True, primary_key=False)
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
-    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
+    archived_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
     
 class Limit_data(Limit_dataBase, table=True):
     ##__tablename__= "limit_data"
@@ -483,7 +489,7 @@ class Plot_ownershipBase(SQLModel):
     old_plot_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=False, primary_key=False)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=False, primary_key=False)
-    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=False, primary_key=False)
+    archived_at : Optional[datetime] = Field(default=datetime_origin, nullable=False, primary_key=False)
 
 class Plot_ownership(Plot_ownershipBase, table=True):
     ##__tablename__= "plot_ownership"
@@ -535,7 +541,7 @@ class PlotBase(SQLModel):
     old_user_id : Optional[int] = Field(default=None, nullable=True, primary_key=False)
     created_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
     updated_at : Optional[datetime] = Field(default=datetime.utcnow(), nullable=True, primary_key=False)
-    ceased_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
+    archived_at : Optional[datetime] = Field(default=datetime_origin, nullable=True, primary_key=False)
     plot_png : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     legend_png : Optional[str] = Field(default=None, nullable=True, primary_key=False)
     plot_eps : Optional[str] = Field(default=None, nullable=True, primary_key=False)
