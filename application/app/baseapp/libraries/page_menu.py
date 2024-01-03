@@ -1,13 +1,15 @@
 import dash
 from dash import html
 
+def logo_img():
+    image_path = dash.get_asset_url('DMToolsLogo.png')
+    nav_image = html.Img(src=image_path,style={'height':'33px'})
+    return nav_image
+
 def page_top_menu(page_name_in, relevant_dropdowns_in):
 
     baseapp_prefix = '/application/baseapp'
-
-    image_path = dash.get_asset_url('DMToolsLogo.png')
-    print("image_path >>>>>>" ,image_path)
-    nav_image = html.Img(src=image_path,style={'height':'33px'})
+    nav_image = logo_img()
     
     brand_button = html.Button(nav_image, id=page_name_in+"brand_button", className="btn btn-brand",type="button")
     
