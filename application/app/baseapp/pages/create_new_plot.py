@@ -36,7 +36,7 @@ drop_down_edit =  html.A(id=page_name + "dropdown_action", children=['Edit'], hr
 drop_down_list =  html.A(id=page_name + "dropdown_action", children=['List'], href=baseapp_prefix + '/list_all_plots', className="dropdown-item")
 drop_down_exit =  html.A(id=page_name + "dropdown_action", children=['Exit'], href=baseapp_prefix + '/plot_menu', className="dropdown-item")
 
-dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_new,drop_down_edit,drop_down_list, drop_down_exit], className = "dropdown-menu")
+dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_create,drop_down_edit,drop_down_list, drop_down_exit], className = "dropdown-menu")
 
 split_button = html.Div(children=[new_plot_button,dropdown_button,dropdown_menu], className="btn-group")
 
