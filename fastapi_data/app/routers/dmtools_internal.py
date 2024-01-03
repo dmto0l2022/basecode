@@ -119,7 +119,7 @@ async def delete_experiment(experiment_id: int, session: AsyncSession = Depends(
 #    created_at
 #    updated_at
 
-@router.post(api_base_url + "limit_display")
+@router.post(api_base_url + "limit_display", include_in_schema=False)
 async def create_limit_display(limit_display: Limit_displayCreate, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     limit_display = Limit_display(name = limit_display.name,
@@ -140,7 +140,7 @@ async def create_limit_display(limit_display: Limit_displayCreate, session: Asyn
     await session.refresh(limit_display)
     return limit_display
 
-@router.get(api_base_url + "limit_displays", response_model=list[Limit_display])
+@router.get(api_base_url + "limit_displays", response_model=list[Limit_display], include_in_schema=False)
 async def read_limit_displays(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Limit_display))
@@ -162,7 +162,7 @@ async def read_limit_displays(session: AsyncSession = Depends(get_session),
             for limit_display in limit_displays]
 
 ###
-@router.get(api_base_url + "limit_display")
+@router.get(api_base_url + "limit_display", include_in_schema=False)
 async def read_limit_display(limit_display_id: int,session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     result = await session.execute(select(Limit_display).where(Limit_display.id == limit_display_id))
@@ -173,7 +173,7 @@ async def read_limit_display(limit_display_id: int,session: AsyncSession = Depen
 ###
 
 
-@router.patch(api_base_url + "limit_display/{id}")
+@router.patch(api_base_url + "limit_display/{id}"), include_in_schema=False)
 async def update_limit_display(limit_display_id: int,
                       record_in: Limit_displayUpdate,
                       session: AsyncSession = Depends(get_session),
@@ -198,7 +198,7 @@ async def update_limit_display(limit_display_id: int,
     return_record = updated_record.first()
     return {"updated": return_record}
 
-@router.delete(api_base_url + "limit_display/{limit_display_id}")
+@router.delete(api_base_url + "limit_display/{limit_display_id}", include_in_schema=False)
 async def delete_limit_display(limit_display_id: int, session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     statement = select(Limit_display).where(Limit_display.id == limit_display_id)
@@ -963,6 +963,7 @@ async def create_data_about(data_about_in: Data_aboutCreate, session: AsyncSessi
                             dmtool_userid: Annotated[int | None, Header()] = None):
     data_about = Data_about(limit_id = data_about_in.limit_id,
                             plot_id = data_about_in.plot_id,
+                            series_id = data_about_in.series_id,
                             data_label = data_about_in.data_label,
                             data_reference = data_about_in.data_reference,
                             data_comment = data_about_in.data_comment,
@@ -1072,6 +1073,7 @@ async def create_data_appearance(data_appearance_in: Data_appearanceCreate, sess
     data_appearance = Data_appearance(
                             limit_id = data_appearance_in.limit_id,
                             plot_id = data_appearance_in.plot_id,
+                            series_id = data_appearance_in.series_id,
                             data_label = data_appearance_in.data_label,
                             x_units = data_appearance_in.x_units,
                             y_units = data_appearance_in.y_units,
@@ -1174,6 +1176,7 @@ async def create_data_datapoint(data_data_in: Data_dataCreate, session: AsyncSes
                             dmtool_userid: Annotated[int | None, Header()] = None):
     data_data = Data_data(limit_id = data_data_in.limit_id,
                           plot_id = data_data_in.plot_id,
+                          series_id = data_data_in.series_id,
                           trace_id = data_data_in.trace_id,
                           trace_name = data_data_in.trace_name,
                           x_units = data_data_in.x_units,
@@ -1196,6 +1199,7 @@ async def create_data_dataset(data_data_dataset_in: list[Data_dataCreate], sessi
     for ll in data_data_dataset_in:
         data_data = Data_data(limit_id = ll.limit_id,
                               plot_id = ll.plot_id,
+                              series_id = ll.series_id,
                                 trace_id = ll.trace_id,
                                 trace_name = ll.trace_name,
                                 x_units = ll.x_units,
@@ -1219,6 +1223,7 @@ async def read_data_dataset(limit_id_in: int, session: AsyncSession = Depends(ge
     return [Data_data(id = data_data.id,
                             limit_id = data_data.limit_id,
                             plot_id = data_data.plot_id,
+                            series_id = data_data.series_id,
                             trace_id = data_data.trace_id,
                             trace_name = data_data.trace_name,
                             x_units = data_data.x_units,
