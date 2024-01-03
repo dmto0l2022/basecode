@@ -3,6 +3,8 @@ from dash import html
 
 def page_top_menu(page_name_in, relevant_buttons_in):
 
+    baseapp_prefix = '/application/baseapp'
+
     image_path = dash.get_asset_url('DMToolsLogo.png')
     nav_image = html.Img(src=image_path,style={'height':'33px'})
     
