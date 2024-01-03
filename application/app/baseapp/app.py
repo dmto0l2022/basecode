@@ -357,6 +357,17 @@ nav_menu_button = html.Div(id='nav_menu_button',
 
 ####
 
+image_path = dash.get_asset_url('DMToolsLogo.png')
+nav_image = html.Img(src=image_path,style={'height':nav_bar_height})
+
+'''
+<button class="btn btn-default">
+     <img src="https://i.stack.imgur.com/e2S63.png" width="20" /> Sign In with Facebook
+</button>
+'''
+
+brand_button = html.Button(nav_image, id=page_name+"brand_button", className="btn btn-primary",type="button")
+
 plot_menu_button = html.Button("Plot Menu", id=page_name+"plot_menu_button", className="btn btn-primary",type="button")
 
 dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
@@ -376,7 +387,7 @@ drop_down_exit =  html.A(id=page_name + "dropdown_action_exit", children=['Exit'
 
 dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_plot,drop_down_data,drop_down_admin, drop_down_exit], className = "dropdown-menu")
 
-split_button = html.Div(children=[plot_menu_button, dropdown_button, dropdown_menu], className="btn-group")
+split_button = html.Div(children=[brand_button,plot_menu_button, dropdown_button, dropdown_menu], className="btn-group")
 
 
 navbar_dropdown = dbc.Navbar(
