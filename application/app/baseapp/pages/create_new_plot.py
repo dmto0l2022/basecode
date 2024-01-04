@@ -22,6 +22,26 @@ dash.register_page(__name__, path='/create_new_plot')
 page_name = 'create_new_plot'
 baseapp_prefix = '/application/baseapp'
 
+show_example = 1 ## default is to show examples
+
+## This function is included in case examples need to be suppressed
+
+def get_example_column(show_example_in):
+    return_val =  dbc.Col()
+    if show_example_in == 1:
+        return_val = dbc.Col(dcc.Input(id='plot_name_example_field_id',
+                                          type='text',
+                                          value='example',
+                                          readOnly=True,
+                                          className='FORM_COLUMN_EXAMPLE'),
+                            className='FORM_EXAMPLE_COLUMN',
+                            width=example_column_width)
+    else:
+        return_val = dbc.Col(className='FORM_EXAMPLE_COLUMN',width=example_column_width)
+    return return_val
+
+example_column = get_example_column(show_example)
+
 plot_name_input_row = html.Div(
     [
         dbc.Row(
