@@ -23,6 +23,9 @@ page_name = 'create_new_plot'
 baseapp_prefix = '/application/baseapp'
 
 show_example = 1 ## default is to show examples
+label_column_width = 3
+input_column_width = 8
+example_column_width = 1
 
 ## This function is included in case examples need to be suppressed
 
@@ -63,7 +66,7 @@ plot_name_input_row = html.Div(
                     dbc.PopoverBody('enter plot unique name'),
                     target="plot_name_example_field_id",trigger="hover"),
                 
-                dbc.Popover(dbc.PopoverBody('Plot of Experiment M'),
+                dbc.Popover(dbc.PopoverBody('Unique Name for Plot M'),
                     target="plot_name_example_field_id",trigger="click"), 
                 
             ],
