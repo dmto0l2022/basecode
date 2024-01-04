@@ -74,12 +74,20 @@ FORM_COLUMN_TEXTINPUT_STYLE = {
     'width':'100%'
 }
 
+FORM_TEXTINPUT_COLUMN_STYLE = {
+    'padding':'0 !important',
+    'margin': '0 !important',
+    'border-style': 'none'
+}
+
 
 FORM_EXAMPLE_COLUMN_STYLE = {
     'padding':'0 !important',
     'margin': '0 !important',
     'border-style': 'none'
 }
+
+
 
 
 def get_example_column(show_example_in):
