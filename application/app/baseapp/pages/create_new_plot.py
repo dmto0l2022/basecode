@@ -29,6 +29,59 @@ example_column_width = 1
 
 ## This function is included in case examples need to be suppressed
 
+FORM_COLUMN_LABEL_STYLE = {
+    'color': 'black',
+    'font-size': '12px',
+    'font-weight': 'bold',
+    'text-align':'right',
+    'padding':'0 !important',
+    'margin': '0 !important',
+    'border-style': 'none',
+    'width': '100%'}
+
+
+FORM_LABEL_COLUMN_STYLE =  {
+    'padding': '0 !important',
+    'margin': '0 !important',
+    'border-style': 'none',
+    'width': '1'
+}
+
+FORM_ROW_STYLE =  {
+  'font':'bold',
+  'font-size': '12px',
+  'width':'100%',
+  'height':'25px'
+}
+
+## /*width:140px;*/
+
+FORM_COLUMN_DATA_STYLE = {
+  'font':'bold',
+  'font-size': '12px',
+  'width':'100%',
+  'height':'24px',
+  'line-height': '80%',
+  'padding':'0 !important',
+  'margin': '0 !important',
+  'border': '1px solid black'
+}
+
+FORM_COLUMN_TEXTINPUT_STYLE = {
+    'font':'bold',
+    'font-size': '12px',
+    'height': '100%',
+    'width':'100%'
+}
+
+
+FORM_EXAMPLE_COLUMN_STYLE = {
+    'padding':'0 !important',
+    'margin': '0 !important',
+    'border-style': 'none'
+}
+
+
 def get_example_column(show_example_in):
     return_val =  dbc.Col()
     if show_example_in == 1:
@@ -37,10 +90,10 @@ def get_example_column(show_example_in):
                                           value='example',
                                           readOnly=True,
                                           className='FORM_COLUMN_EXAMPLE'),
-                            className='FORM_EXAMPLE_COLUMN',
+                            style=FORM_EXAMPLE_COLUMN_STYLE,
                             width=example_column_width)
     else:
-        return_val = dbc.Col(className='FORM_EXAMPLE_COLUMN',width=example_column_width)
+        return_val = dbc.Col(style=FORM_EXAMPLE_COLUMN_STYLE,width=example_column_width)
     return return_val
 
 example_column = get_example_column(show_example)
@@ -51,14 +104,14 @@ plot_name_input_row = html.Div(
             [
                 dbc.Col(
                     html.Label('Enter Plot Name :',className='FORM_COLUMN_LABEL'),
-                    className='FORM_LABEL_COLUMN',
+                    style=FORM_LABEL_COLUMN_STYLE,
                     width = 3
                 ),
                 dbc.Col(
                     dcc.Input(id=page_name + 'plot_name',
                               type='text',maxLength=40,
-                              className='FORM_COLUMN_TEXTINPUT'),
-                    className='FORM_TEXTINPUT_COLUMN',
+                              style=FORM_COLUMN_TEXTINPUT_STYLE),
+                    style=FORM_TEXTINPUT_COLUMN_STYLE,
                     width = 8
                 ),
                 example_column,        
@@ -70,7 +123,7 @@ plot_name_input_row = html.Div(
                     target="plot_name_example_field_id",trigger="click"), 
                 
             ],
-        className='g-0 FORM_ROW '),
+        className='g-0'),
     ]
 )
 
@@ -113,8 +166,8 @@ app_page_menu = page_menu.page_top_menu(page_name,action_button,relevant_dropdow
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
     dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
-    plot_name_input_row,
     app_page_menu,
+    plot_name_input_row,
     html.Div(id=page_name + "action_feedback", children=['Action Feedback'])
     ])
 
