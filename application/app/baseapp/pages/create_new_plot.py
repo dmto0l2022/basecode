@@ -4,7 +4,7 @@ from dash import html, dcc, callback, Output, Input, State
 from flask import request
 
 #import libraries.formlibrary as fl
-from app.baseapp.libraries import formlibrary as fl
+#from app.baseapp.libraries import formlibrary as fl
 
 from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
 
@@ -18,6 +18,37 @@ import pickle
 dash.register_page(__name__, path='/create_new_plot')
 page_name = 'create_new_plot'
 baseapp_prefix = '/application/baseapp'
+
+from app.baseapp.libraries import page_menu as page_menu
+
+plot_name_input_row = html.Div(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    html.Label('Enter Plot Name :',className='FORM_COLUMN_LABEL'),
+                    className='FORM_LABEL_COLUMN',
+                    width = 3
+                ),
+                dbc.Col(
+                    dcc.Input(id=page_name + 'plot_name',
+                              type='text',maxLength=40,
+                              className='FORM_COLUMN_TEXTINPUT'),
+                    className='FORM_TEXTINPUT_COLUMN',
+                    width = 8
+                ),
+                example_column,        
+                dbc.Popover(
+                    dbc.PopoverBody('enter plot unique name'),
+                    target="plot_name_example_field_id",trigger="hover"),
+                
+                dbc.Popover(dbc.PopoverBody('Plot of Experiment M'),
+                    target="plot_name_example_field_id",trigger="click"), 
+                
+            ],
+        className='g-0 FORM_ROW '),
+    ]
+)
 
 create_plot_button = html.Button("Create Plot", id=page_name+"create_plot_button", className="btn btn-primary",type="button")
 
@@ -38,20 +69,33 @@ drop_down_exit =  html.A(id=page_name + "dropdown_action", children=['Exit'], hr
 
 dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_create,drop_down_edit,drop_down_list, drop_down_exit], className = "dropdown-menu")
 
-split_button = html.Div(children=[create_plot_button, dropdown_button, dropdown_menu], className="btn-group")
+relevant_dropdowns = [drop_down_create,drop_down_edit,drop_down_list,drop_down_exit] 
+
+button_padding = {'height':'33px','padding-left':'12px','padding-right':'12px' ,
+                          'padding-top':'0px',
+                          'padding-bottom':'0px',
+                          'margin':'0', 'border': '0', 'vertical-align':'middle'}
+
+action_button = html.Button("Create New Plot",
+                                       id=page_name+"create_plot_button",
+                                       className="btn btn-primary",type="button",
+                                       style=button_padding)
+
+app_page_menu = page_menu.page_top_menu(page_name,action_button,relevant_dropdowns)
+
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
-    dcc.Location(id="url_create_new_plot", refresh=True), ## important to allow redirects
-    #html.Div("Create New Plot"),
-    fl.plot_name_input_row,
-    split_button,
-    html.Div('No Button Pressed', id="whatbutton")
+    dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
+    plot_name_input_row,
+    app_page_menu,
+    html.Div(id=page_name + "action_feedback", children=['Action Feedback'])
     ])
 
 
 @callback(
-    Output('url_create_new_plot', 'href',allow_duplicate=True), ## duplicate set as all callbacks tartgetting url
+    [Output(page_name + 'url', 'href',allow_duplicate=True),
+    Output(id=page_name + "action_feedback", 'children')],
     Input(page_name+"create_plot_button", "n_clicks"),
     State("plot_name_form_field_id", "value"),
         prevent_initial_call=True
@@ -70,6 +114,7 @@ def button_click_create_new_plot(button0,plot_name_input):
     if page_name+"create_plot_button" == prop_id :
         request_header = {'dmtool-userid': str(dmtool_userid)}
         fastapi_about_url = "http://container_fastapi_data_1:8014/"
+        
         ## create new plot record
         create_plot_api = "dmtool/fastapi_data/internal/data/plot/"
         data = {"name": plot_name_input}
