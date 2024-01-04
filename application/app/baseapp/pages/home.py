@@ -68,7 +68,10 @@ clientside_callback(
         Input(page_name + 'url', 'href')
     )
 
-@callback(Input(page_name +'url', 'href'),Output(page_name + "action_feedback", 'children',allow_duplicate=True)], State(page_name + 'screen_size_store', 'data'))
+@callback(Input(page_name +'url', 'href'),
+          Output(page_name + "action_feedback", 'children',allow_duplicate=True),
+          State(page_name + 'screen_size_store', 'data')
+         )
 def get_owned_data(href: str, page_size_in):
     page_size_as_string = json.dumps(page_size_in)
     print('home : get_user_owned_data callback triggered ---- page size >>>>>>>' + page_size_as_string)
@@ -83,7 +86,7 @@ def get_owned_data(href: str, page_size_in):
 
 @callback(
     [Output(page_name + 'url', 'href',allow_duplicate=True),
-    Output(page_name + "action_feedback", 'children')],
+    Output(page_name + "action_feedback", 'children',allow_duplicate=True)],
     Input(page_name+"create_plot_button",'btn_clicks'),
         prevent_initial_call=True
 )
