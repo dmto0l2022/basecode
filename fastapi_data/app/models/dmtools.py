@@ -2,8 +2,20 @@ from sqlalchemy.dialects.mysql import LONGTEXT
 from sqlalchemy import ForeignKeyConstraint
 ## https://github.com/tiangolo/sqlmodel/issues/222
 from sqlmodel import SQLModel, Field, Relationship
+## I could not get Relationship to work
 ## https://stackoverflow.com/questions/74273829/how-to-correctly-use-joins-with-sqlmodel
 ## https://docs.sqlalchemy.org/en/20/dialects/mysql.html
+
+## ownership has and this allows a join
+## limit_id : Optional[int] = Field(default=None, foreign_key='limit.id', nullable=True)
+## if this is not in place, you cannot join the data in the routes
+
+## unique constraints are created using:
+##  __table_args__ = (UniqueConstraint("user_id", "name", name="Constraint : Unique user id and plot name"),{'mysql_engine':'InnoDB'},)
+## This is applied to the Plot Table based on the PlotBase schema
+## The Table is created from the Plot Schema and hence the constraint is applied to the table
+## There is some FastAPI middleware that handles the errors arrising from the constraints and these are fed back as part of the API response.
+
 
 from datetime import datetime
 
