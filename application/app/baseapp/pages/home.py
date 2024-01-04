@@ -6,6 +6,7 @@ import dash_bootstrap_components as dbc
 dash.register_page(__name__, path='/') ## path='/' makes it the home page for the pages app
 
 page_name = 'home'
+baseapp_prefix = '/application/baseapp'
 
 from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
 from app.baseapp.libraries import page_menu as page_menu
