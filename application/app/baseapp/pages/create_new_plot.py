@@ -3,6 +3,8 @@ from dash import html, dcc, callback, Output, Input, State
 #from flask import session
 from flask import request
 
+import dash_bootstrap_components as dbc
+
 #import libraries.formlibrary as fl
 #from app.baseapp.libraries import formlibrary as fl
 
@@ -13,13 +15,12 @@ import json
 import redis
 import pickle
 
+from app.baseapp.libraries import page_menu as page_menu
 
 
 dash.register_page(__name__, path='/create_new_plot')
 page_name = 'create_new_plot'
 baseapp_prefix = '/application/baseapp'
-
-from app.baseapp.libraries import page_menu as page_menu
 
 plot_name_input_row = html.Div(
     [
