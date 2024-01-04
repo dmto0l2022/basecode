@@ -24,8 +24,8 @@ baseapp_prefix = '/application/baseapp'
 
 show_example = 1 ## default is to show examples
 label_column_width = 3
-input_column_width = 8
-example_column_width = 1
+input_column_width = 7
+example_column_width = 2
 
 ## This function is included in case examples need to be suppressed
 
