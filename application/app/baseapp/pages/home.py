@@ -79,7 +79,7 @@ def get_owned_data(href: str, page_size_in):
 @callback(
     [Output(page_name + 'url', 'href',allow_duplicate=True),
     Output(page_name + "action_feedback", 'children')],
-    Input(id=page_name+"create_plot_button",'btn_clicks'),
+    Input(page_name+"create_plot_button",'btn_clicks'),
         prevent_initial_call=True
 )
 def button_click_do_something(button0):
