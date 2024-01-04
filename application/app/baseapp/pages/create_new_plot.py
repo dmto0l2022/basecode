@@ -113,14 +113,14 @@ plot_name_input_row = html.Div(
                 dbc.Col(
                     html.Label('Enter Plot Name :',className='FORM_COLUMN_LABEL'),
                     style=FORM_LABEL_COLUMN_STYLE,
-                    width = 3
+                    width = label_column_width
                 ),
                 dbc.Col(
                     dcc.Input(id=page_name + 'plot_name',
                               type='text',maxLength=40,
                               style=FORM_COLUMN_TEXTINPUT_STYLE),
                     style=FORM_TEXTINPUT_COLUMN_STYLE,
-                    width = 8
+                    width = input_column_width
                 ),
                 example_column,        
                 dbc.Popover(
