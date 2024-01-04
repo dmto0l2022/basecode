@@ -98,9 +98,13 @@ app.include_router(metadata.router)
 
 ##@app.request_validation_exception_handler(RequestValidationError)
 
+## The below are very important to help an API user to know why their API call has failed
+## Other errors and quality assessments may create other types of error and we may need to create
+## manageement routines for these.
+
 @app.exception_handler(StarletteHTTPException)
 async def custom_http_exception_handler(request, exc):
-    print(f"OMG! An HTTP error!: {repr(exc)}")
+    print(f"HTTP error!: {repr(exc)}")
     return await http_exception_handler(request, exc)
 
 
