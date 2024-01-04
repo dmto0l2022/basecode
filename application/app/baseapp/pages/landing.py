@@ -3,7 +3,7 @@ from dash import html, dcc, callback, Input, Output
 import dash_bootstrap_components as dbc
 
 
-dash.register_page(__name__, path='/') ## path='/' makes it the home page for the pages app
+dash.register_page(__name__, path='/landing') ## path='/' makes it the home page for the pages app
 
 layout1 = html.Div(children=[
     html.H1(children='This is our Analytics page'),
