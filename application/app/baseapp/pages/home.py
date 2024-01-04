@@ -68,8 +68,8 @@ clientside_callback(
         Input(page_name + 'url', 'href')
     )
 
-@callback(Input(page_name +'url', 'href'),
-          Output(page_name + "action_feedback", 'children',allow_duplicate=True),
+@callback(Output(page_name + "action_feedback", 'children',allow_duplicate=True),
+          Input(page_name +'url', 'href'),
           State(page_name + 'screen_size_store', 'data')
          )
 def get_owned_data(href: str, page_size_in):
