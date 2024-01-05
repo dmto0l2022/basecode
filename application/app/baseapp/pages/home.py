@@ -94,8 +94,8 @@ bottom_df_empty = pd.DataFrame(data=[], columns=column_names_list)
 print(bottom_df_empty)
 
 bottom_table = dash_table.DataTable(
-                            data=sample_df.to_dict('records'),
-                            columns=[{"name": i, "id": i} for i in sample_df.columns],
+                            data=bottom_df_full.to_dict('records'),
+                            columns=[{"name": i, "id": i} for i in bottom_df_full.columns],
                             fixed_rows={'headers': True},
                             virtualization=True,
                             style_cell=bottom_table_cell_style,
