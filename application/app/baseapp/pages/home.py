@@ -114,7 +114,9 @@ def get_bottom_table(bottom_df_in,page_size_in):
                                 )
     return bottom_table_ret
 
-bottom_table = get_bottom_table(bottom_df_empty, 375, 667)
+page_size = {"width":375,"height":667}
+
+bottom_table = get_bottom_table(bottom_df_empty, page_size)
 
 ## create top table
 
