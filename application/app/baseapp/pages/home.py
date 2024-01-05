@@ -99,9 +99,11 @@ bottom_table = dash_table.DataTable(
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/solar.csv')
 
 print("solar columns : ", df.columns)
+## State,Number of Solar Plants,Installed Capacity (MW),Average MW Per Plant,Generation (GWh)
+column_names = ['state','plants','capacity','average','generation']
 
-top_table_1 = dash_table.DataTable(df.to_dict('records'), [{"name": i, "id": i} for i in df.columns])
-
+#top_table_1 = dash_table.DataTable(df.to_dict('records'), [{"name": i, "id": i} for i in df.columns])
+top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
 
 TopRowTable = dbc.Row([dbc.Col(id=page_name+"top_table_div",
                             children=[top_table_1],
