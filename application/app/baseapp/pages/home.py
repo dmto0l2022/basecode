@@ -104,6 +104,7 @@ print("solar columns : ", df.columns)
 column_names = ['state','plants','capacity','average','generation']
 df.rename(index={0: "state", 1: "plants", 2: "capacity", 3: "average" , 4: "generation"}, inplace=True)
 
+print('df >>>>>>>>>>>>' ,df)
 
 top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=[{"name": i, "id": i} for i in df.columns])
 #top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
@@ -132,15 +133,18 @@ BottonRowTable = dbc.Row([dbc.Col(id=page_name+'bottom_table_div',
 
 ##------------------------------------
 
+def get_layout():
+    layout_out = html.Div([
+        dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
+        dcc.Store(id= page_name + 'screen_size_store', storage_type='local'),
+        app_page_menu,
+        TopTableDiv,
+        BottomTableDiv,
+        html.Div(id=page_name + "action_feedback", children=['Action Feedback'])
+        ])
+  return layout_out
 
-layout = html.Div([
-    dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
-    dcc.Store(id= page_name + 'screen_size_store', storage_type='local'),
-    app_page_menu,
-    TopTableDiv,
-    BottomTableDiv,
-    html.Div(id=page_name + "action_feedback", children=['Action Feedback'])
-    ])
+layout = get_layout
 
 
 clientside_callback(
