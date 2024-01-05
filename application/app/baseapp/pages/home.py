@@ -103,8 +103,8 @@ print("solar columns : ", df.columns)
 ## State,Number of Solar Plants,Installed Capacity (MW),Average MW Per Plant,Generation (GWh)
 column_names = ['state','plants','capacity','average','generation']
 
-#top_table_1 = dash_table.DataTable(df.to_dict('records'), [{"name": i, "id": i} for i in df.columns])
-top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
+top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=[{"name": i, "id": i} for i in df.columns])
+#top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
 
 top_table_div_style =  {'position':'absolute','top': '80px','padding':'0','margins':'0','left':'0',
                             'background-color':'green','height':'300px', 'width':'100%'}
