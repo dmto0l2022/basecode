@@ -95,8 +95,15 @@ bottom_table = dash_table.DataTable(
                             css=css_row_heights,
                             )
 
+df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/solar.csv')
+
+print("solar columns : ", df.columns)
+
+top_table_1 = dash_table.DataTable(df.to_dict('records'), [{"name": i, "id": i} for i in df.columns])
+
+
 TopRowTable = dbc.Row([dbc.Col(id=page_name+"top_table_div",
-                            children=[top_table],
+                            children=[top_table_1],
                             width=12,)],
                             className =page_name + "top_table_class")
         
