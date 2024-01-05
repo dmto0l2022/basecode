@@ -72,18 +72,7 @@ css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !
 bottom_table_height = '300px'
 bottom_table_width = '1000px'
 
-bottom_table_cell_style = {'textAlign': 'left',
-                                          'padding': '0px',
-                                          'font_size': '11px',
-                                          'overflow': 'hidden',
-                                          'textOverflow': 'ellipsis',
-                                          'border': '1px solid black',
-                                          'height': '12px',
-                                          'overflow': 'hidden',
-                                          'maxWidth': 0 ## made things work!!
-                                         }
 
-bottom_table_table_style = {'height': bottom_table_height,'width' : bottom_table_width, 'overflowX': 'auto', 'overflowY': 'auto'}
 
 data=[{'c-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)} for j in range(25)]
 column_names_dict = [{'name': 'c-{}'.format(i),'id': 'c-{}'.format(i)} for i in range(1,15)]
@@ -93,7 +82,24 @@ print(bottom_df_full)
 bottom_df_empty = pd.DataFrame(data=[], columns=column_names_list)
 print(bottom_df_empty)
 
-def get_bottom_table(bottom_df_in):
+def get_bottom_table(bottom_df_in, screen_height_in, screen_width_in):
+    bottom_table_width = screen_width_in
+    bottom_table_height = str(screen_height_in * 0.45) + 'px'
+    bottom_row_height = '12px'
+    bottom_font_height = '11px'
+    bottom_table_table_style = {'height': bottom_table_height,'width' : bottom_table_width, 'overflowX': 'auto', 'overflowY': 'auto'}
+
+  
+    bottom_table_cell_style = {'textAlign': 'left',
+                                          'padding': '0px',
+                                          'font_size': bottom_font_height,
+                                          'overflow': 'hidden',
+                                          'textOverflow': 'ellipsis',
+                                          'border': '1px solid black',
+                                          'height': bottom_row_height,
+                                          'overflow': 'hidden',
+                                          'maxWidth': 0 ## made things work!!
+                                         }
 
     bottom_table_ret = dash_table.DataTable(
                                 id='bottom_table_datatable',
@@ -107,7 +113,7 @@ def get_bottom_table(bottom_df_in):
                                 )
     return bottom_table_ret
 
-bottom_table = get_bottom_table(bottom_df_empty)
+bottom_table = get_bottom_table(bottom_df_empty, 375, 667)
 
 ## create top table
 
@@ -161,15 +167,47 @@ bottom_table_div_style =  {'position':'absolute','top': '333px','padding':'0','m
 action_feedback_div_style =  {'position':'absolute','top': '633px','padding':'0','margins':'0','left':'0','border':'5px solid green',
                             'background-color':'pink','height':'30px', 'width':'600px', 'overflow-y': 'scroll'}
 
+def get_top_table_div(page_size_in,top_df_in):
+    top_row_height = '12px'
+    top_font_height = '11px'
+    screen_height = page_size_in['height']
+    screen_width = page_size_in['width']
+    top_div_height = str(int(screen_height * 0.45)) + 'px'
+    top_div_width = str(int(screen_width * 1)) + 'px'
+    top_table_cell_style = {'textAlign': 'left',
+                                          'padding': '0px',
+                                          'font_size': top_font_height,
+                                          'overflow': 'hidden',
+                                          'textOverflow': 'ellipsis',
+                                          'border': '1px solid black',
+                                          'height': top_row_height,
+                                          'overflow': 'hidden',
+                                          'maxWidth': 0 ## made things work!!
+                                         }
+    top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
+                            'background-color':'green','height':top_div_height, 'width':top_div_width, 'overflow-y': 'scroll'}
+    top_table_style_table= {'height': top_div_height,'width' : '1000px', 'overflowX': 'auto', 'overflowY': 'auto'},
+    top_table_ret = dash_table.DataTable(
+                                       id='top_table_datatable',
+                                       data=top_df_in.to_dict('records'),
+                                       columns=[{"name": i, "id": i} for i in top_df_in.columns],
+                                       fixed_rows={'headers': True},
+                                       virtualization=True,
+                                       style_cell = top_table_cell_style,
+                                       style_table=top_table_style_table,
+                                       css=css_row_heights)
+  
+    TopTableDiv = html.Div(children=[top_table_1],style=top_table_div_style)
 
-TopTableDiv = html.Div(children=[top_table_1],style=top_table_div_style)
+
 BottomTableDiv = html.Div(children=[bottom_table], style=bottom_table_div_style)
 
 
 ##------------------------------------
 
 def get_layout():
-    layout_out = html.Div([
+    layout_out = html.Div(id=page_name + 'layout_div',
+      children=[
         dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
         dcc.Store(id= page_name + 'screen_size_store', storage_type='local'),
         app_page_menu,
@@ -196,6 +234,33 @@ clientside_callback(
         Input(page_name + 'url', 'href')
     )
 
+@callback([Output(page_name + 'layout_div', 'children')],       
+          Input(page_name +'url', 'href'),
+          State(page_name + 'screen_size_store', 'data')
+         )
+def get_owned_data(href: str, page_size_in):
+    page_size_as_string = json.dumps(page_size_in)
+    print('home : get_user_owned_data callback triggered ---- page size >>>>>>>' + page_size_as_string)
+    screen_height = page_size_in['height']
+    print('screen_height >>>>>>>>>>', screen_height)
+    plots_table_height = str(screen_height * 0.5) + 'px'
+    ## get user id from cookie
+    dmtooluser_cls = gdu.GetUserID()
+    dmtool_userid = dmtooluser_cls.dmtool_userid
+    #top_table_dict = top_df_full_x.to_dict('records')
+    #bottom_table_dict = bottom_df_full.to_dict('records')
+    children_out=[
+        dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
+        dcc.Store(id= page_name + 'screen_size_store', storage_type='local'),
+        app_page_menu,
+        TopTableDiv,
+        BottomTableDiv,
+        html.Div(id=page_name + "action_feedback", children=['Action Feedback'],style=action_feedback_div_style)
+        ])
+
+    return children_out
+
+'''
 @callback([Output('top_table_datatable','data'),
           Output('bottom_table_datatable','data')],       
           Input(page_name +'url', 'href'),
@@ -214,6 +279,7 @@ def get_owned_data(href: str, page_size_in):
     bottom_table_dict = bottom_df_full.to_dict('records')
 
     return [top_table_dict, bottom_table_dict]
+'''
 
 ## prevent_initial_call=True
 
