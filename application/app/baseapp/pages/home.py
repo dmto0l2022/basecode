@@ -111,7 +111,9 @@ print("solar columns : ", df.columns)
 
 print('df >>>>>>>>>>>>' ,df)
 
-top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=[{"name": i, "id": i} for i in df.columns])
+top_table_1 = dash_table.DataTable(data=df.to_dict('records'),
+                                   columns=[{"name": i, "id": i} for i in df.columns]
+                                    css=css_row_heights)
 #top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
 
 top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
