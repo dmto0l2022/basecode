@@ -82,10 +82,10 @@ print(bottom_df_full)
 bottom_df_empty = pd.DataFrame(data=[], columns=column_names_list)
 print(bottom_df_empty)
 
-def get_bottom_table(bottom_df_in, screen_height_in, screen_width_in):
+def get_bottom_table(bottom_df_in,page_size_in):
     
-    bottom_table_width = screen_width_in
-    bottom_table_height = str(screen_height_in * 0.45) + 'px'
+    bottom_table_width = page_size_in['width']
+    bottom_table_height = str(page_size_in['height'] * 0.45) + 'px'
     bottom_row_height = '12px'
     bottom_font_height = '11px'
     bottom_table_table_style = {'height': bottom_table_height,'width' : bottom_table_width, 'overflowX': 'auto', 'overflowY': 'auto'}
@@ -103,7 +103,7 @@ def get_bottom_table(bottom_df_in, screen_height_in, screen_width_in):
                                          }
 
     bottom_table_ret = dash_table.DataTable(
-                                id='bottom_table_datatable',
+                                id=page_name + 'bottom_table_datatable',
                                 data=bottom_df_in.to_dict('records'),
                                 columns=[{"name": i, "id": i} for i in bottom_df_in.columns],
                                 fixed_rows={'headers': True},
@@ -142,10 +142,30 @@ print('top_df_full >>>>>>>>>>>>' ,top_df_full)
 
 top_df_full_x = pd.concat([top_df_full,top_df_full,top_df_full,top_df_full])
 
-top_table_height = '300px'
-top_table_width = '1000px'
+##top_table_height = '300px'
+##top_table_width = '1000px'
 
-def get_top_table(top_df_in):
+def get_top_table(page_size_in, top_df_in):
+    
+    #top_table_width = str(page_size_in['width']) + 'px'
+    top_table_width = '1000px'
+    top_table_height = str(page_size_in['height'] * 0.45) + 'px'
+    top_row_height = '12px'
+    top_font_height = '11px'
+    top_table_table_style = {'height': top_table_height,'width' : top_table_width, 'overflowX': 'auto', 'overflowY': 'auto'}
+
+  
+    top_table_cell_style = {'textAlign': 'left',
+                                          'padding': '0px',
+                                          'font_size': top_font_height,
+                                          'overflow': 'hidden',
+                                          'textOverflow': 'ellipsis',
+                                          'border': '1px solid black',
+                                          'height': top_row_height,
+                                          'overflow': 'hidden',
+                                          'maxWidth': 0 ## made things work!!
+                                         }
+  
     top_table_ret = dash_table.DataTable(
                                        id=page_name+'top_table_datatable',
                                        data=top_df_in.to_dict('records'),
@@ -153,20 +173,28 @@ def get_top_table(top_df_in):
                                        fixed_rows={'headers': True},
                                        virtualization=True,
                                        style_cell = top_table_cell_style,
-                                       style_table={'height': top_table_height,'width' : top_table_width, 'overflowX': 'auto', 'overflowY': 'auto'},
+                                       style_table= top_table_table_style,
                                        css=css_row_heights)
     return top_table_ret
 
-top_table_1 = get_top_table(top_df_empty)
+page_size = {"width":375,"height":667}
 
+top_table_1 = get_top_table(page_size, top_df_empty)
+
+'''
 top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
                             'background-color':'green','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
 
 bottom_table_div_style =  {'position':'absolute','top': '333px','padding':'0','margins':'0','left':'0','border':'5px solid black',
                             'background-color':'blue','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
 
+
+'''
+
 action_feedback_div_style =  {'position':'absolute','top': '633px','padding':'0','margins':'0','left':'0','border':'5px solid green',
                             'background-color':'pink','height':'30px', 'width':'600px', 'overflow-y': 'scroll'}
+
+'''
 
 def get_top_table_div(page_size_in,top_df_in):
     top_row_height = '12px'
@@ -197,11 +225,12 @@ def get_top_table_div(page_size_in,top_df_in):
                                        style_cell = top_table_cell_style,
                                        style_table=top_table_style_table,
                                        css=css_row_heights)
+
+'''
   
-    TopTableDiv = html.Div(children=[top_table_1],style=top_table_div_style)
+TopTableDiv = html.Div(id=page_name+'top_table_div', children=[top_table_1],style=top_table_div_style)
 
-
-BottomTableDiv = html.Div(children=[bottom_table], style=bottom_table_div_style)
+BottomTableDiv = html.Div(id=page_name+'bottom_table_div',children=[bottom_table], style=bottom_table_div_style)
 
 
 ##------------------------------------
@@ -254,8 +283,8 @@ def get_owned_data(href: str, page_size_in):
     return TopTableDiv, BottomTableDiv
 '''
 
-@callback([Output(page_name + 'top_table_datatable','data'),
-          Output(page_name + 'bottom_table_datatable','data')],       
+@callback([Output(page_name+'top_table_div','children'),
+          Output(page_name + 'top_table_div','children')],       
           Input(page_name +'url', 'href'),
           State(page_name + 'screen_size_store', 'data')
          )
@@ -279,10 +308,10 @@ def get_owned_data(href: str, page_size_in):
     column_names_list= ['c-{}'.format(i) for i in range(1,15)]
     bottom_df_full = pd.DataFrame.from_dict(data)
   
-    top_table_dict = top_df_full_x.to_dict('records')
-    bottom_table_dict = bottom_df_full.to_dict('records')
-
-    return [top_table_dict, bottom_table_dict]
+    top_table_ret = get_top_table(page_size_in, top_df_full_x)
+    bottom_table_ret = get_bottom_table(page_size_in, bottom_df_full)
+  
+    return [top_table_ret, bottom_table_ret]
 
 
 ## prevent_initial_call=True
