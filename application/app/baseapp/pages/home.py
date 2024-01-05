@@ -266,9 +266,10 @@ clientside_callback(
         function(href) {
             var w = window.innerWidth;
             var h = window.innerHeight;
-            var jsn = {width: w, height: h};
-            const myJSON = JSON.stringify(jsn); 
-            return jsn;
+            var width_text = w.toString();
+            var height_text = h.toString();
+            const page_size_dict = {width: width_text, height: height_text};
+            return page_size_dict;
         }
         """,
         Output(page_name + 'screen_size_store', 'data'),
