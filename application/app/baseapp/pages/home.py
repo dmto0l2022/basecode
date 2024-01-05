@@ -4,6 +4,7 @@ from dash import Input, Output, State
 from dash import clientside_callback
 import dash_bootstrap_components as dbc
 from dash import dash_table
+import json
 import pandas as pd
 
 
