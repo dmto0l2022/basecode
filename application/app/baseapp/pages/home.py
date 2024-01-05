@@ -224,16 +224,17 @@ def get_owned_data(href: str, page_size_in):
     prevent_initial_call=True
 )
 def button_click_do_something(button0):
-    #msg = "None of the buttons have been clicked yet"
+    msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     dmtooluser_cls = gdu.GetUserID()
     dmtool_userid = dmtooluser_cls.dmtool_userid
     #msg = prop_id
     if page_name+"home_button" == prop_id :
+        msg = "button pressed " + prop_id
         request_header = {'dmtool-userid': str(dmtool_userid)}
         fastapi_about_url = "http://container_fastapi_data_1:8014/"
         href_return = baseapp_prefix + '/'
-        return href_return, ''
+        return href_return, msg
     else:
         href_return = baseapp_prefix + '/'
-        return href_return, ''
+        return href_return, msg
