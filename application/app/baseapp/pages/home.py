@@ -83,7 +83,7 @@ bottom_table_cell_style = {'textAlign': 'left',
                                           'maxWidth': 0 ## made things work!!
                                          }
 
-bottom_table_table_style = {'height': bottom_table_height,'width' : bottom_table_width, 'overflowX': 'auto', 'overflowY': 'auto'},
+bottom_table_table_style = {'height': bottom_table_height,'width' : bottom_table_width, 'overflowX': 'auto', 'overflowY': 'auto'}
 
 data=[{'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)} for j in range(25)]
 column_names = [{'name': 'Column {}'.format(i),'id': 'column-{}'.format(i)} for i in range(1,15)]
