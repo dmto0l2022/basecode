@@ -85,9 +85,9 @@ bottom_table_cell_style = {'textAlign': 'left',
 
 bottom_table_table_style = {'height': bottom_table_height,'width' : bottom_table_width, 'overflowX': 'auto', 'overflowY': 'auto'}
 
-data=[{'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)} for j in range(25)]
-column_names_dict = [{'name': 'Column {}'.format(i),'id': 'column-{}'.format(i)} for i in range(1,15)]
-column_names_list= ['Column {}'.format(i) for i in range(1,15)]
+data=[{'c-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)} for j in range(25)]
+column_names_dict = [{'name': 'c-{}'.format(i),'id': 'c-{}'.format(i)} for i in range(1,15)]
+column_names_list= ['c-{}'.format(i) for i in range(1,15)]
 bottom_df_full = pd.DataFrame.from_dict(data)
 print(bottom_df_full)
 bottom_df_empty = pd.DataFrame(data=[], columns=column_names_list)
