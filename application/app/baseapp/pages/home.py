@@ -198,7 +198,7 @@ def get_owned_data(href: str, page_size_in):
 @callback(
     [Output(page_name + 'url', 'href',allow_duplicate=True),
     Output(page_name + "action_feedback", 'children',allow_duplicate=True)],
-    Input(page_name+"create_plot_button",'btn_clicks'),
+    Input(page_name+"home_button",'btn_clicks'),
         prevent_initial_call=True
 )
 def button_click_do_something(button0):
@@ -207,11 +207,11 @@ def button_click_do_something(button0):
     dmtooluser_cls = gdu.GetUserID()
     dmtool_userid = dmtooluser_cls.dmtool_userid
     #msg = prop_id
-    if page_name+"create_plot_button" == prop_id :
+    if page_name+"home_button" == prop_id :
         request_header = {'dmtool-userid': str(dmtool_userid)}
         fastapi_about_url = "http://container_fastapi_data_1:8014/"
         href_return = baseapp_prefix + '/'
         return href_return, ''
     else:
-        href_return = baseapp_prefix + '/create_new_plot'
+        href_return = baseapp_prefix + '/'
         return href_return, ''
