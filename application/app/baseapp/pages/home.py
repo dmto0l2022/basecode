@@ -70,7 +70,7 @@ css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !
 #bottom_table_height = str(int(300)) + 'px'
 #bottom_table_width = str(int(1000)) + 'px'
 bottom_table_height = '300px'
-bottom_table_width = '600px'
+bottom_table_width = '1000px'
 
 bottom_table_cell_style = {'textAlign': 'left',
                                           'padding': '0px',
