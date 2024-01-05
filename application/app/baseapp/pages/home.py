@@ -65,21 +65,16 @@ css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !
                                     {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + css_row_height + "; height: " + css_row_height + ";line-height: " + css_row_height + ";max-height: " + css_row_height + ";"}
                                     ]
 
-top_table = dash_table.DataTable(
-                        columns=[{
-                                'name': 'Column {}'.format(i),
-                                'id': 'column-{}'.format(i)
-                            } for i in range(1,15)],
-                            data=[
-                                {'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)}
-                                for j in range(25)
-                            ],
-                            fixed_rows={'headers': True},
-                            virtualization=True,
-                            style_cell={'minWidth': 95, 'width': 95, 'maxWidth': 95},
-                            style_table={'height': 140, 'overflowX': 'auto', 'overflowY': 'auto'} , # default is 500
-                            css=css_row_heights,
-                            )
+top_table_cell_style = {'textAlign': 'left',
+                                          'padding': '0px',
+                                          'font_size': '11px',
+                                          'overflow': 'hidden',
+                                          'textOverflow': 'ellipsis',
+                                          'border': '1px solid black',
+                                          'height': '12px',
+                                          'overflow': 'hidden',
+                                          'maxWidth': 0 ## made things work!!
+                                         }
 
 bottom_table = dash_table.DataTable(
                         columns=[{
@@ -117,6 +112,8 @@ top_table_height = '300px'
 
 top_table_1 = dash_table.DataTable(data=df_new.to_dict('records'),
                                    columns=[{"name": i, "id": i} for i in df_new.columns],
+                                   fixed_rows={'headers': True},
+                                   style_cell = top_table_cell_style,
                                    style_table={'height': top_table_height, 'overflowX': 'auto', 'overflowY': 'auto'},
                                    css=css_row_heights)
 
