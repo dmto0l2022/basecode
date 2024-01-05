@@ -157,7 +157,7 @@ def get_owned_data(href: str, page_size_in):
     plots_table_height = str(screen_height * 0.5) + 'px'
     ## get user id from cookie
     dmtooluser_cls = gdu.GetUserID()
-    self.dmtool_userid = dmtooluser_cls.dmtool_userid
+    dmtool_userid = dmtooluser_cls.dmtool_userid
 
     return 'action feedback'
 
