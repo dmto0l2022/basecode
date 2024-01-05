@@ -83,6 +83,7 @@ bottom_df_empty = pd.DataFrame(data=[], columns=column_names_list)
 print(bottom_df_empty)
 
 def get_bottom_table(bottom_df_in, screen_height_in, screen_width_in):
+    
     bottom_table_width = screen_width_in
     bottom_table_height = str(screen_height_in * 0.45) + 'px'
     bottom_row_height = '12px'
@@ -146,7 +147,7 @@ top_table_width = '1000px'
 
 def get_top_table(top_df_in):
     top_table_ret = dash_table.DataTable(
-                                       id='top_table_datatable',
+                                       id=page_name+'top_table_datatable',
                                        data=top_df_in.to_dict('records'),
                                        columns=[{"name": i, "id": i} for i in top_df_in.columns],
                                        fixed_rows={'headers': True},
@@ -233,7 +234,7 @@ clientside_callback(
         Output(page_name + 'screen_size_store', 'data'),
         Input(page_name + 'url', 'href')
     )
-
+'''
 @callback([Output(page_name + 'layout_div', 'children')],       
           Input(page_name +'url', 'href'),
           State(page_name + 'screen_size_store', 'data')
@@ -250,27 +251,11 @@ def get_owned_data(href: str, page_size_in):
     #top_table_dict = top_df_full_x.to_dict('records')
     #bottom_table_dict = bottom_df_full.to_dict('records')
 
-    top_df_full = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/solar.csv')
-    column_names = ['state','plants','capacity','average','generation']
-    top_df_full.columns=column_names
-    top_df_full_x = pd.concat([top_df_full,top_df_full,top_df_full,top_df_full])
-
-    TopTableDiv = get_top_table_div(page_size_in, top_df_full_x)
-  
-    children_out=[
-        dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
-        dcc.Store(id= page_name + 'screen_size_store', storage_type='local'),
-        app_page_menu,
-        TopTableDiv,
-        ##BottomTableDiv,
-        html.Div(id=page_name + "action_feedback", children=['Action Feedback'],style=action_feedback_div_style)
-        ])
-
-    return children_out
-
+    return TopTableDiv, BottomTableDiv
 '''
-@callback([Output('top_table_datatable','data'),
-          Output('bottom_table_datatable','data')],       
+
+@callback([Output(page_name + 'top_table_datatable','data'),
+          Output(page_name + 'bottom_table_datatable','data')],       
           Input(page_name +'url', 'href'),
           State(page_name + 'screen_size_store', 'data')
          )
@@ -283,11 +268,22 @@ def get_owned_data(href: str, page_size_in):
     ## get user id from cookie
     dmtooluser_cls = gdu.GetUserID()
     dmtool_userid = dmtooluser_cls.dmtool_userid
+
+    top_df_full = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/solar.csv')
+    column_names = ['state','plants','capacity','average','generation']
+    top_df_full.columns=column_names
+    top_df_full_x = pd.concat([top_df_full,top_df_full,top_df_full,top_df_full])
+  
+    data=[{'c-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)} for j in range(25)]
+    column_names_dict = [{'name': 'c-{}'.format(i),'id': 'c-{}'.format(i)} for i in range(1,15)]
+    column_names_list= ['c-{}'.format(i) for i in range(1,15)]
+    bottom_df_full = pd.DataFrame.from_dict(data)
+  
     top_table_dict = top_df_full_x.to_dict('records')
     bottom_table_dict = bottom_df_full.to_dict('records')
 
     return [top_table_dict, bottom_table_dict]
-'''
+
 
 ## prevent_initial_call=True
 
