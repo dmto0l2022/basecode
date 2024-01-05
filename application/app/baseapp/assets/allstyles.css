@@ -1137,27 +1137,27 @@ plot data 60px
 
 
 .home_top_table_div_class  {  position:absolute;
-            			      top:33px;
-            			      padding:0;
-            			      margins:0;
-            			      left:0;
-            			      border:5px solid red;
+			      top:33px;
+			      padding:0;
+			      margins:0;
+			      left:0;
+			      border:5px solid red;
                               background-color:green;
-            			      height:300px;
-            			      width:600px;
-            			      overflow-y: scroll;
+			      height:300px;
+			      width:600px;
+			      overflow-y: scroll;
             			   }
 
 .home_bottom_table_div_class {position:absolute;
-            			      top:333px;
-            			      padding:0;
-            			      margins:0;
-            			      left:0;
-            			      border:5px solid black;
-                              background-color:blue;
-            			      height:300px;
-            			      width:600px;
-            			      overflow-y: scroll;
+			      top:333px;
+			      padding:0;
+			      margins:0;
+			      left:0;
+			      border:5px solid black;
+		      	      background-color:blue;
+			      height:300px;
+			      width:600px;
+			      overflow-y: scroll;
             			     }
 
 /*
@@ -1207,6 +1207,28 @@ iphone navigation bar 40px
   background-color: red !important;
   border:1px solid black;
  }
+.home_top_table_div_class  {  position:absolute;
+			      top:33px;
+			      padding:0;
+			      margins:0;
+			      left:0;
+			      border:5px solid red;
+                              background-color:green;
+			      height:300px;
+			      width:375px;
+			      overflow-y: scroll;
+            			   }
+.home_bottom_table_div_class {position:absolute;
+			      top:333px;
+			      padding:0;
+			      margins:0;
+			      left:0;
+			      border:5px solid black;
+		      	      background-color:blue;
+			      height:300px;
+			      width:375px;
+			      overflow-y: scroll;
+            			     }
 }
 
 /*
