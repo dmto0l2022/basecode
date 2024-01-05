@@ -158,21 +158,13 @@ top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margi
 bottom_table_div_style =  {'position':'absolute','top': '333px','padding':'0','margins':'0','left':'0','border':'5px solid black',
                             'background-color':'blue','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
 
+action_feedback_div_style =  {'position':'absolute','top': '633px','padding':'0','margins':'0','left':'0','border':'5px solid green',
+                            'background-color':'pink','height':'30px', 'width':'600px', 'overflow-y': 'scroll'}
+
+
 TopTableDiv = html.Div(children=[top_table_1],style=top_table_div_style)
 BottomTableDiv = html.Div(children=[bottom_table], style=bottom_table_div_style)
 
-TopRowTable = dbc.Row([dbc.Col(id=page_name+"top_table_div",
-                            children=[top_table_1],
-                            width=12,)],
-                            style=top_table_div_style,
-                            className =page_name + "top_table_class")
-        
-
-BottonRowTable = dbc.Row([dbc.Col(id=page_name+'bottom_table_div', 
-                              children=[bottom_table],
-                              width=12,)],
-                              style=bottom_table_div_style,
-                              className = page_name + "bottom_table_class")
 
 ##------------------------------------
 
@@ -183,7 +175,7 @@ def get_layout():
         app_page_menu,
         TopTableDiv,
         BottomTableDiv,
-        html.Div(id=page_name + "action_feedback", children=['Action Feedback'])
+        html.Div(id=page_name + "action_feedback", children=['Action Feedback'],style=action_feedback_div_style)
         ])
     return layout_out
 
