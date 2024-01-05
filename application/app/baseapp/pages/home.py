@@ -184,7 +184,7 @@ def get_top_table(top_df_in, page_size_in):
 
 page_size = {"width":375,"height":667}
 
-top_table_1 = get_top_table(top_df_empty, page_size_json)
+top_table_1 = get_top_table(top_df_empty, page_size)
 
 '''
 top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
