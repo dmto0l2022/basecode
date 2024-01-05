@@ -119,7 +119,7 @@ page_size = {"width":375,"height":667}
 #width = page_size_json['width']
 page_size_json = json.dumps(page_size) 
 
-bottom_table = get_bottom_table(bottom_df_empty, page_size_json)
+bottom_table = get_bottom_table(bottom_df_empty, page_size)
 
 ## create top table
 
