@@ -206,7 +206,7 @@ clientside_callback(
 
 @callback([Output(page_name + "action_feedback", 'children',allow_duplicate=True),
            Output('top_table_datatable','data'),
-           Output('bottom_table_datatable','data')]           
+           Output('bottom_table_datatable','data')],       
           Input(page_name +'url', 'href'),
           State(page_name + 'screen_size_store', 'data'),
           prevent_initial_call=True
