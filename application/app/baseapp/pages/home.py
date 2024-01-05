@@ -122,7 +122,7 @@ top_table_1 = dash_table.DataTable(data=df_new.to_dict('records'),
 #top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
 
 top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
-                            'background-color':'green','height':'300px', 'width':'1000px'}
+                            'background-color':'green','height':'300px', 'width':'600px'}
 
 bottom_table_div_style =  {'position':'absolute','top': '333px','padding':'0','margins':'0','left':'0','border':'5px solid black',
                             'background-color':'blue','height':'300px', 'width':'100%'}
