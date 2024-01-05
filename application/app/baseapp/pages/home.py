@@ -115,8 +115,10 @@ def get_bottom_table(bottom_df_in,page_size_in):
     return bottom_table_ret
 
 page_size = {"width":375,"height":667}
+page_size_json = json.loads(page_size)
+width = page_size_json['width']
 
-bottom_table = get_bottom_table(bottom_df_empty, page_size)
+bottom_table = get_bottom_table(bottom_df_empty, page_size_json)
 
 ## create top table
 
@@ -147,7 +149,7 @@ top_df_full_x = pd.concat([top_df_full,top_df_full,top_df_full,top_df_full])
 ##top_table_height = '300px'
 ##top_table_width = '1000px'
 
-def get_top_table(page_size_in, top_df_in):
+def get_top_table(top_df_in, page_size_in):
     
     #top_table_width = str(page_size_in['width']) + 'px'
     top_table_width = '1000px'
@@ -181,7 +183,7 @@ def get_top_table(page_size_in, top_df_in):
 
 page_size = {"width":375,"height":667}
 
-top_table_1 = get_top_table(page_size, top_df_empty)
+top_table_1 = get_top_table(top_df_empty, page_size_json)
 
 '''
 top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
