@@ -249,12 +249,20 @@ def get_owned_data(href: str, page_size_in):
     dmtool_userid = dmtooluser_cls.dmtool_userid
     #top_table_dict = top_df_full_x.to_dict('records')
     #bottom_table_dict = bottom_df_full.to_dict('records')
+
+    top_df_full = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/solar.csv')
+    column_names = ['state','plants','capacity','average','generation']
+    top_df_full.columns=column_names
+    top_df_full_x = pd.concat([top_df_full,top_df_full,top_df_full,top_df_full])
+
+    TopTableDiv = get_top_table_div(page_size_in, top_df_full_x)
+  
     children_out=[
         dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
         dcc.Store(id= page_name + 'screen_size_store', storage_type='local'),
         app_page_menu,
         TopTableDiv,
-        BottomTableDiv,
+        ##BottomTableDiv,
         html.Div(id=page_name + "action_feedback", children=['Action Feedback'],style=action_feedback_div_style)
         ])
 
