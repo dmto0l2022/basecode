@@ -221,7 +221,7 @@ def get_owned_data(href: str, page_size_in):
     top_table_dict = top_df_full_x.to_dict('records')
     bottom_table_dict = bottom_df_full.to_dict('records')
 
-    return top_table_dict, bottom_table_dict
+    return [top_table_dict, bottom_table_dict]
 
 ## prevent_initial_call=True
 
