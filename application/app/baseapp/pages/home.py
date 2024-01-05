@@ -4,6 +4,7 @@ from dash import Input, Output, State
 from dash import clientside_callback
 import dash_bootstrap_components as dbc
 from dash import dash_table
+import pandas as pd
 
 
 dash.register_page(__name__, path='/') ## path='/' makes it the home page for the pages app
