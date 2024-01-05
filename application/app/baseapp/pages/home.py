@@ -3,6 +3,7 @@ from dash import html, dcc, callback
 from dash import Input, Output, State
 from dash import clientside_callback
 import dash_bootstrap_components as dbc
+from dash import dash_table
 
 
 dash.register_page(__name__, path='/') ## path='/' makes it the home page for the pages app
@@ -45,6 +46,28 @@ action_button = html.Button("Home",
                                        style=button_padding)
 
 app_page_menu = page_menu.page_top_menu(page_name,action_button,relevant_dropdowns)
+
+##-------------------------------------
+
+example_table_main = dash_table.DataTable(
+                        columns=[{
+                                'name': 'Column {}'.format(i),
+                                'id': 'column-{}'.format(i)
+                            } for i in range(1,15)],
+                            data=[
+                                {'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)}
+                                for j in range(25)
+                            ],
+                            fixed_rows={'headers': True},
+                            virtualization=True,
+                            style_cell={'minWidth': 95, 'width': 95, 'maxWidth': 95},
+                            style_table={'height': 140, 'overflowX': 'auto', 'overflowY': 'auto'} , # default is 500
+                css=self.filter_table_css_row_heights,
+                            )
+
+
+##------------------------------------
+
 
 layout = html.Div([
     dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
