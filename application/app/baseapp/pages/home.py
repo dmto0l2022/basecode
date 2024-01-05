@@ -105,8 +105,8 @@ column_names = ['state','plants','capacity','average','generation']
 df = df.rename(index={0: "state", 1: "plants", 2: "capacity", 3: "average" , 4: "generation"})
 
 
-#top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=[{"name": i, "id": i} for i in df.columns])
-top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
+top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=[{"name": i, "id": i} for i in df.columns])
+#top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
 
 top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
                             'background-color':'green','height':'300px', 'width':'100%'}
