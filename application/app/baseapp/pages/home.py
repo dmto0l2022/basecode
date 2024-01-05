@@ -96,6 +96,7 @@ print(bottom_df_empty)
 def get_bottom_table(bottom_df_in):
 
     bottom_table_ret = dash_table.DataTable(
+                                id='bottom_table_datatable',
                                 data=bottom_df_in.to_dict('records'),
                                 columns=[{"name": i, "id": i} for i in bottom_df_in.columns],
                                 fixed_rows={'headers': True},
@@ -132,13 +133,15 @@ print("solar columns : ", top_df_full.columns)
 
 print('top_df_full >>>>>>>>>>>>' ,top_df_full)
 
-df_new = pd.concat([top_df_full,top_df_full,top_df_full,top_df_full])
+top_df_full_x = pd.concat([top_df_full,top_df_full,top_df_full,top_df_full])
 
 top_table_height = '300px'
 top_table_width = '1000px'
 
 def get_top_table(top_df_in):
-    top_table_ret = dash_table.DataTable(data=top_df_in.to_dict('records'),
+    top_table_ret = dash_table.DataTable(
+                                       id='top_table_datatable',
+                                       data=top_df_in.to_dict('records'),
                                        columns=[{"name": i, "id": i} for i in top_df_in.columns],
                                        fixed_rows={'headers': True},
                                        virtualization=True,
@@ -201,7 +204,9 @@ clientside_callback(
         Input(page_name + 'url', 'href')
     )
 
-@callback(Output(page_name + "action_feedback", 'children',allow_duplicate=True),
+@callback([Output(page_name + "action_feedback", 'children',allow_duplicate=True),
+           Output('top_table_datatable','data'),
+           Output('bottom_table_datatable','data')]           
           Input(page_name +'url', 'href'),
           State(page_name + 'screen_size_store', 'data'),
           prevent_initial_call=True
@@ -215,8 +220,10 @@ def get_owned_data(href: str, page_size_in):
     ## get user id from cookie
     dmtooluser_cls = gdu.GetUserID()
     dmtool_userid = dmtooluser_cls.dmtool_userid
+    top_table_dict = top_df_full_x.to_dict('records')
+    bottom_table_dict = bottom_df_full.to_dict('records')
 
-    return 'action feedback'
+    return 'action feedback', top_table_dict, bottom_table_dict
 
 @callback(
     [Output(page_name + 'url', 'href',allow_duplicate=True),
