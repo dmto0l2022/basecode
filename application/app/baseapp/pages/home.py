@@ -121,7 +121,7 @@ bottom_table_div_style =  {'position':'absolute','top': '333px','padding':'0','m
                             'background-color':'blue','height':'300px', 'width':'100%'}
 
 TopTableDiv = html.Div(children=[top_table_1],style=top_table_div_style)
-BottomTableDiv = html.Div(style=bottom_table_div_style)
+BottomTableDiv = html.Div(children=[bottom_table], style=bottom_table_div_style)
 
 TopRowTable = dbc.Row([dbc.Col(id=page_name+"top_table_div",
                             children=[top_table_1],
