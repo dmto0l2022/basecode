@@ -89,14 +89,8 @@ sample_df = pd.DataFrame.from_dict(data)
 print(sample_df)
 
 bottom_table = dash_table.DataTable(
-                        columns=[{
-                                'name': 'Column {}'.format(i),
-                                'id': 'column-{}'.format(i)
-                            } for i in range(1,15)],
-                            data=[
-                                {'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)}
-                                for j in range(25)
-                            ],
+                            data=sample_df.to_dict('records'),
+                            columns=[{"name": i, "id": i} for i in sample_df.columns],
                             fixed_rows={'headers': True},
                             virtualization=True,
                             style_cell=bottom_table_cell_style,
@@ -148,7 +142,7 @@ top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margi
                             'background-color':'green','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
 
 bottom_table_div_style =  {'position':'absolute','top': '333px','padding':'0','margins':'0','left':'0','border':'5px solid black',
-                            'background-color':'blue','height':'300px', 'width':'100%', 'overflow-y': 'scroll'}
+                            'background-color':'blue','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
 
 TopTableDiv = html.Div(children=[top_table_1],style=top_table_div_style)
 BottomTableDiv = html.Div(children=[bottom_table], style=bottom_table_div_style)
