@@ -204,9 +204,8 @@ clientside_callback(
         Input(page_name + 'url', 'href')
     )
 
-@callback([Output(page_name + "action_feedback", 'children',allow_duplicate=True),
-           Output('top_table_datatable','data'),
-           Output('bottom_table_datatable','data')],       
+@callback([Output('top_table_datatable','data'),
+          Output('bottom_table_datatable','data')],       
           Input(page_name +'url', 'href'),
           State(page_name + 'screen_size_store', 'data')
          )
@@ -222,13 +221,14 @@ def get_owned_data(href: str, page_size_in):
     top_table_dict = top_df_full_x.to_dict('records')
     bottom_table_dict = bottom_df_full.to_dict('records')
 
-    return 'action feedback', top_table_dict, bottom_table_dict
+    return top_table_dict, bottom_table_dict
+
+## prevent_initial_call=True
 
 @callback(
-    [Output(page_name + 'url', 'href',allow_duplicate=True),
-    Output(page_name + "action_feedback", 'children',allow_duplicate=True)],
-    Input(page_name+"home_button",'n_clicks'),
-        prevent_initial_call=True
+    [Output(page_name + 'url', 'href'),
+    Output(page_name + "action_feedback", 'children')],
+    Input(page_name+"home_button",'n_clicks')
 )
 def button_click_do_something(button0):
     #msg = "None of the buttons have been clicked yet"
