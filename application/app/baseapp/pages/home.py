@@ -65,7 +65,8 @@ css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !
                                     {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + css_row_height + "; height: " + css_row_height + ";line-height: " + css_row_height + ";max-height: " + css_row_height + ";"}
                                     ]
 
-top_table_cell_style = {'textAlign': 'left',
+
+bottom_table_cell_style = {'textAlign': 'left',
                                           'padding': '0px',
                                           'font_size': '11px',
                                           'overflow': 'hidden',
@@ -75,6 +76,8 @@ top_table_cell_style = {'textAlign': 'left',
                                           'overflow': 'hidden',
                                           'maxWidth': 0 ## made things work!!
                                          }
+
+bottom_table_table_style = {'height': bottom_table_height,'width' : bottom_table_width, 'overflowX': 'auto', 'overflowY': 'auto'},
 
 bottom_table = dash_table.DataTable(
                         columns=[{
@@ -87,10 +90,23 @@ bottom_table = dash_table.DataTable(
                             ],
                             fixed_rows={'headers': True},
                             virtualization=True,
-                            style_cell={'minWidth': 95, 'width': 95, 'maxWidth': 95},
-                            style_table={'height': 140, 'overflowX': 'auto', 'overflowY': 'auto'} , # default is 500
+                            style_cell=bottom_table_cell_style,
+                            style_table=bottom_table_table_style
                             css=css_row_heights,
                             )
+
+## create top table
+
+top_table_cell_style = {'textAlign': 'left',
+                                          'padding': '0px',
+                                          'font_size': '11px',
+                                          'overflow': 'hidden',
+                                          'textOverflow': 'ellipsis',
+                                          'border': '1px solid black',
+                                          'height': '12px',
+                                          'overflow': 'hidden',
+                                          'maxWidth': 0 ## made things work!!
+                                         }
 
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/solar.csv')
 column_names = ['state','plants','capacity','average','generation']
