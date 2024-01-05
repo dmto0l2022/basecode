@@ -127,14 +127,8 @@ top_df_full.columns = column_names
 
 top_df_empty = pd.DataFrame(data=[],columns=column_names)
 
-print("solar columns : ", df.columns)
+print("solar columns : ", top_df_full.columns)
 ## State,Number of Solar Plants,Installed Capacity (MW),Average MW Per Plant,Generation (GWh)
-
-#df.rename(index={0: "state", 1: "plants", 2: "capacity", 3: "average" , 4: "generation"}, inplace=True)
-
-#axis='columns'
-
-#df.rename(columns=['state','plants','capacity','average','generation'], inplace=True)
 
 print('top_df_full >>>>>>>>>>>>' ,top_df_full)
 
