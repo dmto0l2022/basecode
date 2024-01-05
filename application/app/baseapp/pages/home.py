@@ -301,10 +301,9 @@ def get_owned_data(href: str, page_size_in):
           State(page_name + 'screen_size_store', 'data')
          )
 def get_owned_data(href: str, page_size_in):
-    #page_size_as_string = json.dumps(page_size_in)
-    json_object = json.loads(page_size_in)
+    print(type(page_size_in), page_size_in)
     print('home : get_user_owned_data callback triggered ---- page size >>>>>>>' + page_size_as_string)
-    screen_height = json_object['height']
+    screen_height = page_size_in['height']
     print('screen_height >>>>>>>>>>', screen_height)
     plots_table_height = str(screen_height * 0.5) + 'px'
     ## get user id from cookie
