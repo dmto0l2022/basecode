@@ -236,15 +236,19 @@ def get_top_table_div(page_size_in,top_df_in):
 
 '''
 
-top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
+home_top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
                             'background-color':'green','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
 
-bottom_table_div_style =  {'position':'absolute','top': '333px','padding':'0','margins':'0','left':'0','border':'5px solid black',
+home_bottom_table_div_style =  {'position':'absolute','top': '333px','padding':'0','margins':'0','left':'0','border':'5px solid black',
                             'background-color':'blue','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
   
-TopTableDiv = html.Div(id=page_name+'top_table_div', children=[top_table_1],style=top_table_div_style)
+TopTableDiv = html.Div(id=page_name+'top_table_div', children=[top_table_1],
+                       ##style=home_top_table_div_style,
+                       className='home_top_table_div_class')
 
-BottomTableDiv = html.Div(id=page_name+'bottom_table_div',children=[bottom_table], style=bottom_table_div_style)
+BottomTableDiv = html.Div(id=page_name+'bottom_table_div',children=[bottom_table],
+                          ##style=home_bottom_table_div_style,
+                          className='home_bottom_table_div_class')
 
 
 ##------------------------------------
