@@ -85,7 +85,7 @@ bottom_table_table_style = {'height': bottom_table_height,'width' : bottom_table
 
 data=[{'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)} for j in range(25)]
 column_names = [{'name': 'Column {}'.format(i),'id': 'column-{}'.format(i)} for i in range(1,15)]
-sample_df = pd.DataFrame.from_dict(data, columns=column_names)
+sample_df = pd.DataFrame.from_dict(data)
 print(sample_data)
 
 bottom_table = dash_table.DataTable(
