@@ -228,7 +228,8 @@ def get_owned_data(href: str, page_size_in):
 @callback(
     [Output(page_name + 'url', 'href'),
     Output(page_name + "action_feedback", 'children')],
-    Input(page_name+"home_button",'n_clicks')
+    Input(page_name+"home_button",'n_clicks'),
+    prevent_initial_call=True
 )
 def button_click_do_something(button0):
     #msg = "None of the buttons have been clicked yet"
