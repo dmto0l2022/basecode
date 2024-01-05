@@ -114,6 +114,7 @@ top_table_width = '1000px'
 top_table_1 = dash_table.DataTable(data=df_new.to_dict('records'),
                                    columns=[{"name": i, "id": i} for i in df_new.columns],
                                    fixed_rows={'headers': True},
+                                   virtualization=True,
                                    style_cell = top_table_cell_style,
                                    style_table={'height': top_table_height,'width' : top_table_width, 'overflowX': 'auto', 'overflowY': 'auto'},
                                    css=css_row_heights)
