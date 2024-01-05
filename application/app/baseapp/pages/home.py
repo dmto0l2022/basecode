@@ -93,15 +93,20 @@ print(bottom_df_full)
 bottom_df_empty = pd.DataFrame(data=[], columns=column_names_list)
 print(bottom_df_empty)
 
-bottom_table = dash_table.DataTable(
-                            data=bottom_df_full.to_dict('records'),
-                            columns=[{"name": i, "id": i} for i in bottom_df_full.columns],
-                            fixed_rows={'headers': True},
-                            virtualization=True,
-                            style_cell=bottom_table_cell_style,
-                            style_table=bottom_table_table_style,
-                            css=css_row_heights,
-                            )
+def get_bottom_table(bottom_df_in):
+
+    bottom_table_ret = dash_table.DataTable(
+                                data=bottom_df_in.to_dict('records'),
+                                columns=[{"name": i, "id": i} for i in bottom_df_in.columns],
+                                fixed_rows={'headers': True},
+                                virtualization=True,
+                                style_cell=bottom_table_cell_style,
+                                style_table=bottom_table_table_style,
+                                css=css_row_heights,
+                                )
+    return bottom_table_ret
+
+bottom_table = get_bottom_table(bottom_df_full)
 
 ## create top table
 
@@ -116,9 +121,12 @@ top_table_cell_style = {'textAlign': 'left',
                                           'maxWidth': 0 ## made things work!!
                                          }
 
-df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/solar.csv')
+top_df_full = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/solar.csv')
 column_names = ['state','plants','capacity','average','generation']
-df.columns = column_names
+top_df_full.columns = column_names
+
+top_df_empty = pd.DataFrame(data=[],columns=column_names)
+
 print("solar columns : ", df.columns)
 ## State,Number of Solar Plants,Installed Capacity (MW),Average MW Per Plant,Generation (GWh)
 
@@ -128,20 +136,24 @@ print("solar columns : ", df.columns)
 
 #df.rename(columns=['state','plants','capacity','average','generation'], inplace=True)
 
-print('df >>>>>>>>>>>>' ,df)
+print('top_df_full >>>>>>>>>>>>' ,top_df_full)
 
-df_new = pd.concat([df,df,df,df])
+df_new = pd.concat([top_df_full,top_df_full,top_df_full,top_df_full])
 
 top_table_height = '300px'
 top_table_width = '1000px'
 
-top_table_1 = dash_table.DataTable(data=df_new.to_dict('records'),
-                                   columns=[{"name": i, "id": i} for i in df_new.columns],
-                                   fixed_rows={'headers': True},
-                                   virtualization=True,
-                                   style_cell = top_table_cell_style,
-                                   style_table={'height': top_table_height,'width' : top_table_width, 'overflowX': 'auto', 'overflowY': 'auto'},
-                                   css=css_row_heights)
+def get_top_table(top_df_in):
+    top_table_ret = dash_table.DataTable(data=top_df_in.to_dict('records'),
+                                       columns=[{"name": i, "id": i} for i in top_df_in.columns],
+                                       fixed_rows={'headers': True},
+                                       virtualization=True,
+                                       style_cell = top_table_cell_style,
+                                       style_table={'height': top_table_height,'width' : top_table_width, 'overflowX': 'auto', 'overflowY': 'auto'},
+                                       css=css_row_heights)
+    return top_table_ret
+
+top_table_1 = get_top_table(df_new)
 
 top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
                             'background-color':'green','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
