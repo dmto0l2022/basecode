@@ -229,8 +229,9 @@ def get_top_table_div(page_size_in,top_df_in):
                                        css=css_row_heights)
 
 '''
+
 top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
-                            'background-color':'green','height':top_div_height, 'width':top_div_width, 'overflow-y': 'scroll'}
+                            'background-color':'green','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
 
 bottom_table_div_style =  {'position':'absolute','top': '333px','padding':'0','margins':'0','left':'0','border':'5px solid black',
                             'background-color':'blue','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
