@@ -292,7 +292,7 @@ def get_owned_data(href: str, page_size_in):
 '''
 
 @callback([Output(page_name+'top_table_div','children'),
-          Output(page_name + 'top_table_div','children')],       
+          Output(page_name + 'bottom_table_div','children')],       
           Input(page_name +'url', 'href'),
           State(page_name + 'screen_size_store', 'data')
          )
