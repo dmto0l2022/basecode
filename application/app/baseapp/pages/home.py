@@ -111,7 +111,7 @@ print("solar columns : ", df.columns)
 
 print('df >>>>>>>>>>>>' ,df)
 
-df_new = pd.concat(df,df,df,df)
+df_new = pd.concat([df,df,df,df])
 
 top_table_height = '300px'
 
