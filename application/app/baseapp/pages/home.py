@@ -65,6 +65,10 @@ css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !
                                     {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + css_row_height + "; height: " + css_row_height + ";line-height: " + css_row_height + ";max-height: " + css_row_height + ";"}
                                     ]
 
+## create bottom table
+
+bottom_table_height = '300px'
+bottom_table_width = '600px'
 
 bottom_table_cell_style = {'textAlign': 'left',
                                           'padding': '0px',
@@ -79,6 +83,11 @@ bottom_table_cell_style = {'textAlign': 'left',
 
 bottom_table_table_style = {'height': bottom_table_height,'width' : bottom_table_width, 'overflowX': 'auto', 'overflowY': 'auto'},
 
+data=[{'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)} for j in range(25)]
+column_names = [{'name': 'Column {}'.format(i),'id': 'column-{}'.format(i)} for i in range(1,15)]
+sample_df = pd.DataFrame(data=data, columns=column_names])
+print(sample_data)
+
 bottom_table = dash_table.DataTable(
                         columns=[{
                                 'name': 'Column {}'.format(i),
@@ -91,7 +100,7 @@ bottom_table = dash_table.DataTable(
                             fixed_rows={'headers': True},
                             virtualization=True,
                             style_cell=bottom_table_cell_style,
-                            style_table=bottom_table_table_style
+                            style_table=bottom_table_table_style,
                             css=css_row_heights,
                             )
 
@@ -134,13 +143,6 @@ top_table_1 = dash_table.DataTable(data=df_new.to_dict('records'),
                                    style_cell = top_table_cell_style,
                                    style_table={'height': top_table_height,'width' : top_table_width, 'overflowX': 'auto', 'overflowY': 'auto'},
                                    css=css_row_heights)
-
-#top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
-
-page_content_style = {'top': '0px','padding':'0','margins':'0',
-                                   'height':'100%', 'width':'100%',
-                                   'left': '0','background-color': 'green',
-                                   'overflow-y': 'scroll'}
 
 top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
                             'background-color':'green','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
