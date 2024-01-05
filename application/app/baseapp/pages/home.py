@@ -106,16 +106,24 @@ column_names = ['state','plants','capacity','average','generation']
 #top_table_1 = dash_table.DataTable(df.to_dict('records'), [{"name": i, "id": i} for i in df.columns])
 top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
 
+top_table_div_style =  {'position':'absolute','top': '0px','padding':'0','margins':'0','left':'0',
+                            'background-color':'green','height':'300px', 'width':'100%'}
+
+bottom_table_div_style =  {'position':'absolute','top': '500px','padding':'0','margins':'0','left':'0',
+                            'background-color':'blue','height':'300px', 'width':'100%'}
+
 TopRowTable = dbc.Row([dbc.Col(id=page_name+"top_table_div",
                             children=[top_table_1],
                             width=12,)],
+                            style=top_table_div_style,
                             className =page_name + "top_table_class")
         
 
 BottonRowTable = dbc.Row([dbc.Col(id=page_name+'bottom_table_div', 
-                                  children=[bottom_table],
-                width=12,)],
-                    className = page_name + "bottom_table_class")
+                              children=[bottom_table],
+                              width=12,)],
+                              style=bottom_table_div_style,
+                              className = page_name + "bottom_table_class")
 
 ##------------------------------------
 
