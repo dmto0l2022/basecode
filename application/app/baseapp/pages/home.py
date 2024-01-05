@@ -154,7 +154,8 @@ def get_top_table(top_df_in, page_size_in):
     
     #top_table_width = str(page_size_in['width']) + 'px'
     top_table_width = '1000px'
-    top_table_height = str(page_size_in['height'] * 0.45) + 'px'
+    screen_height = int(page_size_in.get('height'))
+    top_table_height = str(screen_height * 0.45) + 'px'
     top_row_height = '12px'
     top_font_height = '11px'
     top_table_table_style = {'height': top_table_height,'width' : top_table_width, 'overflowX': 'auto', 'overflowY': 'auto'}
