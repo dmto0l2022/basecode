@@ -142,7 +142,7 @@ def get_layout():
         BottomTableDiv,
         html.Div(id=page_name + "action_feedback", children=['Action Feedback'])
         ])
-  return layout_out
+    return layout_out
 
 layout = get_layout
 
