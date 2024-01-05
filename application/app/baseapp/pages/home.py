@@ -114,6 +114,9 @@ top_table_div_style =  {'position':'absolute','top': '80px','padding':'0','margi
 bottom_table_div_style =  {'position':'absolute','top': '300px','padding':'0','margins':'0','left':'0',
                             'background-color':'blue','height':'300px', 'width':'100%'}
 
+TopTableDiv = html.Div(style=top_table_div_style)
+BottomTableDiv = html.Div(style=bottom_table_div_style)
+
 TopRowTable = dbc.Row([dbc.Col(id=page_name+"top_table_div",
                             children=[top_table_1],
                             width=12,)],
@@ -134,8 +137,8 @@ layout = html.Div([
     dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
     dcc.Store(id= page_name + 'screen_size_store', storage_type='local'),
     app_page_menu,
-    TopRowTable,
-    BottonRowTable,
+    TopTableDiv,
+    BottomTableDiv,
     html.Div(id=page_name + "action_feedback", children=['Action Feedback'])
     ])
 
