@@ -117,7 +117,7 @@ top_table_height = '300px'
 
 top_table_1 = dash_table.DataTable(data=df_new.to_dict('records'),
                                    columns=[{"name": i, "id": i} for i in df_new.columns],
-                                   style_table={'height': top_table_height, 'overflowX': 'auto', 'overflowY': 'auto'}
+                                   style_table={'height': top_table_height, 'overflowX': 'auto', 'overflowY': 'auto'},
                                    css=css_row_heights)
 
 #top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
