@@ -84,8 +84,9 @@ print(bottom_df_empty)
 
 def get_bottom_table(bottom_df_in,page_size_in):
     
-    bottom_table_width = page_size_in['width']
-    bottom_table_height = str(page_size_in['height'] * 0.45) + 'px'
+    bottom_table_width = int(page_size_in.get('width'))
+    bottom_table_height = int(page_size_in.get('height'))
+    
     bottom_row_height = '12px'
     bottom_font_height = '11px'
     bottom_table_table_style = {'height': bottom_table_height,'width' : bottom_table_width, 'overflowX': 'auto', 'overflowY': 'auto'}
