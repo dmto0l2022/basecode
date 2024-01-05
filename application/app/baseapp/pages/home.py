@@ -49,7 +49,21 @@ app_page_menu = page_menu.page_top_menu(page_name,action_button,relevant_dropdow
 
 ##-------------------------------------
 
-example_table_main = dash_table.DataTable(
+## css_row_height = self.row_height
+css_row_height = '12px'
+
+
+css_row_heights = [ {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                                    {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                                    {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + css_row_height + "; height: " + css_row_height + ";line-height: " + css_row_height + ";max-height: " + css_row_height + ";"},  # set height of header
+                                    {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + css_row_height + "; height: " + css_row_height + ";line-height: " + css_row_height + ";max-height: " + css_row_height + ";"},
+                                    {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + css_row_height + "; height: " + css_row_height + ";line-height: " + css_row_height + ";max-height: " + css_row_height + ";"},  # set height of body rows
+                                    {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + css_row_height + "; height: " + css_row_height + ";line-height: " + css_row_height + ";max-height: " + css_row_height + ";"},  # set height of header
+                                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + css_row_height + "; height: " + css_row_height + ";line-height: " + css_row_height + ";max-height: " + css_row_height + ";"},
+                                    {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + css_row_height + "; height: " + css_row_height + ";line-height: " + css_row_height + ";max-height: " + css_row_height + ";"}
+                                    ]
+
+top_table = dash_table.DataTable(
                         columns=[{
                                 'name': 'Column {}'.format(i),
                                 'id': 'column-{}'.format(i)
@@ -62,9 +76,35 @@ example_table_main = dash_table.DataTable(
                             virtualization=True,
                             style_cell={'minWidth': 95, 'width': 95, 'maxWidth': 95},
                             style_table={'height': 140, 'overflowX': 'auto', 'overflowY': 'auto'} , # default is 500
-                css=self.filter_table_css_row_heights,
+                            css=css_row_heights,
                             )
 
+bottom_table = dash_table.DataTable(
+                        columns=[{
+                                'name': 'Column {}'.format(i),
+                                'id': 'column-{}'.format(i)
+                            } for i in range(1,15)],
+                            data=[
+                                {'column-{}'.format(i): (j + (i-1)*5) for i in range(1, 15)}
+                                for j in range(25)
+                            ],
+                            fixed_rows={'headers': True},
+                            virtualization=True,
+                            style_cell={'minWidth': 95, 'width': 95, 'maxWidth': 95},
+                            style_table={'height': 140, 'overflowX': 'auto', 'overflowY': 'auto'} , # default is 500
+                            css=css_row_heights,
+                            )
+
+TopRowTable = dbc.Row([dbc.Col(id=page_name+"top_table_div",
+                            children=[top_table],
+                            width=12,)],
+                            className =page_name + "top_table_class")
+        
+
+BottonRowTable = dbc.Row([dbc.Col(id=page_name+'bottom_table_div', 
+                                  children=[bottom_table],
+                width=12,)],
+                    className = page_name + "bottom_table_class")
 
 ##------------------------------------
 
@@ -73,6 +113,8 @@ layout = html.Div([
     dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
     dcc.Store(id= page_name + 'screen_size_store', storage_type='local'),
     app_page_menu,
+    TopRowTable,
+    BottonRowTable,
     html.Div(id=page_name + "action_feedback", children=['Action Feedback'])
     ])
 
