@@ -152,7 +152,7 @@ top_df_full_x = pd.concat([top_df_full,top_df_full,top_df_full,top_df_full])
 ##top_table_width = '1000px'
 
 def get_top_table(top_df_in, page_size_in):
-    
+    print("get tt page_size_in >>", type(page_size_in), page_size_in)
     #top_table_width = str(page_size_in['width']) + 'px'
     top_table_width = '1000px'
     screen_height = int(page_size_in.get('height'))
@@ -184,7 +184,7 @@ def get_top_table(top_df_in, page_size_in):
                                        css=css_row_heights)
     return top_table_ret
 
-page_size = {"width":375,"height":667}
+page_size = {"width":'375',"height":'667'}
 
 top_table_1 = get_top_table(top_df_empty, page_size)
 
