@@ -109,12 +109,13 @@ print('df >>>>>>>>>>>>' ,df)
 df_new = pd.concat([df,df,df,df])
 
 top_table_height = '300px'
+top_table_width = '1000px'
 
 top_table_1 = dash_table.DataTable(data=df_new.to_dict('records'),
                                    columns=[{"name": i, "id": i} for i in df_new.columns],
                                    fixed_rows={'headers': True},
                                    style_cell = top_table_cell_style,
-                                   style_table={'height': top_table_height, 'overflowX': 'auto', 'overflowY': 'auto'},
+                                   style_table={'height': top_table_height,width=top_table_width, 'overflowX': 'auto', 'overflowY': 'auto'},
                                    css=css_row_heights)
 
 #top_table_1 = dash_table.DataTable(data=df.to_dict('records'), columns=column_names)
