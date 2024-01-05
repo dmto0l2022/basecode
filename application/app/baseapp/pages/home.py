@@ -98,15 +98,16 @@ bottom_table = dash_table.DataTable(
                             )
 
 df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/solar.csv')
-
+column_names = ['state','plants','capacity','average','generation']
+df.columns = column_names
 print("solar columns : ", df.columns)
 ## State,Number of Solar Plants,Installed Capacity (MW),Average MW Per Plant,Generation (GWh)
-column_names = ['state','plants','capacity','average','generation']
+
 #df.rename(index={0: "state", 1: "plants", 2: "capacity", 3: "average" , 4: "generation"}, inplace=True)
 
 #axis='columns'
 
-df.rename(columns=['state','plants','capacity','average','generation'], inplace=True)
+#df.rename(columns=['state','plants','capacity','average','generation'], inplace=True)
 
 print('df >>>>>>>>>>>>' ,df)
 
