@@ -106,7 +106,7 @@ def get_bottom_table(bottom_df_in):
                                 )
     return bottom_table_ret
 
-bottom_table = get_bottom_table(bottom_df_full)
+bottom_table = get_bottom_table(bottom_df_empty)
 
 ## create top table
 
@@ -147,7 +147,7 @@ def get_top_table(top_df_in):
                                        css=css_row_heights)
     return top_table_ret
 
-top_table_1 = get_top_table(df_new)
+top_table_1 = get_top_table(top_df_empty)
 
 top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','margins':'0','left':'0','border':'5px solid red',
                             'background-color':'green','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
