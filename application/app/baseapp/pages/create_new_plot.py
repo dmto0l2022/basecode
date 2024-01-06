@@ -238,9 +238,33 @@ def button_click_create_new_plot(button0,url_in, plot_name_input):
             new_plot_id = json_data['id']
             new_plot_name = json_data['name']
             print("create_new_plot_req plot id >>>> " , new_plot_id)
-    
-            msg = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)
-            href_return = url_in
+
+            ## add plot ownership
+
+            data = {
+                      "user_id": dmtool_userid,
+                      "plot_id": new_plot_id
+                    }
+            ## create new plot ownership metadata 
+            create_plot_ownership_api = "dmtool/fastapi_data/internal/data/plot_ownership/"
+            create_new_plot_ownership_api = fastapi_about_url + create_plot_ownership_api
+
+            create_new_plot_ownership_response = requests.post(create_new_plot_ownership_api, json=data, headers=request_header)
+            json_data_plot_ownership = json.loads(create_new_plot_ownership_response.text)
+        
+            ## manage non 200 responses
+            response_status_code = create_new_plot_ownership_response.status_code
+            print("plot ownership status code >>>> " , page_name + ">>>>>" + str(response_status_code))
+            if response_status_code != 200:
+                print("json_data_plot_ownership cnp >>>>>>>>>", json_data_plot_ownership)
+                #msg = json.dumps(json_data, separators=(',', ':'))
+                error_msg = json_data_plot_ownership.get('error_msg')
+                #dcc.ConfirmDialog(id=page_name + 'confirm_error',message=error_msg)
+                msg = error_msg
+                href_return = url_in
+            else:
+                msg = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)
+                href_return = url_in
         return href_return, msg#, True
     else:
         href_return = url_in
