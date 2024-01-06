@@ -983,6 +983,7 @@ class StylePlotAndTracesDashBoardLayout():
             full_url = container_url + api_url
             r = requests.get(full_url,  headers=self.request_header)
             response_data = r.json()
+            print('response_data >>>>>>>>>', response_data)
             response_data_frame = pd.DataFrame.from_dict(response_data['data_about'])
             limits_list = response_data_frame['limit_id'].tolist()
             print(limits_list)
