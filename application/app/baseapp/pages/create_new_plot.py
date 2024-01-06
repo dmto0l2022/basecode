@@ -222,7 +222,9 @@ def button_click_create_new_plot(button0,url_in, plot_name_input):
         
         if response_status_code != 200:
             print("json_data cnp >>>>>>>>>", json_data)
-            msg = json.dumps(json_data, separators=(',', ':'))
+            #msg = json.dumps(json_data, separators=(',', ':'))
+            error_msg = json_data.get('error_msg')
+            msg = error_msg
             href_return = url_in
         else:      
             ## parse response data
