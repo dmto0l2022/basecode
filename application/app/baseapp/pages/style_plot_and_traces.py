@@ -187,7 +187,7 @@ class StylePlotAndTracesDashBoardLayout():
 
         self.drop_down_save =  html.A(id=page_name + "dropdown_action", children=['Save Styled Plot'], href=baseapp_prefix + '/save_styled_plot', className="dropdown-item")
 
-        self.dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_create,drop_down_edit,drop_down_list, drop_down_exit], className = "dropdown-menu")
+        #self.dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [self.drop_down_save], className = "dropdown-menu")
 
         self.relevant_dropdowns = [self.drop_down_save] 
 
