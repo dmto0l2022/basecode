@@ -1069,5 +1069,5 @@ dbl.CreateLayout()
 layout = dbl.layout
 dbl.page_size_callback()
 dbl.RespondToButtonCallBackSPAT()
-dbl.UpdateChartsBasedOnPipedListCallBackSPAT()
+dbl.UpdateChartsForPlot()
 dbl.UpdateChartAndLegendAppearanceCallBackSPAT()
