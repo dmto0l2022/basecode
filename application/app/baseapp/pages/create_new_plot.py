@@ -137,7 +137,7 @@ plot_name_input_row = html.Div(
 
 ## from app.baseapp.libraries import page_menu as page_menu
 
-create_plot_button = html.Button("Create New Plot", id=page_name+"create_plot_button", className="btn btn-primary",type="button")
+create_plot_button = html.Button("Create Plot", id=page_name+"create_plot_button", className="btn btn-primary",type="button")
 
 dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
                            className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
