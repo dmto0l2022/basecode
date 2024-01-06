@@ -175,13 +175,18 @@ action_feedback_div_style =  {'position':'absolute','top': '633px','padding':'0'
 
 ActionFeedBackDiv = html.Div(id=page_name + "action_feedback", children=['Action Feedback'],style=action_feedback_div_style)
 
+WarningFeedback = dcc.ConfirmDialog(
+        id=page_name + 'confirm-danger',
+        message='Danger danger! Are you sure you want to continue?',
+    )
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
     dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
     app_page_menu,
     plot_name_input_row,
-    ActionFeedBackDiv
+    ActionFeedBackDiv,
+    WarningFeedback
     ])
 
 
