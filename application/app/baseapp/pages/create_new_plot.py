@@ -171,7 +171,7 @@ action_button = html.Button("Create New Plot",
 app_page_menu = page_menu.page_top_menu(page_name,action_button,relevant_dropdowns)
 
 action_feedback_div_style =  {'position':'absolute','top': '350px','padding':'0','margins':'0','left':'0','border':'5px solid green',
-                            'background-color':'pink','height':'90px', 'width':'600px', 'overflow-y': 'scroll'}
+                            'background-color':'pink','height':'90px', 'width':'100%', 'overflow-y': 'scroll'}
 
 ActionFeedBackDiv = html.Div(id=page_name + "action_feedback", children=['Action Feedback'],style=action_feedback_div_style)
 
