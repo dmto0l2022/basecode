@@ -1186,6 +1186,18 @@ plot data 60px
 			      overflow-y: scroll;
             			     }
 
+.home_page_action_feedback_div_class  {position:absolute;
+			    top: 633px;
+			    padding:0;
+			    margins:0;
+			    left:0;
+			    border:5px solid green;
+			    background-color:pink;
+			    height:30px;
+			    width:600px;
+			    overflow-y: scroll;
+			   }
+
 /*
 screen 1
 --------
@@ -1281,6 +1293,17 @@ iphone navigation bar 40px
 			      width:375px;
 			      overflow-y: scroll;
             			     }
+.home_page_action_feedback_div_class  {position:absolute;
+			    top: 497px;
+			    padding:0;
+			    margins:0;
+			    left:0;
+			    border:5px solid green;
+			    background-color:pink;
+			    height:30px;
+			    width:375px;
+			    overflow-y: scroll;
+			   }
 }
 
 /*
