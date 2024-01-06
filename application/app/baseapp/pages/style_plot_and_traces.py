@@ -984,7 +984,12 @@ class StylePlotAndTracesDashBoardLayout():
             r = requests.get(full_url,  headers=self.request_header)
             response_data = r.json()
             print('response_data >>>>>>>>>', response_data)
-            response_data_frame = pd.DataFrame.from_dict(response_data['data_about'])
+            lol = []
+            for x in response_data:
+                append_this = x['Data_about']
+                lol.append(append_this)
+                
+            response_data_frame = pd.DataFrame.from_dict(lol)
             limits_list = response_data_frame['limit_id'].tolist()
             print(limits_list)
             
