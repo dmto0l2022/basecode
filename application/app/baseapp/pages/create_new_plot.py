@@ -263,8 +263,8 @@ def button_click_create_new_plot(button0,url_in, plot_name_input):
                 msg = error_msg
                 href_return = url_in
             else:
-                msg = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)
-                href_return = url_in
+                msg = "Now select data to plot"
+                href_return = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)
         return href_return, msg#, True
     else:
         href_return = url_in
