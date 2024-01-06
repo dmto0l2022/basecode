@@ -356,7 +356,7 @@ class StylePlotAndTracesDashBoardLayout():
         
         first_row_second_column =  dbc.Row(
                 [
-                    dbc.Col(id= self.page_name+'table_div', children=[self.TableFormat], width=6, sm=12, md=12, className="PAGE_TABLE_CONTENT_TOP_RIGHT"),
+                    dbc.Col(id= self.page_name+'table_div', children=[self.TableFormat], width=12, sm=12, md=12, className="PAGE_TABLE_CONTENT_TOP_RIGHT"),
                 ], style={'width': '100%', 'height': '100%','border': '2px solid black'})
     
         '''
@@ -372,7 +372,7 @@ class StylePlotAndTracesDashBoardLayout():
                 dbc.Row(
                     [
                         dbc.Col(id= self.page_name+'chart_div', children=[self.GraphChart], width=12, sm=12, md=12,
-                                className="PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
+                                style={'border': '2px solid black'}),
                         dbc.Col(children=[first_row_second_column] , width=12, sm=12, md=12)
                     ], style={'height': '100%'} ##className = "CONTENT_ROW"
                 ),
