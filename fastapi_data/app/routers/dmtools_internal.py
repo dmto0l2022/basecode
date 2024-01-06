@@ -862,8 +862,12 @@ async def create_plot(plot: PlotCreate, session: AsyncSession = Depends(get_sess
 @router.get(api_base_url + "plots", response_model=list[Plot])
 async def read_plots(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
-    result = await session.execute(select(Plot))
-    plots = result.scalars().all()
+    
+    result = await session.execute(select(plot_ownership,Plot).join(Plot).where(Plot_ownership.user_id == dmtool_userid))
+                              
+    #result = await session.execute(select(Plot))
+    #plots = result.scalars().all()
+    plots = result['Plot']
     return [Plot(id = plot.id,
                     name = plot.name,
                     x_min = plot.x_min,
