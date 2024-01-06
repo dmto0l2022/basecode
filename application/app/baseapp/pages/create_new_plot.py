@@ -170,12 +170,12 @@ action_button = html.Button("Create New Plot",
 
 app_page_menu = page_menu.page_top_menu(page_name,action_button,relevant_dropdowns)
 
-action_feedback_div_style =  {'position':'absolute','top': '633px','padding':'0','margins':'0','left':'0','border':'5px solid green',
-                            'background-color':'pink','height':'30px', 'width':'600px', 'overflow-y': 'scroll'}
+action_feedback_div_style =  {'position':'absolute','top': '350px','padding':'0','margins':'0','left':'0','border':'5px solid green',
+                            'background-color':'pink','height':'90px', 'width':'600px', 'overflow-y': 'scroll'}
 
 ActionFeedBackDiv = html.Div(id=page_name + "action_feedback", children=['Action Feedback'],style=action_feedback_div_style)
 
-ErrorFeedback = dcc.ConfirmDialog(id=page_name + 'confirm_error',message="A helpful error message")
+#ErrorFeedback = dcc.ConfirmDialog(id=page_name + 'confirm_error',message="A helpful error message")
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
@@ -183,14 +183,14 @@ layout = html.Div([
     app_page_menu,
     plot_name_input_row,
     ActionFeedBackDiv,
-    ErrorFeedback
+    #ErrorFeedback
     ])
 
 
 @callback(
     [Output(page_name + 'url', 'href',allow_duplicate=True),
-    Output(page_name + "action_feedback", 'children'),
-    Output(page_name + 'confirm_error', 'displayed')],
+    Output(page_name + "action_feedback", 'children')],
+    ##Output(page_name + 'confirm_error', 'displayed')],
     [Input(page_name+"create_plot_button", "n_clicks"),Input(page_name + 'url', 'href')],
     State(page_name + 'plot_name', "value"),
         prevent_initial_call=True
@@ -227,7 +227,7 @@ def button_click_create_new_plot(button0,url_in, plot_name_input):
             print("json_data cnp >>>>>>>>>", json_data)
             #msg = json.dumps(json_data, separators=(',', ':'))
             error_msg = json_data.get('error_msg')
-            dcc.ConfirmDialog(id=page_name + 'confirm_error',message=error_msg)
+            #dcc.ConfirmDialog(id=page_name + 'confirm_error',message=error_msg)
             msg = error_msg
             href_return = url_in
         else:      
@@ -241,8 +241,8 @@ def button_click_create_new_plot(button0,url_in, plot_name_input):
     
             msg = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)
             href_return = url_in
-        return href_return, msg, True
+        return href_return, msg#, True
     else:
         href_return = url_in
-        return href_return, msg, True
+        return href_return, msg#, True
         
