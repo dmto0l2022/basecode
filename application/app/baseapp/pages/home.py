@@ -331,7 +331,7 @@ def get_owned_data(href: str, page_size_in):
     top_table_ret = get_top_table(top_df_full_x, page_size_in)
     bottom_table_ret = get_bottom_table(bottom_df_full, page_size_in)
   
-    return [top_table_ret, bottom_table_ret, href]
+    return [top_table_ret, bottom_table_ret]
 
 
 ## prevent_initial_call=True
