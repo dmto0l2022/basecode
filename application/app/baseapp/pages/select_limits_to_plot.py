@@ -66,6 +66,7 @@ class SelectLimitsToPlotDashBoardLayout():
     def __init__(self):
         self.page_name = 'select_limits_to_plot'
         self.page_title = 'select_limits_to_plot'
+        self.baseapp_prefix = '/application/baseapp'
         self.plot_id = 0
         self.dmtool_userid = 0
         self.main_table_id =  "main_limits_table"
@@ -824,10 +825,10 @@ class SelectLimitsToPlotDashBoardLayout():
                                     children=html.Span(className="sr-only", children=['Create Plot Menu'])
                                   )
         
-        drop_down_style =  html.A(id=self.page_name + "dropdown_action", children=['Style Plot'], href=baseapp_prefix + '/create_new_plot', className="dropdown-item")
-        drop_down_edit =  html.A(id=self.page_name + "dropdown_action", children=['Edit Existing Plot'], href=baseapp_prefix + '/edit_existing_plot', className="dropdown-item")
-        drop_down_list =  html.A(id=self.page_name + "dropdown_action", children=['List Your Plots'], href=baseapp_prefix + '/list_all_plots', className="dropdown-item")
-        drop_down_exit =  html.A(id=self.page_name + "dropdown_action", children=['Exit Plots'], href=baseapp_prefix + '/plot_menu', className="dropdown-item")
+        drop_down_style =  html.A(id=self.page_name + "dropdown_action", children=['Style Plot'], href=self.baseapp_prefix + '/create_new_plot', className="dropdown-item")
+        drop_down_edit =  html.A(id=self.page_name + "dropdown_action", children=['Edit Existing Plot'], href=self.baseapp_prefix + '/edit_existing_plot', className="dropdown-item")
+        drop_down_list =  html.A(id=self.page_name + "dropdown_action", children=['List Your Plots'], href=self.baseapp_prefix + '/list_all_plots', className="dropdown-item")
+        drop_down_exit =  html.A(id=self.page_name + "dropdown_action", children=['Exit Plots'], href=self.baseapp_prefix + '/plot_menu', className="dropdown-item")
         
         dropdown_menu = html.Div(id=self.page_name + "dropdown_menu", children = [drop_down_create,drop_down_edit,drop_down_list, drop_down_exit], className = "dropdown-menu")
         
