@@ -18,6 +18,7 @@ from dash import dash_table
 from dash import Dash
 from dash import Input, Output,State
 from dash import callback
+from dash import clientside_callback
 
 from dash.exceptions import PreventUpdate
 
