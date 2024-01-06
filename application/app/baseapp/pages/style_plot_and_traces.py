@@ -364,16 +364,17 @@ class StylePlotAndTracesDashBoardLayout():
                     dbc.Col(id= self.page_name+'legend_div', children=[self.GraphLegend], width=6, sm=12, md=12, className="PAGE_TABLE_CONTENT_BOTTOM_RIGHT")
                 ] , style={'width': '100%', 'height': '50%', 'border': '2px solid black'})
             
-        dashboard_container = html.Div(
-        [
-            dbc.Row(
-                [
-                    dbc.Col(id= self.page_name+'chart_div', children=[self.GraphChart], width=6, sm=12, md=12, className="PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
-                    dbc.Col(children=[first_row_second_column,second_row_second_column] , width=6, sm=12, md=12)
-                ], style={'height': '100%'} ##className = "CONTENT_ROW"
-            ),
-        ],  style={'height': '100%'} ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
-        )    
+        self.dashboard_container = html.Div(id=self.page_name+'content',
+            children=[
+                dbc.Row(
+                    [
+                        dbc.Col(id= self.page_name+'chart_div', children=[self.GraphChart], width=6, sm=12, md=12,
+                                className="PAGE_GRAPH_CONTENT", style={'border': '2px solid black'}),
+                        dbc.Col(children=[first_row_second_column,second_row_second_column] , width=6, sm=12, md=12)
+                    ], style={'height': '100%'} ##className = "CONTENT_ROW"
+                ),
+            ],  style={'height': '100%'} ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
+            )    
         
         #self.layout = dashboard_container
         
@@ -385,9 +386,8 @@ class StylePlotAndTracesDashBoardLayout():
             dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
             ##html.Div(id=self.page_name+'layout-div'),
             self.app_page_menu,
-            html.Div(id=self.page_name+'content',children=dashboard_container,className="DASHBOARD_CONTAINER_STYLE"),
-            self.debug_output
-        ],className="PAGE_CONTENT")
+            self.dashboard_container,
+            self.debug_output])
 
         
         '''
