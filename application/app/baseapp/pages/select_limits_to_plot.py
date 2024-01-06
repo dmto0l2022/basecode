@@ -794,7 +794,8 @@ class SelectLimitsToPlotDashBoardLayout():
     
         
         default_width = 4
-
+        
+        '''
         self.RowOfButtons = dbc.Row(
                         [
                         dbc.Col(html.Button('Plot', id=self.page_name + '_plot_' + 'button_id', n_clicks=0,
@@ -808,7 +809,41 @@ class SelectLimitsToPlotDashBoardLayout():
                             xs=default_width, sm=default_width, md=default_width, lg=default_width, xl=default_width, xxl=default_width),
                         ]
                     , className="select_limits_to_plot_button_class") ##style=select_limits_to_plot_button_style)
+        '''
+        ## create page_nav_bar
+        
+        style_plot_button = html.Button("Style Plot", id=self.page_name+"style_plot_button", className="btn btn-primary",type="button")
 
+        dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
+                                   className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
+                                   **{
+                                    'data-toggle' : 'dropdown',
+                                    'aria-haspopup' : 'true',
+                                    'aria-expanded' : 'false',
+                                    },
+                                    children=html.Span(className="sr-only", children=['Create Plot Menu'])
+                                  )
+        
+        drop_down_style =  html.A(id=self.page_name + "dropdown_action", children=['Style Plot'], href=baseapp_prefix + '/create_new_plot', className="dropdown-item")
+        drop_down_edit =  html.A(id=self.page_name + "dropdown_action", children=['Edit Existing Plot'], href=baseapp_prefix + '/edit_existing_plot', className="dropdown-item")
+        drop_down_list =  html.A(id=self.page_name + "dropdown_action", children=['List Your Plots'], href=baseapp_prefix + '/list_all_plots', className="dropdown-item")
+        drop_down_exit =  html.A(id=self.page_name + "dropdown_action", children=['Exit Plots'], href=baseapp_prefix + '/plot_menu', className="dropdown-item")
+        
+        dropdown_menu = html.Div(id=self.page_name + "dropdown_menu", children = [drop_down_create,drop_down_edit,drop_down_list, drop_down_exit], className = "dropdown-menu")
+        
+        relevant_dropdowns = [drop_down_style,drop_down_edit,drop_down_list,drop_down_exit] 
+        
+        button_padding = {'height':'33px','padding-left':'12px','padding-right':'12px' ,
+                                  'padding-top':'0px',
+                                  'padding-bottom':'0px',
+                                  'margin':'0', 'border': '0', 'vertical-align':'middle'}
+        
+        action_button = html.Button("Style Plot",
+                                               id=self.page_name+"style_plot_button",
+                                               className="btn btn-primary",type="button",
+                                               style=button_padding)
+        
+        self.app_page_menu = page_menu.page_top_menu(self.page_name,action_button,relevant_dropdowns)
         
         #self.DivOfButtons = html.Div(id= self.page_name + "page_buttons",
         #children=[new_button,save_button,cancel_button,home_button,list_button],
@@ -843,7 +878,7 @@ class SelectLimitsToPlotDashBoardLayout():
         maincolumn = html.Div(
                         [dcc.Location(id=page_name+'url',refresh=True),
                         dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'), ## stores screen size
-                        self.RowOfButtons,
+                        self.app_page_menu,
                         self.DivPlotName,
                         self.RowFilters,
                         self.RowLimits,
