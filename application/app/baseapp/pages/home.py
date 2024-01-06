@@ -303,7 +303,8 @@ def get_owned_data(href: str, page_size_in):
 '''
 
 @callback([Output(page_name+'top_table_div','children'),
-          Output(page_name + 'bottom_table_div','children')],       
+          Output(page_name + 'bottom_table_div','children')
+          ],       
           Input(page_name +'url', 'href'),
           State(page_name + 'screen_size_store', 'data')
          )
@@ -330,7 +331,7 @@ def get_owned_data(href: str, page_size_in):
     top_table_ret = get_top_table(top_df_full_x, page_size_in)
     bottom_table_ret = get_bottom_table(bottom_df_full, page_size_in)
   
-    return [top_table_ret, bottom_table_ret]
+    return [top_table_ret, bottom_table_ret, href]
 
 
 ## prevent_initial_call=True
