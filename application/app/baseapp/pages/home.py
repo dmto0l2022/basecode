@@ -268,7 +268,9 @@ def get_layout():
         dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
         dcc.Store(id= page_name + 'screen_size_store', storage_type='local'),
         app_page_menu,
+        TopTableTitleDiv,
         TopTableDiv,
+        BottomTableTitleDiv,
         BottomTableDiv,
         html.Div(id=page_name + "action_feedback", children=['Action Feedback'],style=action_feedback_div_style)
         ])
