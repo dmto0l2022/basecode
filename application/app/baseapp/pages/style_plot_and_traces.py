@@ -70,6 +70,8 @@ from app.baseapp.dashboard_libraries import scaling as sc
 
 dmtool_userid = '1'
 
+from app.baseapp.libraries import page_menu as page_menu
+
 '''
 def GetChart(chart_in):
 
@@ -173,11 +175,33 @@ class StylePlotAndTracesDashBoardLayout():
                           'height':'19px',
                           'verticalAlign': 'center'}
         
-        self.new_button =  html.Button("New", id= self.page_name + "new_button_id", style=self.button_styling_1)
-        self.save_button =  html.Button("Save", id= self.page_name + "save_button_id", style=self.button_styling_1)
-        self.cancel_button =  html.Button("Cancel",  id=self.page_name + "cancel_button_id", style=self.button_styling_1)
-        self.home_button =  html.Button("Home",  id=self.page_name + "home_button_id", style=self.button_styling_1)
-        self.row_of_buttons = html.Div(id= self.page_name + "page_buttons", children=[self.new_button,self.save_button,self.cancel_button,self.home_button], className="PAGE_FOOTER_BUTTONS")
+        self.dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
+                           className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
+                           **{
+                            'data-toggle' : 'dropdown',
+                            'aria-haspopup' : 'true',
+                            'aria-expanded' : 'false',
+                            },
+                            children=html.Span(className="sr-only", children=['Create Plot Menu'])
+                          )
+
+        self.drop_down_save =  html.A(id=page_name + "dropdown_action", children=['Save Styled Plot'], href=baseapp_prefix + '/save_styled_plot', className="dropdown-item")
+
+        self.dropdown_menu = html.Div(id=page_name + "dropdown_menu", children = [drop_down_create,drop_down_edit,drop_down_list, drop_down_exit], className = "dropdown-menu")
+
+        self.relevant_dropdowns = [self.drop_down_save] 
+
+        self.button_padding = {'height':'33px','padding-left':'12px','padding-right':'12px' ,
+                                  'padding-top':'0px',
+                                  'padding-bottom':'0px',
+                                  'margin':'0', 'border': '0', 'vertical-align':'middle'}
+
+        self.action_button = html.Button("Save Styled Plot",
+                                               id=page_name+"save_styled_plot_button",
+                                               className="btn btn-primary",type="button",
+                                               style=button_padding)
+
+        self.app_page_menu = page_menu.page_top_menu(self.page_name,self.action_button,self.relevant_dropdowns)
           
         self.debug_output = html.Div(children=[html.Div(children="Debug Output", className="NOPADDING_CONTENT OUTPUT_CELL_TITLE"),
                                               html.Div(id=self.page_name+"cell-output-div", children="Cell Output Here", className="NOPADDING_CONTENT OUTPUT_CELL"),
@@ -356,10 +380,11 @@ class StylePlotAndTracesDashBoardLayout():
         #layout = style_plot_and_traces_form_form
         
         self.layout = html.Div([
-            dcc.Location(id=page_name+'url',refresh=True),
-            ##html.Div(id=page_name+'layout-div'),
-            html.Div(id=page_name+'content',children=dashboard_container,className="DASHBOARD_CONTAINER_STYLE"),
-            self.row_of_buttons,
+            dcc.Location(id=self.page_name+'url',refresh=True),
+            dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
+            ##html.Div(id=self.page_name+'layout-div'),
+            self.app_page_menu,
+            html.Div(id=self.page_name+'content',children=dashboard_container,className="DASHBOARD_CONTAINER_STYLE"),
             self.debug_output
         ],className="PAGE_CONTENT")
 
@@ -922,53 +947,83 @@ class StylePlotAndTracesDashBoardLayout():
     def RespondToButtonCallBackSPAT(self):
         @callback(
             Output(page_name+'button-output-div', 'children'),
-            Input(page_name+'new_button_id', 'n_clicks'),
-            Input(page_name+'save_button_id', 'n_clicks'),
-            Input(page_name+'cancel_button_id', 'n_clicks'),
-            Input(page_name+'home_button_id', 'n_clicks'),
+            Input(page_name+'new_button_id', 'n_clicks')
         )
         def displayClick1_1(btn1, btn2, btn3, btn4):
             msg = "None of the buttons have been clicked yet"
             prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
             if self.page_name+'new_button_id' == prop_id:
                 msg = "New Button was most recently clicked"
-            elif self.page_name+'save_button_id' == prop_id:
-                msg = "Save Button most recently clicked"
-            elif self.page_name+'cancel_button_id' == prop_id:
-                msg = "Cancel Button was most recently clicked"
-            elif self.page_name+'home_button_id' == prop_id:
-                msg = "Home Button most recently clicked"
             else:
                 msg = "No Button Pressed"
             return html.Div(msg)
 
-    def UpdateChartsBasedOnPipedListCallBackSPAT(self):
+    def UpdateChartsForPlot(self):
         @callback(Output(page_name+'chart_div','children'),
                   Output(page_name+'table_div', 'children'),
                   Output(page_name+'legend_div','children'),
-                  [Input(page_name+'url', 'pathname'),Input(page_name+'url', 'search') ,Input(page_name+'url', 'href')])
-        def display_page(pathname,search,href):
-            print('spat : 3 chart callback triggered')
-            original_search_string = search
-            just_list = original_search_string.split('=')
-            o = urlparse(href)
-            print('query>>>>' ,o.query)
+                  Input(self.page_name +'url', 'href'),
+                  State(self.page_name + 'screen_size_store', 'data'))
+        def set_plot_name(url_in,page_size_in):
+            ## get user id from cookie
+            dmtooluser_cls = gdu.GetUserID()
+            self.dmtool_userid = dmtooluser_cls.dmtool_userid
+            self.request_header = {'dmtool-userid':str(self.dmtool_userid)}
+            ## get plot name from url
+            f = furl(url_in)
+            self.plot_id = f.args['plot_id']
+            ## get about data
+            container_url = 'http://container_fastapi_data_1:8014'
+            api_url = '/dmtool/fastapi_data/internal/data/data_about?plot_id_in=' + str(self.plot_id)
+            full_url = container_url + api_url
+            r = requests.get(full_url,  headers=self.request_header)
+            response_data = r.json()
+            response_data_frame = pd.DataFrame.from_dict(response_data['data_about'])
+            limits_list = response_data_frame['limit_id'].tolist()
+            print(limits_list)
             
-            #try:
-            just_list = o.query.split('=')[1]
-            print("just_list >>>>>>",just_list)
-            list_of_limits_str = just_list.split('|')
-            list_of_limits_int = []
-            for l in list_of_limits_str:
-                list_of_limits_int.append(int(l))
+            #https://dev1.dmtool.info/dmtool/fastapi_data/internal/data/data_about?plot_id_in=3181
+            ## get limit data
+            ##def GetListOfLimits(dmtool_userid,listoflimits_in):
+            print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get list of limits called <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            
+            fastapi_url_listoflimits = "http://container_fastapi_data_1:8014/dmtool/fastapi_data/internal/data/listoflimits" ## multiple limit operations
+           
+            response_data_frame = pd.DataFrame()
                 
-            #except:
-            #    list_of_limits_int = [45]
+            #try:
+            print("get limits - list of limits ", limits_list)
+            listoflimits_json = {"limit_ids": limits_list}
             
-            print('spat callback: list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits_int)
+            r = requests.post(fastapi_url_listoflimits,json=listoflimits_json,  headers=request_header)
+            response_data = r.json()
+            #print("list of limits request response >>>>>>>>>>>>>>>>>>>>> " ,response_data)
+        
+            #print('response data')
+            #print('===================')
+            #print(response_data)
+            print('===== response data frame ==============')
+            response_data_frame = pd.DataFrame.from_dict(response_data['limits'])
+            #print('===== response data frame ==============')
+            
+            #print("gld : library response_data_frame >>>>>" , response_data_frame)
+            
+            #limit_list_df_resp, trace_list_df_resp, limit_data_df_resp = parse_series_and_values(response_data_frame)
+            #column_names=['id','data_label','data_comment','data_values']
+
+            self.limits_dataframe = response_data_frame
+            ## create appearance data
+            
+
+            ## create data data
+
+            ## get data data
+            
+            
+            ##print('spat callback: list_of_limits >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', list_of_limits_int)
             #list_of_limits = [33]
             #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
-            self.SetListOfLimits(list_of_limits_int)
+            self.SetListOfLimits(limits_list)
             self.UpdateData()
             self.UpdateLegend()
             self.UpdateFormat()
@@ -990,11 +1045,28 @@ class StylePlotAndTracesDashBoardLayout():
             self.UpdateChart()
             self.UpdateLegend()
             return [self.FigChart, self.FigLegend]
+    def page_size_callback(self):
+        clientside_callback(
+            """
+            function(href) {
+                var w = window.innerWidth;
+                var h = window.innerHeight;
+                var width_text = w.toString();
+                var height_text = h.toString();
+                const page_size_dict = {width: width_text, height: height_text};
+                return page_size_dict;
+            }
+            """,
+            Output(self.page_name + 'screen_size_store', 'data'),
+            Input(self.page_name + 'url', 'href')
+        )
+        
 
 
 dbl = StylePlotAndTracesDashBoardLayout(page_name, dmtool_userid)
 dbl.CreateLayout()
 layout = dbl.layout
+dbl.page_size_callback()
 dbl.RespondToButtonCallBackSPAT()
 dbl.UpdateChartsBasedOnPipedListCallBackSPAT()
 dbl.UpdateChartAndLegendAppearanceCallBackSPAT()
