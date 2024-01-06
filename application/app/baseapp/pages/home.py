@@ -256,6 +256,7 @@ BottomTableDiv = html.Div(id=page_name+'bottom_table_div',children=[bottom_table
 def get_layout():
     layout_out = html.Div(id=page_name + 'layout_div',
       children=[
+        dcc.Interval(id=page_nam+ 'interval-component',interval=1000,n_intervals=0, max_intervals=2),
         dcc.Location(id=page_name + "url", refresh=True), ## important to allow redirects
         dcc.Store(id= page_name + 'screen_size_store', storage_type='local'),
         app_page_menu,
