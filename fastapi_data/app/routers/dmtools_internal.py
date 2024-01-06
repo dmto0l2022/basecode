@@ -867,25 +867,31 @@ async def read_plots(session: AsyncSession = Depends(get_session),
                               
     #result = await session.execute(select(Plot))
     #plots = result.scalars().all()
-    plots = result['Plot']
-    return [Plot(id = plot.id,
-                    name = plot.name,
-                    x_min = plot.x_min,
-                    x_max = plot.x_max,
-                    y_min = plot.y_min,
-                    y_max = plot.y_max,
-                    x_units = plot.x_units,
-                    y_units = plot.y_units,
-                    user_id = plot.user_id,
-                    created_at = plot.created_at,
-                    updated_at = plot.updated_at,
-                    plot_png = plot.plot_png,
-                    legend_png = plot.legend_png,
-                    plot_eps = plot.plot_eps,
-                    legend_eps = plot.legend_eps,
-                    no_id = plot.no_id
-                         )
-            for plot in plots]
+    list_of_plots = []
+    for x in result:
+        append_this = x['Plot']
+        list_of_plots.append(append_this)
+    
+    return list_of_plots
+    
+'''[Plot(id = plot.id,
+name = plot.name,
+x_min = plot.x_min,
+x_max = plot.x_max,
+y_min = plot.y_min,
+y_max = plot.y_max,
+x_units = plot.x_units,
+y_units = plot.y_units,
+user_id = plot.user_id,
+created_at = plot.created_at,
+updated_at = plot.updated_at,
+plot_png = plot.plot_png,
+legend_png = plot.legend_png,
+plot_eps = plot.plot_eps,
+legend_eps = plot.legend_eps,
+no_id = plot.no_id
+     )
+for plot in plots]'''
 
 
 ###
