@@ -1006,7 +1006,7 @@ class StylePlotAndTracesDashBoardLayout():
             print("get limits - list of limits ", limits_list)
             listoflimits_json = {"limit_ids": limits_list}
             
-            r = requests.post(fastapi_url_listoflimits,json=listoflimits_json,  headers=request_header)
+            r = requests.post(fastapi_url_listoflimits,json=listoflimits_json,headers=self.request_header)
             response_data = r.json()
             #print("list of limits request response >>>>>>>>>>>>>>>>>>>>> " ,response_data)
         
