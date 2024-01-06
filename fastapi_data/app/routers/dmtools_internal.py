@@ -863,7 +863,7 @@ async def create_plot(plot: PlotCreate, session: AsyncSession = Depends(get_sess
 async def read_plots(session: AsyncSession = Depends(get_session),
                             dmtool_userid: Annotated[int | None, Header()] = None):
     
-    result = await session.execute(select(plot_ownership,Plot).join(Plot).where(Plot_ownership.user_id == dmtool_userid))
+    result = await session.execute(select(Plot_ownership,Plot).join(Plot).where(Plot_ownership.user_id == dmtool_userid))
                               
     #result = await session.execute(select(Plot))
     #plots = result.scalars().all()
