@@ -1136,8 +1136,20 @@ plot data 60px
 	                  }
 
 
-.home_top_table_div_class  {  position:absolute;
+.home_top_table_title_div_class  {  position:absolute;
 			      top:33px;
+			      padding:0;
+			      margins:0;
+			      left:0;
+			      border:5px solid red;
+                              background-color:green;
+			      height:20px;
+			      width:600px;
+			      overflow-y: scroll;
+            			   }
+
+.home_top_table_div_class  {  position:absolute;
+			      top:53px;
 			      padding:0;
 			      margins:0;
 			      left:0;
@@ -1148,8 +1160,20 @@ plot data 60px
 			      overflow-y: scroll;
             			   }
 
+.home_bottom_table_title_div_class {position:absolute;
+			      top:353px;
+			      padding:0;
+			      margins:0;
+			      left:0;
+			      border:5px solid black;
+		      	      background-color:blue;
+			      height:20px;
+			      width:600px;
+			      overflow-y: scroll;
+            			     }
+
 .home_bottom_table_div_class {position:absolute;
-			      top:333px;
+			      top:373px;
 			      padding:0;
 			      margins:0;
 			      left:0;
