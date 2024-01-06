@@ -1304,14 +1304,11 @@ class SelectLimitsToPlotDashBoardLayout():
         @callback(
             [Output(self.page_name+'url', 'href',allow_duplicate=True) ## duplicate set as all callbacks tartgetting url
         ],
-            [
-            Input(self.page_name + "_plot_" + "button_id", "n_clicks"),
-            Input(self.page_name + "_cancel_" + "button_id", "n_clicks"),
-            Input(self.page_name + "_home_" + "button_id", "n_clicks"),
-                ],[State(self.page_name +'limits_to_plot_table', 'data')],
+            Input(self.page_name+"style_plot_button", "n_clicks"),
+            State(self.page_name +'limits_to_plot_table', 'data'),
                 prevent_initial_call=True
         )
-        def button_click(button1,button2,button3,plot_table_in):
+        def button_click(button1,plot_table_in):
             #msg = "None of the buttons have been clicked yet"
             print("sltp : button callback triggered")
             prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
@@ -1331,41 +1328,32 @@ class SelectLimitsToPlotDashBoardLayout():
             #print('limit_ids >>>>>>>>' ,limit_ids)
                     
             #msg = prop_id
-            if self.page_name + "_plot_" + "button_id" == prop_id :
+            if self.page_name + "style_plot_button" == prop_id :
                 #msg = "Button 1 was most recently clicked"
                 #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
-                href_return = '/application/baseapp/style_plot_and_traces'
-                return [href_return]
-            elif  self.page_name + "_home_" + "button_id" == prop_id:
-                #msg = "Button 2 was most recently clicked"
-                #href_return = dash.page_registry['pages.home']['path']
-                href_return = '/application/baseapp/homepage'
-                return  [href_return]
-            elif self.page_name + "_cancel_" + "button_id" == prop_id:
-                #msg = "Button 2 was most recently clicked"
-                #href_return = dash.page_registry['pages.home']['path']
-                href_return = '/application/baseapp/plot_menu'
-                return  [href_return]
+                #href_return = '/application/baseapp/style_plot_and_traces'
+                href_return = self.baseapp_prefix+ '/style_plot_and_traces/?plot_id='+str(self.plot_id)
+                return href_return
             else:
                 href_return = '/application/baseapp/select_limits_to_plot'
                 return href_return
-
-    def page_size_callback(self):
-        ## #return [myJSON, jsn];
-        clientside_callback(
-                        """
-                        function(href) {
-                            var w = window.innerWidth;
-                            var h = window.innerHeight;
-                            var jsn = {width: w, height: h};
-                            const myJSON = JSON.stringify(jsn); 
-                            return jsn;
-                        }
-                        """,
-                        Output(self.page_name + 'screen_size_store', 'data'),
-                        Input(self.page_name + 'url', 'href')
-                    )
     
+    def page_size_callback(self):
+        clientside_callback(
+            """
+            function(href) {
+                var w = window.innerWidth;
+                var h = window.innerHeight;
+                var width_text = w.toString();
+                var height_text = h.toString();
+                const page_size_dict = {width: width_text, height: height_text};
+                return page_size_dict;
+            }
+            """,
+            Output(self.page_name + 'screen_size_store', 'data'),
+            Input(self.page_name + 'url', 'href')
+        )
+        
     def serve_layout(self):
         self.CreateLayout()
         layout_return = self.layout
