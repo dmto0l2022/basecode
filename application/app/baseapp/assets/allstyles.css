@@ -1156,7 +1156,7 @@ plot data 60px
 			      left:0;
 			      border:5px solid red;
                               background-color:green;
-			      height:300px;
+			      height:288px;
 			      width:600px;
 			      overflow-y: scroll;
             			   }
@@ -1181,13 +1181,13 @@ plot data 60px
 			      left:0;
 			      border:5px solid black;
 		      	      background-color:blue;
-			      height:300px;
+			      height:288px;
 			      width:600px;
 			      overflow-y: scroll;
             			     }
 
 .home_page_action_feedback_div_class  {position:absolute;
-			    top: 633px;
+			    top: 651px;
 			    padding:0;
 			    margins:0;
 			    left:0;
@@ -1252,11 +1252,11 @@ iphone navigation bar 40px
 			      margins:0;
 			      left:0;
 			      border:5px solid red;
-                  background-color:lightgreen;
+                  	      background-color:lightgreen;
 			      height:30px;
 			      width:375px;
 			      overflow-y: scroll;
-                  font-size: 12px;
+                              font-size: 12px;
             			   }
 .home_top_table_div_class  {  position:absolute;
 			      top:63px;
