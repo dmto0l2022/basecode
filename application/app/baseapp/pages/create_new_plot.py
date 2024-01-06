@@ -111,7 +111,7 @@ plot_name_input_row = html.Div(
         dbc.Row(
             [
                 dbc.Col(
-                    html.Label('Enter Plot Name :',className='FORM_COLUMN_LABEL'),
+                    html.Label('Plot Name :',className='FORM_COLUMN_LABEL'),
                     style=FORM_LABEL_COLUMN_STYLE,
                     width = label_column_width
                 ),
