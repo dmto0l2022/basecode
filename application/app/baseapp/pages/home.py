@@ -200,9 +200,6 @@ bottom_table_div_style =  {'position':'absolute','top': '333px','padding':'0','m
 
 '''
 
-action_feedback_div_style =  {'position':'absolute','top': '633px','padding':'0','margins':'0','left':'0','border':'5px solid green',
-                            'background-color':'pink','height':'30px', 'width':'600px', 'overflow-y': 'scroll'}
-
 '''
 
 def get_top_table_div(page_size_in,top_df_in):
@@ -259,6 +256,10 @@ BottomTableDiv = html.Div(id=page_name+'bottom_table_div',children=[bottom_table
                           ##style=home_bottom_table_div_style,
                           className='home_bottom_table_div_class')
 
+action_feedback_div_style =  {'position':'absolute','top': '633px','padding':'0','margins':'0','left':'0','border':'5px solid green',
+                            'background-color':'pink','height':'30px', 'width':'600px', 'overflow-y': 'scroll'}
+
+html.Div(id=page_name + "action_feedback", children=['Action Feedback'],className='home_page_action_feedback_div_class')
 
 ##------------------------------------
 
