@@ -1233,8 +1233,21 @@ iphone navigation bar 40px
   background-color: red !important;
   border:1px solid black;
  }
-.home_top_table_div_class  {  position:absolute;
+
+.home_top_table_title_div_class  {  position:absolute;
 			      top:33px;
+			      padding:0;
+			      margins:0;
+			      left:0;
+			      border:5px solid red;
+                  background-color:lightgreen;
+			      height:30px;
+			      width:375px;
+			      overflow-y: scroll;
+                  font-size: 12px;
+            			   }
+.home_top_table_div_class  {  position:absolute;
+			      top:63px;
 			      padding:0;
 			      margins:0;
 			      left:0;
@@ -1244,14 +1257,27 @@ iphone navigation bar 40px
 			      width:375px;
 			      overflow-y: scroll;
             			   }
+.home_bottom_table_title_div_class {position:absolute;
+			      top:363px;
+			      padding:0;
+			      margins:0;
+			      left:0;
+			      border:5px solid black;
+		      	  background-color:lightblue;
+			      height:30px;
+			      width:375px;
+			      overflow-y: scroll;
+                  font-size: 12px;
+            			     }
+
 .home_bottom_table_div_class {position:absolute;
-			      top:333px;
+			      top:393px;
 			      padding:0;
 			      margins:0;
 			      left:0;
 			      border:5px solid black;
 		      	      background-color:purple;
-			      height:300px;
+			      height:200px;
 			      width:375px;
 			      overflow-y: scroll;
             			     }
