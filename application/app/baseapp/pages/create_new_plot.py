@@ -175,10 +175,7 @@ action_feedback_div_style =  {'position':'absolute','top': '633px','padding':'0'
 
 ActionFeedBackDiv = html.Div(id=page_name + "action_feedback", children=['Action Feedback'],style=action_feedback_div_style)
 
-WarningFeedback = dcc.ConfirmDialog(
-        id=page_name + 'confirm-danger',
-        message='Danger danger! Are you sure you want to continue?',
-    )
+ErrorFeedback = dcc.ConfirmDialog(id=page_name + 'confirm_error',message="A helpful error message")
 
 layout = html.Div([
     #html.Div(id="hidden_div_for_redirect_callback"),
@@ -186,14 +183,14 @@ layout = html.Div([
     app_page_menu,
     plot_name_input_row,
     ActionFeedBackDiv,
-    WarningFeedback
+    ErrorFeedback
     ])
 
 
 @callback(
     [Output(page_name + 'url', 'href',allow_duplicate=True),
     Output(page_name + "action_feedback", 'children'),
-    Output(page_name + 'confirm-danger', 'displayed')],
+    Output(page_name + 'confirm_error', 'displayed')],
     [Input(page_name+"create_plot_button", "n_clicks"),Input(page_name + 'url', 'href')],
     State(page_name + 'plot_name', "value"),
         prevent_initial_call=True
@@ -230,6 +227,7 @@ def button_click_create_new_plot(button0,url_in, plot_name_input):
             print("json_data cnp >>>>>>>>>", json_data)
             #msg = json.dumps(json_data, separators=(',', ':'))
             error_msg = json_data.get('error_msg')
+            dcc.ConfirmDialog(id=page_name + 'confirm_error',message=error_msg)
             msg = error_msg
             href_return = url_in
         else:      
