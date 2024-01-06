@@ -199,7 +199,7 @@ class StylePlotAndTracesDashBoardLayout():
         self.action_button = html.Button("Save Styled Plot",
                                                id=page_name+"save_styled_plot_button",
                                                className="btn btn-primary",type="button",
-                                               style=button_padding)
+                                               style=self.button_padding)
 
         self.app_page_menu = page_menu.page_top_menu(self.page_name,self.action_button,self.relevant_dropdowns)
           
