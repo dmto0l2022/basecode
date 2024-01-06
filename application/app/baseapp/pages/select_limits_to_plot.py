@@ -940,7 +940,7 @@ class SelectLimitsToPlotDashBoardLayout():
             #self.CreateLimitsToPlot()
 
             #########################
-            screen_height = page_size_in['height']
+            screen_height = page_size_in.get('height')
             print('screen_height >>>>>>>>>>', screen_height)
             main_table_height = str(screen_height * 0.3) + 'px'
             plots_table_height = str(screen_height * 0.1) + 'px'
