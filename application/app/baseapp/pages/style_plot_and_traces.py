@@ -356,7 +356,8 @@ class StylePlotAndTracesDashBoardLayout():
         
         first_row_second_column =  dbc.Row(
                 [
-                    dbc.Col(id= self.page_name+'table_div', children=[self.TableFormat], width=12, sm=12, md=12, className="PAGE_TABLE_CONTENT_TOP_RIGHT"),
+                    dbc.Col(id= self.page_name+'table_div', children=[self.TableFormat],
+                            width=12, sm=12, md=12),
                 ], style={'width': '100%', 'height': '100%','border': '2px solid black'})
     
         '''
@@ -376,7 +377,7 @@ class StylePlotAndTracesDashBoardLayout():
                         dbc.Col(children=[first_row_second_column] , width=12, sm=12, md=12)
                     ], style={'height': '100%'} ##className = "CONTENT_ROW"
                 ),
-            ],  style={'height': '100%'} ##className="container-fluid DASHBOARD_CONTAINER_STYLE"
+            ],  style={'height': '100%'}
             )    
         
         #self.layout = dashboard_container
