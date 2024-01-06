@@ -197,8 +197,8 @@ class StylePlotAndTracesDashBoardLayout():
                                   'padding-bottom':'0px',
                                   'margin':'0', 'border': '0', 'vertical-align':'middle'}
 
-        self.action_button = html.Button("Save Styled Plot",
-                                               id=page_name+"save_styled_plot_button",
+        self.action_button = html.Button("Save Plot",
+                                               id=self.page_name+"save_plot_button",
                                                className="btn btn-primary",type="button",
                                                style=self.button_padding)
 
@@ -951,14 +951,14 @@ class StylePlotAndTracesDashBoardLayout():
 
     def RespondToButtonCallBackSPAT(self):
         @callback(
-            Output(page_name+'button-output-div', 'children'),
-            Input(page_name+'new_button_id', 'n_clicks')
+            Output(self.page_name+'button-output-div', 'children'),
+            Input(self.page_name+"save_plot_button", 'n_clicks')
         )
-        def displayClick1_1(btn1, btn2, btn3, btn4):
+        def displayClick1_1(btn1):
             msg = "None of the buttons have been clicked yet"
             prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
-            if self.page_name+'new_button_id' == prop_id:
-                msg = "New Button was most recently clicked"
+            if self.page_name+'save_plot_button' == prop_id:
+                msg = "save_plot_button pressed"
             else:
                 msg = "No Button Pressed"
             return html.Div(msg)
@@ -966,7 +966,7 @@ class StylePlotAndTracesDashBoardLayout():
     def UpdateChartsForPlot(self):
         @callback(Output(page_name+'chart_div','children'),
                   Output(page_name+'table_div', 'children'),
-                  Output(page_name+'legend_div','children'),
+                  ##Output(page_name+'legend_div','children'),
                   Input(self.page_name +'url', 'href'),
                   State(self.page_name + 'screen_size_store', 'data'))
         def set_plot_name(url_in,page_size_in):
@@ -1030,12 +1030,12 @@ class StylePlotAndTracesDashBoardLayout():
             #dbl = DashBoardLayout(page_name, dmtool_userid,  list_of_limits_int)
             self.SetListOfLimits(limits_list)
             self.UpdateData()
-            self.UpdateLegend()
+            ##self.UpdateLegend()
             self.UpdateFormat()
             self.UpdateChart()
             
             
-            return self.GraphChart, self.TableFormat, self.GraphLegend
+            return self.GraphChart, self.TableFormat ##, self.GraphLegend
     
     def UpdateChartAndLegendAppearanceCallBackSPAT(self):
         @callback(
