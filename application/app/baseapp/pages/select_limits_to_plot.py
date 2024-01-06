@@ -1333,7 +1333,7 @@ class SelectLimitsToPlotDashBoardLayout():
                 #href_return = dash.page_registry['pages.style_plot_and_traces']['path']
                 #href_return = '/application/baseapp/style_plot_and_traces'
                 href_return = self.baseapp_prefix+ '/style_plot_and_traces/?plot_id='+str(self.plot_id)
-                return href_return
+                return [href_return]
             else:
                 href_return = '/application/baseapp/select_limits_to_plot'
                 return href_return
