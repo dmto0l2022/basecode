@@ -192,7 +192,8 @@ layout = html.Div([
 
 @callback(
     [Output(page_name + 'url', 'href',allow_duplicate=True),
-    Output(page_name + "action_feedback", 'children')],
+    Output(page_name + "action_feedback", 'children'),
+    Output(page_name + + 'confirm-danger', 'displayed')],
     [Input(page_name+"create_plot_button", "n_clicks"),Input(page_name + 'url', 'href')],
     State(page_name + 'plot_name', "value"),
         prevent_initial_call=True
@@ -242,8 +243,8 @@ def button_click_create_new_plot(button0,url_in, plot_name_input):
     
             msg = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)
             href_return = url_in
-        return href_return, msg
+        return href_return, msg, True
     else:
         href_return = url_in
-        return href_return, msg
+        return href_return, msg, True
         
