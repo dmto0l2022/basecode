@@ -1,6 +1,7 @@
 import os
 import requests
 from urllib.parse import urlparse, parse_qs
+from furl import furl
 import pandas as pd
 import itertools
 
