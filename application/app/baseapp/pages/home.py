@@ -310,6 +310,8 @@ def get_owned_data(href: str, page_size_in):
           State(page_name + 'screen_size_store', 'data')
          )
 def get_owned_data(href: str, page_size_in):
+    if page_size_in is None:
+       page_size_in = {"width":"375","height":"667"}
     print(type(page_size_in), page_size_in)
     #print('home : get_user_owned_data callback triggered ---- page size >>>>>>>' + page_size_as_string)
     screen_height = page_size_in.get('height')
