@@ -223,6 +223,7 @@ def button_click_create_new_plot(button0,plot_name_input):
         if response_status_code != 200:
             print("json_data cnp >>>>>>>>>", json_data)
             msg = json.dumps(json_data, separators=(',', ':'))
+            href_return = baseapp_prefix + '/create_new_plot'
         else:      
             ## parse response data
             json_data = json.loads(create_new_plot_response.text)
