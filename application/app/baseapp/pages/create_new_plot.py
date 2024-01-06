@@ -188,11 +188,11 @@ layout = html.Div([
 @callback(
     [Output(page_name + 'url', 'href',allow_duplicate=True),
     Output(page_name + "action_feedback", 'children')],
-    Input(page_name+"create_plot_button", "n_clicks"),
+    [Input(page_name+"create_plot_button", "n_clicks"),Input(page_name + 'url', 'href')],
     State(page_name + 'plot_name', "value"),
         prevent_initial_call=True
 )
-def button_click_create_new_plot(button0,plot_name_input):
+def button_click_create_new_plot(button0,url_in, plot_name_input):
     msg = "No actions taken"
     prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
     print("create new plot >> prop id >>  " ,prop_id)
@@ -223,7 +223,7 @@ def button_click_create_new_plot(button0,plot_name_input):
         if response_status_code != 200:
             print("json_data cnp >>>>>>>>>", json_data)
             msg = json.dumps(json_data, separators=(',', ':'))
-            href_return = baseapp_prefix + '/create_new_plot'
+            href_return = url_in
         else:      
             ## parse response data
             json_data = json.loads(create_new_plot_response.text)
@@ -234,9 +234,9 @@ def button_click_create_new_plot(button0,plot_name_input):
             print("create_new_plot_req plot id >>>> " , new_plot_id)
     
             msg = baseapp_prefix+ '/select_limits_to_plot/?plot_id='+str(new_plot_id)
-            href_return = baseapp_prefix + '/create_new_plot'
+            href_return = url_in
         return href_return, msg
     else:
-        href_return = baseapp_prefix + '/create_new_plot'
+        href_return = url_in
         return href_return, msg
         
