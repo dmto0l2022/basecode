@@ -241,10 +241,18 @@ home_top_table_div_style =  {'position':'absolute','top': '33px','padding':'0','
 
 home_bottom_table_div_style =  {'position':'absolute','top': '333px','padding':'0','margins':'0','left':'0','border':'5px solid black',
                             'background-color':'blue','height':'300px', 'width':'600px', 'overflow-y': 'scroll'}
-  
+
+TopTableTitleDiv = html.Div(id=page_name+'top_table_div_title', children="Top Table Title",
+                       ##style=home_top_table_div_style,
+                       className='home_top_table_title_div_class')
+
 TopTableDiv = html.Div(id=page_name+'top_table_div', children=[top_table_1],
                        ##style=home_top_table_div_style,
                        className='home_top_table_div_class')
+
+BottomTableTitleDiv = html.Div(id=page_name+'bottom_table_div',children="Bottom Table Title",
+                          ##style=home_bottom_table_div_style,
+                          className='home_bottom_table_title_div_class')
 
 BottomTableDiv = html.Div(id=page_name+'bottom_table_div',children=[bottom_table],
                           ##style=home_bottom_table_div_style,
