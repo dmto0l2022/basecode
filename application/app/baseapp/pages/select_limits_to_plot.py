@@ -830,7 +830,7 @@ class SelectLimitsToPlotDashBoardLayout():
         drop_down_list =  html.A(id=self.page_name + "dropdown_action", children=['List Your Plots'], href=self.baseapp_prefix + '/list_all_plots', className="dropdown-item")
         drop_down_exit =  html.A(id=self.page_name + "dropdown_action", children=['Exit Plots'], href=self.baseapp_prefix + '/plot_menu', className="dropdown-item")
         
-        dropdown_menu = html.Div(id=self.page_name + "dropdown_menu", children = [drop_down_create,drop_down_edit,drop_down_list, drop_down_exit], className = "dropdown-menu")
+        #dropdown_menu = html.Div(id=self.page_name + "dropdown_menu", children = [drop_down_style,drop_down_edit,drop_down_list, drop_down_exit], className = "dropdown-menu")
         
         relevant_dropdowns = [drop_down_style,drop_down_edit,drop_down_list,drop_down_exit] 
         
