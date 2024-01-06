@@ -189,7 +189,7 @@ layout = html.Div([
     [Output(page_name + 'url', 'href',allow_duplicate=True),
     Output(page_name + "action_feedback", 'children')],
     Input(page_name+"create_plot_button", "n_clicks"),
-    State("plot_name_form_field_id", "value"),
+    State(page_name + 'plot_name', "value"),
         prevent_initial_call=True
 )
 def button_click_create_new_plot(button0,plot_name_input):
