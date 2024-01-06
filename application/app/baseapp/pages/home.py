@@ -85,8 +85,8 @@ print(bottom_df_empty)
 def get_bottom_table(bottom_df_in,page_size_in):
     
     bottom_table_width = int(page_size_in.get('width'))
-    bottom_table_height = int(page_size_in.get('height')) * 0.45
-
+    #bottom_table_height = int(page_size_in.get('height')) * 0.45
+    bottom_table_height = (int(page_size_in.get('height')) - 33 - 60)/2
     bottom_table_width = 1000
     bottom_row_height = '12px'
     bottom_font_height = '11px'
@@ -157,7 +157,8 @@ def get_top_table(top_df_in, page_size_in):
     #top_table_width = str(page_size_in['width']) + 'px'
     top_table_width = '1000px'
     screen_height = int(page_size_in.get('height'))
-    top_table_height = str(screen_height * 0.45) + 'px'
+    #top_table_height = str(screen_height * 0.45) + 'px'
+    top_table_height = (int(page_size_in.get('height')) - 33 - 60)/2
     top_row_height = '12px'
     top_font_height = '11px'
     top_table_table_style = {'height': top_table_height,'width' : top_table_width, 'overflowX': 'auto', 'overflowY': 'auto'}
