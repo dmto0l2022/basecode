@@ -193,7 +193,7 @@ layout = html.Div([
 @callback(
     [Output(page_name + 'url', 'href',allow_duplicate=True),
     Output(page_name + "action_feedback", 'children'),
-    Output(page_name + + 'confirm-danger', 'displayed')],
+    Output(page_name + 'confirm-danger', 'displayed')],
     [Input(page_name+"create_plot_button", "n_clicks"),Input(page_name + 'url', 'href')],
     State(page_name + 'plot_name', "value"),
         prevent_initial_call=True
