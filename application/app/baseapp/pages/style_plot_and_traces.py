@@ -966,7 +966,6 @@ class StylePlotAndTracesDashBoardLayout():
     def UpdateChartsForPlot(self):
         @callback(Output(page_name+'chart_div','children'),
                   Output(page_name+'table_div', 'children'),
-                  ##Output(page_name+'legend_div','children'),
                   Input(self.page_name +'url', 'href'),
                   State(self.page_name + 'screen_size_store', 'data'))
         def set_plot_name(url_in,page_size_in):
@@ -1035,11 +1034,11 @@ class StylePlotAndTracesDashBoardLayout():
             self.UpdateChart()
             
             
-            return self.GraphChart, self.TableFormat ##, self.GraphLegend
+            return self.GraphChart, self.TableFormat
     
     def UpdateChartAndLegendAppearanceCallBackSPAT(self):
         @callback(
-            [Output(page_name+'graph_chart_id','figure'), Output(page_name+'graph_legend_id','figure')],
+            [Output(page_name+'graph_chart_id','figure')],
             [Input(page_name+'format_table_id', 'data')],
             [State(page_name+'format_table_id', 'data')])
         def update_output(table_data, table_data_in):
@@ -1049,7 +1048,7 @@ class StylePlotAndTracesDashBoardLayout():
             self.UpdateAppearances(table_data_in)
             self.UpdateChart()
             self.UpdateLegend()
-            return [self.FigChart, self.FigLegend]
+            return [self.FigChart]
     def page_size_callback(self):
         clientside_callback(
             """
