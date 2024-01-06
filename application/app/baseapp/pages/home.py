@@ -259,7 +259,7 @@ BottomTableDiv = html.Div(id=page_name+'bottom_table_div',children=[bottom_table
 action_feedback_div_style =  {'position':'absolute','top': '633px','padding':'0','margins':'0','left':'0','border':'5px solid green',
                             'background-color':'pink','height':'30px', 'width':'600px', 'overflow-y': 'scroll'}
 
-html.Div(id=page_name + "action_feedback", children=['Action Feedback'],className='home_page_action_feedback_div_class')
+ActionFeedBackDiv = html.Div(id=page_name + "action_feedback", children=['Action Feedback'],className='home_page_action_feedback_div_class')
 
 ##------------------------------------
 
@@ -274,7 +274,7 @@ def get_layout():
         TopTableDiv,
         BottomTableTitleDiv,
         BottomTableDiv,
-        html.Div(id=page_name + "action_feedback", children=['Action Feedback'],style=action_feedback_div_style)
+        ActionFeedBackDiv
         ])
     return layout_out
 
