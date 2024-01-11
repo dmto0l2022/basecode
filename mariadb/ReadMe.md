@@ -52,11 +52,24 @@ https://unix.stackexchange.com/questions/136371/how-to-download-a-folder-from-go
 
 ## connect to mariadb container from server
 
-Just mysql-client, no extra docker container
+sudo yum install wget
+
+### Configure the MariaDB Community Repository using the mariadb_repo_setup script:
+
+wget https://r.mariadb.com/downloads/mariadb_repo_setup
+
+echo "935944a2ab2b2a48a47f68711b43ad2d698c97f1c3a7d074b34058060c2ad21b  mariadb_repo_setup" \
+       | sha256sum -c -
+
+chmod +x mariadb_repo_setup
+
+sudo ./mariadb_repo_setup
+
+Just MariaDB-client, no extra docker container
 
 Install the mysql client on your host,
 
-apt-get install mysql-client
+sudo yum install MariaDB-client
 
 then use the following command to access your database container.
 
