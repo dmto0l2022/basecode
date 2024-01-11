@@ -36,6 +36,31 @@ target_metadata = Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+from os import environ, path
+
+from dotenv import load_dotenv
+
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+#env_path = path.join(BASE_DIR, "app/.env")
+#print("env path >>>>>>>>>>" , env_path)
+env_path = "/workdir/fastapi_about/app/.env"
+load_dotenv(path.join(env_path))
+
+MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+#MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+MARIADB_DATABASE = 'data'
+MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+
+
+DATABASE_URL = "mysql+aiomysql://" + MARIADB_USERNAME + ":" + \
+                MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
+                + MARIADB_DATABASE
+
+print(DATABASE_URL)
+
+
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
@@ -49,9 +74,10 @@ def run_migrations_offline() -> None:
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    ##url = config.get_main_option("sqlalchemy.url")
+    
     context.configure(
-        url=url,
+        url=DATABASE_URL,
         target_metadata=target_metadata,
         literal_binds=True,
         compare_type=True,
