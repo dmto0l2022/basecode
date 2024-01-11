@@ -44,7 +44,7 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 #env_path = path.join(BASE_DIR, "app/.env")
 #print("env path >>>>>>>>>>" , env_path)
-env_path = "/workdir/fastapi_about/app/.env"
+env_path = "/workdir/fastapi_data/app/.env"
 load_dotenv(path.join(env_path))
 
 MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
