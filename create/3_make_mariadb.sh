@@ -46,6 +46,7 @@ podman run -dt \
 --user $uid:$gid \
 --log-opt max-size=10mb \
 --volume /data/containers/data/mysql:/var/lib/mysql:z \
+--volume /data/containers/data/backups:/data/backups:z \
 localhost/mariadb_1:latest
 
 ## --volume /opt/dmtools/mysql:/var/lib/mysql:z \
