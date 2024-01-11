@@ -50,3 +50,23 @@ Note that Dockerfile variables are just placeholders for values. Dockerfiles do 
 
 https://unix.stackexchange.com/questions/136371/how-to-download-a-folder-from-google-drive-using-terminal
 
+## connect to mariadb container from server
+
+Just mysql-client, no extra docker container
+
+Install the mysql client on your host,
+
+apt-get install mysql-client
+
+then use the following command to access your database container.
+
+mysql -u<user> -p<pass> -h $(docker inspect --format '{{ .NetworkSettings.IPAddress }}' <db-container>)
+
+The command will automatically get the IP of your docker container.
+
+Make sure to replace <user>, <pass> and <db-container> with your respective values. In your case:
+
+mysql -uroot -ptest -h $(docker inspect --format '{{ .NetworkSettings.IPAddress }}' db)
+
+Your command lets mariadb run at the standard port 3306. If not, you have to tell the mysql command the new port.
+
