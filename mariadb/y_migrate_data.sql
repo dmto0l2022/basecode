@@ -128,7 +128,7 @@ date_official,
 greatest_hit,
 date_of_run_start,
 date_of_run_end,
-'year',
+year,
 '1980-01-01 00:00.00.00000' archived_at
 FROM RubyDB.limits;
 	
