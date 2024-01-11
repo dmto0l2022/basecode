@@ -24,6 +24,7 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 # target_metadata = None
 from models.dmtools import Experiment, Limit_display, Limit_ownership, Limit, Plot_ownership, Plot
+from models.dmtools import Data_about,Data_appearance,Data_data, Limit_data
 #from models.heroes import Team, TeamRead, Hero, HeroRead, TeamReadWithHeroes
 from models.heroes import Team, Hero, TeamMembers
 from models.metadata import Dropdown_valuepair
@@ -58,7 +59,7 @@ DATABASE_URL = "mysql+aiomysql://" + MARIADB_USERNAME + ":" + \
                 MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
                 + MARIADB_DATABASE
 
-print(DATABASE_URL)
+#print(DATABASE_URL)
 
 
 
