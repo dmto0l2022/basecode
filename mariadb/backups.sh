@@ -3,7 +3,7 @@ do
 timestamp=$(date +%s)
 filename=$line
 fileextension='.sql'
-folderpath = '/data/containers/data/backups/'
+folderpath = '/data/backups/'
 fullfilepath="${folderpath} ${filename} $(timestamp) $(fileextension)"
 echo "${fullfilepath}"
 mysqldump -u $MARIADB_USERNAME -p $MARIADB_PASSWORD data $line > $fullfilepath ; 
