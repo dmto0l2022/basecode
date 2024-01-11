@@ -1,6 +1,6 @@
 DELIMITER //
 
-CREATE DEFINER='{$MARIADB_USERNAME}'@'%' PROCEDURE 'data'.'update_dropdownpair()
+CREATE DEFINER='{$MARIADB_USERNAME}'@'%' PROCEDURE 'data'.'update_dropdownpair'()
 BEGIN
 
 INSERT INTO data.dropdown_valuepair (variable,label,value,data_type) VALUES
