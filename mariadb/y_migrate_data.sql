@@ -1,6 +1,8 @@
 DELIMITER //
 
-CREATE DEFINER=`pythonuser`@`%` PROCEDURE `data`.`migrate_data`()
+/* "CREATE USER '{$MYSQL_USER}' IDENTIFIED BY '${MYSQL_USER_PASSWORD}'" */
+	
+CREATE DEFINER='{$MARIADB_USERNAME}'@'%' PROCEDURE 'data'.'migrate_data()
 BEGIN
     
 INSERT INTO data.experiment(old_experiment_id,name,created_at,updated_at,archived_at)
@@ -128,7 +130,7 @@ date_official,
 greatest_hit,
 date_of_run_start,
 date_of_run_end,
-`year`,
+'year',
 '1980-01-01 00:00.00.00000' archived_at
 FROM RubyDB.limits;
 	
