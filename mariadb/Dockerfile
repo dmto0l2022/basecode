@@ -62,7 +62,9 @@ RUN chown -R ${ENV_USER_UID}:${ENV_USER_GID} /var/lib/mysql
 
 RUN mkdir /data
 RUN mkdir /data/backups
-COPY backups.sql /data/backups/backups.sql
+RUN mkdir /data/backups/data
+RUN mkdir /data/backups/scripts
+COPY backups.sh /data/backups/scripts/backups.sh
 RUN chown -R ${ENV_USER_UID}:${ENV_USER_GID} /data/backups
 
 #ADD sql/ /docker-entrypoint-initdb.d
