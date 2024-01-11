@@ -1,8 +1,6 @@
 DELIMITER //
-
-/* "CREATE USER '{$MYSQL_USER}' IDENTIFIED BY '${MYSQL_USER_PASSWORD}'" */
 	
-CREATE DEFINER='{$MARIADB_USERNAME}'@'%' PROCEDURE data.migrate_data()
+CREATE DEFINER='pythonuser'@'%' PROCEDURE data.migrate_data()
 BEGIN
     
 INSERT INTO data.experiment(old_experiment_id,name,created_at,updated_at,archived_at)
