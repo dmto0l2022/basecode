@@ -5,6 +5,32 @@ from dotenv import load_dotenv
 BASE_DIR = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(BASE_DIR, ".env"))
 
+from os import environ, path
+
+from dotenv import load_dotenv
+
+
+BASE_DIR = path.abspath(path.dirname(__file__))
+#env_path = path.join(BASE_DIR, "app/.env")
+#print("env path >>>>>>>>>>" , env_path)
+env_path = "/workdir/fastapi_about/app/.env"
+load_dotenv(path.join(env_path))
+
+MARIADB_USERNAME = environ.get("MARIADB_USERNAME")
+MARIADB_PASSWORD = environ.get("MARIADB_PASSWORD")
+#MARIADB_DATABASE = environ.get("MARIADB_DATABASE")
+MARIADB_DATABASE = 'about'
+MARIADB_CONTAINER = environ.get("MARIADB_CONTAINER")
+
+
+DATABASE_URL = "mysql+aiomysql://" + MARIADB_USERNAME + ":" + \
+                MARIADB_PASSWORD + "@" + MARIADB_CONTAINER + ":3306/"\
+                + MARIADB_DATABASE
+
+print(DATABASE_URL)
+
+
+
 from sqlmodel import SQLModel, create_engine
 from sqlmodel.ext.asyncio.session import AsyncSession, AsyncEngine
 
