@@ -1,6 +1,6 @@
 DELIMITER //
 
-CREATE DEFINER=`pythonuser`@`%` PROCEDURE `data`.`move_data`()
+CREATE DEFINER='{$MARIADB_USERNAME}'@'%' PROCEDURE 'data'.'move_data()
 BEGIN
 
 /* RubyDB.experiments; */
