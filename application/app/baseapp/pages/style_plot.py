@@ -56,7 +56,7 @@ palette = cycle(palette_list)
 
 listoflimits = []
 
-dash.register_page(__name__, path='/style_plot)
+dash.register_page(__name__, path='/style_plot')
 
 ## create plot series
 
