@@ -294,6 +294,9 @@ class StylingTable():
           )
 
     def Example(self):
+        print('-------------------------------------')
+        print("self.format_table_css >>>>>>" , self.format_table_css)
+        print('-------------------------------------')
         self.ExampleTable = dash_table.DataTable(
             columns=[
                 {"name": ["", "Year"], "id": "year"},
