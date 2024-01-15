@@ -317,6 +317,7 @@ class StylingTable():
                 for i in range(10)
             ],
             merge_duplicate_headers=True,
+            css= self.format_table_css
         )
         self.ExampleTableFormat = self.ExampleTable
     
