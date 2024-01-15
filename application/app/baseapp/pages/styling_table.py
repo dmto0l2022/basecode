@@ -136,9 +136,10 @@ class StylingTable():
         self.table_row  =  dbc.Row()
         self.layout = html.Div()
         self.ExampleTable = dash_table.DataTable()
+        self.ExampleTableFormat  = dash_table.DataTable()
         self.Create()
         self.Update()
-        #self.Example()
+        self.Example()
 
   
     def Create(self):
@@ -317,12 +318,12 @@ class StylingTable():
             ],
             merge_duplicate_headers=True,
         )
-        self.TableFormat = self.ExampleTable
+        self.ExampleTableFormat = self.ExampleTable
     
     def Layout(self):
         self.table_row  =  dbc.Row(
                 [
-                    dbc.Col(id= self.page_name+'table_div', children=[self.TableFormat], width=6, sm=12, md=12, className="PAGE_TABLE_CONTENT_TOP_RIGHT"),
+                    dbc.Col(id= self.page_name+'table_div', children=[self.ExampleTableFormat], width=6, sm=12, md=12, className="PAGE_TABLE_CONTENT_TOP_RIGHT"),
                 ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
         
         self.layout = html.Div([
