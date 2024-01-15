@@ -471,7 +471,7 @@ class StylePlotAndTracesDashBoardLayout():
         self.TableFormat = self.ExampleTable
 
 
-    def CreateSimpleTable():
+    def CreateSimpleTable(self):
         '''
         <table style="width:100%">
           <tr>
