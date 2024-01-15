@@ -71,6 +71,7 @@ class StylingTable():
                                           'maxWidth': 0 ## made things work!!
                                          }
         
+        '''
         self.format_table_css = [{"selector": ".Select-menu-outer", "rule": "display: block !important"},
                     {"selector": "p", "rule" :"margin: 0px; padding:0px"},
                     {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},  # set height of header
@@ -83,7 +84,9 @@ class StylingTable():
                     {"selector": ".dash-header tr th td", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},
                     {"selector": ".Select-option", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},
                     ]
-
+        '''
+        
+        self.format_table_css = [{'selector':'.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr', 'rule':{'min-height: 10px;height: 10px;'}]
         
 
         self.table_columns =[
