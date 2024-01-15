@@ -41,85 +41,22 @@ from itertools import cycle
 
 import redis
 
-#r = redis.StrictRedis(host='container_redis_1', port=6379, db=0)
-#dmtool_userid = 16384 ## testing
-
 from app.baseapp.dashboard_libraries import get_dmtool_user as gdu
-
-# import formlibrary as fl
-
-#from app.baseapp.libraries import formlibrary as fl
-
-#from app.baseapp.dashboard_libraries import all_data_tables as adt
-#dashdataandtables = adt.DashDataAndTables()
 
 from app.baseapp.dashboard_libraries import get_limit_data_cls as gldc
 
 from app.baseapp.dashboard_libraries import scaling as sc
-#sf = sc.get_scale_factor('ub')
-#sf
-
-####################################
-#from app.baseapp.dashboard_libraries import formattingtable as ft
-#from app.baseapp.dashboard_libraries import createlegend as cl
-#from app.baseapp.dashboard_libraries import updatelegend as ul
-#from app.baseapp.dashboard_libraries import getstyleandlegend as gsal
-#from app.baseapp.dashboard_libraries import creategraph as cg
-#from app.baseapp.dashboard_libraries import updategraph as ug
-#from app.baseapp.dashboard_libraries import data_graph as dg
-
-####################################
 
 dmtool_userid = '1'
 
 from app.baseapp.libraries import page_menu as page_menu
 
-'''
-def GetChart(chart_in):
-
-    chartdiv = html.Div([chart_in], className="CHART_DIV NOPADDING")
-
-    chart_col =  html.Div(children=[chartdiv],className="col col-lg-12 NOPADDING")
-
-    chart_row = html.Div([chart_col],
-                    className="row CHART_ROW NOPADDING")
-
-    column_chart_out = html.Div(
-                [chart_row]  ,
-                className="col col-lg-6 PAGE_GRAPH_COLUMN_CONTENT_LEFT",
-            )
-    return column_chart_out
-'''
-###########
-
-#from app.baseapp.dashboard_libraries import get_limit_data as gld
-
-##############################################
-'''
-def get_plotid():
-    plotid_datetime = datetime.now()
-    plotid = plotid_datetime.strftime('%Y%m%d%H%M%S%f%z')
-    return plotid
-'''
-
-############
-## default_limits = [45]
-
-####################################
-
-# colors
-#palette = cycle(px.colors.qualitative.Bold)
-#palette = cycle(['black', 'grey', 'red', 'blue'])
-
 palette_list = ['black','red','orange','yellow','limegreen', 'green', 'cyan','skyblue', 'blue', 'purple', 'magenta', 'pink']
 palette = cycle(palette_list)
 
-#####################################
-
-
 listoflimits = []
 
-dash.register_page(__name__, path='/style_plot_and_traces')
+dash.register_page(__name__, path='/style_plot)
 
 ## create plot series
 
@@ -133,11 +70,6 @@ class StylePlotAndTracesDashBoardLayout():
         self.format_data_table_row_height = '12px'
         self.format_data_table_font_size = '11px'
         self.format_data_table_style_table={
-                #'maxHeight': '50ex',
-                #'minHeight': '40vh',
-                ##'height': '44vh', ## does not know any detail about parent container
-                ##'overflowY': 'scroll', # 'auto'
-                ##'overflowX': 'scroll',
                 'width': '100%',
                 'minWidth': '100%',
             }
@@ -152,7 +84,7 @@ class StylePlotAndTracesDashBoardLayout():
                                           'overflow': 'hidden',
                                           'maxWidth': 0 ## made things work!!
                                          }
-        ########
+
        
         self.format_table_css = [{"selector": ".Select-menu-outer", "rule": "display: block !important"},
                     {"selector": "p", "rule" :"margin: 0px; padding:0px"},
@@ -166,16 +98,6 @@ class StylePlotAndTracesDashBoardLayout():
                     {"selector": ".Select-option", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},
                     ]
 
-        
-        
-        self.button_styling_1 = {'font-size': '12px',
-                          'width': '70px',
-                          'display': 'inline-block', 
-                          'margin-bottom': '1px',
-                          'margin-right': '0px',
-                          'margin-top': '1px',
-                          'height':'19px',
-                          'verticalAlign': 'center'}
         
         self.dropdown_button = html.Button(id=page_name + "dropdown_button", type="button",
                            className = "btn btn-danger dropdown-toggle dropdown-toggle-split",
