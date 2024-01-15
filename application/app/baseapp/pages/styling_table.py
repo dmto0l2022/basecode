@@ -49,6 +49,7 @@ class StylingTable():
         self.page_name = pagename_in
         self.data_table_id =  self.page_name + "data_table_id"
         self.format_data_table_row_height = '12px'
+        self.row_height = '12px'
         self.format_data_table_font_size = '11px'
         self.format_data_table_style_table={
                 #'maxHeight': '50ex',
@@ -84,11 +85,25 @@ class StylingTable():
                     {"selector": ".dash-header tr th td", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},
                     {"selector": ".Select-option", "rule": "min-height: " + self.format_data_table_row_height + "; height: " + self.format_data_table_row_height + ";line-height: " + self.format_data_table_row_height + ";max-height: " + self.format_data_table_row_height + ";"},
                     ]
-        '''
+        
         
         self.format_table_css = [{'selector':'.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr', 'rule':'min-height: 10px;height: 10px;'}]
-        
 
+        '''
+        
+        self.format_table_css = [
+                            {"selector": ".Select-menu-outer", "rule": "display: block !important"},
+                            {"selector": "p", "rule" :"margin: 0px; padding:0px"},
+                            {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                            {"selector": ".dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                            {"selector": ".dash-spreadsheet tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of body rows
+                            {"selector": ".dash-spreadsheet tr th", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
+                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                            {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
+                            {"selector": ".dash-spreadsheet.dash-freeze-top, .dash-spreadsheet.dash-virtualized",  "rule": "max-height: inherit !important;" },
+                            {"selector": ".dash-table-container" ,  "rule":  "max-height: calc(" + self.table_height + " - 100px);"}
+            ]
+    
         self.table_columns =[
                 {'id': 'limit_id', 'name': ['','limit_id']},
                 {'id': 'trace_id', 'name': ['','trace_id']},
