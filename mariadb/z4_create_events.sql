@@ -1,6 +1,6 @@
-DROP EVENT `data`.data_backup_1;
+DROP EVENT IF EXISTS `data`.data_backup_1;
 
-CREATE EVENT data_backup_1
+CREATE EVENT `data`.data_backup_1
 ON SCHEDULE EVERY 1 DAY
 STARTS '2014-01-18 00:00:00'
 ON COMPLETION NOT PRESERVE
