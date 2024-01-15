@@ -1,0 +1,11 @@
+[
+{'selector': '.Select-menu-outer', 'rule': 'display: block !important'},
+{'selector': 'p', 'rule': 'margin: 0px; padding:0px'},
+{'selector': '.spreadsheet-inner tr td', 'rule': 'min-height: 12px; height: 12px;line-height: 12px;max-height: 12px;'},
+{'selector': '.dash-spreadsheet-inner tr td', 'rule': 'min-height: 12px; height: 12px;line-height: 12px;max-height: 12px;'}, {'selector': '.dash-spreadsheet tr td th', 'rule': 'min-height: 12px; height: 12px;line-height: 12px;max-height: 12px;'}, {'selector': '.dash-spreadsheet tr th td', 'rule': 'min-height: 12px; height: 12px;line-height: 12px;max-height: 12px;'}, {'selector': '.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr td th', 'rule': 'min-height: 12px; height: 12px;line-height: 12px;max-height: 12px;'}, {'selector': '.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type', 'rule': 'min-height: 12px; height: 12px;line-height: 12px;max-height: 12px;'}, {'selector': '.dash-cell tr th td', 'rule': 'min-height: 12px; height: 12px;line-height: 12px;max-height: 12px;'},
+{'selector': '.dash-header tr th td', 'rule': 'min-height: 12px; height: 12px;line-height: 12px;max-height: 12px;'},
+{'selector': '.Select-option', 'rule': 'min-height: 12px; height: 12px;line-height: 12px;max-height: 12px;'}
+]
+-------------------------------------
+
+  css= [{'selector': 'tr:hover', 'rule': 'background-color: pink;'}]
