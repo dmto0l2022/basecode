@@ -379,8 +379,8 @@ dbl.Layout()
 layout = dbl.layout
 
 @callback(Output(page_name+'response','children'),
-                  Input(self.page_name +'url', 'href'),
-                  State(self.page_name+'table_div', 'children'))
+                  Input(page_name +'url', 'href'),
+                  State(page_name+'table_div', 'children'))
         def get_table_children(url_in,table_div_in):
             print(table_div_in)
 
