@@ -493,6 +493,23 @@ class StylePlotAndTracesDashBoardLayout():
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
         table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         self.simple_table = html.Table(className='table', children=[table_row], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+
+        '''
+        <label for="pet-select">Choose a pet:</label>
+
+        <select name="pets" id="pet-select">
+          <option value="">--Please choose an option--</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="parrot">Parrot</option>
+          <option value="spider">Spider</option>
+          <option value="goldfish">Goldfish</option>
+        </select>
+
+        '''
+
+        
     
     def CreateFormat(self):
          self.TableFormat = dash_table.DataTable(
