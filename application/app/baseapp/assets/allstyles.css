@@ -22,14 +22,14 @@
   --debug_section_height: 63px;
 }
 
-.th {
-  min-height: 12px;
-  height: 12px;
+th {
+  min-height: 12px !important;
+  height: 12px !important;
 }
 
-.tr {
-  min-height: 12px;
-  height: 12px;
+tr {
+  min-height: 12px !important;
+  height: 12px !important;
 }
 
 .btn-brand {
