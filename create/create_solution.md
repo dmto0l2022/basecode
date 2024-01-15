@@ -108,7 +108,35 @@
 
     start exploring
 
-    
+## Data Ownership is created as data is uploaded by user
+
+### /* findout your user id */
+
+        SELECT authlib_id, authlib_provider, email, old_user_id, old_login, old_email, created_at, updated_at, ceased_at, id
+        FROM about.`user`;
+
+### /* you need to upload data to have some data to select to plot */
+
+        SELECT data_values, old_limit_id, spin_dependency, result_type, measurement_type, nomhash, x_units, y_units, x_rescale, y_rescale, default_color, default_style, data_label, file_name, data_comment, data_reference, created_at, updated_at, archived_at, creator_id, experiment, rating, date_of_announcement, public, official, date_official, greatest_hit, date_of_run_start, date_of_run_end, `year`, id
+        FROM `data`.`limit`;
+
+### /* we will allocate some data to a user */
+
+
+        select 1 as user_id, id as limit_id , now() as created_at, now() as update_at, '1980-01-01 12:00:00' as archived_at FROM `data`.`limit`;
+        
+        SELECT old_ownership_id, user_id, limit_id, old_user_id, old_limit_id, created_at, updated_at, archived_at, id
+        FROM `data`.limit_ownership;
+        
+        /*
+        INSERT INTO tbl_temp2 (fld_id)
+          SELECT tbl_temp1.fld_order_id
+          FROM tbl_temp1 WHERE tbl_temp1.fld_order_id > 100;
+        */
+        
+        INSERT INTO `data`.limit_ownership (user_id, limit_id, created_at, updated_at, archived_at )
+select 1 as user_id, id as limit_id , now() as created_at, now() as updated_at, '1980-01-01 12:00:00' as archived_at FROM `data`.`limit`;
+   
 
 
 
