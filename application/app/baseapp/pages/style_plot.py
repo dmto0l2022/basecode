@@ -485,7 +485,7 @@ class StylePlotAndTracesDashBoardLayout():
         cell_2 = html.Div(className='td', children='Tobias')
         cell_3 = html.Div(className='td', children='Linus')
         table_row = html.Div(className='tr', children=[cell_1,cell_2,cell_3])
-        self.simple_table = html.Div(className='table', children=[table_row]
+        self.simple_table = html.Div(className='table', children=[table_row])
     
     def CreateFormat(self):
          self.TableFormat = dash_table.DataTable(
