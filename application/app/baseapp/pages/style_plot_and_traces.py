@@ -371,11 +371,11 @@ class StylePlotAndTracesDashBoardLayout():
         
         self.dashboard_container = html.Div(id=self.page_name+'content',
             children=[
-                dbc.Row(
-                    [
-                        dbc.Col(id= self.page_name+'chart_div', children=[self.GraphChart], width=12, sm=12, md=12,
-                                style={'border': '2px solid black', 'height': '45%', 'padding' : '0', 'margin' : '0'}),
-                        dbc.Col(children=[first_row_second_column] , width=12, sm=12, md=12, style={'border': '2px solid black', 'height': '45%'})
+                html.Div(
+                    children=[
+                        html.Div(id= self.page_name+'chart_div', children=[self.GraphChart], width=12, sm=12, md=12,
+                                style={'border': '2px solid black', 'height': '500px', 'width': '500px', 'padding' : '0', 'margin' : '0'}),
+                        html.Div(children=[first_row_second_column] , style={'height': '250px', 'width': '500px','border': '2px solid black'})
                     ], style={'height': '100%',  'width' : '100%', 'padding' : '0', 'margin' : '0'} ##className = "CONTENT_ROW"
                 ),
             ],  style={'height': '100%', 'width' : '100%', 'padding' : '0', 'margin' : '0'}
