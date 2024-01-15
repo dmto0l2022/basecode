@@ -86,7 +86,7 @@ class StylingTable():
                     ]
         '''
         
-        self.format_table_css = [{'selector':'.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr', 'rule':{'min-height: 10px;height: 10px;'}]
+        self.format_table_css = [{'selector':'.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr', 'rule':'min-height: 10px;height: 10px;'}]
         
 
         self.table_columns =[
