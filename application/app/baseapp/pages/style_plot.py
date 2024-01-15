@@ -485,9 +485,9 @@ class StylePlotAndTracesDashBoardLayout():
           </tr>
         </table>
         '''
-        cell_1 = html.Div(className='td', children='Emil')
-        cell_2 = html.Div(className='td', children='Tobias')
-        cell_3 = html.Div(className='td', children='Linus')
+        cell_1 = html.Div(className='td', children=['Emil'])
+        cell_2 = html.Div(className='td', children=['Tobias'])
+        cell_3 = html.Div(className='td', children=['Linus'])
         table_row = html.Div(className='tr', children=[cell_1,cell_2,cell_3])
         self.simple_table = html.Div(className='table', children=[table_row])
     
