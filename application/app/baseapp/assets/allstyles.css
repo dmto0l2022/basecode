@@ -22,6 +22,11 @@
   --debug_section_height: 63px;
 }
 
+.th {
+  max-height: 12px;
+  height: 12px;
+}
+
 .btn-brand {
     color: purple;
     background-color: darkgrey;
