@@ -135,7 +135,7 @@
         */
         
         INSERT INTO `data`.limit_ownership (user_id, limit_id, created_at, updated_at, archived_at )
-select 1 as user_id, id as limit_id , now() as created_at, now() as updated_at, '1980-01-01 12:00:00' as archived_at FROM `data`.`limit`;
+        select 1 as user_id, id as limit_id , now() as created_at, now() as updated_at, '1980-01-01 12:00:00' as archived_at FROM `data`.`limit`;
    
 
 
