@@ -506,9 +506,9 @@ class StylePlotAndTracesDashBoardLayout():
         </select>
 
         '''
-        option_1 = html.Option("Server1", id="Server1", value="Server1")
-        option_2 = html.Option("Server2", id="Server2", value="Server2")
-        select_1 = html.Select(children=[option_1, option_2],id="connections")  
+        option_1 = html.Option("Server1", id="Server1", value="Server1", style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        option_2 = html.Option("Server2", id="Server2", value="Server2", style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        select_1 = html.Select(children=[option_1, option_2],id="connections",style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})  
 
         cell_4 = html.Td(className='td', children=[select_1],style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
