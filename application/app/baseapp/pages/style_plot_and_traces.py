@@ -374,8 +374,8 @@ class StylePlotAndTracesDashBoardLayout():
                 dbc.Row(
                     [
                         dbc.Col(id= self.page_name+'chart_div', children=[self.GraphChart], width=12, sm=12, md=12,
-                                style={'border': '2px solid black'}),
-                        dbc.Col(children=[first_row_second_column] , width=12, sm=12, md=12)
+                                style={'border': '2px solid black', 'height': '50%'}),
+                        dbc.Col(children=[first_row_second_column] , width=12, sm=12, md=12, style={'border': '2px solid black', 'height': '50%'})
                     ], style={'height': '100%'} ##className = "CONTENT_ROW"
                 ),
             ],  style={'height': '100%'}
@@ -387,12 +387,13 @@ class StylePlotAndTracesDashBoardLayout():
         #layout = style_plot_and_traces_form_form
         
         self.layout = html.Div([
-            dcc.Location(id=self.page_name+'url',refresh=True),
-            dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
-            ##html.Div(id=self.page_name+'layout-div'),
-            self.app_page_menu,
-            self.dashboard_container,
-            self.debug_output])
+                                dcc.Location(id=self.page_name+'url',refresh=True),
+                                dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
+                                ##html.Div(id=self.page_name+'layout-div'),
+                                self.app_page_menu,
+                                self.dashboard_container
+                                #self.debug_output
+                                ])
 
         
         '''
