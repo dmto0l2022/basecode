@@ -352,11 +352,11 @@ class StylingTable():
         df = pd.DataFrame(data)
         self.generated_table = html.Table(id='generated_table',
             # Header
-            chldren=[html.Tr([html.Th(col) for col in dataframe.columns]) ] +
+            chldren=[html.Tr([html.Th(col) for col in df.columns]) ] +
             # Body
             [html.Tr([
-                html.Td(dataframe.iloc[i][col]) for col in dataframe.columns
-            ]) for i in range(min(len(dataframe), max_rows))]
+                html.Td(df.iloc[i][col]) for col in df.columns
+            ]) for i in range(min(len(df), max_rows))]
         )
     
     
