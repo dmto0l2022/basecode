@@ -92,7 +92,7 @@ class StylingTable():
 
         '''
         
-        self.format_table_css = [
+        self.format_table_css = [Input(self.page_name +'url', 'href'),
                             {"selector": ".Select-menu-outer", "rule": "display: block !important"},
                             {"selector": "p", "rule" :"margin: 0px; padding:0px"},
                             {"selector": ".spreadsheet-inner tr td", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},  # set height of header
@@ -261,7 +261,7 @@ class StylingTable():
               style_cell=self.format_table_style_cell,
               #fill_width=True,
               #style_table={'overflowY': 'auto'},
-              #virtualization=True
+              #virtualization=TrueInput(self.page_name +'url', 'href'),
               data=colored_limits.to_dict('records'),
               columns=self.table_columns,
               editable=True,
@@ -269,7 +269,7 @@ class StylingTable():
               dropdown={
                   'line_color': {
                       'options': self.color_options,
-                      'searchable' : False,
+                      'searchable' : False,Input(self.page_name +'url', 'href'),
                       'clearable' : False,
                   },
                   'line': {
@@ -279,7 +279,7 @@ class StylingTable():
                   'fill_color': {
                       'options': self.color_options,
                       'searchable' : False,
-                      'clearable' : False,
+                      'clearable' : False,Input(self.page_name +'url', 'href'),
                   },
                   'symbol': {
                        'options': self.symbol_options,
@@ -369,6 +369,7 @@ class StylingTable():
         self.layout = html.Div([
             dcc.Location(id=page_name+'url',refresh=True),
             html.Div(id=page_name+'content',children=self.table_row,className="DASHBOARD_CONTAINER_STYLE"),
+            html.Div(id=page_name+'response',children="table content"),
         ],className="PAGE_CONTENT")
     
 
@@ -376,6 +377,12 @@ page_name = 'styling_table'
 dbl = StylingTable(page_name)
 dbl.Layout()
 layout = dbl.layout
+
+@callback(Output(page_name+'response','children'),
+                  Input(self.page_name +'url', 'href'),
+                  State(self.page_name+'table_div', 'children'))
+        def get_table_children(url_in,table_div_in):
+            print(table_div_in)
 
 '''
 @callback(
