@@ -85,10 +85,16 @@ COPY x_20211104_dmtools_backup.sql /docker-entrypoint-initdb.d
 COPY y_migrate_data.sql /docker-entrypoint-initdb.d
 
 ## create procedures to migrate to move the RubyDB data to RubyDB
-COPY z_move_data.sql /docker-entrypoint-initdb.d
+COPY z1_move_data.sql /docker-entrypoint-initdb.d
 
 ## create procedure to create the filter table data to create the limit selection filters
-COPY zz_insert_into_dropdownpair.sql /docker-entrypoint-initdb.d
+COPY z2_insert_into_dropdownpair.sql /docker-entrypoint-initdb.d
+
+## create procedure to export all data tables as csv onto server
+COPY z3_create_backup_procedure.sql /docker-entrypoint-initdb.d
+
+## create event to run backup procedure daily 
+COPY z4_create_events.sql /docker-entrypoint-initdb.d
 
 #RUN unzip -j /var/www/html/world-db.zip -d /
 
