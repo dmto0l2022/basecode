@@ -485,11 +485,11 @@ class StylePlotAndTracesDashBoardLayout():
           </tr>
         </table>
         '''
-        cell_1 = html.Td(className='td', children=['Emil'])
-        cell_2 = html.Td(className='td', children=['Tobias'])
-        cell_3 = html.Td(className='td', children=['Linus'])
-        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3], style={'width':'100%'})
-        self.simple_table = html.Table(className='table', children=[table_row], style={'width':'100%'})
+        cell_1 = html.Td(className='td', children=['Emil'], style={'margin':'0','padding':'0','border':'1px solid black'})
+        cell_2 = html.Td(className='td', children=['Tobias'], style={'margin':'0','padding':'0','border':'1px solid black'})
+        cell_3 = html.Td(className='td', children=['Linus'],style={'margin':'0','padding':'0','border':'1px solid black'})
+        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        self.simple_table = html.Table(className='table', children=[table_row], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
     
     def CreateFormat(self):
          self.TableFormat = dash_table.DataTable(
