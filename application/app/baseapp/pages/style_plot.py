@@ -178,7 +178,7 @@ class StylePlotAndTracesDashBoardLayout():
             self.line_styles_lol.append(l)
         
         self.line_style_options=[{'label': item[0], 'value' : item[1]} for item in self.line_styles_lol]
-
+        self.simple_table = html.Div()
         self.dmtool_userid = dmtool_userid_in
         self.limits_list_df = pd.DataFrame()
         self.limits_traces_df = pd.DataFrame()
@@ -195,6 +195,7 @@ class StylePlotAndTracesDashBoardLayout():
         self.CreateLegend()
         self.CreateChart()
         self.CreateFormat()
+        self.CreateSimpleTable()
 
         '''
         self.data = []
@@ -469,6 +470,23 @@ class StylePlotAndTracesDashBoardLayout():
         )
         self.TableFormat = self.ExampleTable
 
+
+    def CreateSimpleTable():
+        '''
+        <table style="width:100%">
+          <tr>
+            <td>Emil</td>
+            <td>Tobias</td>
+            <td>Linus</td>
+          </tr>
+        </table>
+        '''
+        cell_1 = html.Div(className='td', children='Emil')
+        cell_2 = html.Div(className='td', children='Tobias')
+        cell_3 = html.Div(className='td', children='Linus')
+        table_row = html.Div(className='tr', children=[cell_1,cell_2,cell_3])
+        self.simple_table = html.Div(className='table', children=[table_row]
+    
     def CreateFormat(self):
          self.TableFormat = dash_table.DataTable(
             id=self.page_name + 'format_table_id',
