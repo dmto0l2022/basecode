@@ -332,7 +332,7 @@ class StylePlotAndTracesDashBoardLayout():
             if btn2 == None:
                 btn2 = 0
             prop_id = dash.callback_context.triggered[0]["prop_id"].split('.')[0]
-            if int(btn1) > int(btn2):
+            if int(btn1) > int(btn2):font-size
                 msg = 'Save was most recently clicked  > ' + prop_id
             elif int(btn2) > int(btn1):
                 msg = 'Cancel was most recently clicked  > ' + prop_id
@@ -485,9 +485,12 @@ class StylePlotAndTracesDashBoardLayout():
           </tr>
         </table>
         '''
-        cell_1 = html.Td(className='td', children=['Emil'], style={'margin':'0','padding':'0','border':'1px solid black'})
-        cell_2 = html.Td(className='td', children=['Tobias'], style={'margin':'0','padding':'0','border':'1px solid black'})
-        cell_3 = html.Td(className='td', children=['Linus'],style={'margin':'0','padding':'0','border':'1px solid black'})
+        cell_1 = html.Td(className='td', children=['Emil'], style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                   'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
+        cell_2 = html.Td(className='td', children=['Tobias'], style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                     'font-size':'8px', 'line-height':'8px', 'height':'8px', 'min-height':'8px'})
+        cell_3 = html.Td(className='td', children=['Linus'],style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                   'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
         table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         self.simple_table = html.Table(className='table', children=[table_row], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
     
