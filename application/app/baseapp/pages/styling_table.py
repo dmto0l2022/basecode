@@ -101,7 +101,7 @@ class StylingTable():
                             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
                             {"selector": ".dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner tr:first-of-type", "rule": "min-height: " + self.row_height + "; height: " + self.row_height + ";line-height: " + self.row_height + ";max-height: " + self.row_height + ";"},
                             {"selector": ".dash-spreadsheet.dash-freeze-top, .dash-spreadsheet.dash-virtualized",  "rule": "max-height: inherit !important;" },
-                            {"selector": ".dash-table-container" ,  "rule":  "max-height: calc(" + self.table_height + " - 100px);"}]
+                            {"selector": ".dash-table-container" ,  "rule":  "max-height: calc(" + self.table_height + " - 100px);"},]
     
         self.table_columns =[
                 {'id': 'limit_id', 'name': ['','limit_id']},
@@ -262,7 +262,7 @@ class StylingTable():
               data=colored_limits.to_dict('records'),
               columns=self.table_columns,
               editable=True,
-              css=self.format_table_css,
+              ##css=self.format_table_css,
               dropdown={
                   'line_color': {
                       'options': self.color_options,
