@@ -160,6 +160,7 @@ class StylingTable():
         self.Create()
         self.Update()
         self.Example()
+        self.generate_html_table()
 
   
     def Create(self):
@@ -343,11 +344,26 @@ class StylingTable():
             css= self.format_table_css
         )
         self.ExampleTableFormat = self.ExampleTable
+
+
+    def generate_html_table(self):
+        data = {'Cap' : ['A', 'B', 'C', ], 'non-Cap' : ['a','b','c', ]}
+        max_rows = 12
+        df = pd.DataFrame(data)
+        self.generated_table = html.Table(id='generated_table',
+            # Header
+            chldren=[html.Tr([html.Th(col) for col in dataframe.columns]) ] +
+            # Body
+            [html.Tr([
+                html.Td(dataframe.iloc[i][col]) for col in dataframe.columns
+            ]) for i in range(min(len(dataframe), max_rows))]
+        )
+    
     
     def Layout(self):
         self.table_row  =  dbc.Row(
                 [
-                    dbc.Col(id= self.page_name+'table_div', children=[self.TableFormat], width=6, sm=12, md=12, className="PAGE_TABLE_CONTENT_TOP_RIGHT"),
+                    dbc.Col(id= self.page_name+'table_div', children=[self.generated_table], width=6, sm=12, md=12, className="PAGE_TABLE_CONTENT_TOP_RIGHT"),
                 ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
         
         self.layout = html.Div([
