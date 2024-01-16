@@ -406,11 +406,13 @@ class StylingTable():
                 print(msg)
                 #print(table_in[0]['props'])
                 #print("column_1, column_2 >>>>>>>>>>>" , column_1, column_2)
-        
-                data_1 = table_in[1]['props']['children'][0]['props']['children']
-                print('data_1 >>>>>>>>>' , data_1)
-                self.table_data = data_1
-                print("self.table_data >>>>" , self.table_data)
+
+                row_count = len(table_in[1]['props']['children'])
+                for r in range(0, row_count):
+                    print(table_in[1]['props']['children'][r]['props']['children'])
+                #print('data_1 >>>>>>>>>' , data_1)
+                #self.table_data = data_1
+                #print("self.table_data >>>>" , self.table_data)
                 
             else:
                 msg = "No Button Pressed"
