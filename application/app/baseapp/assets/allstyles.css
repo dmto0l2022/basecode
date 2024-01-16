@@ -38,6 +38,21 @@
     white-space: nowrap;}
 
 
+.Select-multi-value-wrapper {
+    bottom: 0;
+    color: #aaa;
+    left: 0;
+    line-height: 12px;
+    padding-left: 0px;
+    padding-right: 0px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;}
+
 .dropdown-class-colors > .Select-control {
    width:100% !important;
    border: 2px solid black;
