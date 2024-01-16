@@ -152,6 +152,7 @@ class StylingTable():
         self.table_data = 'table data'
         self.table_div = html.Div()
         self.data_df = pd.DataFrame()
+        self.table_df = pd.DataFrame()
         self.table_row  =  dbc.Row()
         self.layout = html.Div()
         self.ExampleTable = dash_table.DataTable()
@@ -393,11 +394,18 @@ class StylingTable():
                 msg = "save_plot_button pressed"
                 column_count = len(table_in[0]['props']['children'])
                 print("column_count >>>>>>", column_count)
-                column_1 = table_in[0]['props']['children'][0]['props']['children']
-                column_2 = table_in[0]['props']['children'][1]['props']['children']
+                table_columns = []
+                for c in range(0,column_count):
+                    append_this = table_in[0]['props']['children'][c]['props']['children']
+                    table_columns.append(append_this)
+                print("table_columns >>>>>", table_columns)
+                self.table_df = pd.DataFrame(data=[], columns=table_columns)
+                print("self.table_df >>>>>>>", self.table_df)
+                #column_1 = table_in[0]['props']['children'][0]['props']['children']
+                #column_2 = table_in[0]['props']['children'][1]['props']['children']
                 print(msg)
                 #print(table_in[0]['props'])
-                print("column_1, column_2 >>>>>>>>>>>" , column_1, column_2)
+                #print("column_1, column_2 >>>>>>>>>>>" , column_1, column_2)
         
                 data_1 = table_in[1]['props']['children'][0]['props']['children']
                 print('data_1 >>>>>>>>>' , data_1)
