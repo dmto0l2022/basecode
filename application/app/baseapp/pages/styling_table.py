@@ -361,15 +361,15 @@ class StylingTable():
         self.table_row  =  dbc.Row(
                 [
                     dbc.Col(id= self.page_name+'table_div', children=[self.generated_table], width=6, sm=12, md=12, className="PAGE_TABLE_CONTENT_TOP_RIGHT"),
-                ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
+                ], style={'width': '100%', 'height': '200px','border': '2px solid black'})
         
         self.layout = html.Div([
             dcc.Location(id=self.page_name+'url',refresh=True),
             dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
-            html.Div(id=self.page_name+'content',children=self.table_row, style = {'position':'absolute', 'top':'25px', 'width':'100px'}),
-            html.Div(id=self.page_name+'response',children="table content", style = {'position':'absolute', 'top':'100px', 'width':'100px'}),
-            html.Div(id=self.page_name+'button-output-div',children="button message", style={'position':'absolute', 'top':'200px', 'width':'100px'}),
-            html.Button('Submit', id=self.page_name+'save_plot_button', n_clicks=0, style={'position':'absolute', 'top':'225px', 'width':'100px'}),
+            html.Div(id=self.page_name+'content',children=self.table_row, style = {'position':'absolute', 'top':'0px', 'width':'100px'}),
+            html.Div(id=self.page_name+'response',children="table content", style = {'position':'absolute', 'top':'200px', 'width':'100px'}),
+            html.Div(id=self.page_name+'button-output-div',children="button message", style={'position':'absolute', 'top':'225px', 'width':'100px'}),
+            html.Button('Submit', id=self.page_name+'save_plot_button', n_clicks=0, style={'position':'absolute', 'top':'250px', 'width':'100px'}),
         ])
     
 
