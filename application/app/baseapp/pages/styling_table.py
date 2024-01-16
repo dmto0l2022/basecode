@@ -440,9 +440,25 @@ class StylingTable():
                                      'max-height':'12px !important', 'min-height':'12px !important','display': 'inline-block'})
 
         ##'display': 'inline-block'}
+
+
+        dd_div = html.Div(className='custom-dropdown-style-2', children=[dcc.Dropdown(
+            options=[
+                {'label': 'Option 4', 'value': 4},
+                {'label': 'Option 5', 'value': 5},
+                {'label': 'Option 6', 'value': 6}
+            ],
+            value=4,
+            className='dropdown-class-2'
+        )
+        ])
+
+        cell_11 = html.Td(className='td', children=dd_div,style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                   'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
+        
         
         heading_row = html.Tr(className='tr', children=[heading_1,heading_2,heading_3,heading_4], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
-        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_5], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_11], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         
         self.simple_table = html.Table(className='table', id=self.page_name + "simple_table", children=[heading_row, table_row],
                                        style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
