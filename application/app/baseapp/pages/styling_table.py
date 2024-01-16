@@ -162,6 +162,7 @@ class StylingTable():
         self.Update()
         self.Example()
         self.generate_html_table()
+        self.select_beginnings()
 
   
     def Create(self):
