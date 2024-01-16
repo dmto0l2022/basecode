@@ -416,6 +416,8 @@ class StylingTable():
         cell_7 = dbc.Select(id="select",options=[{"label": "Option 1", "value": "1"},
                                                  {"label": "Option 2", "value": "2"},
                                                  {"label": "Disabled option", "value": "3", "disabled": True}],
+                            style={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px',
+                                     'max-height':'12px', 'min-height':'12px','display': 'inline-block'}
                            )
                           
         heading_row = html.Tr(className='tr', children=[heading_1,heading_2,heading_3,heading_4], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
