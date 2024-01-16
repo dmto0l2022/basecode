@@ -359,7 +359,40 @@ class StylingTable():
             ]) for i in range(min(len(df), max_rows))]
         )
     
-    
+    def html_table_to_df(self, html_table_in):
+
+        row_count = len(html_table_in)
+        print("table row count >>>>", row_count)
+        column_count = len(html_table_in[0]['props']['children'])
+        print("column_count >>>>>>", column_count)
+        table_columns = []
+        for c in range(0,column_count):
+            append_this = html_table_in[0]['props']['children'][c]['props']['children']
+            table_columns.append(append_this)
+        print("table_columns >>>>>", table_columns)
+        #column_1 = table_in[0]['props']['children'][0]['props']['children']
+        #column_2 = table_in[0]['props']['children'][1]['props']['children']
+        #print(table_in[0]['props'])
+        #print("column_1, column_2 >>>>>>>>>>>" , column_1, column_2)
+
+        #row_count = len(table_in[1]['props']['children'])
+        row_data = []
+        table_data_raw = []
+        for r in range(1, row_count):
+            row_data = []
+            for c in range(0,column_count):
+                print(r,c,html_table_in[r]['props']['children'][c]['props']['children'])
+                append_this = html_table_in[r]['props']['children'][c]['props']['children']
+                row_data.append(append_this)
+            table_data_raw.append(row_data)
+        #print('data_1 >>>>>>>>>' , data_1)
+        #self.table_data = data_1
+        #print("self.table_data >>>>" , self.table_data)
+        print("table_data_raw >>>>" , table_data_raw)
+        table_df = pd.DataFrame(data=table_data_raw, columns=table_columns)
+        print("table_df >>>>>>>", table_df)
+        return table_df
+        
     def Layout(self):
         self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.generated_table], style={'width': '100%', 'height': '200px','border': '2px solid black'})
         
@@ -392,6 +425,8 @@ class StylingTable():
             prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
             if page_name+'save_plot_button' == prop_id:
                 msg = "save_plot_button pressed"
+                self.table_df = html_table_to_df(table_in)
+                '''
                 row_count = len(table_in)
                 print("table row count >>>>", row_count)
                 column_count = len(table_in[0]['props']['children'])
@@ -423,6 +458,7 @@ class StylingTable():
                 print("table_data_raw >>>>" , table_data_raw)
                 self.table_df = pd.DataFrame(data=table_data_raw, columns=table_columns)
                 print("self.table_df >>>>>>>", self.table_df)
+                '''
             else:
                 msg = "No Button Pressed"
             return html.Div(msg)
