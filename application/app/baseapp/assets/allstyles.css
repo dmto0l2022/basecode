@@ -22,6 +22,10 @@
   --debug_section_height: 63px;
 }
 
+.table>:not(caption)>*>*{
+	padding : 0;
+}
+
 /*
 .Select--single>.Select-control .Select-value, .Select-placeholder, .Select-input, .Select-value {
     bottom: 0;
