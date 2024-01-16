@@ -379,7 +379,8 @@ class StylingTable():
 
         ##cell_5 = dcc.Dropdown(['NYC', 'MTL', 'SF'], 'NYC', id='demo-dropdown')
 
-        cell_5 = dcc.Dropdown(['New York City', 'Montreal', 'Paris', 'London', 'Amsterdam', 'Berlin', 'Rome'],'Paris',style={'font-size' : '11px', 'line-height':'12px'},
+        cell_5 = dcc.Dropdown(['New York City', 'Montreal', 'Paris', 'London', 'Amsterdam', 'Berlin', 'Rome'],'Paris',
+                              style={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px', 'max-height':'12px', 'min-height':'12px'},
                               id='option-height-example-dropdown', optionHeight=12)
 
         '''
