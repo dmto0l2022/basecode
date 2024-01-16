@@ -394,7 +394,7 @@ def displayClick1_1(btn1,table_in):
     if page_name+'save_plot_button' == prop_id:
         msg = "save_plot_button pressed"
         print(msg)
-        print(table_in['props'][0])
+        print(table_in[0]['props'])
     else:
         msg = "No Button Pressed"
     return html.Div(msg)
