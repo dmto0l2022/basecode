@@ -26,6 +26,10 @@
 	padding : 0;
 }
 
+.dash-dropdown{
+	height : 12px;
+}
+
 /*
 .Select--single>.Select-control .Select-value, .Select-placeholder, .Select-input, .Select-value {
     bottom: 0;
