@@ -392,6 +392,8 @@ class StylingTable():
             prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
             if page_name+'save_plot_button' == prop_id:
                 msg = "save_plot_button pressed"
+                row_count = len(table_in)
+                print("table row count >>>>", row_count)
                 column_count = len(table_in[0]['props']['children'])
                 print("column_count >>>>>>", column_count)
                 table_columns = []
