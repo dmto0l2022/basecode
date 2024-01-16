@@ -410,7 +410,7 @@ class StylingTable():
                 #print("column_1, column_2 >>>>>>>>>>>" , column_1, column_2)
 
                 #row_count = len(table_in[1]['props']['children'])
-                for r in range(1, row_count+1):
+                for r in range(1, row_count):
                     for c in range(0,column_count):
                         print(r,c,table_in[r]['props']['children'][c]['props']['children'])
                 #print('data_1 >>>>>>>>>' , data_1)
