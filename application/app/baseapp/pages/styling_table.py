@@ -379,7 +379,7 @@ class StylingTable():
             print("styling table callback triggered")
             print(table_div_in)
     
-    def button_callback(self)
+    def button_callback(self):
         @callback(
                     Output(self.page_name+'button-output-div', 'children'),
                     Input(self.page_name+"save_plot_button", 'n_clicks'),
