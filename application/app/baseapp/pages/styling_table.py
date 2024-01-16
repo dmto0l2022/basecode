@@ -387,8 +387,8 @@ class StylingTable():
                      }
 
         cell_5 = dcc.Dropdown(['New York', 'Montreal', 'Paris', 'London', 'Amsterdam', 'Berlin', 'Rome'],'Paris',
-                              style=style_1,
-                              id='option-height-example-dropdown', optionHeight=24)
+                              ##style=style_1,
+                              id='option-height-example-dropdown')
 
         options = [html.Option(value=x) for x in ["Chocolate", "Coconut", "Mint", "Strawberry"]]
 
