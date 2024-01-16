@@ -383,9 +383,18 @@ class StylingTable():
                               style={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px', 'max-height':'12px', 'min-height':'12px'},
                               id='option-height-example-dropdown', optionHeight=12)
 
-        cell_6 = html.Input(list="browsers")
+        options = [html.Option(value=x) for x in ["Chocolate", "Coconut", "Mint", "Strawberry"]]
         
-        html.Datalist(id="browsers", children=[html.Option(value="chrome"),html.Option(value="firefox"),html.Option(value="internet explorer"),])
+        cell_6 = html.Div(
+                [
+                    html.Datalist(id="ice-cream-flavors", children=options),
+                    dcc.Input(
+                        id="ice-cream-choice", list="ice-cream-flavors", name="ice-cream-choice",
+                    ),
+                ]
+            )
+
+        
         '''
          <div class="dropdown">
           <button class="dropbtn">Dropdown</button>
