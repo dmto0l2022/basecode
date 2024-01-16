@@ -410,12 +410,19 @@ class StylingTable():
                 #print("column_1, column_2 >>>>>>>>>>>" , column_1, column_2)
 
                 #row_count = len(table_in[1]['props']['children'])
+                row_data = []
+                table_data_raw = []
                 for r in range(1, row_count):
+                    row_data = []
                     for c in range(0,column_count):
                         print(r,c,table_in[r]['props']['children'][c]['props']['children'])
+                        append_this = table_in[r]['props']['children'][c]['props']['children']
+                        row_data.append(append_this)
+                    table_data_raw.append(row_data)
                 #print('data_1 >>>>>>>>>' , data_1)
                 #self.table_data = data_1
                 #print("self.table_data >>>>" , self.table_data)
+                print("table_data_raw >>>>" , table_data_raw)
                 
             else:
                 msg = "No Button Pressed"
