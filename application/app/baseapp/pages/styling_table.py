@@ -385,13 +385,16 @@ def get_table_children(url_in,table_div_in):
 
 @callback(
             Output(page_name+'button-output-div', 'children'),
-            Input(page_name+"save_plot_button", 'n_clicks')
+            Input(page_name+"save_plot_button", 'n_clicks'),
+            State(page_name+'generated_table', 'children')
         )
-def displayClick1_1(btn1):
+def displayClick1_1(btn1,table_in):
     msg = "None of the buttons have been clicked yet"
     prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
     if page_name+'save_plot_button' == prop_id:
         msg = "save_plot_button pressed"
+        print(msg)
+        print(table_in)
     else:
         msg = "No Button Pressed"
     return html.Div(msg)
