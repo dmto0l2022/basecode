@@ -61,6 +61,10 @@
    display:flex;
 }
 
+.table {
+	padding : 0pximportant;
+}
+
 .btn-brand {
     color: purple;
     background-color: darkgrey;
