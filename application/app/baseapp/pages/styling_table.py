@@ -364,9 +364,9 @@ class StylingTable():
                 ], style={'width': '100%', 'height': '50%','border': '2px solid black'})
         
         self.layout = html.Div([
-            dcc.Location(id=page_name+'url',refresh=True),
-            html.Div(id=page_name+'content',children=self.table_row,className="DASHBOARD_CONTAINER_STYLE"),
-            html.Div(id=page_name+'response',children="table content"),
+            dcc.Location(id=self.page_name+'url',refresh=True),
+            html.Div(id=self.page_name+'content',children=self.table_row,className="DASHBOARD_CONTAINER_STYLE"),
+            html.Div(id=self.page_name+'response',children="table content"),
         ],className="PAGE_CONTENT")
     
 
@@ -379,7 +379,8 @@ layout = dbl.layout
                   Input(page_name +'url', 'href'),
                   State(page_name+'generated_table', 'children'))
 def get_table_children(url_in,table_div_in):
-            print(table_div_in)
+    print("styling table callback triggered")
+    print(table_div_in)
 
 
 '''
