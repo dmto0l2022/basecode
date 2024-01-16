@@ -349,6 +349,18 @@ class StylingTable():
 
     def select_beginnings(self):
 
+        heading_1 = html.Th(className='th', children=['Column 1'], style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                   'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
+
+        heading_2 = html.Th(className='th', children=['Column 2'], style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                   'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
+
+        heading_3 = html.Th(className='th', children=['Column 3'], style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                   'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
+
+        heading_4 = html.Th(className='th', children=['Column 4'], style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                   'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
+        
         cell_1 = html.Td(className='td', children=['Emil'], style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
         cell_2 = html.Td(className='td', children=['Tobias'], style={'margin':'0','padding':'0','border':'1px solid black',
@@ -364,10 +376,11 @@ class StylingTable():
 
         cell_4 = html.Td(className='td', children=[select_1],style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
-        
+
+        heading_row = html.Tr(className='tr', children=[heading_1,heading_2,heading_3,heading_4], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_4], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         
-        self.simple_table = html.Table(className='table', id=self.page_name + "simple_table", children=[table_row], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        self.simple_table = html.Table(className='table', id=self.page_name + "simple_table", children=[heading_row, table_row], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
 
 
     def generate_html_table(self):
