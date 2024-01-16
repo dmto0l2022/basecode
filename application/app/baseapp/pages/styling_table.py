@@ -366,7 +366,7 @@ class StylingTable():
         self.layout = html.Div([
             dcc.Location(id=self.page_name+'url',refresh=True),
             dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
-            html.Div(id=self.page_name+'content',children=self.table_row,className="DASHBOARD_CONTAINER_STYLE"),
+            html.Div(id=self.page_name+'content',children=self.table_row),
             html.Div(id=self.page_name+'response',children="table content"),
             html.Div(id=self.page_name+'button-output-div',children="button message"),
             html.Button('Submit', id=self.page_name+'save_plot_button', n_clicks=0),
