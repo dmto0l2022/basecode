@@ -383,6 +383,9 @@ class StylingTable():
                               style={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px', 'max-height':'12px', 'min-height':'12px'},
                               id='option-height-example-dropdown', optionHeight=12)
 
+        cell_6 = html.Input(list="browsers")
+        
+        html.Datalist(id="browsers", children=[html.Option(value="chrome"),html.Option(value="firefox"),html.Option(value="internet explorer"),])
         '''
          <div class="dropdown">
           <button class="dropbtn">Dropdown</button>
@@ -395,7 +398,7 @@ class StylingTable():
         '''
         
         heading_row = html.Tr(className='tr', children=[heading_1,heading_2,heading_3,heading_4], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
-        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_5], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_6], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         
         self.simple_table = html.Table(className='table', id=self.page_name + "simple_table", children=[heading_row, table_row], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
 
