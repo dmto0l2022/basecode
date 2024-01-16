@@ -354,6 +354,8 @@ class StylingTable():
         cell_2 = html.Td(className='td', children=['Tobias'], style={'margin':'0','padding':'0','border':'1px solid black',
                                                                      'font-size':'8px', 'line-height':'8px', 'height':'8px', 'min-height':'8px'})
         cell_3 = html.Td(className='td', children=['Linus'],style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                   'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
+        
             
         option_1 = html.Option("Server1", id="Server1", value="Server1", style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         option_2 = html.Option("Server2", id="Server2", value="Server2", style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
