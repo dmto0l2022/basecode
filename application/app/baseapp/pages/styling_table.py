@@ -379,16 +379,19 @@ class StylingTable():
 
         ##cell_5 = dcc.Dropdown(['NYC', 'MTL', 'SF'], 'NYC', id='demo-dropdown')
 
-        style_1={'font-size' : '11px', 'line-height':'24px', 'padding':'0', 'margin':'0', 'height':'24px !important',
-                                     'max-height':'24px !important', 'min-height':'24px !important','display': 'inline-block'}
+        style_1={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px !important',
+                                     'max-height':'12px !important', 'min-height':'12px !important','display': 'inline-block'}
         
-        flex_style = {'height': '24px', 'display': 'flex', 'justify-content': 'flex-end',
+        flex_style = {'height': '12px', 'display': 'flex', 'justify-content': 'flex-end',
                       'flex-direction': 'row', 'align-items': 'center','padding':'0 !important', 'margin':'0',
                      }
 
-        cell_5 = dcc.Dropdown(['New York', 'Montreal', 'Paris', 'London', 'Amsterdam', 'Berlin', 'Rome'],'Paris',
-                              ##style=style_1,
+        dropdown_1 = dcc.Dropdown(['New York', 'Montreal', 'Paris', 'London', 'Amsterdam', 'Berlin', 'Rome'],'Paris',
+                              style=style_1,
                               id='option-height-example-dropdown')
+        
+        cell_5 = html.Td(className='td', children=dropdown_1, style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                   'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
 
         options = [html.Option(value=x) for x in ["Chocolate", "Coconut", "Mint", "Strawberry"]]
 
