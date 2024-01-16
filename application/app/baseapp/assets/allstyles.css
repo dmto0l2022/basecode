@@ -51,6 +51,34 @@ span{
 }
 */
 
+
+.dropdown-class-2 > .Select-control {
+   width:100% !important;
+   border: 2px solid black;
+   border-radius:20px;
+   background-color:#FCE22A;
+}
+
+
+.dropdown-class-2 {
+    flex-grow:1
+}
+
+.dropdown-class-2 >.Select-control .Select-multi-value-wrapper {
+    flex-grow:2;
+    text-align:center;
+}
+
+.dropdown-class-2 >.Select-control .Select-value, .Select-placeholder 
+{
+    line-height: 11px;   //this you have to adjust according to heigt you set
+}
+
+.dropdown-class-2.Select span{
+    color:red;
+    font-size:1em;
+}
+
 .Select--single>.Select-control .Select-value, .Select-placeholder, .Select-input, .Select-value {
     bottom: 0;
     color: #aaa;
