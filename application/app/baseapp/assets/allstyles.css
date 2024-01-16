@@ -39,6 +39,11 @@ span{
     line-height : 12px;
 }
 
+.Select--single{
+    height : 12px;
+    line-height : 12px;
+}
+
 /*
 .Select--single>.Select-control .Select-value, .Select-placeholder, .Select-input, .Select-value {
     bottom: 0;
