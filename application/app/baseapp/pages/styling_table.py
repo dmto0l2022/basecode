@@ -380,7 +380,8 @@ class StylingTable():
         ##cell_5 = dcc.Dropdown(['NYC', 'MTL', 'SF'], 'NYC', id='demo-dropdown')
 
         cell_5 = dcc.Dropdown(['New York City', 'Montreal', 'Paris', 'London', 'Amsterdam', 'Berlin', 'Rome'],'Paris',
-                              style={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px', 'max-height':'12px', 'min-height':'12px'},
+                              style={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px',
+                                     'max-height':'12px', 'min-height':'12px','display': 'inline-block'},
                               id='option-height-example-dropdown', optionHeight=12)
 
         options = [html.Option(value=x) for x in ["Chocolate", "Coconut", "Mint", "Strawberry"]]
@@ -405,9 +406,11 @@ class StylingTable():
           </div>
         </div> 
         '''
+        ##option1 = html.Option('option1')
+        ##cell_6 = html.Div(className='dropdown',children=['option1','option2'] id='dropdown1')
         
         heading_row = html.Tr(className='tr', children=[heading_1,heading_2,heading_3,heading_4], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
-        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_6], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_5], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         
         self.simple_table = html.Table(className='table', id=self.page_name + "simple_table", children=[heading_row, table_row], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
 
