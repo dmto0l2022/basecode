@@ -386,7 +386,7 @@ class StylingTable():
 
         options = [html.Option(value=x) for x in ["Chocolate", "Coconut", "Mint", "Strawberry"]]
 
-        cell_8 = html.Div("hello", style={'height':'12px', 'width':'50px', 'background-color':'blue', 'font-size':'11px'})
+        cell_8 = html.Div(children=cell_5, style={'height':'12px', 'width':'50px', 'background-color':'blue', 'font-size':'11px'})
         
         cell_6 = html.Div(
                 [
