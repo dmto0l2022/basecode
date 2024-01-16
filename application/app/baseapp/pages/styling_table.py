@@ -416,7 +416,7 @@ class StylingTable():
         cell_7 = dbc.Select(id="select",options=[{"label": "Option 1", "value": "1"},
                                                  {"label": "Option 2", "value": "2"},
                                                  {"label": "Disabled option", "value": "3", "disabled": True}],
-                            style={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px !important',
+                            style={'font-size' : '11px', 'line-height':'12px !important', 'padding':'0', 'margin':'0', 'height':'12px !important',
                                      'max-height':'12px !important', 'min-height':'12px !important','display': 'inline-block'}
                            )
                           
