@@ -22,16 +22,6 @@
   --debug_section_height: 63px;
 }
 
-th {
-  min-height: 12px !important;
-  height: 12px !important;
-}
-
-tr {
-  min-height: 12px !important;
-  height: 12px !important;
-}
-
 .btn-brand {
     color: purple;
     background-color: darkgrey;
