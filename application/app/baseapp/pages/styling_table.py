@@ -401,8 +401,6 @@ class StylingTable():
                     append_this = table_in[0]['props']['children'][c]['props']['children']
                     table_columns.append(append_this)
                 print("table_columns >>>>>", table_columns)
-                self.table_df = pd.DataFrame(data=[], columns=table_columns)
-                print("self.table_df >>>>>>>", self.table_df)
                 #column_1 = table_in[0]['props']['children'][0]['props']['children']
                 #column_2 = table_in[0]['props']['children'][1]['props']['children']
                 print(msg)
@@ -423,7 +421,8 @@ class StylingTable():
                 #self.table_data = data_1
                 #print("self.table_data >>>>" , self.table_data)
                 print("table_data_raw >>>>" , table_data_raw)
-                
+                self.table_df = pd.DataFrame(data=table_data_raw, columns=table_columns)
+                print("self.table_df >>>>>>>", self.table_df)
             else:
                 msg = "No Button Pressed"
             return html.Div(msg)
