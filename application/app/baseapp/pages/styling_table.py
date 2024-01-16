@@ -149,6 +149,7 @@ class StylingTable():
         self.line_style_options=[{'label': item[0], 'value' : item[1]} for item in self.line_styles_lol]
         
         self.data = []
+        self.table_data = 'table data'
         self.table_div = html.Div()
         self.data_df = pd.DataFrame()
         self.table_row  =  dbc.Row()
@@ -398,6 +399,8 @@ class StylingTable():
         
                 data_1 = table_in[1]['props']['children'][0]['props']['children']
                 print('data_1 >>>>>>>>>' , data_1)
+                self.table_data = data_1
+                print("self.table_data >>>>" , self.table_data)
                 
             else:
                 msg = "No Button Pressed"
