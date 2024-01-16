@@ -380,8 +380,8 @@ class StylingTable():
         ##cell_5 = dcc.Dropdown(['NYC', 'MTL', 'SF'], 'NYC', id='demo-dropdown')
 
         cell_5 = dcc.Dropdown(['New York City', 'Montreal', 'Paris', 'London', 'Amsterdam', 'Berlin', 'Rome'],'Paris',
-                              style={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px',
-                                     'max-height':'12px', 'min-height':'12px','display': 'inline-block'},
+                              style={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px !important',
+                                     'max-height':'12px !important', 'min-height':'12px !important','display': 'inline-block'},
                               id='option-height-example-dropdown', optionHeight=12)
 
         options = [html.Option(value=x) for x in ["Chocolate", "Coconut", "Mint", "Strawberry"]]
@@ -416,14 +416,15 @@ class StylingTable():
         cell_7 = dbc.Select(id="select",options=[{"label": "Option 1", "value": "1"},
                                                  {"label": "Option 2", "value": "2"},
                                                  {"label": "Disabled option", "value": "3", "disabled": True}],
-                            style={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px',
-                                     'max-height':'12px', 'min-height':'12px','display': 'inline-block'}
+                            style={'font-size' : '11px !important', 'line-height':'12px !important', 'padding':'0 !important', 'margin':'0 !important', 'height':'12px !important',
+                                     'max-height':'12px !important', 'min-height':'12px !important','display': 'inline-block'}
                            )
                           
         heading_row = html.Tr(className='tr', children=[heading_1,heading_2,heading_3,heading_4], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_7], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         
-        self.simple_table = html.Table(className='table', id=self.page_name + "simple_table", children=[heading_row, table_row], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        self.simple_table = html.Table(className='table', id=self.page_name + "simple_table", children=[heading_row, table_row],
+                                       style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
 
 
     def generate_html_table(self):
