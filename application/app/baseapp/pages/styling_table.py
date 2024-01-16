@@ -450,11 +450,11 @@ class StylingTable():
         for r in range(1, row_count):
             row_data = []
             for c in range(0,column_count):
-                print(r,c,html_table_in[r]['props']['children'][c]['props']['children'])
                 try:
+                    print(r,c,html_table_in[r]['props']['children'][c]['props']['children'])
                     append_this = html_table_in[r]['props']['children'][c]['props']['children']
                 except:
-                    print(html_table_in[r]['props']['children'][c]['props']['children'])
+                    #print(html_table_in[r]['props']['children'][c]['props']['children'])
                     append_this = 'error'
                 row_data.append(append_this)
             table_data_raw.append(row_data)
