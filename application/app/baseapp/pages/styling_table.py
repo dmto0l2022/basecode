@@ -371,40 +371,44 @@ class StylingTable():
         ])
     
 
+    def page_refresh_callback(self):
+        @callback(Output(self.page_name+'response','children'),
+                          Input(self.page_name +'url', 'href'),
+                          State(self.page_name+'generated_table', 'children'))
+        def get_table_children(url_in,table_div_in):
+            print("styling table callback triggered")
+            print(table_div_in)
+    
+    def button_callback(self)
+        @callback(
+                    Output(self.page_name+'button-output-div', 'children'),
+                    Input(self.page_name+"save_plot_button", 'n_clicks'),
+                    State(self.page_name+'generated_table', 'children')
+                )
+        def displayClick1_1(btn1,table_in):
+            msg = "None of the buttons have been clicked yet"
+            prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
+            if page_name+'save_plot_button' == prop_id:
+                msg = "save_plot_button pressed"
+                column_1 = table_in[0]['props']['children'][0]['props']['children']
+                column_2 = table_in[0]['props']['children'][1]['props']['children']
+                print(msg)
+                #print(table_in[0]['props'])
+                print("column_1, column_2 >>>>>>>>>>>" , column_1, column_2)
+        
+                data_1 = table_in[1]['props']['children'][0]['props']['children']
+                print('data_1 >>>>>>>>>' , data_1)
+                
+            else:
+                msg = "No Button Pressed"
+            return html.Div(msg)
+
+
 page_name = 'styling_table'
 dbl = StylingTable(page_name)
 dbl.Layout()
 layout = dbl.layout
-
-@callback(Output(page_name+'response','children'),
-                  Input(page_name +'url', 'href'),
-                  State(page_name+'generated_table', 'children'))
-def get_table_children(url_in,table_div_in):
-    print("styling table callback triggered")
-    print(table_div_in)
-
-@callback(
-            Output(page_name+'button-output-div', 'children'),
-            Input(page_name+"save_plot_button", 'n_clicks'),
-            State(page_name+'generated_table', 'children')
-        )
-def displayClick1_1(btn1,table_in):
-    msg = "None of the buttons have been clicked yet"
-    prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
-    if page_name+'save_plot_button' == prop_id:
-        msg = "save_plot_button pressed"
-        column_1 = table_in[0]['props']['children'][0]['props']['children']
-        column_2 = table_in[0]['props']['children'][1]['props']['children']
-        print(msg)
-        #print(table_in[0]['props'])
-        print("column_1, column_2 >>>>>>>>>>>" , column_1, column_2)
-
-        data_1 = table_in[1]['props']['children'][0]['props']['children']
-        print('data_1 >>>>>>>>>' , data_1)
-        
-    else:
-        msg = "No Button Pressed"
-    return html.Div(msg)
+dbl.button_callback()
 
 '''
 @callback(
