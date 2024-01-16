@@ -382,7 +382,9 @@ class StylingTable():
         style_1={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px !important',
                                      'max-height':'12px !important', 'min-height':'12px !important','display': 'inline-block'}
         
-        flex_style = {'height': '12px', 'display': 'flex', 'justify-content': 'flex-end', 'flex-direction': 'row', 'align-items': 'center'}
+        flex_style = {'height': '12px', 'display': 'flex', 'justify-content': 'flex-end',
+                      'flex-direction': 'row', 'align-items': 'center','padding':'0', 'margin':'0',
+                     }
 
         cell_5 = dcc.Dropdown(['New York City', 'Montreal', 'Paris', 'London', 'Amsterdam', 'Berlin', 'Rome'],'Paris',
                               style=flex_style,
