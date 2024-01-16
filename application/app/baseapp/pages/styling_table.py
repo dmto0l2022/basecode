@@ -377,6 +377,9 @@ class StylingTable():
         cell_4 = html.Td(className='td', children=select_1,style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
 
+        cell_10 = html.Td(className='td', children="hello",style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                   'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
+        
         ##cell_5 = dcc.Dropdown(['NYC', 'MTL', 'SF'], 'NYC', id='demo-dropdown')
 
         style_1={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px !important',
@@ -433,7 +436,7 @@ class StylingTable():
         ##'display': 'inline-block'}
         
         heading_row = html.Tr(className='tr', children=[heading_1,heading_2,heading_3,heading_4], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
-        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_5], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_10], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         
         self.simple_table = html.Table(className='table', id=self.page_name + "simple_table", children=[heading_row, table_row],
                                        style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
