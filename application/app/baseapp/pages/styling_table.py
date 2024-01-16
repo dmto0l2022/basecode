@@ -398,6 +398,10 @@ def displayClick1_1(btn1,table_in):
         print(msg)
         #print(table_in[0]['props'])
         print("column_1, column_2 >>>>>>>>>>>" , column_1, column_2)
+
+        data_1 = table_in[1]['props']['children'][0]['props']['children']
+        print('data_1 >>>>>>>>>' , data_1)
+        
     else:
         msg = "No Button Pressed"
     return html.Div(msg)
