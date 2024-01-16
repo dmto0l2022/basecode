@@ -348,7 +348,7 @@ class StylingTable():
         data = {'Cap' : ['A', 'B', 'C', ], 'non-Cap' : ['a','b','c', ]}
         max_rows = 12
         df = pd.DataFrame(data)
-        self.generated_table = html.Table(id='generated_table',
+        self.generated_table = html.Table(id=self.page_name + 'generated_table',
             # Header
             children=[html.Tr([html.Th(col) for col in df.columns]) ] +
             # Body
