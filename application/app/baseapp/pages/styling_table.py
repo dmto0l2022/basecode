@@ -374,13 +374,13 @@ page_name = 'styling_table'
 dbl = StylingTable(page_name)
 dbl.Layout()
 layout = dbl.layout
-'''
+
 @callback(Output(page_name+'response','children'),
                   Input(page_name +'url', 'href'),
-                  State(page_name+'table_div', 'children'))
+                  State(page_name+'generated_table', 'children'))
         def get_table_children(url_in,table_div_in):
             print(table_div_in)
-'''
+
 
 '''
 @callback(
