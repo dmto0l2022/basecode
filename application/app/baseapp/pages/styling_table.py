@@ -349,23 +349,23 @@ class StylingTable():
 
     def select_beginnings(self):
 
-        heading_1 = html.Th(className='th', children=['Column 1'], style={'margin':'0','padding':'0','border':'1px solid black',
+        heading_1 = html.Th(className='th', children='Column 1', style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
 
-        heading_2 = html.Th(className='th', children=['Column 2'], style={'margin':'0','padding':'0','border':'1px solid black',
+        heading_2 = html.Th(className='th', children='Column 2', style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
 
-        heading_3 = html.Th(className='th', children=['Column 3'], style={'margin':'0','padding':'0','border':'1px solid black',
+        heading_3 = html.Th(className='th', children='Column 3', style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
 
-        heading_4 = html.Th(className='th', children=['Column 4'], style={'margin':'0','padding':'0','border':'1px solid black',
+        heading_4 = html.Th(className='th', children='Column 4', style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
         
-        cell_1 = html.Td(className='td', children=['Emil'], style={'margin':'0','padding':'0','border':'1px solid black',
+        cell_1 = html.Td(className='td', children='Emil', style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
-        cell_2 = html.Td(className='td', children=['Tobias'], style={'margin':'0','padding':'0','border':'1px solid black',
+        cell_2 = html.Td(className='td', children='Tobias', style={'margin':'0','padding':'0','border':'1px solid black',
                                                                      'font-size':'8px', 'line-height':'8px', 'height':'8px', 'min-height':'8px'})
-        cell_3 = html.Td(className='td', children=['Linus'],style={'margin':'0','padding':'0','border':'1px solid black',
+        cell_3 = html.Td(className='td', children='Linus',style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
         
             
@@ -374,7 +374,7 @@ class StylingTable():
         
         select_1 = html.Select(children=[option_1, option_2],id="connections",style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})  
 
-        cell_4 = html.Td(className='td', children=[select_1],style={'margin':'0','padding':'0','border':'1px solid black',
+        cell_4 = html.Td(className='td', children=select_1,style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
 
         heading_row = html.Tr(className='tr', children=[heading_1,heading_2,heading_3,heading_4], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
