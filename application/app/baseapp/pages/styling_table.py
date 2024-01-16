@@ -266,7 +266,7 @@ class StylingTable():
               dropdown={
                   'line_color': {
                       'options': self.color_options,
-                      'searchable' : False,Input(self.page_name +'url', 'href'),
+                      'searchable' : False,
                       'clearable' : False,
                   },
                   'line': {
@@ -276,7 +276,7 @@ class StylingTable():
                   'fill_color': {
                       'options': self.color_options,
                       'searchable' : False,
-                      'clearable' : False,Input(self.page_name +'url', 'href'),
+                      'clearable' : False,
                   },
                   'symbol': {
                        'options': self.symbol_options,
