@@ -406,11 +406,20 @@ class StylingTable():
           </div>
         </div> 
         '''
-        ##option1 = html.Option('option1')
-        ##cell_6 = html.Div(className='dropdown',children=['option1','option2'] id='dropdown1')
-        
+        '''
+        option1 = html.Div('option1')
+        option2 = html.Div('option2')
+        dropdown_content = html.Div(className=
+        cell_6 = html.Div(className='dropdown',children=['option1','option2'] id='dropdown1')
+        '''
+
+        cell_7 = dbc.Select(id="select",options=[{"label": "Option 1", "value": "1"},
+                                                 {"label": "Option 2", "value": "2"},
+                                                 {"label": "Disabled option", "value": "3", "disabled": True}],
+                           )
+                          
         heading_row = html.Tr(className='tr', children=[heading_1,heading_2,heading_3,heading_4], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
-        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_5], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_7], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         
         self.simple_table = html.Table(className='table', id=self.page_name + "simple_table", children=[heading_row, table_row], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
 
