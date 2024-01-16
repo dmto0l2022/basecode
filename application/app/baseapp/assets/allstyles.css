@@ -22,6 +22,7 @@
   --debug_section_height: 63px;
 }
 
+/*
 .Select--single>.Select-control .Select-value, .Select-placeholder, .Select-input, .Select-value {
     bottom: 0;
     color: #aaa;
@@ -64,6 +65,7 @@
 .table {
 	padding : 0pximportant;
 }
+*/
 
 .btn-brand {
     color: purple;
