@@ -379,9 +379,13 @@ class StylingTable():
 
         ##cell_5 = dcc.Dropdown(['NYC', 'MTL', 'SF'], 'NYC', id='demo-dropdown')
 
+        style_1={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px !important',
+                                     'max-height':'12px !important', 'min-height':'12px !important','display': 'inline-block'}
+        
+        flex_style = {'height': '12px', 'display': 'flex', 'justify-content': 'flex-end', 'flex-direction': 'row', 'align-items': 'center'}
+
         cell_5 = dcc.Dropdown(['New York City', 'Montreal', 'Paris', 'London', 'Amsterdam', 'Berlin', 'Rome'],'Paris',
-                              style={'font-size' : '11px', 'line-height':'12px', 'padding':'0', 'margin':'0', 'height':'12px !important',
-                                     'max-height':'12px !important', 'min-height':'12px !important','display': 'inline-block'},
+                              style=flex_style,
                               id='option-height-example-dropdown', optionHeight=12)
 
         options = [html.Option(value=x) for x in ["Chocolate", "Coconut", "Mint", "Strawberry"]]
