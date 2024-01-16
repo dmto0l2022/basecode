@@ -439,9 +439,9 @@ class StylingTable():
         self.layout = html.Div([
             dcc.Location(id=self.page_name+'url',refresh=True),
             dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
-            html.Div(id=self.page_name+'content',children=[self.table_div], style = {'position':'absolute', 'top':'0px', 'width':'100px'}),
-            html.Div(id=self.page_name+'response',children="table content", style = {'position':'absolute', 'top':'200px', 'width':'100px'}),
-            html.Div(id=self.page_name+'button-output-div',children="button message", style={'position':'absolute', 'top':'225px', 'width':'100px'}),
+            html.Div(id=self.page_name+'content',children=[self.table_div], style = {'position':'absolute', 'top':'0px', 'width':'300px'}),
+            html.Div(id=self.page_name+'response',children="table content", style = {'position':'absolute', 'top':'200px', 'width':'300px'}),
+            html.Div(id=self.page_name+'button-output-div',children="button message", style={'position':'absolute', 'top':'225px', 'width':'300px'}),
             html.Button('Submit', id=self.page_name+'save_plot_button', n_clicks=0, style={'position':'absolute', 'top':'250px', 'width':'100px'}),
         ])
     
