@@ -393,8 +393,11 @@ def displayClick1_1(btn1,table_in):
     prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
     if page_name+'save_plot_button' == prop_id:
         msg = "save_plot_button pressed"
+        column_1 = table_in[0]['props']['children'][0]['props']['children']
+        column_2 = table_in[0]['props']['children'][1]['props']['children']
         print(msg)
-        print(table_in[0]['props'])
+        #print(table_in[0]['props'])
+        print("column_1, column_2 >>>>>>>>>>>" , column_1, column_2)
     else:
         msg = "No Button Pressed"
     return html.Div(msg)
