@@ -155,6 +155,7 @@ class StylingTable():
         self.table_df = pd.DataFrame()
         self.table_row  =  dbc.Row()
         self.layout = html.Div()
+        self.simple_table = html.Table()
         self.ExampleTable = dash_table.DataTable()
         self.ExampleTableFormat  = dash_table.DataTable()
         self.Create()
@@ -345,6 +346,18 @@ class StylingTable():
         )
         self.ExampleTableFormat = self.ExampleTable
 
+    def select_beginnings(self):
+        option_1 = html.Option("Server1", id="Server1", value="Server1", style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        option_2 = html.Option("Server2", id="Server2", value="Server2", style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        select_1 = html.Select(children=[option_1, option_2],id="connections",style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})  
+
+        cell_4 = html.Td(className='td', children=[select_1],style={'margin':'0','padding':'0','border':'1px solid black',
+                                                                   'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
+        
+        table_row = html.Tr(className='tr', children=[cell_1,cell_2,cell_3,cell_4], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+        
+        self.simple_table = html.Table(className='table', id=self.page_name + "simple_table", children=[table_row], style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+
 
     def generate_html_table(self):
         data = {'Column:Cap' : ['Data A', 'Data B', 'Data C', ], 'Column:non-Cap' : ['Data a','Data b','Data c', ]}
@@ -394,7 +407,10 @@ class StylingTable():
         return table_df
         
     def Layout(self):
-        self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.generated_table], style={'width': '100%', 'height': '200px','border': '2px solid black'})
+        #self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.generated_table], style={'width': '100%', 'height': '200px','border': '2px solid black'})
+
+        self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.simple_table], style={'width': '100%', 'height': '200px','border': '2px solid black'})
+       
         
         self.layout = html.Div([
             dcc.Location(id=self.page_name+'url',refresh=True),
@@ -418,7 +434,8 @@ class StylingTable():
         @callback(
                     Output(self.page_name+'button-output-div', 'children'),
                     Input(self.page_name+"save_plot_button", 'n_clicks'),
-                    State(self.page_name+'generated_table', 'children')
+                    ##State(self.page_name+'generated_table', 'children')
+                    State(self.page_name+'simple_table', 'children')
                 )
         def displayClick1_1(btn1,table_in):
             msg = "None of the buttons have been clicked yet"
