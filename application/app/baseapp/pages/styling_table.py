@@ -365,8 +365,11 @@ class StylingTable():
         
         self.layout = html.Div([
             dcc.Location(id=self.page_name+'url',refresh=True),
+            dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
             html.Div(id=self.page_name+'content',children=self.table_row,className="DASHBOARD_CONTAINER_STYLE"),
             html.Div(id=self.page_name+'response',children="table content"),
+            html.Div(id=self.page_name+'button-output-div',children="button message"),
+            html.Button('Submit', id=self.page_name+'save_plot_button', n_clicks=0),
         ],className="PAGE_CONTENT")
     
 
@@ -382,6 +385,18 @@ def get_table_children(url_in,table_div_in):
     print("styling table callback triggered")
     print(table_div_in)
 
+@callback(
+            Output(self.page_name+'button-output-div', 'children'),
+            Input(self.page_name+"save_plot_button", 'n_clicks')
+        )
+        def displayClick1_1(btn1):
+            msg = "None of the buttons have been clicked yet"
+            prop_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
+            if self.page_name+'save_plot_button' == prop_id:
+                msg = "save_plot_button pressed"
+            else:
+                msg = "No Button Pressed"
+            return html.Div(msg)
 
 '''
 @callback(
