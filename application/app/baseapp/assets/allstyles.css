@@ -22,10 +22,6 @@
   --debug_section_height: 63px;
 }
 
-.Select--single>.Select-control .Select-value, .Select-placeholder 
-{
-    line-height: 12px;
-}
 
 .dropdown-class-colors > .Select-control {
    width:100% !important;
