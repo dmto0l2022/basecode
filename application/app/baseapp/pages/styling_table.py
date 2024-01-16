@@ -345,7 +345,7 @@ class StylingTable():
 
 
     def generate_html_table(self):
-        data = {'Cap' : ['A', 'B', 'C', ], 'non-Cap' : ['a','b','c', ]}
+        data = {'Column:Cap' : ['Data A', 'Data B', 'Data C', ], 'Column:non-Cap' : ['Data a','Data b','Data c', ]}
         max_rows = 12
         df = pd.DataFrame(data)
         self.generated_table = html.Table(id=self.page_name + 'generated_table',
@@ -394,7 +394,7 @@ def displayClick1_1(btn1,table_in):
     if page_name+'save_plot_button' == prop_id:
         msg = "save_plot_button pressed"
         print(msg)
-        print(table_in)
+        print(table_in['props'][0]['children'])
     else:
         msg = "No Button Pressed"
     return html.Div(msg)
