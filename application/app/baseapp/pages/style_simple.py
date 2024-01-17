@@ -293,13 +293,16 @@ class StylingTable():
 
     def generate_html_table_from_df(self, df_in):
         df = df_in
+        count_row = df_in.shape[0]  # Gives number of rows
+        count_col = df_in.shape[1]  # Gives number of columns
+        
         self.generated_table_from_df = html.Table(id=self.page_name + 'generated_table_from_df',
             # Header
             children=[html.Tr([html.Th(col) for col in df.columns]) ] +
             # Body
             [html.Tr([
                 html.Td(df.iloc[i][col]) for col in df.columns
-            ]) for i in range(min(len(df), max_rows))]
+            ]) for i in range(min(len(df), count_row))]
         )
     
     def generate_html_table(self):
