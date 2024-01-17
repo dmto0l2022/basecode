@@ -639,7 +639,7 @@ class StylingTable():
             listen2this,
             events=[self.event], logging=True, id="el"
             ),
-            html.Div(id="log")
+            html.Div(id="log", style={'position':'absolute', 'top':'300px', 'width':'100px'})
         ])
     
 
