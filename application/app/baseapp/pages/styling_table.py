@@ -78,7 +78,7 @@ class StylingTable():
         
         self.format_table_style_cell = {'textAlign': 'left',
                                         'appearance': 'none',
-                                         '-webkit-appearance': 'none';
+                                         '-webkit-appearance': 'none',
                                           'padding': '0px',
                                           'font_size': self.format_data_table_font_size,
                                           'overflow': 'hidden',
