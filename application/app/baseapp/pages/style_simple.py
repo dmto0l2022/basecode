@@ -320,10 +320,10 @@ class StylingTable():
         count_col = df_in.shape[1]  # Gives number of columns
 
         table_headings = html.Tr([html.Th(col) for col in df.columns])
-        table_body =  html.Tr([html.Td(df.iloc[i][col]) for col in df.columns]) for i in range(min(len(df), count_row))
+        table_body =  [html.Tr([html.Td(df.iloc[i][col]) for col in df.columns]) for i in range(min(len(df), count_row))]
         
         self.generated_table_from_df = html.Table(id=self.page_name + 'generated_table_from_df',
-           children=[table_headings + table_body]
+           children=[[table_headings] + table_body]
         )
     
     def generate_html_table(self):
