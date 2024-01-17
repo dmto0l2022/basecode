@@ -33,6 +33,7 @@
 
 #stylingtable {
 	appearance: none;
+	-webkit-appearance: none;
 }
 
 /*
