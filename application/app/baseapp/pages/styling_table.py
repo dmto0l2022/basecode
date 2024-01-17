@@ -399,8 +399,8 @@ class StylingTable():
         counter = 0
         children_color = []
         for pc in palette_color_squares_1:
-            palette_option_append = html.Option(pc, id="color " + str(counter), value="color " + str(counter),
-                                                style={'width':'100%','margin':'0','padding':'0','border':'1px solid black','line-height':'12px', 'min-height': '12px'})
+            palette_option_append = html.Option(pc, id="color " + str(counter), value="color " + str(counter), height='12px',
+                                                style={'width':'100%','margin':'0 !important','padding':'0 !important','border':'1px solid black','line-height':'12px', 'min-height': '12px'})
             children_color.append(palette_option_append)
             counter += 1
 
