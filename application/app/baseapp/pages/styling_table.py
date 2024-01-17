@@ -402,7 +402,7 @@ class StylingTable():
             palette_option_append = html.Option(pc, id="color " + str(counter), value="color " + str(counter),
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
-                                                       'line-height':'12px',
+                                                       'line-height':'12px','font-size' : '12px',
                                                        'min-height': '12px', 'display': 'block'})
             children_color.append(palette_option_append)
             counter += 1
