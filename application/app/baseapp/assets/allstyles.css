@@ -42,6 +42,10 @@
 	-webkit-appearance: none;
 }
 
+.caret {
+display: none;
+}
+
 /*
 .dash-dropdown{
 	height : 12px;
