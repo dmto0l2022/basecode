@@ -188,13 +188,20 @@ class StylingTable():
 
         return select_out
 
-    def get_line_styles(self, limit_id_in, trace_id_in):
+    def get_line_styles(self, limit_id_in, trace_id_in,default_value_in):
         line_styles_list = ['solid', 'dot', 'dash', 'longdash', 'dashdot', 'longdashdot']
         line_styles_lines = ['__', '...', '---', '_ _', '_.', '__.']
         counter = 0
         children_line_styles = []
         for ls in line_styles_lines:
-            palette_option_append = html.Option(ls, id="line style " + str(counter), value="line style " + str(counter) + "-" + str(limit_id_in) + "-" + str(trace_id_in),
+            line_value = line_styles_list[counter]
+            #print(counter,color_value)
+            if line_value == default_value_in:
+                selected_flag = True
+            else:
+                selected_flag = False
+            palette_option_append = html.Option(ls, id="line_style_option:" + str(counter) + ",limit_id:" + str(limit_id_in) + ",trace_id:" + str(trace_id_in),
+                                                value=line_value,
                                                 selected=False,
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
