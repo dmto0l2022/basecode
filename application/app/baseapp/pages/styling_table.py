@@ -71,7 +71,7 @@ class StylingTable():
                                           'height': self.format_data_table_row_height,
                                           'overflow': 'hidden',
                                           'maxWidth': 0, ## made things work!!,
-                                          'display': 'inline-block',
+                                          ##'display': 'inline-block',
                                          }
         
         '''
