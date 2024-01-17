@@ -66,7 +66,7 @@ class StylingTable():
             }
         
         self.event = {'event': 'click', 'props': ['timeStamp', 'button','type', 'srcElement.className', 'srcElement.innerText', 'srcElement.value', 'srcElement.id']}
-      
+        self.previous_clickevent = 'None'
         
         self.table_columns =[
                 {'id': 'limit_id', 'name': ['','limit_id']},
