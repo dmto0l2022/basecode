@@ -70,7 +70,7 @@ class StylingTable():
                                           ##'border': '1px solid black',
                                           'height': self.format_data_table_row_height,
                                           'overflow': 'hidden',
-                                          'maxWidth': 0 ## made things work!!,
+                                          'maxWidth': 0, ## made things work!!,
                                           'display': 'inline-block',
                                          }
         
