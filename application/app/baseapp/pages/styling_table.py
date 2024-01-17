@@ -156,6 +156,7 @@ class StylingTable():
         self.table_df = pd.DataFrame()
         self.table_row  =  dbc.Row()
         self.layout = html.Div()
+        self.dropdown_test = html.Div()
         self.simple_table = html.Table()
         self.ExampleTable = dash_table.DataTable()
         self.ExampleTableFormat  = dash_table.DataTable()
@@ -164,6 +165,7 @@ class StylingTable():
         self.Example()
         self.generate_html_table()
         self.select_beginnings()
+        self.create_drop_down_button()
 
   
     def Create(self):
@@ -339,7 +341,20 @@ class StylingTable():
                     "ottawa": i * -1,
                     "vancouver": i * -10,
                     "temp": i * -100,
-                    "humidity": i * 5,
+                 html.Button(
+[
+html.Span(className=‘navbar-toggler-icon’)
+],
+className=“navbar-toggler”,
+type=‘button’,
+**{
+‘data-toggle’: ‘collapse’,
+‘data-target’: “#navbarNav”,
+‘aria-controls’: “navbarNav”,
+‘aria-expanded’: “false”,
+‘aria-label’: “Toggle navigation”
+}
+),   "humidity": i * 5,
                 }
                 for i in range(10)
             ],
@@ -465,6 +480,66 @@ class StylingTable():
                                        style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
 
 
+    def create_drop_down_button(self):
+        '''
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+        '''
+
+        select = dbc.Select(
+                id="select",
+                options=[
+                    {"label": "Option 1", "value": "1"},
+                    {"label": "Option 2", "value": "2"},
+                    {"label": "Disabled option", "value": "3", "disabled": True},
+                ],
+            )
+        '''
+        <select class="form-select" aria-label="Default select example">
+        option_0 = html.Div(className="option", children="Open this select menu", value="0")
+        option_1 = html.Div(className="option", children="Open this select menu", value="1")
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        '''
+        option_0 = html.Div(
+                className='option',
+                children='option 0'
+                **{
+                'data-value': '0',
+                }
+                )
+        
+        option_1 = html.Div(
+                className='option',
+                children='option 1'
+                **{
+                'data-value': '1',
+                }
+                )
+
+        option_2 = html.Div(
+                className='option',
+                children='option 2'
+                **{
+                'data-value': '2',
+                }
+                )
+        
+        select_div = html.Div(className="select", children=[option_0, option_1, option_2])
+
+        self.dropdown_test = select_div
+    
     def generate_html_table(self):
         data = {'Column:Cap' : ['Data A', 'Data B', 'Data C', ], 'Column:non-Cap' : ['Data a','Data b','Data c', ]}
         max_rows = 12
@@ -520,8 +595,10 @@ class StylingTable():
         #self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.generated_table], style={'width': '100%', 'height': '200px','border': '2px solid black'})
 
         #self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.simple_table], style={'width': '100%', 'height': '200px','border': '2px solid black'})
-        self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.TableFormat], style={'width': '100%', 'height': '200px','border': '2px solid black'})
-       
+        #self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.TableFormat], style={'width': '100%', 'height': '200px','border': '2px solid black'})
+
+        self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.dropdown_test], style={'width': '100%', 'height': '200px','border': '2px solid black'})
+
         
         self.layout = html.Div([
             dcc.Location(id=self.page_name+'url',refresh=True),
