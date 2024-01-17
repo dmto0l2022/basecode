@@ -164,7 +164,7 @@ class StylingTable():
         counter = 0
         children_color = []
         for pc in palette_color_squares_1:
-            palette_option_append = html.Option(pc, id="color " + str(counter), value="color " + str(counter) + "-" - str(limit_id_in) + "-" + str(trace_id_in),
+            palette_option_append = html.Option(pc, id="color " + str(counter), value="color " + str(counter) + "-" + str(limit_id_in) + "-" + str(trace_id_in),
                                                 selected=False,
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
