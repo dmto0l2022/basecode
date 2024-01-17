@@ -657,7 +657,7 @@ class StylingTable():
         def click_event(n_events, e):
             if e is None:
                 raise PreventUpdate()
-            return ",".join(f"{prop} is '{e[prop]}' " for prop in event["props"]) + f" (number of clicks is {n_events})"
+            return ",".join(f"{prop} is '{e[prop]}' " for prop in self.event["props"]) + f" (number of clicks is {n_events})"
     
     def button_callback(self):
         @callback(
