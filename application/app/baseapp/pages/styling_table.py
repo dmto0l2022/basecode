@@ -341,20 +341,7 @@ class StylingTable():
                     "ottawa": i * -1,
                     "vancouver": i * -10,
                     "temp": i * -100,
-                 html.Button(
-[
-html.Span(className=‘navbar-toggler-icon’)
-],
-className=“navbar-toggler”,
-type=‘button’,
-**{
-‘data-toggle’: ‘collapse’,
-‘data-target’: “#navbarNav”,
-‘aria-controls’: “navbarNav”,
-‘aria-expanded’: “false”,
-‘aria-label’: “Toggle navigation”
-}
-),   "humidity": i * 5,
+                    "humidity": i * 5,
                 }
                 for i in range(10)
             ],
