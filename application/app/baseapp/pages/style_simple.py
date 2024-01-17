@@ -377,9 +377,9 @@ class StylingTable():
             dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
             EventListener(
             listen2this,
-            events=[self.event], logging=True, id="el"
+            events=[self.event], logging=True, id=self.page_name +"el"
             ),
-            html.Div(id="log", style={'position':'absolute', 'top':'300px', 'width':'100px'})
+            html.Div(id=self.page_name + "log", style={'position':'absolute', 'top':'300px', 'width':'100px'})
         ])
     
 
@@ -393,7 +393,7 @@ class StylingTable():
 
     def ListenerCallback(self):
 
-        @callback(Output("log", "children"), Input("el", "n_events"), State("el", "event"))
+        @callback(Output(self.page_name + "log", "children"), Input(self.page_name +"el", "n_events"), State(self.page_name +"el", "event"))
         def click_event(n_events, e):
             if e is None:
                 raise PreventUpdate()
