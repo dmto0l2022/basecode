@@ -31,6 +31,16 @@
 }
 
 
+#stylingtable {
+	appearance: none;
+	padding: 5px;
+	background-color: #4834d4;
+	color: white;
+	border: none;
+	font-family: inherit;
+	outline: none;
+}
+
 /*
 .dash-dropdown{
 	height : 12px;
