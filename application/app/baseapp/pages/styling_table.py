@@ -62,8 +62,23 @@ class StylingTable():
                 'minWidth': '100%',
             }
 
+        '''
+        .styled-select select {
+           background: transparent;
+           width: 268px;
+           padding: 5px;
+           font-size: 16px;
+           line-height: 1;
+           border: 0;
+           border-radius: 0;
+           height: 34px;
+           -webkit-appearance: none;
+           }
+        '''
+        
         self.format_table_style_cell = {'textAlign': 'left',
                                         'appearance': 'none',
+                                         '-webkit-appearance': 'none';
                                           'padding': '0px',
                                           'font_size': self.format_data_table_font_size,
                                           'overflow': 'hidden',
