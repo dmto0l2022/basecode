@@ -175,7 +175,7 @@ class StylingTable():
 
         
         select_out = html.Select(children=children_color,
-                               id=self.page_name + "color_selection" "-" - str(limit_id_in) + "-" + str(trace_id_in),
+                               id=self.page_name + "color_selection" + "-" + str(limit_id_in) + "-" + str(trace_id_in),
                                style={'width':'100%','margin':'0','padding':'0','border':'1px solid black','appearance':'none'})
 
         return select_out
