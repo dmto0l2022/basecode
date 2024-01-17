@@ -393,7 +393,9 @@ class StylingTable():
         option_1 = html.Option("Server Option 1", id="Server , 1, 1", value="Server Option 1 Selected", style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         option_2 = html.Option("Server Option 2", id="Server, 1, 2", value="Server Option 2 Selected", style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         
-        select_1 = html.Select(children=[option_1, option_2],id="connections",style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})  
+        select_1 = html.Select(children=[option_1, option_2],
+                               id="connections",
+                               style={'width':'100%','margin':'0','padding':'0','border':'1px solid black','appearance':'none';})  
 
         cell_4 = html.Td(className='td', children=select_1,style={'margin':'0','padding':'0','border':'1px solid black',
                                                                    'font-size':'8px', 'line-height':'8px','height':'8px', 'min-height':'8px'})
