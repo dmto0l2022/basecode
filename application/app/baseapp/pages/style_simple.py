@@ -65,7 +65,7 @@ class StylingTable():
                 'minWidth': '100%',
             }
         
-        self.event = {'event': 'click', 'props': ['timeStamp', 'button', 'srcElement.className', 'srcElement.innerText', 'srcElement.value', 'srcElement.id']}
+        self.event = {'event': 'click', 'props': ['timeStamp', 'button','type', 'srcElement.className', 'srcElement.innerText', 'srcElement.value', 'srcElement.id']}
       
         
         self.table_columns =[
