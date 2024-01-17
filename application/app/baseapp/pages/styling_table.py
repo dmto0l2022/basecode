@@ -48,8 +48,8 @@ class StylingTable():
     def __init__(self,pagename_in):
         self.page_name = pagename_in
         self.data_table_id =  self.page_name + "data_table_id"
-        self.format_data_table_row_height = '5px'
-        self.row_height = '5px'
+        self.format_data_table_row_height = '11px'
+        self.row_height = '11px'
         self.table_height = '600px'
         self.format_data_table_font_size = '11px'
         self.format_data_table_style_table={
