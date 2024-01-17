@@ -291,8 +291,7 @@ class StylingTable():
                                        style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
 
 
-
-     def generate_html_table_from_df(self, df_in):
+    def generate_html_table_from_df(self, df_in):
         df = df_in
         self.generated_table_from_df = html.Table(id=self.page_name + 'generated_table_from_df',
             # Header
@@ -302,7 +301,6 @@ class StylingTable():
                 html.Td(df.iloc[i][col]) for col in df.columns
             ]) for i in range(min(len(df), max_rows))]
         )
-  
     
     def generate_html_table(self):
         data = {'Column:Cap' : ['Data A', 'Data B', 'Data C', ], 'Column:non-Cap' : ['Data a','Data b','Data c', ]}
