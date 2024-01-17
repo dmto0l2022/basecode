@@ -180,6 +180,27 @@ class StylingTable():
 
         return select_out
 
+    def get_line_styles(self, limit_id_in, trace_id_in):
+        line_styles_list = ['solid', 'dot', 'dash', 'longdash', 'dashdot', 'longdashdot']
+        line_styles_lines = ['__', '...', '---', '_ _', '_.', '__.']
+        counter = 0
+        children_line_styles = []
+        for ls in line_styles_lines:
+            palette_option_append = html.Option(pc, id="line style " + str(counter), value="line style " + str(counter) + "-" + str(limit_id_in) + "-" + str(trace_id_in),
+                                                selected=False,
+                                                style={'width':'100%','margin':'0 !important',
+                                                       'padding':'0 !important',
+                                                       'line-height':'12px','font-size' : '12px',
+                                                       'min-height': '12px', 'display': 'block'})
+            children_line_styles.append(palette_option_append)
+            counter += 1
+
+        select_out = html.Select(children=children_line_styles,
+                               id=self.page_name + "line_style_selection" + "-" + str(limit_id_in) + "-" + str(trace_id_in),
+                               style={'width':'100%','margin':'0','padding':'0','border':'1px solid black','appearance':'none'})
+
+        return select_out
+    
     def select_beginnings(self):
 
         heading_1 = html.Th(className='th', children='Column 1', style={'margin':'0','padding':'0','border':'1px solid black',
@@ -327,6 +348,9 @@ class StylingTable():
                 if col in ( 'lc', 'sc', 'fc'):
                     cdr = self.get_color_dropdown(1, i)
                     append_cell = html.Td(cdr)
+                elif col in ('ls'):
+                    ls = self.get_line_styles(1, i)
+                    append_cell = html.Td(ls)
                 else:
                     append_cell = html.Td(df.iloc[i][col])
                 table_row.append(append_cell)
