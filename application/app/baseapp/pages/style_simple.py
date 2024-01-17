@@ -200,6 +200,30 @@ class StylingTable():
                                style={'width':'100%','margin':'0','padding':'0','border':'1px solid black','appearance':'none'})
 
         return select_out
+
+
+    def get_symbols(self, limit_id_in, trace_id_in):
+
+        symbols_value_list = ['circle','square','diamond','x','triangle']
+        symbols_label_list = ['○','□','◇','x','△']
+        counter = 0
+        children_symbols = []
+        for sl in symbols_label_list:
+            palette_option_append = html.Option(sl, id="symbol " + str(counter), value="symbol " + str(counter) + "-" + str(limit_id_in) + "-" + str(trace_id_in),
+                                                selected=False,
+                                                style={'width':'100%','margin':'0 !important',
+                                                       'padding':'0 !important',
+                                                       'line-height':'12px','font-size' : '12px',
+                                                       'min-height': '12px', 'display': 'block'})
+            children_symbols.append(palette_option_append)
+            counter += 1
+
+        select_out = html.Select(children=children_symbols,
+                               id=self.page_name + "symbol_selection" + "-" + str(limit_id_in) + "-" + str(trace_id_in),
+                               style={'width':'100%','margin':'0','padding':'0','border':'1px solid black','appearance':'none'})
+
+        return select_out
+
     
     def select_beginnings(self):
 
@@ -351,6 +375,9 @@ class StylingTable():
                 elif col in ('ls'):
                     ls = self.get_line_styles(1, i)
                     append_cell = html.Td(ls)
+                elif col in ('ss'):
+                    ss = self.get_symbols(1, i)
+                    append_cell = html.Td(ss)
                 else:
                     append_cell = html.Td(df.iloc[i][col])
                 table_row.append(append_cell)
