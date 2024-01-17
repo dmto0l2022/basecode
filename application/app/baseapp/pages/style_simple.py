@@ -455,7 +455,7 @@ page_name = 'style_simple'
 dbl = StylingTable(page_name)
 dbl.Layout()
 layout = dbl.layout
-dbl.button_callback()
+#dbl.button_callback()
 dbl.ListenerCallback()
 
 '''
