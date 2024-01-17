@@ -392,8 +392,19 @@ class StylingTable():
             
         option_1 = html.Option("Server Option 1", id="Server , 1, 1", value="Server Option 1 Selected", style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
         option_2 = html.Option("Server Option 2", id="Server, 1, 2", value="Server Option 2 Selected", style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+
+        palette_color_squares_1 = ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
+
+        palette_options = ["X"] * 10
+        counter = 0
+        children_color = []
+        for pc in palette_color_squares_1:
+            palette_option_append = html.Option(pc, id="color " + str(counter), value="color " + str(counter), style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
+            children_color.append(palette_option_append)
+            counter += 1
+
         
-        select_1 = html.Select(children=[option_1, option_2],
+        select_1 = html.Select(children=children_color,
                                id="connections",
                                style={'width':'100%','margin':'0','padding':'0','border':'1px solid black','appearance':'none'})  
 
