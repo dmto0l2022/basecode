@@ -39,6 +39,7 @@ from collections import OrderedDict
 
 from itertools import cycle
 
+event = {"event": "click", "props": ["srcElement.className", "srcElement.innerText"]}
 
 dash.register_page(__name__, path='/styling_table')
 
@@ -334,7 +335,7 @@ class StylingTable():
                    'width': '10%'},
                   {'if': {'column_id': 'symbol'},
                    'width': '10%'},
-                  {'if': {'column_id': 'symbol_color'},
+                  {'if': {'column_id': 'symbol_color'},event = {"event": "click", "props": ["srcElement.className", "srcElement.innerText"]}
                    'width': '10%'}],
             merge_duplicate_headers=True,
           )
@@ -629,8 +630,6 @@ class StylingTable():
             html.Div(id=self.page_name+'button-output-div',children="button message", style={'position':'absolute', 'top':'225px', 'width':'300px'}),
             html.Button('Submit', id=self.page_name+'save_plot_button', n_clicks=0, style={'position':'absolute', 'top':'250px', 'width':'100px'})]
         )
-
-        event = {"event": "click", "props": ["srcElement.className", "srcElement.innerText"]}
         
         self.layout = html.Div([
             dcc.Location(id=self.page_name+'url',refresh=True),
