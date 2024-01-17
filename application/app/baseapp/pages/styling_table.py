@@ -48,8 +48,8 @@ class StylingTable():
     def __init__(self,pagename_in):
         self.page_name = pagename_in
         self.data_table_id =  self.page_name + "data_table_id"
-        self.format_data_table_row_height = '12px'
-        self.row_height = '3px'
+        self.format_data_table_row_height = '5px'
+        self.row_height = '5px'
         self.table_height = '600px'
         self.format_data_table_font_size = '11px'
         self.format_data_table_style_table={
@@ -70,7 +70,8 @@ class StylingTable():
                                           ##'border': '1px solid black',
                                           'height': self.format_data_table_row_height,
                                           'overflow': 'hidden',
-                                          'maxWidth': 0 ## made things work!!
+                                          'maxWidth': 0 ## made things work!!,
+                                          'display': 'inline-block',
                                          }
         
         '''
