@@ -26,6 +26,11 @@
 	padding : 0;
 }
 
+.dropdown-toggle::after {
+    display:none !important;
+}
+
+
 /*
 .dash-dropdown{
 	height : 12px;
