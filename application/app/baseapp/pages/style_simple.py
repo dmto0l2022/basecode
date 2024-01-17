@@ -377,7 +377,7 @@ class StylingTable():
             table_row = []
             for col in df.columns:
                 if col in ( 'lc', 'sc', 'fc'):
-                    cdr = self.get_color_dropdown(1, i)
+                    cdr = self.get_color_dropdown(1, i, df.iloc[i][col])
                     append_cell = html.Td(cdr)
                 elif col in ('ls'):
                     ls = self.get_line_styles(1, i)
