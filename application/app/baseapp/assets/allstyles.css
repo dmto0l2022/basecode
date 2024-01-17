@@ -30,6 +30,12 @@
     display:none !important;
 }
 
+.select { 
+        /* for Firefox */ 
+        -moz-appearance: none; 
+        /* for Safari, Chrome, Opera */ 
+        -webkit-appearance: none; 
+      } 
 
 #stylingtable {
 	appearance: none;
