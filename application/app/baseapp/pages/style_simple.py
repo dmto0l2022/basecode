@@ -324,7 +324,11 @@ class StylingTable():
         for i in range(min(len(df), count_row)):
             table_row = []
             for col in df.columns:
-                append_cell = html.Td(df.iloc[i][col])
+                if col = 'lc':
+                    cdr = self.get_color_dropdown(1, i)
+                    append_cell = html.Td(cdr)
+                else:
+                    append_cell = html.Td(df.iloc[i][col])
                 table_row.append(append_cell)
             table_body.append(html.Tr(table_row))
         
