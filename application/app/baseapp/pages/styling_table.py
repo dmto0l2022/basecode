@@ -623,7 +623,7 @@ class StylingTable():
 
         #self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.dropdown_test], style={'width': '100%', 'height': '200px','border': '2px solid black'})
 
-        listen2this = hrml.Div(
+        listen2this = html.Div(
             html.Div(id=self.page_name+'content',children=[self.table_div], style = {'position':'absolute', 'top':'0px', 'width':'300px'}),
             html.Div(id=self.page_name+'response',children="table content", style = {'position':'absolute', 'top':'200px', 'width':'300px'}),
             html.Div(id=self.page_name+'button-output-div',children="button message", style={'position':'absolute', 'top':'225px', 'width':'300px'}),
