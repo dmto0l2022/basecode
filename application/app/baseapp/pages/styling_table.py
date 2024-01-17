@@ -64,7 +64,7 @@ class StylingTable():
                 'width': '100%',
                 'minWidth': '100%',
             }
-        self.event = {'event': 'click', 'props': ['srcElement.className', 'srcElement.innerText']}
+        self.event = {'event': 'click', 'props': ['srcElement.className', 'srcElement.innerText', 'srcElement.value', 'srcElement.id']}
         
         '''
         .styled-select select {
