@@ -257,7 +257,8 @@ class StylingTable():
         #symbol_options=[{'label': i, 'value': i} for i in symbol_list]
         
         self.TableFormat = dash_table.DataTable(
-              id=self.page_name + 'format_table_id',
+              #id=self.page_name + 'format_table_id',
+              id="stylingtable",
               #row_deletable=True,
               # Add this line
               #fixed_rows={'headers': True},
