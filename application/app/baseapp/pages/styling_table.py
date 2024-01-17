@@ -596,7 +596,7 @@ page_name = 'styling_table'
 dbl = StylingTable(page_name)
 dbl.Layout()
 layout = dbl.layout
-dbl.button_callback()
+#dbl.button_callback()
 
 '''
 @callback(
