@@ -39,7 +39,7 @@ from collections import OrderedDict
 
 from itertools import cycle
 
-event = {"event": "click", "props": ["srcElement.className", "srcElement.innerText"]}
+
 
 dash.register_page(__name__, path='/styling_table')
 
@@ -64,7 +64,8 @@ class StylingTable():
                 'width': '100%',
                 'minWidth': '100%',
             }
-
+        self.event = {'event': 'click', 'props': ['srcElement.className', 'srcElement.innerText']}
+        
         '''
         .styled-select select {
            background: transparent;
@@ -636,7 +637,7 @@ class StylingTable():
             dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
             EventListener(
             listen2this,
-            events=[event], logging=True, id="el"
+            events=[self.event], logging=True, id="el"
             ),
             html.Div(id="log")
         ])
