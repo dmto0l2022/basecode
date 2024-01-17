@@ -167,6 +167,7 @@ class StylingTable():
         children_color = []
         for pc in palette_color_squares_1:
             color_value = palette_color_list_1[counter]
+            print(counter,color_value)
             if color_value == default_value_in:
                 selected_flag = True
             else:
