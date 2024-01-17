@@ -159,7 +159,26 @@ class StylingTable():
         
         self.generate_html_table_from_df(self.format_table_df)
               
-    
+    def get_color_dropdown(self, limit_id_in, trace_id_in):
+        palette_color_squares_1 = ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
+        counter = 0
+        children_color = []
+        for pc in palette_color_squares_1:
+            palette_option_append = html.Option(pc, id="color " + str(counter), value="color " + str(counter) + "-" - str(limit_id_in) + "-" + str(trace_id_in),
+                                                selected=False,
+                                                style={'width':'100%','margin':'0 !important',
+                                                       'padding':'0 !important',
+                                                       'line-height':'12px','font-size' : '12px',
+                                                       'min-height': '12px', 'display': 'block'})
+            children_color.append(palette_option_append)
+            counter += 1
+
+        
+        select_out = html.Select(children=children_color,
+                               id=self.page_name + "color_selection" "-" - str(limit_id_in) + "-" + str(trace_id_in),
+                               style={'width':'100%','margin':'0','padding':'0','border':'1px solid black','appearance':'none'})
+
+        return select_out
 
     def select_beginnings(self):
 
@@ -299,14 +318,12 @@ class StylingTable():
         df = df_in
         count_row = df_in.shape[0]  # Gives number of rows
         count_col = df_in.shape[1]  # Gives number of columns
+
+        table_headings = [html.Tr([html.Th(col) for col in df.columns])]
+        table_body =  [html.Tr([html.Td(df.iloc[i][col]) for col in df.columns]) for i in range(min(len(df), count_row))]
         
         self.generated_table_from_df = html.Table(id=self.page_name + 'generated_table_from_df',
-            # Header
-            children=[html.Tr([html.Th(col) for col in df.columns]) ] +
-            # Body
-            [html.Tr([
-                html.Td(df.iloc[i][col]) for col in df.columns
-            ]) for i in range(min(len(df), count_row))]
+           children=[table_headings + table_body]
         )
     
     def generate_html_table(self):
