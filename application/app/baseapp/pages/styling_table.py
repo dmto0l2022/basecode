@@ -19,6 +19,8 @@ from dash import Dash
 from dash import Input, Output,State
 from dash import callback
 
+from dash_extensions import EventListener
+
 from dash.exceptions import PreventUpdate
 
 from collections import OrderedDict
@@ -621,14 +623,21 @@ class StylingTable():
 
         #self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.dropdown_test], style={'width': '100%', 'height': '200px','border': '2px solid black'})
 
+        listen2this = hrml.Div(
+            html.Div(id=self.page_name+'content',children=[self.table_div], style = {'position':'absolute', 'top':'0px', 'width':'300px'}),
+            html.Div(id=self.page_name+'response',children="table content", style = {'position':'absolute', 'top':'200px', 'width':'300px'}),
+            html.Div(id=self.page_name+'button-output-div',children="button message", style={'position':'absolute', 'top':'225px', 'width':'300px'}),
+            html.Button('Submit', id=self.page_name+'save_plot_button', n_clicks=0, style={'position':'absolute', 'top':'250px', 'width':'100px'})
+        )
         
         self.layout = html.Div([
             dcc.Location(id=self.page_name+'url',refresh=True),
             dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
-            html.Div(id=self.page_name+'content',children=[self.table_div], style = {'position':'absolute', 'top':'0px', 'width':'300px'}),
-            html.Div(id=self.page_name+'response',children="table content", style = {'position':'absolute', 'top':'200px', 'width':'300px'}),
-            html.Div(id=self.page_name+'button-output-div',children="button message", style={'position':'absolute', 'top':'225px', 'width':'300px'}),
-            html.Button('Submit', id=self.page_name+'save_plot_button', n_clicks=0, style={'position':'absolute', 'top':'250px', 'width':'100px'}),
+            EventListener(
+            listen2this,
+            events=[event], logging=True, id="el"
+            ),
+            html.Div(id="log")
         ])
     
 
@@ -639,6 +648,14 @@ class StylingTable():
         def get_table_children(url_in,table_div_in):
             print("styling table callback triggered")
             print(table_div_in)
+
+    def ListenerCallback(self):
+
+        @callback(Output("log", "children"), Input("el", "n_events"), State("el", "event"))
+        def click_event(n_events, e):
+            if e is None:
+                raise PreventUpdate()
+            return ",".join(f"{prop} is '{e[prop]}' " for prop in event["props"]) + f" (number of clicks is {n_events})"
     
     def button_callback(self):
         @callback(
@@ -695,7 +712,8 @@ page_name = 'styling_table'
 dbl = StylingTable(page_name)
 dbl.Layout()
 layout = dbl.layout
-#dbl.button_callback()
+dbl.button_callback()
+dbl.ListenerCallback()
 
 '''
 @callback(
