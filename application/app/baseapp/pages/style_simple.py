@@ -161,13 +161,13 @@ class StylingTable():
               
     def get_color_dropdown(self, limit_id_in, trace_id_in, default_value_in):
         palette_color_squares_1 = ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
-        palette_color_list_1 = ['black','red','orange','yellow' 'green','blue', 'purple', 'brown']
+        palette_color_list_1 = ['black','red','orange','yellow','green','blue', 'purple', 'brown']
         palette_color_abreviations_1 = ['BK','RD','OR','YL','GN', 'BL', 'PR', 'BR']
         counter = 0
         children_color = []
         for pc in palette_color_squares_1:
             color_value = palette_color_list_1[counter]
-            print(counter,color_value)
+            #print(counter,color_value)
             if color_value == default_value_in:
                 selected_flag = True
             else:
