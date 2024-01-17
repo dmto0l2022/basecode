@@ -629,6 +629,8 @@ class StylingTable():
             html.Div(id=self.page_name+'button-output-div',children="button message", style={'position':'absolute', 'top':'225px', 'width':'300px'}),
             html.Button('Submit', id=self.page_name+'save_plot_button', n_clicks=0, style={'position':'absolute', 'top':'250px', 'width':'100px'})]
         )
+
+        event = {"event": "click", "props": ["srcElement.className", "srcElement.innerText"]}
         
         self.layout = html.Div([
             dcc.Location(id=self.page_name+'url',refresh=True),
