@@ -471,6 +471,8 @@ class StylingTable():
             html.Button('Submit', id=self.page_name+'save_plot_button', n_clicks=0, style={'position':'absolute', 'top':'250px', 'width':'100px'})]
         )
         
+        ## https://www.dash-extensions.com/components/event_listener
+        
         self.layout = html.Div([
             dcc.Location(id=self.page_name+'url',refresh=True),
             dcc.Store(id= self.page_name + 'screen_size_store', storage_type='local'),
