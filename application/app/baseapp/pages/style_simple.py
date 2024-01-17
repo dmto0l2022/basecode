@@ -153,8 +153,9 @@ class StylingTable():
           
         self.colored_limits_df = pd.DataFrame(data=colored_limits_list, columns=self.data_df.columns)
 
-        self.format_table_df = self.colored_limits_df[['trace_id','trace_name','line_color','symbol_color','fill_color','line','symbol']]
-        
+        self.format_table_df = self.colored_limits_df[['trace_id','trace_name','line','line_color','symbol','symbol_color','fill_color']]
+
+        self.format_table_df.columns = ['id','name','ls','lc','ss','sc','fc']
         
         self.generate_html_table_from_df(self.format_table_df)
               
