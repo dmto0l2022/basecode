@@ -336,7 +336,7 @@ class StylingTable():
                    'width': '10%'},
                   {'if': {'column_id': 'symbol'},
                    'width': '10%'},
-                  {'if': {'column_id': 'symbol_color'},event = {"event": "click", "props": ["srcElement.className", "srcElement.innerText"]}
+                  {'if': {'column_id': 'symbol_color'},
                    'width': '10%'}],
             merge_duplicate_headers=True,
           )
