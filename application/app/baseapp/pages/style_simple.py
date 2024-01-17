@@ -384,14 +384,15 @@ class StylingTable():
         for i in range(min(len(df), count_row)):
             table_row = []
             for col in df.columns:
+                trace_id = df.iloc[i]['id']
                 if col in ( 'lc', 'sc', 'fc'):
-                    cdr = self.get_color_dropdown(1, i, df.iloc[i][col])
+                    cdr = self.get_color_dropdown(1, trace_id, df.iloc[i][col])
                     append_cell = html.Td(cdr)
                 elif col in ('ls'):
-                    ls = self.get_line_styles(1, i, df.iloc[i][col])
+                    ls = self.get_line_styles(1, trace_id, df.iloc[i][col])
                     append_cell = html.Td(ls)
                 elif col in ('ss'):
-                    ss = self.get_symbols(1, i)
+                    ss = self.get_symbols(1, trace_id)
                     append_cell = html.Td(ss)
                 else:
                     append_cell = html.Td(df.iloc[i][col])
