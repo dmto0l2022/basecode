@@ -523,7 +523,7 @@ class StylingTable():
                 }
                 )
         
-        select_div = html.Div(className="select", children=[option_0, option_1, option_2])
+        select_div = html.Div(className="select form-select", children=[option_0, option_1, option_2])
 
         self.dropdown_test = select_div
     
