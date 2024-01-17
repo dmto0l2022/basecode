@@ -388,7 +388,7 @@ class StylingTable():
                     cdr = self.get_color_dropdown(1, i, df.iloc[i][col])
                     append_cell = html.Td(cdr)
                 elif col in ('ls'):
-                    ls = self.get_line_styles(1, i)
+                    ls = self.get_line_styles(1, i, df.iloc[i][col])
                     append_cell = html.Td(ls)
                 elif col in ('ss'):
                     ss = self.get_symbols(1, i)
