@@ -30,12 +30,25 @@
     display:none !important;
 }
 
+/*
 .select { 
         /* for Firefox */ 
         -moz-appearance: none; 
         /* for Safari, Chrome, Opera */ 
         -webkit-appearance: none; 
       } 
+*/
+
+.select .header select {
+  appearance: none;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  border-width: 0;
+  width: 100%;
+  flex: 1;
+  display: none;
+}
 
 #stylingtable {
 	appearance: none;
