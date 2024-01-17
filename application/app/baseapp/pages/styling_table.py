@@ -501,7 +501,7 @@ class StylingTable():
         '''
         option_0 = html.Div(
                 className='option',
-                children='option 0'
+                children='option 0',
                 **{
                 'data-value': '0',
                 }
@@ -509,7 +509,7 @@ class StylingTable():
         
         option_1 = html.Div(
                 className='option',
-                children='option 1'
+                children='option 1',
                 **{
                 'data-value': '1',
                 }
@@ -517,7 +517,7 @@ class StylingTable():
 
         option_2 = html.Div(
                 className='option',
-                children='option 2'
+                children='option 2',
                 **{
                 'data-value': '2',
                 }
