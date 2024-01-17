@@ -326,7 +326,7 @@ class StylingTable():
             for col in df.columns:
                 append_cell = html.Td(df.iloc[i][col])
                 table_row.append(append_cell)
-            table_body.append(html.Tr([table_row]))
+            table_body.append(html.Tr(table_row))
         
         self.generated_table_from_df = html.Table(id=self.page_name + 'generated_table_from_df',
            children= table_headings + table_body
