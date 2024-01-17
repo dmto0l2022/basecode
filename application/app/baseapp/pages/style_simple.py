@@ -186,7 +186,7 @@ class StylingTable():
         counter = 0
         children_line_styles = []
         for ls in line_styles_lines:
-            palette_option_append = html.Option(pc, id="line style " + str(counter), value="line style " + str(counter) + "-" + str(limit_id_in) + "-" + str(trace_id_in),
+            palette_option_append = html.Option(ls, id="line style " + str(counter), value="line style " + str(counter) + "-" + str(limit_id_in) + "-" + str(trace_id_in),
                                                 selected=False,
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
