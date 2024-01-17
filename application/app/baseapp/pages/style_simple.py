@@ -159,13 +159,20 @@ class StylingTable():
         
         self.generate_html_table_from_df(self.format_table_df)
               
-    def get_color_dropdown(self, limit_id_in, trace_id_in):
+    def get_color_dropdown(self, limit_id_in, trace_id_in, default_value_in):
         palette_color_squares_1 = ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
+        palette_color_list_1 = ['black','red','orange','yellow' 'green','blue', 'purple', 'brown']
+        palette_color_abreviations_1 = ['BK','RD','OR','YL','GN', 'BL', 'PR', 'BR']
         counter = 0
         children_color = []
         for pc in palette_color_squares_1:
-            palette_option_append = html.Option(pc, id="color " + str(counter), value="color " + str(counter) + "-" + str(limit_id_in) + "-" + str(trace_id_in),
-                                                selected=False,
+            color_value = palette_color_list_1[counter]
+            if color_value == default_value_in:
+                selected_flag = True
+            else:
+                selected_flag = False
+            palette_option_append = html.Option(pc, id="color_option:" + str(counter) + ",limit_id:" + str(limit_id_in) + ",trace_id:" + str(trace_id_in), value=color_value,
+                                                selected=selected_flag,
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
                                                        'line-height':'12px','font-size' : '12px',
