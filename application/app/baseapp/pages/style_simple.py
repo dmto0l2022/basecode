@@ -496,10 +496,15 @@ class StylingTable():
 
         @callback(Output(self.page_name + "log", "children"), Input(self.page_name +"el", "n_events"), State(self.page_name +"el", "event"))
         def click_event(n_events, e):
-            if e is None:
-                raise PreventUpdate()
-            print('e >>>>>>>>', e)
-            return ",".join(f"{prop} is '{e[prop]}' " for prop in self.event["props"]) + f" (number of clicks is {n_events})"
+            if e['srcElement.id'] == self.previous_clickevent:
+                return_string = ",".join(f"{prop} is '{e[prop]}' " for prop in self.event["props"]) + f" (number of clicks is {n_events})"
+                if e is None:
+                    raise PreventUpdate()
+                print('e >>>>>>>>', e)
+            else:
+                return_string = ""
+            self.previous_clickevent = e['srcElement.id']
+            return 
     
     def button_callback(self):
         @callback(
