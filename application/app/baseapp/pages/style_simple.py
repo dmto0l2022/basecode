@@ -600,7 +600,11 @@ class StylingTable():
             #                                      (self.data_df_melt['variable'] == variable_value)
             #                                      , value_value, self.data_df_melt['value'])
 
-            self.data_df_melt[mask,['value']] = [value_value]
+            #self.data_df_melt[mask,['value']] = [value_value]
+
+            self.data_df_melt['value'].mask((self.data_df_melt['limit_id'].astype(str) == limit_id_value) |
+                                                 (self.data_df_melt['trace_id'].astype(str) == trace_id_value) |
+                                                 (self.data_df_melt['variable'] == variable_value), value_value, inplace=True)
 
             self.values_table = self.generate_html_general_table_from_df(self.data_df_melt, 'values_table')
             
