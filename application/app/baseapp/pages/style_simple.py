@@ -586,7 +586,7 @@ class StylingTable():
             print("trace_id_value >>> " , trace_id_value)
             print("variable_value >>> " , variable_value)
             print("value_value >>> " , value_value)
-            
+            print(self.data_df_melt)
             
             # limit_id  trace_id      variable   value
             self.data_df_melt['value'] = np.where((self.data_df_melt['limit_id'] == limit_id_value) &
