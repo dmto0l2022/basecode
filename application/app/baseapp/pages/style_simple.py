@@ -127,11 +127,21 @@ class StylingTable():
     
 
     def Update(self):
-      
-        trace_1 = {'limit_id' : 1,'data_label' : 'data_label_1', 'trace_id' : 1, 'trace_name' : '1_trace_name','line_color': 'black', 'symbol_color': 'black', 'fill_color': 'black', 'line': 'solid', 'symbol': 'circle', 'id': 1}
-        trace_2 = {'limit_id' : 1, 'data_label' : 'data_label_1', 'trace_id' : 2, 'trace_name' : '2_trace_name','line_color': 'red', 'symbol_color': 'red', 'fill_color': 'red', 'line': 'dot', 'symbol': 'circle', 'id': 2}
-        trace_3 = {'limit_id' : 1, 'data_label' : 'data_label_1', 'trace_id' : 3, 'trace_name' : '3_trace_name','line_color': 'blue', 'symbol_color': 'blue', 'fill_color': 'blue', 'line': 'dash', 'symbol': 'circle', 'id': 3}
-        self.data = [trace_1, trace_2, trace_3]
+        ## limit_id #1
+        trace_1_1 = {'limit_id' : 1, 'data_label' : 'data_label_1', 'trace_id' : 1, 'trace_name' : '1_trace_name','line_color': 'black', 'symbol_color': 'black', 'fill_color': 'black', 'line': 'solid', 'symbol': 'circle', 'id': 1}
+        trace_1_2 = {'limit_id' : 1, 'data_label' : 'data_label_1', 'trace_id' : 2, 'trace_name' : '2_trace_name','line_color': 'red', 'symbol_color': 'red', 'fill_color': 'red', 'line': 'dot', 'symbol': 'circle', 'id': 2}
+        trace_1_3 = {'limit_id' : 1, 'data_label' : 'data_label_1', 'trace_id' : 3, 'trace_name' : '3_trace_name','line_color': 'blue', 'symbol_color': 'blue', 'fill_color': 'blue', 'line': 'dash', 'symbol': 'circle', 'id': 3}
+        ## limit_id #2
+        trace_2_1 = {'limit_id' : 2, 'data_label' : 'data_label_1', 'trace_id' : 1, 'trace_name' : '1_trace_name','line_color': 'black', 'symbol_color': 'black', 'fill_color': 'black', 'line': 'solid', 'symbol': 'circle', 'id': 1}
+        trace_2_2 = {'limit_id' : 2, 'data_label' : 'data_label_1', 'trace_id' : 2, 'trace_name' : '2_trace_name','line_color': 'red', 'symbol_color': 'red', 'fill_color': 'red', 'line': 'dot', 'symbol': 'circle', 'id': 2}
+        trace_2_3 = {'limit_id' : 2, 'data_label' : 'data_label_1', 'trace_id' : 3, 'trace_name' : '3_trace_name','line_color': 'blue', 'symbol_color': 'blue', 'fill_color': 'blue', 'line': 'dash', 'symbol': 'circle', 'id': 3}
+        ## limit_id #3
+        trace_3_1 = {'limit_id' : 3, 'data_label' : 'data_label_1', 'trace_id' : 1, 'trace_name' : '1_trace_name','line_color': 'black', 'symbol_color': 'black', 'fill_color': 'black', 'line': 'solid', 'symbol': 'circle', 'id': 1}
+        trace_3_2 = {'limit_id' : 3, 'data_label' : 'data_label_1', 'trace_id' : 2, 'trace_name' : '2_trace_name','line_color': 'red', 'symbol_color': 'red', 'fill_color': 'red', 'line': 'dot', 'symbol': 'circle', 'id': 2}
+        trace_3_3 = {'limit_id' : 3, 'data_label' : 'data_label_1', 'trace_id' : 3, 'trace_name' : '3_trace_name','line_color': 'blue', 'symbol_color': 'blue', 'fill_color': 'blue', 'line': 'dash', 'symbol': 'circle', 'id': 3}
+        
+        
+        self.data = [trace_1_1, trace_1_2, trace_1_3, trace_2_1, trace_2_2, trace_2_3 , trace_3_1, trace_3_2, trace_3_3]
         self.data_df = pd.DataFrame.from_dict(self.data)
         cycle_colors = itertools.cycle(self.palette_color_list)
         append_this = []
@@ -154,9 +164,9 @@ class StylingTable():
           
         self.colored_limits_df = pd.DataFrame(data=colored_limits_list, columns=self.data_df.columns)
 
-        self.format_table_df = self.colored_limits_df[['trace_id','trace_name','line','line_color','symbol','symbol_color','fill_color']]
+        self.format_table_df = self.colored_limits_df[['limit_id', 'trace_id','trace_name','line','line_color','symbol','symbol_color','fill_color']]
 
-        self.format_table_df.columns = ['id','name','ls','lc','ss','sc','fc']
+        self.format_table_df.columns = ['ds','tc','description','ls','lc','ss','sc','fc']
         
         self.generate_html_table_from_df(self.format_table_df)
               
@@ -387,10 +397,10 @@ class StylingTable():
             for col in df.columns:
                 trace_id = df.iloc[i]['id']
                 if col in ( 'lc', 'sc', 'fc'):
-                    cdr = self.get_color_dropdown(1, trace_id, df.iloc[i][col])
+                    cdr = self.get_color_dropdown(ds, tc, df.iloc[i][col])
                     append_cell = html.Td(cdr)
                 elif col in ('ls'):
-                    ls = self.get_line_styles(1, trace_id, df.iloc[i][col])
+                    ls = self.get_line_styles(ds, tc, df.iloc[i][col])
                     append_cell = html.Td(ls)
                 elif col in ('ss'):
                     ss = self.get_symbols(1, trace_id)
