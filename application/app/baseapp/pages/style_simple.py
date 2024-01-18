@@ -188,14 +188,14 @@ class StylingTable():
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
                                                        'line-height':'12px','font-size' : '12px',
-                                                       'min-height': '12px', 'display': 'block'})
+                                                       'min-height': '12px', 'display': 'block', 'background':'lightblue'})
             children_color.append(palette_option_append)
             counter += 1
 
         
         select_out = html.Select(children=children_color,
                                id=self.page_name + "color_selection, limit_id:" + str(limit_id_in) + ",trace_id:" + str(trace_id_in),
-                               style={'width':'100%','margin':'0','padding':'0','border':'1px solid black','appearance':'none'})
+                               style={'width':'100%','margin':'0','padding':'0','appearance':'none', 'background':'lightblue'})
 
         return select_out
 
@@ -217,13 +217,13 @@ class StylingTable():
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
                                                        'line-height':'12px','font-size' : '12px',
-                                                       'min-height': '12px', 'display': 'block'})
+                                                       'min-height': '12px', 'display': 'block', 'background':'lightblue'})
             children_line_styles.append(palette_option_append)
             counter += 1
 
         select_out = html.Select(children=children_line_styles,
                                id=self.page_name + "line_style_selection" + ", limit_id:" + str(limit_id_in) + ",trace_id:" + str(trace_id_in),
-                               style={'width':'100%','margin':'0','padding':'0','border':'1px solid black','appearance':'none'})
+                               style={'width':'100%','margin':'0','padding':'0','appearance':'none', 'background':'lightblue'})
 
         return select_out
 
@@ -246,7 +246,7 @@ class StylingTable():
 
         select_out = html.Select(children=children_symbols,
                                id=self.page_name + "symbol_selection" + "-" + str(limit_id_in) + "-" + str(trace_id_in),
-                               style={'width':'100%','margin':'0','padding':'0','border':'1px solid black','appearance':'none'})
+                               style={'width':'100%','margin':'0','padding':'0','appearance':'none',  'background':'lightblue'})
 
         return select_out
 
@@ -394,22 +394,23 @@ class StylingTable():
         table_body = []
         for i in range(min(len(df), count_row)):
             table_row = []
+            datacell_style = {'background-color': 'lightblue'}
             for col in df.columns:
                 dataset_id = df.iloc[i]['ds']
                 trace_id = df.iloc[i]['tc']
                 if col in ( 'lc', 'sc', 'fc'):
                     cdr = self.get_color_dropdown(dataset_id, trace_id, df.iloc[i][col])
-                    append_cell = html.Td(cdr)
+                    append_cell = html.Td(cdr, style=datacell_style)
                 elif col in ('ls'):
                     ls = self.get_line_styles(dataset_id, trace_id, df.iloc[i][col])
-                    append_cell = html.Td(ls)
+                    append_cell = html.Td(ls, style=datacell_style)
                 elif col in ('ss'):
                     ss = self.get_symbols(1, trace_id)
-                    append_cell = html.Td(ss)
+                    append_cell = html.Td(ss, style=datacell_style)
                 else:
                     append_cell = html.Td(df.iloc[i][col])
                 table_row.append(append_cell)
-            table_body.append(html.Tr(table_row))
+            table_body.append(html.Tr(table_row, style=datacell_style))
         
         self.generated_table_from_df = html.Table(id=self.page_name + 'generated_table_from_df',
            children= table_headings + table_body
