@@ -177,6 +177,8 @@ class StylingTable():
         self.format_table_df.columns = ['ds','tc','description','ls','lc','ss','sc','fc']
         
         self.formatting_table = self.generate_html_table_from_df(self.format_table_df, 'formatting_table')
+
+        self.values_table = self.generate_html_table_from_df(self.data_df_melt, 'values_table')
               
     def get_color_dropdown(self, limit_id_in, trace_id_in, of_what_in, default_value_in):
         palette_color_squares_1 = ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
@@ -501,10 +503,17 @@ class StylingTable():
         #self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.dropdown_test], style={'width': '100%', 'height': '200px','border': '2px solid black'})
         self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.formatting_table],
                                    style={'width': '100%', 'height': '200px'})
+
+
+        self.values_table_div =  html.Div(id= self.page_name+'table_div', children=[self.values_table],
+                                   style={'width': '100%', 'height': '600px'})
+
       
         listen2this = html.Div(children=
             [html.Div(id=self.page_name+'content',children=[self.table_div],
                       style = {'position':'absolute', 'top':'0px', 'width':'300px',  'overflow': 'auto'}),
+            html.Div(id=self.page_name+'content',children=[self.values_table_div],
+                      style = {'position':'absolute', 'top':'0px','left': '400px', 'width':'300px',  'overflow': 'auto'}),
             html.Div(id=self.page_name+'response',children="table content", style = {'position':'absolute', 'top':'200px', 'width':'300px'}),
             html.Div(id=self.page_name+'button-output-div',children="button message", style={'position':'absolute', 'top':'225px', 'width':'300px'}),
             html.Button('Submit', id=self.page_name+'save_plot_button', n_clicks=0, style={'position':'absolute', 'top':'250px', 'width':'100px'})]
