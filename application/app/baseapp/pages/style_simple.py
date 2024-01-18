@@ -582,6 +582,8 @@ class StylingTable():
             trace_id_value = field_value_json['trace_id']
             variable_value = field_value_json['variable']
             value_value = field_value_json['value']
+
+            
             
             # limit_id  trace_id      variable   value
             self.data_df_melt['value'] = np.where((self.data_df_melt['limit_id'] == limit_id_value) &
@@ -592,7 +594,7 @@ class StylingTable():
 
             self.values_table = self.generate_html_general_table_from_df(self.data_df_melt, 'values_table')
             
-            return return_string, self.values_table
+            return [return_string, self.values_table]
     
     def button_callback(self):
         @callback(
