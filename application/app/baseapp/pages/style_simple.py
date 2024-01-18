@@ -119,6 +119,7 @@ class StylingTable():
         self.table_div = html.Div()
         self.formatting_table = html.Table()
         self.data_df = pd.DataFrame()
+        self.data_df_melt = pd.DataFrame()
         self.table_df = pd.DataFrame()
         self.table_row  =  dbc.Row()
         self.layout = html.Div()
@@ -145,6 +146,11 @@ class StylingTable():
         
         self.data = [trace_1_1, trace_1_2, trace_1_3, trace_2_1, trace_2_2, trace_2_3 , trace_3_1, trace_3_2, trace_3_3]
         self.data_df = pd.DataFrame.from_dict(self.data)
+
+        self.data_df_melt = pd.melt(self.data_df, id_vars=['limit_id','trace_id'], value_vars=['line_color', 'symbol_color','fill_color', 'line', 'symbol'])
+        print('melted >>>>>>>>>>>',self.data_df_melt)
+        
+        
         cycle_colors = itertools.cycle(self.palette_color_list)
         append_this = []
         #colored_limits = pd.DataFrame(data=None, columns=limits_traces_in.columns, index=limits_traces_in.index)
