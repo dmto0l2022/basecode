@@ -587,12 +587,17 @@ class StylingTable():
             print("variable_value >>> " , variable_value)
             print("value_value >>> " , value_value)
             print(self.data_df_melt)
-            
+            ## mask = df['ID'].eq('AA') & df['Date'].isin(['Q2.22', 'Q1.22'])
+            ## df.loc[mask, ['stat', 'en']] = ['', 0]
+
+            mask = (self.data_df_melt['limit_id'] == limit_id_value) & (self.data_df_melt['trace_id'] == trace_id_value) & (self.data_df_melt['variable'] == variable_value)
+            print(mask)
+
             # limit_id  trace_id      variable   value
-            self.data_df_melt['value'] = np.where((self.data_df_melt['limit_id'] == limit_id_value) &
-                                                  (self.data_df_melt['trace_id'] == trace_id_value) &
-                                                  (self.data_df_melt['variable'] == variable_value)
-                                                  , value_value, self.data_df_melt['value'])
+            #self.data_df_melt['value'] = np.where((self.data_df_melt['limit_id'] == limit_id_value) &
+            #                                      (self.data_df_melt['trace_id'] == trace_id_value) &
+            #                                      (self.data_df_melt['variable'] == variable_value)
+            #                                      , value_value, self.data_df_melt['value'])
 
 
             self.values_table = self.generate_html_general_table_from_df(self.data_df_melt, 'values_table')
