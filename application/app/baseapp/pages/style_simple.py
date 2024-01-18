@@ -176,9 +176,9 @@ class StylingTable():
 
         self.format_table_df.columns = ['ds','tc','description','ls','lc','ss','sc','fc']
         
-        self.formatting_table = self.generate_html_table_from_df(self.format_table_df, 'formatting_table')
+        self.formatting_table = self.generate_html_formatting_table_from_df(self.format_table_df, 'formatting_table')
 
-        self.values_table = self.generate_html_table_from_df(self.data_df_melt, 'values_table')
+        self.values_table = self.generate_html_general_table_from_df(self.data_df_melt, 'values_table')
               
     def get_color_dropdown(self, limit_id_in, trace_id_in, of_what_in, default_value_in):
         palette_color_squares_1 = ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
@@ -403,7 +403,27 @@ class StylingTable():
                                        style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
 
 
-    def generate_html_table_from_df(self, df_in, id_in):
+    def generate_html_general_table_from_df(self, df_in, id_in):
+        df = df_in
+        count_row = df_in.shape[0]  # Gives number of rows
+        count_col = df_in.shape[1]  # Gives number of columns
+
+        table_headings = [html.Tr([html.Th(col) for col in df.columns])]
+        table_body = []
+        for i in range(min(len(df), count_row)):
+            table_row = []
+            datacell_style = {'background-color': 'lightblue'}
+            for col in df.columns:
+                append_cell = html.Td(df.iloc[i][col])
+                table_row.append(append_cell)
+            table_body.append(html.Tr(table_row, style=datacell_style))
+        
+        generated_table_from_df = html.Table(id=self.page_name + id_in,
+           children= table_headings + table_body
+        )
+        return generated_table_from_df
+    
+    def generate_html_formatting_table_from_df(self, df_in, id_in):
         df = df_in
         count_row = df_in.shape[0]  # Gives number of rows
         count_col = df_in.shape[1]  # Gives number of columns
