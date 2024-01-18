@@ -3,6 +3,7 @@ import requests
 import json
 from urllib.parse import urlparse, parse_qs
 import pandas as pd
+import numpy as np
 import itertools
 
 cwd = os.getcwd()
