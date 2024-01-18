@@ -194,7 +194,7 @@ class StylingTable():
             else:
                 selected_flag = False
             option_id = "{'color_option':'" + str(counter) + "','limit_id':'" + str(limit_id_in) + "','trace_id':'" + str(trace_id_in) + "','of_what':'" + of_what_in +"'}"
-            option_value = '{\"limit_id":\"' + str(limit_id_in) + '\",\"trace_id\":\"' + str(trace_id_in) + '\",\"of_what\":\"' + of_what_in +'\",\"color\":\"'+color_value+'\"}'
+            option_value = '{\"limit_id":\"' + str(limit_id_in) + '\",\"trace_id\":\"' + str(trace_id_in) + '\",\"of_what\":\"' + of_what_in +'\",\"value\":\"'+color_value+'\"}'
             palette_option_append = html.Option(pc, id=option_id , value=option_value,
                                                 selected=selected_flag,
                                                 style={'width':'100%','margin':'0 !important',
@@ -437,13 +437,13 @@ class StylingTable():
                 dataset_id = df.iloc[i]['ds']
                 trace_id = df.iloc[i]['tc']
                 if col == 'lc':
-                    of_what = 'line'
+                    of_what = 'line_color'
                 elif col == 'sc':
-                    of_what = 'symbol'
+                    of_what = 'symbol_color'
                 elif col == 'fc':
-                    of_what = 'fill'
+                    of_what = 'fill_color'
                 else:
-                    of_what = 'fill'
+                    of_what = ''
                 if col in ( 'lc', 'sc', 'fc'):
                     cdr = self.get_color_dropdown(dataset_id, trace_id, of_what, df.iloc[i][col])
                     append_cell = html.Td(cdr, style=datacell_style)
@@ -562,7 +562,7 @@ class StylingTable():
 
     def ListenerCallback(self):
 
-        @callback(Output(self.page_name + "log", "children"), Input(self.page_name +"el", "n_events"), State(self.page_name +"el", "event"))
+        @callback(Output(self.page_name + "log", "children"), Output(self.page_name + "styles_table_div", "children"), Input(self.page_name +"el", "n_events"), State(self.page_name +"el", "event"))
         def click_event(n_events, e):
             #print("srcElement.id>>>>", e['srcElement.id'])
             #print("previous_clickevent>>>>>", self.previous_clickevent)
@@ -574,6 +574,17 @@ class StylingTable():
             field_value = e['srcElement.value']
             field_value_json = json.loads(field_value)
             print("field_value_json >>>>>>", field_value_json)
+            limit_id_value = field_value_json['limit_id']
+            trace_id_value = field_value_json['trace_id']
+            variable_value = field_value_json['variable']
+            value_value = field_value_json['value']
+            
+            # limit_id  trace_id      variable   value
+            self.data_df_melt['value'] = np.where((self.data_df_melt['limit_id'] == limit_id_value) &
+                                                  (self.data_df_melt['trace_id_value'] == trace_id) &
+                                                  (self.data_df_melt['of_what'] == variable_value)
+                                                  , value_value, self.data_df_melt['value'])
+            
             return return_string
     
     def button_callback(self):
