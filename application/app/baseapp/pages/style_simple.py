@@ -411,7 +411,7 @@ class StylingTable():
                     ls = self.get_line_styles(dataset_id, trace_id, df.iloc[i][col])
                     append_cell = html.Td(ls, style=datacell_style)
                 elif col in ('ss'):
-                    ss = self.get_symbols(1, trace_id)
+                    ss = self.get_symbols(dataset_id, trace_id, df.iloc[i][col])
                     append_cell = html.Td(ss, style=datacell_style)
                 else:
                     append_cell = html.Td(df.iloc[i][col])
