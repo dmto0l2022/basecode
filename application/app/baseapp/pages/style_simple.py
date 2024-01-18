@@ -217,26 +217,32 @@ class StylingTable():
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
                                                        'line-height':'12px','font-size' : '12px',
-                                                       'min-height': '12px', 'display': 'block', 'background':'lightblue'})
+                                                       'min-height': '12px', 'display': 'block', 'background':'lightblue', 'border':'none'})
             children_line_styles.append(palette_option_append)
             counter += 1
 
         select_out = html.Select(children=children_line_styles,
                                id=self.page_name + "line_style_selection" + ", limit_id:" + str(limit_id_in) + ",trace_id:" + str(trace_id_in),
-                               style={'width':'100%','margin':'0','padding':'0','appearance':'none', 'background':'lightblue'})
+                               style={'width':'100%','margin':'0','padding':'0','appearance':'none', 'background':'lightblue', 'border':'none'})
 
         return select_out
 
 
-    def get_symbols(self, limit_id_in, trace_id_in):
+    def get_symbols(self, limit_id_in, trace_id_in,default_value_in):
 
         symbols_value_list = ['circle','square','diamond','x','triangle']
         symbols_label_list = ['○','□','◇','x','△']
         counter = 0
         children_symbols = []
         for sl in symbols_label_list:
-            palette_option_append = html.Option(sl, id="symbol " + str(counter), value="symbol " + str(counter) + "-" + str(limit_id_in) + "-" + str(trace_id_in),
-                                                selected=False,
+            symbol_value = symbols_value_list[counter]
+            if sl == default_value_in:
+                selected_flag = True
+            else:
+                selected_flag = False
+            palette_option_append = html.Option(sl, id="symbol_option:" + str(counter) + ",limit_id:" + str(limit_id_in) + ",trace_id:" + str(trace_id_in),
+                                                value=symbol_value,
+                                                selected=selected_flag,
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
                                                        'line-height':'12px','font-size' : '12px',
@@ -246,7 +252,7 @@ class StylingTable():
 
         select_out = html.Select(children=children_symbols,
                                id=self.page_name + "symbol_selection" + "-" + str(limit_id_in) + "-" + str(trace_id_in),
-                               style={'width':'100%','margin':'0','padding':'0','appearance':'none',  'background':'lightblue'})
+                               style={'width':'100%','margin':'0','padding':'0','appearance':'none',  'background':'lightblue', 'border':'none'})
 
         return select_out
 
