@@ -116,6 +116,7 @@ class StylingTable():
         self.data = []
         self.table_data = 'table data'
         self.table_div = html.Div()
+        self.formatting_table = html.Table()
         self.data_df = pd.DataFrame()
         self.table_df = pd.DataFrame()
         self.table_row  =  dbc.Row()
@@ -168,7 +169,7 @@ class StylingTable():
 
         self.format_table_df.columns = ['ds','tc','description','ls','lc','ss','sc','fc']
         
-        self.generate_html_table_from_df(self.format_table_df)
+        self.formatting_table = self.generate_html_table_from_df(self.format_table_df, 'formatting_table')
               
     def get_color_dropdown(self, limit_id_in, trace_id_in, default_value_in):
         palette_color_squares_1 = ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
@@ -391,7 +392,7 @@ class StylingTable():
                                        style={'width':'100%','margin':'0','padding':'0','border':'1px solid black'})
 
 
-    def generate_html_table_from_df(self, df_in):
+    def generate_html_table_from_df(self, df_in, id_in):
         df = df_in
         count_row = df_in.shape[0]  # Gives number of rows
         count_col = df_in.shape[1]  # Gives number of columns
@@ -418,9 +419,10 @@ class StylingTable():
                 table_row.append(append_cell)
             table_body.append(html.Tr(table_row, style=datacell_style))
         
-        self.generated_table_from_df = html.Table(id=self.page_name + 'generated_table_from_df',
+        generated_table_from_df = html.Table(id=self.page_name + id_in,
            children= table_headings + table_body
         )
+        return generated_table_from_df
     
     def generate_html_table(self):
         data = {'Column:Cap' : ['Data A', 'Data B', 'Data C', ], 'Column:non-Cap' : ['Data a','Data b','Data c', ]}
@@ -480,7 +482,7 @@ class StylingTable():
         #self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.TableFormat], style={'width': '100%', 'height': '200px','border': '2px solid black'})
 
         #self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.dropdown_test], style={'width': '100%', 'height': '200px','border': '2px solid black'})
-        self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.generated_table_from_df],
+        self.table_div =  html.Div(id= self.page_name+'table_div', children=[self.formatting_table],
                                    style={'width': '100%', 'height': '200px'})
       
         listen2this = html.Div(children=
