@@ -171,7 +171,7 @@ class StylingTable():
         
         self.formatting_table = self.generate_html_table_from_df(self.format_table_df, 'formatting_table')
               
-    def get_color_dropdown(self, limit_id_in, trace_id_in, default_value_in):
+    def get_color_dropdown(self, limit_id_in, trace_id_in, of_what_in, default_value_in):
         palette_color_squares_1 = ['⬛','🟥','🟧','🟨','🟩', '🟦', '🟪', '🟫']
         palette_color_list_1 = ['black','red','orange','yellow','green','blue', 'purple', 'brown']
         palette_color_abreviations_1 = ['BK','RD','OR','YL','GN', 'BL', 'PR', 'BR']
@@ -184,7 +184,7 @@ class StylingTable():
                 selected_flag = True
             else:
                 selected_flag = False
-            palette_option_append = html.Option(pc, id="color_option:" + str(counter) + ",limit_id:" + str(limit_id_in) + ",trace_id:" + str(trace_id_in), value=color_value,
+            palette_option_append = html.Option(pc, id="{'color_option':'" + str(counter) + "','limit_id':'" + str(limit_id_in) + "','trace_id':'" + str(trace_id_in) + "','of_what':'" + of_what_in +"'}" , value=color_value,
                                                 selected=selected_flag,
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
@@ -405,8 +405,16 @@ class StylingTable():
             for col in df.columns:
                 dataset_id = df.iloc[i]['ds']
                 trace_id = df.iloc[i]['tc']
+                if col == 'lc':
+                    of_what = 'line'
+                elif col = 'sc':
+                    of_what = 'symbol'
+                elif col = 'fc':
+                    of_what = 'fill'
+                else:
+                    of_what = 'fill'
                 if col in ( 'lc', 'sc', 'fc'):
-                    cdr = self.get_color_dropdown(dataset_id, trace_id, df.iloc[i][col])
+                    cdr = self.get_color_dropdown(dataset_id, trace_id, of_what, df.iloc[i][col])
                     append_cell = html.Td(cdr, style=datacell_style)
                 elif col in ('ls'):
                     ls = self.get_line_styles(dataset_id, trace_id, df.iloc[i][col])
