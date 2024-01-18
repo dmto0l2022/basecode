@@ -582,7 +582,10 @@ class StylingTable():
             trace_id_value = field_value_json['trace_id']
             variable_value = field_value_json['variable']
             value_value = field_value_json['value']
-
+            print("limit_id_value >>> " , limit_id_value)
+            print("trace_id_value >>> " , trace_id_value)
+            print("variable_value >>> " , variable_value)
+            print("value_value >>> " , value_value)
             
             
             # limit_id  trace_id      variable   value
