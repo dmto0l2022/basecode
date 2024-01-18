@@ -184,7 +184,9 @@ class StylingTable():
                 selected_flag = True
             else:
                 selected_flag = False
-            palette_option_append = html.Option(pc, id="{'color_option':'" + str(counter) + "','limit_id':'" + str(limit_id_in) + "','trace_id':'" + str(trace_id_in) + "','of_what':'" + of_what_in +"'}" , value=color_value,
+            option_id = "{'color_option':'" + str(counter) + "','limit_id':'" + str(limit_id_in) + "','trace_id':'" + str(trace_id_in) + "','of_what':'" + of_what_in +"'}"
+            option_value = "{'color_option':'" + str(counter) + "','limit_id':'" + str(limit_id_in) + "','trace_id':'" + str(trace_id_in) + "','of_what':'" + of_what_in +"',color:'"+color_value+"'}"
+            palette_option_append = html.Option(pc, id=option_id , value=color_value,
                                                 selected=selected_flag,
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
