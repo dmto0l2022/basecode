@@ -407,9 +407,9 @@ class StylingTable():
                 trace_id = df.iloc[i]['tc']
                 if col == 'lc':
                     of_what = 'line'
-                elif col = 'sc':
+                elif col == 'sc':
                     of_what = 'symbol'
-                elif col = 'fc':
+                elif col == 'fc':
                     of_what = 'fill'
                 else:
                     of_what = 'fill'
