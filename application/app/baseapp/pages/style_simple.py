@@ -590,7 +590,7 @@ class StylingTable():
             ## mask = df['ID'].eq('AA') & df['Date'].isin(['Q2.22', 'Q1.22'])
             ## df.loc[mask, ['stat', 'en']] = ['', 0]
 
-            mask = (self.data_df_melt['limit_id'] == limit_id_value)
+            mask = (self.data_df_melt['limit_id'] == str(limit_id_value))
             ## & (self.data_df_melt['trace_id'] == trace_id_value) & (self.data_df_melt['variable'] == variable_value)
             print(mask)
 
