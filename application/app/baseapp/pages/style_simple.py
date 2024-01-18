@@ -188,14 +188,14 @@ class StylingTable():
                                                 style={'width':'100%','margin':'0 !important',
                                                        'padding':'0 !important',
                                                        'line-height':'12px','font-size' : '12px',
-                                                       'min-height': '12px', 'display': 'block', 'background':'lightblue'})
+                                                       'min-height': '12px', 'display': 'block', 'background':'lightblue', 'border':'none'})
             children_color.append(palette_option_append)
             counter += 1
 
         
         select_out = html.Select(children=children_color,
                                id=self.page_name + "color_selection, limit_id:" + str(limit_id_in) + ",trace_id:" + str(trace_id_in),
-                               style={'width':'100%','margin':'0','padding':'0','appearance':'none', 'background':'lightblue'})
+                               style={'width':'100%','margin':'0','padding':'0','appearance':'none', 'background':'lightblue', 'border':'none'})
 
         return select_out
 
