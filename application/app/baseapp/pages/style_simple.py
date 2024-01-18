@@ -525,7 +525,7 @@ class StylingTable():
                                    style={'width': '100%', 'height': '200px'})
 
 
-        self.values_table_div =  html.Div(id= self.page_name+'table_div', children=[self.values_table],
+        self.values_table_div =  html.Div(id= self.page_name+'values_div', children=[self.values_table],
                                    style={'width': '100%', 'height': '600px'})
 
       
@@ -562,7 +562,10 @@ class StylingTable():
 
     def ListenerCallback(self):
 
-        @callback(Output(self.page_name + "log", "children"), Output(self.page_name + "styles_table_div", "children"), Input(self.page_name +"el", "n_events"), State(self.page_name +"el", "event"))
+        @callback(Output(self.page_name + "log", "children"),
+                  Output(self.page_name + "values_div", "children"),
+                  Input(self.page_name +"el", "n_events"),
+                  State(self.page_name +"el", "event"))
         def click_event(n_events, e):
             #print("srcElement.id>>>>", e['srcElement.id'])
             #print("previous_clickevent>>>>>", self.previous_clickevent)
@@ -584,8 +587,11 @@ class StylingTable():
                                                   (self.data_df_melt['trace_id_value'] == trace_id) &
                                                   (self.data_df_melt['of_what'] == variable_value)
                                                   , value_value, self.data_df_melt['value'])
+
+
+            self.values_table = self.generate_html_general_table_from_df(self.data_df_melt, 'values_table')
             
-            return return_string
+            return return_string, self.values_table
     
     def button_callback(self):
         @callback(
